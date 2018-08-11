@@ -1755,17 +1755,15 @@ pre .javascript .function {
   max-width: 120px;
   height: auto;
   border: 1px solid #eee;
-  opacity: 1;
+  border-radius: 60%;
+  transition: 2.5s all;
 }
-img:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
+.site-author-image:hover {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
   -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 .site-author-name {
   margin: 0;
@@ -1849,7 +1847,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2ff101;
+  background: #69b4ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2951,4 +2949,11 @@ ul.breadcrumb li+li:last-child {
   .post-body {
     text-align: justify;
   }
+}
+.post {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
