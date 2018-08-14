@@ -335,7 +335,7 @@
                 
               
 
-              <time title="Created: 2018-08-14 21:30:13 / Modified: 22:20:09" itemprop="dateCreated datePublished" datetime="2018-08-14T21:30:13+08:00">2018-08-14</time>
+              <time title="Created: 2018-08-14 21:30:13 / Modified: 23:46:49" itemprop="dateCreated datePublished" datetime="2018-08-14T21:30:13+08:00">2018-08-14</time>
             
 
             
@@ -396,12 +396,11 @@
             <h1 id="Mac-Os下用「hexo-github」搭建个人博客！"><a href="#Mac-Os下用「hexo-github」搭建个人博客！" class="headerlink" title="Mac Os下用「hexo+github」搭建个人博客！"></a>Mac Os下用「hexo+github」搭建个人博客！</h1><hr>
 <p>这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤</p>
 <hr>
-<h2 id="安装nodejs和git（这个自己在官网安装就可以）"><a href="#安装nodejs和git（这个自己在官网安装就可以）" class="headerlink" title="安装nodejs和git（这个自己在官网安装就可以）"></a>安装nodejs和git（这个自己在官网安装就可以）</h2><h2 id="接着要用npm安装hexo"><a href="#接着要用npm安装hexo" class="headerlink" title="接着要用npm安装hexo"></a>接着要用npm安装hexo</h2><p>在终端输入<code>npm install -g hero-cli</code></p>
-<p><img src="/2018/08/14/blog/0.png" alt=""></p>
-<p>很多报错 可以看见好几个都是permission denied（因为权限不足无法访问）<br>可以看见提示的建议是：<code>Please try running this command again as root/Administrator.</code><br>所以重新输入<code>sudo npm install -g hero-cli</code>（sudo：申请root权限）<br>下图表明安装成功  </p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong> 安装nodejs和git（这个自己在官网安装就可以）</strong><br><strong> 接着要用npm安装hexo </strong><br>在终端输入<code>npm install -g hexo-cli</code></p>
+<p><img src="/2018/08/14/blog/0.jpg" alt=""></p>
+<p>很多报错 可以看见好几个都是permission denied（因为权限不足无法访问）<br>可以看见提示的建议是：<code>Please try running this command again as root/Administrator.</code><br>所以重新输入<code>sudo npm install -g hexo-cli</code>（sudo：申请root权限）<br>下图表明安装成功  </p>
 <p><img src="/2018/08/14/blog/1.tiff" alt=""></p>
-<h2 id="新建文件夹然后右键「新建位于文件夹位置的终端窗口」"><a href="#新建文件夹然后右键「新建位于文件夹位置的终端窗口」" class="headerlink" title="新建文件夹然后右键「新建位于文件夹位置的终端窗口」"></a>新建文件夹然后右键「新建位于文件夹位置的终端窗口」</h2><p>（第一次使用的话可以在【finder-服务-服务偏好设置】中勾选上那一项）</p>
-<h2 id="文件夹位置下终端输入"><a href="#文件夹位置下终端输入" class="headerlink" title="文件夹位置下终端输入"></a>文件夹位置下终端输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo i blog//blog是项目名，叫别的也随便</span><br><span class="line">cd blog//进入blog文件夹</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="用hexo在本地新建一个博客"><a href="#用hexo在本地新建一个博客" class="headerlink" title="用hexo在本地新建一个博客"></a>用hexo在本地新建一个博客</h2><p><strong> 新建文件夹然后右键「新建位于文件夹位置的终端窗口」</strong><br>（第一次使用的话可以在【finder-服务-服务偏好设置】中勾选上那一项）<br><strong> 文件夹位置下终端输入 </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo i blog//blog是项目名，叫别的也随便</span><br><span class="line">cd blog//进入blog文件夹</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2018/08/14/blog/2.tiff" alt=""></p>
 <p>（后两句不加sudo的话同样会出现permission denied的问题 所以在开头加上sudo给他权限就可以啦 下面有些地方还会遇到sudo的问题 就不赘述了 报权限不够的错误的话自己加上）</p>
 <p>成功后会给出一个链接 一个在本地的博客就这样建好了 点开就可以发现已经有一个博客的大概了</p>
@@ -409,14 +408,19 @@
 <p><img src="/2018/08/14/blog/4.tiff" alt=""></p>
 <p>这里用到了4000端口 如果该端口被占用的话可以查一下是什么东西占用了这个端口<code>sudo lsof -i:端口号</code> 如果没有输出表面该端口没有被占用 被占用的话会给出一个进程 里面有一个PID号 如果是没设么用的进程 输入<code>sudo kill -9 pid号</code>结束掉他即可</p>
 <p>默认给的是个叫「landscape」的主题 不同主题有不同的功能布局外观 当然也可以自己写个主题出来<br>不过这种是大佬们的操作 我这个小白还是先找个主题用吧。。<br>这里放上一些主题：<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">https://github.com/hexojs/hexo/wiki/Themes</a> 此外知乎上也有关于hexo主题的讨论</p>
-<h2 id="在文件夹打开终端输入git-clone加上所选主题的地址-此处以及后面所说的终端一般都是blog文件夹终端了"><a href="#在文件夹打开终端输入git-clone加上所选主题的地址-此处以及后面所说的终端一般都是blog文件夹终端了" class="headerlink" title="在文件夹打开终端输入git clone加上所选主题的地址 (此处以及后面所说的终端一般都是blog文件夹终端了)"></a>在文件夹打开终端输入git clone加上所选主题的地址 (此处以及后面所说的终端一般都是blog文件夹终端了)</h2><p><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
+<h2 id="设置博客主题"><a href="#设置博客主题" class="headerlink" title="设置博客主题"></a>设置博客主题</h2><p><strong> 在文件夹打开终端输入git clone加上所选主题的地址 </strong></p>
+<p>(此处以及后面所说的终端一般都是blog文件夹终端了)</p>
+<p><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
 <p><img src="/2018/08/14/blog/5.tiff" alt=""></p>
-<h2 id="打开文件夹下的这个文件-官方名叫站点配置文件"><a href="#打开文件夹下的这个文件-官方名叫站点配置文件" class="headerlink" title="打开文件夹下的这个文件 官方名叫站点配置文件"></a>打开文件夹下的这个文件 官方名叫站点配置文件</h2><p><img src="/2018/08/14/blog/6.tiff" alt=""></p>
-<h2 id="然后找到里面的theme并更改"><a href="#然后找到里面的theme并更改" class="headerlink" title="然后找到里面的theme并更改"></a>然后找到里面的theme并更改</h2><p><img src="/2018/08/14/blog/7.tiff" alt=""></p>
-<h2 id="回到终端输入"><a href="#回到终端输入" class="headerlink" title="回到终端输入"></a>回到终端输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hero s</span><br></pre></td></tr></table></figure>
+<p><strong> 打开文件夹下的这个文件 官方名叫站点配置文件 </strong></p>
+<p><img src="/2018/08/14/blog/6.tiff" alt=""></p>
+<p><strong> 然后找到里面的theme并更改 </strong>  </p>
+<p><img src="/2018/08/14/blog/7.tiff" alt=""></p>
+<p><strong> 回到终端输入 </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hero s</span><br></pre></td></tr></table></figure></p>
 <p>点进生成的blog可以看见主题已经换好啦</p>
 <p><img src="/2018/08/14/blog/8.tiff" alt=""></p>
-<h2 id="在-themes-next-config-yml-里配置next"><a href="#在-themes-next-config-yml-里配置next" class="headerlink" title="在[themes/next/config.yml]里配置next"></a>在[themes/next/config.yml]里配置next</h2><p>冒号后面是有空格的 后面有些地方也是一样！！！一定要有空格 不然会报很长很长的错！！！</p>
+<p><strong> 在[themes/next/config.yml]里配置next </strong></p>
+<p>冒号后面是有空格的 后面有些地方也是一样！！！一定要有空格 不然会报很长很长的错！！！</p>
 <p>可以看见备注写了三个方案给你选</p>
 <p><img src="/2018/08/14/blog/9.tiff" alt=""></p>
 <p>然后重新输入以下代码查看效果   </p>
@@ -429,23 +433,25 @@
 <p><img src="/2018/08/14/blog/12.tiff" alt=""></p>
 <p>上面是Gemini 还蛮好看蛮直男审美的 就这个吧诶嘿</p>
 <p>以上就是在本地建立了一个看得过去的blog了<br>下面要把这个本地blog上传到github</p>
-<h2 id="先在GitHub上创建一个新项目"><a href="#先在GitHub上创建一个新项目" class="headerlink" title="先在GitHub上创建一个新项目"></a>先在GitHub上创建一个新项目</h2><p><img src="/2018/08/14/blog/13.tiff" alt=""></p>
+<h2 id="把博客部署到GitHub上"><a href="#把博客部署到GitHub上" class="headerlink" title="把博客部署到GitHub上"></a>把博客部署到GitHub上</h2><p><strong> 先在GitHub上创建一个新项目 </strong></p>
+<p><img src="/2018/08/14/blog/13.tiff" alt=""></p>
 <p>项目名必须按如下格式输入 最后一项选上</p>
 <p><img src="/2018/08/14/blog/14.tiff" alt=""></p>
 <p>创建后点项目的setting 下拉找到github pages</p>
 <p><img src="/2018/08/14/blog/15.tiff" alt=""></p>
 <p>看不懂就翻译了一下 那么发现啦那个网址就是我们要用的<br>现在还是宇宙洪荒混沌初始的状态</p>
 <p><img src="/2018/08/14/blog/16.tiff" alt=""></p>
-<p>接下来要把hexo上的代码部署到github上</p>
-<h2 id="打开之前提到过的站点配置文件-把最后几行改成如下格式"><a href="#打开之前提到过的站点配置文件-把最后几行改成如下格式" class="headerlink" title="打开之前提到过的站点配置文件 把最后几行改成如下格式"></a>打开之前提到过的站点配置文件 把最后几行改成如下格式</h2><p><img src="/2018/08/14/blog/17.tiff" alt=""></p>
-<h2 id="在终端输入如下-装个插件"><a href="#在终端输入如下-装个插件" class="headerlink" title="在终端输入如下 装个插件"></a>在终端输入如下 装个插件</h2><p><code>npm install hexo-deployer-git --save</code></p>
+<p>接下来要把hexo上的内容部署到github上</p>
+<p><strong> 打开之前提到过的站点配置文件 把最后几行改成如下格式 </strong></p>
+<p><img src="/2018/08/14/blog/17.tiff" alt=""></p>
+<p><strong> 在终端输入如下 装个插件 </strong><br><code>npm install hexo-deployer-git --save</code></p>
 <p><img src="/2018/08/14/blog/18.tiff" alt=""></p>
 <p>emmmmmm???报了一堆错 没事 照他的提示在mac终端输入<code>npm i -g npm</code>更新一下就好了<br>更新成功的界面如下</p>
 <p><img src="/2018/08/14/blog/19.tiff" alt=""></p>
 <p>查一下也可以发现变成 6.3.0 版本了。。这不重要</p>
 <p><img src="/2018/08/14/blog/20.tiff" alt=""></p>
-<p>然后就是最后激动人心的一步了！！！！！</p>
-<h2 id="输入hexo-d把它部署到github的网站上去"><a href="#输入hexo-d把它部署到github的网站上去" class="headerlink" title="输入hexo d把它部署到github的网站上去"></a>输入hexo d把它部署到github的网站上去</h2><p>然后就走上了漫长的报错之路。。</p>
+<p>然后就是最后激动人心的一步了！！！！！<br><strong> 输入hexo d把它部署到github的网站上去 </strong></p>
+<p>然后就走上了漫长的报错之路。。</p>
 <p><img src="/2018/08/14/blog/21.tiff" alt=""></p>
 <p>然后又经历了一系列艰苦卓绝我也不知道发生了啥的几个小时的查来查去试来试去！<br>最后 终于突然一下的改好了？？！</p>
 <p>emmmmm不废话了先记录下来 大概讲讲我干了些啥</p>
@@ -461,7 +467,9 @@
 <p><img src="/2018/08/14/blog/24.tiff" alt=""></p>
 <p>然后就点开github之前给的那个链接 如图</p>
 <p><img src="/2018/08/14/blog/25.tiff" alt=""></p>
-<h2 id="之前的本地网站已经上传了！！撒花！！！！"><a href="#之前的本地网站已经上传了！！撒花！！！！" class="headerlink" title="之前的本地网站已经上传了！！撒花！！！！"></a>之前的本地网站已经上传了！！撒花！！！！</h2>
+<p><strong> 之前的本地网站已经上传了！！撒花！！！！ </strong></p>
+<hr>
+
           
         
       
@@ -771,7 +779,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-14 01:38:18" itemprop="dateModified" datetime="2018-08-14T01:38:18+08:00">2018-08-14</time>
+                <time title="Modified: 2018-08-15 00:00:37" itemprop="dateModified" datetime="2018-08-15T00:00:37+08:00">2018-08-15</time>
               
             
           </span>
@@ -824,7 +832,8 @@
       
         
           
-            
+            <p><img src="https://github.com/LeFlacon/LeFlacon.github.io/blob/master/images/0.png?raw=true" alt=""></p>
+
           
         
       
@@ -919,7 +928,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index-1.html">
+                  <a href="/c0/index.html">
                     
                     
                       
@@ -1017,7 +1026,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共2.1k字</span>
+  <span class="post-count"> |  博客全站共2.2k字</span>
 </div>
 
         
