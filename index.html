@@ -289,6 +289,370 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/F.The Best Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/F.The Best Path/" itemprop="url">
+                  F.The Best Path--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:37:37 / Modified: 15:40:53" itemprop="dateCreated datePublished" datetime="2018-08-15T15:37:37+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/暑假训练/" itemprop="url" rel="index"><span itemprop="name">暑假训练</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="F-The-Best-Path"><a href="#F-The-Best-Path" class="headerlink" title="F. The Best Path"></a>F. The Best Path</h2><p><a href="https://nanti.jisuanke.com/t/29370" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29370</a></p>
+<p><img src="/2018/08/15/F.The Best Path/123.png" alt=""></p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">4 3</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">Impossible</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>给一个图，每个点有一个权值，找欧拉通路或者欧拉回路，然后求路径上每个点异或结果的最大值；</p>
+<p>首先判断有没有欧拉回路或者通路，用一下定理就好了，有且仅有两个度数为奇数的点则有欧拉通路，没有度数为奇数的点则有欧拉回路；</p>
+<p>然后把对异或值有贡献的算上，有贡献的点就是d为奇数的点和（d/2）为奇数的点，因为经过偶数次的点相当于没有贡献；</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=100005;</span><br><span class="line">int n,m,a[N],d[N];</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t,u,v;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        int ans=0;</span><br><span class="line">        memset(d,0,sizeof(d));</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">        for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;a[i]);</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);</span><br><span class="line">            d[u]++;d[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        int num=0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            if(d[i]&amp;1)num++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num==0)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;</span><br><span class="line">            int tmp=ans;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                ans=max(ans,tmp^a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(num==2)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;      </span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else printf(&quot;Impossible\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/D.Tea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/D.Tea/" itemprop="url">
+                  D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:28:13 / Modified: 15:28:48" itemprop="dateCreated datePublished" datetime="2018-08-15T15:28:13+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/暑假训练/" itemprop="url" rel="index"><span itemprop="name">暑假训练</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="D-Tea"><a href="#D-Tea" class="headerlink" title="D.Tea"></a>D.Tea</h2><p><a href="https://nanti.jisuanke.com/t/29368" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29368</a><br>Tea is good.</p>
+<p>Tea is life.</p>
+<p>Tea is everything.</p>
+<p>The balance of tea is a journey of pursuing balance of the universe.</p>
+<p>Alice knows that.</p>
+<p>Alice wants to teach you the art of pouring tea.</p>
+<p>Alice has a pot of tea.</p>
+<p>The exact volume of tea is not important.</p>
+<p>The exact volume of tea is at least LL.</p>
+<p>The exact volume of tea is at most RR.</p>
+<p>Alice put two empty cups between you and her.</p>
+<p>Alice wants the two cups filled by almost equal volume of tea.</p>
+<p>Yours cannot be 11 unit more than hers.</p>
+<p>Hers cannot be 11 unit more than yours.</p>
+<p>Alice wants you to pour the tea.</p>
+<p>Alice wants you to pour until the pot is almost empty.</p>
+<p>Alice wants no more than 11 unit volume of tea remaining in the pot.</p>
+<p>You cannot read the residue volume of tea remaining in the pot.</p>
+<p>You can only know the tea status in the pot, empty or not.</p>
+<p>Alice does not want you to pour the tea too many times.</p>
+<p>You better pour as few times as possible.</p>
+<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h3><p>There are multiple cases.</p>
+<p>For each case, there is one line of two integers LL and RR, separated by single space.</p>
+<p>Here are some analyses about sample cases.</p>
+<p>For the first case, pouring 11 unit into one cup will satisfy Alice.</p>
+<p>For the second case, it is clearly that you cannot only pour once to reach the desired balance, but she can achieve it by pouring twice.</p>
+<p>First you pour 1.51.5 units into one cup, then you attempt to pour another 1.51.5 units into the other cup.</p>
+<p>Since the lower bound is 22, at least 0.50.5 unit remains in the pot after the first pouring.</p>
+<p>If the initial volume is in range [2,\ 3][2, 3], the second cup will have volume in range [0.5,\ 1.5][0.5, 1.5] which is balanced with 1.51.5 unit in the first cup, and at most 11 unit remain after these two attempts.</p>
+<p>About 10001000 test cases, and 0\le L\le R \le 10^{16}0≤L≤R≤10<br>16<br> .</p>
+<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p>For each case, there should be a single integer in a single line, the least number of pouring attempts.</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 2</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一开始的策略有点问题，第一杯倒 l/2 第二杯倒 l/2+1 这样不一定是最优的； </p>
+<p>举个例子（4 9）这组数据，第一杯2，第二杯3，第一杯2+2，第二杯还需要再加一次；  </p>
+<p>而第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1的话，（4 9），第一杯2.5 第二杯3.5 第一杯 2.5 +2，达成要求；  </p>
+<p>所以最优策略是第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1 ，然后剩下的轮流加2，直至壶中水小于等于1；</p>
+<p>特判几个特殊情况，具体见代码，需要注意的是，如果l=0，那么一开始（0+1）/2=0，显然不倒水是不划算的，所以如果特判结束后l=0则l=1；</p>
+<hr>
+<p>###代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">int main()&#123;</span><br><span class="line">    LL l,r;</span><br><span class="line">    while(~scanf(&quot;%lld%lld&quot;,&amp;l,&amp;r))&#123;</span><br><span class="line">        if(r==0||r==1)puts(&quot;0&quot;);</span><br><span class="line">        else if(r==2)puts(&quot;1&quot;);</span><br><span class="line">        else if(l==r||l==r-1)puts(&quot;2&quot;);</span><br><span class="line">        else&#123;</span><br><span class="line">            if(l==0)l=1;</span><br><span class="line">            printf(&quot;%lld\n&quot;,(r-l+2)/2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/2006 飞行员配对/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1100,7 +1464,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1117,7 +1481,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1208,7 +1574,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共3.1k字</span>
+  <span class="post-count"> |  博客全站共4.3k字</span>
 </div>
 
         
