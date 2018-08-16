@@ -108,24 +108,28 @@
 
 
 
-  <meta name="description" content="2006 飞行员配对(二分图最大匹配)题目来源： 网络流24题基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题   第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。">
+  <meta name="description" content="Input第1行：一个数T，表示输入的测试数量(1 &amp;lt;= T &amp;lt;= 10000)，之后每4行用来描述一组测试数据。4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &amp;lt;= xc, yc &amp;lt;= 3000, 1 &amp;lt;= R &amp;lt;= 3000）4-2：2个数，三角形第1个点的坐标。4-3：2个数，三角形第2个点的坐标。4-4：2个数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2006 飞行员配对(二分图最大匹配,匈牙利算法)">
-<meta property="og:url" content="http://leflacon.github.io/2018/08/15/2006 飞行员配对/index.html">
+<meta property="og:title" content="1298 圆与三角形（计算几何）">
+<meta property="og:url" content="http://leflacon.github.io/2018/08/17/1298-圆与三角形/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="2006 飞行员配对(二分图最大匹配)题目来源： 网络流24题基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题   第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。">
+<meta property="og:description" content="Input第1行：一个数T，表示输入的测试数量(1 &amp;lt;= T &amp;lt;= 10000)，之后每4行用来描述一组测试数据。4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &amp;lt;= xc, yc &amp;lt;= 3000, 1 &amp;lt;= R &amp;lt;= 3000）4-2：2个数，三角形第1个点的坐标。4-3：2个数，三角形第2个点的坐标。4-4：2个数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-15T05:01:34.236Z">
+<meta property="og:image" content="http://leflacon.github.io/2018/08/17/1298-圆与三角形/1.png">
+<meta property="og:image" content="http://leflacon.github.io/2018/08/17/1298-圆与三角形/3.png">
+<meta property="og:image" content="http://leflacon.github.io/2018/08/17/1298-圆与三角形/2.png">
+<meta property="og:updated_time" content="2018-08-16T19:34:25.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2006 飞行员配对(二分图最大匹配,匈牙利算法)">
-<meta name="twitter:description" content="2006 飞行员配对(二分图最大匹配)题目来源： 网络流24题基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题   第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。">
+<meta name="twitter:title" content="1298 圆与三角形（计算几何）">
+<meta name="twitter:description" content="Input第1行：一个数T，表示输入的测试数量(1 &amp;lt;= T &amp;lt;= 10000)，之后每4行用来描述一组测试数据。4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &amp;lt;= xc, yc &amp;lt;= 3000, 1 &amp;lt;= R &amp;lt;= 3000）4-2：2个数，三角形第1个点的坐标。4-3：2个数，三角形第2个点的坐标。4-4：2个数">
+<meta name="twitter:image" content="http://leflacon.github.io/2018/08/17/1298-圆与三角形/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/08/15/2006 飞行员配对/"/>
+  <link rel="canonical" href="http://leflacon.github.io/2018/08/17/1298-圆与三角形/"/>
 
 
 
@@ -135,7 +139,7 @@
   };
 </script>
 
-  <title>2006 飞行员配对(二分图最大匹配,匈牙利算法) | LeFlacon's Blog</title>
+  <title>1298 圆与三角形（计算几何） | LeFlacon's Blog</title>
   
 
 
@@ -292,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/2006 飞行员配对/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/17/1298-圆与三角形/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -309,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2006 飞行员配对(二分图最大匹配,匈牙利算法)
+          <h1 class="post-title" itemprop="name headline">1298 圆与三角形（计算几何）
               
             
           </h1>
@@ -334,7 +338,7 @@
                 
               
 
-              <time title="Created: 2018-08-15 03:31:05 / Modified: 13:01:34" itemprop="dateCreated datePublished" datetime="2018-08-15T03:31:05+08:00">2018-08-15</time>
+              <time title="Created: 2018-08-17 03:34:56 / Modified: 03:34:25" itemprop="dateCreated datePublished" datetime="2018-08-17T03:34:56+08:00">2018-08-17</time>
             
 
             
@@ -390,14 +394,22 @@
       
 
       
-        <h2 id="2006-飞行员配对-二分图最大匹配"><a href="#2006-飞行员配对-二分图最大匹配" class="headerlink" title="2006 飞行员配对(二分图最大匹配)"></a>2006 飞行员配对(二分图最大匹配)</h2><p>题目来源： 网络流24题<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  </p>
-<p>第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。如何选择配对飞行的飞行员才能使一次派出最多的飞机。对于给定的外籍飞行员与英国飞行员的配合情况，试设计一个算法找出最佳飞行员配对方案，使皇家空 军一次能派出最多的飞机 。对于给定的外籍飞行员与英国飞行员的配合情况，编程找出一个最佳飞行员配对方案， 使皇家空军一次能派出最多的飞机。 </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行有2个正整数 m 和 n。n 是皇家空军的飞行 员总数(n&lt;100);m 是外籍飞行员数。外籍飞行员编号为 1~m;英国飞行员编号为 m+1~n。接下来每行有 2 个正整数 i 和 j，表示外籍飞行员 i 可以和英国飞行员 j 配合。输入最后以 2 个-1 结束。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>第 1 行是最佳飞行 员配对方案一次能派出的最多的飞机数 M。如果所求的最佳飞行员配对方案不存在，则输出‘No Solution!’。</p>
+        <hr>
 <hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>裸的匈牙利算法求二分图最大匹配</p>
-<p>这篇讲的超级生动形象了<a href="https://blog.csdn.net/cillyb/article/details/55511666" target="_blank" rel="noopener">https://blog.csdn.net/cillyb/article/details/55511666</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">vector&lt;int&gt;g[N];</span><br><span class="line">int n,m,ans=0,match[N];</span><br><span class="line">bool vis[N];</span><br><span class="line">bool dfs(int x)&#123;</span><br><span class="line">    for(int i=0;i&lt;g[x].size();i++)&#123;</span><br><span class="line">        int v=g[x][i];</span><br><span class="line">        if(!vis[v])&#123;</span><br><span class="line">            vis[v]=true;//标记已试图匹配</span><br><span class="line">            if(match[v]==-1||dfs(match[v]))&#123;</span><br><span class="line">            //这个点没匹配过或者这个点匹配的可拆</span><br><span class="line">                match[v]=x;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;m,&amp;n);</span><br><span class="line">    int x,y;</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;x,&amp;y),x!=-1&amp;&amp;y!=-1)&#123;</span><br><span class="line">        g[x].push_back(y);</span><br><span class="line">        g[y].push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line">    memset(match,-1,sizeof(match));</span><br><span class="line">    for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">        memset(vis,false,sizeof(vis));</span><br><span class="line">        if(dfs(i))ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/08/17/1298-圆与三角形/1.png" alt=""></p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 10000)，之后每4行用来描述一组测试数据。<br>4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &lt;= xc, yc &lt;= 3000, 1 &lt;= R &lt;= 3000）<br>4-2：2个数，三角形第1个点的坐标。<br>4-3：2个数，三角形第2个点的坐标。<br>4-4：2个数，三角形第3个点的坐标。(-3000 &lt;= xi, yi &lt;= 3000）</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>共T行，对于每组输入数据，相交输出”Yes”，否则输出”No”。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">0 0 10</span><br><span class="line">10 0</span><br><span class="line">15 0</span><br><span class="line">15 5</span><br><span class="line">0 0 10</span><br><span class="line">0 0</span><br><span class="line">5 0</span><br><span class="line">5 5</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">No</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>判断圆和三角形是否相交 直接判断三角形三条线段和圆是否有交点 上个计算几何模版</p>
+<p>最初的思路是分成三种情况考虑 一种是内包含 只要判断三个点是否都在圆内即可 第二种是外包含 要判断三个点都在圆外且圆心到三边距离都大于半径 第三种是下图情况 就不好操作了 所以还是直接用模版啦</p>
+<p><img src="/2018/08/17/1298-圆与三角形/3.png" alt=""></p>
+<p>然后系统说我编译错误 明明sublime编译通过了的 麻烦诶。。然后用devc++试了下 报了下图的错  </p>
+<p><img src="/2018/08/17/1298-圆与三角形/2.png" alt=""></p>
+<p>查了是因为distance和内置的函数重名了 改改就好了下次注意</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define eps 1e-8</span><br><span class="line">double a0,b0,r,a1,a2,a3,b1,b2,b3;</span><br><span class="line">struct point&#123;</span><br><span class="line">	double x,y;</span><br><span class="line">&#125;q0,q1,q2,q3;</span><br><span class="line">double xmult(point p1,point p2,point p0)&#123;</span><br><span class="line">    return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);</span><br><span class="line">&#125;</span><br><span class="line">double Distance(point p1,point p2)&#123;</span><br><span class="line">    return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));</span><br><span class="line">&#125;</span><br><span class="line">// 点到直线距离</span><br><span class="line">double disptoline(point p,point l1,point l2)&#123;</span><br><span class="line">    return fabs(xmult(p,l1,l2)/Distance(l1,l2));</span><br><span class="line">&#125;</span><br><span class="line">// 判断线段和圆相交，包括端点和相切(p33)</span><br><span class="line">int intersect_seg_circle(point c,double r0,point l1,point l2)&#123;</span><br><span class="line">    double t1=Distance(c,l1)-r,t2=Distance(c,l2)-r;</span><br><span class="line">    point t=c;</span><br><span class="line">    if(t1&lt;eps||t2&lt;eps)return t1&gt;-eps||t2&gt;-eps;</span><br><span class="line">    t.x+=l1.y-l2.y;</span><br><span class="line">    t.y+=l2.x-l1.x;</span><br><span class="line">    return xmult(l1,c,t)*xmult(l2,c,t)&lt;eps&amp;&amp;disptoline(c,l1,l2)-r&lt;eps;</span><br><span class="line">&#125;</span><br><span class="line">bool check()&#123;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q1,q2))return true;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q1,q3))return true;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q2,q3))return true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;   </span><br><span class="line">int main()&#123; </span><br><span class="line">    int t; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        scanf(&quot;%lf%lf%lf&quot;,&amp;a0,&amp;b0,&amp;r);q0.x=a0;q0.y=b0;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a1,&amp;b1);q1.x=a1;q1.y=b1;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a2,&amp;b2);q2.x=a2;q2.y=b2;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a3,&amp;b3);q3.x=a3;q3.y=b3;</span><br><span class="line">        if(check())puts(&quot;Yes&quot;);</span><br><span class="line">        else puts(&quot;No&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -424,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/14/blog/" rel="next" title="Mac Os下用「hexo+github」搭建个人博客！">
-                <i class="fa fa-chevron-left"></i> Mac Os下用「hexo+github」搭建个人博客！
+              <a href="/2018/08/17/1384 全排列/" rel="next" title="1384 全排列（STL/dfs）">
+                <i class="fa fa-chevron-left"></i> 1384 全排列（STL/dfs）
               </a>
             
           </div>
@@ -433,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/15/D.Tea/" rel="prev" title="D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest">
-                D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2006-飞行员配对-二分图最大匹配"><span class="nav-number">1.</span> <span class="nav-text">2006 飞行员配对(二分图最大匹配)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">1.3.</span> <span class="nav-text">题解：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input示例"><span class="nav-number">3.</span> <span class="nav-text">Input示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output示例"><span class="nav-number">4.</span> <span class="nav-text">Output示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">5.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li></ol></div>
             
 
           </div>
