@@ -320,6 +320,1571 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/1256 乘法逆元/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/1256 乘法逆元/" itemprop="url">
+                  1256 乘法逆元（数论）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-18 02:59:59 / Modified: 03:01:31" itemprop="dateCreated datePublished" datetime="2018-08-18T02:59:59+08:00">2018-08-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1256-乘法逆元（数论）"><a href="#1256-乘法逆元（数论）" class="headerlink" title="1256 乘法逆元（数论）"></a>1256 乘法逆元（数论）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
+<p>给出2个数M和N(M &lt; N)，且M与N互质，找出一个数K满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入2个数M, N中间用空格分隔（1 &lt;= M &lt; N &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出一个数K，满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 3</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>数论 —— 扩展欧几里得</p>
+<p>ax+by=gcd(a,b)   </p>
+<p>a,b互质 有ax+by=1  </p>
+<p>ax%b=1%b </p>
+<p>记x为inv(a) 则a*inv(a)%b=1%b  </p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">void ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123;</span><br><span class="line">    if(!b)&#123;</span><br><span class="line">        d=a;x=1;y=0;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        ex_gcd(b,a%b,y,x,d);</span><br><span class="line">        y-=x*(a/b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">LL inv(LL t,LL p)&#123;</span><br><span class="line">    LL d,x,y;</span><br><span class="line">    ex_gcd(t,p,x,y,d);</span><br><span class="line">    return d==1?(x%p+p)%p:-1;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123; </span><br><span class="line">    LL m,n;</span><br><span class="line">    scanf(&quot;%lld%lld&quot;,&amp;m,&amp;n);</span><br><span class="line">    printf(&quot;%lld\n&quot;,inv(m,n));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/17/1264 线段相交/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/1264 线段相交/" itemprop="url">
+                  1264 线段相交（计算几何）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-17 18:26:43 / Modified: 18:28:54" itemprop="dateCreated datePublished" datetime="2018-08-17T18:26:43+08:00">2018-08-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1264-线段相交（计算几何）"><a href="#1264-线段相交（计算几何）" class="headerlink" title="1264 线段相交（计算几何）"></a>1264 线段相交（计算几何）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
+<p>给出平面上两条线段的两个端点，判断这两条线段是否相交（有一个公共点或有部分重合认为相交）。 如果相交，输出”Yes”，否则输出”No”。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 1000)<br>第2 - T + 1行：每行8个数，x1,y1,x2,y2,x3,y3,x4,y4。(-10^8 &lt;= xi, yi &lt;= 10^8)<br>(直线1的两个端点为x1,y1 | x2, y2,直线2的两个端点为x3,y3 | x4, y4)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出共T行，如果相交输出”Yes”，否则输出”No”。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">1 2 2 1 0 0 2 2</span><br><span class="line">-1 1 1 1 0 0 1 -1</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">No</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>计算几何判断线段相交模版</p>
+<p>注释掉的部分是不包括端点和线段重合的模版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define eps 1e-8</span><br><span class="line">#define zero(x) (((x)&gt;0?(x):-(x))&lt;eps)</span><br><span class="line">struct point&#123;</span><br><span class="line">	double x,y,z;</span><br><span class="line">&#125;q[4];</span><br><span class="line">//叉积</span><br><span class="line">double xmult(point p1,point p2,point p0)&#123;</span><br><span class="line">    return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);</span><br><span class="line">&#125;</span><br><span class="line">//判三点共线</span><br><span class="line">int dots_inline(point p1,point p2,point p3)&#123;</span><br><span class="line">    return zero(xmult(p1,p2,p3));</span><br><span class="line">&#125;</span><br><span class="line">//判点是否在线段上，包括端点</span><br><span class="line">int dot_online_in(point p,point l1,point l2)&#123;</span><br><span class="line">    return zero(xmult(p,l1,l2)&amp;&amp;(l1.x-p.x)*(l2.x-p.x)&lt;eps&amp;&amp;(l1.y-p.y)*(l2.y-p.y)&lt;eps);</span><br><span class="line">&#125;</span><br><span class="line">//判两点在线段同侧,点在线段上返回0</span><br><span class="line">int same_side(point p1,point p2,point l1,point l2)&#123;</span><br><span class="line">    return xmult(l1,p1,l2)*xmult(l1,p2,l2)&gt;eps;</span><br><span class="line">&#125;</span><br><span class="line">//判两线段相交，包括端点和重合(p14)</span><br><span class="line">int intersect_in(point u1,point u2,point v1,point v2)&#123;</span><br><span class="line">    if(!dots_inline(u1,u2,v1)||!dots_inline(u1,u2,v2))</span><br><span class="line">        return !same_side(u1,u2,v1,v2)&amp;&amp;!same_side(v1,v2,u1,u2);</span><br><span class="line">    return (dot_online_in(u1,v1,v2)||dot_online_in(u2,v1,v2)||</span><br><span class="line">            dot_online_in(v1,u1,u2)||dot_online_in(v2,u1,u2));</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">//判两点在线段异侧</span><br><span class="line">int opposite_side(point p1,point p2,point l1,point l2)&#123;</span><br><span class="line">    return xmult(l1,p1,l2)*xmult(l1,p2,l2)&lt;-eps;</span><br><span class="line">&#125;</span><br><span class="line">//判两线段相交，不包括端点和重合</span><br><span class="line">int intersect_ex(point u1,point u2,point v1,point v2)&#123;</span><br><span class="line">    return opposite_side(u1,u2,v1,v2)&amp;&amp;opposite_side(v1,v2,u1,u2);</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">int main()&#123; </span><br><span class="line">    int t; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        for(int i=0;i&lt;4;i++)scanf(&quot;%lf%lf&quot;,&amp;q[i].x,&amp;q[i].y);</span><br><span class="line">        if(intersect_in(q[0],q[1],q[2],q[3]))puts(&quot;Yes&quot;);</span><br><span class="line">        else puts(&quot;No&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/17/1265 四点共面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/1265 四点共面/" itemprop="url">
+                  1265 四点共面（计算几何）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-17 18:00:00 / Modified: 17:59:37" itemprop="dateCreated datePublished" datetime="2018-08-17T18:00:00+08:00">2018-08-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1265-四点共面（计算几何）"><a href="#1265-四点共面（计算几何）" class="headerlink" title="1265 四点共面（计算几何）"></a>1265 四点共面（计算几何）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
+<p>给出三维空间上的四个点（点与点的位置均不相同），判断这4个点是否在同一个平面内（4点共线也算共面）。如果共面，输出”Yes”，否则输出”No”。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 1000)<br>第2 - 4T + 1行：每行4行表示一组数据，每行3个数，x, y, z, 表示该点的位置坐标(-1000 &lt;= x, y, z &lt;= 1000)。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出共T行，如果共面输出”Yes”，否则输出”No”。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">1 2 0</span><br><span class="line">2 3 0</span><br><span class="line">4 0 0</span><br><span class="line">0 0 0</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>计算几何四点共面模版 已经包含四点共线的情况了  </p>
+<p>如果四点不能共线 那就用两次三点共线判断一下就行</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define eps 1e-8</span><br><span class="line">#define zero(x) (((x)&gt;0?(x):-(x))&lt;eps)</span><br><span class="line">struct point&#123;</span><br><span class="line">	double x,y,z;</span><br><span class="line">&#125;q[4];</span><br><span class="line">//叉积</span><br><span class="line">point xmult(point u,point v)&#123;</span><br><span class="line">    point ret;</span><br><span class="line">    ret.x=u.y*v.z-v.y*u.z;</span><br><span class="line">    ret.y=u.z*v.x-u.x*v.z;</span><br><span class="line">    ret.z=u.x*v.y-u.y*v.x;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line">//点积</span><br><span class="line">double dmult(point u,point v)&#123;</span><br><span class="line">    return u.x*v.x+u.y*v.y+u.z*v.z;</span><br><span class="line">&#125;</span><br><span class="line">//矢量差</span><br><span class="line">point subt(point u,point v)&#123;</span><br><span class="line">    point ret;</span><br><span class="line">    ret.x=u.x-v.x;</span><br><span class="line">    ret.y=u.y-v.y;</span><br><span class="line">    ret.z=u.z-v.z;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line">//取平面法向量</span><br><span class="line">point pvec(point s1,point s2,point s3)&#123;</span><br><span class="line">    return xmult(subt(s1,s2),subt(s2,s3));</span><br><span class="line">&#125;</span><br><span class="line">//向量大小</span><br><span class="line">double vlen(point p)&#123;</span><br><span class="line">    return sqrt(p.x*p.x+p.y*p.y+p.z*p.z);</span><br><span class="line">&#125;</span><br><span class="line">//判三点共线</span><br><span class="line">int dots_inline(point a,point b,point c)&#123;</span><br><span class="line">    return vlen(xmult(subt(a,b),subt(b,c)))&lt;eps;</span><br><span class="line">&#125;</span><br><span class="line">//判四点共面</span><br><span class="line">int dots_onplane(point a,point b,point c,point d)&#123;</span><br><span class="line">    return zero(dmult(pvec(a,b,c),subt(d,a)));</span><br><span class="line">&#125;</span><br><span class="line">bool check()&#123;</span><br><span class="line">    if(dots_onplane(q[0],q[1],q[2],q[3]))return true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123; </span><br><span class="line">    int t; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        for(int i=0;i&lt;4;i++)&#123;</span><br><span class="line">            scanf(&quot;%lf%lf%lf&quot;,&amp;q[i].x,&amp;q[i].y,&amp;q[i].z);</span><br><span class="line">        &#125;</span><br><span class="line">        if(check())puts(&quot;Yes&quot;);</span><br><span class="line">        else puts(&quot;No&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/17/1298-圆与三角形/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/1298-圆与三角形/" itemprop="url">
+                  1298 圆与三角形（计算几何）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-17 03:34:56 / Modified: 03:34:25" itemprop="dateCreated datePublished" datetime="2018-08-17T03:34:56+08:00">2018-08-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<hr>
+<p><img src="/2018/08/17/1298-圆与三角形/1.png" alt=""></p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 10000)，之后每4行用来描述一组测试数据。<br>4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &lt;= xc, yc &lt;= 3000, 1 &lt;= R &lt;= 3000）<br>4-2：2个数，三角形第1个点的坐标。<br>4-3：2个数，三角形第2个点的坐标。<br>4-4：2个数，三角形第3个点的坐标。(-3000 &lt;= xi, yi &lt;= 3000）</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>共T行，对于每组输入数据，相交输出”Yes”，否则输出”No”。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">0 0 10</span><br><span class="line">10 0</span><br><span class="line">15 0</span><br><span class="line">15 5</span><br><span class="line">0 0 10</span><br><span class="line">0 0</span><br><span class="line">5 0</span><br><span class="line">5 5</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">No</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>判断圆和三角形是否相交 直接判断三角形三条线段和圆是否有交点 上个计算几何模版</p>
+<p>最初的思路是分成三种情况考虑 一种是内包含 只要判断三个点是否都在圆内即可 第二种是外包含 要判断三个点都在圆外且圆心到三边距离都大于半径 第三种是下图情况 就不好操作了 所以还是直接用模版啦</p>
+<p><img src="/2018/08/17/1298-圆与三角形/3.png" alt=""></p>
+<p>然后系统说我编译错误 明明sublime编译通过了的 麻烦诶。。然后用devc++试了下 报了下图的错  </p>
+<p><img src="/2018/08/17/1298-圆与三角形/2.png" alt=""></p>
+<p>查了是因为distance和内置的函数重名了 改改就好了下次注意</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define eps 1e-8</span><br><span class="line">double a0,b0,r,a1,a2,a3,b1,b2,b3;</span><br><span class="line">struct point&#123;</span><br><span class="line">	double x,y;</span><br><span class="line">&#125;q0,q1,q2,q3;</span><br><span class="line">double xmult(point p1,point p2,point p0)&#123;</span><br><span class="line">    return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);</span><br><span class="line">&#125;</span><br><span class="line">double Distance(point p1,point p2)&#123;</span><br><span class="line">    return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));</span><br><span class="line">&#125;</span><br><span class="line">// 点到直线距离</span><br><span class="line">double disptoline(point p,point l1,point l2)&#123;</span><br><span class="line">    return fabs(xmult(p,l1,l2)/Distance(l1,l2));</span><br><span class="line">&#125;</span><br><span class="line">// 判断线段和圆相交，包括端点和相切(p33)</span><br><span class="line">int intersect_seg_circle(point c,double r0,point l1,point l2)&#123;</span><br><span class="line">    double t1=Distance(c,l1)-r,t2=Distance(c,l2)-r;</span><br><span class="line">    point t=c;</span><br><span class="line">    if(t1&lt;eps||t2&lt;eps)return t1&gt;-eps||t2&gt;-eps;</span><br><span class="line">    t.x+=l1.y-l2.y;</span><br><span class="line">    t.y+=l2.x-l1.x;</span><br><span class="line">    return xmult(l1,c,t)*xmult(l2,c,t)&lt;eps&amp;&amp;disptoline(c,l1,l2)-r&lt;eps;</span><br><span class="line">&#125;</span><br><span class="line">bool check()&#123;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q1,q2))return true;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q1,q3))return true;</span><br><span class="line">    if(intersect_seg_circle(q0,r,q2,q3))return true;</span><br><span class="line">    return false;</span><br><span class="line">&#125;   </span><br><span class="line">int main()&#123; </span><br><span class="line">    int t; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        scanf(&quot;%lf%lf%lf&quot;,&amp;a0,&amp;b0,&amp;r);q0.x=a0;q0.y=b0;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a1,&amp;b1);q1.x=a1;q1.y=b1;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a2,&amp;b2);q2.x=a2;q2.y=b2;</span><br><span class="line">        scanf(&quot;%lf%lf&quot;,&amp;a3,&amp;b3);q3.x=a3;q3.y=b3;</span><br><span class="line">        if(check())puts(&quot;Yes&quot;);</span><br><span class="line">        else puts(&quot;No&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/17/1384 全排列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/1384 全排列/" itemprop="url">
+                  1384 全排列（STL/dfs）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-17 01:24:27 / Modified: 01:25:09" itemprop="dateCreated datePublished" datetime="2018-08-17T01:24:27+08:00">2018-08-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1384-全排列（STL-dfs）"><a href="#1384-全排列（STL-dfs）" class="headerlink" title="1384 全排列（STL/dfs）"></a>1384 全排列（STL/dfs）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
+<p>给出一个字符串S（可能有重复的字符），按照字典序从小到大，输出S包括的字符组成的所有排列。例如：S = “1312”，<br>输出为：</p>
+<p>1123<br>1132<br>1213<br>1231<br>1312<br>1321<br>2113<br>2131<br>2311<br>3112<br>3121<br>3211   </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入一个字符串S（S的长度 &lt;= 9，且只包括0 - 9的阿拉伯数字）</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出S所包含的字符组成的所有排列</p>
+<h2 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1312</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1123</span><br><span class="line">1132</span><br><span class="line">1213</span><br><span class="line">1231</span><br><span class="line">1312</span><br><span class="line">1321</span><br><span class="line">2113</span><br><span class="line">2131</span><br><span class="line">2311</span><br><span class="line">3112</span><br><span class="line">3121</span><br><span class="line">3211</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>题意很简单 就水水的全排列</p>
+<p>直接next_permutation就好啦 诶好用</p>
+<p>printf竟然tle了 改成 <strong>puts()</strong> 之后跑了46ms </p>
+<p>不过这样太依赖stl了 还是乖乖再写个dfs吧。。</p>
+<p>然后又t了。。1900ms+。。把printf改成cout就过了 跑了484ms 不是很懂 printf不是比cout快的嘛？？？</p>
+<p>而且加上输入输出优化之后<code>ios::sync_with_stdio(false);cin.tie(0);</code> 没有跑得更快反而慢了一丢丢</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    char s[10];</span><br><span class="line">    scanf(&quot;%s&quot;,s);</span><br><span class="line">    int len=strlen(s);</span><br><span class="line">    sort(s,s+len);</span><br><span class="line">    do&#123;</span><br><span class="line">        // printf(&quot;%s\n&quot;,s);</span><br><span class="line">        puts(s);</span><br><span class="line">    &#125;while(next_permutation(s,s+len));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">char s[10];</span><br><span class="line">int ans[10],len;</span><br><span class="line">bool vis[10];</span><br><span class="line">void dfs(int x)&#123;</span><br><span class="line">    if(x==len)&#123;</span><br><span class="line">        for(int i=0;i&lt;len;i++)cout&lt;&lt;ans[i];</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">        if(!vis[i])&#123;</span><br><span class="line">            vis[i]=true;</span><br><span class="line">            ans[x]=s[i]-&apos;0&apos;;</span><br><span class="line">            dfs(x+1);</span><br><span class="line">            vis[i]=false;</span><br><span class="line">            while(i&lt;=len&amp;&amp;s[i]==s[i+1])i++;//去重</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;  </span><br><span class="line">    scanf(&quot;%s&quot;,s);</span><br><span class="line">    len=strlen(s);</span><br><span class="line">    sort(s,s+len);</span><br><span class="line">    memset(vis,false,sizeof(vis));</span><br><span class="line">    dfs(0);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/16/1459 迷宫游戏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/16/1459 迷宫游戏/" itemprop="url">
+                  1459 迷宫游戏（Dijkstra）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-16 04:24:05 / Modified: 04:27:19" itemprop="dateCreated datePublished" datetime="2018-08-16T04:24:05+08:00">2018-08-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1459-迷宫游戏（Dijkstra）"><a href="#1459-迷宫游戏（Dijkstra）" class="headerlink" title="1459 迷宫游戏（Dijkstra）"></a>1459 迷宫游戏（Dijkstra）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
+<p>你来到一个迷宫前。该迷宫由若干个房间组成，每个房间都有一个得分，第一次进入这个房间，你就可以得到这个分数。还有若干双向道路连结这些房间，你沿着这些道路从一个房间走到另外一个房间需要一些时间。游戏规定了你的起点和终点房间，你首要目标是从起点尽快到达终点，在满足首要目标的前提下，使得你的得分总和尽可能大。现在问题来了，给定房间、道路、分数、起点和终点等全部信息，你能计算在尽快离开迷宫的前提下，你的最大得分是多少么？</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行4个整数n (&lt;=500), m, start, end。n表示房间的个数，房间编号从0到(n - 1)，m表示道路数,任意两个房间之间最多只有一条道路，start和end表示起点和终点房间的编号。<br>第二行包含n个空格分隔的正整数(不超过600)，表示进入每个房间你的得分。<br>再接下来m行，每行3个空格分隔的整数x, y, z (0&lt;z&lt;=200)表示道路,表示从房间x到房间y(双向)的道路,注意，最多只有一条道路连结两个房间, 你需要的时间为z。<br>输入保证从start到end至少有一条路径。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>一行，两个空格分隔的整数，第一个表示你最少需要的时间，第二个表示你在最少时间前提下可以获得的最大得分。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 2 0 2</span><br><span class="line">1 2 3</span><br><span class="line">0 1 10</span><br><span class="line">1 2 11</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21 6</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>dijkstra</p>
+<p><a href="https://blog.csdn.net/qq_35644234/article/details/60870719/" target="_blank" rel="noopener">最短路径问题—Dijkstra算法详解</a></p>
+<p>这题还要在最短路的基础上求权值最大 开个数组记录一下然后和路径一起更新就行</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=505;</span><br><span class="line">const int INF=0x3f3f3f3f;</span><br><span class="line">int a[N],cost[N],ans[N];</span><br><span class="line">bool vis[N];</span><br><span class="line">int n,m,start,endd;</span><br><span class="line">vector&lt;int&gt;mp[N];</span><br><span class="line">vector&lt;int&gt;t[N];</span><br><span class="line">void dij()&#123; </span><br><span class="line">    int x=start;</span><br><span class="line">    vis[x]=true;</span><br><span class="line">    while(x!=endd)&#123;</span><br><span class="line">        for(int i=0;i&lt;mp[x].size();i++)&#123;</span><br><span class="line">            int y=mp[x][i];</span><br><span class="line">            int tmpcost=cost[x]+t[x][i];</span><br><span class="line">            int tmpans=ans[x]+a[y];</span><br><span class="line">            if(cost[y]==0||tmpcost&lt;cost[y]||(tmpcost==cost[y]&amp;&amp;tmpans&gt;ans[y]))&#123;</span><br><span class="line">                //如果x-&gt;y的路在之前还未连通</span><br><span class="line">                //或者新路径从x-&gt;y的时间小于原来的，或等于但是权值更大，就更新答案</span><br><span class="line">                ans[y]=tmpans;</span><br><span class="line">                cost[y]=tmpcost;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int minn=INF,maxx=0;</span><br><span class="line">        for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">            //如果i没有标记过且x-&gt;i目前最优，从i出发继续找</span><br><span class="line">            if(!vis[i]&amp;&amp;cost[i]!=0&amp;&amp;(cost[i]&lt;minn||(cost[i]==minn&amp;&amp;ans[i]&gt;maxx)))&#123;</span><br><span class="line">                minn=cost[i];</span><br><span class="line">                maxx=ans[i];</span><br><span class="line">                x=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[x]=true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;m,&amp;start,&amp;endd);</span><br><span class="line">    memset(vis,false,sizeof(vis));</span><br><span class="line">    memset(cost,0,sizeof(cost));</span><br><span class="line">    for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;a[i]);</span><br><span class="line">        ans[i]=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    int u,v,w;</span><br><span class="line">    for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);</span><br><span class="line">        mp[u].push_back(v);</span><br><span class="line">        mp[v].push_back(u);</span><br><span class="line">        t[u].push_back(w);</span><br><span class="line">        t[v].push_back(w);</span><br><span class="line">    &#125;</span><br><span class="line">    dij();</span><br><span class="line">    printf(&quot;%d %d\n&quot;,cost[endd],ans[endd]);  </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/F.The Best Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/F.The Best Path/" itemprop="url">
+                  F.The Best Path--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:37:37" itemprop="dateCreated datePublished" datetime="2018-08-15T15:37:37+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-18 18:34:18" itemprop="dateModified" datetime="2018-08-18T18:34:18+08:00">2018-08-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="F-The-Best-Path"><a href="#F-The-Best-Path" class="headerlink" title="F. The Best Path"></a>F. The Best Path</h2><p><a href="https://nanti.jisuanke.com/t/29370" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29370</a></p>
+<p><img src="/2018/08/15/F.The Best Path/123.png" alt=""></p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">4 3</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">Impossible</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>给一个图，每个点有一个权值，找欧拉通路或者欧拉回路，然后求路径上每个点异或结果的最大值；</p>
+<p>首先判断有没有欧拉回路或者通路，用一下定理就好了，有且仅有两个度数为奇数的点则有欧拉通路，没有度数为奇数的点则有欧拉回路；</p>
+<p>然后把对异或值有贡献的算上，有贡献的点就是d为奇数的点和（d/2）为奇数的点，因为经过偶数次的点相当于没有贡献；</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=100005;</span><br><span class="line">int n,m,a[N],d[N];</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t,u,v;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        int ans=0;</span><br><span class="line">        memset(d,0,sizeof(d));</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">        for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;a[i]);</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);</span><br><span class="line">            d[u]++;d[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        int num=0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            if(d[i]&amp;1)num++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num==0)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;</span><br><span class="line">            int tmp=ans;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                ans=max(ans,tmp^a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(num==2)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;      </span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else printf(&quot;Impossible\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/D.Tea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/D.Tea/" itemprop="url">
+                  D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:28:13" itemprop="dateCreated datePublished" datetime="2018-08-15T15:28:13+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-18 18:34:41" itemprop="dateModified" datetime="2018-08-18T18:34:41+08:00">2018-08-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="D-Tea"><a href="#D-Tea" class="headerlink" title="D.Tea"></a>D.Tea</h2><p><a href="https://nanti.jisuanke.com/t/29368" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29368</a><br>Tea is good.</p>
+<p>Tea is life.</p>
+<p>Tea is everything.</p>
+<p>The balance of tea is a journey of pursuing balance of the universe.</p>
+<p>Alice knows that.</p>
+<p>Alice wants to teach you the art of pouring tea.</p>
+<p>Alice has a pot of tea.</p>
+<p>The exact volume of tea is not important.</p>
+<p>The exact volume of tea is at least LL.</p>
+<p>The exact volume of tea is at most RR.</p>
+<p>Alice put two empty cups between you and her.</p>
+<p>Alice wants the two cups filled by almost equal volume of tea.</p>
+<p>Yours cannot be 11 unit more than hers.</p>
+<p>Hers cannot be 11 unit more than yours.</p>
+<p>Alice wants you to pour the tea.</p>
+<p>Alice wants you to pour until the pot is almost empty.</p>
+<p>Alice wants no more than 11 unit volume of tea remaining in the pot.</p>
+<p>You cannot read the residue volume of tea remaining in the pot.</p>
+<p>You can only know the tea status in the pot, empty or not.</p>
+<p>Alice does not want you to pour the tea too many times.</p>
+<p>You better pour as few times as possible.</p>
+<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h3><p>There are multiple cases.</p>
+<p>For each case, there is one line of two integers LL and RR, separated by single space.</p>
+<p>Here are some analyses about sample cases.</p>
+<p>For the first case, pouring 11 unit into one cup will satisfy Alice.</p>
+<p>For the second case, it is clearly that you cannot only pour once to reach the desired balance, but she can achieve it by pouring twice.</p>
+<p>First you pour 1.51.5 units into one cup, then you attempt to pour another 1.51.5 units into the other cup.</p>
+<p>Since the lower bound is 22, at least 0.50.5 unit remains in the pot after the first pouring.</p>
+<p>If the initial volume is in range [2,\ 3][2, 3], the second cup will have volume in range [0.5,\ 1.5][0.5, 1.5] which is balanced with 1.51.5 unit in the first cup, and at most 11 unit remain after these two attempts.</p>
+<p>About 10001000 test cases, and 0\le L\le R \le 10^{16}0≤L≤R≤10<br>16<br> .</p>
+<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p>For each case, there should be a single integer in a single line, the least number of pouring attempts.</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 2</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一开始的策略有点问题，第一杯倒 l/2 第二杯倒 l/2+1 这样不一定是最优的； </p>
+<p>举个例子（4 9）这组数据，第一杯2，第二杯3，第一杯2+2，第二杯还需要再加一次；  </p>
+<p>而第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1的话，（4 9），第一杯2.5 第二杯3.5 第一杯 2.5 +2，达成要求；  </p>
+<p>所以最优策略是第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1 ，然后剩下的轮流加2，直至壶中水小于等于1；</p>
+<p>特判几个特殊情况，具体见代码，需要注意的是，如果l=0，那么一开始（0+1）/2=0，显然不倒水是不划算的，所以如果特判结束后l=0则l=1；</p>
+<hr>
+<p>###代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">int main()&#123;</span><br><span class="line">    LL l,r;</span><br><span class="line">    while(~scanf(&quot;%lld%lld&quot;,&amp;l,&amp;r))&#123;</span><br><span class="line">        if(r==0||r==1)puts(&quot;0&quot;);</span><br><span class="line">        else if(r==2)puts(&quot;1&quot;);</span><br><span class="line">        else if(l==r||l==r-1)puts(&quot;2&quot;);</span><br><span class="line">        else&#123;</span><br><span class="line">            if(l==0)l=1;</span><br><span class="line">            printf(&quot;%lld\n&quot;,(r-l+2)/2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/2006 飞行员配对/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/2006 飞行员配对/" itemprop="url">
+                  2006 飞行员配对(二分图最大匹配,匈牙利算法)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 03:31:05 / Modified: 13:01:34" itemprop="dateCreated datePublished" datetime="2018-08-15T03:31:05+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2006-飞行员配对-二分图最大匹配"><a href="#2006-飞行员配对-二分图最大匹配" class="headerlink" title="2006 飞行员配对(二分图最大匹配)"></a>2006 飞行员配对(二分图最大匹配)</h2><p>题目来源： 网络流24题<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  </p>
+<p>第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。如何选择配对飞行的飞行员才能使一次派出最多的飞机。对于给定的外籍飞行员与英国飞行员的配合情况，试设计一个算法找出最佳飞行员配对方案，使皇家空 军一次能派出最多的飞机 。对于给定的外籍飞行员与英国飞行员的配合情况，编程找出一个最佳飞行员配对方案， 使皇家空军一次能派出最多的飞机。 </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行有2个正整数 m 和 n。n 是皇家空军的飞行 员总数(n&lt;100);m 是外籍飞行员数。外籍飞行员编号为 1~m;英国飞行员编号为 m+1~n。接下来每行有 2 个正整数 i 和 j，表示外籍飞行员 i 可以和英国飞行员 j 配合。输入最后以 2 个-1 结束。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>第 1 行是最佳飞行 员配对方案一次能派出的最多的飞机数 M。如果所求的最佳飞行员配对方案不存在，则输出‘No Solution!’。</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>裸的匈牙利算法求二分图最大匹配</p>
+<p>这篇讲的超级生动形象了<a href="https://blog.csdn.net/cillyb/article/details/55511666" target="_blank" rel="noopener">https://blog.csdn.net/cillyb/article/details/55511666</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">vector&lt;int&gt;g[N];</span><br><span class="line">int n,m,ans=0,match[N];</span><br><span class="line">bool vis[N];</span><br><span class="line">bool dfs(int x)&#123;</span><br><span class="line">    for(int i=0;i&lt;g[x].size();i++)&#123;</span><br><span class="line">        int v=g[x][i];</span><br><span class="line">        if(!vis[v])&#123;</span><br><span class="line">            vis[v]=true;//标记已试图匹配</span><br><span class="line">            if(match[v]==-1||dfs(match[v]))&#123;</span><br><span class="line">            //这个点没匹配过或者这个点匹配的可拆</span><br><span class="line">                match[v]=x;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;m,&amp;n);</span><br><span class="line">    int x,y;</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;x,&amp;y),x!=-1&amp;&amp;y!=-1)&#123;</span><br><span class="line">        g[x].push_back(y);</span><br><span class="line">        g[y].push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line">    memset(match,-1,sizeof(match));</span><br><span class="line">    for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">        memset(vis,false,sizeof(vis));</span><br><span class="line">        if(dfs(i))ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/14/blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -556,375 +2121,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/14/1995 三子棋  /">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/14/1995 三子棋  /" itemprop="url">
-                  1995 三子棋
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-14 01:35:05 / Modified: 01:47:29" itemprop="dateCreated datePublished" datetime="2018-08-14T01:35:05+08:00">2018-08-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1995-三子棋"><a href="#1995-三子棋" class="headerlink" title="1995 三子棋"></a>1995 三子棋</h1><hr>
-<p>题目来源： syu校赛<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
-<p>小的时候大家一定玩过“井”字棋吧。也就是在九宫格中，只要任意行、列，或者任意连续对角线上面出现三个相同的，就能获胜。现在小明和小花也在玩三子棋，但是他们不是在九宫格里，而是在3×4的格子里面。现在小明先下，但是他知道小花这个人很聪明，他想知道第一步下在哪一个地方最合适，你能帮帮他吗？</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行输入一个整数T，表示数据组数（1&lt;T&lt;10000）；<br>第二行输入两个整数x,y,表示3×4格子里面的一个坐标(x,y)（1&lt;=x&lt;=3,1&lt;=y&lt;=4）；    </p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组数据输出最后小明输赢的结果，如果小明一定能赢，第一行输出“Win”,第二行输出小明所需要花的最少步数；如果小明跟小花只能打成平手，第一行输出“Equal”，第二行输出数字0；如果小明不能赢也不能跟小花打成平手，第一行输出“Lose”,第二行输出小花赢小明所需要花的最少步数</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>抱着作a+b的心态开始刷基础题，结果基础题怎么这么不水呢么。。<br>没想到啥好方法，就自己跟自己下模拟；<br>策略就和一般五子棋差不多，关于最少步数，由于对手也是绝顶聪明的，所以不会让你下在很快赢的地方，其实应该算最多步数的最少步数那个意思。。大概；   </p>
-<p>棋盘是对称的，所以只要看（1，1）（1，2）（2，1）（2，2）四个点就可以；<br>如下表：  </p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>2</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3</td>
-<td>4</td>
-<td>4</td>
-<td>3</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>然后结论是对先手来说（1，1）（1，2）（2，2）必胜，（2，1）平局；  </p>
-<p>（1，1）的最短路是6：<br>先手:11-&gt;12-&gt;31-&gt;23-&gt;32形成“双二”再下一步就赢了<br>后手:21-&gt;13-&gt;21-&gt;34-&gt;   </p>
-<p>（1，2）的最短路是4：<br>先手:12-&gt;23-&gt;32形成“双二”再下一步就赢了<br>后手:13-&gt;34-&gt;   </p>
-<p>（2，2）的最短路是4：<br>先手:22-&gt;13-&gt;11形成“双二”再下一步就赢了<br>后手:23-&gt;31-&gt;   </p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int a[3][4]=&#123;6,4,4,6,0,4,4,0,6,4,4,6&#125;;</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t,x,y;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);</span><br><span class="line">        x--;</span><br><span class="line">        y--;</span><br><span class="line">        if(a[x][y]==0)printf(&quot;Equal\n0\n&quot;);</span><br><span class="line">        else printf(&quot;Win\n%d\n&quot;,a[x][y]);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/11/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-11 01:48:00" itemprop="dateCreated datePublished" datetime="2018-08-11T01:48:00+08:00">2018-08-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-15 00:00:37" itemprop="dateModified" datetime="2018-08-15T00:00:37+08:00">2018-08-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/poi/" itemprop="url" rel="index"><span itemprop="name">poi</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://github.com/LeFlacon/LeFlacon.github.io/blob/master/images/0.png?raw=true" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -971,7 +2172,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1083,7 +2284,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共15.1k字</span>
+  <span class="post-count"> |  博客全站共21.3k字</span>
 </div>
 
         
