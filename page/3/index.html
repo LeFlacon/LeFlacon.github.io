@@ -320,6 +320,346 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1863 畅通工程（最小生成树）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/hdu 1863 畅通工程（最小生成树）/" itemprop="url">
+                  hdu 1863 畅通工程（最小生成树）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 02:11:43 / Modified: 03:11:43" itemprop="dateCreated datePublished" datetime="2018-08-19T02:11:43+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-1863-畅通工程（最小生成树）"><a href="#hdu-1863-畅通工程（最小生成树）" class="headerlink" title="hdu 1863 畅通工程（最小生成树）"></a>hdu 1863 畅通工程（最小生成树）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1863" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1863</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>省政府“畅通工程”的目标是使全省任何两个村庄间都可以实现公路交通（但不一定有直接的公路相连，只要能间接通过公路可达即可）。经过调查评估，得到的统计表中列出了有可能建设公路的若干条道路的成本。现请你编写程序，计算出全省畅通需要的最低成本。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>测试输入包含若干测试用例。每个测试用例的第1行给出评估的道路条数 N、村庄数目M ( &lt; 100 )；随后的 N<br>行对应村庄间道路的成本，每行给出一对正整数，分别是两个村庄的编号，以及此两村庄间道路的成本（也是正整数）。为简单起见，村庄从1到M编号。当N为0时，全部输入结束，相应的结果不要输出。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对每个测试用例，在1行里输出全省畅通需要的最低成本。若统计数据不足以保证畅通，则输出“?”。</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3 3</span><br><span class="line">1 2 1</span><br><span class="line">1 3 2</span><br><span class="line">2 3 4</span><br><span class="line">1 3</span><br><span class="line">2 3 2</span><br><span class="line">0 100</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">?</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>给出边 求最小生成树 </p>
+<p>如果无法连通 输出“?”</p>
+<p>因为要判断最后是否连通 所以用kruskal 最后只要先记录一个点的父亲 然后判断剩余点是否全部和它相同即可</p>
+<p>不满足连通条件的情况：</p>
+<ul>
+<li>（点&lt;=边+1）的不行</li>
+<li>最后所有结点不在一个根的不行</li>
+</ul>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	int cap;</span><br><span class="line">&#125;Edge[N*N];//边集 </span><br><span class="line">int n,ans,num; </span><br><span class="line">int fa[N];</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+num,cmp);//按边的最小代价排序 </span><br><span class="line">	for(int i=1;i&lt;=num;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;//u，v不在一棵树上，就加上这条边 </span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d%d&quot;,&amp;num,&amp;n)!=EOF)&#123;</span><br><span class="line">		if(num==0)&#123;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			fa[i]=i;</span><br><span class="line">		&#125;</span><br><span class="line">		int p,q,w;</span><br><span class="line">		for(int i=1;i&lt;=num;i++)&#123;</span><br><span class="line">			scanf(&quot;%d%d%d&quot;,&amp;p,&amp;q,&amp;w);</span><br><span class="line">			Edge[i].u=p;</span><br><span class="line">			Edge[i].v=q;</span><br><span class="line">			Edge[i].cap=w;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		int flag=1;</span><br><span class="line">		for(int i=2;i&lt;=num;i++)&#123;</span><br><span class="line">			if(find(i)!=find(1))&#123;</span><br><span class="line">				flag=0;break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		if(num&lt;n-1)printf(&quot;?\n&quot;);</span><br><span class="line">		else if(flag==1)printf(&quot;%d\n&quot;,ans);</span><br><span class="line">		else printf(&quot;?\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1301 Jungle Roads（最小生成树）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/hdu 1301 Jungle Roads（最小生成树）/" itemprop="url">
+                  hdu 1301 Jungle Roads（最小生成树）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 02:04:21 / Modified: 03:12:14" itemprop="dateCreated datePublished" datetime="2018-08-19T02:04:21+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-1301-Jungle-Roads（最小生成树）"><a href="#hdu-1301-Jungle-Roads（最小生成树）" class="headerlink" title="hdu 1301 Jungle Roads（最小生成树）"></a>hdu 1301 Jungle Roads（最小生成树）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1301" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1301</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><img src="http://acm.hdu.edu.cn/data/images/1301-1.gif" alt=""></p>
+<p>The Head Elder of the tropical island of Lagrishan has a problem. A burst of foreign aid money was spent on extra roads between villages some years ago. But the jungle overtakes roads relentlessly, so the large road network is too expensive to maintain. The Council of Elders must choose to stop maintaining some roads. The map above on the left shows all the roads in use now and the cost in aacms per month to maintain them. Of course there needs to be some way to get between all the villages on maintained roads, even if the route is not as short as before. The Chief Elder would like to tell the Council of Elders what would be the smallest amount they could spend in aacms per month to maintain roads that would connect all the villages. The villages are labeled A through I in the maps above. The map on the right shows the roads that could be maintained most cheaply, for 216 aacms per month. Your task is to write a program that will solve such problems. </p>
+<p>The input consists of one to 100 data sets, followed by a final line containing only 0. Each data set starts with a line containing only a number n, which is the number of villages, 1 &lt; n &lt; 27, and the villages are labeled with the first n letters of the alphabet, capitalized. Each data set is completed with n-1 lines that start with village labels in alphabetical order. There is no line for the last village. Each line for a village starts with the village label followed by a number, k, of roads from this village to villages with labels later in the alphabet. If k is greater than 0, the line continues with data for each of the k roads. The data for each road is the village label for the other end of the road followed by the monthly maintenance cost in aacms for the road. Maintenance costs will be positive integers less than 100. All data fields in the row are separated by single blanks. The road network will always allow travel between all the villages. The network will never have more than 75 roads. No village will have more than 15 roads going to other villages (before or after in the alphabet). In the sample input below, the first data set goes with the map above. </p>
+<p>The output is one integer per line for each data set: the minimum cost in aacms per month to maintain a road system that connect all the villages. Caution: A brute force solution that examines every possible set of roads will not finish within the one minute time limit. </p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">A 2 B 12 I 25</span><br><span class="line">B 3 C 10 H 40 I 8</span><br><span class="line">C 2 D 18 G 55</span><br><span class="line">D 1 E 44</span><br><span class="line">E 2 F 60 G 38</span><br><span class="line">F 0</span><br><span class="line">G 1 H 35</span><br><span class="line">H 1 I 35</span><br><span class="line">3</span><br><span class="line">A 2 B 10 C 40</span><br><span class="line">B 1 C 20</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">216</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一看图就是个最小生成树。。</p>
+<p>注意回车要用getchar()搞掉</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=30;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	double cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line">int n,ans,cnt; </span><br><span class="line">int fa[N];</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+cnt,cmp);</span><br><span class="line">	for(int i=0;i&lt;cnt;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;</span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)&#123;</span><br><span class="line">		if(n==0)break;</span><br><span class="line">		for(int i=1;i&lt;N;i++)fa[i]=i;</span><br><span class="line">		cnt=0;</span><br><span class="line">		for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">			char x,y;</span><br><span class="line">			int xnum,c;</span><br><span class="line">			getchar();</span><br><span class="line">			scanf(&quot;%c %d&quot;,&amp;x,&amp;xnum);</span><br><span class="line">			while(xnum--)&#123;</span><br><span class="line">				getchar();</span><br><span class="line">				scanf(&quot;%c %d&quot;,&amp;y,&amp;c);</span><br><span class="line">				Edge[cnt].u=(int)(x-&apos;A&apos;+1);</span><br><span class="line">				Edge[cnt].v=(int)(y-&apos;A&apos;+1);</span><br><span class="line">				Edge[cnt].cap=c;</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1233 还是畅通工程（最小生成树）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1711,360 +2051,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/poj 1182 食物链（并查集）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/poj 1182 食物链（并查集）/" itemprop="url">
-                  poj 1182 食物链（并查集）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-18 22:49:32 / Modified: 22:49:58" itemprop="dateCreated datePublished" datetime="2018-08-18T22:49:32+08:00">2018-08-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="poj-1182-食物链（并查集）"><a href="#poj-1182-食物链（并查集）" class="headerlink" title="poj 1182 食物链（并查集）"></a>poj 1182 食物链（并查集）</h1><p><a href="http://poj.org/problem?id=1182" target="_blank" rel="noopener">http://poj.org/problem?id=1182</a></p>
-<p>Time Limit: 1000MS        Memory Limit: 10000K</p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。<br>现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。<br>有人用两种说法对这N个动物所构成的食物链关系进行描述：<br>第一种说法是”1 X Y”，表示X和Y是同类。<br>第二种说法是”2 X Y”，表示X吃Y。<br>此人对N个动物，用上述两种说法，一句接一句地说出K句话，这K句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。<br>1）    当前的话与前面的某些真的话冲突，就是假话；<br>2）    当前的话中X或Y比N大，就是假话；<br>3）    当前的话表示X吃X，就是假话。<br>你的任务是根据给定的N（1 &lt;= N &lt;= 50,000）和K句话（0 &lt;= K &lt;= 100,000），输出假话的总数。 </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行是两个整数N和K，以一个空格分隔。<br>以下K行每行是三个正整数 D，X，Y，两数之间用一个空格隔开，其中D表示说法的种类。<br>若D=1，则表示X和Y是同类。<br>若D=2，则表示X吃Y。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>只有一个整数，表示假话的数目。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">100 7</span><br><span class="line">1 101 1 </span><br><span class="line">2 1 2</span><br><span class="line">2 2 3 </span><br><span class="line">2 3 3 </span><br><span class="line">1 1 3 </span><br><span class="line">2 3 1 </span><br><span class="line">1 5 5</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>分成三类 所以用 <strong>并查集+数组加倍</strong></p>
-<p>不知道当时在哪看到的这种数组加倍的写法 反正巨好用</p>
-<p>i (i+n) (i+2*n) 分别代表abc三个种类</p>
-<p>如果a吃b 就分别把三种的a和b的下一个join起来</p>
-<p>注意这题不合法的输入也要处理成假话</p>
-<p>下面是网上找的带权并查集的写法 但是我还是喜欢数组加倍。。<br><a href="https://blog.csdn.net/sunmaoxiang/article/details/80959300" target="_blank" rel="noopener">https://blog.csdn.net/sunmaoxiang/article/details/80959300</a></p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=50005;</span><br><span class="line">int fa[N*3];</span><br><span class="line"></span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	return fa[x]==x?x:fa[x]=find(fa[x]);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	fa[find(x)]=find(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int n,k,ans=0;</span><br><span class="line">	scanf(&quot;%d%d&quot;,&amp;n,&amp;k);</span><br><span class="line">	for(int i=0;i&lt;=3*n;i++)fa[i]=i;</span><br><span class="line">	for(int i=0;i&lt;k;i++)&#123;</span><br><span class="line">		int a,b,d;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;,&amp;d,&amp;a,&amp;b);</span><br><span class="line">		if(a&gt;n||b&gt;n||a&lt;1||b&lt;1)&#123;</span><br><span class="line">			ans++;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(d==1)&#123;</span><br><span class="line">			if(find(a)==find(b+n)||find(a)==find(b+2*n))&#123;</span><br><span class="line">				ans++;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			join(a,b);</span><br><span class="line">			join(a+n,b+n);</span><br><span class="line">			join(a+2*n,b+2*n);</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			if(find(a)==find(b)||find(a)==find(b+2*n))&#123;</span><br><span class="line">				ans++;</span><br><span class="line">				continue;</span><br><span class="line">			&#125;</span><br><span class="line">			else&#123;</span><br><span class="line">				join(a,b+n);</span><br><span class="line">				join(a+n,b+2*n);</span><br><span class="line">				join(a+2*n,b);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">	printf(&quot;%d\n&quot;,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/poj 1988 Cube Stacking（并查集）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/poj 1988 Cube Stacking（并查集）/" itemprop="url">
-                  poj 1988 Cube Stacking（并查集）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-18 20:43:32 / Modified: 20:50:09" itemprop="dateCreated datePublished" datetime="2018-08-18T20:43:32+08:00">2018-08-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="poj-1988-Cube"><a href="#poj-1988-Cube" class="headerlink" title="poj 1988 Cube"></a>poj 1988 Cube</h1><p><a href="http://poj.org/problem?id=1988" target="_blank" rel="noopener">http://poj.org/problem?id=1988</a><br>Time Limit: 2000MS        Memory Limit: 30000K</p>
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Farmer John and Betsy are playing a game with N (1 &lt;= N &lt;= 30,000)identical cubes labeled 1 through N. They start with N stacks, each containing a single cube. Farmer John asks Betsy to perform P (1&lt;= P &lt;= 100,000) operation. There are two types of operations:<br>moves and counts.   </p>
-<ul>
-<li>In a move operation, Farmer John asks Bessie to move the stack containing cube X on top of the stack containing cube Y. </li>
-<li>In a count operation, Farmer John asks Bessie to count the number of cubes on the stack with cube X that are under the cube X and report that value. </li>
-</ul>
-<p>Write a program that can verify the results of the game. </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><ul>
-<li><p>Line 1: A single integer, P </p>
-</li>
-<li><p>Lines 2..P+1: Each of these lines describes a legal operation. Line 2 describes the first operation, etc. Each line begins with a ‘M’ for a move operation or a ‘C’ for a count operation. For move operations, the line also contains two integers: X and Y.For count operations, the line also contains a single integer: X. </p>
-</li>
-</ul>
-<p>Note that the value for N does not appear in the input file. No move operation will request a move a stack onto itself. </p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Print the output from each of the count operations in the same order as the input file. </p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">M 1 6</span><br><span class="line">C 1</span><br><span class="line">M 2 4</span><br><span class="line">M 2 6</span><br><span class="line">C 3</span><br><span class="line">C 4</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">0</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给n个箱子 1-n排成n列<br>有两种操作：</p>
-<ul>
-<li>M：将x所在列上的箱子移到y所在列箱子上面</li>
-<li>C：求x箱子下有几个箱子</li>
-</ul>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>因为有合并两堆箱子的操作 所以想到用并查集 </p>
-<p>这题巧妙的地方在于如何求解这个箱子下面的箱子数 开两个数组</p>
-<p>num[i]记录当前第i列有几个箱子<br>place[i]记录箱子i下面的箱子个数</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=30010;</span><br><span class="line">int fa[N],num[N],place[N];</span><br><span class="line"></span><br><span class="line">int find(int x)&#123;</span><br><span class="line">    if(fa[x]==x)return x;</span><br><span class="line">    int temp=fa[x];</span><br><span class="line">    fa[x]=find(fa[x]);</span><br><span class="line">    place[x]+=place[temp];</span><br><span class="line">    return fa[x];</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">    fa[x]=y;</span><br><span class="line">    place[x]+=num[y];</span><br><span class="line">    num[y]+=num[x];</span><br><span class="line">    num[x]=0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int n;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(int i=1;i&lt;=30000;i++)&#123;</span><br><span class="line">        place[i]=0;</span><br><span class="line">        num[i]=1;</span><br><span class="line">        fa[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">        char s[5];</span><br><span class="line">        scanf(&quot;%S&quot;,&amp;s);</span><br><span class="line">        if(s[0]==&apos;M&apos;)&#123;</span><br><span class="line">            int x,y;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;x,&amp;y);</span><br><span class="line">            int x1=find(x),y1=find(y);</span><br><span class="line">            if(x1!=y1)join(x1,y1);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(s[0]==&apos;C&apos;)&#123;</span><br><span class="line">            int x;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;x);</span><br><span class="line">            find(x);</span><br><span class="line">            printf(&quot;%d\n&quot;,place[x]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2116,7 +2102,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2230,7 +2216,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共32.3k字</span>
+  <span class="post-count"> |  博客全站共33.8k字</span>
 </div>
 
         

@@ -320,6 +320,362 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/cf #487 C. A Mist of Florescence（构造）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/cf #487 C. A Mist of Florescence（构造）/" itemprop="url">
+                  cf
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 02:49:17 / Modified: 02:49:16" itemprop="dateCreated datePublished" datetime="2018-08-20T02:49:17+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="cf-487-C-A-Mist-of-Florescence（构造）"><a href="#cf-487-C-A-Mist-of-Florescence（构造）" class="headerlink" title="cf #487 C. A Mist of Florescence（构造）"></a>cf #487 C. A Mist of Florescence（构造）</h1><p><a href="http://codeforces.com/contest/989/problem/C" target="_blank" rel="noopener">http://codeforces.com/contest/989/problem/C</a></p>
+<p>As the boat drifts down the river, a wood full of blossoms shows up on the riverfront.<br>“I’ve been here once,” Mino exclaims with delight, “it’s breathtakingly amazing.”</p>
+<p>“What is it like?”</p>
+<p>“Look, Kanno, you’ve got your paintbrush, and I’ve got my words. Have a try, shall we?”</p>
+<p>There are four kinds of flowers in the wood, Amaranths, Begonias, Centaureas and Dianthuses.</p>
+<p>The wood can be represented by a rectangular grid of<br>n<br> rows and<br>m<br> columns. In each cell of the grid, there is exactly one type of flowers.</p>
+<p>According to Mino, the numbers of connected components formed by each kind of flowers are<br>a<br>,<br>b<br>,<br>c<br> and<br>d<br> respectively. Two cells are considered in the same connected component if and only if a path exists between them that moves between cells sharing common edges and passes only through cells containing the same flowers.</p>
+<p>You are to help Kanno depict such a grid of flowers, with<br>n<br> and<br>m<br> arbitrarily chosen under the constraints given below. It can be shown that at least one solution exists under the constraints of this problem.</p>
+<p>Note that you can choose arbitrary<br>n<br> and<br>m<br> under the constraints below, they are not given in the input.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first and only line of input contains four space-separated integers<br>a<br>,<br>b<br>,<br>c<br> and<br>d<br> (<br>1<br>≤<br>a<br>,<br>b<br>,<br>c<br>,<br>d<br>≤<br>100<br>) — the required number of connected components of Amaranths, Begonias, Centaureas and Dianthuses, respectively.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>In the first line, output two space-separated integers<br>n<br> and<br>m<br> (<br>1<br>≤<br>n<br>,<br>m<br>≤<br>50<br>) — the number of rows and the number of columns in the grid respectively.</p>
+<p>Then output<br>n<br> lines each consisting of<br>m<br> consecutive English letters, representing one row of the grid. Each letter should be among ‘A’, ‘B’, ‘C’ and ‘D’, representing Amaranths, Begonias, Centaureas and Dianthuses, respectively.</p>
+<p>In case there are multiple solutions, print any. You can output each letter in either case (upper or lower).</p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><p>input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 3 2 1</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 7</span><br><span class="line">DDDDDDD</span><br><span class="line">DABACAD</span><br><span class="line">DBABACD</span><br><span class="line">DDDDDDD</span><br></pre></td></tr></table></figure>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">50 50 1 1</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 50</span><br><span class="line">CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC</span><br><span class="line">ABABABABABABABABABABABABABABABABABABABABABABABABAB</span><br><span class="line">BABABABABABABABABABABABABABABABABABABABABABABABABA</span><br><span class="line">DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</span><br></pre></td></tr></table></figure>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 6 4 5</span><br></pre></td></tr></table></figure>
+<p>outputCopy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7 7</span><br><span class="line">DDDDDDD</span><br><span class="line">DDDBDBD</span><br><span class="line">DDCDCDD</span><br><span class="line">DBDADBD</span><br><span class="line">DDCDCDD</span><br><span class="line">DBDBDDD</span><br><span class="line">DDDDDDD</span><br></pre></td></tr></table></figure>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>In the first example, each cell of Amaranths, Begonias and Centaureas forms a connected component, while all the Dianthuses form one.<br><img src="http://codeforces.com/predownloaded/ba/48/ba48b131922fa242edffd37b1eb411f72779e8e3.png" alt=""></p>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>四个类，abcd为每个类的连通块数</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>50*50，分成4块，每块分别先填满abcd，然后每个都减一，然后在a里跳着放b单格，b里放a，c里放d，d里放c，注意一下边界判断就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	char s[55][55];</span><br><span class="line">	int a,b,c,d,h,l;</span><br><span class="line">	cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">	for(int i=1;i&lt;=25;i++)&#123;</span><br><span class="line">		for(int j=1;j&lt;=25;j++)&#123;</span><br><span class="line">			s[i][j]=&apos;A&apos;;</span><br><span class="line">			s[i][j+25]=&apos;B&apos;;</span><br><span class="line">			s[i+25][j]=&apos;C&apos;;</span><br><span class="line">			s[i+25][j+25]=&apos;D&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	a--;b--;c--;d--;</span><br><span class="line">	h=2;l=27;</span><br><span class="line">	while(a--)&#123;</span><br><span class="line">		if(l&gt;50)h+=2,l=27;</span><br><span class="line">		s[h][l]=&apos;A&apos;;</span><br><span class="line">		l+=2;</span><br><span class="line">	&#125; </span><br><span class="line">	h=2;l=2;</span><br><span class="line">	while(b--)&#123;</span><br><span class="line">		if(l&gt;25)h+=2,l=2;</span><br><span class="line">		s[h][l]=&apos;B&apos;;</span><br><span class="line">		l+=2;</span><br><span class="line">	&#125;</span><br><span class="line">	h=27;l=27;</span><br><span class="line">	while(c--)&#123;</span><br><span class="line">		if(l&gt;50)h+=2,l=27;</span><br><span class="line">		s[h][l]=&apos;C&apos;;</span><br><span class="line">		l+=2;</span><br><span class="line">	&#125;</span><br><span class="line">	h=27;l=2;</span><br><span class="line">	while(d--)&#123;</span><br><span class="line">		if(l&gt;25)h+=2,l=2;</span><br><span class="line">		s[h][l]=&apos;D&apos;;</span><br><span class="line">		l+=2;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;&quot;50 50&quot;&lt;&lt;endl;</span><br><span class="line">	for(int i=1;i&lt;=50;i++)&#123;</span><br><span class="line">		for(int j=1;j&lt;=50;j++)cout&lt;&lt;s[i][j]; </span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/麻婆豆腐（思维）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/麻婆豆腐（思维）/" itemprop="url">
+                  麻婆豆腐（思维）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 02:39:54 / Modified: 02:39:59" itemprop="dateCreated datePublished" datetime="2018-08-20T02:39:54+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="麻婆豆腐（思维）"><a href="#麻婆豆腐（思维）" class="headerlink" title="麻婆豆腐（思维）"></a>麻婆豆腐（思维）</h1><p><a href="https://www.nowcoder.com/acm/contest/128/B" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/128/B</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在一次课间休息的时候,音无结弦看到立华奏一个人坐在座位上写作业,于是动了请她吃麻婆豆腐的念头。他迅速移动到她后面的座位,寻思着该怎么开口邀请,他摸了摸口袋,拍了拍脑袋,有了!<br>“奏~听说食堂里有种传闻中因为辣过头所以谁都不会点的麻婆豆腐,但是却惊人地好吃啊,这样,我们来做个题吧!如果你做出来了我就天天请你吃麻婆豆腐╰(￣▽￣)╮”<br>奏的笔停下了,她转过头来,还带了一张草稿纸,做好了做题的准备。音无懵了一下,心中暗暗窃喜,“麻婆豆腐果然是她的最爱啊!”<br>“咳咳…请听题!我手上有n枚硬币,第i枚正面朝上的概率是Pi。我现在每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。问:有多少个子集合使得0和1的概率相等?”<br>不管音无给了怎样的数,奏都是一分钟不到就算出来了!不愧是前学生会长啊~<br>于是他们就去食堂吃麻婆豆腐了,现在,你也来算一下吧。  </p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><p>输入的第一行包含一个整数T，表示测试组数。<br>每个测试用例前面都有一个空白行。<br>每个测试用例由两行组成。<br>第一行包含硬币数量n。<br>第二行包含n个数表示：概率p1,…,pn。每个pi都给出6个小数位。</p>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h3><p>对于每个测试用例输出一个数：使得0和1的概率相等的子集合数量。</p>
+<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2 </span><br><span class="line"></span><br><span class="line">3 </span><br><span class="line">0.500000  0.500000  0.500000 </span><br><span class="line"></span><br><span class="line">4 </span><br><span class="line">0.000001  0.000002  0.000003  0.000004</span><br></pre></td></tr></table></figure>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>说明<br>在第一个测试样例中，每个子集显然都能使得0和1的概率相等。<br>在第二个测试样例中，所有子集都不能使得0和1的概率相等<br>备注:<br>n ≤ 60,T=500</p>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n枚硬币,第i枚正面朝上的概率是Pi。每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。  求有多少个子集合使得0和1的概率相等?</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>答案为<code>2^n-2^(n-cnt)</code><br>其中cnt是pi中0.5的个数</p>
+<p>因为只有pi=0.5，异或后的概率才可能相等，别的数都不行，证明如下：</p>
+<p>设当前集合有m个元素，第一个元素为1的概率x，剩下m-1个元素异或和为1的概率为p，那么这个集合最后异或和为1的概率为<code>p*(1-x)+x*(1-p)=0.5</code>,解得x=0.5</p>
+<p>注意1要写1LL，不然会WA</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t;</span><br><span class="line">	double c;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">    	int n;</span><br><span class="line">    	scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    	int cnt=0;</span><br><span class="line">    	for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">    		scanf(&quot;%lf&quot;,&amp;c);</span><br><span class="line">    		if(c==0.5)cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">		LL ans=(1LL&lt;&lt;n)-(1LL&lt;&lt;(n-cnt));</span><br><span class="line">		printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1788,363 +2144,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1849 Rabbit and Grass（尼姆博弈）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 1849 Rabbit and Grass（尼姆博弈）/" itemprop="url">
-                  hdu 1849 Rabbit and Grass（尼姆博弈）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 22:24:29 / Modified: 22:24:26" itemprop="dateCreated datePublished" datetime="2018-08-19T22:24:29+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-1849-Rabbit-and-Grass（尼姆博弈）"><a href="#hdu-1849-Rabbit-and-Grass（尼姆博弈）" class="headerlink" title="hdu 1849 Rabbit and Grass（尼姆博弈）"></a>hdu 1849 Rabbit and Grass（尼姆博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1849" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1849</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>大学时光是浪漫的，女生是浪漫的，圣诞更是浪漫的，但是Rabbit和Grass这两个大学女生在今年的圣诞节却表现得一点都不浪漫：不去逛商场，不去逛公园，不去和AC男约会，两个人竟然猫在寝食下棋……<br>说是下棋，其实只是一个简单的小游戏而已，游戏的规则是这样的：</p>
-<p>1、棋盘包含1*n个方格，方格从左到右分别编号为0，1，2，…，n-1；</p>
-<p>2、m个棋子放在棋盘的方格上，方格可以为空，也可以放多于一个的棋子；</p>
-<p>3、双方轮流走棋；</p>
-<p>4、每一步可以选择任意一个棋子向左移动到任意的位置（可以多个棋子位于同一个方格），当然，任何棋子不能超出棋盘边界；</p>
-<p>5、如果所有的棋子都位于最左边（即编号为0的位置），则游戏结束，并且规定最后走棋的一方为胜者。</p>
-<p>对于本题，你不需要考虑n的大小（我们可以假设在初始状态，棋子总是位于棋盘的适当位置）。下面的示意图即为一个1*15的棋盘，共有6个棋子，其中，编号8的位置有两个棋子。</p>
-<p><img src="http://acm.hdu.edu.cn/data/images/C101-1004-1.JPG" alt=""></p>
-<p>大家知道，虽然偶尔不够浪漫，但是Rabbit和Grass都是冰雪聪明的女生，如果每次都是Rabbit先走棋，请输出最后的结果。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入数据包含多组测试用例，每个测试用例占二行，首先一行包含一个整数m（0&lt;=m&lt;=1000），表示本测试用例的棋子数目，紧跟着的一行包含m个整数Ki(i=1…m; 0&lt;=Ki&lt;=1000)，分别表示m个棋子初始的位置，m=0则结束输入。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>如果Rabbit能赢的话，请输出“Rabbit Win!”，否则请输出“Grass Win!”，每个实例的输出占一行。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2 </span><br><span class="line">3 5</span><br><span class="line">3</span><br><span class="line">3 5 6</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Rabbit Win!</span><br><span class="line">Grass Win!</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>尼姆博弈水题 </p>
-<p>因为棋子最后都移动到最左，可以重合，所以一个棋子的可移动次数就是它的位置号也相当于尼姆博弈n堆石子中某一堆的石子数</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=200005;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int sum=0,c[N];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">			sum^=c[i];</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum==0)printf(&quot;Grass Win!\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			printf(&quot;Rabbit Win!\n&quot;);</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/" itemprop="url">
-                  hdu 2176 取(m堆)石子游戏（尼姆博弈）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 22:17:34 / Modified: 22:18:04" itemprop="dateCreated datePublished" datetime="2018-08-19T22:17:34+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-2176-取-m堆-石子游戏（尼姆博弈）"><a href="#hdu-2176-取-m堆-石子游戏（尼姆博弈）" class="headerlink" title="hdu 2176 取(m堆)石子游戏（尼姆博弈）"></a>hdu 2176 取(m堆)石子游戏（尼姆博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2176" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2176</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>m堆石子,两人轮流取.只能在1堆中取.取完者胜.先取者负输出No.先取者胜输出Yes,然后输出怎样取子.例如5堆 5,7,8,9,10先取者胜,先取者第1次取时可以从有8个的那一堆取走7个剩下1个,也可以从有9个的中那一堆取走9个剩下0个,也可以从有10个的中那一堆取走7个剩下3个.</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入有多组.每组第1行是m,m&lt;=200000. 后面m个非零正整数.m=0退出.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>先取者负输出No.先取者胜输出Yes,然后输出先取者第1次取子的所有方法.如果从有a个石子的堆中取若干个后剩下b个后会胜就输出a b.参看Sample Output.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">45 45</span><br><span class="line">3</span><br><span class="line">3 6 9</span><br><span class="line">5</span><br><span class="line">5 7 8 9 10</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">9 5</span><br><span class="line">Yes</span><br><span class="line">8 1</span><br><span class="line">9 0</span><br><span class="line">10 3</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h4><p>这题判断胜负直接异或就行，若异或结果sum=0则先手败，其余先手必胜</p>
-<p>胜要求输出第一步操作后剩余的石子数，若<code>c[i]^sum&lt;c[i]</code>则可行，取得个数为<code>c[i]-c[i]^sum</code>，输出剩余个数即为<code>c[i]^sum</code></p>
-<p>以下我也忘了摘自哪里。。</p>
-<blockquote>
-<p>三堆的时候</p>
-<p>用(a,b,c)表示某种局势，首先(0,0,0)显然是必败态，无论谁面对(0,0,0) ，都必然失败；第二种必败态是(0,n,n)，自己在某一堆拿走k（k ≤ n）个物品，不论k为多少，对方只要在另一堆拿走k个物品，最后自己都将面临(0,0,0)的局势，必败。仔细分析一下，(1,2,3)也是必败态，无论自己如何拿，接下来对手都可以把局势变为(0,n,n)的情形</p>
-<p>任何奇异局势(a,b,c)都有a XOR b XOR c = 0</p>
-<p>如果我们面对的是一个非必败态(a,b,c)，要如何变为必败态呢？<br>假设 a &lt; b &lt; c，我们只要将 c 变为a XOR b，即可。因为有如下的运算结果：</p>
-<p>a XOR b XOR (a XOR b)=(a XOR a) XOR (b XOR b) = 0 XOR 0 = 0</p>
-<p>要将c 变为a XOR b，只要对 c进行 c-(a XOR b)这样的运算即可</p>
-<hr>
-<p>定义两个状态，分别为N和P，N代表Next-position，可以理解为先手必胜状态，P代表Previous-position，可以理解为后手必胜状态（或为先手必败）<br>N/P两个状态的关系：<br>（1）无法进行局面转移的状态为P；<br>（2）只要有一种转移方式能将局面变为P，则当前状态为N；<br>（3）任何转移方式都只能使局面变为N，则当前状态为P。<br>（1）最后所有石堆中的石子都为0，此时无法再做任何操作，所以此时是P；<br>（2）在还剩一堆的情况下（无论个数，因为可以随意取），把这一堆都取完，留给对方 的肯定是0个石子，也就是P，所以当前肯定是N；<br>（3）还剩下两堆，且每堆个数为1，因为当前必须要取，而当取完后，通过（2）可知， 留给对方的局 面一定是N，所以当前肯定为P。</p>
-<hr>
-<p>对于Nim游戏的各个石堆（a1,a2,a3……an），当且仅当a1^a2^a3^……^an=0时它为P。</p>
-<p>论证还是要根据N/P的三个状态关系来：</p>
-<p>（1）无法移动的局面为所有石堆的石子数都为0，0^0^……^0=0，这个很简单；</p>
-<p>（2）若当前的局面不为0，即a1^a2^a3^……^an=k，则必定有一个数ai改变ai的值为ai’（或者理解为改变当前某个石堆的状态），能使的a1^a2^a3^……^ai’^……^an=0,证明很简单，通过异或的性质，因为k的二进制最高位（从右往左）为1，可以得出一 定存在某个ai的最高位为1，此时<code>ai&#39;*k&lt;ai</code>，这个也很好理解，当前的最高位由1变为0 ，十进制时ai一定小于ai’。所以，我们可以将<code>ai=ai&#39;*k</code>，此时<code>a1^a2^a3^......^ai&#39;*k ^.......an=0</code>。</p>
-<p>（3）若当前某个局面为P，即a1^a2^a3^……^an=0,一定不存在改变某 个ai，使之变为ai’，a1^a2^a3^…….^ai’^……^an=0,因为异或满足消去律，消去后得ai=ai’，由题目可得不能不取，即当前的ai值必须改变，所以此时ai一定不等于ai’。</p>
-</blockquote>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=200005;</span><br><span class="line">//c1^c2^...^cn=k,然后c1^c2^...^cn^k=0,那么对那个数执行操作减去（cn-cn^k）,那个数变为cn^k </span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int sum=0,c[N];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">			sum^=c[i];</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum==0)printf(&quot;No\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			printf(&quot;Yes\n&quot;);</span><br><span class="line">			for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">				if((c[i]^sum)&lt;c[i])printf(&quot;%d %d\n&quot;,c[i],(c[i]^sum));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2196,7 +2195,7 @@ int main()
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2310,7 +2309,7 @@ int main()
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共32.3k字</span>
+  <span class="post-count"> |  博客全站共33.8k字</span>
 </div>
 
         
