@@ -320,6 +320,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/hdu 1198 Farm Irrigation（并查集）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/hdu 1198 Farm Irrigation（并查集）/" itemprop="url">
+                  hdu 1198 Farm Irrigation（并查集）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-18 23:45:23" itemprop="dateCreated datePublished" datetime="2018-08-18T23:45:23+08:00">2018-08-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-19 03:13:22" itemprop="dateModified" datetime="2018-08-19T03:13:22+08:00">2018-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-1198-Farm-Irrigation（并查集）"><a href="#hdu-1198-Farm-Irrigation（并查集）" class="headerlink" title="hdu 1198 Farm Irrigation（并查集）"></a>hdu 1198 Farm Irrigation（并查集）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1198" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1198</a></p>
+<p>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others)</p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Benny has a spacious farm land to irrigate. The farm land is a rectangle, and is divided into a lot of samll squares. Water pipes are placed in these squares. Different square has a different type of pipe. There are 11 types of pipes, which is marked from A to K, as Figure 1 shows.</p>
+<p><img src="http://acm.hdu.edu.cn/data/images/1121-1.gif" alt=""></p>
+<p>Benny has a map of his farm, which is an array of marks denoting the distribution of water pipes over the whole farm. For example, if he has a map </p>
+<p>ADC<br>FJK<br>IHE   </p>
+<p>then the water pipes are distributed like </p>
+<p><img src="http://acm.hdu.edu.cn/data/images/1121-2.gif" alt=""></p>
+<p>Several wellsprings are found in the center of some squares, so water can flow along the pipes from one square to another. If water flow crosses one square, the whole farm land in this square is irrigated and will have a good harvest in autumn. </p>
+<p>Now Benny wants to know at least how many wellsprings should be found to have the whole farm land irrigated. Can you help him? </p>
+<p>Note: In the above example, at least 3 wellsprings are needed, as those red points in Figure 2 show.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>There are several test cases! In each test case, the first line contains 2 integers M and N, then M lines follow. In each of these lines, there are N characters, in the range of ‘A’ to ‘K’, denoting the type of water pipe over the corresponding square. A negative M or N denotes the end of input, else you can assume 1 &lt;= M, N &lt;= 50.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, output in one line the least number of wellsprings needed.</p>
+<p><strong>Sample Input</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2 2</span><br><span class="line">DK</span><br><span class="line">HF</span><br><span class="line">3 3</span><br><span class="line">ADC</span><br><span class="line">FJK</span><br><span class="line">IHE</span><br><span class="line">-1 -1</span><br></pre></td></tr></table></figure>
+<p><strong>Sample Output</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一个并查集好题</p>
+<p>水管连通本质上就是集合的合并，最后求有几个集合的问题，很容易想到并查集</p>
+<p>只需要对每个地块与右方和下方的地块进行合并即可，合并之前先判断是否能连通，若能连通则合并，不能连通，则不能合并</p>
+<p>每个地块的四个方向用数组的01来表示，用位运算来判断可连性</p>
+<p>具体见代码注释</p>
+<p>还有一种二进制的位运算写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const int type[11] = &#123;3,6,9,12,10,5,7,11,13,14,15&#125;; </span><br><span class="line"></span><br><span class="line">if(dir==1)&#123;</span><br><span class="line">    if(((type[ta]&gt;&gt;3) &amp; 1) &amp;&amp; ((type[tb]&gt;&gt;1) &amp; 1))mark = true;  </span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    if(((type[ta]&gt;&gt;2) &amp; 1) &amp;&amp; (type[tb] &amp; 1))mark = true;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=505;</span><br><span class="line">const int type[11][4]=&#123; &#123;1,1,0,0&#125;,&#123;0,1,1,0&#125;,&#123;1,0,0,1&#125;,&#123;0,0,1,1&#125;,&#123;0,1,0,1&#125;,&#123;1,0,1,0&#125;,&#123;1,1,1,0&#125;,&#123;1,1,0,1&#125;,&#123;1,0,1,1&#125;,&#123;0,1,1,1&#125;,&#123;1,1,1,1&#125; &#125;;</span><br><span class="line">int n,m,num,cnt; </span><br><span class="line">int fa[N*N+1];</span><br><span class="line">char f[N][N]; </span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x1,int y1,int x2,int y2,int dir)&#123;</span><br><span class="line">	if(x2&gt;n||y2&gt;m)return;//超出地图不合并</span><br><span class="line">	bool flag=false;//标记是否可连通 </span><br><span class="line">	int t1,t2;</span><br><span class="line">	t1=f[x1][y1]-&apos;A&apos;;</span><br><span class="line">	t2=f[x2][y2]-&apos;A&apos;; </span><br><span class="line">	if(dir==1)&#123;</span><br><span class="line">		if(type[t1][3]&amp;&amp;type[t2][1])flag=true;//竖直方向 </span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		if(type[t1][2]&amp;&amp;type[t2][0])flag=true;//水平方向 </span><br><span class="line">	&#125;</span><br><span class="line">	if(flag)&#123;//合并 </span><br><span class="line">		int a=find((x1-1)*m+y1),b=find((x2-1)*m+y2);</span><br><span class="line">		if(a!=b)&#123;</span><br><span class="line">			fa[b]=a;</span><br><span class="line">			--cnt;//消去一个水井 </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d%d&quot;,&amp;n,&amp;m)!=EOF)&#123;</span><br><span class="line">		if(n==-1&amp;&amp;m==-1)break;</span><br><span class="line">		for(int i=1;i&lt;=n*m;i++)&#123;</span><br><span class="line">			fa[i]=i;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt=n*m;//初始化，假设所有田里都有水井 </span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			scanf(&quot;%s&quot;,f[i]+1);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;//统一向右or下合并 </span><br><span class="line">			for(int j=1;j&lt;=m;j++)&#123;</span><br><span class="line">				join(i,j,i+1,j,1);//竖直 </span><br><span class="line">				join(i,j,i,j+1,0);//水平 </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%d\n&quot;,cnt);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/hdu 1856 More is better/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1869,175 +2064,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/18/1256 乘法逆元/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/1256 乘法逆元/" itemprop="url">
-                  1256 乘法逆元（数论）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-18 02:59:59 / Modified: 03:01:31" itemprop="dateCreated datePublished" datetime="2018-08-18T02:59:59+08:00">2018-08-18</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1256-乘法逆元（数论）"><a href="#1256-乘法逆元（数论）" class="headerlink" title="1256 乘法逆元（数论）"></a>1256 乘法逆元（数论）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
-<p>给出2个数M和N(M &lt; N)，且M与N互质，找出一个数K满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入2个数M, N中间用空格分隔（1 &lt;= M &lt; N &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出一个数K，满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 3</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>数论 —— 扩展欧几里得</p>
-<p>ax+by=gcd(a,b)   </p>
-<p>a,b互质 有ax+by=1  </p>
-<p>ax%b=1%b </p>
-<p>记x为inv(a) 则a*inv(a)%b=1%b  </p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">void ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123;</span><br><span class="line">    if(!b)&#123;</span><br><span class="line">        d=a;x=1;y=0;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        ex_gcd(b,a%b,y,x,d);</span><br><span class="line">        y-=x*(a/b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">LL inv(LL t,LL p)&#123;</span><br><span class="line">    LL d,x,y;</span><br><span class="line">    ex_gcd(t,p,x,y,d);</span><br><span class="line">    return d==1?(x%p+p)%p:-1;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123; </span><br><span class="line">    LL m,n;</span><br><span class="line">    scanf(&quot;%lld%lld&quot;,&amp;m,&amp;n);</span><br><span class="line">    printf(&quot;%lld\n&quot;,inv(m,n));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2089,7 +2115,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2099,7 +2125,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/dp.html">
+                  <a href="/categories/51nod基础题.html">
                     
                     
                       
@@ -2205,7 +2231,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共36.3k字</span>
+  <span class="post-count"> |  博客全站共36.9k字</span>
 </div>
 
         

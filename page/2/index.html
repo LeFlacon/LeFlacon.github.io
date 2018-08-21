@@ -320,6 +320,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/hdu 1404 Digital Deletions（sg函数暴力打表）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/hdu 1404 Digital Deletions（sg函数暴力打表）/" itemprop="url">
+                  hdu 1404 Digital Deletions（sg函数暴力打表）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 01:10:00 / Modified: 01:10:11" itemprop="dateCreated datePublished" datetime="2018-08-20T01:10:00+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-1404-Digital-Deletions（sg函数暴力打表）"><a href="#hdu-1404-Digital-Deletions（sg函数暴力打表）" class="headerlink" title="hdu 1404 Digital Deletions（sg函数暴力打表）"></a>hdu 1404 Digital Deletions（sg函数暴力打表）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1404" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1404</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Digital deletions is a two-player game. The rule of the game is as following. </p>
+<p>Begin by writing down a string of digits (numbers) that’s as long or as short as you like. The digits can be 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 and appear in any combinations that you like. You don’t have to use them all. Here is an example:</p>
+<p><img src="http://acm.hdu.edu.cn/data/images/1404-1.gif" alt=""></p>
+<p>On a turn a player may either:<br>Change any one of the digits to a value less than the number that it is. (No negative numbers are allowed.) For example, you could change a 5 into a 4, 3, 2, 1, or 0.<br>Erase a zero and all the digits to the right of it.</p>
+<p>The player who removes the last digit wins.</p>
+<p>The game that begins with the string of numbers above could proceed like this: </p>
+<p><img src="http://acm.hdu.edu.cn/data/images/1404-2.gif" alt=""></p>
+<p>Now, given a initial string, try to determine can the first player win if the two players play optimally both. </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input consists of several test cases. For each case, there is a string in one line.</p>
+<p>The length of string will be in the range of [1,6]. The string contains only digit characters.</p>
+<p>Proceed to the end of file.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Output Yes in a line if the first player can win the game, otherwise output No.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">00</span><br><span class="line">1</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">No</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个长度在[1,6]的数字字符串</p>
+<p>有两种操作：</p>
+<p>1.把任何一个数字更改为小于其数字的值</p>
+<p>2.删除0及其右侧的数字</p>
+<p>删除最后一位的赢，问先手有无必胜策略</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先这个最多只有6位，有很多很多状态，所以是个sg函数的题，从最小的已知态往上推，根据sg函数的性质，能一步到达必败状态的都是必胜点，由此求得所有六位数状态的值</p>
+<p>分析一下可以sg[1]是必败点，sg[1]=0,那么就从1开始向上拓展必胜态，具体操作见代码</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=1000000;</span><br><span class="line">int sg[N];</span><br><span class="line">int wei(int n)&#123;</span><br><span class="line">	if(n/100000)return 6;</span><br><span class="line">	if(n/10000)return 5;</span><br><span class="line">	if(n/1000)return 4;</span><br><span class="line">	if(n/100)return 3;</span><br><span class="line">	if(n/10)return 2;</span><br><span class="line">	return 1;</span><br><span class="line">&#125;</span><br><span class="line">void extend(int n)&#123;</span><br><span class="line">//sg[n]=0先手必败，可以一步变为n的都是先手必胜</span><br><span class="line">	int len=wei(n);</span><br><span class="line">	for(int i=len;i&gt;0;i--)&#123;//每一位上加一个数</span><br><span class="line">		int m=n;</span><br><span class="line">		int base=1;</span><br><span class="line">		for(int j=1;j&lt;i;j++)base*=10;</span><br><span class="line">		int tmp=(m%(base*10))/base;</span><br><span class="line">		for(int j=tmp;j&lt;9;j++)&#123;</span><br><span class="line">			m+=base;</span><br><span class="line">			sg[m]=1;</span><br><span class="line">		&#125;</span><br><span class="line">		if(len&lt;6)&#123;//长度小于6，可以在后面补0</span><br><span class="line">			int m=n;</span><br><span class="line">			int base=1;</span><br><span class="line">			for(int i=len;i&lt;6;i++)&#123;</span><br><span class="line">				m*=10;</span><br><span class="line">				for(int b=0;b&lt;base;b++)sg[m+b]=1;</span><br><span class="line">				base*=10;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line">void work()&#123;</span><br><span class="line">	memset(sg,0,sizeof(sg));</span><br><span class="line">	sg[0]=1;</span><br><span class="line">	for(int i=1;i&lt;N;i++)&#123;</span><br><span class="line">		if(!sg[i])extend(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	char str[8];</span><br><span class="line">	int n;</span><br><span class="line">	work();</span><br><span class="line">	while(scanf(&quot;%s&quot;,str)!=EOF)&#123;</span><br><span class="line">		if(str[0]==&apos;0&apos;)&#123;</span><br><span class="line">			printf(&quot;Yes\n&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		int len=strlen(str);</span><br><span class="line">		n=0;</span><br><span class="line">		for(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">			n*=10;</span><br><span class="line">			n+=str[i]-&apos;0&apos;;</span><br><span class="line">		&#125;</span><br><span class="line">		if(sg[n])printf(&quot;Yes\n&quot;);</span><br><span class="line">		else printf(&quot;No\n&quot;); </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/hdu 1527 取石子游戏（威佐夫博弈）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1890,178 +2070,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/Ponds（拓扑排序）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/Ponds（拓扑排序）/" itemprop="url">
-                  Ponds（拓扑排序）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 02:45:26 / Modified: 02:46:08" itemprop="dateCreated datePublished" datetime="2018-08-19T02:45:26+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ponds（拓扑排序）"><a href="#Ponds（拓扑排序）" class="headerlink" title="Ponds（拓扑排序）"></a>Ponds（拓扑排序）</h1><p><a href="https://nanti.jisuanke.com/t/29329" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29329</a></p>
-<p>Betty owns a lot of ponds, some of them are connected with other ponds by pipes, and there will not be more than one pipe between two ponds. Each pond has a value v.</p>
-<p>Now Betty wants to remove some ponds because she does not have enough money. But each time when she removes a pond, she can only remove the ponds which are connected with less than two ponds, or the pond will explode.</p>
-<p>Note that Betty should keep removing ponds until no more ponds can be removed. After that, please help her calculate the sum of the value for each connected component consisting of a odd number of ponds</p>
-<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h3><p>The first line of input will contain a number T(1≤T≤30) which is the number of test cases.</p>
-<p>For each test case, the first line contains two number separated by a blank. One is the number p(1≤p≤10^4) which represents the number of ponds she owns, and the other is the number m(1≤m≤10^5) which represents the number of pipes.</p>
-<p>The next line contains p numbers v1，···，vp, where vi(1≤vi≤10^8) indicating the value of pond i.</p>
-<p>Each of the last m lines contain two numbers a and b, which indicates that pond a and pond b are connected by a pipe.</p>
-<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p>For each test case, output the sum of the value of all connected components consisting of odd number of ponds after removing all the ponds connected with less than two pipes.</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">7 7</span><br><span class="line">1 2 3 4 5 6 7</span><br><span class="line">1 4</span><br><span class="line">1 5</span><br><span class="line">4 5</span><br><span class="line">2 3</span><br><span class="line">2 6</span><br><span class="line">3 6</span><br><span class="line">2 7</span><br></pre></td></tr></table></figure>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21</span><br></pre></td></tr></table></figure>
-<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p>ACM-ICPC 2015 Changchun Preliminary Contest</p>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个无向图，池塘之间有管道相连，每个池塘有一个权值，现在要拆掉所有度数小于2的池塘，直至不能拆为止，最后求连通个数为奇数的池塘的权值和</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>删除一个度数为1的结点之后，这个点的边所通向的点的度数也要减一，就可能产生新的度数小于2的点，有点拓扑排序的意思，出现度数小于2的点就存入q，直到q为空，按照题意写就行</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">const int N=1000005;</span><br><span class="line">int d[N],w[N],u[N],v[N],sum[N];</span><br><span class="line">LL ans;</span><br><span class="line">vector&lt;vector&lt;int&gt; &gt;tu;</span><br><span class="line">bool vis[N];</span><br><span class="line">int fa[N];</span><br><span class="line">void init(int x)&#123;</span><br><span class="line">	for(int i=1;i&lt;=x;i++)fa[i]=i;</span><br><span class="line">	memset(d,0,sizeof(d));</span><br><span class="line">	memset(vis,false,sizeof(vis));</span><br><span class="line">	memset(sum,0,sizeof(sum));</span><br><span class="line">	tu.resize(x+1);</span><br><span class="line">	tu.clear();</span><br><span class="line">&#125;</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">    int tmp=x;</span><br><span class="line">    while(fa[tmp]!=tmp)tmp=fa[tmp]; </span><br><span class="line">    fa[x]=tmp;</span><br><span class="line">    return tmp;</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">    if(find(x)!=find(y))fa[find(x)]=fa[find(y)];</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int t,n,m;</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">	while(t--)&#123;</span><br><span class="line">		ans=0;</span><br><span class="line">		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">		init(n);</span><br><span class="line">		for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;w[i]);</span><br><span class="line">		for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">			scanf(&quot;%d%d&quot;,&amp;u[i],&amp;v[i]);</span><br><span class="line">			d[u[i]]++;d[v[i]]++;</span><br><span class="line">			tu[u[i]].push_back(v[i]);</span><br><span class="line">			tu[v[i]].push_back(u[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		queue&lt;int&gt;q;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			if(d[i]&lt;=1)&#123;</span><br><span class="line">				vis[i]=true;</span><br><span class="line">				q.push(i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		while(!q.empty())&#123;</span><br><span class="line">			int tmp=q.front();</span><br><span class="line">			q.pop();</span><br><span class="line">			for(int i=0;i&lt;tu[tmp].size();i++)&#123;</span><br><span class="line">				int nod=tu[tmp][i];</span><br><span class="line">				d[nod]--;</span><br><span class="line">				if(d[nod]&lt;=1&amp;&amp;vis[nod]==false)&#123;</span><br><span class="line">					vis[nod]=true;</span><br><span class="line">					q.push(nod);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">			if(vis[u[i]]==false&amp;&amp;vis[v[i]]==false)join(u[i],v[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			if(vis[i]==false)sum[find(i)]++;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			if(vis[i]==false&amp;&amp;sum[find(i)]&amp;1)ans+=w[i];</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%lld\n&quot;,ans);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2113,7 +2121,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2123,7 +2131,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/dp.html">
+                  <a href="/categories/51nod基础题.html">
                     
                     
                       
@@ -2229,7 +2237,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共36.3k字</span>
+  <span class="post-count"> |  博客全站共36.9k字</span>
 </div>
 
         
