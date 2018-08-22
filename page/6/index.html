@@ -320,6 +320,809 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/F.The Best Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/F.The Best Path/" itemprop="url">
+                  F.The Best Path--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:37:37" itemprop="dateCreated datePublished" datetime="2018-08-15T15:37:37+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-18 18:34:18" itemprop="dateModified" datetime="2018-08-18T18:34:18+08:00">2018-08-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="F-The-Best-Path"><a href="#F-The-Best-Path" class="headerlink" title="F. The Best Path"></a>F. The Best Path</h2><p><a href="https://nanti.jisuanke.com/t/29370" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29370</a></p>
+<p><img src="/2018/08/15/F.The Best Path/123.png" alt=""></p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3 2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">4 3</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">Impossible</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>给一个图，每个点有一个权值，找欧拉通路或者欧拉回路，然后求路径上每个点异或结果的最大值；</p>
+<p>首先判断有没有欧拉回路或者通路，用一下定理就好了，有且仅有两个度数为奇数的点则有欧拉通路，没有度数为奇数的点则有欧拉回路；</p>
+<p>然后把对异或值有贡献的算上，有贡献的点就是d为奇数的点和（d/2）为奇数的点，因为经过偶数次的点相当于没有贡献；</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=100005;</span><br><span class="line">int n,m,a[N],d[N];</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t,u,v;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">        int ans=0;</span><br><span class="line">        memset(d,0,sizeof(d));</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);</span><br><span class="line">        for(int i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;a[i]);</span><br><span class="line">        for(int i=0;i&lt;m;i++)&#123;</span><br><span class="line">            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);</span><br><span class="line">            d[u]++;d[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        int num=0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            if(d[i]&amp;1)num++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num==0)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;</span><br><span class="line">            int tmp=ans;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                ans=max(ans,tmp^a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(num==2)&#123;</span><br><span class="line">            for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">                if((d[i]/2)&amp;1||d[i]&amp;1)ans^=a[i];</span><br><span class="line">            &#125;      </span><br><span class="line">            printf(&quot;%d\n&quot;,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        else printf(&quot;Impossible\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/D.Tea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/D.Tea/" itemprop="url">
+                  D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 15:28:13" itemprop="dateCreated datePublished" datetime="2018-08-15T15:28:13+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-18 18:34:41" itemprop="dateModified" datetime="2018-08-18T18:34:41+08:00">2018-08-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="D-Tea"><a href="#D-Tea" class="headerlink" title="D.Tea"></a>D.Tea</h2><p><a href="https://nanti.jisuanke.com/t/29368" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29368</a><br>Tea is good.</p>
+<p>Tea is life.</p>
+<p>Tea is everything.</p>
+<p>The balance of tea is a journey of pursuing balance of the universe.</p>
+<p>Alice knows that.</p>
+<p>Alice wants to teach you the art of pouring tea.</p>
+<p>Alice has a pot of tea.</p>
+<p>The exact volume of tea is not important.</p>
+<p>The exact volume of tea is at least LL.</p>
+<p>The exact volume of tea is at most RR.</p>
+<p>Alice put two empty cups between you and her.</p>
+<p>Alice wants the two cups filled by almost equal volume of tea.</p>
+<p>Yours cannot be 11 unit more than hers.</p>
+<p>Hers cannot be 11 unit more than yours.</p>
+<p>Alice wants you to pour the tea.</p>
+<p>Alice wants you to pour until the pot is almost empty.</p>
+<p>Alice wants no more than 11 unit volume of tea remaining in the pot.</p>
+<p>You cannot read the residue volume of tea remaining in the pot.</p>
+<p>You can only know the tea status in the pot, empty or not.</p>
+<p>Alice does not want you to pour the tea too many times.</p>
+<p>You better pour as few times as possible.</p>
+<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h3><p>There are multiple cases.</p>
+<p>For each case, there is one line of two integers LL and RR, separated by single space.</p>
+<p>Here are some analyses about sample cases.</p>
+<p>For the first case, pouring 11 unit into one cup will satisfy Alice.</p>
+<p>For the second case, it is clearly that you cannot only pour once to reach the desired balance, but she can achieve it by pouring twice.</p>
+<p>First you pour 1.51.5 units into one cup, then you attempt to pour another 1.51.5 units into the other cup.</p>
+<p>Since the lower bound is 22, at least 0.50.5 unit remains in the pot after the first pouring.</p>
+<p>If the initial volume is in range [2,\ 3][2, 3], the second cup will have volume in range [0.5,\ 1.5][0.5, 1.5] which is balanced with 1.51.5 unit in the first cup, and at most 11 unit remain after these two attempts.</p>
+<p>About 10001000 test cases, and 0\le L\le R \le 10^{16}0≤L≤R≤10<br>16<br> .</p>
+<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p>For each case, there should be a single integer in a single line, the least number of pouring attempts.</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 2</span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一开始的策略有点问题，第一杯倒 l/2 第二杯倒 l/2+1 这样不一定是最优的； </p>
+<p>举个例子（4 9）这组数据，第一杯2，第二杯3，第一杯2+2，第二杯还需要再加一次；  </p>
+<p>而第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1的话，（4 9），第一杯2.5 第二杯3.5 第一杯 2.5 +2，达成要求；  </p>
+<p>所以最优策略是第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1 ，然后剩下的轮流加2，直至壶中水小于等于1；</p>
+<p>特判几个特殊情况，具体见代码，需要注意的是，如果l=0，那么一开始（0+1）/2=0，显然不倒水是不划算的，所以如果特判结束后l=0则l=1；</p>
+<hr>
+<p>###代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">int main()&#123;</span><br><span class="line">    LL l,r;</span><br><span class="line">    while(~scanf(&quot;%lld%lld&quot;,&amp;l,&amp;r))&#123;</span><br><span class="line">        if(r==0||r==1)puts(&quot;0&quot;);</span><br><span class="line">        else if(r==2)puts(&quot;1&quot;);</span><br><span class="line">        else if(l==r||l==r-1)puts(&quot;2&quot;);</span><br><span class="line">        else&#123;</span><br><span class="line">            if(l==0)l=1;</span><br><span class="line">            printf(&quot;%lld\n&quot;,(r-l+2)/2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/15/2006 飞行员配对/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/2006 飞行员配对/" itemprop="url">
+                  2006 飞行员配对(二分图最大匹配,匈牙利算法)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-15 03:31:05 / Modified: 13:01:34" itemprop="dateCreated datePublished" datetime="2018-08-15T03:31:05+08:00">2018-08-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2006-飞行员配对-二分图最大匹配"><a href="#2006-飞行员配对-二分图最大匹配" class="headerlink" title="2006 飞行员配对(二分图最大匹配)"></a>2006 飞行员配对(二分图最大匹配)</h2><p>题目来源： 网络流24题<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  </p>
+<p>第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。如何选择配对飞行的飞行员才能使一次派出最多的飞机。对于给定的外籍飞行员与英国飞行员的配合情况，试设计一个算法找出最佳飞行员配对方案，使皇家空 军一次能派出最多的飞机 。对于给定的外籍飞行员与英国飞行员的配合情况，编程找出一个最佳飞行员配对方案， 使皇家空军一次能派出最多的飞机。 </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行有2个正整数 m 和 n。n 是皇家空军的飞行 员总数(n&lt;100);m 是外籍飞行员数。外籍飞行员编号为 1~m;英国飞行员编号为 m+1~n。接下来每行有 2 个正整数 i 和 j，表示外籍飞行员 i 可以和英国飞行员 j 配合。输入最后以 2 个-1 结束。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>第 1 行是最佳飞行 员配对方案一次能派出的最多的飞机数 M。如果所求的最佳飞行员配对方案不存在，则输出‘No Solution!’。</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>裸的匈牙利算法求二分图最大匹配</p>
+<p>这篇讲的超级生动形象了<a href="https://blog.csdn.net/cillyb/article/details/55511666" target="_blank" rel="noopener">https://blog.csdn.net/cillyb/article/details/55511666</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;list&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">vector&lt;int&gt;g[N];</span><br><span class="line">int n,m,ans=0,match[N];</span><br><span class="line">bool vis[N];</span><br><span class="line">bool dfs(int x)&#123;</span><br><span class="line">    for(int i=0;i&lt;g[x].size();i++)&#123;</span><br><span class="line">        int v=g[x][i];</span><br><span class="line">        if(!vis[v])&#123;</span><br><span class="line">            vis[v]=true;//标记已试图匹配</span><br><span class="line">            if(match[v]==-1||dfs(match[v]))&#123;</span><br><span class="line">            //这个点没匹配过或者这个点匹配的可拆</span><br><span class="line">                match[v]=x;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;m,&amp;n);</span><br><span class="line">    int x,y;</span><br><span class="line">    while(scanf(&quot;%d%d&quot;,&amp;x,&amp;y),x!=-1&amp;&amp;y!=-1)&#123;</span><br><span class="line">        g[x].push_back(y);</span><br><span class="line">        g[y].push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line">    memset(match,-1,sizeof(match));</span><br><span class="line">    for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">        memset(vis,false,sizeof(vis));</span><br><span class="line">        if(dfs(i))ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/14/blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/14/blog/" itemprop="url">
+                  Mac Os下用「hexo+github」搭建个人博客！
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-14 21:30:13" itemprop="dateCreated datePublished" datetime="2018-08-14T21:30:13+08:00">2018-08-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-15 13:44:49" itemprop="dateModified" datetime="2018-08-15T13:44:49+08:00">2018-08-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/poi/" itemprop="url" rel="index"><span itemprop="name">poi</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Mac-Os下用「hexo-github」搭建个人博客！"><a href="#Mac-Os下用「hexo-github」搭建个人博客！" class="headerlink" title="Mac Os下用「hexo+github」搭建个人博客！"></a>Mac Os下用「hexo+github」搭建个人博客！</h1><hr>
+<p>这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤</p>
+<hr>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong> 安装nodejs和git（这个自己在官网安装就可以）</strong><br><strong> 接着要用npm安装hexo </strong><br>在终端输入<code>npm install -g hexo-cli</code></p>
+<p><img src="/2018/08/14/blog/0.png" alt=""></p>
+<p>很多报错 可以看见好几个都是permission denied（因为权限不足无法访问）<br>可以看见提示的建议是：<code>Please try running this command again as root/Administrator.</code><br>所以重新输入<code>sudo npm install -g hexo-cli</code>（sudo：申请root权限）<br>下图表明安装成功  </p>
+<p><img src="/2018/08/14/blog/1.png" alt=""></p>
+<h2 id="用hexo在本地新建一个博客"><a href="#用hexo在本地新建一个博客" class="headerlink" title="用hexo在本地新建一个博客"></a>用hexo在本地新建一个博客</h2><p><strong> 新建文件夹然后右键「新建位于文件夹位置的终端窗口」</strong><br>（第一次使用的话可以在【finder-服务-服务偏好设置】中勾选上那一项）<br><strong> 文件夹位置下终端输入 </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo i blog//blog是项目名，叫别的也随便</span><br><span class="line">cd blog//进入blog文件夹</span><br><span class="line">hexo g//编译</span><br><span class="line">hexo s//本地预览</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/08/14/blog/2.png" alt=""></p>
+<p>（后两句不加sudo的话同样会出现permission denied的问题 所以在开头加上sudo给他权限就可以啦 下面有些地方还会遇到sudo的问题 就不赘述了 报权限不够的错误的话自己加上）</p>
+<p>成功后会给出一个链接 一个在本地的博客就这样建好了 点开就可以发现已经有一个博客的大概了</p>
+<p><img src="/2018/08/14/blog/3.png" alt=""></p>
+<p><img src="/2018/08/14/blog/4.png" alt=""></p>
+<p>这里用到了4000端口 如果该端口被占用的话可以查一下是什么东西占用了这个端口<code>sudo lsof -i:端口号</code> 如果没有输出表面该端口没有被占用 被占用的话会给出一个进程 里面有一个PID号 如果是没设么用的进程 输入<code>sudo kill -9 pid号</code>结束掉他即可</p>
+<p>默认给的是个叫「landscape」的主题 不同主题有不同的功能布局外观 当然也可以自己写个主题出来<br>不过这种是大佬们的操作 我这个小白还是先找个主题用吧。。<br>这里放上一些主题：<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">https://github.com/hexojs/hexo/wiki/Themes</a> 此外知乎上也有关于hexo主题的讨论</p>
+<h2 id="设置博客主题"><a href="#设置博客主题" class="headerlink" title="设置博客主题"></a>设置博客主题</h2><p><strong> 在文件夹打开终端输入git clone加上所选主题的地址 </strong></p>
+<p>(此处以及后面所说的终端一般都是blog文件夹终端了)</p>
+<p><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
+<p><img src="/2018/08/14/blog/5.png" alt=""></p>
+<p><strong> 打开文件夹下的这个文件 官方名叫站点配置文件 </strong></p>
+<p><img src="/2018/08/14/blog/6.png" alt=""></p>
+<p><strong> 然后找到里面的theme并更改 </strong>  </p>
+<p><img src="/2018/08/14/blog/7.png" alt=""></p>
+<p><strong> 回到终端输入 </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hero s</span><br></pre></td></tr></table></figure></p>
+<p>点进生成的blog可以看见主题已经换好啦</p>
+<p><img src="/2018/08/14/blog/8.png" alt=""></p>
+<p><strong> 在[themes/next/config.yml]里配置next </strong></p>
+<p>冒号后面是有空格的 后面有些地方也是一样！！！一定要有空格 不然会报很长很长的错！！！</p>
+<p>可以看见备注写了三个方案给你选</p>
+<p><img src="/2018/08/14/blog/9.png" alt=""></p>
+<p>然后重新输入以下代码查看效果   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hero s</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/08/14/blog/10.png" alt=""></p>
+<p>这时候这里出现了一个警告 </p>
+<p><img src="/2018/08/14/blog/11.png" alt=""></p>
+<p><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">https://github.com/theme-next/hexo-theme-next</a></p>
+<p>我用的这个next主题已经移动到别的地方了 所以问题不大复制一下然后找到这个主题的新的地址 按照上面步骤改一下就行<br>注意要把之前的主题所在文件夹删了 或者生成的时候自己换个不同的文件夹名字</p>
+<p><img src="/2018/08/14/blog/12.png" alt=""></p>
+<p>上面是Gemini 还蛮好看蛮直男审美的 就这个吧诶嘿</p>
+<p>以上就是在本地建立了一个看得过去的blog了<br>下面要把这个本地blog上传到github</p>
+<h2 id="把博客部署到GitHub上"><a href="#把博客部署到GitHub上" class="headerlink" title="把博客部署到GitHub上"></a>把博客部署到GitHub上</h2><p><strong> 先在GitHub上创建一个新项目 </strong></p>
+<p><img src="/2018/08/14/blog/13.png" alt=""></p>
+<p>项目名必须按如下格式输入 最后一项选上</p>
+<p><img src="/2018/08/14/blog/14.png" alt=""></p>
+<p>创建后点项目的setting 下拉找到github pages</p>
+<p><img src="/2018/08/14/blog/15.png" alt=""></p>
+<p>看不懂就翻译了一下 那么发现啦那个网址就是我们要用的<br>现在还是宇宙洪荒混沌初始的状态</p>
+<p><img src="/2018/08/14/blog/16.png" alt=""></p>
+<p>接下来要把hexo上的内容部署到github上</p>
+<p><strong> 打开之前提到过的站点配置文件 把最后几行改成如下格式 </strong></p>
+<p><img src="/2018/08/14/blog/17.png" alt=""></p>
+<p><strong> 在终端输入如下 装个插件 </strong><br><code>npm install hexo-deployer-git --save</code></p>
+<p><img src="/2018/08/14/blog/18.png" alt=""></p>
+<p>emmmmmm???报了一堆错 没事 照他的提示在mac终端输入<code>npm i -g npm</code>更新一下就好了<br>更新成功的界面如下</p>
+<p><img src="/2018/08/14/blog/19.png" alt=""></p>
+<p>查一下也可以发现变成 6.3.0 版本了。。这不重要</p>
+<p><img src="/2018/08/14/blog/20.png" alt=""></p>
+<p>然后就是最后激动人心的一步了！！！！！<br><strong> 输入hexo d把它部署到github的网站上去 </strong></p>
+<p>然后就走上了漫长的报错之路。。</p>
+<p><img src="/2018/08/14/blog/21.png" alt=""></p>
+<p>然后又经历了一系列艰苦卓绝我也不知道发生了啥的几个小时的查来查去试来试去！<br>最后 终于突然一下的改好了？？！</p>
+<p>emmmmm不废话了先记录下来 大概讲讲我干了些啥</p>
+<p>主要问题还是出在站点配置文件上 因为报错的时候一直说这个找不到那个找不到。。你都找不到我哪找得到啊</p>
+<p>然后去找了一些有关hexo站点配置的教程 其中这份讲的是比较详细的了 照着这个改了最后那一段</p>
+<p><a href="https://blog.csdn.net/xuezhisdc/article/details/53130383" target="_blank" rel="noopener">https://blog.csdn.net/xuezhisdc/article/details/53130383</a></p>
+<p><img src="/2018/08/14/blog/22.png" alt=""></p>
+<p>然后输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save </span><br><span class="line">sudo hexo clean </span><br><span class="line">sudo hexo g </span><br><span class="line">sudo hexo d</span><br></pre></td></tr></table></figure>
+<p>还原一下我的小白操作。。<br>最后终端的结果没报错了也没说啥奇奇怪怪得话了就说明成功了</p>
+<p><img src="/2018/08/14/blog/23.png" alt=""></p>
+<p>回到github上可以发现 这些东西已经上传到GitHub了</p>
+<p><img src="/2018/08/14/blog/24.png" alt=""></p>
+<p>然后就点开github之前给的那个链接 如图</p>
+<p><img src="/2018/08/14/blog/25.png" alt=""></p>
+<p><strong> 之前的本地网站已经上传了！！撒花！！！！ </strong></p>
+<hr>
+<h3 id="补充一点内容："><a href="#补充一点内容：" class="headerlink" title="补充一点内容："></a>补充一点内容：</h3><p>首先是关于博客美化的问题 这个就看到什么好看的功能就往上使就是了 next主题美化教程还是很多哒 还有一些关于目录标签的功能 都很好上手</p>
+<p>然后就是耍了几天博客会发现一个严重的问题！百度！Google！！竟然查不到我自己的网站 但是吧这个坑已经挖了。。不填怎么行。。网上找一下百度Google递交搜索引擎的教程就好了 </p>
+<p>但是百度的http认证到现在都没通过 还不知道问题出在哪 这个坑挖着先。。 google的效率倒是相当快操作也很简洁 站点地图也交好了 一觉醒来在google上搜索到自己博客的感觉 还蛮妙2333333</p>
+<p>这里在站点地图提交的时候遇到一个问题 <code>此位置的 Sitemap 不允许此网址</code> </p>
+<p>是因为之前在站点配置文件里的 <code>url:</code>  那一项没有设置 要改成自己网站的地址 改完后提交站点地图就不会报错了</p>
+<hr>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/14/1995 三子棋  /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -720,7 +1523,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -836,7 +1639,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共36.9k字</span>
+  <span class="post-count"> |  博客全站共39.2k字</span>
 </div>
 
         

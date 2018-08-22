@@ -320,6 +320,713 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/" itemprop="url">
+                  hdu 2176 取(m堆)石子游戏（尼姆博弈）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 22:17:34 / Modified: 22:18:04" itemprop="dateCreated datePublished" datetime="2018-08-19T22:17:34+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-2176-取-m堆-石子游戏（尼姆博弈）"><a href="#hdu-2176-取-m堆-石子游戏（尼姆博弈）" class="headerlink" title="hdu 2176 取(m堆)石子游戏（尼姆博弈）"></a>hdu 2176 取(m堆)石子游戏（尼姆博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2176" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2176</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>m堆石子,两人轮流取.只能在1堆中取.取完者胜.先取者负输出No.先取者胜输出Yes,然后输出怎样取子.例如5堆 5,7,8,9,10先取者胜,先取者第1次取时可以从有8个的那一堆取走7个剩下1个,也可以从有9个的中那一堆取走9个剩下0个,也可以从有10个的中那一堆取走7个剩下3个.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入有多组.每组第1行是m,m&lt;=200000. 后面m个非零正整数.m=0退出.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>先取者负输出No.先取者胜输出Yes,然后输出先取者第1次取子的所有方法.如果从有a个石子的堆中取若干个后剩下b个后会胜就输出a b.参看Sample Output.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">45 45</span><br><span class="line">3</span><br><span class="line">3 6 9</span><br><span class="line">5</span><br><span class="line">5 7 8 9 10</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">9 5</span><br><span class="line">Yes</span><br><span class="line">8 1</span><br><span class="line">9 0</span><br><span class="line">10 3</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h4><p>这题判断胜负直接异或就行，若异或结果sum=0则先手败，其余先手必胜</p>
+<p>胜要求输出第一步操作后剩余的石子数，若<code>c[i]^sum&lt;c[i]</code>则可行，取得个数为<code>c[i]-c[i]^sum</code>，输出剩余个数即为<code>c[i]^sum</code></p>
+<p>以下我也忘了摘自哪里。。</p>
+<blockquote>
+<p>三堆的时候</p>
+<p>用(a,b,c)表示某种局势，首先(0,0,0)显然是必败态，无论谁面对(0,0,0) ，都必然失败；第二种必败态是(0,n,n)，自己在某一堆拿走k（k ≤ n）个物品，不论k为多少，对方只要在另一堆拿走k个物品，最后自己都将面临(0,0,0)的局势，必败。仔细分析一下，(1,2,3)也是必败态，无论自己如何拿，接下来对手都可以把局势变为(0,n,n)的情形</p>
+<p>任何奇异局势(a,b,c)都有a XOR b XOR c = 0</p>
+<p>如果我们面对的是一个非必败态(a,b,c)，要如何变为必败态呢？<br>假设 a &lt; b &lt; c，我们只要将 c 变为a XOR b，即可。因为有如下的运算结果：</p>
+<p>a XOR b XOR (a XOR b)=(a XOR a) XOR (b XOR b) = 0 XOR 0 = 0</p>
+<p>要将c 变为a XOR b，只要对 c进行 c-(a XOR b)这样的运算即可</p>
+<hr>
+<p>定义两个状态，分别为N和P，N代表Next-position，可以理解为先手必胜状态，P代表Previous-position，可以理解为后手必胜状态（或为先手必败）<br>N/P两个状态的关系：<br>（1）无法进行局面转移的状态为P；<br>（2）只要有一种转移方式能将局面变为P，则当前状态为N；<br>（3）任何转移方式都只能使局面变为N，则当前状态为P。<br>（1）最后所有石堆中的石子都为0，此时无法再做任何操作，所以此时是P；<br>（2）在还剩一堆的情况下（无论个数，因为可以随意取），把这一堆都取完，留给对方 的肯定是0个石子，也就是P，所以当前肯定是N；<br>（3）还剩下两堆，且每堆个数为1，因为当前必须要取，而当取完后，通过（2）可知， 留给对方的局 面一定是N，所以当前肯定为P。</p>
+<hr>
+<p>对于Nim游戏的各个石堆（a1,a2,a3……an），当且仅当a1^a2^a3^……^an=0时它为P。</p>
+<p>论证还是要根据N/P的三个状态关系来：</p>
+<p>（1）无法移动的局面为所有石堆的石子数都为0，0^0^……^0=0，这个很简单；</p>
+<p>（2）若当前的局面不为0，即a1^a2^a3^……^an=k，则必定有一个数ai改变ai的值为ai’（或者理解为改变当前某个石堆的状态），能使的a1^a2^a3^……^ai’^……^an=0,证明很简单，通过异或的性质，因为k的二进制最高位（从右往左）为1，可以得出一 定存在某个ai的最高位为1，此时<code>ai&#39;*k&lt;ai</code>，这个也很好理解，当前的最高位由1变为0 ，十进制时ai一定小于ai’。所以，我们可以将<code>ai=ai&#39;*k</code>，此时<code>a1^a2^a3^......^ai&#39;*k ^.......an=0</code>。</p>
+<p>（3）若当前某个局面为P，即a1^a2^a3^……^an=0,一定不存在改变某 个ai，使之变为ai’，a1^a2^a3^…….^ai’^……^an=0,因为异或满足消去律，消去后得ai=ai’，由题目可得不能不取，即当前的ai值必须改变，所以此时ai一定不等于ai’。</p>
+</blockquote>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=200005;</span><br><span class="line">//c1^c2^...^cn=k,然后c1^c2^...^cn^k=0,那么对那个数执行操作减去（cn-cn^k）,那个数变为cn^k </span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int sum=0,c[N];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">			sum^=c[i];</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum==0)printf(&quot;No\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			printf(&quot;Yes\n&quot;);</span><br><span class="line">			for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">				if((c[i]^sum)&lt;c[i])printf(&quot;%d %d\n&quot;,c[i],(c[i]^sum));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 2177 取(2堆)石子游戏（威佐夫博弈）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/hdu 2177 取(2堆)石子游戏（威佐夫博弈）/" itemprop="url">
+                  hdu 2177 取(2堆)石子游戏（威佐夫博弈）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 21:44:02 / Modified: 21:46:18" itemprop="dateCreated datePublished" datetime="2018-08-19T21:44:02+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-2177-取-2堆-石子游戏（威佐夫博弈）"><a href="#hdu-2177-取-2堆-石子游戏（威佐夫博弈）" class="headerlink" title="hdu 2177 取(2堆)石子游戏（威佐夫博弈）"></a>hdu 2177 取(2堆)石子游戏（威佐夫博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2177" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2177</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>有两堆石子，数量任意，可以不同。游戏开始由两个人轮流取石子。游戏规定，每次有两种不同的取法，一是可以在任意的一堆中取走任意多的石子；二是可以在两堆中同时取走相同数量的石子。最后把石子全部取完者为胜者。现在给出初始的两堆石子的数目，如果轮到你先取，假设双方都采取最好的策略，问最后你是胜者还是败者。如果你胜，你第1次怎样取子? </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入包含若干行，表示若干种石子的初始情况，其中每一行包含两个非负整数a和b，表示两堆石子的数目，a和b都不大于1,000,000，且a&lt;=b。a=b=0退出。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出也有若干行，如果最后你是败者，则为0，反之，输出1，并输出使你胜的你第1次取石子后剩下的两堆石子的数量x,y,x&lt;=y。如果在任意的一堆中取走石子能胜同时在两堆中同时取走相同数量的石子也能胜，先输出取走相同数量的石子的情况.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 2 </span><br><span class="line">5 8</span><br><span class="line">4 7</span><br><span class="line">2 2</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">4 7</span><br><span class="line">3 5</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">0 0</span><br><span class="line">1 2</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h4><p>给出一些明显的必败状态(也就是当你面对这些状态时，只要你的对手够聪明，不犯错，无论你怎么拿，你都是必输的)（0，0）、（1，2）、（3，5）、（4，7）、（6，10）、（8，13）、（9，15）、（11，18）、（12，20）、…… 、（ak，bk） (k = 0, 1, 2, 3,……)。并称这些必败状态为 <strong>“奇异局势”</strong></p>
+<p>得到a0=b0=0,ak是未在前面出现过的最小自然数,而 bk= ak + k。然后公式化就得到了奇异局势的状态公式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ak = [ k * (1 + √5) / 2 ]   ( [x]表示对x取整 )</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bk = ak + k</span><br></pre></td></tr></table></figure>
+<p>奇异局势有三个性质——</p>
+<blockquote>
+<p>性质1：每个自然数都包含在且只包含在一个奇异局势中。</p>
+</blockquote>
+<blockquote>
+<p>性质2：对任意的奇异局势，任何合法的操作都会使其成为非奇异局势，也就是奇异局势的所有后继状态均为非奇异局势。</p>
+</blockquote>
+<blockquote>
+<p>性质3：任何非奇异局势都可以通过某种合法操作得到奇异局势，即奇异局势的所有后继状态中存在奇异局势。</p>
+</blockquote>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int a,b;</span><br><span class="line">	double x=(1+sqrt(5.0))/2.0;//矩阵黄金分割数 </span><br><span class="line">	while(scanf(&quot;%d%d&quot;,&amp;a,&amp;b)!=EOF&amp;&amp;(a+b))&#123;</span><br><span class="line">		if(a&gt;b)&#123;</span><br><span class="line">			int temp=a;a=b;b=temp;</span><br><span class="line">		&#125;</span><br><span class="line">		if((int)((b-a)*x)==a)printf(&quot;0\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			int n,m;</span><br><span class="line">			printf(&quot;1\n&quot;);</span><br><span class="line">			for(int i=1;i&lt;=a;i++)&#123;//一起拿 </span><br><span class="line">				n=a-i;</span><br><span class="line">				m=b-i;</span><br><span class="line">				if((int)((m-n)*x)==n)printf(&quot;%d %d\n&quot;,n,m);</span><br><span class="line">				//不用退出循环也可，因为由奇异状态性质，只会有一个i满足 </span><br><span class="line">			&#125;</span><br><span class="line">			for(int i=b-1;i&gt;=0;i--)&#123;//从一个中拿，要从多的那堆中拿！ </span><br><span class="line">				n=a;</span><br><span class="line">				m=i;</span><br><span class="line">				if(n&gt;m)&#123;</span><br><span class="line">					int temp=n;n=m;m=temp;</span><br><span class="line">				&#125;</span><br><span class="line">				if((int)((m-n)*x)==n)printf(&quot;%d %d\n&quot;,n,m);</span><br><span class="line">			&#125; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）/" itemprop="url">
+                  poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 20:47:38 / Modified: 20:47:17" itemprop="dateCreated datePublished" datetime="2018-08-19T20:47:38+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="poj-1704-Georgia-and-Bob（尼姆博弈，阶梯博弈）"><a href="#poj-1704-Georgia-and-Bob（尼姆博弈，阶梯博弈）" class="headerlink" title="poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）"></a>poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）</h1><p><a href="http://poj.org/problem?id=1704" target="_blank" rel="noopener">http://poj.org/problem?id=1704</a></p>
+<p>Georgia and Bob decide to play a self-invented game. They draw a row of grids on paper, number the grids from left to right by 1, 2, 3, …, and place N chessmen on different grids, as shown in the following figure for example:<br><img src="http://poj.org/images/1704_1.jpg" alt=""></p>
+<p>Georgia and Bob move the chessmen in turn. Every time a player will choose a chessman, and move it to the left without going over any other chessmen or across the left edge. The player can freely choose number of steps the chessman moves, with the constraint that the chessman must be moved at least ONE step and one grid can at most contains ONE single chessman. The player who cannot make a move loses the game. </p>
+<p>Georgia always plays first since “Lady first”. Suppose that Georgia and Bob both do their best in the game, i.e., if one of them knows a way to win the game, he or she will be able to carry it out. </p>
+<p>Given the initial positions of the n chessmen, can you predict who will finally win the game? </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line of the input contains a single integer T (1 &lt;= T &lt;= 20), the number of test cases. Then T cases follow. Each test case contains two lines. The first line consists of one integer N (1 &lt;= N &lt;= 1000), indicating the number of chessmen. The second line contains N different integers P1, P2 … Pn (1 &lt;= Pi &lt;= 10000), which are the initial positions of the n chessmen.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, prints a single line, “Georgia will win”, if Georgia will win the game; “Bob will win”, if Bob will win the game; otherwise ‘Not sure’.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br><span class="line">1 2 3</span><br><span class="line">8</span><br><span class="line">1 5 6 7 9 12 14 17</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bob will win</span><br><span class="line">Georgia will win</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>从左到右有一排棋子，给出棋子初始位置，每次操作选择一个棋子向左移动，且不能跨过前面的棋子和最左边边缘，一个格子只能放一个棋子，无法移动的输</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>题面一看很玄乎，但是分析分析这其实就是个单单纯纯的尼姆博弈的模型啊</p>
+<p>因为每个棋子不能越过前面的棋子，所以其实开始和结束棋子的顺序已经固定了都是一样的，他们最后移动多少步到哪个地方也都是安排好了的，所以最后肯定会变成<code>1...10...0（1表示有棋子，0表示空格）</code>的状态，所以其实就是相当于n堆取石子游戏，没堆的石子数相当于本题里两个棋子之间的距离，也就是后面棋子能直接移动的步数</p>
+<p>这时可能会想到一个问题，如果移动后是<code>11100011</code>这样的情况呢？如果是这样的话，后手只要拿着那个跟先手移动的棋同一对棋，学着先手向左移动就好了，次数都一样，所以实际上转化成的石子数只和两个棋子的间隔有关，和具体的位置无关，最后都会在不影响胜负的情况下达到目标态</p>
+<p>所以最后的具体写法是，先把棋子位置排序，从大到小两个两个一对，他们之间的间隔（r-l-1）就是每堆的石子数，这里如果最左边多了一个棋子，把它和位置1（即左边缘）凑成一对就可以</p>
+<p>然后就是尼姆博弈异或一下没啥好说的啦～</p>
+<p>查了一下原来这题有学名叫 <strong>阶梯博弈</strong></p>
+<p>先mark一下 <a href="https://blog.csdn.net/a1799342217/article/details/78265265?locationNum=9&amp;fps=1" target="_blank" rel="noopener">阶梯博弈详解</a></p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int t,s[1005];</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">	while(t--)&#123;</span><br><span class="line">		int n;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">		for(int i=0;i&lt;n;i++)scanf(&quot;%d&quot;,&amp;s[i]);</span><br><span class="line">		sort(s,s+n);</span><br><span class="line">		int ans;</span><br><span class="line">		if(n&amp;1)&#123;</span><br><span class="line">			ans=s[0]-1;</span><br><span class="line">			for(int i=2;i&lt;n;i+=2)ans^=(s[i]-s[i-1]-1);</span><br><span class="line">			if(ans==0)cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;</span><br><span class="line">			else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			ans=s[1]-s[0]-1;</span><br><span class="line">			for(int i=3;i&lt;n;i+=2)ans^=(s[i]-s[i-1]-1);</span><br><span class="line">			if(ans==0)cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;</span><br><span class="line">			else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/poj 1740 A New Stone Game（博弈论）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/poj 1740 A New Stone Game（博弈论）/" itemprop="url">
+                  poj 1740 A New Stone Game（博弈论）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-19 20:07:29 / Modified: 20:11:11" itemprop="dateCreated datePublished" datetime="2018-08-19T20:07:29+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="poj-1740-A-New-Stone-Game（博弈论）"><a href="#poj-1740-A-New-Stone-Game（博弈论）" class="headerlink" title="poj 1740 A New Stone Game（博弈论）"></a>poj 1740 A New Stone Game（博弈论）</h1><p><a href="http://poj.org/problem?id=1740" target="_blank" rel="noopener">http://poj.org/problem?id=1740</a></p>
+<p>Alice and Bob decide to play a new stone game.At the beginning of the game they pick n(1&lt;=n&lt;=10) piles of stones in a line. Alice and Bob move the stones in turn.<br>At each step of the game,the player choose a pile,remove at least one stones,then freely move stones from this pile to any other pile that still has stones.<br>For example:n=4 and the piles have (3,1,4,2) stones.If the player chose the first pile and remove one.Then it can reach the follow states.<br>2 1 4 2<br>1 2 4 2（move one stone to Pile 2）<br>1 1 5 2（move one stone to Pile 3）<br>1 1 4 3（move one stone to Pile 4）<br>0 2 5 2（move one stone to Pile 2 and another one to Pile 3）<br>0 2 4 3（move one stone to Pile 2 and another one to Pile 4）<br>0 1 5 3（move one stone to Pile 3 and another one to Pile 4）<br>0 3 4 2（move two stones to Pile 2）<br>0 1 6 2（move two stones to Pile 3）<br>0 1 4 4（move two stones to Pile 4）<br>Alice always moves first. Suppose that both Alice and Bob do their best in the game.<br>You are to write a program to determine who will finally win the game. </p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input contains several test cases. The first line of each test case contains an integer number n, denoting the number of piles. The following n integers describe the number of stones in each pile at the beginning of the game, you may assume the number of stones in each pile will not exceed 100.<br>The last test case is followed by one zero. </p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, if Alice win the game,output 1,otherwise output 0. </p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2 1 3</span><br><span class="line">2</span><br><span class="line">1 1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>有n堆石头，每次操作选择一堆，移除其中至少一块，然后可以取剩下的石子里的任意个移动到别的任意堆，无法操作的输</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先当n=1时先手必胜，全部移除就好了</p>
+<p>n=2时，若a1=a2，则后手只要模仿先手的操作就可以，先手必败；同理若a1！=a2，则先手把两堆变成相等，然后后手必败</p>
+<p>n=3时，先手一次操作把第三堆分给一二堆或丢掉，那么就又变成了之前两堆相等的状态，先手必胜</p>
+<p>继续推下去，n=4，由于谁面临三堆就必胜，所以双方都想让对方取了那个第四堆然后自己面对三堆状态，而只有在四堆都是1的时候，才会不得不去取第四堆</p>
+<p>经过上面分析，先手有极大优势，先手必败的情况只有这种： <strong>后手一直学先手的操作，而一开始注定了总操作数为偶，刚好让先手无路可走</strong> </p>
+<p>这种情况对应的状态为：石头堆数为偶数，且有n/2对一样的数</p>
+<p>判断n/2对是否相等只要排序再比较就可以</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int c[15];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		if(n&amp;1)&#123;</span><br><span class="line">			printf(&quot;1\n&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			sort(c,c+n);</span><br><span class="line">			int flag=0;</span><br><span class="line">			for(int i=0;i&lt;n-1;i+=2)&#123;</span><br><span class="line">				if(c[i]!=c[i+1])&#123;</span><br><span class="line">					flag=1;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(flag==0)printf(&quot;0\n&quot;);</span><br><span class="line">			else printf(&quot;1\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/Ponds（拓扑排序）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1323,678 +2030,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1301 Jungle Roads（最小生成树）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 1301 Jungle Roads（最小生成树）/" itemprop="url">
-                  hdu 1301 Jungle Roads（最小生成树）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 02:04:21 / Modified: 03:12:14" itemprop="dateCreated datePublished" datetime="2018-08-19T02:04:21+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-1301-Jungle-Roads（最小生成树）"><a href="#hdu-1301-Jungle-Roads（最小生成树）" class="headerlink" title="hdu 1301 Jungle Roads（最小生成树）"></a>hdu 1301 Jungle Roads（最小生成树）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1301" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1301</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><img src="http://acm.hdu.edu.cn/data/images/1301-1.gif" alt=""></p>
-<p>The Head Elder of the tropical island of Lagrishan has a problem. A burst of foreign aid money was spent on extra roads between villages some years ago. But the jungle overtakes roads relentlessly, so the large road network is too expensive to maintain. The Council of Elders must choose to stop maintaining some roads. The map above on the left shows all the roads in use now and the cost in aacms per month to maintain them. Of course there needs to be some way to get between all the villages on maintained roads, even if the route is not as short as before. The Chief Elder would like to tell the Council of Elders what would be the smallest amount they could spend in aacms per month to maintain roads that would connect all the villages. The villages are labeled A through I in the maps above. The map on the right shows the roads that could be maintained most cheaply, for 216 aacms per month. Your task is to write a program that will solve such problems. </p>
-<p>The input consists of one to 100 data sets, followed by a final line containing only 0. Each data set starts with a line containing only a number n, which is the number of villages, 1 &lt; n &lt; 27, and the villages are labeled with the first n letters of the alphabet, capitalized. Each data set is completed with n-1 lines that start with village labels in alphabetical order. There is no line for the last village. Each line for a village starts with the village label followed by a number, k, of roads from this village to villages with labels later in the alphabet. If k is greater than 0, the line continues with data for each of the k roads. The data for each road is the village label for the other end of the road followed by the monthly maintenance cost in aacms for the road. Maintenance costs will be positive integers less than 100. All data fields in the row are separated by single blanks. The road network will always allow travel between all the villages. The network will never have more than 75 roads. No village will have more than 15 roads going to other villages (before or after in the alphabet). In the sample input below, the first data set goes with the map above. </p>
-<p>The output is one integer per line for each data set: the minimum cost in aacms per month to maintain a road system that connect all the villages. Caution: A brute force solution that examines every possible set of roads will not finish within the one minute time limit. </p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">A 2 B 12 I 25</span><br><span class="line">B 3 C 10 H 40 I 8</span><br><span class="line">C 2 D 18 G 55</span><br><span class="line">D 1 E 44</span><br><span class="line">E 2 F 60 G 38</span><br><span class="line">F 0</span><br><span class="line">G 1 H 35</span><br><span class="line">H 1 I 35</span><br><span class="line">3</span><br><span class="line">A 2 B 10 C 40</span><br><span class="line">B 1 C 20</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">216</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一看图就是个最小生成树。。</p>
-<p>注意回车要用getchar()搞掉</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=30;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	double cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line">int n,ans,cnt; </span><br><span class="line">int fa[N];</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+cnt,cmp);</span><br><span class="line">	for(int i=0;i&lt;cnt;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;</span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)&#123;</span><br><span class="line">		if(n==0)break;</span><br><span class="line">		for(int i=1;i&lt;N;i++)fa[i]=i;</span><br><span class="line">		cnt=0;</span><br><span class="line">		for(int i=1;i&lt;n;i++)&#123;</span><br><span class="line">			char x,y;</span><br><span class="line">			int xnum,c;</span><br><span class="line">			getchar();</span><br><span class="line">			scanf(&quot;%c %d&quot;,&amp;x,&amp;xnum);</span><br><span class="line">			while(xnum--)&#123;</span><br><span class="line">				getchar();</span><br><span class="line">				scanf(&quot;%c %d&quot;,&amp;y,&amp;c);</span><br><span class="line">				Edge[cnt].u=(int)(x-&apos;A&apos;+1);</span><br><span class="line">				Edge[cnt].v=(int)(y-&apos;A&apos;+1);</span><br><span class="line">				Edge[cnt].cap=c;</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1233 还是畅通工程（最小生成树）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 1233 还是畅通工程（最小生成树）/" itemprop="url">
-                  hdu 1233 还是畅通工程（最小生成树）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 01:58:23 / Modified: 03:12:39" itemprop="dateCreated datePublished" datetime="2018-08-19T01:58:23+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#hdu 1233 还是畅通工程（最小生成树）<br><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1233" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1233</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>某省调查乡村交通状况，得到的统计表中列出了任意两村庄间的距离。省政府“畅通工程”的目标是使全省任何两个村庄间都可以实现公路交通（但不一定有直接的公路相连，只要能间接通过公路可达即可），并要求铺设的公路总长度为最小。请计算最小的公路总长度。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>测试输入包含若干测试用例。每个测试用例的第1行给出村庄数目N ( &lt; 100 )；随后的N(N-1)/2行对应村庄间的距离，每行给出一对正整数，分别是两个村庄的编号，以及此两村庄间的距离。为简单起见，村庄从1到N编号。<br>当N为0时，输入结束，该用例不被处理。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对每个测试用例，在1行里输出最小的公路总长度。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1 2 1</span><br><span class="line">1 3 2</span><br><span class="line">2 3 4</span><br><span class="line">4</span><br><span class="line">1 2 1</span><br><span class="line">1 3 4</span><br><span class="line">1 4 1</span><br><span class="line">2 3 3</span><br><span class="line">2 4 2</span><br><span class="line">3 4 5</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>最小生成树 写的Kruskal</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	int cap;</span><br><span class="line">&#125;Edge[N*N];//边集 </span><br><span class="line">int n,ans,num; </span><br><span class="line">int fa[N];</span><br><span class="line">void init()&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		fa[i]=i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+num,cmp);//按边的最小代价排序 </span><br><span class="line">	for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;//u，v不在一棵树上，就加上这条边 </span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF&amp;&amp;n)&#123;</span><br><span class="line">		num=n*(n-1)/2;</span><br><span class="line">		init();</span><br><span class="line">		int p,q,w;</span><br><span class="line">		for(int i=0;i&lt;num;i++)&#123;</span><br><span class="line">			scanf(&quot;%d%d%d&quot;,&amp;p,&amp;q,&amp;w);</span><br><span class="line">			Edge[i].u=p;</span><br><span class="line">			Edge[i].v=q;</span><br><span class="line">			Edge[i].cap=w;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1162 Eddy's picture（最小生成树）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 1162 Eddy's picture（最小生成树）/" itemprop="url">
-                  hdu 1162 Eddy's picture（最小生成树）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 01:51:23 / Modified: 03:02:29" itemprop="dateCreated datePublished" datetime="2018-08-19T01:51:23+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-1162-Eddy’s-picture（最小生成树）"><a href="#hdu-1162-Eddy’s-picture（最小生成树）" class="headerlink" title="hdu 1162 Eddy’s picture（最小生成树）"></a>hdu 1162 Eddy’s picture（最小生成树）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1162" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1162</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Eddy begins to like painting pictures recently ,he is sure of himself to become a painter.Every day Eddy draws pictures in his small room, and he usually puts out his newest pictures to let his friends appreciate. but the result it can be imagined, the friends are not interested in his picture.Eddy feels very puzzled,in order to change all friends ‘s view to his technical of painting pictures ,so Eddy creates a problem for the his friends of you.<br>Problem descriptions as follows: Given you some coordinates pionts on a drawing paper, every point links with the ink with the straight line, causes all points finally to link in the same place. How many distants does your duty discover the shortest length which the ink draws?</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line contains 0 &lt; n &lt;= 100, the number of point. For each point, a line follows; each following line contains two real numbers indicating the (x,y) coordinates of the point. </p>
-<p>Input contains multiple test cases. Process to the end of file.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Your program prints a single real number to two decimal places: the minimum total length of ink lines that can connect all the points. </p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1.0 1.0</span><br><span class="line">2.0 2.0</span><br><span class="line">2.0 4.0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.41</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给n个点的坐标 求最小生成树</p>
-<p>只要预处理一下边长就没别的了</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	double cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line">struct Node&#123;</span><br><span class="line">	float x,y;</span><br><span class="line">&#125;Node[N];</span><br><span class="line">int n,num,cnt;</span><br><span class="line">double ans; </span><br><span class="line">int fa[N];</span><br><span class="line">double distance_(int a,int b)&#123;</span><br><span class="line">	return sqrt((Node[a].x-Node[b].x)*(Node[a].x-Node[b].x)+(Node[a].y-Node[b].y)*(Node[a].y-Node[b].y));</span><br><span class="line">&#125;</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+num+1,cmp);</span><br><span class="line">	for(int i=0;i&lt;=num;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;</span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)&#123;</span><br><span class="line">		if(n==0)&#123;</span><br><span class="line">			printf(&quot;0\n&quot;);</span><br><span class="line">			return 0;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			scanf(&quot;%f%f&quot;,&amp;Node[i].x,&amp;Node[i].y);</span><br><span class="line">			fa[i]=i;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt=0;</span><br><span class="line">		num=n*(n-1)/2;</span><br><span class="line">		for(int i=1;i&lt;=n-1;i++)&#123;</span><br><span class="line">			for(int j=i+1;j&lt;=n;j++)&#123;</span><br><span class="line">				Edge[cnt].u=i;</span><br><span class="line">				Edge[cnt].v=j;</span><br><span class="line">				Edge[cnt].cap=distance_(i,j); </span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		printf(&quot;%.2f\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 1102 Constructing Roads(最小生成树)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 1102 Constructing Roads(最小生成树)/" itemprop="url">
-                  hdu 1102 Constructing Roads(最小生成树)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 00:34:25 / Modified: 02:21:27" itemprop="dateCreated datePublished" datetime="2018-08-19T00:34:25+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/图论/" itemprop="url" rel="index"><span itemprop="name">图论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-1102-Constructing-Roads-最小生成树"><a href="#hdu-1102-Constructing-Roads-最小生成树" class="headerlink" title="hdu 1102 Constructing Roads(最小生成树)"></a>hdu 1102 Constructing Roads(最小生成树)</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1102" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1102</a><br>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others)</p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>There are N villages, which are numbered from 1 to N, and you should build some roads such that every two villages can connect to each other. We say two village A and B are connected, if and only if there is a road between A and B, or there exists a village C such that there is a road between A and C, and C and B are connected. </p>
-<p>We know that there are already some roads between some villages and your job is the build some roads such that all the villages are connect and the length of all the roads built is minimum.</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line is an integer N (3 &lt;= N &lt;= 100), which is the number of villages. Then come N lines, the i-th of which contains N integers, and the j-th of these N integers is the distance (the distance should be an integer within [1, 1000]) between village i and village j.</p>
-<p>Then there is an integer Q (0 &lt;= Q &lt;= N * (N + 1) / 2). Then come Q lines, each line contains two integers a and b (1 &lt;= a &lt; b &lt;= N), which means the road between village a and village b has been built.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>You should output a line contains an integer, which is the length of all the roads to be built such that all the villages are connected, and this value is minimum. </p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">0 990 692</span><br><span class="line">990 0 179</span><br><span class="line">692 179 0</span><br><span class="line">1</span><br><span class="line">1 2</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">179</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>裸的最小生成树的题 两种算法都放上 </p>
-<p>prim加点 kruskal加边</p>
-<p>现在整理以前的代码感觉以前写的好详细。。</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><p><code>Prim</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">const int INF=0x3f3f3f3f;</span><br><span class="line">int n,ans;</span><br><span class="line">int map_[N][N],dis[N],vis[N];</span><br><span class="line">void prim()&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		dis[i]=map_[1][i];</span><br><span class="line">		vis[i]=0;</span><br><span class="line">	&#125;</span><br><span class="line">	dis[1]=0;</span><br><span class="line">	vis[1]=1;</span><br><span class="line">	int k,tmp;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		tmp=INF;</span><br><span class="line">		for(int j=1;j&lt;=n;j++)&#123;//在从i到j还没访问过的j中找出代价最小的 </span><br><span class="line">			if(!vis[j]&amp;&amp;tmp&gt;dis[j])&#123;</span><br><span class="line">				k=j;</span><br><span class="line">				tmp=dis[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(tmp==INF)break;//没找到即全部访问过了，prim结束 </span><br><span class="line">		vis[k]=1;//给k标记已访问 </span><br><span class="line">		ans+=dis[k];</span><br><span class="line">		for(int j=1;j&lt;=n;j++)&#123;//加入从k出发的最短路 </span><br><span class="line">			if(!vis[j]&amp;&amp;dis[j]&gt;map_[k][j])&#123;</span><br><span class="line">				dis[j]=map_[k][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)&#123;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">				scanf(&quot;%d&quot;,&amp;map_[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		int q,a,b;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;q);</span><br><span class="line">		while(q--)&#123;</span><br><span class="line">			scanf(&quot;%d%d&quot;,&amp;a,&amp;b);</span><br><span class="line">			map_[a][b]=map_[b][a]=0;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		prim();</span><br><span class="line">		printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>Kruskal</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=105;</span><br><span class="line">struct Edge&#123;</span><br><span class="line">	int u,v;</span><br><span class="line">	int cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line">int n,ans,cnt;//cnt为边数 </span><br><span class="line">int fa[N];</span><br><span class="line">void init()&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		fa[i]=i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int find(int x)&#123;</span><br><span class="line">	if(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	return fa[x];</span><br><span class="line">&#125;</span><br><span class="line">void join(int x,int y)&#123;</span><br><span class="line">	int a=find(x),b=find(y);</span><br><span class="line">	if(a==b)return;</span><br><span class="line">	else&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">bool cmp(struct Edge a,struct Edge b)&#123;</span><br><span class="line">	return a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line">void kruskal()&#123;</span><br><span class="line">	sort(Edge,Edge+cnt,cmp);//按边的最小代价排序 </span><br><span class="line">	for(int i=0;i&lt;cnt;i++)&#123;</span><br><span class="line">		int fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		if(fx==fy)continue;</span><br><span class="line">		ans+=Edge[i].cap;//u，v不在一棵树上，就加上这条边 </span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF)&#123;</span><br><span class="line">		init();</span><br><span class="line">		cnt=0;</span><br><span class="line">		int w;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">				scanf(&quot;%d&quot;,&amp;w);</span><br><span class="line">				Edge[cnt].u=i;</span><br><span class="line">				Edge[cnt].v=j;</span><br><span class="line">				Edge[cnt].cap=w;</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		int q,u,v;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;q);</span><br><span class="line">		while(q--)&#123;//建树 </span><br><span class="line">			scanf(&quot;%d%d&quot;,&amp;u,&amp;v);</span><br><span class="line">			join(u,v);</span><br><span class="line">		&#125;</span><br><span class="line">		ans=0;</span><br><span class="line">		kruskal();</span><br><span class="line">		printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2046,7 +2081,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2162,7 +2197,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共36.9k字</span>
+  <span class="post-count"> |  博客全站共39.2k字</span>
 </div>
 
         

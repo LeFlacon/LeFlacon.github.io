@@ -320,6 +320,775 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/麻婆豆腐（思维）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/麻婆豆腐（思维）/" itemprop="url">
+                  麻婆豆腐（思维）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 02:39:54 / Modified: 02:39:59" itemprop="dateCreated datePublished" datetime="2018-08-20T02:39:54+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="麻婆豆腐（思维）"><a href="#麻婆豆腐（思维）" class="headerlink" title="麻婆豆腐（思维）"></a>麻婆豆腐（思维）</h1><p><a href="https://www.nowcoder.com/acm/contest/128/B" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/128/B</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在一次课间休息的时候,音无结弦看到立华奏一个人坐在座位上写作业,于是动了请她吃麻婆豆腐的念头。他迅速移动到她后面的座位,寻思着该怎么开口邀请,他摸了摸口袋,拍了拍脑袋,有了!<br>“奏~听说食堂里有种传闻中因为辣过头所以谁都不会点的麻婆豆腐,但是却惊人地好吃啊,这样,我们来做个题吧!如果你做出来了我就天天请你吃麻婆豆腐╰(￣▽￣)╮”<br>奏的笔停下了,她转过头来,还带了一张草稿纸,做好了做题的准备。音无懵了一下,心中暗暗窃喜,“麻婆豆腐果然是她的最爱啊!”<br>“咳咳…请听题!我手上有n枚硬币,第i枚正面朝上的概率是Pi。我现在每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。问:有多少个子集合使得0和1的概率相等?”<br>不管音无给了怎样的数,奏都是一分钟不到就算出来了!不愧是前学生会长啊~<br>于是他们就去食堂吃麻婆豆腐了,现在,你也来算一下吧。  </p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><p>输入的第一行包含一个整数T，表示测试组数。<br>每个测试用例前面都有一个空白行。<br>每个测试用例由两行组成。<br>第一行包含硬币数量n。<br>第二行包含n个数表示：概率p1,…,pn。每个pi都给出6个小数位。</p>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h3><p>对于每个测试用例输出一个数：使得0和1的概率相等的子集合数量。</p>
+<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2 </span><br><span class="line"></span><br><span class="line">3 </span><br><span class="line">0.500000  0.500000  0.500000 </span><br><span class="line"></span><br><span class="line">4 </span><br><span class="line">0.000001  0.000002  0.000003  0.000004</span><br></pre></td></tr></table></figure>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">7</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>说明<br>在第一个测试样例中，每个子集显然都能使得0和1的概率相等。<br>在第二个测试样例中，所有子集都不能使得0和1的概率相等<br>备注:<br>n ≤ 60,T=500</p>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n枚硬币,第i枚正面朝上的概率是Pi。每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。  求有多少个子集合使得0和1的概率相等?</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>答案为<code>2^n-2^(n-cnt)</code><br>其中cnt是pi中0.5的个数</p>
+<p>因为只有pi=0.5，异或后的概率才可能相等，别的数都不行，证明如下：</p>
+<p>设当前集合有m个元素，第一个元素为1的概率x，剩下m-1个元素异或和为1的概率为p，那么这个集合最后异或和为1的概率为<code>p*(1-x)+x*(1-p)=0.5</code>,解得x=0.5</p>
+<p>注意1要写1LL，不然会WA</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">int main()&#123;</span><br><span class="line">    int t;</span><br><span class="line">	double c;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">    while(t--)&#123;</span><br><span class="line">    	int n;</span><br><span class="line">    	scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    	int cnt=0;</span><br><span class="line">    	for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">    		scanf(&quot;%lf&quot;,&amp;c);</span><br><span class="line">    		if(c==0.5)cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">		LL ans=(1LL&lt;&lt;n)-(1LL&lt;&lt;(n-cnt));</span><br><span class="line">		printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">	&#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）/" itemprop="url">
+                  Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 02:08:02 / Modified: 02:08:18" itemprop="dateCreated datePublished" datetime="2018-08-20T02:08:02+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）<br><a href="https://nanti.jisuanke.com/t/28447" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/28447</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>众所周知，Alice和Bob非常喜欢博弈，而且Alice永远是先手，Bob永远是后手。</p>
+<p>Alice和Bob面前有3堆石子，Alice和Bob每次轮流拿某堆石子中的若干个石子（不可以是0个），拿到所有石子中最后一个石子的人获胜。这是一个只有3堆石子的Nim游戏。</p>
+<p>Bob错误的认为，三堆石子的Nim游戏只需要少的两堆的石子数量加起来等于多的那一堆，后手就一定会胜利。所以，Bob把三堆石子的数量分别设为 {k，4k，5k}（k&gt;0）。</p>
+<p>现在Alice想要知道，在k 小于 2^n 的时候，有多少种情况先手一定会获得胜利。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>一个整数n(1≤n≤2×10^9)。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出先手胜利的可能情形数。答案对10^9+7取模。</p>
+<p>输出时每行末尾的多余空格，不影响答案正确性</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p><a href="https://nanti.jisuanke.com/?kw=ACM%E8%AE%AD%E7%BB%83%E8%81%94%E7%9B%9F%E5%91%A8%E8%B5%9B" target="_blank" rel="noopener">ACM训练联盟周赛</a></p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>就是普通尼姆博弈，只要把k，4k，5k异或一下，为0先手就必胜，这题难在k可以是个巨无敌大的数，只好找规律了</p>
+<p>先打个表</p>
+<p>2，4，6，9，15，25，40，64，104，169…</p>
+<p>本来发现的规律是后一个数是前两个数相加，然后前两个数相加减一，前两个数相加，前两个数相加加一，前两个数相加…以此类推，但是没搞出什么名堂来</p>
+<p>然后当时看了这篇知道了这个数列和斐波那契有点关系<br><a href="https://zhidao.baidu.com/question/489289663.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/489289663.html</a></p>
+<p>四个一组，推出了四个公式，其中用到的斐波那契数列用矩阵快速幂（网上找的模版。。）处理一下，公式具体见代码</p>
+<p>最后那个四个乘以qpow(5,p-2,p)，本来公式是除以5的，但是因为除法对求余不分配就WA了，所以费马小定理一下，乘以5的逆元</p>
+<p>最后官方题解里是这么写的：f(n) = f(n-1) + f(n-3) + f(n-4) + 2，也是矩阵快速幂处理一下</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstdlib&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;set&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">#define LL long long</span><br><span class="line">const int N=20000000;</span><br><span class="line">const LL p=1000000000+7;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct matrix &#123;</span><br><span class="line">	LL m[2][2];</span><br><span class="line">&#125;ans;</span><br><span class="line">matrix base = &#123;1, 1, 1, 0&#125;; </span><br><span class="line">matrix multi(matrix a, matrix b) &#123;</span><br><span class="line">	matrix tmp;</span><br><span class="line">	for(int i = 0; i &lt; 2; i++) &#123;</span><br><span class="line">		for(int j = 0; j &lt; 2; j++) &#123;</span><br><span class="line">			tmp.m[i][j] = 0;</span><br><span class="line">			for(int k = 0;  k &lt; 2; k++)</span><br><span class="line">				tmp.m[i][j] = (tmp.m[i][j] + a.m[i][k] * b.m[k][j]) % p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return tmp;</span><br><span class="line">&#125;</span><br><span class="line">LL matrix_pow(matrix a, int n) &#123;</span><br><span class="line">	ans.m[0][0] = ans.m[1][1] = 1;</span><br><span class="line">	ans.m[0][1] = ans.m[1][0] = 0;</span><br><span class="line">	while(n) &#123;</span><br><span class="line">		if(n &amp; 1) ans = multi(ans, a);</span><br><span class="line">		a = multi(a, a);</span><br><span class="line">		n &gt;&gt;= 1;</span><br><span class="line">	&#125;</span><br><span class="line">	return ans.m[0][1];</span><br><span class="line">&#125;</span><br><span class="line">LL fi(LL x) &#123;</span><br><span class="line">	return matrix_pow(base, x);</span><br><span class="line">&#125; </span><br><span class="line">LL qpow(LL a,LL b,LL p)&#123;</span><br><span class="line">    LL anss=1;</span><br><span class="line">    while(b)&#123;</span><br><span class="line">        if(b&amp;1)&#123;</span><br><span class="line">            anss=(anss*a)%p;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        b/=2;</span><br><span class="line">        a=a*a%p;</span><br><span class="line">    &#125;</span><br><span class="line">    return anss;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    LL n,res=0;</span><br><span class="line">    LL z;</span><br><span class="line">    while(cin&gt;&gt;n)&#123;</span><br><span class="line">    if(n==1||n==2)&#123;</span><br><span class="line">    	cout&lt;&lt;0&lt;&lt;endl;</span><br><span class="line">    	return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	else if(n==3)&#123;</span><br><span class="line">		cout&lt;&lt;2&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	else if(n==4)&#123;</span><br><span class="line">		cout&lt;&lt;7&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		LL nn=n;</span><br><span class="line">		n+=2;</span><br><span class="line">		if(n%4==0)&#123;</span><br><span class="line">			z=((4*fi(n)+3*fi(n-1)+2)*qpow(5,p-2,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(n%4==1)&#123;</span><br><span class="line">			z=((3*fi(n+1)+fi(n)+1)*qpow(5,p-2,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(n%4==2)&#123;</span><br><span class="line">			z=((4*fi(n)+3*fi(n-1)-2)*qpow(5,p-2,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			z=((3*fi(n+1)+fi(n)-1)*qpow(5,p-2,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		res=(qpow(2,nn,p)-z%p+p)%p;</span><br><span class="line">		cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">	&#125;&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/Pawns（博弈，思维）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/Pawns（博弈，思维）/" itemprop="url">
+                  Pawns（博弈，思维）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 01:32:58 / Modified: 01:33:05" itemprop="dateCreated datePublished" datetime="2018-08-20T01:32:58+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Pawns（博弈，思维）"><a href="#Pawns（博弈，思维）" class="headerlink" title="Pawns（博弈，思维）"></a>Pawns（博弈，思维）</h1><p><a href="https://nanti.jisuanke.com/t/28205" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/28205</a></p>
+<p>Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’s intelligence.This game is played on a board with n by m squares. At the start, white and black pawns are placed quasi-randomly over the board, with the following constraint: in every column there is one white pawn and one black pawn, with the white pawn on some square below the black one.</p>
+<p>Each player in turn makes a move with one of his pawns. A pawn is only allowed to move one square forward, provided that this square is empty. “Forward” means in the direction of the opponent, so white pawns move up and black pawns move down. In addition, a pawn on the first rank – that is, a white pawn on the bottom row, or a black pawn on the top row – may also move two squares forward, provided that both squares are empty. Unlike normal chess, the pawns are never taken from the board and never change column.</p>
+<p><img src="https://res.jisuanke.com/img/upload/20180703/f32e80b481a421fcf94d5ed040138bbc778728d7.png" alt=""></p>
+<p>For example, in the position above, White (the player using the white pieces) has eight moves: one with each of the pawns on b1, d2, f5 and h2, and two with both the pawn on c1 and the pawn on g1. The pawns on a6 and e1 cannot move.</p>
+<p>Eventually and inevitably, the pawns will meet up in every column, leaving neither player able to move. The game is then finished, and the winner is the player who made the last move.</p>
+<p>As usual, White gets the first move. With optimal play, who would win for a given startingposition?</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>On the first line one positive number: the number of test cases, at most 100. After that per test case:</p>
+<p>one line with two space-separated integers n and m (3≤n≤20 and 1≤m≤20):the number of rows and columns of the board, respectively.<br>n lines with m characters, describing the position on the board at the start of the game:<br>‘W’ is a white pawn.<br>‘B’ is a black pawn.<br>‘.’ is an empty square.Each column contains exactly one ‘W’ and one ‘B’, with the ‘W’ being below the ‘B’.<br>In every test case, the starting position will be such that White has at least one move.  </p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>Per test case:</p>
+<p>one line with the string “White wins” if White can win with optimal play, or “Black wins” if Black has a winning strategy.</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">8 8</span><br><span class="line">.....BB.</span><br><span class="line">B.......</span><br><span class="line">W......B</span><br><span class="line">...B.W..</span><br><span class="line">..B.....</span><br><span class="line">.B......</span><br><span class="line">...WB..W</span><br><span class="line">.WW.W.W.</span><br><span class="line">6 4</span><br><span class="line">....</span><br><span class="line">B..B</span><br><span class="line">....</span><br><span class="line">.B.W</span><br><span class="line">W.B.</span><br><span class="line">.WW.</span><br><span class="line">5 3</span><br><span class="line">...</span><br><span class="line">BBB</span><br><span class="line">...</span><br><span class="line">WW.</span><br><span class="line">..W</span><br><span class="line">4 6</span><br><span class="line">.BBB.B</span><br><span class="line">B...B.</span><br><span class="line">...W..</span><br><span class="line">WWW.WW</span><br><span class="line">7 7</span><br><span class="line">.B.B..B</span><br><span class="line">.......</span><br><span class="line">..B.B..</span><br><span class="line">B....B.</span><br><span class="line">.......</span><br><span class="line">...WW.W</span><br><span class="line">WWW..W.</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Black wins</span><br><span class="line">Black wins</span><br><span class="line">White wins</span><br><span class="line">White wins</span><br><span class="line">Black wins</span><br></pre></td></tr></table></figure>
+<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p>BAPC 2014 Preliminary</p>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>两个人轮流下棋，给定一个棋局，B在W上，白色的棋子W向上移动，黑色的棋子B向下移动，每次可移动一格。底行上的W棋子或顶行上的B棋子可以向前移动两个方格，前提是两个方格都是空的。W先手，无法移动的一方输。</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先想到胜负和W，B之间可走步数的奇偶性有关，然后顶行和底行且可以走两步的棋子有改变奇偶性的能力。</p>
+<p>先考虑一种特殊情况，某一列中B在顶行且W在底行，这对两个棋子来说是一样的，这种出现次数记为cd。</p>
+<blockquote>
+<p>1.n&gt;5时，只要一方走两步改变了奇偶性，另一方可以学对方的走法，把奇偶性变回来，所以后续不用考虑这几列的步数。</p>
+<p>2.n=3时不会出现这种情况，不考虑。</p>
+<p>3.特殊情况n=4和n=5，因为他们一方走两步之后，另一方就没有走两步的能力了，是要考虑的，在后面讨论。</p>
+</blockquote>
+<p>然后只有一方的棋子在顶行或者底行且该棋子可以走两步时：只要一方有改变奇偶性能力的棋子，另一方就会想要去优先破坏这种能力，比如：</p>
+<p>B<br>。<br>。<code>W优先向上走三步，则B就没有破坏奇偶性的能力了，则cw+=3</code><br>。<br>。<br>W  </p>
+<blockquote>
+<p>cw为W破坏B的能力棋子所需要走的步数<br>cb为B破坏W的能力棋子所需要走的步数</p>
+</blockquote>
+<p>最后，对于那些没有棋子有机会走两步的列来说，双方都只能一步一步走，只要把可走步数累加即可。</p>
+<p>综上所述，W的必胜情况：</p>
+<blockquote>
+<p>1.n=4，且cd为奇数</p>
+<p>这种情况下，cd为奇数，W作为先手无论如何都掌握最后一个改变奇偶的决定权，所以w只要在最后一个机会时判断当前局势决定是否改变奇偶性即可。</p>
+<p>2.cw &lt; cb</p>
+<p>即B破坏W能力要走的步数多，那么W就有改变奇偶能力，W必胜。</p>
+<p>3.cb = cw - 1或cb = cw且步数为奇<br>（这里的bushu指B在顶行且W在底行的情况不算的总步数）</p>
+<p>cb = cw - 1时，因为W先走，下完（cb+cw）步之后，此时两人都刚好没有破坏奇偶性的能力，（cb+cw）为奇数，下一步轮到B下，剩余步数为（部分步数-cb-cw）为偶数，所以W必胜。<br>cb = cw时，同上，（cb+cw）为偶，下一步轮到W，剩余步数为奇，W必胜。</p>
+</blockquote>
+<p>最后考虑n=5的时候的特殊情况<br>比赛的时候这个情况我一直没想想清楚。。随便举个例子：</p>
+<p>B 。。。B<br>。B 。。。<br>。。B 。。<br>。。。B 。<br>WWWWW</p>
+<p>对于第一，五列那种双方都有能力的棋子来说，不管先手走一步还是两步，后手都可以走（3-i）步使这一列一人走一次然后作废，所以n=5时这种列也不考虑。<br>对于第二列，B要优先破坏W的能力。<br>对于第三，四列，只要数可走步数即可。  </p>
+<p>因为剩下的策略都满足上面的n&gt;5时，所以n=5虽然有特殊，但是并不用考虑特殊策略。</p>
+<hr>
+<pre><code>#include &lt;algorithm&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;string&gt;
+#include &lt;set&gt;
+
+using namespace std;
+const int N=40;
+char p[N][N];
+
+int main()
+{
+    int t,num=0;
+    scanf(&quot;%d&quot;, &amp;t);
+    while(t--){
+        int n,m;
+        int cw=0,cb=0,cd=0,bushu=0;
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+        memset(p,0,sizeof(p));
+        for(int i=1;i&lt;=n;i++){
+            for(int j=1;j&lt;=m;j++){
+                cin&gt;&gt;p[i][j];
+            }
+        }
+        for(int i=1;i&lt;=m;i++){
+            int b,w;
+            for(int j=1;j&lt;=n;j++){
+                if(p[j][i]==&apos;B&apos;)b=j;
+                else if(p[j][i]==&apos;W&apos;)w=j;
+            }
+            if(b==1&amp;&amp;w==n&amp;&amp;n&gt;3)cd++;
+            else{
+                if(b==1&amp;&amp;w&gt;3)cw+=w-3;
+                else if(w==n&amp;&amp;b&lt;n-2)cb+=n-2-b;
+                bushu+=(w-b-1);
+            } 
+        }
+        if((n==4&amp;&amp;cd%2==1)||(cw&lt;cb)||(((cb==cw-1)||(cb==cw))&amp;&amp;bushu%2==1))printf(&quot;White wins\n&quot;);
+        else printf(&quot;Black wins\n&quot;);
+    }
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）/" itemprop="url">
+                  hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-20 01:19:33 / Modified: 01:19:58" itemprop="dateCreated datePublished" datetime="2018-08-20T01:19:33+08:00">2018-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hdu-1847-Good-Luck-in-CET-4-Everybody-（巴什博弈）"><a href="#hdu-1847-Good-Luck-in-CET-4-Everybody-（巴什博弈）" class="headerlink" title="hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）"></a>hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1847" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1847</a></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>大学英语四级考试就要来临了，你是不是在紧张的复习？也许紧张得连短学期的ACM都没工夫练习了，反正我知道的Kiki和Cici都是如此。当然，作为在考场浸润了十几载的当代大学生，Kiki和Cici更懂得考前的放松，所谓“张弛有道”就是这个意思。这不，Kiki和Cici在每天晚上休息之前都要玩一会儿扑克牌以放松神经。</p>
+<p>“升级”？“双扣”？“红五”？还是“斗地主”？</p>
+<p>当然都不是！那多俗啊~</p>
+<p>作为计算机学院的学生，Kiki和Cici打牌的时候可没忘记专业，她们打牌的规则是这样的：</p>
+<p>1、  总共n张牌;<br>2、  双方轮流抓牌；<br>3、  每人每次抓牌的个数只能是2的幂次（即：1，2，4，8，16…）<br>4、  抓完牌，胜负结果也出来了：最后抓完牌的人为胜者；  </p>
+<p>假设Kiki和Cici都是足够聪明（其实不用假设，哪有不聪明的学生~），并且每次都是Kiki先抓牌，请问谁能赢呢？</p>
+<p>当然，打牌无论谁赢都问题不大，重要的是马上到来的CET-4能有好的状态。</p>
+<p>Good luck in CET-4 everybody!</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入数据包含多个测试用例，每个测试用例占一行，包含一个整数n（1&lt;=n&lt;=1000）。</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>如果Kiki能赢的话，请输出“Kiki”，否则请输出“Cici”，每个实例的输出占一行。</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Kiki</span><br><span class="line">Cici</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n张牌，每次可以取<code>2^i</code>张,最后取完的人胜</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>因为可以取到1，2，所以剩下取几都不重要了，因为所有数要么是三的倍数，要么是三的倍数多一，要么是三的倍数多二，又因为除了1，2剩下的数都是大于3的偶数，所以不管对手怎么取都无力回天了，不可能再把三的倍数抛给你 _ (: з 」∠) _</p>
+<p>所以对手取完，只要你能一直留给他三的倍数，你就赢</p>
+<p>综上所述，一开始是三的倍数的人必败</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    int n;</span><br><span class="line">    while(cin&gt;&gt;n)&#123;</span><br><span class="line">    	if(n%3==0)cout&lt;&lt;&quot;Cici&quot;&lt;&lt;endl;</span><br><span class="line">		else cout&lt;&lt;&quot;Kiki&quot;&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/hdu 1404 Digital Deletions（sg函数暴力打表）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1363,713 +2132,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 2176 取(m堆)石子游戏（尼姆博弈）/" itemprop="url">
-                  hdu 2176 取(m堆)石子游戏（尼姆博弈）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 22:17:34 / Modified: 22:18:04" itemprop="dateCreated datePublished" datetime="2018-08-19T22:17:34+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-2176-取-m堆-石子游戏（尼姆博弈）"><a href="#hdu-2176-取-m堆-石子游戏（尼姆博弈）" class="headerlink" title="hdu 2176 取(m堆)石子游戏（尼姆博弈）"></a>hdu 2176 取(m堆)石子游戏（尼姆博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2176" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2176</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>m堆石子,两人轮流取.只能在1堆中取.取完者胜.先取者负输出No.先取者胜输出Yes,然后输出怎样取子.例如5堆 5,7,8,9,10先取者胜,先取者第1次取时可以从有8个的那一堆取走7个剩下1个,也可以从有9个的中那一堆取走9个剩下0个,也可以从有10个的中那一堆取走7个剩下3个.</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入有多组.每组第1行是m,m&lt;=200000. 后面m个非零正整数.m=0退出.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>先取者负输出No.先取者胜输出Yes,然后输出先取者第1次取子的所有方法.如果从有a个石子的堆中取若干个后剩下b个后会胜就输出a b.参看Sample Output.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">45 45</span><br><span class="line">3</span><br><span class="line">3 6 9</span><br><span class="line">5</span><br><span class="line">5 7 8 9 10</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">9 5</span><br><span class="line">Yes</span><br><span class="line">8 1</span><br><span class="line">9 0</span><br><span class="line">10 3</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="尼姆博弈"><a href="#尼姆博弈" class="headerlink" title="尼姆博弈"></a>尼姆博弈</h4><p>这题判断胜负直接异或就行，若异或结果sum=0则先手败，其余先手必胜</p>
-<p>胜要求输出第一步操作后剩余的石子数，若<code>c[i]^sum&lt;c[i]</code>则可行，取得个数为<code>c[i]-c[i]^sum</code>，输出剩余个数即为<code>c[i]^sum</code></p>
-<p>以下我也忘了摘自哪里。。</p>
-<blockquote>
-<p>三堆的时候</p>
-<p>用(a,b,c)表示某种局势，首先(0,0,0)显然是必败态，无论谁面对(0,0,0) ，都必然失败；第二种必败态是(0,n,n)，自己在某一堆拿走k（k ≤ n）个物品，不论k为多少，对方只要在另一堆拿走k个物品，最后自己都将面临(0,0,0)的局势，必败。仔细分析一下，(1,2,3)也是必败态，无论自己如何拿，接下来对手都可以把局势变为(0,n,n)的情形</p>
-<p>任何奇异局势(a,b,c)都有a XOR b XOR c = 0</p>
-<p>如果我们面对的是一个非必败态(a,b,c)，要如何变为必败态呢？<br>假设 a &lt; b &lt; c，我们只要将 c 变为a XOR b，即可。因为有如下的运算结果：</p>
-<p>a XOR b XOR (a XOR b)=(a XOR a) XOR (b XOR b) = 0 XOR 0 = 0</p>
-<p>要将c 变为a XOR b，只要对 c进行 c-(a XOR b)这样的运算即可</p>
-<hr>
-<p>定义两个状态，分别为N和P，N代表Next-position，可以理解为先手必胜状态，P代表Previous-position，可以理解为后手必胜状态（或为先手必败）<br>N/P两个状态的关系：<br>（1）无法进行局面转移的状态为P；<br>（2）只要有一种转移方式能将局面变为P，则当前状态为N；<br>（3）任何转移方式都只能使局面变为N，则当前状态为P。<br>（1）最后所有石堆中的石子都为0，此时无法再做任何操作，所以此时是P；<br>（2）在还剩一堆的情况下（无论个数，因为可以随意取），把这一堆都取完，留给对方 的肯定是0个石子，也就是P，所以当前肯定是N；<br>（3）还剩下两堆，且每堆个数为1，因为当前必须要取，而当取完后，通过（2）可知， 留给对方的局 面一定是N，所以当前肯定为P。</p>
-<hr>
-<p>对于Nim游戏的各个石堆（a1,a2,a3……an），当且仅当a1^a2^a3^……^an=0时它为P。</p>
-<p>论证还是要根据N/P的三个状态关系来：</p>
-<p>（1）无法移动的局面为所有石堆的石子数都为0，0^0^……^0=0，这个很简单；</p>
-<p>（2）若当前的局面不为0，即a1^a2^a3^……^an=k，则必定有一个数ai改变ai的值为ai’（或者理解为改变当前某个石堆的状态），能使的a1^a2^a3^……^ai’^……^an=0,证明很简单，通过异或的性质，因为k的二进制最高位（从右往左）为1，可以得出一 定存在某个ai的最高位为1，此时<code>ai&#39;*k&lt;ai</code>，这个也很好理解，当前的最高位由1变为0 ，十进制时ai一定小于ai’。所以，我们可以将<code>ai=ai&#39;*k</code>，此时<code>a1^a2^a3^......^ai&#39;*k ^.......an=0</code>。</p>
-<p>（3）若当前某个局面为P，即a1^a2^a3^……^an=0,一定不存在改变某 个ai，使之变为ai’，a1^a2^a3^…….^ai’^……^an=0,因为异或满足消去律，消去后得ai=ai’，由题目可得不能不取，即当前的ai值必须改变，所以此时ai一定不等于ai’。</p>
-</blockquote>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int N=200005;</span><br><span class="line">//c1^c2^...^cn=k,然后c1^c2^...^cn^k=0,那么对那个数执行操作减去（cn-cn^k）,那个数变为cn^k </span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int sum=0,c[N];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">			sum^=c[i];</span><br><span class="line">		&#125;</span><br><span class="line">		if(sum==0)printf(&quot;No\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			printf(&quot;Yes\n&quot;);</span><br><span class="line">			for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">				if((c[i]^sum)&lt;c[i])printf(&quot;%d %d\n&quot;,c[i],(c[i]^sum));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/hdu 2177 取(2堆)石子游戏（威佐夫博弈）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/hdu 2177 取(2堆)石子游戏（威佐夫博弈）/" itemprop="url">
-                  hdu 2177 取(2堆)石子游戏（威佐夫博弈）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 21:44:02 / Modified: 21:46:18" itemprop="dateCreated datePublished" datetime="2018-08-19T21:44:02+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-2177-取-2堆-石子游戏（威佐夫博弈）"><a href="#hdu-2177-取-2堆-石子游戏（威佐夫博弈）" class="headerlink" title="hdu 2177 取(2堆)石子游戏（威佐夫博弈）"></a>hdu 2177 取(2堆)石子游戏（威佐夫博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2177" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2177</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>有两堆石子，数量任意，可以不同。游戏开始由两个人轮流取石子。游戏规定，每次有两种不同的取法，一是可以在任意的一堆中取走任意多的石子；二是可以在两堆中同时取走相同数量的石子。最后把石子全部取完者为胜者。现在给出初始的两堆石子的数目，如果轮到你先取，假设双方都采取最好的策略，问最后你是胜者还是败者。如果你胜，你第1次怎样取子? </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入包含若干行，表示若干种石子的初始情况，其中每一行包含两个非负整数a和b，表示两堆石子的数目，a和b都不大于1,000,000，且a&lt;=b。a=b=0退出。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出也有若干行，如果最后你是败者，则为0，反之，输出1，并输出使你胜的你第1次取石子后剩下的两堆石子的数量x,y,x&lt;=y。如果在任意的一堆中取走石子能胜同时在两堆中同时取走相同数量的石子也能胜，先输出取走相同数量的石子的情况.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 2 </span><br><span class="line">5 8</span><br><span class="line">4 7</span><br><span class="line">2 2</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">4 7</span><br><span class="line">3 5</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">0 0</span><br><span class="line">1 2</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h4><p>给出一些明显的必败状态(也就是当你面对这些状态时，只要你的对手够聪明，不犯错，无论你怎么拿，你都是必输的)（0，0）、（1，2）、（3，5）、（4，7）、（6，10）、（8，13）、（9，15）、（11，18）、（12，20）、…… 、（ak，bk） (k = 0, 1, 2, 3,……)。并称这些必败状态为 <strong>“奇异局势”</strong></p>
-<p>得到a0=b0=0,ak是未在前面出现过的最小自然数,而 bk= ak + k。然后公式化就得到了奇异局势的状态公式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ak = [ k * (1 + √5) / 2 ]   ( [x]表示对x取整 )</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bk = ak + k</span><br></pre></td></tr></table></figure>
-<p>奇异局势有三个性质——</p>
-<blockquote>
-<p>性质1：每个自然数都包含在且只包含在一个奇异局势中。</p>
-</blockquote>
-<blockquote>
-<p>性质2：对任意的奇异局势，任何合法的操作都会使其成为非奇异局势，也就是奇异局势的所有后继状态均为非奇异局势。</p>
-</blockquote>
-<blockquote>
-<p>性质3：任何非奇异局势都可以通过某种合法操作得到奇异局势，即奇异局势的所有后继状态中存在奇异局势。</p>
-</blockquote>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int a,b;</span><br><span class="line">	double x=(1+sqrt(5.0))/2.0;//矩阵黄金分割数 </span><br><span class="line">	while(scanf(&quot;%d%d&quot;,&amp;a,&amp;b)!=EOF&amp;&amp;(a+b))&#123;</span><br><span class="line">		if(a&gt;b)&#123;</span><br><span class="line">			int temp=a;a=b;b=temp;</span><br><span class="line">		&#125;</span><br><span class="line">		if((int)((b-a)*x)==a)printf(&quot;0\n&quot;);</span><br><span class="line">		else&#123;</span><br><span class="line">			int n,m;</span><br><span class="line">			printf(&quot;1\n&quot;);</span><br><span class="line">			for(int i=1;i&lt;=a;i++)&#123;//一起拿 </span><br><span class="line">				n=a-i;</span><br><span class="line">				m=b-i;</span><br><span class="line">				if((int)((m-n)*x)==n)printf(&quot;%d %d\n&quot;,n,m);</span><br><span class="line">				//不用退出循环也可，因为由奇异状态性质，只会有一个i满足 </span><br><span class="line">			&#125;</span><br><span class="line">			for(int i=b-1;i&gt;=0;i--)&#123;//从一个中拿，要从多的那堆中拿！ </span><br><span class="line">				n=a;</span><br><span class="line">				m=i;</span><br><span class="line">				if(n&gt;m)&#123;</span><br><span class="line">					int temp=n;n=m;m=temp;</span><br><span class="line">				&#125;</span><br><span class="line">				if((int)((m-n)*x)==n)printf(&quot;%d %d\n&quot;,n,m);</span><br><span class="line">			&#125; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）/" itemprop="url">
-                  poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 20:47:38 / Modified: 20:47:17" itemprop="dateCreated datePublished" datetime="2018-08-19T20:47:38+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="poj-1704-Georgia-and-Bob（尼姆博弈，阶梯博弈）"><a href="#poj-1704-Georgia-and-Bob（尼姆博弈，阶梯博弈）" class="headerlink" title="poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）"></a>poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）</h1><p><a href="http://poj.org/problem?id=1704" target="_blank" rel="noopener">http://poj.org/problem?id=1704</a></p>
-<p>Georgia and Bob decide to play a self-invented game. They draw a row of grids on paper, number the grids from left to right by 1, 2, 3, …, and place N chessmen on different grids, as shown in the following figure for example:<br><img src="http://poj.org/images/1704_1.jpg" alt=""></p>
-<p>Georgia and Bob move the chessmen in turn. Every time a player will choose a chessman, and move it to the left without going over any other chessmen or across the left edge. The player can freely choose number of steps the chessman moves, with the constraint that the chessman must be moved at least ONE step and one grid can at most contains ONE single chessman. The player who cannot make a move loses the game. </p>
-<p>Georgia always plays first since “Lady first”. Suppose that Georgia and Bob both do their best in the game, i.e., if one of them knows a way to win the game, he or she will be able to carry it out. </p>
-<p>Given the initial positions of the n chessmen, can you predict who will finally win the game? </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line of the input contains a single integer T (1 &lt;= T &lt;= 20), the number of test cases. Then T cases follow. Each test case contains two lines. The first line consists of one integer N (1 &lt;= N &lt;= 1000), indicating the number of chessmen. The second line contains N different integers P1, P2 … Pn (1 &lt;= Pi &lt;= 10000), which are the initial positions of the n chessmen.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, prints a single line, “Georgia will win”, if Georgia will win the game; “Bob will win”, if Bob will win the game; otherwise ‘Not sure’.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br><span class="line">1 2 3</span><br><span class="line">8</span><br><span class="line">1 5 6 7 9 12 14 17</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bob will win</span><br><span class="line">Georgia will win</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>从左到右有一排棋子，给出棋子初始位置，每次操作选择一个棋子向左移动，且不能跨过前面的棋子和最左边边缘，一个格子只能放一个棋子，无法移动的输</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>题面一看很玄乎，但是分析分析这其实就是个单单纯纯的尼姆博弈的模型啊</p>
-<p>因为每个棋子不能越过前面的棋子，所以其实开始和结束棋子的顺序已经固定了都是一样的，他们最后移动多少步到哪个地方也都是安排好了的，所以最后肯定会变成<code>1...10...0（1表示有棋子，0表示空格）</code>的状态，所以其实就是相当于n堆取石子游戏，没堆的石子数相当于本题里两个棋子之间的距离，也就是后面棋子能直接移动的步数</p>
-<p>这时可能会想到一个问题，如果移动后是<code>11100011</code>这样的情况呢？如果是这样的话，后手只要拿着那个跟先手移动的棋同一对棋，学着先手向左移动就好了，次数都一样，所以实际上转化成的石子数只和两个棋子的间隔有关，和具体的位置无关，最后都会在不影响胜负的情况下达到目标态</p>
-<p>所以最后的具体写法是，先把棋子位置排序，从大到小两个两个一对，他们之间的间隔（r-l-1）就是每堆的石子数，这里如果最左边多了一个棋子，把它和位置1（即左边缘）凑成一对就可以</p>
-<p>然后就是尼姆博弈异或一下没啥好说的啦～</p>
-<p>查了一下原来这题有学名叫 <strong>阶梯博弈</strong></p>
-<p>先mark一下 <a href="https://blog.csdn.net/a1799342217/article/details/78265265?locationNum=9&amp;fps=1" target="_blank" rel="noopener">阶梯博弈详解</a></p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int t,s[1005];</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;t);</span><br><span class="line">	while(t--)&#123;</span><br><span class="line">		int n;</span><br><span class="line">		scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">		for(int i=0;i&lt;n;i++)scanf(&quot;%d&quot;,&amp;s[i]);</span><br><span class="line">		sort(s,s+n);</span><br><span class="line">		int ans;</span><br><span class="line">		if(n&amp;1)&#123;</span><br><span class="line">			ans=s[0]-1;</span><br><span class="line">			for(int i=2;i&lt;n;i+=2)ans^=(s[i]-s[i-1]-1);</span><br><span class="line">			if(ans==0)cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;</span><br><span class="line">			else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			ans=s[1]-s[0]-1;</span><br><span class="line">			for(int i=3;i&lt;n;i+=2)ans^=(s[i]-s[i-1]-1);</span><br><span class="line">			if(ans==0)cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;</span><br><span class="line">			else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/19/poj 1740 A New Stone Game（博弈论）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/19/poj 1740 A New Stone Game（博弈论）/" itemprop="url">
-                  poj 1740 A New Stone Game（博弈论）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-19 20:07:29 / Modified: 20:11:11" itemprop="dateCreated datePublished" datetime="2018-08-19T20:07:29+08:00">2018-08-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="poj-1740-A-New-Stone-Game（博弈论）"><a href="#poj-1740-A-New-Stone-Game（博弈论）" class="headerlink" title="poj 1740 A New Stone Game（博弈论）"></a>poj 1740 A New Stone Game（博弈论）</h1><p><a href="http://poj.org/problem?id=1740" target="_blank" rel="noopener">http://poj.org/problem?id=1740</a></p>
-<p>Alice and Bob decide to play a new stone game.At the beginning of the game they pick n(1&lt;=n&lt;=10) piles of stones in a line. Alice and Bob move the stones in turn.<br>At each step of the game,the player choose a pile,remove at least one stones,then freely move stones from this pile to any other pile that still has stones.<br>For example:n=4 and the piles have (3,1,4,2) stones.If the player chose the first pile and remove one.Then it can reach the follow states.<br>2 1 4 2<br>1 2 4 2（move one stone to Pile 2）<br>1 1 5 2（move one stone to Pile 3）<br>1 1 4 3（move one stone to Pile 4）<br>0 2 5 2（move one stone to Pile 2 and another one to Pile 3）<br>0 2 4 3（move one stone to Pile 2 and another one to Pile 4）<br>0 1 5 3（move one stone to Pile 3 and another one to Pile 4）<br>0 3 4 2（move two stones to Pile 2）<br>0 1 6 2（move two stones to Pile 3）<br>0 1 4 4（move two stones to Pile 4）<br>Alice always moves first. Suppose that both Alice and Bob do their best in the game.<br>You are to write a program to determine who will finally win the game. </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input contains several test cases. The first line of each test case contains an integer number n, denoting the number of piles. The following n integers describe the number of stones in each pile at the beginning of the game, you may assume the number of stones in each pile will not exceed 100.<br>The last test case is followed by one zero. </p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, if Alice win the game,output 1,otherwise output 0. </p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2 1 3</span><br><span class="line">2</span><br><span class="line">1 1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>有n堆石头，每次操作选择一堆，移除其中至少一块，然后可以取剩下的石子里的任意个移动到别的任意堆，无法操作的输</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先当n=1时先手必胜，全部移除就好了</p>
-<p>n=2时，若a1=a2，则后手只要模仿先手的操作就可以，先手必败；同理若a1！=a2，则先手把两堆变成相等，然后后手必败</p>
-<p>n=3时，先手一次操作把第三堆分给一二堆或丢掉，那么就又变成了之前两堆相等的状态，先手必胜</p>
-<p>继续推下去，n=4，由于谁面临三堆就必胜，所以双方都想让对方取了那个第四堆然后自己面对三堆状态，而只有在四堆都是1的时候，才会不得不去取第四堆</p>
-<p>经过上面分析，先手有极大优势，先手必败的情况只有这种： <strong>后手一直学先手的操作，而一开始注定了总操作数为偶，刚好让先手无路可走</strong> </p>
-<p>这种情况对应的状态为：石头堆数为偶数，且有n/2对一样的数</p>
-<p>判断n/2对是否相等只要排序再比较就可以</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		int c[15];</span><br><span class="line">		for(int i=0;i&lt;n;i++)&#123;</span><br><span class="line">			scanf(&quot;%d&quot;,&amp;c[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		if(n&amp;1)&#123;</span><br><span class="line">			printf(&quot;1\n&quot;);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			sort(c,c+n);</span><br><span class="line">			int flag=0;</span><br><span class="line">			for(int i=0;i&lt;n-1;i+=2)&#123;</span><br><span class="line">				if(c[i]!=c[i+1])&#123;</span><br><span class="line">					flag=1;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(flag==0)printf(&quot;0\n&quot;);</span><br><span class="line">			else printf(&quot;1\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2121,7 +2183,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2237,7 +2299,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  博客全站共36.9k字</span>
+  <span class="post-count"> |  博客全站共39.2k字</span>
 </div>
 
         
