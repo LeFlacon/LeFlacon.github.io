@@ -20,6 +20,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #ffffff; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #d1d1d1, 0 0 5px     #d1d1d1; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #ffffff;    /*上边框颜色*/
+        border-left-color: #ffffff;    /*左边框颜色*/
+    }
+</style>
 
 
 
@@ -304,6 +319,172 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/21/1212 无向图最小生成树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/21/1212 无向图最小生成树/" itemprop="url">
+                  1212 无向图最小生成树
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-21 02:32:45 / Modified: 02:32:17" itemprop="dateCreated datePublished" datetime="2018-08-21T02:32:45+08:00">2018-08-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/51nod基础题/" itemprop="url" rel="index"><span itemprop="name">51nod基础题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1212-无向图最小生成树"><a href="#1212-无向图最小生成树" class="headerlink" title="1212 无向图最小生成树"></a>1212 无向图最小生成树</h1><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
+<p>N个点M条边的无向连通图，每条边有一个权值，求该图的最小生成树。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：2个数N,M中间用空格分隔，N为点的数量，M为边的数量。（2 &lt;= N &lt;= 1000, 1 &lt;= M &lt;= 50000)<br>第2 - M + 1行：每行3个数S E W，分别表示M条边的2个顶点及权值。(1 &lt;= S, E &lt;= N，1 &lt;= W &lt;= 10000)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出最小生成树的所有边的权值之和。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">9 </span><span class="number">14</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">8</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">5</span> <span class="number">9</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">6</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">7</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">7 </span><span class="number">8</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">9</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">8</span> <span class="number">11</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">9</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">7 </span><span class="number">9</span> <span class="number">6</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">6</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">6</span> <span class="number">14</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">8</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>Output示例</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">37</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>水一发最小生成树模版</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1005</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,v;</span><br><span class="line">	<span class="keyword">int</span> cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line"><span class="keyword">int</span> n,ans,cnt;</span><br><span class="line"><span class="keyword">int</span> fa[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=find(x),b=find(y);</span><br><span class="line">	<span class="keyword">if</span>(a==b)<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(struct Edge a,struct Edge b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">()</span></span>&#123;</span><br><span class="line">	sort(Edge,Edge+cnt,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		<span class="keyword">if</span>(fx==fy)<span class="keyword">continue</span>;</span><br><span class="line">		ans+=Edge[i].cap;</span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> s,e,w;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;s,&amp;e,&amp;w);</span><br><span class="line">		Edge[i].u=s;</span><br><span class="line">		Edge[i].v=e;</span><br><span class="line">		Edge[i].cap=w;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=<span class="number">0</span>;</span><br><span class="line">	kruskal();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1922,204 +2103,6 @@ int main()
 <p>当然这也是可以解释的，就是把棋盘分成一个个<code>1*2</code>的部分，无论先手后手只要跟着对方走把对方那个补上完成一个个<code>1*2</code>，最后就赢了，所以就是看剩下的<code>n*n-1</code>个格子能否恰好凑成一些<code>1*2</code>的小块，<code>n*n-1</code>为偶数就可以，那么后手必胜，如果<code>n*n-1</code>为奇数，多了一个，那么先手必胜</p>
 <p>判断 <code>n*n-1</code> 的奇偶性，其实也是 <code>n</code>的奇偶性</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">"ailyanlu\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"8600\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/20/hdu 1729 Stone Game（尼姆博弈，sg函数）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/20/hdu 1729 Stone Game（尼姆博弈，sg函数）/" itemprop="url">
-                  hdu 1729 Stone Game（尼姆博弈，sg函数）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-20 00:23:36 / Modified: 00:23:31" itemprop="dateCreated datePublished" datetime="2018-08-20T00:23:36+08:00">2018-08-20</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hdu-1729-Stone-Game（尼姆博弈，sg函数）"><a href="#hdu-1729-Stone-Game（尼姆博弈，sg函数）" class="headerlink" title="hdu 1729 Stone Game（尼姆博弈，sg函数）"></a>hdu 1729 Stone Game（尼姆博弈，sg函数）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1729" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1729</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>This game is a two-player game and is played as follows:</p>
-<ol>
-<li>There are n boxes; each box has its size. The box can hold up to s stones if the size is s.</li>
-<li>At the beginning of the game, there are some stones in these boxes.</li>
-<li>The players take turns choosing a box and put a number of stones into the box. The number mustn’t be great than the square of the number of stones before the player adds the stones. For example, the player can add 1 to 9 stones if there are 3 stones in the box. Of course, the total number of stones mustn’t be great than the size of the box.<br>4.Who can’t add stones any more will loss the game.</li>
-</ol>
-<p>Give an Initial state of the game. You are supposed to find whether the first player will win the game if both of the players make the best strategy.</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input file contains several test cases.<br>Each test case begins with an integer N, 0 &lt; N ≤ 50, the number of the boxes.<br>In the next N line there are two integer si, ci (0 ≤ ci ≤ si ≤ 1,000,000) on each line, as the size of the box is si and there are ci stones in the box.<br>N = 0 indicates the end of input and should not be processed.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>For each test case, output the number of the case on the first line, then output “Yes” (without quotes) on the next line if the first player can win the game, otherwise output “No”.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">0</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">3</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Case</span> <span class="number">1</span><span class="string">:</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="string">Case</span> <span class="number">2</span><span class="string">:</span></span><br><span class="line"><span class="literal">No</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n个盒子，每个盒子容量si，里面有ci个石头，每次操作向盒子里面放石头，放的数量不能大于盒子中已有石头数量的平方，不能再放石头的人输</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>按题意是个组合游戏和，博弈好题</p>
-<p><strong>平等组合游戏</strong></p>
-<ul>
-<li>两人游戏</li>
-<li>有一个状态集，而且通常是有限的</li>
-<li>规定哪些状态转移是允许的</li>
-<li>所有规定对于两人来说是一样的</li>
-<li>两人轮流走步</li>
-<li>有一个终止状态，到达终止状态后游戏即告终止</li>
-<li>游戏可以在有限步内终止</li>
-</ul>
-<p>严格的来定义P状态和N状态</p>
-<ul>
-<li>所有的终止状态都是P状态；</li>
-<li>对于任何的N状态，肯定存在一种方式可以一步转到一个P状态；</li>
-<li>对于任何的P状态，不管怎么走步，都只能转到N状态。</li>
-</ul>
-<p><strong>Sprague-Grundy函数</strong><br>解题模型：</p>
-<ul>
-<li>把原游戏分解成多个独立的子游戏，则原游戏的SG函数值是它的所有子游戏的SG函数值的异或<br>即<code>sg(G)=sg(G1)^sg(G2)^...^sg(Gn)</code></li>
-<li>分别考虑每一个子游戏，计算其SG值</li>
-</ul>
-<p>求每个盒子的sg函数值，<code>get_sg(s,c)</code>，假设每次的取的范围是<code>1～q</code>，那么有<code>q*q+q&lt;s</code> ，同时又要使q尽量大，则有<code>(q+1)*(q+1)+(q+1)&gt;=s</code></p>
-<p>所以先根据上限s找到这个q，然后和当前容量c比较判断是否合法，如果当前盒子里的c&gt;q，那么就可以一次性放满，这个盒子就没用了，反之如果不能一次性放满，就需要假设盒子容量是q，继续递归求上一步操作，<code>get_sg(q,c)</code>;</p>
-<p>要是倒着想感觉绕的话，那就把需要求两次的正过来想╮(￣▽￣””)╭，当前宝石个数是c，但是 <code>c+c*c&lt;s</code>，放不满怎么办，那就先放x个，x是多少现在我还不知道（因为越往后面平方越大，所以实际上我倒着想才会得到最优的结果），那么现在的宝石个数变成了（c+x）个，我可以放<code>1～(c+x)*(c+x)</code>个，如果按最大值放的话，此时就是(c+x)*(c+x)+(c+x)个，如果这个值恰好大于等于s，那么问题就最优的解决了</p>
-<p>然后求这几个sg值的Nim和即可</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_sg</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> q=<span class="built_in">sqrt</span>((<span class="keyword">double</span>)s);</span><br><span class="line">	<span class="keyword">while</span>(q+q*q&gt;=s)&#123;</span><br><span class="line">		q--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(c&gt;q)<span class="keyword">return</span> s-c;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> get_sg(q,c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,cas=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		<span class="keyword">int</span> s,c;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,++cas);</span><br><span class="line">		<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;s,&amp;c);</span><br><span class="line">			ans^=get_sg(s,c);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(ans)<span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
           
         
       
