@@ -133,17 +133,17 @@
 
 
 
-  <meta name="description" content="我也不知道置顶要写什么 (/ω＼)～ おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
+  <meta name="description" content="おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello-world">
+<meta property="og:title" content="hello-world [Topping]">
 <meta property="og:url" content="http://leflacon.github.io/2018/08/11/hello-world/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="我也不知道置顶要写什么 (/ω＼)～ おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
+<meta property="og:description" content="おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T10:12:37.622Z">
+<meta property="og:updated_time" content="2018-08-24T14:19:19.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello-world">
-<meta name="twitter:description" content="我也不知道置顶要写什么 (/ω＼)～ おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
+<meta name="twitter:title" content="hello-world [Topping]">
+<meta name="twitter:description" content="おはよう 💜 こんにちは 💜 こんばんは 💜 お休み   ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️">
 
 
 
@@ -160,7 +160,7 @@
   };
 </script>
 
-  <title>hello-world | LeFlacon's Blog</title>
+  <title>hello-world [Topping] | LeFlacon's Blog</title>
   
 
 
@@ -365,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hello-world
+          <h1 class="post-title" itemprop="name headline">hello-world [Topping]
               
             
           </h1>
@@ -407,7 +407,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-23 18:12:37" itemprop="dateModified" datetime="2018-08-23T18:12:37+08:00">2018-08-23</time>
+                <time title="Modified: 2018-08-24 22:19:19" itemprop="dateModified" datetime="2018-08-24T22:19:19+08:00">2018-08-24</time>
               
             
           </span>
@@ -448,6 +448,17 @@
 
           
           
+             <span id="/2018/08/11/hello-world/" class="leancloud_visitors" data-flag-title="hello-world [Topping]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -469,7 +480,6 @@
 
       
         <hr>
-<p>我也不知道置顶要写什么 (/ω＼)～</p>
 <p>おはよう 💜 こんにちは 💜 こんばんは 💜 お休み </p>
 <p> ❤️ 祝看到这段话的你凌晨早上中午晚上都开心 ❤️ </p>
 <hr>
@@ -745,9 +755,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -771,16 +778,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -1183,6 +1180,67 @@
 
 
   
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
+                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
 
   
 

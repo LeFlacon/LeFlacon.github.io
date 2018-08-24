@@ -1847,7 +1847,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #21ff1a;
+  background: #18907a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2962,4 +2962,107 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+}
+.headband {
+  height: 1.5px;
+  background-image: linear-gradient(90deg, #e3cae4 0%, #a8b2cb 15%, #d6ceff 30%, #b1acc7 44%, #afc4e0 58%, #d2e4fd 72%, #d1d1ef 86%, #e3cae4 100%);
+}
+.header-inner {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+.posts-expand {
+  padding-top: 0px;
+}
+.posts-expand .post-meta {
+  margin: 5px 0px 0px 0px;
+}
+.post-button {
+  margin-top: 0px;
+}
+.site-title {
+  font-family: Times;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 78px;
+  letter-spacing: 1px;
+}
+.site-subtitle {
+  padding-bottom: 7px;
+  font-weight: bold;
+  color: #fff;
+  border-bottom-width: 3px;
+  border-bottom-style: groove;
+  border-bottom-color: #d3e1f3;
+}
+.pagination {
+  border: none;
+  margin: 0px;
+}
+.posts-expand .post-body img {
+  border: none;
+  padding: 0px;
+}
+.post-gallery .post-gallery-img img {
+  padding: 3px;
+}
+.posts-expand .post-title {
+  font-family: Times;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.posts-expand .post-meta {
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #666;
+}
+.post-button .btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-color: #d2e4fd;
+}
+.post-button .btn:hover {
+  border-color: #d2e4fd;
+  background-image: linear-gradient(90deg, #fff 0%, #dbe6f5 25%, #d2e4fd 50%, #dbe6f5 75%, #fff 100%);
+}
+.posts-expand .post-eof {
+  margin: 0px;
+  background-color: rgba(255,255,255,0);
+}
+.pagination {
+  border: none;
+  margin: 0px;
+}
+.back-to-top {
+  right: 10px;
+  background-color: #97afd1;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.back-to-top.back-to-top-on {
+  bottom: 10px;
+}
+.post-block.page {
+  margin-top: 40px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.category-all-page {
+  margin: -80px 0px 40px 0px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  background-color: rgba(255,255,255,0.5);
+  padding: 80px 20px 100px 40px;
+}
+::selection {
+  background-color: #97afd1;
+  color: #fff;
+}
+.sidebar {
+  background-color: rgba(255,255,255,0.5);
+}
+.sidebar-inner {
+  margin-top: 0px;
 }

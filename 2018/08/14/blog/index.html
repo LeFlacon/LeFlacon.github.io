@@ -153,7 +153,6 @@
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/10.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/11.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/12.png">
-<meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/13.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/14.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/15.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/16.png">
@@ -166,7 +165,7 @@
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/23.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/24.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/14/blog/25.png">
-<meta property="og:updated_time" content="2018-08-15T05:44:49.011Z">
+<meta property="og:updated_time" content="2018-08-24T13:40:38.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac Os下用「hexo+github」搭建个人博客！">
 <meta name="twitter:description" content="Mac Os下用「hexo+github」搭建个人博客！ 这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤  准备工作 安装nodejs和git（这个自己在官网安装就可以） 接着要用npm安装hexo 在终端输入npm install -g hexo-cli  很多报错 可以看见好几个都是p">
@@ -434,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-15 13:44:49" itemprop="dateModified" datetime="2018-08-15T13:44:49+08:00">2018-08-15</time>
+                <time title="Modified: 2018-08-24 21:40:38" itemprop="dateModified" datetime="2018-08-24T21:40:38+08:00">2018-08-24</time>
               
             
           </span>
@@ -474,6 +473,17 @@
           
 
           
+          
+             <span id="/2018/08/14/blog/" class="leancloud_visitors" data-flag-title="Mac Os下用「hexo+github」搭建个人博客！">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -536,22 +546,21 @@
 <p>上面是Gemini 还蛮好看蛮直男审美的 就这个吧诶嘿</p>
 <p>以上就是在本地建立了一个看得过去的blog了<br>下面要把这个本地blog上传到github</p>
 <h2 id="把博客部署到GitHub上"><a href="#把博客部署到GitHub上" class="headerlink" title="把博客部署到GitHub上"></a>把博客部署到GitHub上</h2><p><strong> 先在GitHub上创建一个新项目 </strong></p>
-<p><img src="/2018/08/14/blog/13.png" alt=""></p>
-<p>项目名必须按如下格式输入 最后一项选上</p>
 <p><img src="/2018/08/14/blog/14.png" alt=""></p>
-<p>创建后点项目的setting 下拉找到github pages</p>
+<p>项目名必须按如下格式输入 最后一项选上</p>
 <p><img src="/2018/08/14/blog/15.png" alt=""></p>
-<p>看不懂就翻译了一下 那么发现啦那个网址就是我们要用的<br>现在还是宇宙洪荒混沌初始的状态</p>
+<p>创建后点项目的setting 下拉找到github pages</p>
 <p><img src="/2018/08/14/blog/16.png" alt=""></p>
+<p>看不懂就翻译了一下 那么发现啦那个网址就是我们要用的<br>现在还是宇宙洪荒混沌初始的状态</p>
+<p><img src="/2018/08/14/blog/17.png" alt=""></p>
 <p>接下来要把hexo上的内容部署到github上</p>
 <p><strong> 打开之前提到过的站点配置文件 把最后几行改成如下格式 </strong></p>
-<p><img src="/2018/08/14/blog/17.png" alt=""></p>
-<p><strong> 在终端输入如下 装个插件 </strong><br><code>npm install hexo-deployer-git --save</code></p>
 <p><img src="/2018/08/14/blog/18.png" alt=""></p>
-<p>emmmmmm???报了一堆错 没事 照他的提示在mac终端输入<code>npm i -g npm</code>更新一下就好了<br>更新成功的界面如下</p>
+<p><strong> 在终端输入如下 装个插件 </strong><br><code>npm install hexo-deployer-git --save</code></p>
 <p><img src="/2018/08/14/blog/19.png" alt=""></p>
-<p>查一下也可以发现变成 6.3.0 版本了。。这不重要</p>
+<p>emmmmmm???报了一堆错 没事 照他的提示在mac终端输入<code>npm i -g npm</code>更新一下就好了<br>更新成功的界面如下</p>
 <p><img src="/2018/08/14/blog/20.png" alt=""></p>
+<p>查一下也可以发现变成 6.3.0 版本了。。这不重要</p>
 <p>然后就是最后激动人心的一步了！！！！！<br><strong> 输入hexo d把它部署到github的网站上去 </strong></p>
 <p>然后就走上了漫长的报错之路。。</p>
 <p><img src="/2018/08/14/blog/21.png" alt=""></p>
@@ -878,9 +887,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -904,16 +910,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -1316,6 +1312,67 @@
 
 
   
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
+                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
 
   
 

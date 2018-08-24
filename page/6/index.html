@@ -437,6 +437,17 @@
 
           
           
+             <span id="/2018/08/17/1298-圆与三角形/" class="leancloud_visitors" data-flag-title="1298 圆与三角形（计算几何）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -459,23 +470,18 @@
       
         
           
-            <hr>
-<hr>
-<p><img src="/2018/08/17/1298-圆与三角形/1.png" alt=""></p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 10000)，之后每4行用来描述一组测试数据。<br>4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &lt;= xc, yc &lt;= 3000, 1 &lt;= R &lt;= 3000）<br>4-2：2个数，三角形第1个点的坐标。<br>4-3：2个数，三角形第2个点的坐标。<br>4-4：2个数，三角形第3个点的坐标。(-3000 &lt;= xi, yi &lt;= 3000）</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>共T行，对于每组输入数据，相交输出”Yes”，否则输出”No”。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">10 </span><span class="number">0</span></span><br><span class="line"><span class="symbol">15 </span><span class="number">0</span></span><br><span class="line"><span class="symbol">15 </span><span class="number">5</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">0</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">5</span></span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">No</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>判断圆和三角形是否相交 直接判断三角形三条线段和圆是否有交点 上个计算几何模版</p>
-<p>最初的思路是分成三种情况考虑 一种是内包含 只要判断三个点是否都在圆内即可 第二种是外包含 要判断三个点都在圆外且圆心到三边距离都大于半径 第三种是下图情况 就不好操作了 所以还是直接用模版啦</p>
-<p><img src="/2018/08/17/1298-圆与三角形/3.png" alt=""></p>
-<p>然后系统说我编译错误 明明sublime编译通过了的 麻烦诶。。然后用devc++试了下 报了下图的错  </p>
-<p><img src="/2018/08/17/1298-圆与三角形/2.png" alt=""></p>
-<p>查了是因为distance和内置的函数重名了 改改就好了下次注意</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> eps 1e-8</span></span><br><span class="line"><span class="keyword">double</span> a0,b0,r,a1,a2,a3,b1,b2,b3;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">point</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y;</span><br><span class="line">&#125;q0,q1,q2,q3;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">xmult</span><span class="params">(point p1,point p2,point p0)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Distance</span><span class="params">(point p1,point p2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sqrt</span>((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 点到直线距离</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">disptoline</span><span class="params">(point p,point l1,point l2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fabs</span>(xmult(p,l1,l2)/Distance(l1,l2));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 判断线段和圆相交，包括端点和相切(p33)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">intersect_seg_circle</span><span class="params">(point c,<span class="keyword">double</span> r0,point l1,point l2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> t1=Distance(c,l1)-r,t2=Distance(c,l2)-r;</span><br><span class="line">    point t=c;</span><br><span class="line">    <span class="keyword">if</span>(t1&lt;eps||t2&lt;eps)<span class="keyword">return</span> t1&gt;-eps||t2&gt;-eps;</span><br><span class="line">    t.x+=l1.y-l2.y;</span><br><span class="line">    t.y+=l2.x-l1.x;</span><br><span class="line">    <span class="keyword">return</span> xmult(l1,c,t)*xmult(l2,c,t)&lt;eps&amp;&amp;disptoline(c,l1,l2)-r&lt;eps;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(intersect_seg_circle(q0,r,q1,q2))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(intersect_seg_circle(q0,r,q1,q3))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(intersect_seg_circle(q0,r,q2,q3))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;   </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123; </span><br><span class="line">    <span class="keyword">int</span> t; </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf"</span>,&amp;a0,&amp;b0,&amp;r);q0.x=a0;q0.y=b0;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a1,&amp;b1);q1.x=a1;q1.y=b1;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a2,&amp;b2);q2.x=a2;q2.y=b2;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a3,&amp;b3);q3.x=a3;q3.y=b3;</span><br><span class="line">        <span class="keyword">if</span>(check())<span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
           
+
+
+Input第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 10000)，之后每4行用来描述一组测试数据。4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &lt;= xc, yc &lt;= 3000, 1 &lt;= R &lt;= 3000）4-2：2个数，三角形第1个点的坐标。4-3：2个数，三角形第2个点的坐标。4-4：2个数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/17/1298-圆与三角形/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -619,6 +625,17 @@
 
           
           
+             <span id="/2018/08/17/1384 全排列/" class="leancloud_visitors" data-flag-title="1384 全排列（STL/dfs）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -641,23 +658,18 @@
       
         
           
-            <h2 id="1384-全排列（STL-dfs）"><a href="#1384-全排列（STL-dfs）" class="headerlink" title="1384 全排列（STL/dfs）"></a>1384 全排列（STL/dfs）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
-<p>给出一个字符串S（可能有重复的字符），按照字典序从小到大，输出S包括的字符组成的所有排列。例如：S = “1312”，<br>输出为：</p>
-<p>1123<br>1132<br>1213<br>1231<br>1312<br>1321<br>2113<br>2131<br>2311<br>3112<br>3121<br>3211   </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入一个字符串S（S的长度 &lt;= 9，且只包括0 - 9的阿拉伯数字）</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出S所包含的字符组成的所有排列</p>
-<h2 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1312</span></span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1123</span></span><br><span class="line"><span class="number">1132</span></span><br><span class="line"><span class="number">1213</span></span><br><span class="line"><span class="number">1231</span></span><br><span class="line"><span class="number">1312</span></span><br><span class="line"><span class="number">1321</span></span><br><span class="line"><span class="number">2113</span></span><br><span class="line"><span class="number">2131</span></span><br><span class="line"><span class="number">2311</span></span><br><span class="line"><span class="number">3112</span></span><br><span class="line"><span class="number">3121</span></span><br><span class="line"><span class="number">3211</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>题意很简单 就水水的全排列</p>
-<p>直接next_permutation就好啦 诶好用</p>
-<p>printf竟然tle了 改成 <strong>puts()</strong> 之后跑了46ms </p>
-<p>不过这样太依赖stl了 还是乖乖再写个dfs吧。。</p>
-<p>然后又t了。。1900ms+。。把printf改成cout就过了 跑了484ms 不是很懂 printf不是比cout快的嘛？？？</p>
-<p>而且加上输入输出优化之后<code>ios::sync_with_stdio(false);cin.tie(0);</code> 没有跑得更快反而慢了一丢丢</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    char s[<span class="number">10</span>]<span class="comment">;</span></span><br><span class="line">    scanf(<span class="string">"%s"</span>,s)<span class="comment">;</span></span><br><span class="line">    <span class="built_in">int</span> len=strlen(s)<span class="comment">;</span></span><br><span class="line">    sort(s,s+len)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        // printf(<span class="string">"%s\n"</span>,s)<span class="comment">;</span></span><br><span class="line">        puts(s)<span class="comment">;</span></span><br><span class="line">    &#125;<span class="keyword">while</span>(next_permutation(s,s+len))<span class="comment">;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">10</span>],len;</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x==len)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)<span class="built_in">cout</span>&lt;&lt;ans[i];</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            vis[i]=<span class="literal">true</span>;</span><br><span class="line">            ans[x]=s[i]-<span class="string">'0'</span>;</span><br><span class="line">            dfs(x+<span class="number">1</span>);</span><br><span class="line">            vis[i]=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;=len&amp;&amp;s[i]==s[i+<span class="number">1</span>])i++;<span class="comment">//去重</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">    len=<span class="built_in">strlen</span>(s);</span><br><span class="line">    sort(s,s+len);</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          1384 全排列（STL/dfs）基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题
+给出一个字符串S（可能有重复的字符），按照字典序从小到大，输出S包括的字符组成的所有排列。例如：S = “1312”，输出为：
+112311321213123113121321211321312311311231213211   
+Input输入一个字符串S（S的长度 &lt;= 9，且
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/17/1384 全排列/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -801,6 +813,17 @@
 
           
           
+             <span id="/2018/08/16/1459 迷宫游戏/" class="leancloud_visitors" data-flag-title="1459 迷宫游戏（Dijkstra）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -823,18 +846,16 @@
       
         
           
-            <h2 id="1459-迷宫游戏（Dijkstra）"><a href="#1459-迷宫游戏（Dijkstra）" class="headerlink" title="1459 迷宫游戏（Dijkstra）"></a>1459 迷宫游戏（Dijkstra）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题</p>
-<p>你来到一个迷宫前。该迷宫由若干个房间组成，每个房间都有一个得分，第一次进入这个房间，你就可以得到这个分数。还有若干双向道路连结这些房间，你沿着这些道路从一个房间走到另外一个房间需要一些时间。游戏规定了你的起点和终点房间，你首要目标是从起点尽快到达终点，在满足首要目标的前提下，使得你的得分总和尽可能大。现在问题来了，给定房间、道路、分数、起点和终点等全部信息，你能计算在尽快离开迷宫的前提下，你的最大得分是多少么？</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行4个整数n (&lt;=500), m, start, end。n表示房间的个数，房间编号从0到(n - 1)，m表示道路数,任意两个房间之间最多只有一条道路，start和end表示起点和终点房间的编号。<br>第二行包含n个空格分隔的正整数(不超过600)，表示进入每个房间你的得分。<br>再接下来m行，每行3个空格分隔的整数x, y, z (0&lt;z&lt;=200)表示道路,表示从房间x到房间y(双向)的道路,注意，最多只有一条道路连结两个房间, 你需要的时间为z。<br>输入保证从start到end至少有一条路径。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>一行，两个空格分隔的整数，第一个表示你最少需要的时间，第二个表示你在最少时间前提下可以获得的最大得分。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">2</span> <span class="number">0</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">11</span></span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">21 </span><span class="number">6</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>dijkstra</p>
-<p><a href="https://blog.csdn.net/qq_35644234/article/details/60870719/" target="_blank" rel="noopener">最短路径问题—Dijkstra算法详解</a></p>
-<p>这题还要在最短路的基础上求权值最大 开个数组记录一下然后和路径一起更新就行</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">505</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],cost[N],ans[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="keyword">int</span> n,m,start,endd;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;mp[N];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;t[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dij</span><span class="params">()</span></span>&#123; </span><br><span class="line">    <span class="keyword">int</span> x=start;</span><br><span class="line">    vis[x]=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span>(x!=endd)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;mp[x].size();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> y=mp[x][i];</span><br><span class="line">            <span class="keyword">int</span> tmpcost=cost[x]+t[x][i];</span><br><span class="line">            <span class="keyword">int</span> tmpans=ans[x]+a[y];</span><br><span class="line">            <span class="keyword">if</span>(cost[y]==<span class="number">0</span>||tmpcost&lt;cost[y]||(tmpcost==cost[y]&amp;&amp;tmpans&gt;ans[y]))&#123;</span><br><span class="line">                <span class="comment">//如果x-&gt;y的路在之前还未连通</span></span><br><span class="line">                <span class="comment">//或者新路径从x-&gt;y的时间小于原来的，或等于但是权值更大，就更新答案</span></span><br><span class="line">                ans[y]=tmpans;</span><br><span class="line">                cost[y]=tmpcost;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> minn=INF,maxx=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="comment">//如果i没有标记过且x-&gt;i目前最优，从i出发继续找</span></span><br><span class="line">            <span class="keyword">if</span>(!vis[i]&amp;&amp;cost[i]!=<span class="number">0</span>&amp;&amp;(cost[i]&lt;minn||(cost[i]==minn&amp;&amp;ans[i]&gt;maxx)))&#123;</span><br><span class="line">                minn=cost[i];</span><br><span class="line">                maxx=ans[i];</span><br><span class="line">                x=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[x]=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;start,&amp;endd);</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    <span class="built_in">memset</span>(cost,<span class="number">0</span>,<span class="keyword">sizeof</span>(cost));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">        ans[i]=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">        mp[u].push_back(v);</span><br><span class="line">        mp[v].push_back(u);</span><br><span class="line">        t[u].push_back(w);</span><br><span class="line">        t[v].push_back(w);</span><br><span class="line">    &#125;</span><br><span class="line">    dij();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,cost[endd],ans[endd]);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          1459 迷宫游戏（Dijkstra）基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题
+你来到一个迷宫前。该迷宫由若干个房间组成，每个房间都有一个得分，第一次进入这个房间，你就可以得到这个分数。还有若干双向道路连结这些房间，你沿着这些道路从一个房间走到另外一个房间需要一些时间。游戏规定了你的起点和终点房间，你首要目标是从起点尽快到达终点，在满足首要目标的前提下，使得你的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/16/1459 迷宫游戏/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -990,6 +1011,17 @@
 
           
           
+             <span id="/2018/08/15/F.The Best Path/" class="leancloud_visitors" data-flag-title="F.The Best Path--ACM-ICPC 2016 Qingdao Preliminary Contest">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1012,17 +1044,19 @@
       
         
           
-            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="F-The-Best-Path"><a href="#F-The-Best-Path" class="headerlink" title="F. The Best Path"></a>F. The Best Path</h2><p><a href="https://nanti.jisuanke.com/t/29370" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29370</a></p>
-<p><img src="/2018/08/15/F.The Best Path/123.png" alt=""></p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">3</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line">Impossible</span><br></pre></td></tr></table></figure>
-<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>给一个图，每个点有一个权值，找欧拉通路或者欧拉回路，然后求路径上每个点异或结果的最大值；</p>
-<p>首先判断有没有欧拉回路或者通路，用一下定理就好了，有且仅有两个度数为奇数的点则有欧拉通路，没有度数为奇数的点则有欧拉回路；</p>
-<p>然后把对异或值有贡献的算上，有贡献的点就是d为奇数的点和（d/2）为奇数的点，因为经过偶数次的点相当于没有贡献；</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100005</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[N],d[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t,u,v;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(d,<span class="number">0</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">            d[u]++;d[v]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(d[i]&amp;<span class="number">1</span>)num++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>((d[i]/<span class="number">2</span>)&amp;<span class="number">1</span>||d[i]&amp;<span class="number">1</span>)ans^=a[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> tmp=ans;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                ans=max(ans,tmp^a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(num==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>((d[i]/<span class="number">2</span>)&amp;<span class="number">1</span>||d[i]&amp;<span class="number">1</span>)ans^=a[i];</span><br><span class="line">            &#125;      </span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"Impossible\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          ACM-ICPC 2016 Qingdao Preliminary ContestF. The Best Pathhttps://nanti.jisuanke.com/t/29370
+
+样例输入12345678910111213141523 23451 22 34 312341 22 32 4
+样例输出122Impossible
+题目来源ACM-ICPC 2016 Qingdao Prelimin
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/15/F.The Best Path/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1178,6 +1212,17 @@
 
           
           
+             <span id="/2018/08/15/D.Tea/" class="leancloud_visitors" data-flag-title="D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1200,49 +1245,19 @@
       
         
           
-            <h3 id="ACM-ICPC-2016-Qingdao-Preliminary-Contest"><a href="#ACM-ICPC-2016-Qingdao-Preliminary-Contest" class="headerlink" title="ACM-ICPC 2016 Qingdao Preliminary Contest"></a>ACM-ICPC 2016 Qingdao Preliminary Contest</h3><h2 id="D-Tea"><a href="#D-Tea" class="headerlink" title="D.Tea"></a>D.Tea</h2><p><a href="https://nanti.jisuanke.com/t/29368" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/29368</a><br>Tea is good.</p>
-<p>Tea is life.</p>
-<p>Tea is everything.</p>
-<p>The balance of tea is a journey of pursuing balance of the universe.</p>
-<p>Alice knows that.</p>
-<p>Alice wants to teach you the art of pouring tea.</p>
-<p>Alice has a pot of tea.</p>
-<p>The exact volume of tea is not important.</p>
-<p>The exact volume of tea is at least LL.</p>
-<p>The exact volume of tea is at most RR.</p>
-<p>Alice put two empty cups between you and her.</p>
-<p>Alice wants the two cups filled by almost equal volume of tea.</p>
-<p>Yours cannot be 11 unit more than hers.</p>
-<p>Hers cannot be 11 unit more than yours.</p>
-<p>Alice wants you to pour the tea.</p>
-<p>Alice wants you to pour until the pot is almost empty.</p>
-<p>Alice wants no more than 11 unit volume of tea remaining in the pot.</p>
-<p>You cannot read the residue volume of tea remaining in the pot.</p>
-<p>You can only know the tea status in the pot, empty or not.</p>
-<p>Alice does not want you to pour the tea too many times.</p>
-<p>You better pour as few times as possible.</p>
-<h3 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h3><p>There are multiple cases.</p>
-<p>For each case, there is one line of two integers LL and RR, separated by single space.</p>
-<p>Here are some analyses about sample cases.</p>
-<p>For the first case, pouring 11 unit into one cup will satisfy Alice.</p>
-<p>For the second case, it is clearly that you cannot only pour once to reach the desired balance, but she can achieve it by pouring twice.</p>
-<p>First you pour 1.51.5 units into one cup, then you attempt to pour another 1.51.5 units into the other cup.</p>
-<p>Since the lower bound is 22, at least 0.50.5 unit remains in the pot after the first pouring.</p>
-<p>If the initial volume is in range [2,\ 3][2, 3], the second cup will have volume in range [0.5,\ 1.5][0.5, 1.5] which is balanced with 1.51.5 unit in the first cup, and at most 11 unit remain after these two attempts.</p>
-<p>About 10001000 test cases, and 0\le L\le R \le 10^{16}0≤L≤R≤10<br>16<br> .</p>
-<h3 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h3><p>For each case, there should be a single integer in a single line, the least number of pouring attempts.</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>题目来源<br>ACM-ICPC 2016 Qingdao Preliminary Contest</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>一开始的策略有点问题，第一杯倒 l/2 第二杯倒 l/2+1 这样不一定是最优的； </p>
-<p>举个例子（4 9）这组数据，第一杯2，第二杯3，第一杯2+2，第二杯还需要再加一次；  </p>
-<p>而第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1的话，（4 9），第一杯2.5 第二杯3.5 第一杯 2.5 +2，达成要求；  </p>
-<p>所以最优策略是第一杯倒（l+1）/2 ，第二杯倒（l+1）/2+1 ，然后剩下的轮流加2，直至壶中水小于等于1；</p>
-<p>特判几个特殊情况，具体见代码，需要注意的是，如果l=0，那么一开始（0+1）/2=0，显然不倒水是不划算的，所以如果特判结束后l=0则l=1；</p>
-<hr>
-<p>###代码：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#define LL long long</span></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    LL l,r<span class="comment">;</span></span><br><span class="line">    <span class="keyword">while</span>(~scanf(<span class="string">"%lld%lld"</span>,&amp;l,&amp;r))&#123;</span><br><span class="line">        <span class="keyword">if</span>(r==<span class="number">0</span>||r==<span class="number">1</span>)puts(<span class="string">"0"</span>)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(r==<span class="number">2</span>)puts(<span class="string">"1"</span>)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(l==r||l==r<span class="number">-1</span>)puts(<span class="string">"2"</span>)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(l==<span class="number">0</span>)l=<span class="number">1</span><span class="comment">;</span></span><br><span class="line">            printf(<span class="string">"%lld\n"</span>,(r-l+<span class="number">2</span>)/<span class="number">2</span>)<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          ACM-ICPC 2016 Qingdao Preliminary ContestD.Teahttps://nanti.jisuanke.com/t/29368Tea is good.
+Tea is life.
+Tea is everything.
+The balance of tea is a journey of pursuing balance of the universe.
+Alice 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/15/D.Tea/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1386,6 +1401,17 @@
 
           
           
+             <span id="/2018/08/15/2006 飞行员配对/" class="leancloud_visitors" data-flag-title="2006 飞行员配对(二分图最大匹配,匈牙利算法)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1408,15 +1434,16 @@
       
         
           
-            <h2 id="2006-飞行员配对-二分图最大匹配"><a href="#2006-飞行员配对-二分图最大匹配" class="headerlink" title="2006 飞行员配对(二分图最大匹配)"></a>2006 飞行员配对(二分图最大匹配)</h2><p>题目来源： 网络流24题<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  </p>
-<p>第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。如何选择配对飞行的飞行员才能使一次派出最多的飞机。对于给定的外籍飞行员与英国飞行员的配合情况，试设计一个算法找出最佳飞行员配对方案，使皇家空 军一次能派出最多的飞机 。对于给定的外籍飞行员与英国飞行员的配合情况，编程找出一个最佳飞行员配对方案， 使皇家空军一次能派出最多的飞机。 </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行有2个正整数 m 和 n。n 是皇家空军的飞行 员总数(n&lt;100);m 是外籍飞行员数。外籍飞行员编号为 1~m;英国飞行员编号为 m+1~n。接下来每行有 2 个正整数 i 和 j，表示外籍飞行员 i 可以和英国飞行员 j 配合。输入最后以 2 个-1 结束。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>第 1 行是最佳飞行 员配对方案一次能派出的最多的飞机数 M。如果所求的最佳飞行员配对方案不存在，则输出‘No Solution!’。</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>裸的匈牙利算法求二分图最大匹配</p>
-<p>这篇讲的超级生动形象了<a href="https://blog.csdn.net/cillyb/article/details/55511666" target="_blank" rel="noopener">https://blog.csdn.net/cillyb/article/details/55511666</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">105</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;g[N];</span><br><span class="line"><span class="keyword">int</span> n,m,ans=<span class="number">0</span>,match[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;g[x].size();i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v=g[x][i];</span><br><span class="line">        <span class="keyword">if</span>(!vis[v])&#123;</span><br><span class="line">            vis[v]=<span class="literal">true</span>;<span class="comment">//标记已试图匹配</span></span><br><span class="line">            <span class="keyword">if</span>(match[v]==<span class="number">-1</span>||dfs(match[v]))&#123;</span><br><span class="line">            <span class="comment">//这个点没匹配过或者这个点匹配的可拆</span></span><br><span class="line">                match[v]=x;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;m,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y),x!=<span class="number">-1</span>&amp;&amp;y!=<span class="number">-1</span>)&#123;</span><br><span class="line">        g[x].push_back(y);</span><br><span class="line">        g[y].push_back(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(match,<span class="number">-1</span>,<span class="keyword">sizeof</span>(match));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">        <span class="keyword">if</span>(dfs(i))ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          2006 飞行员配对(二分图最大匹配)题目来源： 网络流24题基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  
+第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/15/2006 飞行员配对/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1531,7 +1558,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-08-15 13:44:49" itemprop="dateModified" datetime="2018-08-15T13:44:49+08:00">2018-08-15</time>
+                <time title="Modified: 2018-08-24 21:40:38" itemprop="dateModified" datetime="2018-08-24T21:40:38+08:00">2018-08-24</time>
               
             
           </span>
@@ -1572,6 +1599,17 @@
 
           
           
+             <span id="/2018/08/14/blog/" class="leancloud_visitors" data-flag-title="Mac Os下用「hexo+github」搭建个人博客！">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1594,90 +1632,20 @@
       
         
           
-            <h1 id="Mac-Os下用「hexo-github」搭建个人博客！"><a href="#Mac-Os下用「hexo-github」搭建个人博客！" class="headerlink" title="Mac Os下用「hexo+github」搭建个人博客！"></a>Mac Os下用「hexo+github」搭建个人博客！</h1><hr>
-<p>这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤</p>
-<hr>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p><strong> 安装nodejs和git（这个自己在官网安装就可以）</strong><br><strong> 接着要用npm安装hexo </strong><br>在终端输入<code>npm install -g hexo-cli</code></p>
-<p><img src="/2018/08/14/blog/0.png" alt=""></p>
-<p>很多报错 可以看见好几个都是permission denied（因为权限不足无法访问）<br>可以看见提示的建议是：<code>Please try running this command again as root/Administrator.</code><br>所以重新输入<code>sudo npm install -g hexo-cli</code>（sudo：申请root权限）<br>下图表明安装成功  </p>
-<p><img src="/2018/08/14/blog/1.png" alt=""></p>
-<h2 id="用hexo在本地新建一个博客"><a href="#用hexo在本地新建一个博客" class="headerlink" title="用hexo在本地新建一个博客"></a>用hexo在本地新建一个博客</h2><p><strong> 新建文件夹然后右键「新建位于文件夹位置的终端窗口」</strong><br>（第一次使用的话可以在【finder-服务-服务偏好设置】中勾选上那一项）<br><strong> 文件夹位置下终端输入 </strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="selector-tag">i</span> blog<span class="comment">//blog是项目名，叫别的也随便</span></span><br><span class="line">cd blog<span class="comment">//进入blog文件夹</span></span><br><span class="line">hexo g<span class="comment">//编译</span></span><br><span class="line">hexo s<span class="comment">//本地预览</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="/2018/08/14/blog/2.png" alt=""></p>
-<p>（后两句不加sudo的话同样会出现permission denied的问题 所以在开头加上sudo给他权限就可以啦 下面有些地方还会遇到sudo的问题 就不赘述了 报权限不够的错误的话自己加上）</p>
-<p>成功后会给出一个链接 一个在本地的博客就这样建好了 点开就可以发现已经有一个博客的大概了</p>
-<p><img src="/2018/08/14/blog/3.png" alt=""></p>
-<p><img src="/2018/08/14/blog/4.png" alt=""></p>
-<p>这里用到了4000端口 如果该端口被占用的话可以查一下是什么东西占用了这个端口<code>sudo lsof -i:端口号</code> 如果没有输出表面该端口没有被占用 被占用的话会给出一个进程 里面有一个PID号 如果是没设么用的进程 输入<code>sudo kill -9 pid号</code>结束掉他即可</p>
-<p>默认给的是个叫「landscape」的主题 不同主题有不同的功能布局外观 当然也可以自己写个主题出来<br>不过这种是大佬们的操作 我这个小白还是先找个主题用吧。。<br>这里放上一些主题：<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">https://github.com/hexojs/hexo/wiki/Themes</a> 此外知乎上也有关于hexo主题的讨论</p>
-<h2 id="设置博客主题"><a href="#设置博客主题" class="headerlink" title="设置博客主题"></a>设置博客主题</h2><p><strong> 在文件夹打开终端输入git clone加上所选主题的地址 </strong></p>
-<p>(此处以及后面所说的终端一般都是blog文件夹终端了)</p>
-<p><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code></p>
-<p><img src="/2018/08/14/blog/5.png" alt=""></p>
-<p><strong> 打开文件夹下的这个文件 官方名叫站点配置文件 </strong></p>
-<p><img src="/2018/08/14/blog/6.png" alt=""></p>
-<p><strong> 然后找到里面的theme并更改 </strong>  </p>
-<p><img src="/2018/08/14/blog/7.png" alt=""></p>
-<p><strong> 回到终端输入 </strong><br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br><span class="line"><span class="attribute">hexo g</span></span><br><span class="line"><span class="attribute">hero s</span></span><br></pre></td></tr></table></figure></p>
-<p>点进生成的blog可以看见主题已经换好啦</p>
-<p><img src="/2018/08/14/blog/8.png" alt=""></p>
-<p><strong> 在[themes/next/config.yml]里配置next </strong></p>
-<p>冒号后面是有空格的 后面有些地方也是一样！！！一定要有空格 不然会报很长很长的错！！！</p>
-<p>可以看见备注写了三个方案给你选</p>
-<p><img src="/2018/08/14/blog/9.png" alt=""></p>
-<p>然后重新输入以下代码查看效果   </p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo clean</span></span><br><span class="line"><span class="attribute">hexo g</span></span><br><span class="line"><span class="attribute">hero s</span></span><br></pre></td></tr></table></figure>
-<p><img src="/2018/08/14/blog/10.png" alt=""></p>
-<p>这时候这里出现了一个警告 </p>
-<p><img src="/2018/08/14/blog/11.png" alt=""></p>
-<p><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">https://github.com/theme-next/hexo-theme-next</a></p>
-<p>我用的这个next主题已经移动到别的地方了 所以问题不大复制一下然后找到这个主题的新的地址 按照上面步骤改一下就行<br>注意要把之前的主题所在文件夹删了 或者生成的时候自己换个不同的文件夹名字</p>
-<p><img src="/2018/08/14/blog/12.png" alt=""></p>
-<p>上面是Gemini 还蛮好看蛮直男审美的 就这个吧诶嘿</p>
-<p>以上就是在本地建立了一个看得过去的blog了<br>下面要把这个本地blog上传到github</p>
-<h2 id="把博客部署到GitHub上"><a href="#把博客部署到GitHub上" class="headerlink" title="把博客部署到GitHub上"></a>把博客部署到GitHub上</h2><p><strong> 先在GitHub上创建一个新项目 </strong></p>
-<p><img src="/2018/08/14/blog/13.png" alt=""></p>
-<p>项目名必须按如下格式输入 最后一项选上</p>
-<p><img src="/2018/08/14/blog/14.png" alt=""></p>
-<p>创建后点项目的setting 下拉找到github pages</p>
-<p><img src="/2018/08/14/blog/15.png" alt=""></p>
-<p>看不懂就翻译了一下 那么发现啦那个网址就是我们要用的<br>现在还是宇宙洪荒混沌初始的状态</p>
-<p><img src="/2018/08/14/blog/16.png" alt=""></p>
-<p>接下来要把hexo上的内容部署到github上</p>
-<p><strong> 打开之前提到过的站点配置文件 把最后几行改成如下格式 </strong></p>
-<p><img src="/2018/08/14/blog/17.png" alt=""></p>
-<p><strong> 在终端输入如下 装个插件 </strong><br><code>npm install hexo-deployer-git --save</code></p>
-<p><img src="/2018/08/14/blog/18.png" alt=""></p>
-<p>emmmmmm???报了一堆错 没事 照他的提示在mac终端输入<code>npm i -g npm</code>更新一下就好了<br>更新成功的界面如下</p>
-<p><img src="/2018/08/14/blog/19.png" alt=""></p>
-<p>查一下也可以发现变成 6.3.0 版本了。。这不重要</p>
-<p><img src="/2018/08/14/blog/20.png" alt=""></p>
-<p>然后就是最后激动人心的一步了！！！！！<br><strong> 输入hexo d把它部署到github的网站上去 </strong></p>
-<p>然后就走上了漫长的报错之路。。</p>
-<p><img src="/2018/08/14/blog/21.png" alt=""></p>
-<p>然后又经历了一系列艰苦卓绝我也不知道发生了啥的几个小时的查来查去试来试去！<br>最后 终于突然一下的改好了？？！</p>
-<p>emmmmm不废话了先记录下来 大概讲讲我干了些啥</p>
-<p>主要问题还是出在站点配置文件上 因为报错的时候一直说这个找不到那个找不到。。你都找不到我哪找得到啊</p>
-<p>然后去找了一些有关hexo站点配置的教程 其中这份讲的是比较详细的了 照着这个改了最后那一段</p>
-<p><a href="https://blog.csdn.net/xuezhisdc/article/details/53130383" target="_blank" rel="noopener">https://blog.csdn.net/xuezhisdc/article/details/53130383</a></p>
-<p><img src="/2018/08/14/blog/22.png" alt=""></p>
-<p>然后输入</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save </span></span><br><span class="line">sudo hexo clean </span><br><span class="line">sudo hexo g </span><br><span class="line">sudo hexo d</span><br></pre></td></tr></table></figure>
-<p>还原一下我的小白操作。。<br>最后终端的结果没报错了也没说啥奇奇怪怪得话了就说明成功了</p>
-<p><img src="/2018/08/14/blog/23.png" alt=""></p>
-<p>回到github上可以发现 这些东西已经上传到GitHub了</p>
-<p><img src="/2018/08/14/blog/24.png" alt=""></p>
-<p>然后就点开github之前给的那个链接 如图</p>
-<p><img src="/2018/08/14/blog/25.png" alt=""></p>
-<p><strong> 之前的本地网站已经上传了！！撒花！！！！ </strong></p>
-<hr>
-<h3 id="补充一点内容："><a href="#补充一点内容：" class="headerlink" title="补充一点内容："></a>补充一点内容：</h3><p>首先是关于博客美化的问题 这个就看到什么好看的功能就往上使就是了 next主题美化教程还是很多哒 还有一些关于目录标签的功能 都很好上手</p>
-<p>然后就是耍了几天博客会发现一个严重的问题！百度！Google！！竟然查不到我自己的网站 但是吧这个坑已经挖了。。不填怎么行。。网上找一下百度Google递交搜索引擎的教程就好了 </p>
-<p>但是百度的http认证到现在都没通过 还不知道问题出在哪 这个坑挖着先。。 google的效率倒是相当快操作也很简洁 站点地图也交好了 一觉醒来在google上搜索到自己博客的感觉 还蛮妙2333333</p>
-<p>这里在站点地图提交的时候遇到一个问题 <code>此位置的 Sitemap 不允许此网址</code> </p>
-<p>是因为之前在站点配置文件里的 <code>url:</code>  那一项没有设置 要改成自己网站的地址 改完后提交站点地图就不会报错了</p>
-<hr>
+          Mac Os下用「hexo+github」搭建个人博客！
+这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤
 
-          
+准备工作 安装nodejs和git（这个自己在官网安装就可以） 接着要用npm安装hexo 在终端输入npm install -g hexo-cli
+
+很多报错 可以看见好几个都是p
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/14/blog/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1821,6 +1789,17 @@
 
           
           
+             <span id="/2018/08/14/1995 三子棋  /" class="leancloud_visitors" data-flag-title="1995 三子棋">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1843,45 +1822,17 @@
       
         
           
-            <h1 id="1995-三子棋"><a href="#1995-三子棋" class="headerlink" title="1995 三子棋"></a>1995 三子棋</h1><hr>
-<p>题目来源： syu校赛<br>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
-<p>小的时候大家一定玩过“井”字棋吧。也就是在九宫格中，只要任意行、列，或者任意连续对角线上面出现三个相同的，就能获胜。现在小明和小花也在玩三子棋，但是他们不是在九宫格里，而是在3×4的格子里面。现在小明先下，但是他知道小花这个人很聪明，他想知道第一步下在哪一个地方最合适，你能帮帮他吗？</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行输入一个整数T，表示数据组数（1&lt;T&lt;10000）；<br>第二行输入两个整数x,y,表示3×4格子里面的一个坐标(x,y)（1&lt;=x&lt;=3,1&lt;=y&lt;=4）；    </p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组数据输出最后小明输赢的结果，如果小明一定能赢，第一行输出“Win”,第二行输出小明所需要花的最少步数；如果小明跟小花只能打成平手，第一行输出“Equal”，第二行输出数字0；如果小明不能赢也不能跟小花打成平手，第一行输出“Lose”,第二行输出小花赢小明所需要花的最少步数</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>抱着作a+b的心态开始刷基础题，结果基础题怎么这么不水呢么。。<br>没想到啥好方法，就自己跟自己下模拟；<br>策略就和一般五子棋差不多，关于最少步数，由于对手也是绝顶聪明的，所以不会让你下在很快赢的地方，其实应该算最多步数的最少步数那个意思。。大概；   </p>
-<p>棋盘是对称的，所以只要看（1，1）（1，2）（2，1）（2，2）四个点就可以；<br>如下表：  </p>
-<table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>2</th>
-<th>1</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3</td>
-<td>4</td>
-<td>4</td>
-<td>3</td>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>然后结论是对先手来说（1，1）（1，2）（2，2）必胜，（2，1）平局；  </p>
-<p>（1，1）的最短路是6：<br>先手:11-&gt;12-&gt;31-&gt;23-&gt;32形成“双二”再下一步就赢了<br>后手:21-&gt;13-&gt;21-&gt;34-&gt;   </p>
-<p>（1，2）的最短路是4：<br>先手:12-&gt;23-&gt;32形成“双二”再下一步就赢了<br>后手:13-&gt;34-&gt;   </p>
-<p>（2，2）的最短路是4：<br>先手:22-&gt;13-&gt;11形成“双二”再下一步就赢了<br>后手:23-&gt;31-&gt;   </p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> a[<span class="number">3</span>][<span class="number">4</span>]=&#123;<span class="number">6</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">6</span>&#125;<span class="comment">;</span></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    <span class="built_in">int</span> t,x,y<span class="comment">;</span></span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;t)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        scanf(<span class="string">"%d%d"</span>,&amp;x,&amp;y)<span class="comment">;</span></span><br><span class="line">        x--<span class="comment">;</span></span><br><span class="line">        y--<span class="comment">;</span></span><br><span class="line">        <span class="keyword">if</span>(a[x][y]==<span class="number">0</span>)printf(<span class="string">"Equal\n0\n"</span>)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">else</span> printf(<span class="string">"Win\n%d\n"</span>,a[x][y])<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          1995 三子棋
+题目来源： syu校赛基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 
+小的时候大家一定玩过“井”字棋吧。也就是在九宫格中，只要任意行、列，或者任意连续对角线上面出现三个相同的，就能获胜。现在小明和小花也在玩三子棋，但是他们不是在九宫格里，而是在3×4的格子里面。现在小明先下，但是他知道小花这个人很聪明，他想知道第一步下在哪一个地方最合适，你能帮帮他
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/14/1995 三子棋  /#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2138,9 +2089,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -2164,16 +2112,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -2572,6 +2510,75 @@
 
 
   
+
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
+                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
+    });
+  </script>
+
+
 
   
 

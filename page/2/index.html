@@ -437,6 +437,17 @@
 
           
           
+             <span id="/2018/08/21/1212 无向图最小生成树/" class="leancloud_visitors" data-flag-title="1212 无向图最小生成树">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -459,17 +470,17 @@
       
         
           
-            <h1 id="1212-无向图最小生成树"><a href="#1212-无向图最小生成树" class="headerlink" title="1212 无向图最小生成树"></a>1212 无向图最小生成树</h1><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
-<p>N个点M条边的无向连通图，每条边有一个权值，求该图的最小生成树。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第1行：2个数N,M中间用空格分隔，N为点的数量，M为边的数量。（2 &lt;= N &lt;= 1000, 1 &lt;= M &lt;= 50000)<br>第2 - M + 1行：每行3个数S E W，分别表示M条边的2个顶点及权值。(1 &lt;= S, E &lt;= N，1 &lt;= W &lt;= 10000)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出最小生成树的所有边的权值之和。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">9 </span><span class="number">14</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">8</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">5</span> <span class="number">9</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">6</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">7</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">7 </span><span class="number">8</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">9</span> <span class="number">7</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">8</span> <span class="number">11</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">9</span> <span class="number">2</span></span><br><span class="line"><span class="symbol">7 </span><span class="number">9</span> <span class="number">6</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">6</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">6</span> <span class="number">14</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">8</span> <span class="number">8</span></span><br></pre></td></tr></table></figure>
-<p>Output示例</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">37</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>水一发最小生成树模版</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1005</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,v;</span><br><span class="line">	<span class="keyword">int</span> cap;</span><br><span class="line">&#125;Edge[N*N];</span><br><span class="line"><span class="keyword">int</span> n,ans,cnt;</span><br><span class="line"><span class="keyword">int</span> fa[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x!=fa[x])fa[x]=find(fa[x]);</span><br><span class="line">	<span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=find(x),b=find(y);</span><br><span class="line">	<span class="keyword">if</span>(a==b)<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		fa[a]=b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(struct Edge a,struct Edge b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.cap&lt;b.cap;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">()</span></span>&#123;</span><br><span class="line">	sort(Edge,Edge+cnt,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> fx=find(Edge[i].u),fy=find(Edge[i].v);</span><br><span class="line">		<span class="keyword">if</span>(fx==fy)<span class="keyword">continue</span>;</span><br><span class="line">		ans+=Edge[i].cap;</span><br><span class="line">		join(fx,fy);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> s,e,w;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;cnt);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;s,&amp;e,&amp;w);</span><br><span class="line">		Edge[i].u=s;</span><br><span class="line">		Edge[i].v=e;</span><br><span class="line">		Edge[i].cap=w;</span><br><span class="line">	&#125;</span><br><span class="line">	ans=<span class="number">0</span>;</span><br><span class="line">	kruskal();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          1212 无向图最小生成树基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 
+N个点M条边的无向连通图，每条边有一个权值，求该图的最小生成树。
+Input第1行：2个数N,M中间用空格分隔，N为点的数量，M为边的数量。（2 &lt;= N &lt;= 1000, 1 &lt;= M &lt;= 50000)第2 - M + 1行：每行3个数S E W，分别表示M条边的2
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/21/1212 无向图最小生成树/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -613,6 +624,17 @@
 
           
           
+             <span id="/2018/08/21/1242 斐波那契数列的第N项（矩阵快速幂）/" class="leancloud_visitors" data-flag-title="1242 斐波那契数列的第N项（矩阵快速幂）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -635,23 +657,19 @@
       
         
           
-            <h2 id="1242-斐波那契数列的第N项（矩阵快速幂）"><a href="#1242-斐波那契数列的第N项（矩阵快速幂）" class="headerlink" title="1242 斐波那契数列的第N项（矩阵快速幂）"></a>1242 斐波那契数列的第N项（矩阵快速幂）</h2><p>基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 </p>
-<p>斐波那契数列的定义如下：</p>
-<p>F(0) = 0<br>F(1) = 1<br>F(n) = F(n - 1) + F(n - 2) (n &gt;= 2)  </p>
-<p>(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, …)  </p>
-<p>给出n，求F(n)，由于结果很大，输出F(n) % 1000000009的结果即可。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入1个数n(1 &lt;= n &lt;= 10^18)。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出F(n) % 1000000009的结果。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><p><code>11</code></p>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><p><code>89</code></p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>矩阵快速幂</p>
-<p>F(n) = F(n - 1) + F(n - 2)</p>
-<p>递推式如下。。macdown打不出数学公式。。就这样吧。。</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">( <span class="name">F</span>(<span class="name">n</span>)  ) = ( <span class="number">1</span> <span class="number">1</span> )*( <span class="name">F</span>(<span class="name">n-1</span>) )</span><br><span class="line">  F(<span class="name">n-1</span>)      <span class="number">1</span> <span class="number">0</span>     F(<span class="name">n-2</span>)</span><br></pre></td></tr></table></figure>
-<p>下面这种存矩阵的方法是在大牛博客看到的 先学为敬(=ﾟωﾟ)ﾉ</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">typedef</span> vector&lt;LL&gt;row;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;row&gt;mat;</span><br><span class="line"><span class="keyword">const</span> LL p=<span class="number">1000000009</span>;</span><br><span class="line">mat mul(mat a,mat b)&#123;</span><br><span class="line">	mat c(a.<span class="built_in">size</span>(),row(b[<span class="number">0</span>].<span class="built_in">size</span>()));<span class="comment">//c的行数列数分别是a的行数，b的列数</span></span><br><span class="line">	<span class="built_in">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="built_in">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;b.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">			<span class="built_in">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;b[<span class="number">0</span>].<span class="built_in">size</span>();k++)</span><br><span class="line">				c[i][j]=(c[i][j]+a[i][k]*b[k][j])%p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line">mat qpow(mat a,LL x)&#123;</span><br><span class="line">	mat b(a.<span class="built_in">size</span>(),row(a.<span class="built_in">size</span>()));</span><br><span class="line">	<span class="built_in">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)b[i][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">if</span>(x&amp;<span class="number">1</span>)b=mul(b,a);</span><br><span class="line">		a=mul(a,a);</span><br><span class="line">		x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> main()&#123;</span><br><span class="line">    LL n;</span><br><span class="line">    scanf(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">    mat a(<span class="number">2</span>,row(<span class="number">2</span>));</span><br><span class="line">    a[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;a[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">1</span>;a[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;a[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    a=qpow(a,n);</span><br><span class="line">    printf(<span class="string">"%lld\n"</span>,a[<span class="number">1</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          1242 斐波那契数列的第N项（矩阵快速幂）基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 
+斐波那契数列的定义如下：
+F(0) = 0F(1) = 1F(n) = F(n - 1) + F(n - 2) (n &gt;= 2)  
+(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, …)  
+给出n，求F(n)
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/21/1242 斐波那契数列的第N项（矩阵快速幂）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -807,6 +825,17 @@
 
           
           
+             <span id="/2018/08/20/cf #487 C. A Mist of Florescence（构造）/" class="leancloud_visitors" data-flag-title="cf 487 C. A Mist of Florescence（构造）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -829,37 +858,16 @@
       
         
           
-            <h1 id="cf-487-C-A-Mist-of-Florescence（构造）"><a href="#cf-487-C-A-Mist-of-Florescence（构造）" class="headerlink" title="cf 487 C. A Mist of Florescence（构造）"></a>cf 487 C. A Mist of Florescence（构造）</h1><p><a href="http://codeforces.com/contest/989/problem/C" target="_blank" rel="noopener">http://codeforces.com/contest/989/problem/C</a></p>
-<p>As the boat drifts down the river, a wood full of blossoms shows up on the riverfront.<br>“I’ve been here once,” Mino exclaims with delight, “it’s breathtakingly amazing.”</p>
-<p>“What is it like?”</p>
-<p>“Look, Kanno, you’ve got your paintbrush, and I’ve got my words. Have a try, shall we?”</p>
-<p>There are four kinds of flowers in the wood, Amaranths, Begonias, Centaureas and Dianthuses.</p>
-<p>The wood can be represented by a rectangular grid of<br>n rows and m columns. In each cell of the grid, there is exactly one type of flowers.</p>
-<p>According to Mino, the numbers of connected components formed by each kind of flowers are a, b, c and d respectively. Two cells are considered in the same connected component if and only if a path exists between them that moves between cells sharing common edges and passes only through cells containing the same flowers.</p>
-<p>You are to help Kanno depict such a grid of flowers, with<br>n and m arbitrarily chosen under the constraints given below. It can be shown that at least one solution exists under the constraints of this problem.</p>
-<p>Note that you can choose arbitrary<br>n and m under the constraints below, they are not given in the input.</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first and only line of input contains four space-separated integers a, b, c and d (1≤a,b,c,d≤100) — the required number of connected components of Amaranths, Begonias, Centaureas and Dianthuses, respectively.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>In the first line, output two space-separated integers n and m (1≤n,m≤50) — the number of rows and the number of columns in the grid respectively.</p>
-<p>Then output<br>n lines each consisting of m consecutive English letters, representing one row of the grid. Each letter should be among ‘A’, ‘B’, ‘C’ and ‘D’, representing Amaranths, Begonias, Centaureas and Dianthuses, respectively.</p>
-<p>In case there are multiple solutions, print any. You can output each letter in either case (upper or lower).</p>
-<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><p>input</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">3</span> <span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> <span class="number">7</span></span><br><span class="line">DDDDDDD</span><br><span class="line">DABACAD</span><br><span class="line">DBABACD</span><br><span class="line">DDDDDDD</span><br></pre></td></tr></table></figure>
-<p>input</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">50 </span><span class="number">50</span> <span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span> <span class="number">50</span></span><br><span class="line">CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC</span><br><span class="line">ABABABABABABABABABABABABABABABABABABABABABABABABAB</span><br><span class="line">BABABABABABABABABABABABABABABABABABABABABABABABABA</span><br><span class="line">DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD</span><br></pre></td></tr></table></figure>
-<p>input</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">6</span> <span class="number">4</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>outputCopy</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span> <span class="number">7</span></span><br><span class="line">DDDDDDD</span><br><span class="line">DDDBDBD</span><br><span class="line">DDCDCDD</span><br><span class="line">DBDADBD</span><br><span class="line">DDCDCDD</span><br><span class="line">DBDBDDD</span><br><span class="line">DDDDDDD</span><br></pre></td></tr></table></figure>
-<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>In the first example, each cell of Amaranths, Begonias and Centaureas forms a connected component, while all the Dianthuses form one.<br><img src="http://codeforces.com/predownloaded/ba/48/ba48b131922fa242edffd37b1eb411f72779e8e3.png" alt=""></p>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>四个类，abcd为每个类的连通块数</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>50*50，分成4块，每块分别先填满abcd，然后每个都减一，然后在a里跳着放b单格，b里放a，c里放d，d里放c，注意一下边界判断就行</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">55</span>][<span class="number">55</span>];</span><br><span class="line">	<span class="keyword">int</span> a,b,c,d,h,l;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">25</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">25</span>;j++)&#123;</span><br><span class="line">			s[i][j]=<span class="string">'A'</span>;</span><br><span class="line">			s[i][j+<span class="number">25</span>]=<span class="string">'B'</span>;</span><br><span class="line">			s[i+<span class="number">25</span>][j]=<span class="string">'C'</span>;</span><br><span class="line">			s[i+<span class="number">25</span>][j+<span class="number">25</span>]=<span class="string">'D'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	a--;b--;c--;d--;</span><br><span class="line">	h=<span class="number">2</span>;l=<span class="number">27</span>;</span><br><span class="line">	<span class="keyword">while</span>(a--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l&gt;<span class="number">50</span>)h+=<span class="number">2</span>,l=<span class="number">27</span>;</span><br><span class="line">		s[h][l]=<span class="string">'A'</span>;</span><br><span class="line">		l+=<span class="number">2</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	h=<span class="number">2</span>;l=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(b--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l&gt;<span class="number">25</span>)h+=<span class="number">2</span>,l=<span class="number">2</span>;</span><br><span class="line">		s[h][l]=<span class="string">'B'</span>;</span><br><span class="line">		l+=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	h=<span class="number">27</span>;l=<span class="number">27</span>;</span><br><span class="line">	<span class="keyword">while</span>(c--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l&gt;<span class="number">50</span>)h+=<span class="number">2</span>,l=<span class="number">27</span>;</span><br><span class="line">		s[h][l]=<span class="string">'C'</span>;</span><br><span class="line">		l+=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	h=<span class="number">27</span>;l=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(d--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(l&gt;<span class="number">25</span>)h+=<span class="number">2</span>,l=<span class="number">2</span>;</span><br><span class="line">		s[h][l]=<span class="string">'D'</span>;</span><br><span class="line">		l+=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"50 50"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">50</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">50</span>;j++)<span class="built_in">cout</span>&lt;&lt;s[i][j]; </span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          cf 487 C. A Mist of Florescence（构造）http://codeforces.com/contest/989/problem/C
+As the boat drifts down the river, a wood full of blossoms shows up on the riverfront.“I’ve been here once,” Mino exclaim
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/cf #487 C. A Mist of Florescence（构造）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1003,6 +1011,17 @@
 
           
           
+             <span id="/2018/08/20/麻婆豆腐（思维）/" class="leancloud_visitors" data-flag-title="麻婆豆腐（思维）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1025,21 +1044,16 @@
       
         
           
-            <h1 id="麻婆豆腐（思维）"><a href="#麻婆豆腐（思维）" class="headerlink" title="麻婆豆腐（思维）"></a>麻婆豆腐（思维）</h1><p><a href="https://www.nowcoder.com/acm/contest/128/B" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/128/B</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在一次课间休息的时候,音无结弦看到立华奏一个人坐在座位上写作业,于是动了请她吃麻婆豆腐的念头。他迅速移动到她后面的座位,寻思着该怎么开口邀请,他摸了摸口袋,拍了拍脑袋,有了!<br>“奏~听说食堂里有种传闻中因为辣过头所以谁都不会点的麻婆豆腐,但是却惊人地好吃啊,这样,我们来做个题吧!如果你做出来了我就天天请你吃麻婆豆腐╰(￣▽￣)╮”<br>奏的笔停下了,她转过头来,还带了一张草稿纸,做好了做题的准备。音无懵了一下,心中暗暗窃喜,“麻婆豆腐果然是她的最爱啊!”<br>“咳咳…请听题!我手上有n枚硬币,第i枚正面朝上的概率是Pi。我现在每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。问:有多少个子集合使得0和1的概率相等?”<br>不管音无给了怎样的数,奏都是一分钟不到就算出来了!不愧是前学生会长啊~<br>于是他们就去食堂吃麻婆豆腐了,现在,你也来算一下吧。  </p>
-<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><p>输入的第一行包含一个整数T，表示测试组数。<br>每个测试用例前面都有一个空白行。<br>每个测试用例由两行组成。<br>第一行包含硬币数量n。<br>第二行包含n个数表示：概率p1,…,pn。每个pi都给出6个小数位。</p>
-<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h3><p>对于每个测试用例输出一个数：使得0和1的概率相等的子集合数量。</p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span></span><br><span class="line"></span><br><span class="line"><span class="symbol">3 </span></span><br><span class="line"><span class="number">0.500000</span>  <span class="number">0.500000</span>  <span class="number">0.500000</span> </span><br><span class="line"></span><br><span class="line"><span class="symbol">4 </span></span><br><span class="line"><span class="number">0.000001</span>  <span class="number">0.000002</span>  <span class="number">0.000003</span>  <span class="number">0.000004</span></span><br></pre></td></tr></table></figure>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>说明<br>在第一个测试样例中，每个子集显然都能使得0和1的概率相等。<br>在第二个测试样例中，所有子集都不能使得0和1的概率相等<br>备注:<br>n ≤ 60,T=500</p>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n枚硬币,第i枚正面朝上的概率是Pi。每个硬币各抛一次,正面朝上看做1,背面朝上看做0,把所有硬币得到的数异或起来决定最后得到的数。  求有多少个子集合使得0和1的概率相等?</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>答案为<code>2^n-2^(n-cnt)</code><br>其中cnt是pi中0.5的个数</p>
-<p>因为只有pi=0.5，异或后的概率才可能相等，别的数都不行，证明如下：</p>
-<p>设当前集合有m个元素，第一个元素为1的概率x，剩下m-1个元素异或和为1的概率为p，那么这个集合最后异或和为1的概率为<code>p*(1-x)+x*(1-p)=0.5</code>,解得x=0.5</p>
-<p>注意1要写1LL，不然会WA</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">double</span> c;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">    	<span class="keyword">int</span> n;</span><br><span class="line">    	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    		<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;c);</span><br><span class="line">    		<span class="keyword">if</span>(c==<span class="number">0.5</span>)cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">		LL ans=(<span class="number">1L</span>L&lt;&lt;n)-(<span class="number">1L</span>L&lt;&lt;(n-cnt));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          麻婆豆腐（思维）https://www.nowcoder.com/acm/contest/128/B
+题目描述在一次课间休息的时候,音无结弦看到立华奏一个人坐在座位上写作业,于是动了请她吃麻婆豆腐的念头。他迅速移动到她后面的座位,寻思着该怎么开口邀请,他摸了摸口袋,拍了拍脑袋,有了!“奏~听说食堂里有种传闻中因为辣过头所以谁都不会点的麻婆豆腐,但是却惊人地好吃啊,这样,我们来做个题吧!如果你做出来
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/麻婆豆腐（思维）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1183,6 +1197,17 @@
 
           
           
+             <span id="/2018/08/20/Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）/" class="leancloud_visitors" data-flag-title="Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1205,29 +1230,18 @@
       
         
           
-            <p>Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）<br><a href="https://nanti.jisuanke.com/t/28447" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/28447</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>众所周知，Alice和Bob非常喜欢博弈，而且Alice永远是先手，Bob永远是后手。</p>
-<p>Alice和Bob面前有3堆石子，Alice和Bob每次轮流拿某堆石子中的若干个石子（不可以是0个），拿到所有石子中最后一个石子的人获胜。这是一个只有3堆石子的Nim游戏。</p>
-<p>Bob错误的认为，三堆石子的Nim游戏只需要少的两堆的石子数量加起来等于多的那一堆，后手就一定会胜利。所以，Bob把三堆石子的数量分别设为 {k，4k，5k}（k&gt;0）。</p>
-<p>现在Alice想要知道，在k 小于 2^n 的时候，有多少种情况先手一定会获得胜利。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>一个整数n(1≤n≤2×10^9)。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出先手胜利的可能情形数。答案对10^9+7取模。</p>
-<p>输出时每行末尾的多余空格，不影响答案正确性</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p><a href="https://nanti.jisuanke.com/?kw=ACM%E8%AE%AD%E7%BB%83%E8%81%94%E7%9B%9F%E5%91%A8%E8%B5%9B" target="_blank" rel="noopener">ACM训练联盟周赛</a></p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>就是普通尼姆博弈，只要把k，4k，5k异或一下，为0先手就必胜，这题难在k可以是个巨无敌大的数，只好找规律了</p>
-<p>先打个表</p>
-<p>2，4，6，9，15，25，40，64，104，169…</p>
-<p>本来发现的规律是后一个数是前两个数相加，然后前两个数相加减一，前两个数相加，前两个数相加加一，前两个数相加…以此类推，但是没搞出什么名堂来</p>
-<p>然后当时看了这篇知道了这个数列和斐波那契有点关系<br><a href="https://zhidao.baidu.com/question/489289663.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/489289663.html</a></p>
-<p>四个一组，推出了四个公式，其中用到的斐波那契数列用矩阵快速幂（网上找的模版。。）处理一下，公式具体见代码</p>
-<p>最后那个四个乘以qpow(5,p-2,p)，本来公式是除以5的，但是因为除法对求余不分配就WA了，所以费马小定理一下，乘以5的逆元</p>
-<p>最后官方题解里是这么写的：f(n) = f(n-1) + f(n-3) + f(n-4) + 2，也是矩阵快速幂处理一下</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">20000000</span>;</span><br><span class="line"><span class="keyword">const</span> LL p=<span class="number">1000000000</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matrix</span> &#123;</span></span><br><span class="line">	LL m[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;ans;</span><br><span class="line">matrix base = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>&#125;; </span><br><span class="line"><span class="function">matrix <span class="title">multi</span><span class="params">(matrix a, matrix b)</span> </span>&#123;</span><br><span class="line">	matrix tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) &#123;</span><br><span class="line">			tmp.m[i][j] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;  k &lt; <span class="number">2</span>; k++)</span><br><span class="line">				tmp.m[i][j] = (tmp.m[i][j] + a.m[i][k] * b.m[k][j]) % p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">matrix_pow</span><span class="params">(matrix a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	ans.m[<span class="number">0</span>][<span class="number">0</span>] = ans.m[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	ans.m[<span class="number">0</span>][<span class="number">1</span>] = ans.m[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(n) &#123;</span><br><span class="line">		<span class="keyword">if</span>(n &amp; <span class="number">1</span>) ans = multi(ans, a);</span><br><span class="line">		a = multi(a, a);</span><br><span class="line">		n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans.m[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">fi</span><span class="params">(LL x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> matrix_pow(base, x);</span><br><span class="line">&#125; </span><br><span class="line"><span class="function">LL <span class="title">qpow</span><span class="params">(LL a,LL b,LL p)</span></span>&#123;</span><br><span class="line">    LL anss=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            anss=(anss*a)%p;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        b/=<span class="number">2</span>;</span><br><span class="line">        a=a*a%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> anss;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    LL n,res=<span class="number">0</span>;</span><br><span class="line">    LL z;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)&#123;</span><br><span class="line">    	<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">4</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">7</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		LL nn=n;</span><br><span class="line">		n+=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(n%<span class="number">4</span>==<span class="number">0</span>)&#123;</span><br><span class="line">			z=((<span class="number">4</span>*fi(n)+<span class="number">3</span>*fi(n<span class="number">-1</span>)+<span class="number">2</span>)*qpow(<span class="number">5</span>,p<span class="number">-2</span>,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">4</span>==<span class="number">1</span>)&#123;</span><br><span class="line">			z=((<span class="number">3</span>*fi(n+<span class="number">1</span>)+fi(n)+<span class="number">1</span>)*qpow(<span class="number">5</span>,p<span class="number">-2</span>,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">4</span>==<span class="number">2</span>)&#123;</span><br><span class="line">			z=((<span class="number">4</span>*fi(n)+<span class="number">3</span>*fi(n<span class="number">-1</span>)<span class="number">-2</span>)*qpow(<span class="number">5</span>,p<span class="number">-2</span>,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			z=((<span class="number">3</span>*fi(n+<span class="number">1</span>)+fi(n)<span class="number">-1</span>)*qpow(<span class="number">5</span>,p<span class="number">-2</span>,p))%p;</span><br><span class="line">		&#125;</span><br><span class="line">		res=(qpow(<span class="number">2</span>,nn,p)-z%p+p)%p;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;res&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）https://nanti.jisuanke.com/t/28447
+题目描述众所周知，Alice和Bob非常喜欢博弈，而且Alice永远是先手，Bob永远是后手。
+Alice和Bob面前有3堆石子，Alice和Bob每次轮流拿某堆石子中的若干个石子（不可以是0个），拿到所有石子中最后一个石子的人获胜。这是一个只有3堆石子的Nim游戏。
+Bo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1371,6 +1385,17 @@
 
           
           
+             <span id="/2018/08/20/Pawns（博弈，思维）/" class="leancloud_visitors" data-flag-title="Pawns（博弈，思维）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1393,97 +1418,16 @@
       
         
           
-            <h1 id="Pawns（博弈，思维）"><a href="#Pawns（博弈，思维）" class="headerlink" title="Pawns（博弈，思维）"></a>Pawns（博弈，思维）</h1><p><a href="https://nanti.jisuanke.com/t/28205" target="_blank" rel="noopener">https://nanti.jisuanke.com/t/28205</a></p>
-<p>Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’s intelligence.This game is played on a board with n by m squares. At the start, white and black pawns are placed quasi-randomly over the board, with the following constraint: in every column there is one white pawn and one black pawn, with the white pawn on some square below the black one.</p>
-<p>Each player in turn makes a move with one of his pawns. A pawn is only allowed to move one square forward, provided that this square is empty. “Forward” means in the direction of the opponent, so white pawns move up and black pawns move down. In addition, a pawn on the first rank – that is, a white pawn on the bottom row, or a black pawn on the top row – may also move two squares forward, provided that both squares are empty. Unlike normal chess, the pawns are never taken from the board and never change column.</p>
-<p><img src="https://res.jisuanke.com/img/upload/20180703/f32e80b481a421fcf94d5ed040138bbc778728d7.png" alt=""></p>
-<p>For example, in the position above, White (the player using the white pieces) has eight moves: one with each of the pawns on b1, d2, f5 and h2, and two with both the pawn on c1 and the pawn on g1. The pawns on a6 and e1 cannot move.</p>
-<p>Eventually and inevitably, the pawns will meet up in every column, leaving neither player able to move. The game is then finished, and the winner is the player who made the last move.</p>
-<p>As usual, White gets the first move. With optimal play, who would win for a given startingposition?</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>On the first line one positive number: the number of test cases, at most 100. After that per test case:</p>
-<p>one line with two space-separated integers n and m (3≤n≤20 and 1≤m≤20):the number of rows and columns of the board, respectively.<br>n lines with m characters, describing the position on the board at the start of the game:<br>‘W’ is a white pawn.<br>‘B’ is a black pawn.<br>‘.’ is an empty square.Each column contains exactly one ‘W’ and one ‘B’, with the ‘W’ being below the ‘B’.<br>In every test case, the starting position will be such that White has at least one move.  </p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>Per test case:</p>
-<p>one line with the string “White wins” if White can win with optimal play, or “Black wins” if Black has a winning strategy.</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span> <span class="number">8</span></span><br><span class="line">....<span class="selector-class">.BB</span>.</span><br><span class="line">B.......</span><br><span class="line">W......B</span><br><span class="line">..<span class="selector-class">.B</span><span class="selector-class">.W</span>..</span><br><span class="line">.<span class="selector-class">.B</span>.....</span><br><span class="line"><span class="selector-class">.B</span>......</span><br><span class="line">..<span class="selector-class">.WB</span>..W</span><br><span class="line"><span class="selector-class">.WW</span><span class="selector-class">.W</span><span class="selector-class">.W</span>.</span><br><span class="line"><span class="number">6</span> <span class="number">4</span></span><br><span class="line">....</span><br><span class="line">B..B</span><br><span class="line">....</span><br><span class="line"><span class="selector-class">.B</span><span class="selector-class">.W</span></span><br><span class="line">W<span class="selector-class">.B</span>.</span><br><span class="line"><span class="selector-class">.WW</span>.</span><br><span class="line"><span class="number">5</span> <span class="number">3</span></span><br><span class="line">...</span><br><span class="line">BBB</span><br><span class="line">...</span><br><span class="line">WW.</span><br><span class="line">..W</span><br><span class="line"><span class="number">4</span> <span class="number">6</span></span><br><span class="line"><span class="selector-class">.BBB</span><span class="selector-class">.B</span></span><br><span class="line">B..<span class="selector-class">.B</span>.</span><br><span class="line">..<span class="selector-class">.W</span>..</span><br><span class="line">WWW.WW</span><br><span class="line"><span class="number">7</span> <span class="number">7</span></span><br><span class="line"><span class="selector-class">.B</span><span class="selector-class">.B</span>..B</span><br><span class="line">.......</span><br><span class="line">.<span class="selector-class">.B</span><span class="selector-class">.B</span>..</span><br><span class="line">B...<span class="selector-class">.B</span>.</span><br><span class="line">.......</span><br><span class="line">..<span class="selector-class">.WW</span><span class="selector-class">.W</span></span><br><span class="line">WWW.<span class="selector-class">.W</span>.</span><br></pre></td></tr></table></figure>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Black</span> wins</span><br><span class="line"><span class="keyword">Black</span> wins</span><br><span class="line"><span class="keyword">White</span> wins</span><br><span class="line"><span class="keyword">White</span> wins</span><br><span class="line"><span class="keyword">Black</span> wins</span><br></pre></td></tr></table></figure>
-<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p>BAPC 2014 Preliminary</p>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>两个人轮流下棋，给定一个棋局，B在W上，白色的棋子W向上移动，黑色的棋子B向下移动，每次可移动一格。底行上的W棋子或顶行上的B棋子可以向前移动两个方格，前提是两个方格都是空的。W先手，无法移动的一方输。</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先想到胜负和W，B之间可走步数的奇偶性有关，然后顶行和底行且可以走两步的棋子有改变奇偶性的能力。</p>
-<p>先考虑一种特殊情况，某一列中B在顶行且W在底行，这对两个棋子来说是一样的，这种出现次数记为cd。</p>
-<blockquote>
-<p>1.n&gt;5时，只要一方走两步改变了奇偶性，另一方可以学对方的走法，把奇偶性变回来，所以后续不用考虑这几列的步数。</p>
-<p>2.n=3时不会出现这种情况，不考虑。</p>
-<p>3.特殊情况n=4和n=5，因为他们一方走两步之后，另一方就没有走两步的能力了，是要考虑的，在后面讨论。</p>
-</blockquote>
-<p>然后只有一方的棋子在顶行或者底行且该棋子可以走两步时：只要一方有改变奇偶性能力的棋子，另一方就会想要去优先破坏这种能力，比如：</p>
-<p>B<br>。<br>。<code>W优先向上走三步，则B就没有破坏奇偶性的能力了，则cw+=3</code><br>。<br>。<br>W  </p>
-<blockquote>
-<p>cw为W破坏B的能力棋子所需要走的步数<br>cb为B破坏W的能力棋子所需要走的步数</p>
-</blockquote>
-<p>最后，对于那些没有棋子有机会走两步的列来说，双方都只能一步一步走，只要把可走步数累加即可。</p>
-<p>综上所述，W的必胜情况：</p>
-<blockquote>
-<p>1.n=4，且cd为奇数</p>
-<p>这种情况下，cd为奇数，W作为先手无论如何都掌握最后一个改变奇偶的决定权，所以w只要在最后一个机会时判断当前局势决定是否改变奇偶性即可。</p>
-<p>2.cw &lt; cb</p>
-<p>即B破坏W能力要走的步数多，那么W就有改变奇偶能力，W必胜。</p>
-<p>3.cb = cw - 1或cb = cw且步数为奇<br>（这里的bushu指B在顶行且W在底行的情况不算的总步数）</p>
-<p>cb = cw - 1时，因为W先走，下完（cb+cw）步之后，此时两人都刚好没有破坏奇偶性的能力，（cb+cw）为奇数，下一步轮到B下，剩余步数为（部分步数-cb-cw）为偶数，所以W必胜。<br>cb = cw时，同上，（cb+cw）为偶，下一步轮到W，剩余步数为奇，W必胜。</p>
-</blockquote>
-<p>最后考虑n=5的时候的特殊情况<br>比赛的时候这个情况我一直没想想清楚。。随便举个例子：</p>
-<p>B 。。。B<br>。B 。。。<br>。。B 。。<br>。。。B 。<br>WWWWW</p>
-<p>对于第一，五列那种双方都有能力的棋子来说，不管先手走一步还是两步，后手都可以走（3-i）步使这一列一人走一次然后作废，所以n=5时这种列也不考虑。<br>对于第二列，B要优先破坏W的能力。<br>对于第三，四列，只要数可走步数即可。  </p>
-<p>因为剩下的策略都满足上面的n&gt;5时，所以n=5虽然有特殊，但是并不用考虑特殊策略。</p>
-<hr>
-<pre><code>#include &lt;algorithm&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;iostream&gt;
-#include &lt;map&gt;
-#include &lt;queue&gt;
-#include &lt;string&gt;
-#include &lt;set&gt;
-
-using namespace std;
-const int N=40;
-char p[N][N];
-
-int main()
-{
-    int t,num=0;
-    scanf(&quot;%d&quot;, &amp;t);
-    while(t--){
-        int n,m;
-        int cw=0,cb=0,cd=0,bushu=0;
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-        memset(p,0,sizeof(p));
-        for(int i=1;i&lt;=n;i++){
-            for(int j=1;j&lt;=m;j++){
-                cin&gt;&gt;p[i][j];
-            }
-        }
-        for(int i=1;i&lt;=m;i++){
-            int b,w;
-            for(int j=1;j&lt;=n;j++){
-                if(p[j][i]==&apos;B&apos;)b=j;
-                else if(p[j][i]==&apos;W&apos;)w=j;
-            }
-            if(b==1&amp;&amp;w==n&amp;&amp;n&gt;3)cd++;
-            else{
-                if(b==1&amp;&amp;w&gt;3)cw+=w-3;
-                else if(w==n&amp;&amp;b&lt;n-2)cb+=n-2-b;
-                bushu+=(w-b-1);
-            } 
-        }
-        if((n==4&amp;&amp;cd%2==1)||(cw&lt;cb)||(((cb==cw-1)||(cb==cw))&amp;&amp;bushu%2==1))printf(&quot;White wins\n&quot;);
-        else printf(&quot;Black wins\n&quot;);
-    }
-    return 0;
-}
-</code></pre>
-          
+          Pawns（博弈，思维）https://nanti.jisuanke.com/t/28205
+Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/Pawns（博弈，思维）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1627,6 +1571,17 @@ int main()
 
           
           
+             <span id="/2018/08/20/hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）/" class="leancloud_visitors" data-flag-title="hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1649,26 +1604,16 @@ int main()
       
         
           
-            <h1 id="hdu-1847-Good-Luck-in-CET-4-Everybody-（巴什博弈）"><a href="#hdu-1847-Good-Luck-in-CET-4-Everybody-（巴什博弈）" class="headerlink" title="hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）"></a>hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1847" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1847</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>大学英语四级考试就要来临了，你是不是在紧张的复习？也许紧张得连短学期的ACM都没工夫练习了，反正我知道的Kiki和Cici都是如此。当然，作为在考场浸润了十几载的当代大学生，Kiki和Cici更懂得考前的放松，所谓“张弛有道”就是这个意思。这不，Kiki和Cici在每天晚上休息之前都要玩一会儿扑克牌以放松神经。</p>
-<p>“升级”？“双扣”？“红五”？还是“斗地主”？</p>
-<p>当然都不是！那多俗啊~</p>
-<p>作为计算机学院的学生，Kiki和Cici打牌的时候可没忘记专业，她们打牌的规则是这样的：</p>
-<p>1、  总共n张牌;<br>2、  双方轮流抓牌；<br>3、  每人每次抓牌的个数只能是2的幂次（即：1，2，4，8，16…）<br>4、  抓完牌，胜负结果也出来了：最后抓完牌的人为胜者；  </p>
-<p>假设Kiki和Cici都是足够聪明（其实不用假设，哪有不聪明的学生~），并且每次都是Kiki先抓牌，请问谁能赢呢？</p>
-<p>当然，打牌无论谁赢都问题不大，重要的是马上到来的CET-4能有好的状态。</p>
-<p>Good luck in CET-4 everybody!</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入数据包含多个测试用例，每个测试用例占一行，包含一个整数n（1&lt;=n&lt;=1000）。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>如果Kiki能赢的话，请输出“Kiki”，否则请输出“Cici”，每个实例的输出占一行。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Kiki</span></span><br><span class="line"><span class="attribute">Cici</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>n张牌，每次可以取<code>2^i</code>张,最后取完的人胜</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>因为可以取到1，2，所以剩下取几都不重要了，因为所有数要么是三的倍数，要么是三的倍数多一，要么是三的倍数多二，又因为除了1，2剩下的数都是大于3的偶数，所以不管对手怎么取都无力回天了，不可能再把三的倍数抛给你 _ (: з 」∠) _</p>
-<p>所以对手取完，只要你能一直留给他三的倍数，你就赢</p>
-<p>综上所述，一开始是三的倍数的人必败</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">    	<span class="keyword">if</span>(n%<span class="number">3</span>==<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="string">"Cici"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"Kiki"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）http://acm.hdu.edu.cn/showproblem.php?pid=1847
+Problem Description大学英语四级考试就要来临了，你是不是在紧张的复习？也许紧张得连短学期的ACM都没工夫练习了，反正我知道的Kiki和Cici都是如此。当然，作为在考场浸润了十几载的当代大学生，Kik
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1812,6 +1757,17 @@ int main()
 
           
           
+             <span id="/2018/08/20/hdu 1404 Digital Deletions（sg函数暴力打表）/" class="leancloud_visitors" data-flag-title="hdu 1404 Digital Deletions（sg函数暴力打表）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -1834,31 +1790,17 @@ int main()
       
         
           
-            <h1 id="hdu-1404-Digital-Deletions（sg函数暴力打表）"><a href="#hdu-1404-Digital-Deletions（sg函数暴力打表）" class="headerlink" title="hdu 1404 Digital Deletions（sg函数暴力打表）"></a>hdu 1404 Digital Deletions（sg函数暴力打表）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1404" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1404</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Digital deletions is a two-player game. The rule of the game is as following. </p>
-<p>Begin by writing down a string of digits (numbers) that’s as long or as short as you like. The digits can be 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 and appear in any combinations that you like. You don’t have to use them all. Here is an example:</p>
-<p><img src="http://acm.hdu.edu.cn/data/images/1404-1.gif" alt=""></p>
-<p>On a turn a player may either:<br>Change any one of the digits to a value less than the number that it is. (No negative numbers are allowed.) For example, you could change a 5 into a 4, 3, 2, 1, or 0.<br>Erase a zero and all the digits to the right of it.</p>
-<p>The player who removes the last digit wins.</p>
-<p>The game that begins with the string of numbers above could proceed like this: </p>
-<p><img src="http://acm.hdu.edu.cn/data/images/1404-2.gif" alt=""></p>
-<p>Now, given a initial string, try to determine can the first player win if the two players play optimally both. </p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input consists of several test cases. For each case, there is a string in one line.</p>
-<p>The length of string will be in the range of [1,6]. The string contains only digit characters.</p>
-<p>Proceed to the end of file.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Output Yes in a line if the first player can win the game, otherwise output No.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">00</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">Yes</span></span><br><span class="line"><span class="literal">No</span></span><br><span class="line"><span class="literal">No</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个长度在[1,6]的数字字符串</p>
-<p>有两种操作：</p>
-<p>1.把任何一个数字更改为小于其数字的值</p>
-<p>2.删除0及其右侧的数字</p>
-<p>删除最后一位的赢，问先手有无必胜策略</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先这个最多只有6位，有很多很多状态，所以是个sg函数的题，从最小的已知态往上推，根据sg函数的性质，能一步到达必败状态的都是必胜点，由此求得所有六位数状态的值</p>
-<p>分析一下可以sg[1]是必败点，sg[1]=0,那么就从1开始向上拓展必胜态，具体操作见代码</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">int</span> sg[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">wei</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n/<span class="number">100000</span>)<span class="keyword">return</span> <span class="number">6</span>;</span><br><span class="line">	<span class="keyword">if</span>(n/<span class="number">10000</span>)<span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">if</span>(n/<span class="number">1000</span>)<span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">	<span class="keyword">if</span>(n/<span class="number">100</span>)<span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">if</span>(n/<span class="number">10</span>)<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line"><span class="comment">//sg[n]=0先手必败，可以一步变为n的都是先手必胜</span></span><br><span class="line">	<span class="keyword">int</span> len=wei(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=len;i&gt;<span class="number">0</span>;i--)&#123;<span class="comment">//每一位上加一个数</span></span><br><span class="line">		<span class="keyword">int</span> m=n;</span><br><span class="line">		<span class="keyword">int</span> base=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)base*=<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">int</span> tmp=(m%(base*<span class="number">10</span>))/base;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=tmp;j&lt;<span class="number">9</span>;j++)&#123;</span><br><span class="line">			m+=base;</span><br><span class="line">			sg[m]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(len&lt;<span class="number">6</span>)&#123;<span class="comment">//长度小于6，可以在后面补0</span></span><br><span class="line">			<span class="keyword">int</span> m=n;</span><br><span class="line">			<span class="keyword">int</span> base=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=len;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">				m*=<span class="number">10</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> b=<span class="number">0</span>;b&lt;base;b++)sg[m+b]=<span class="number">1</span>;</span><br><span class="line">				base*=<span class="number">10</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(sg,<span class="number">0</span>,<span class="keyword">sizeof</span>(sg));</span><br><span class="line">	sg[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;N;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!sg[i])extend(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> str[<span class="number">8</span>];</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	work();</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>,str)!=EOF)&#123;</span><br><span class="line">		<span class="keyword">if</span>(str[<span class="number">0</span>]==<span class="string">'0'</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> len=<span class="built_in">strlen</span>(str);</span><br><span class="line">		n=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">			n*=<span class="number">10</span>;</span><br><span class="line">			n+=str[i]-<span class="string">'0'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(sg[n])<span class="built_in">printf</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"No\n"</span>); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          hdu 1404 Digital Deletions（sg函数暴力打表）http://acm.hdu.edu.cn/showproblem.php?pid=1404
+Problem DescriptionDigital deletions is a two-player game. The rule of the game is as following. 
+Begin by writing do
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/hdu 1404 Digital Deletions（sg函数暴力打表）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2002,6 +1944,17 @@ int main()
 
           
           
+             <span id="/2018/08/20/hdu 1527 取石子游戏（威佐夫博弈）/" class="leancloud_visitors" data-flag-title="hdu 1527 取石子游戏（威佐夫博弈）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -2024,16 +1977,16 @@ int main()
       
         
           
-            <h1 id="hdu-1527-取石子游戏（威佐夫博弈）"><a href="#hdu-1527-取石子游戏（威佐夫博弈）" class="headerlink" title="hdu 1527 取石子游戏（威佐夫博弈）"></a>hdu 1527 取石子游戏（威佐夫博弈）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1527" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1527</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>有两堆石子，数量任意，可以不同。游戏开始由两个人轮流取石子。游戏规定，每次有两种不同的取法，一是可以在任意的一堆中取走任意多的石子；二是可以在两堆中同时取走相同数量的石子。最后把石子全部取完者为胜者。现在给出初始的两堆石子的数目，如果轮到你先取，假设双方都采取最好的策略，问最后你是胜者还是败者。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入包含若干行，表示若干种石子的初始情况，其中每一行包含两个非负整数a和b，表示两堆石子的数目，a和b都不大于1,000,000,000。</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出对应也有若干行，每行包含一个数字1或0，如果最后你是胜者，则为1，反之，则为0。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span><span class="number">1</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">4</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">7</span></span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>威佐夫博弈裸题，在hdu 2177那篇有介绍威佐夫博弈</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a,b;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b)!=EOF)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b)&#123;</span><br><span class="line">			<span class="keyword">int</span> temp=a;a=b;b=temp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>((<span class="keyword">int</span>)((<span class="built_in">sqrt</span>(<span class="number">5</span>)+<span class="number">1</span>)*(b-a)/<span class="number">2</span>)==a)<span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          hdu 1527 取石子游戏（威佐夫博弈）http://acm.hdu.edu.cn/showproblem.php?pid=1527
+Problem Description有两堆石子，数量任意，可以不同。游戏开始由两个人轮流取石子。游戏规定，每次有两种不同的取法，一是可以在任意的一堆中取走任意多的石子；二是可以在两堆中同时取走相同数量的石子。最后把石子全部取完者为胜者。现在给出初始的两堆石子的数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/hdu 1527 取石子游戏（威佐夫博弈）/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2177,6 +2130,17 @@ int main()
 
           
           
+             <span id="/2018/08/20/hdu 1564 Play a game/" class="leancloud_visitors" data-flag-title="hdu 1564 Play a game">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -2199,21 +2163,16 @@ int main()
       
         
           
-            <h1 id="hdu-1564-Play-a-game"><a href="#hdu-1564-Play-a-game" class="headerlink" title="hdu 1564 Play a game"></a>hdu 1564 Play a game</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1564" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=1564</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>New Year is Coming!<br>ailyanlu is very happy today! and he is playing a chessboard game with 8600.<br>The size of the chessboard is n*n. A stone is placed in a corner square. They play alternatively with 8600 having the first move. Each time, player is allowed to move the stone to an unvisited neighbor square horizontally or vertically. The one who can’t make a move will lose the game. If both play perfectly, who will win the game?</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The input is a sequence of positive integers each in a separate line.<br>The integers are between 1 and 10000, inclusive,(means 1 &lt;= n &lt;= 10000) indicating the size of the chessboard. The end of the input is indicated by a zero.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Output the winner (“8600” or “ailyanlu”) for each input line except the last zero.<br>No other characters should be inserted in the output.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8600</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个<code>n*n</code>的网格，一个石头从角落出发，每次水平或垂直移动到相邻的没有访问过的格子上，谁不能走谁输</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>蛮水的题。。</p>
-<p>n=1先手必败，n=2先手必胜，n=3先手必败，n=4先手必胜…</p>
-<p>这些自己模拟一下大概就能发现规律了：n为奇数时后手胜，n为偶数先手胜</p>
-<p>当然这也是可以解释的，就是把棋盘分成一个个<code>1*2</code>的部分，无论先手后手只要跟着对方走把对方那个补上完成一个个<code>1*2</code>，最后就赢了，所以就是看剩下的<code>n*n-1</code>个格子能否恰好凑成一些<code>1*2</code>的小块，<code>n*n-1</code>为偶数就可以，那么后手必胜，如果<code>n*n-1</code>为奇数，多了一个，那么先手必胜</p>
-<p>判断 <code>n*n-1</code> 的奇偶性，其实也是 <code>n</code>的奇偶性</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">"ailyanlu\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"8600\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          hdu 1564 Play a gamehttp://acm.hdu.edu.cn/showproblem.php?pid=1564
+Problem DescriptionNew Year is Coming!ailyanlu is very happy today! and he is playing a chessboard game with 8600.The size of the che
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/20/hdu 1564 Play a game/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2470,9 +2429,6 @@ int main()
 
 
 
-  
-  
-
 
 
 
@@ -2496,16 +2452,6 @@ int main()
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
@@ -2904,6 +2850,75 @@ int main()
 
 
   
+
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
+                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
+    });
+  </script>
+
+
 
   
 
