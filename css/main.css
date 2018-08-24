@@ -1847,7 +1847,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c9bfff;
+  background: #ff7aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2984,12 +2984,12 @@ body {
   background: #dbe6f5;
 }
 .site-title {
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.65);
   width: 220px;
   font-family: Times;
   font-size: 25px;
   font-weight: bold;
-  color: #000;
+  color: #222;
   line-height: 80px;
   letter-spacing: 1px;
 }
@@ -3063,8 +3063,8 @@ body {
   padding: 80px 20px 100px 40px;
 }
 ::selection {
-  background-color: #97afd1;
-  color: #fff;
+  background-color: #fced6d;
+  color: #222;
 }
 .sidebar {
   background-color: rgba(255,255,255,0.5);
@@ -3079,10 +3079,10 @@ body {
   color: #ece1ff;
 }
 .header-inner {
-  opacity: 0.7;
+  background: rgba(255,255,255,0.7) !important;
 }
 .main-inner {
-  opacity: 0.78;
+  opacity: 0.8;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
