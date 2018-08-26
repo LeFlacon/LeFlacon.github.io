@@ -1072,7 +1072,7 @@ pre .javascript .function {
   right: 30px;
   z-index: 1050;
   padding: 0 6px;
-  width: 24px;
+  width: initial;
   background: #222;
   font-size: 12px;
   opacity: 1;
@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff256e;
+  background: #ff62ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2585,11 +2585,11 @@ embed {
   display: inline-block;
 }
 .post {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 25px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+  margin: 30px 0px 38px 0px;
+  padding: 10px 30px 20px 30px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.75);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.75);
+  background: rgba(255,255,255,0.65) none repeat scroll !important;
 }
 body {
   background: url("http://d.5857.com/tkzc_160805/002.jpg");
@@ -2609,7 +2609,7 @@ body {
   padding-bottom: 5px;
 }
 .posts-expand {
-  padding-top: 0px;
+  padding-top: 10px;
 }
 .posts-expand .post-meta {
   margin: 5px 0px 0px 0px;
@@ -2697,6 +2697,7 @@ body {
 }
 .sidebar {
   background-color: rgba(255,255,255,0.5);
+  padding-left: 10px;
 }
 .sidebar-inner {
   margin-top: 0px;
@@ -2707,19 +2708,97 @@ body {
 .with-love {
   color: rgba(255,0,0,0.5);
 }
-.header-inner {
-  background: rgba(255,255,255,0.7) !important;
-}
-.main-inner {
-  opacity: 0.8;
-}
 .comments {
-  background-color: argb(255, 255, 255, 1);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.35);
-  margin: 80px 23px 40px 23px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  margin: 80px 0px 40px 0px;
 }
 .post-toc .nav .nav-child {
   display: block;
+}
+.sidebar {
+  box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.3);
+  background-color: rgba(255,255,255,0.6);
+}
+.sidebar-inner {
+  margin-top: 30px;
+}
+.sidebar-nav li {
+  font-size: 15px;
+  font-weight: bold;
+  color: #7f7f7f;
+}
+.sidebar-nav li:hover {
+  color: #222;
+}
+.sidebar-nav .sidebar-nav-active {
+  color: #222;
+  border-bottom-color: #7f7f7f;
+  border-bottom-width: 1.5px;
+}
+.sidebar-nav .sidebar-nav-active:hover {
+  color: #626262;
+}
+.site-overview {
+  line-height: 1;
+}
+.site-author-image {
+  border: 2px inset #fff;
+  border-radius: 100%;
+  transition: transform 1s ease-out;
+}
+img:hover {
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  -ms-transform: rotateZ(360deg);
+  -o-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}
+.posts-expand .post-body img:hover {
+  -webkit-transform: initial;
+  -moz-transform: initial;
+  -ms-transform: initial;
+  -o-transform: initial;
+  transform: initial;
+}
+.site-author-name {
+  padding: 25px;
+  font-size: 20px;
+  color: #626262;
+}
+.site-description {
+  letter-spacing: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-left: 13px;
+  color: #656565;
+}
+.site-state {
+  line-height: 1.3;
+  margin-left: 12px;
+}
+.site-state-item {
+  padding: 0px 15px;
+  border-left: 1.5px solid #7f7f7f;
+}
+#days {
+  padding: 30px;
+  display: block;
+  color: #7f7f7f;
+  font-size: 13px;
+  margin-top: 15px;
+}
+.post-sticky-flag {
+  font-size: inherit;
+  float: left;
+  color: #000;
+  cursor: help;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+.post-sticky-flag:hover {
+  color: #07b39b;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
