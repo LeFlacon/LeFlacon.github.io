@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd786;
+  background: #ffa;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2585,17 +2585,24 @@ embed {
   display: inline-block;
 }
 .post {
-  margin: 30px 0px 45px 0px;
+  margin: 19px 0px 45px 0px;
   padding: 10px 30px 5px 30px;
-  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.75);
-  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.75);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background: rgba(255,255,255,0.65) none repeat scroll !important;
 }
 body {
-  background: url("http://d.5857.com/tkzc_160805/002.jpg");
+/*menhera表情包
+    background: url(/images/menhera.gif);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position:50% 55%;
+    */
+  background: url("https://hbimg.b0.upaiyun.com/fe7343d213869361a4428c581278d427e3d2b0aa9725-Os4lwD_fw658");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 50%;
+  background-position: 50% 100%;
+  background-size: cover;
 }
 .headband {
   height: 1.5px;
@@ -2656,14 +2663,14 @@ body {
   color: #666;
 }
 .post-button .btn {
-  background-color: #97afd1;
+  background-color: #3f3f3f;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-color: #d2e4fd;
+  border-color: #7f7f7f;
 }
 .post-button .btn:hover {
-  border-color: #d2e4fd;
-  background-image: linear-gradient(90deg, #fff 0%, #dbe6f5 25%, #d2e4fd 50%, #dbe6f5 75%, #fff 100%);
+  border-color: #7f7f7f;
+  background-color: #fff;
 }
 .posts-expand .post-eof {
   margin: 0px;

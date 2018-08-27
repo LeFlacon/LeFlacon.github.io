@@ -680,7 +680,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/51nod基础题.html">
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -754,7 +754,7 @@ return i;
 show_date_time();
 </script>
 
-
+<script type="text/javascript" src="//ra.revolvermaps.com/0/0/8.js?i=0k7pcukxypn&amp;m=1&amp;c=ffc000&amp;cr1=00fff6&amp;f=comic_sans_ms&amp;l=49&amp;s=230&amp;bv=70" async="async"></script>
         </div>
       </section>
 
@@ -814,7 +814,7 @@ show_date_time();
 
 <div class="powered-by">
   <i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
-    这是本站第<span id="busuanzi_value_site_uv"></span>次被访问(/ω＼) 
+    这是第<span id="busuanzi_value_site_uv"></span>次被访问(/ω＼) 
   </span>
   </div>
 <!--
@@ -840,6 +840,27 @@ show_date_time();
   <div class="powered-by"></div>
   <span class="post-count"> |  不知不觉已经有40.1k字啦 </span>
 </div>
+
+<br>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/11/2018 00:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "( ´ ▽ ` )ﾉ 本站已经在各种不知名错误下运行了 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
 
         
 
