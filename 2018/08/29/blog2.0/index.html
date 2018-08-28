@@ -150,7 +150,7 @@
 <meta property="og:image" content="http://leflacon.github.io/2018/08/29/blog2.0/10.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/29/blog2.0/11.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/08/29/blog2.0/12.png">
-<meta property="og:updated_time" content="2018-08-28T18:53:07.102Z">
+<meta property="og:updated_time" content="2018-08-28T18:58:03.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo下各种博客美化和功能插件汇总">
 <meta name="twitter:description" content="hexo下各种博客美化和功能插件汇总 自从开始捣鼓hexo也有十几天了，有了点基本功能之后就走上了博客美化的不归路 ◡ ヽ(`Д´)ﾉ ┻━┻ ，这个过程简直是摸爬滚打，各种看不懂各种试效果，而且百度对hexo似乎不是很友好啊，一般的教程都是csdn和简书之类的会放在前面，而且nexT主题还更新了，有些老的教程配置就没法用，还得看官方文档啥的0.0    「目录」     博客美化和功能插件汇总包">
@@ -399,7 +399,7 @@
                 
               
 
-              <time title="创建时间：2018-08-29 02:00:00 / 修改时间：02:53:07" itemprop="dateCreated datePublished" datetime="2018-08-29T02:00:00+08:00">2018-08-29</time>
+              <time title="创建时间：2018-08-29 02:00:00 / 修改时间：02:58:03" itemprop="dateCreated datePublished" datetime="2018-08-29T02:00:00+08:00">2018-08-29</time>
             
 
             
@@ -495,7 +495,7 @@
 <hr>
 <h3 id="获取十六进制的颜色"><a href="#获取十六进制的颜色" class="headerlink" title="获取十六进制的颜色"></a>获取十六进制的颜色</h3><p>rgb（0，0，0）这种常识就不说了</p>
 <p>然后还有一种rgba（0，0，0，0）最后一位是设置透明度的，1是不透0是全透</p>
-<p>最后一种就是用十六进制表示，可以看到代码里很多都是这种，下面就讲一下 <strong>「利用chorme浏览器的取十六进制色方法」</strong></p>
+<p>最后一种就是用十六进制表示，可以看到代码里很多都是这种，下面就讲一下 <strong>「利用chrome浏览器的取十六进制色方法」</strong></p>
 <p>1.右键——检查  </p>
 <p><img src="/2018/08/29/blog2.0/3.png" alt=""></p>
 <p>2.在下图的位置输入color然后回车，会跳到冒号后，输入red再回车，这时候会出现一个红色小方块，点击左侧任何网页里的地方，就可以获得这个地方的颜色  </p>
@@ -656,7 +656,7 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/dp.html">
+                  <a href="/categories/51nod基础题.html">
                     
                     
                       
@@ -997,7 +997,7 @@ setInterval("createtime()",250);
         avatar:'mm',
         meta:guest,
         pageSize:'10' || 10,
-        visitor: false
+        visitor: true
     });
   </script>
 
@@ -1330,65 +1330,6 @@ setInterval("createtime()",250);
 
 
   
-
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function ({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.time + 1);
-            
-            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
-            
-            .fail(function ({ responseJSON }) {
-                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
-            })
-          } else {
-            
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
-            
-          }
-        })
-      .fail(function ({ responseJSON }) {
-        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
-      });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
-        .done(function ({ api_server }) {
-          var Counter = function (method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
-                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
-                'Content-Type': 'application/json',
-              },
-              data: data,
-            });
-          };
-          
-          addCount(Counter);
-          
-        })
-    });
-  </script>
-
-
 
   
 
