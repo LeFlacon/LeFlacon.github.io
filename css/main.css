@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5dffff;
+  background: #081f03;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2585,8 +2585,8 @@ embed {
   display: inline-block;
 }
 .post {
-  margin: 19px 0px 45px 0px;
-  padding: 20px 30px 20px 30px;
+  margin: 19px -30px 45px -30px;
+  padding: 20px 50px 20px 50px;
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
   -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background: rgba(255,255,255,0.65) none repeat scroll !important;
@@ -2717,7 +2717,7 @@ body {
 }
 .comments {
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  margin: 80px 0px 40px 0px;
+  margin: 80px -30px 40px -30px;
   padding: 10px 20px 10px 20px;
 }
 .post-toc .nav .nav-child {
@@ -2795,18 +2795,6 @@ img:hover {
   color: #7f7f7f;
   font-size: 13px;
   margin-top: 15px;
-}
-.post-sticky-flag {
-  font-size: inherit;
-  float: left;
-  color: #000;
-  cursor: help;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
-}
-.post-sticky-flag:hover {
-  color: #07b39b;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
