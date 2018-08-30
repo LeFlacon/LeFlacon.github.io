@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[wxpy -- 用 Python 玩微信]]></title>
+    <url>%2F2018%2F08%2F30%2Fwxpy%2F</url>
+    <content type="text"><![CDATA[wxpy – 用 Python 玩微信 在csdn公众号上看见的，感觉好妙，而且操作简单，这就去玩诶嘿 安装wxpy 安装pip（python包管理工具）打开终端，输入sudo easy_install pip 安装wxpy装好pip之后继续在终端输入suso pip3 install -U wxpy （这里如果是python3的话就写pip3，2的话就写pip2，查找python版本的办法是在终端输入python -V（大写）） 用wxpy愉快的玩耍 导入模块，初始化机器人（会扫一个二维码登陆微信） 官方文档里说最好用小号试0.0，但是我没有小号啊，直接大号玩0.0，被微信web封也拦不住我(￣Д￣)ﾉ 拿基友来做实验 (=´∀｀)人(´∀｀=) 新建一个变量就好了，随便记录一下，涂掉的是微信昵称 123@bot.register() def print_others(msg): print(msg) 然后有了上面这段就会print实时消息了，这样就能直接在python上实现最基本的收发消息了，奇妙啊，然后继续试了一大堆乱七八糟的功能，官方文档真的说的相当详细了，传送门放下面啦～ wxpy传送门官方文档：wxpy: 用 Python 玩微信github地址：微信机器人 / 可能是最优雅的微信个人号 API ✨✨]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[文章阅读次数显示：Counter not initialized! See more at consoleerr msg的解决办法]]></title>
     <url>%2F2018%2F08%2F29%2Fhexo5%2F</url>
     <content type="text"><![CDATA[文章阅读次数显示：Counter not initialized! See more at consoleerr msg的解决办法按照网上的leancloud教程配置下来，但是就是显示Counter not initialized! See more at consoleerr msg 然后百度查到了这篇文章：Leancloud访客统计插件重大安全漏洞修复指南 猜测应该和next升级版啥的或者安全性有关，就按照这篇文章里说的配置了各种， 装了「leancloud-counter-security」这个插件，本以为能解决了的，然而还是显示那句英文(#ﾟДﾟ) 拖了好几天没解决，然后有一次在主题配置文件里乱翻终于发现了问题0.0，然后就是乱搞出奇迹了。。。这里放上我的解决办法 首先打开主题配置文件_config.yml，next下的那个，搜索valine:（虽然这个是基于leancloud的评论系统的和阅读量无关，但是在这里发现了很重要的一段话0.0） 可以看见visitor那一项后面有一段话，我把它截出来了，如下： 123456leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html目前不支持leancloud-counter-security。 当访问者设置为true时，建议appid和appkey与leancloud_visitors相同，以实现计数器兼容性。 文章阅读统计https://valine.js.org/visitor.html 这里说「leancloud-counter-security」这个插件是不支持的，我原来visitor设置的是false，然后把它改成了ture 然后在_config.yml里搜索leancloud_visitors:，如图： 这里这段话如下： 12345If you don't care about security in lc counter and just want to use it directly(without hexo-leancloud-counter-security plugin), set the `security` to `false`.如果您不关心lc计数器的安全性，只想直接使用它（没有hexo-leancloud-counter-security插件），将`security`设置为`false`。 security这项，我原来设置的就是true，不知道有没有关系，此处只是放上我的设置而已 然后打开leancloud，打开这个项目，存储–Counter–其他–权限设置： 原来跟着那篇文章把add_fields这一项设了指定用户，然后现在改成了所有用户，虽然这样或许会对安全性有影响0.0，但是管他呢反正能用了先这样再说Σ（ﾟдﾟlll） 设置了上面这两个，重新hexo-clean-g-d之后就可以发现阅读量正常显示了，但是这都是在上面那篇别人博客里的文章设置完成且仍出现此问题的情况下设置的，所以不清楚是不是二者相互作用的结果0.0]]></content>
