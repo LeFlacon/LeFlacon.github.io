@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leflacon.github.io/2018/08/14/blog/</loc>
+    
+    <lastmod>2018-08-31T07:16:42.149Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leflacon.github.io/2018/08/31/A.%20Too%20Rich/</loc>
+    
+    <lastmod>2018-08-31T06:42:30.023Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leflacon.github.io/2018/08/30/wxpy/</loc>
     
     <lastmod>2018-08-30T14:28:39.572Z</lastmod>
@@ -40,13 +54,6 @@
     <loc>http://leflacon.github.io/2018/08/29/hexo4/</loc>
     
     <lastmod>2018-08-29T06:27:04.210Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/2018/08/14/blog/</loc>
-    
-    <lastmod>2018-08-28T15:30:43.395Z</lastmod>
     
   </url>
   
