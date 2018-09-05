@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e4449a;
+  background: #09ff3d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2601,7 +2601,7 @@ body {
   background: url("https://hbimg.b0.upaiyun.com/fe7343d213869361a4428c581278d427e3d2b0aa9725-Os4lwD_fw658");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 100%;
+  background-position: 50% 50%;
   background-size: cover;
 }
 .headband {
