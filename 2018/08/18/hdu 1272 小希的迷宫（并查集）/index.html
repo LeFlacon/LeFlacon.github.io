@@ -134,18 +134,18 @@
 
 
 
-  <meta name="description" content="hdu 1272 小希的迷宫（并查集）http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），">
+  <meta name="description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），现在她也想设计一个迷宫让Gardon来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdu 1272 小希的迷宫（并查集）">
 <meta property="og:url" content="http://leflacon.github.io/2018/08/18/hdu 1272 小希的迷宫（并查集）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="hdu 1272 小希的迷宫（并查集）http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），">
+<meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），现在她也想设计一个迷宫让Gardon来">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://acm.hdu.edu.cn/data/images/C20-1007-1.jpg">
-<meta property="og:updated_time" content="2018-08-18T15:27:38.211Z">
+<meta property="og:updated_time" content="2018-09-09T07:31:09.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 1272 小希的迷宫（并查集）">
-<meta name="twitter:description" content="hdu 1272 小希的迷宫（并查集）http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），">
+<meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1272Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem Description上次Gardon的迷宫城堡小希玩了很久（见Problem B），现在她也想设计一个迷宫让Gardon来">
 <meta name="twitter:image" content="http://acm.hdu.edu.cn/data/images/C20-1007-1.jpg">
 
 
@@ -391,12 +391,24 @@
                 
               
 
-              <time title="创建时间：2018-08-18 23:27:23 / 修改时间：23:27:38" itemprop="dateCreated datePublished" datetime="2018-08-18T23:27:23+08:00">2018-08-18</time>
+              <time title="创建时间：2018-08-18 23:27:23" itemprop="dateCreated datePublished" datetime="2018-08-18T23:27:23+08:00">2018-08-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-09 15:31:09" itemprop="dateModified" datetime="2018-09-09T15:31:09+08:00">2018-09-09</time>
               
             
           </span>
@@ -468,7 +480,7 @@
       
 
       
-        <h1 id="hdu-1272-小希的迷宫（并查集）"><a href="#hdu-1272-小希的迷宫（并查集）" class="headerlink" title="hdu 1272 小希的迷宫（并查集）"></a>hdu 1272 小希的迷宫（并查集）</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1272" rel="external nofollow noopener noreferrer" target="_blank">http://acm.hdu.edu.cn/showproblem.php?pid=1272</a><br>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others)</p>
+        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1272" rel="external nofollow noopener noreferrer" target="_blank">http://acm.hdu.edu.cn/showproblem.php?pid=1272</a><br>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others)</p>
 <h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>上次Gardon的迷宫城堡小希玩了很久（见Problem B），现在她也想设计一个迷宫让Gardon来走。但是她设计迷宫的思路不一样，首先她认为所有的通道都应该是双向连通的，就是说如果有一个通道连通了房间A和B，那么既可以通过它从房间A走到房间B，也可以通过它从房间B走到房间A，为了提高难度，小希希望任意两个房间有且仅有一条路径可以相通（除非走了回头路）。小希现在把她的设计图给你，让你帮忙判断她的设计图是否符合她的设计思路。比如下面的例子，前两个是符合条件的，但是最后一个却有两种方法从5到达8。<br><img src="http://acm.hdu.edu.cn/data/images/C20-1007-1.jpg" alt=""></p>
 <h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入包含多组数据，每组数据是一个以0 0结尾的整数对列表，表示了一条通道连接的两个房间的编号。房间的编号至少为1，且不超过100000。每两组数据之间有一个空行。<br>整个文件以两个-1结尾。</p>
 <h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对于输入的每一组数据，输出仅包括一行。如果该迷宫符合小希的思路，那么输出”Yes”，否则输出”No”。</p>
@@ -702,7 +714,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hdu-1272-小希的迷宫（并查集）"><span class="nav-number">1.</span> <span class="nav-text">hdu 1272 小希的迷宫（并查集）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.0.1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.0.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.0.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.0.4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.0.5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">1.0.6.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">1.0.7.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">6.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">7.</span> <span class="nav-text">代码：</span></a></li></ol></div>
             
 
           </div>
@@ -788,7 +800,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有53.6k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有52.8k字啦 </span>
 </div>
 
 <br>

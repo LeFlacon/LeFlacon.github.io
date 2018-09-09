@@ -134,18 +134,18 @@
 
 
 
-  <meta name="description" content="hdu 5047 Sawtooth（java大数，分割平面问题）Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into">
+  <meta name="description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into two regions.● Two lines can divi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdu 5047 Sawtooth（java大数，分割平面问题）">
 <meta property="og:url" content="http://leflacon.github.io/2018/09/08/hdu 5047 Sawtooth（java大数，分割平面问题）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="hdu 5047 Sawtooth（java大数，分割平面问题）Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into">
+<meta property="og:description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into two regions.● Two lines can divi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://acm.hdu.edu.cn/data/images/C537-1006-1.jpg">
-<meta property="og:updated_time" content="2018-09-08T14:54:53.774Z">
+<meta property="og:updated_time" content="2018-09-09T07:26:20.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 5047 Sawtooth（java大数，分割平面问题）">
-<meta name="twitter:description" content="hdu 5047 Sawtooth（java大数，分割平面问题）Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into">
+<meta name="twitter:description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into two regions.● Two lines can divi">
 <meta name="twitter:image" content="http://acm.hdu.edu.cn/data/images/C537-1006-1.jpg">
 
 
@@ -391,12 +391,24 @@
                 
               
 
-              <time title="创建时间：2018-09-08 23:54:00 / 修改时间：22:54:53" itemprop="dateCreated datePublished" datetime="2018-09-08T23:54:00+08:00">2018-09-08</time>
+              <time title="创建时间：2018-09-08 23:54:00" itemprop="dateCreated datePublished" datetime="2018-09-08T23:54:00+08:00">2018-09-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-09 15:26:20" itemprop="dateModified" datetime="2018-09-09T15:26:20+08:00">2018-09-09</time>
               
             
           </span>
@@ -468,7 +480,7 @@
       
 
       
-        <h1 id="hdu-5047-Sawtooth（java大数，分割平面问题）"><a href="#hdu-5047-Sawtooth（java大数，分割平面问题）" class="headerlink" title="hdu 5047 Sawtooth（java大数，分割平面问题）"></a>hdu 5047 Sawtooth（java大数，分割平面问题）</h1><p>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others)</p>
+        <p>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others)</p>
 <h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Think about a plane:</p>
 <p>● One straight line can divide a plane into two regions.<br>● Two lines can divide a plane into at most four regions.<br>● Three lines can divide a plane into at most seven regions.<br>● And so on…</p>
 <p>Now we have some figure constructed with two parallel rays in the same direction, joined by two straight segments. It looks like a character “M”. You are given N such “M”s. What is the maximum number of regions that these “M”s can divide a plane ?</p>
@@ -482,7 +494,8 @@
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>如图有n个“M”，求能把矩形分成几块</p>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p><code>ans=8*n*n-7*n+1</code></p>
-<p>证明见这个传送门，tqltql∑(ﾟДﾟ) <a href="https://blog.csdn.net/qq_34131212/article/details/78043679" rel="external nofollow noopener noreferrer" target="_blank">折线分割平面问题总结</a></p>
+<p>首先n条直线可以把平面分成<code>n*(n+1)/2+1</code>个区域，那么对于<code>4*n</code>条直线来说，可以分成<code>2*n*(4*n+1)+1</code>个区域，一个“M”延长出去后，最多会多9块，也就是说因为“M”型的特殊性，每次会少<code>9*n</code>个块，所以答案为<code>8*n*n-7*n+1</code></p>
+<p>其余各种类型分割平面见这个传送门，学习了学习了∑(ﾟДﾟ) <a href="https://blog.csdn.net/qq_34131212/article/details/78043679" rel="external nofollow noopener noreferrer" target="_blank">折线分割平面问题总结</a></p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;  </span><br><span class="line"><span class="keyword">import</span> java.math.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner <span class="built_in">cin</span>=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> t;</span><br><span class="line">        t=<span class="built_in">cin</span>.nextInt();</span><br><span class="line">        BigInteger n,ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++) &#123;</span><br><span class="line">        	n=<span class="built_in">cin</span>.nextBigInteger();</span><br><span class="line">        	ans=n.multiply(BigInteger.valueOf(<span class="number">8</span>)).multiply(n);</span><br><span class="line">        	ans=ans.subtract(n.multiply(BigInteger.valueOf(<span class="number">7</span>)));</span><br><span class="line">        	ans=ans.add(BigInteger.valueOf(<span class="number">1</span>));</span><br><span class="line">        	System.out.println(<span class="string">"Case #"</span>+i+<span class="string">": "</span>+ans.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cin</span>.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -705,7 +718,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hdu-5047-Sawtooth（java大数，分割平面问题）"><span class="nav-number">1.</span> <span class="nav-text">hdu 5047 Sawtooth（java大数，分割平面问题）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.0.1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.0.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.0.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.0.4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.0.5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source"><span class="nav-number">1.0.6.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意："><span class="nav-number">1.0.7.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">1.0.8.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">1.0.9.</span> <span class="nav-text">代码：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Source"><span class="nav-number">6.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意："><span class="nav-number">7.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">8.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">9.</span> <span class="nav-text">代码：</span></a></li></ol></div>
             
 
           </div>
@@ -791,7 +804,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有53.6k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有52.8k字啦 </span>
 </div>
 
 <br>
