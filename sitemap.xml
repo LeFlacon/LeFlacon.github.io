@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://leflacon.github.io/404/index.html</loc>
+    <loc>http://leflacon.github.io/2018/08/11/hello-world/</loc>
     
-    <lastmod>2018-09-12T14:44:21.596Z</lastmod>
+    <lastmod>2018-09-12T15:29:52.578Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://leflacon.github.io/nothing/index.html</loc>
     
-    <lastmod>2018-09-12T14:07:09.454Z</lastmod>
+    <lastmod>2018-09-12T15:29:03.545Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leflacon.github.io/404.html</loc>
+    
+    <lastmod>2018-09-12T14:50:15.407Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leflacon.github.io/404/index.html</loc>
+    
+    <lastmod>2018-09-12T14:44:21.596Z</lastmod>
     
   </url>
   
@@ -628,13 +642,6 @@
     <loc>http://leflacon.github.io/categories/hexo.html</loc>
     
     <lastmod>2018-08-28T15:30:22.042Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/2018/08/11/hello-world/</loc>
-    
-    <lastmod>2018-08-24T16:57:35.503Z</lastmod>
     
   </url>
   

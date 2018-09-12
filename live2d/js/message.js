@@ -101,11 +101,11 @@ initTips();
     showMessage(text, 12000);
 })();
 
-window.setInterval(showHitokoto,30000);
+window.setInterval(showHitokoto,12000);
 
 function showHitokoto(){
     $.getJSON('https://sslapi.hitokoto.cn/',function(result){
-        showMessage(result.hitokoto, 5000);
+        showMessage(result.hitokoto, 8000);
     });
 }
 
