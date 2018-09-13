@@ -136,13 +136,14 @@
 
 
   <meta name="description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1729 Problem DescriptionThis game is a two-player game and is played as follows:  There are n boxes; each box has its size. The box can hold up to s stones if">
+<meta name="keywords" content="sg函数,尼姆博弈,组合游戏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdu 1729 Stone Game（尼姆博弈，sg函数）">
 <meta property="og:url" content="http://leflacon.github.io/2018/08/20/hdu 1729 Stone Game（尼姆博弈，sg函数）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1729 Problem DescriptionThis game is a two-player game and is played as follows:  There are n boxes; each box has its size. The box can hold up to s stones if">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-09T07:29:54.757Z">
+<meta property="og:updated_time" content="2018-09-13T07:14:29.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 1729 Stone Game（尼姆博弈，sg函数）">
 <meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1729 Problem DescriptionThis game is a two-player game and is played as follows:  There are n boxes; each box has its size. The box can hold up to s stones if">
@@ -266,9 +267,9 @@
         
         
           
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
         
         
@@ -423,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-09 15:29:54" itemprop="dateModified" datetime="2018-09-09T15:29:54+08:00">2018-09-09</time>
+                <time title="修改时间：2018-09-13 15:14:29" itemprop="dateModified" datetime="2018-09-13T15:14:29+08:00">2018-09-13</time>
               
             
           </span>
@@ -533,7 +534,7 @@
 </ul>
 <p>求每个盒子的sg函数值，<code>get_sg(s,c)</code>，假设每次的取的范围是<code>1～q</code>，那么有<code>q*q+q&lt;s</code> ，同时又要使q尽量大，则有<code>(q+1)*(q+1)+(q+1)&gt;=s</code></p>
 <p>所以先根据上限s找到这个q，然后和当前容量c比较判断是否合法，如果当前盒子里的c&gt;q，那么就可以一次性放满，这个盒子就没用了，反之如果不能一次性放满，就需要假设盒子容量是q，继续递归求上一步操作，<code>get_sg(q,c)</code>;</p>
-<p>要是倒着想感觉绕的话，那就把需要求两次的正过来想╮(￣▽￣””)╭，当前宝石个数是c，但是 <code>c+c*c&lt;s</code>，放不满怎么办，那就先放x个，x是多少现在我还不知道（因为越往后面平方越大，所以实际上我倒着想才会得到最优的结果），那么现在的宝石个数变成了（c+x）个，我可以放<code>1～(c+x)*(c+x)</code>个，如果按最大值放的话，此时就是(c+x)*(c+x)+(c+x)个，如果这个值恰好大于等于s，那么问题就最优的解决了</p>
+<p>要是倒着想感觉绕的话，那就把需要求两次的正过来想╮(￣▽￣””)╭，当前宝石个数是c，但是 <code>c+c*c&lt;s</code>，放不满怎么办，那就先放x个，x是多少现在我还不知道（因为越往后面平方越大，所以实际上我倒着想才会得到最优的结果），那么现在的宝石个数变成了（c+x）个，我可以放<code>1～(c+x)*(c+x)</code>个，如果按最大值放的话，此时就是<code>(c+x)*(c+x)+(c+x)</code>个，如果这个值恰好大于等于s，那么问题就最优的解决了</p>
 <p>然后求这几个sg值的Nim和即可</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_sg</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> q=<span class="built_in">sqrt</span>((<span class="keyword">double</span>)s);</span><br><span class="line">	<span class="keyword">while</span>(q+q*q&gt;=s)&#123;</span><br><span class="line">		q--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(c&gt;q)<span class="keyword">return</span> s-c;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> get_sg(q,c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,cas=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">		<span class="keyword">int</span> s,c;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,++cas);</span><br><span class="line">		<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;s,&amp;c);</span><br><span class="line">			ans^=get_sg(s,c);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(ans)<span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -553,6 +554,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sg函数/" rel="tag"># sg函数</a>
+          
+            <a href="/tags/尼姆博弈/" rel="tag"># 尼姆博弈</a>
+          
+            <a href="/tags/组合游戏/" rel="tag"># 组合游戏</a>
+          
+        </div>
       
 
       
@@ -648,9 +659,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -691,6 +702,123 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -839,7 +967,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有54.3k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有55.0k字啦 </span>
 </div>
 
 <br>

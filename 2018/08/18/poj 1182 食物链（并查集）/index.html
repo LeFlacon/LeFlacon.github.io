@@ -136,13 +136,14 @@
 
 
   <meta name="description" content="http://poj.org/problem?id=1182 Time Limit: 1000MS        Memory Limit: 10000K Description动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。有人用两种说法对这N个动物所构成的食">
+<meta name="keywords" content="并查集,数组加倍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="poj 1182 食物链（并查集）">
 <meta property="og:url" content="http://leflacon.github.io/2018/08/18/poj 1182 食物链（并查集）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://poj.org/problem?id=1182 Time Limit: 1000MS        Memory Limit: 10000K Description动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。有人用两种说法对这N个动物所构成的食">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-09T07:31:22.082Z">
+<meta property="og:updated_time" content="2018-09-13T07:04:50.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="poj 1182 食物链（并查集）">
 <meta name="twitter:description" content="http://poj.org/problem?id=1182 Time Limit: 1000MS        Memory Limit: 10000K Description动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。有人用两种说法对这N个动物所构成的食">
@@ -266,9 +267,9 @@
         
         
           
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
         
         
@@ -423,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-09 15:31:22" itemprop="dateModified" datetime="2018-09-09T15:31:22+08:00">2018-09-09</time>
+                <time title="修改时间：2018-09-13 15:04:50" itemprop="dateModified" datetime="2018-09-13T15:04:50+08:00">2018-09-13</time>
               
             
           </span>
@@ -505,7 +506,7 @@
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>分成三类 所以用 <strong>并查集+数组加倍</strong></p>
 <p>不知道当时在哪看到的这种数组加倍的写法 反正巨好用</p>
-<p>i (i+n) (i+2*n) 分别代表abc三个种类</p>
+<p><code>i (i+n) (i+2*n)</code>分别代表abc三个种类</p>
 <p>如果a吃b 就分别把三种的a和b的下一个join起来</p>
 <p>注意这题不合法的输入也要处理成假话</p>
 <p>下面是网上找的带权并查集的写法 但是我还是喜欢数组加倍。。<br><a href="https://blog.csdn.net/sunmaoxiang/article/details/80959300" rel="external nofollow noopener noreferrer" target="_blank">https://blog.csdn.net/sunmaoxiang/article/details/80959300</a></p>
@@ -526,6 +527,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/并查集/" rel="tag"># 并查集</a>
+          
+            <a href="/tags/数组加倍/" rel="tag"># 数组加倍</a>
+          
+        </div>
       
 
       
@@ -621,9 +630,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -664,6 +673,123 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -812,7 +938,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有54.3k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有55.0k字啦 </span>
 </div>
 
 <br>

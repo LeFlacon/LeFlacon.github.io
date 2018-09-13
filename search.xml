@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[hdu 4059 The Boss on Mars（容斥，四次方和，逆元）]]></title>
-    <url>%2F2018%2F09%2F13%2Fhdu4059%2F</url>
-    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others)http://acm.hdu.edu.cn/showproblem.php?pid=4059 Problem DescriptionOn Mars, there is a huge company called ACM (A huge Company on Mars), and it’s owned by a younger boss. Due to no moons around Mars, the employees can only get the salaries per-year. There are n employees in ACM, and it’s time for them to get salaries from their boss. All employees are numbered from 1 to n. With the unknown reasons, if the employee’s work number is k, he can get k^4 Mars dollars this year. So the employees working for the ACM are very rich. Because the number of employees is so large that the boss of ACM must distribute too much money, he wants to fire the people whose work number is co-prime with n next year. Now the boss wants to know how much he will save after the dismissal. InputThe first line contains an integer T indicating the number of test cases. (1 ≤ T ≤ 1000) Each test case, there is only one integer n, indicating the number of employees in ACM. (1 ≤ n ≤ 10^8) OutputFor each test case, output an integer indicating the money the boss can save. Because the answer is so large, please module the answer with 1,000,000,007. Sample Input123245 Sample Output1282354 Hint12Case1: sum=1+3*3*3*3=82Case2: sum=1+2*2*2*2+3*3*3*3+4*4*4*4=354 AuthorZHANG, Chao Source2011 Asia Dalian Regional Contest 题意：求1-n中与n互质的数的四次方的和 题解：这题的思路是：转化为求1-n中与n不互质的数的四次方的和，所以要先筛出素因子，然后利用容斥原理求解 下面是具体做法： 首先抛一个四次方求和公式 推导过程如下： 12345678910111213141516171819(x+1)^5=x^5+5*x^4+10*x^3+10*x^2+5*x+1然后从x=1开始列出n个式子2^5=(1+1)^5=1^5+5*1^4+10*1^3+10*1^2+5*1^1+1;3^5=(2+1)^5=2^5+5*2^4+10*2^3+10*2^2+5*2^1+1;……(n+1)^5=(n+1)^5=n^5+5*n^4+10*n^3+10*n^2+5*n^1+1;叠加得：(n+1)^5=1+5*(1^4+2^4+……n^4)+10*(1^3+2^3+……+n^3)+10*(1^2+2^2+……+n^2)+5*(1+2+……+n)+n再代入(1^3+2^3+……n^3)=(n+1)^2*n^2/4，(1^2+2^2+……n^2)=n*(n+1)*(2*n+1)/6，(1+2+……+n)=n*(n+1)/2即得(1^4+2^4+……+n^4)=n*(n+1)*(2n+1)*(3*n*n+3*n-1)/30; 公式里有个除以30，那么显然要用到逆元的知识了，费马小定理一下，除以30就是乘以pow(30,p-2)%p getnum(n)那个函数就是用来求四次方和的，写的时候括号来括号去的要小心0.0，反正我偷懒写一行然后wa了几次。。下次还是分开写清楚点。。（补上分开写的了，不过注释掉了） 然后就是容斥了 来举个例子吧，比如n=6，素因子是2，3，存入vector中，然后ans=1^3+2^3+3^3+4^3+5^3+6^3=2275，接下来枚举状态 [1,2^2)，即01，10，11，（第i位为1表示取第i个素因子），a记录当前状态素因子个数来确定容斥正负号，now记录当前状态素因子之积，那么答案就是：ans=ans-2^4*(3^4+2^4+1^4)-3^4*(2^4+1^4)+6^4*(1^4)，getnum(n/now)这个很巧妙的把该因子所有的倍数都算上了，2^4*(3^4+2^4+1^4)也就是2和2的所有倍数的四次方和（6^4+4^4+2^4） 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1000000007;const int N=100005;LL inv30,n;int prime[N],ji;bool vis[N];vector&lt;LL&gt;v;LL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b/=2; a=a*a%p; &#125; return ans;&#125;void init()&#123; inv30=qpow(30LL,p-2); ji=0; memset(vis,false,sizeof(vis)); for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;LL getnum(LL n)&#123; //(1^4+2^4+……+n^4)=n*(n+1)*(2n+1)*(3*n*n+3*n-1)/30 LL ans; ans=(n*(n+1)%p*(2*n+1)%p*((3*n*n)%p+(3*n-1)%p))%p; ans=(ans*inv30)%p; return ans; /*分开写的版本 LL ans; ans=(n*((n+1)%p))%p; ans=(ans*((2*n+1)%p))%p; ans=(ans*((3*n*n)%p+(3*n-1)%p))%p; ans=(ans*inv30)%p; return ans; */&#125;void solve()&#123; v.clear(); LL tmp=n; for(int i=0;i&lt;ji;i++)&#123; if(tmp%prime[i]==0)&#123; v.push_back(prime[i]); while(tmp%prime[i]==0)tmp/=prime[i]; &#125; &#125; if(tmp&gt;1)v.push_back(tmp); LL ans=getnum(n); for(int i=1;i&lt;(1&lt;&lt;v.size());i++)&#123; int a=0; LL now=1; for(int j=0;j&lt;v.size();j++)&#123; if(i&amp;(1&lt;&lt;j))&#123; a++; now=now*v[j]; &#125; &#125; LL res=qpow(now,4LL)*(getnum(n/now)%p)%p; if(a&amp;1)ans=(ans-res+p)%p; else ans=(ans+res+p)%p; &#125; printf("%lld\n",ans);&#125;int main()&#123; init(); int t; scanf("%d",&amp;t); while(t--)&#123; scanf("%lld",&amp;n); solve(); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Sum of the Line -- ACM-ICPC 2017 Asia Urumqi（容斥，平方和，逆元）]]></title>
+    <url>%2F2018%2F09%2F13%2FSum%20of%20the%20Line%2F</url>
+    <content type="text"><![CDATA[样例输入123223 样例输出1215 题意：求1-n中与n互质的数的平方和 题解：把这个题的代码改改就能交了hdu 4059 The Boss on Mars（容斥，四次方和，逆元） 思路和上面那个hdu4059一毛一样：转化为求1-n中与n不互质的数的平方的和，所以要先筛出素因子，然后利用容斥原理求解 下面是具体做法： 首先抛一个平方和公式1^2+2^2+...+n^2=n*(n+1)*(2*n+1)/6公式里有个除以6，求逆元费马小定理一下，除以6就是乘以pow(6,p-2)%p getnum(n)那个函数就是用来求平方和，然后就是容斥了 举个例子，比如n=6，素因子是2，3，存入vector中，然后ans=1^2+2^2+3^2+4^2+5^2+6^2，接下来枚举状态 [1,2^2)，即01，10，11，（第i位为1表示取第i个素因子），a记录当前状态素因子个数来确定容斥正负号，now记录当前状态素因子之积，那么答案就是：ans=ans-2^2*(3^2+2^2+1^2)-3^2*(2^2+1^2)+6^2*(1^2)，getnum(n/now)这个很巧妙的把该因子所有的倍数都算上了，2^2*(3^2+2^2+1^2)也就是2和2的所有倍数的平方和（6^2+4^2+2^2） 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=998244353;const int N=1000005;const int MAXN=100000005;LL inv6,n;int prime[N],ji;bool vis[N];vector&lt;LL&gt;v;LL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b/=2; a=a*a%p; &#125; return ans;&#125;void init()&#123; inv6=qpow(6LL,p-2); ji=0; memset(vis,false,sizeof(vis)); for(int i=2;i*i&lt;=MAXN;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;LL getnum(LL n)&#123; //1^2+2^2+...+n^2=n*(n+1)*(2*n+1)/6 LL ans; ans=(n*(n+1)%p*(2*n+1)%p)%p; ans=(ans*inv6)%p; return ans;&#125;void solve()&#123; v.clear(); LL tmp=n; for(int i=0;i&lt;ji;i++)&#123; if(tmp%prime[i]==0)&#123; v.push_back(prime[i]); while(tmp%prime[i]==0)tmp/=prime[i]; &#125; &#125; if(tmp&gt;1)v.push_back(tmp); LL ans=getnum(n); for(int i=1;i&lt;(1&lt;&lt;v.size());i++)&#123; int a=0; LL now=1; for(int j=0;j&lt;v.size();j++)&#123; if(i&amp;(1&lt;&lt;j))&#123; a++; now=now*v[j]; &#125; &#125; LL res=qpow(now,2LL)*(getnum(n/now)%p)%p; if(a&amp;1)ans=(ans-res+p)%p; else ans=(ans+res+p)%p; &#125; printf("%lld\n",ans);&#125;int main()&#123; init(); int t; scanf("%d",&amp;t); while(t--)&#123; scanf("%lld",&amp;n); solve(); &#125; return 0;&#125;]]></content>
       <categories>
         <category>数论</category>
       </categories>
+      <tags>
+        <tag>逆元</tag>
+        <tag>容斥</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4059 The Boss on Mars（与n互质的数的四次方的和）]]></title>
+    <url>%2F2018%2F09%2F13%2Fhdu4059%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others)http://acm.hdu.edu.cn/showproblem.php?pid=4059 Problem DescriptionOn Mars, there is a huge company called ACM (A huge Company on Mars), and it’s owned by a younger boss. Due to no moons around Mars, the employees can only get the salaries per-year. There are n employees in ACM, and it’s time for them to get salaries from their boss. All employees are numbered from 1 to n. With the unknown reasons, if the employee’s work number is k, he can get k^4 Mars dollars this year. So the employees working for the ACM are very rich. Because the number of employees is so large that the boss of ACM must distribute too much money, he wants to fire the people whose work number is co-prime with n next year. Now the boss wants to know how much he will save after the dismissal. InputThe first line contains an integer T indicating the number of test cases. (1 ≤ T ≤ 1000) Each test case, there is only one integer n, indicating the number of employees in ACM. (1 ≤ n ≤ 10^8) OutputFor each test case, output an integer indicating the money the boss can save. Because the answer is so large, please module the answer with 1,000,000,007. Sample Input123245 Sample Output1282354 Hint12Case1: sum=1+3*3*3*3=82Case2: sum=1+2*2*2*2+3*3*3*3+4*4*4*4=354 AuthorZHANG, Chao Source2011 Asia Dalian Regional Contest 题意：求1-n中与n互质的数的四次方的和 题解：这题的思路是：转化为求1-n中与n不互质的数的四次方的和，所以要先筛出素因子，然后利用容斥原理求解 下面是具体做法： 首先抛一个四次方求和公式 推导过程如下： 12345678910111213141516171819(x+1)^5=x^5+5*x^4+10*x^3+10*x^2+5*x+1然后从x=1开始列出n个式子2^5=(1+1)^5=1^5+5*1^4+10*1^3+10*1^2+5*1^1+1;3^5=(2+1)^5=2^5+5*2^4+10*2^3+10*2^2+5*2^1+1;……(n+1)^5=(n+1)^5=n^5+5*n^4+10*n^3+10*n^2+5*n^1+1;叠加得：(n+1)^5=1+5*(1^4+2^4+……n^4)+10*(1^3+2^3+……+n^3)+10*(1^2+2^2+……+n^2)+5*(1+2+……+n)+n再代入(1^3+2^3+……n^3)=(n+1)^2*n^2/4，(1^2+2^2+……n^2)=n*(n+1)*(2*n+1)/6，(1+2+……+n)=n*(n+1)/2即得(1^4+2^4+……+n^4)=n*(n+1)*(2n+1)*(3*n*n+3*n-1)/30; 公式里有个除以30，那么显然要用到逆元的知识了，费马小定理一下，除以30就是乘以pow(30,p-2)%p getnum(n)那个函数就是用来求四次方和的，写的时候括号来括号去的要小心0.0，反正我偷懒写一行然后wa了几次。。下次还是分开写清楚点。。（补上分开写的了，不过注释掉了） 然后就是容斥了 来举个例子吧，比如n=6，素因子是2，3，存入vector中，然后ans=1^4+2^4+3^4+4^4+5^4+6^4=2275，接下来枚举状态 [1,2^2)，即01，10，11，（第i位为1表示取第i个素因子），a记录当前状态素因子个数来确定容斥正负号，now记录当前状态素因子之积，那么答案就是：ans=ans-2^4*(3^4+2^4+1^4)-3^4*(2^4+1^4)+6^4*(1^4)，getnum(n/now)这个很巧妙的把该因子所有的倍数都算上了，2^4*(3^4+2^4+1^4)也就是2和2的所有倍数的四次方和（6^4+4^4+2^4） 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1000000007;const int N=100005;LL inv30,n;int prime[N],ji;bool vis[N];vector&lt;LL&gt;v;LL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b/=2; a=a*a%p; &#125; return ans;&#125;void init()&#123; inv30=qpow(30LL,p-2); ji=0; memset(vis,false,sizeof(vis)); for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;LL getnum(LL n)&#123; //(1^4+2^4+……+n^4)=n*(n+1)*(2n+1)*(3*n*n+3*n-1)/30 LL ans; ans=(n*(n+1)%p*(2*n+1)%p*((3*n*n)%p+(3*n-1)%p))%p; ans=(ans*inv30)%p; return ans; /*分开写的版本 LL ans; ans=(n*((n+1)%p))%p; ans=(ans*((2*n+1)%p))%p; ans=(ans*((3*n*n)%p+(3*n-1)%p))%p; ans=(ans*inv30)%p; return ans; */&#125;void solve()&#123; v.clear(); LL tmp=n; for(int i=0;i&lt;ji;i++)&#123; if(tmp%prime[i]==0)&#123; v.push_back(prime[i]); while(tmp%prime[i]==0)tmp/=prime[i]; &#125; &#125; if(tmp&gt;1)v.push_back(tmp); LL ans=getnum(n); for(int i=1;i&lt;(1&lt;&lt;v.size());i++)&#123; int a=0; LL now=1; for(int j=0;j&lt;v.size();j++)&#123; if(i&amp;(1&lt;&lt;j))&#123; a++; now=now*v[j]; &#125; &#125; LL res=qpow(now,4LL)*(getnum(n/now)%p)%p; if(a&amp;1)ans=(ans-res+p)%p; else ans=(ans+res+p)%p; &#125; printf("%lld\n",ans);&#125;int main()&#123; init(); int t; scanf("%d",&amp;t); while(t--)&#123; scanf("%lld",&amp;n); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>逆元</tag>
+        <tag>容斥</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1502 Regular Words（dp，java高精度）]]></title>
@@ -15,6 +31,10 @@
       <categories>
         <category>dp</category>
       </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1013 Digital Roots（数根公式推导）]]></title>
@@ -23,6 +43,9 @@
       <categories>
         <category>数论</category>
       </categories>
+      <tags>
+        <tag>数根</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 5973 Game of Taking Stones（威佐夫博弈，java大数，二分求高精度根号）]]></title>
@@ -31,6 +54,11 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>威佐夫博弈</tag>
+        <tag>java大数</tag>
+        <tag>二分</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 5047 Sawtooth（java大数，分割平面问题）]]></title>
@@ -39,6 +67,10 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+        <tag>分割平面</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 5050 Divided Land（java大数，二进制）]]></title>
@@ -47,6 +79,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1212 Big Number（java大数取模）]]></title>
@@ -55,6 +90,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 6222 Heron and His Triangle（海伦公式，打表找规律，java大数）]]></title>
@@ -63,6 +101,11 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+        <tag>数列</tag>
+        <tag>海伦公式</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 2054 A == B ?（java高精度）]]></title>
@@ -71,14 +114,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
@@ -87,6 +125,21 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>java大数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[java大数水题集 高精度]]></title>
@@ -95,6 +148,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1753 大明A+B（java高精度小数）]]></title>
@@ -103,6 +159,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1316 How Many Fibs?（java大数，区间斐波那契）]]></title>
@@ -111,6 +170,10 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>斐波那契</tag>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1063 Exponentiation（java高精度）]]></title>
@@ -119,6 +182,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1250 Hat's Fibonacci（java大数）]]></title>
@@ -127,6 +193,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1715 大菲波数（java大数）]]></title>
@@ -135,6 +204,10 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>斐波那契</tag>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1047 Integer Inquiry（java大数）]]></title>
@@ -143,6 +216,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1042 N!（Java大整数，阶乘）]]></title>
@@ -151,6 +227,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1002 A + B Problem II（java大数）]]></title>
@@ -159,6 +238,9 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[C. Catalan Square -- Nordic Collegiate Programming Contest 2014（java大数，卡特兰数）]]></title>
@@ -167,6 +249,10 @@
       <categories>
         <category>java--BigInteger</category>
       </categories>
+      <tags>
+        <tag>java大数</tag>
+        <tag>卡特兰数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[A. Too Rich -- ACM Changchun 2015（贪心，dfs，回溯）]]></title>
@@ -175,6 +261,10 @@
       <categories>
         <category>贪心</category>
       </categories>
+      <tags>
+        <tag>dfs</tag>
+        <tag>贪心</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[wxpy -- 用 Python 玩微信]]></title>
@@ -183,6 +273,10 @@
       <categories>
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
+      <tags>
+        <tag>微信</tag>
+        <tag>python</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[文章阅读次数显示：Counter not initialized! See more at consoleerr msg的解决办法]]></title>
@@ -191,14 +285,23 @@
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>leancloud</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo下各种博客美化和功能插件汇总]]></title>
+    <title><![CDATA[hexo下各种博客美化和功能插件汇总（内附本博客css样式）]]></title>
     <url>%2F2018%2F08%2F29%2Fblog2.0%2F</url>
     <content type="text"><![CDATA[自从开始捣鼓hexo也有十几天了，有了点基本功能之后就走上了博客美化的不归路 ◡ ヽ(`Д´)ﾉ ┻━┻ ，这个过程简直是摸爬滚打，各种看不懂各种试效果，而且百度对hexo似乎不是很友好啊，一般的教程都是csdn和简书之类的会放在前面，而且nexT主题还更新了，有些老的教程配置就没法用，还得看官方文档啥的0.0，这篇博客大概记录一下一些问题和几个汇总链接 「目录」 【博客美化和功能插件汇总】包括背景和背景动态效果，各种样式设置，递交搜索引擎，评论功能，阅读数，置顶……反正新手上手需要的，大佬的博客里都有 【捕捉一只会聊天的看板娘live2d】 【访客小地球插件revolvermaps】 【给hexo设置不同的背景图片（随机或轮播）】 【在菜单栏添加新页面with新图标】 【其他杂七杂八的记录】1.npm无法装插件，549 throw err的解决办法2.hexo g时报错Template render error: unexpected token: &gt;3.文章阅读次数显示：Counter not initialized! See more at consoleerr msg 博客美化和功能插件汇总hexo大佬的教程最前面肯定要放上大佬的这篇：打造个性超赞博客Hexo+NexT+GitHubPages的超深度优化 next主题升级可能出现的一些问题和解决：next主题升级6.0 其他还有很多，因为内容有重复就懒的放了，总之只要获得一个大佬的博客，那么通过他的友链，友链的友链，友链的友链的友链……你就能获得一堆大佬的博客啦～可以去控制台或者通过网页源代码看看那些好看的博客的秘密，虽然大佬们一般是不会留下踪迹的╮(￣▽￣””)╭ 总之要先看完第一篇懂个大概才行，不然真的是一头雾水，之前不知道「themes/next/source/css/_custom/custom.styl」这个文件是next专门留给用户自定义样式的，以至于跟着别的教程改了一点点不知道哪里的样式设置的源码0.0，要改回来就不方便了，下面也放上我的css样式设置，有些是参考大佬的，没有写很多0.0硬学css，有点乱而且有些地方其实不知道实际是否存在相应对象 _ (:з」∠)_ 都是保存刷新看效果试出来的 我的custom.styl（现在的可能有改动）123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234// Custom styles.// 主页文章添加阴影效果 .post &#123; margin: 19px 0px 45px 0px;//外框离外外框距离 padding: 10px 30px 5px 30px;//文字离外框距离 -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5); -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5); background: rgba(255,255,255,0.65) none repeat scroll !important; &#125;// 页面背景图body &#123; background: url(https://hbimg.b0.upaiyun.com/fe7343d213869361a4428c581278d427e3d2b0aa9725-Os4lwD_fw658); background-repeat: no-repeat; background-attachment:fixed; background-position:50% 100%; background-size: cover; &#125;// 页面最顶部的横线.headband &#123; height: 1.5px; background-image: linear-gradient(90deg, #e3cae4 0%, #ffffff 15%, #d6ceff 30%, #e3cae4 44%, #afc4e0 58%, #d2e4fd 72%, #d1d1ef 86%, #e3cae4 100%);&#125;// 页面顶部行高.header &#123; line-height: 1.5;&#125;// 页面留白更改.header-inner &#123; padding-top: 20px; padding-bottom: 5px;&#125;.posts-expand &#123; padding-top: 10px;&#125;.posts-expand .post-meta &#123; margin: 5px 0px 0px 0px;&#125;.post-button &#123; margin-top: 0px;&#125;// 站点名背景.brand&#123; background-color: rgba(255, 255, 255, 0); margin-top: 15px; padding: 0px;&#125;// 站点名字体.site-title &#123; font-family: Times; font-size: 38px; font-weight: bold; color: #222222;&#125;// 站点子标题.site-subtitle&#123; padding-top: 11px; padding-bottom: 5px;&#125;// 去除页面底部页码上面的横线.pagination &#123; border: none; margin: 0px;&#125;// 去掉图片边框.posts-expand .post-body img &#123; border: none; padding: 0px;&#125;.post-gallery .post-gallery-img img &#123; padding: 3px;&#125;.posts-expand .post-title &#123; font-family: Times; font-size: 26px; font-weight: 700; letter-spacing: 1px;&#125;// 文章的描述description.posts-expand .post-meta &#123; font-size: 14px; margin-top: 20px; margin-bottom: 20px; color: #666;&#125;// [Read More]按钮样式.post-button .btn &#123; background-color: #3f3f3f; margin-top: 20px; margin-bottom: 20px; border-color: #7f7f7f;&#125;.post-button .btn:hover &#123; border-color: #7f7f7f; background-color: #ffffff;&#125;// 去除在页面文章之间的分割线.posts-expand .post-eof &#123; margin: 0px; background-color: rgba(255, 255, 255, 0);&#125;// 去除页面底部页码上面的横线.pagination &#123; border: none; margin: 0px;&#125;// 右下角返回顶部按钮样式.back-to-top &#123; background-color: #373737; border-radius: 5px;&#125;.back-to-top.back-to-top-on &#123; bottom: 10px;&#125;// 分类页面.post-block.page &#123; margin-top: 40px; margin-right: 30px; margin-left: 30px;&#125;.category-all-page &#123; margin: -80px 0px 40px 0px; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); background-color: rgba(255, 255, 255, 0.5); padding: 80px 20px 100px 40px;//上右下左&#125;// 选中文字部分的样式::selection &#123; background-color: #fced6d; color: #222222;&#125;// 侧栏.sidebar &#123; background-color: rgba(255, 255, 255, 0.5); padding-left: 10px;&#125;.sidebar-inner &#123; margin-top: 0px;&#125;// 自定义页脚跳动的心样式@keyframes heartAnimate &#123; 0%,100%&#123;transform:scale(1);&#125; 10%,30%&#123;transform:scale(0.9);&#125; 20%,40%,60%,80%&#123;transform:scale(1.1);&#125; 50%,70%&#123;transform:scale(1.1);&#125;&#125;#heart &#123; animation: heartAnimate 1s ease-in-out infinite;&#125;.with-love &#123; color: rgba(255,0,0,0.5);&#125;// 文章底部评论.comments &#123; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); margin: 80px 0px 40px 0px; padding: 10px 20px 10px 20px;&#125;.post-toc .nav .nav-child &#123; display: block;&#125;// 侧栏.sidebar &#123; box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.3); background-color: rgba(255, 255, 255, 0.6);&#125;.sidebar-inner &#123; margin-top: 30px;&#125;// 侧栏顶部文字.sidebar-nav li &#123; font-size: 15px; font-weight: bold; color: #7f7f7f;&#125;.sidebar-nav li:hover &#123; color: #222222;&#125;.sidebar-nav .sidebar-nav-active &#123; color: #222222; border-bottom-color: #7f7f7f; border-bottom-width: 1.5px;&#125;.sidebar-nav .sidebar-nav-active:hover &#123; color: #626262;&#125;// 侧栏站点概况行高.site-overview &#123; line-height: 1;&#125;// 侧栏头像（圆形以及旋转效果）.site-author-image &#123; border: 2px inset rgb(255, 255, 255); border-radius: 100%; transition: transform 1.0s ease-out;&#125;img:hover &#123; transform: rotateZ(360deg);&#125;.posts-expand .post-body img:hover &#123; transform: initial;&#125;// 侧栏站点作者名.site-author-name &#123; padding: 25px; font-size: 20px; //font-family: Times; color: #626262;&#125;// 侧栏站点描述.site-description &#123; letter-spacing: 5px; font-size: 15px; font-weight: bold; margin-top: 15px; margin-left: 13px; color: #656565;&#125;// 侧栏站点文章、分类、标签.site-state &#123; line-height: 1.3; margin-left: 12px;&#125;.site-state-item &#123; padding: 0px 15px; border-left: 1.5px solid #7f7f7f;&#125;// 自定义的侧栏时间样式#days &#123; padding: 30px; display: block; color: #7f7f7f; font-size: 13px; margin-top: 15px;&#125; 获取十六进制的颜色rgb（0，0，0）这种常识就不说了 然后还有一种rgba（0，0，0，0）最后一位是设置透明度的，1是不透0是全透 最后一种就是用十六进制表示，可以看到代码里很多都是这种，下面就讲一下 「利用chrome浏览器的取十六进制色方法」 1.右键——检查 2.在下图的位置输入color然后回车，会跳到冒号后，输入red再回车，这时候会出现一个红色小方块，点击左侧任何网页里的地方，就可以获得这个地方的颜色，还有一个上下的箭头，就可以获得rgba了 关于css里的padding和margin还是记录一下吧，margin和padding我一开始也分不清，多设置了几次就发现效果了，如下图： 可以看见一个文章框，对于post这部分来说margin设置的是文字矩形到阴影框的距离，padding设置的是两个阴影框之间的距离 捕捉一只会聊天的看板娘live2d这个花了好久才捕捉成功 ಥ_ಥ 因为一开始啥都不会么。。 github地址：hexo-helper-live2d这个是没有聊天功能的，效果如下： github地址：Live2D教程：Live2D！把可爱的看板娘捕捉到你的博客去吧给博客添加能动的看板娘(Live2D)-将其添加到网页上吧实现的效果和本站的看板娘差不多，就不贴图了，不过我的live2d出处不是这个0.0 不懂html一开始没懂啥叫把代码放到合适的位置0.0，然后看了一下别人的网页源代码，在一大片代码中搜索live2d就知道啦～结合教程很好上手 访客小地球插件revolvermaps写在另一篇博客里了，放上传送门，效果见右侧侧栏站点概览下方 给hexo添加访客小地球插件revolvermaps 给hexo设置不同的背景图片（随机或轮播）理论上随机和轮播是两种： 第一种是轮播：用 jquery-backstretch，这种方法的特点是可以选择自己喜欢的图片进行轮播，但是比下面那个方法麻烦，我太菜了还没研究清楚，这里就不讲了 第二种是随机：用了个相当简单投机取巧的方法，偶然一试竟然还真的可以，只要刷新一下就能换张图，具体操作是只要获得一个随机图片的接口，然后在custom.styl里连上就行了， 各种随机图片的API写在了这篇博客里：几个随机图片API接口(给hexo设置随机背景图片) 在菜单栏添加新页面with新图标开始的时候是想给自己做一个类似说说的页面，实现很草率(/ω＼)，就直接把leancloud的评论功能拿来当说说用，所以这样就需要在菜单栏新建一个页面了，操作如下： 生成新的自定义页面输入sudo hexo new page &quot;nothing&quot; 然后在source下就会有一个nothing文件夹生成，打开之后自己编辑那个index.md页面就行了 把新页面添加到菜单栏打开主题配置文件，找到menu那一块，如下配置： 说说: /nothing || star 第一项是显示的名字，第二项是对应的页面名，第三项是图标 next主题的图标来自Font Awesome，相当方便，只要在图标库里找到那个图标，然后直接输入图标名字即可，附上图标库链接 http://www.fontawesome.com.cn/faicons/ 其他杂七杂八的记录： npm无法装插件，549 throw err的解决办法有一次玩着玩着不小心把npm给玩坏了一直报错,没法install也没法uninstall，当时没截图，在历史记录里找到了一个开头：module.js:549 throw err; ^ Error: Cannot find module……把npm删了重装就好了0.0，下次用npm装插件的时候再也不强退了，这玩意儿似乎不好折腾 hexo g时报错Template render error: unexpected token: &gt;Template render error: (unknown path) [Line 28, Column 143] unexpected token: &gt; 如下图： 查了一下原因是因为md文件里有一些未转义字符报的奇奇怪怪的错，找了一下还真是，就因为我那篇里用了一个这样的颜文字 编译的时候是不允许两对包起来的大括号这种形式的出现的，而且后来改成了注释掉的形式还是报错0.0实在是。。解决办法当然是把这个删了就好了 文章阅读次数显示：Counter not initialized! See more at consoleerr msg放个传送门，一个瞎折腾的方法0.0 文章阅读次数显示：Counter not initialized! See more at consoleerr msg的解决办法 其他问题好像还有一些吧，一时没记录也想不起来，以后或许会更新吧(￣Д￣)ﾉ唉天天放着控制台里的错不管，好愧疚0.0，好晚了不写了睡了睡了]]></content>
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>css</tag>
+        <tag>live2d</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[几个随机图片API接口(给hexo设置随机背景图片)]]></title>
@@ -207,6 +310,10 @@
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>api</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[给hexo添加访客小地球插件revolvermaps]]></title>
@@ -215,6 +322,10 @@
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>revolvermaps</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1136 欧拉函数]]></title>
@@ -223,6 +334,10 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>欧拉函数</tag>
+        <tag>容斥</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1137 矩阵乘法]]></title>
@@ -239,6 +354,11 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>rmq</tag>
+        <tag>dp</tag>
+        <tag>线段树</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1079 中国剩余定理]]></title>
@@ -247,6 +367,10 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>中国剩余定理</tag>
+        <tag>逆元</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1181 质数中的质数（质数筛法,埃筛素数）]]></title>
@@ -255,6 +379,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>埃筛素数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1183 编辑距离（dp，字符串）]]></title>
@@ -263,6 +390,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1185 威佐夫游戏 V2（高精度，乘法模拟）]]></title>
@@ -271,6 +401,10 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>威佐夫博弈</tag>
+        <tag>模拟</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[计算黄金分割数小数点后1000位（java大数，斐波那契，二分求根号5高精度）]]></title>
@@ -279,11 +413,16 @@
       <categories>
         <category>数论</category>
       </categories>
+      <tags>
+        <tag>斐波那契</tag>
+        <tag>java大数</tag>
+        <tag>黄金分割数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[CTU 2017 G.Ice cream samples（乱搞一通）]]></title>
     <url>%2F2018%2F08%2F21%2FCTU%202017%20G.Ice%20cream%20samples%2F</url>
-    <content type="text"><![CDATA[To encourage visitors active movement among the attractions, a circular path with ice creamstands was built in the park some time ago. A discount system common for all stands wasalso introduced. When a customer buys ice cream at some stand, he is automatically granted adiscount for one day at the next stand on the path. When visitors start at any stand and followsystematically the discount directions to the next stands, they eventually traverse the wholecircular path and return back to the stand they started at. Ice creams of various brands are sold at the stands. Additionally, each stand sells a nice samplebox which contains small samples of popular ice cream brands. The number of samples in thebox depends on the stand and various stands may put different brands into their sample boxes. Each box contains samples of one or more brands. A brand may be represented by one or moresamples in the box, or it may be completely missing. Each stand sells only one type of samplebox (the brands of the samples in the box are always the same for that particular stand). Quido and Hugo are going to exploit the discount system for their own benefit. They decidedto start at some stand and then continue in the direction of the discounts buying one ice creamsample box at each stand they visit in a consecutive sequence. Their goal is to collect at leastone sample of each ice cream brand sold in the park. Simultaneously, to respect their stomachcapacities, they want to minimize the total number of ice cream samples they buy. Input SpecificationThere are more test cases. Each case starts with a line containing two integers N, K separatedby space (1 ≤ N, K ≤ 106). N is the number of ice cream stands, K is the total number ofdifferent ice cream brands sold at all stands. The brands are labeled by numbers 1, 2, . . . , K.Next, there are N lines describing stands in their visiting order. Each such line contains thelist of brands of all ice cream samples sold in the sample box at that particular stand. Each liststarts with one positive integer L, describing its length, followed by L integers. Each list itemrepresents the brand of one ice cream sample in the sample box sold at this stand. You mayassume that even if a visitor buys one sample box at each stand, he/she will collect at most 107ice cream samples. Output SpecificationFor each test case, print a single line with one integer denoting the minimum number of icecream samples Quido and Hugo have to buy in order to obtain a sample of each ice cream brandsold in the park. If it is impossible to obtain samples of all brands output −1. Sample Input1234567891011121314154 34 1 3 1 31 22 3 31 15 31 21 32 1 12 2 21 13 22 1 11 13 1 1 1 Output for Sample Input12343-1 题意：给N个序列，N个序列不一定长度相同，序列由1~K的整数构成，现在选定连续的几个序列（首尾也算连续，想象它们是一个圈），使得1、2、3……K全在这些数列中，求选出数列所有数字个数和的最小值 题解：序列只能整个整个的取，而且要连续，所以肯定要加倍，循环2*n，设两个指针cur1=0，cur2=-1，然后开始实行扩圈和缩圈的操作 如果当前k个数都有了，就更新ans，然后缩圈（cur1++），看看是否有更少的解 如果k个数还没有全，就要继续扩圈（cur2++），然后把新的序列里的数遍历一遍 这里要注意的是，cur2达到上限或已经取了n个连续序列时，就没有扩圈的机会了，只能缩圈找最优 复杂度我也不知道。。这种题大概就是瞎搞吧。。 res记录当前冰淇淋个数，vis[i]存第i种冰淇淋目前的个数，num为当前冰淇淋种类数 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;using namespace std;const int INF=0x3f3f3f3f;const int N=1000005;vector&lt;int&gt;a[N];int ans,vis[N],cur1,cur2,n,k,res,num;int main()&#123; while(scanf("%d%d",&amp;n,&amp;k)!=EOF)&#123; for(int i=0;i&lt;n;i++)a[i].clear(); memset(vis,0,sizeof(vis)); int l,c; for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;l); for(int j=0;j&lt;l;j++)&#123; scanf("%d",&amp;c); a[i].push_back(c); &#125; &#125; ans=INF; res=0;num=0; cur1=0;cur2=-1; while(cur1&lt;2*n)&#123; if(num==k)&#123; //如果有k个数了就缩圈找最优 ans=min(ans,res); for(int i=0;i&lt;a[cur1%n].size();i++)&#123; if(vis[a[cur1%n][i]]&gt;1)vis[a[cur1%n][i]]--; else&#123; num--; vis[a[cur1%n][i]]--; &#125; &#125; res-=a[cur1%n].size(); cur1++; &#125; else if(cur2-cur1+1==n||cur2==2*n-1)&#123; //因为是2n为了保证循环到所有情况 //所以如果当前取得已经有n个了或者cur2到了上限就只能缩圈 for(int i=0;i&lt;a[cur1%n].size();i++)&#123; if(vis[a[cur1%n][i]]&gt;1)vis[a[cur1%n][i]]--; else&#123; num--; vis[a[cur1%n][i]]--; &#125; &#125; res-=a[cur1%n].size(); cur1++; &#125; else&#123; //扩圈 cur2++; for(int i=0;i&lt;a[cur2%n].size();i++)&#123; if(vis[a[cur2%n][i]]==0)&#123; num++; vis[a[cur2%n][i]]++; &#125; else vis[a[cur2%n][i]]++;//漏了这个至关重要的更新可让我好找。。 &#125; res+=a[cur2%n].size(); &#125; &#125; printf("%d\n",ans==INF?-1:ans); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[To encourage visitors active movement among the attractions, a circular path with ice creamstands was built in the park some time ago. A discount system common for all stands wasalso introduced. When a customer buys ice cream at some stand, he is automatically granted adiscount for one day at the next stand on the path. When visitors start at any stand and followsystematically the discount directions to the next stands, they eventually traverse the wholecircular path and return back to the stand they started at. Ice creams of various brands are sold at the stands. Additionally, each stand sells a nice samplebox which contains small samples of popular ice cream brands. The number of samples in thebox depends on the stand and various stands may put different brands into their sample boxes. Each box contains samples of one or more brands. A brand may be represented by one or moresamples in the box, or it may be completely missing. Each stand sells only one type of samplebox (the brands of the samples in the box are always the same for that particular stand). Quido and Hugo are going to exploit the discount system for their own benefit. They decidedto start at some stand and then continue in the direction of the discounts buying one ice creamsample box at each stand they visit in a consecutive sequence. Their goal is to collect at leastone sample of each ice cream brand sold in the park. Simultaneously, to respect their stomachcapacities, they want to minimize the total number of ice cream samples they buy. Input SpecificationThere are more test cases. Each case starts with a line containing two integers N, K separatedby space (1 ≤ N, K ≤ 106). N is the number of ice cream stands, K is the total number ofdifferent ice cream brands sold at all stands. The brands are labeled by numbers 1, 2, . . . , K.Next, there are N lines describing stands in their visiting order. Each such line contains thelist of brands of all ice cream samples sold in the sample box at that particular stand. Each liststarts with one positive integer L, describing its length, followed by L integers. Each list itemrepresents the brand of one ice cream sample in the sample box sold at this stand. You mayassume that even if a visitor buys one sample box at each stand, he/she will collect at most 107ice cream samples. Output SpecificationFor each test case, print a single line with one integer denoting the minimum number of icecream samples Quido and Hugo have to buy in order to obtain a sample of each ice cream brandsold in the park. If it is impossible to obtain samples of all brands output −1. Sample Input1234567891011121314154 34 1 3 1 31 22 3 31 15 31 21 32 1 12 2 21 13 22 1 11 13 1 1 1 Output for Sample Input12343-1 题意：给N个序列，N个序列不一定长度相同，序列由1~K的整数构成，现在选定连续的几个序列（首尾也算连续，想象它们是一个圈），使得1、2、3……K全在这些数列中，求选出数列所有数字个数和的最小值 题解：序列只能整个整个的取，而且要连续，所以肯定要加倍，循环2xn，设两个指针cur1=0，cur2=-1，然后开始实行扩圈和缩圈的操作 如果当前k个数都有了，就更新ans，然后缩圈（cur1++），看看是否有更少的解 如果k个数还没有全，就要继续扩圈（cur2++），然后把新的序列里的数遍历一遍 这里要注意的是，cur2达到上限或已经取了n个连续序列时，就没有扩圈的机会了，只能缩圈找最优 复杂度我也不知道。。这种题大概就是瞎搞吧。。 res记录当前冰淇淋个数，vis[i]存第i种冰淇淋目前的个数，num为当前冰淇淋种类数 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;using namespace std;const int INF=0x3f3f3f3f;const int N=1000005;vector&lt;int&gt;a[N];int ans,vis[N],cur1,cur2,n,k,res,num;int main()&#123; while(scanf("%d%d",&amp;n,&amp;k)!=EOF)&#123; for(int i=0;i&lt;n;i++)a[i].clear(); memset(vis,0,sizeof(vis)); int l,c; for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;l); for(int j=0;j&lt;l;j++)&#123; scanf("%d",&amp;c); a[i].push_back(c); &#125; &#125; ans=INF; res=0;num=0; cur1=0;cur2=-1; while(cur1&lt;2*n)&#123; if(num==k)&#123; //如果有k个数了就缩圈找最优 ans=min(ans,res); for(int i=0;i&lt;a[cur1%n].size();i++)&#123; if(vis[a[cur1%n][i]]&gt;1)vis[a[cur1%n][i]]--; else&#123; num--; vis[a[cur1%n][i]]--; &#125; &#125; res-=a[cur1%n].size(); cur1++; &#125; else if(cur2-cur1+1==n||cur2==2*n-1)&#123; //因为是2n为了保证循环到所有情况 //所以如果当前取得已经有n个了或者cur2到了上限就只能缩圈 for(int i=0;i&lt;a[cur1%n].size();i++)&#123; if(vis[a[cur1%n][i]]&gt;1)vis[a[cur1%n][i]]--; else&#123; num--; vis[a[cur1%n][i]]--; &#125; &#125; res-=a[cur1%n].size(); cur1++; &#125; else&#123; //扩圈 cur2++; for(int i=0;i&lt;a[cur2%n].size();i++)&#123; if(vis[a[cur2%n][i]]==0)&#123; num++; vis[a[cur2%n][i]]++; &#125; else vis[a[cur2%n][i]]++;//漏了这个至关重要的更新可让我好找。。 &#125; res+=a[cur2%n].size(); &#125; &#125; printf("%d\n",ans==INF?-1:ans); &#125; return 0;&#125;]]></content>
       <categories>
         <category>杂</category>
       </categories>
@@ -295,6 +434,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1242 斐波那契数列的第N项（矩阵快速幂）]]></title>
@@ -303,6 +445,10 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>矩阵快速幂</tag>
+        <tag>斐波那契</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[cf 487 C. A Mist of Florescence（构造）]]></title>
@@ -311,6 +457,10 @@
       <categories>
         <category>杂</category>
       </categories>
+      <tags>
+        <tag>构造</tag>
+        <tag>cf</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[麻婆豆腐（思维）]]></title>
@@ -319,6 +469,9 @@
       <categories>
         <category>杂</category>
       </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Alice和Bob的Nim游戏（博弈，数列，矩阵快速幂）]]></title>
@@ -327,6 +480,11 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>矩阵快速幂</tag>
+        <tag>博弈论</tag>
+        <tag>数列</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Pawns（博弈，思维）]]></title>
@@ -335,14 +493,21 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>思维</tag>
+        <tag>博弈论</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈）]]></title>
     <url>%2F2018%2F08%2F20%2Fhdu%201847%20Good%20Luck%20in%20CET-4%20Everybody!%EF%BC%88%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1847 Problem Description大学英语四级考试就要来临了，你是不是在紧张的复习？也许紧张得连短学期的ACM都没工夫练习了，反正我知道的Kiki和Cici都是如此。当然，作为在考场浸润了十几载的当代大学生，Kiki和Cici更懂得考前的放松，所谓“张弛有道”就是这个意思。这不，Kiki和Cici在每天晚上休息之前都要玩一会儿扑克牌以放松神经。 “升级”？“双扣”？“红五”？还是“斗地主”？ 当然都不是！那多俗啊~ 作为计算机学院的学生，Kiki和Cici打牌的时候可没忘记专业，她们打牌的规则是这样的： 1、 总共n张牌;2、 双方轮流抓牌；3、 每人每次抓牌的个数只能是2的幂次（即：1，2，4，8，16…）4、 抓完牌，胜负结果也出来了：最后抓完牌的人为胜者； 假设Kiki和Cici都是足够聪明（其实不用假设，哪有不聪明的学生~），并且每次都是Kiki先抓牌，请问谁能赢呢？ 当然，打牌无论谁赢都问题不大，重要的是马上到来的CET-4能有好的状态。 Good luck in CET-4 everybody! Input输入数据包含多个测试用例，每个测试用例占一行，包含一个整数n（1&lt;=n&lt;=1000）。 Output如果Kiki能赢的话，请输出“Kiki”，否则请输出“Cici”，每个实例的输出占一行。 Sample Input1213 Sample Output12KikiCici 题意：n张牌，每次可以取2^i张,最后取完的人胜 题解：因为可以取到1，2，所以剩下取几都不重要了，因为所有数要么是三的倍数，要么是三的倍数多一，要么是三的倍数多二，又因为除了1，2剩下的数都是大于3的偶数，所以不管对手怎么取都无力回天了，不可能再把三的倍数抛给你 _ (: з 」∠) _ 所以对手取完，只要你能一直留给他三的倍数，你就赢 综上所述，一开始是三的倍数的人必败 代码：1234567891011#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123; int n; while(cin&gt;&gt;n)&#123; if(n%3==0)cout&lt;&lt;"Cici"&lt;&lt;endl; else cout&lt;&lt;"Kiki"&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1847 Problem Description大学英语四级考试就要来临了，你是不是在紧张的复习？也许紧张得连短学期的ACM都没工夫练习了，反正我知道的Kiki和Cici都是如此。当然，作为在考场浸润了十几载的当代大学生，Kiki和Cici更懂得考前的放松，所谓“张弛有道”就是这个意思。这不，Kiki和Cici在每天晚上休息之前都要玩一会儿扑克牌以放松神经。 “升级”？“双扣”？“红五”？还是“斗地主”？ 当然都不是！那多俗啊~ 作为计算机学院的学生，Kiki和Cici打牌的时候可没忘记专业，她们打牌的规则是这样的： 1、 总共n张牌;2、 双方轮流抓牌；3、 每人每次抓牌的个数只能是2的幂次（即：1，2，4，8，16…）4、 抓完牌，胜负结果也出来了：最后抓完牌的人为胜者； 假设Kiki和Cici都是足够聪明（其实不用假设，哪有不聪明的学生），并且每次都是Kiki先抓牌，请问谁能赢呢？ 当然，打牌无论谁赢都问题不大，重要的是马上到来的CET-4能有好的状态。 Good luck in CET-4 everybody! Input输入数据包含多个测试用例，每个测试用例占一行，包含一个整数n（1&lt;=n&lt;=1000）。 Output如果Kiki能赢的话，请输出“Kiki”，否则请输出“Cici”，每个实例的输出占一行。 Sample Input1213 Sample Output12KikiCici 题意：n张牌，每次可以取2^i张,最后取完的人胜 题解：因为可以取到1，2，所以剩下取几都不重要了，因为所有数要么是三的倍数，要么是三的倍数多一，要么是三的倍数多二，又因为除了1，2剩下的数都是大于3的偶数，所以不管对手怎么取都无力回天了，不可能再把三的倍数抛给你 _ (: з 」∠) _ 所以对手取完，只要你能一直留给他三的倍数，你就赢 综上所述，一开始是三的倍数的人必败 代码：1234567891011#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123; int n; while(cin&gt;&gt;n)&#123; if(n%3==0)cout&lt;&lt;"Cici"&lt;&lt;endl; else cout&lt;&lt;"Kiki"&lt;&lt;endl; &#125; return 0;&#125;]]></content>
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>巴什博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1404 Digital Deletions（sg函数暴力打表）]]></title>
@@ -351,6 +516,10 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>博弈论</tag>
+        <tag>sg函数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1527 取石子游戏（威佐夫博弈）]]></title>
@@ -359,6 +528,9 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>威佐夫博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1564 Play a game]]></title>
@@ -367,6 +539,9 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1729 Stone Game（尼姆博弈，sg函数）]]></title>
@@ -375,6 +550,11 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>sg函数</tag>
+        <tag>尼姆博弈</tag>
+        <tag>组合游戏</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1846 Brave Game（巴什博弈）]]></title>
@@ -383,14 +563,20 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>巴什博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1849 Rabbit and Grass（尼姆博弈）]]></title>
     <url>%2F2018%2F08%2F19%2Fhdu%201849%20Rabbit%20and%20Grass%EF%BC%88%E5%B0%BC%E5%A7%86%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1849 Problem Description大学时光是浪漫的，女生是浪漫的，圣诞更是浪漫的，但是Rabbit和Grass这两个大学女生在今年的圣诞节却表现得一点都不浪漫：不去逛商场，不去逛公园，不去和AC男约会，两个人竟然猫在寝食下棋……说是下棋，其实只是一个简单的小游戏而已，游戏的规则是这样的： 1、棋盘包含1*n个方格，方格从左到右分别编号为0，1，2，…，n-1； 2、m个棋子放在棋盘的方格上，方格可以为空，也可以放多于一个的棋子； 3、双方轮流走棋； 4、每一步可以选择任意一个棋子向左移动到任意的位置（可以多个棋子位于同一个方格），当然，任何棋子不能超出棋盘边界； 5、如果所有的棋子都位于最左边（即编号为0的位置），则游戏结束，并且规定最后走棋的一方为胜者。 对于本题，你不需要考虑n的大小（我们可以假设在初始状态，棋子总是位于棋盘的适当位置）。下面的示意图即为一个1*15的棋盘，共有6个棋子，其中，编号8的位置有两个棋子。 大家知道，虽然偶尔不够浪漫，但是Rabbit和Grass都是冰雪聪明的女生，如果每次都是Rabbit先走棋，请输出最后的结果。 Input输入数据包含多组测试用例，每个测试用例占二行，首先一行包含一个整数m（0&lt;=m&lt;=1000），表示本测试用例的棋子数目，紧跟着的一行包含m个整数Ki(i=1…m; 0&lt;=Ki&lt;=1000)，分别表示m个棋子初始的位置，m=0则结束输入。 Output如果Rabbit能赢的话，请输出“Rabbit Win!”，否则请输出“Grass Win!”，每个实例的输出占一行。 Sample Input123452 3 533 5 60 Sample Output12Rabbit Win!Grass Win! 题解：尼姆博弈水题 因为棋子最后都移动到最左，可以重合，所以一个棋子的可移动次数就是它的位置号也相当于尼姆博弈n堆石子中某一堆的石子数 代码：12345678910111213141516171819#include&lt;bits/stdc++.h&gt;using namespace std;const int N=200005;int main()&#123; int n; while(scanf("%d",&amp;n)&amp;&amp;n)&#123; int sum=0,c[N]; for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;c[i]); sum^=c[i]; &#125; if(sum==0)printf("Grass Win!\n"); else&#123; printf("Rabbit Win!\n"); &#125; &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1849 Problem Description大学时光是浪漫的，女生是浪漫的，圣诞更是浪漫的，但是Rabbit和Grass这两个大学女生在今年的圣诞节却表现得一点都不浪漫：不去逛商场，不去逛公园，不去和AC男约会，两个人竟然猫在寝食下棋……说是下棋，其实只是一个简单的小游戏而已，游戏的规则是这样的： 1、棋盘包含1xn个方格，方格从左到右分别编号为0，1，2，…，n-1； 2、m个棋子放在棋盘的方格上，方格可以为空，也可以放多于一个的棋子； 3、双方轮流走棋； 4、每一步可以选择任意一个棋子向左移动到任意的位置（可以多个棋子位于同一个方格），当然，任何棋子不能超出棋盘边界； 5、如果所有的棋子都位于最左边（即编号为0的位置），则游戏结束，并且规定最后走棋的一方为胜者。 对于本题，你不需要考虑n的大小（我们可以假设在初始状态，棋子总是位于棋盘的适当位置）。下面的示意图即为一个1x15的棋盘，共有6个棋子，其中，编号8的位置有两个棋子。 大家知道，虽然偶尔不够浪漫，但是Rabbit和Grass都是冰雪聪明的女生，如果每次都是Rabbit先走棋，请输出最后的结果。 Input输入数据包含多组测试用例，每个测试用例占二行，首先一行包含一个整数m（0&lt;=m&lt;=1000），表示本测试用例的棋子数目，紧跟着的一行包含m个整数Ki(i=1…m; 0&lt;=Ki&lt;=1000)，分别表示m个棋子初始的位置，m=0则结束输入。 Output如果Rabbit能赢的话，请输出“Rabbit Win!”，否则请输出“Grass Win!”，每个实例的输出占一行。 Sample Input123452 3 533 5 60 Sample Output12Rabbit Win!Grass Win! 题解：尼姆博弈水题 因为棋子最后都移动到最左，可以重合，所以一个棋子的可移动次数就是它的位置号也相当于尼姆博弈n堆石子中某一堆的石子数 代码：12345678910111213141516171819#include&lt;bits/stdc++.h&gt;using namespace std;const int N=200005;int main()&#123; int n; while(scanf("%d",&amp;n)&amp;&amp;n)&#123; int sum=0,c[N]; for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;c[i]); sum^=c[i]; &#125; if(sum==0)printf("Grass Win!\n"); else&#123; printf("Rabbit Win!\n"); &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>尼姆博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 2176 取(m堆)石子游戏（尼姆博弈）]]></title>
@@ -399,6 +585,9 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>尼姆博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 2177 取(2堆)石子游戏（威佐夫博弈）]]></title>
@@ -407,6 +596,9 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>威佐夫博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[poj 1704 Georgia and Bob（尼姆博弈，阶梯博弈）]]></title>
@@ -415,6 +607,10 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>博弈论</tag>
+        <tag>尼姆博弈</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[poj 1740 A New Stone Game（博弈论）]]></title>
@@ -423,14 +619,20 @@
       <categories>
         <category>博弈论</category>
       </categories>
+      <tags>
+        <tag>博弈论</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[Ponds（拓扑排序）]]></title>
+    <title><![CDATA[ACM-ICPC 2015 Changchun Preliminary Contest -- Ponds（拓扑排序）]]></title>
     <url>%2F2018%2F08%2F19%2FPonds%EF%BC%88%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[https://nanti.jisuanke.com/t/29329 Betty owns a lot of ponds, some of them are connected with other ponds by pipes, and there will not be more than one pipe between two ponds. Each pond has a value v. Now Betty wants to remove some ponds because she does not have enough money. But each time when she removes a pond, she can only remove the ponds which are connected with less than two ponds, or the pond will explode. Note that Betty should keep removing ponds until no more ponds can be removed. After that, please help her calculate the sum of the value for each connected component consisting of a odd number of ponds Input FormatThe first line of input will contain a number T(1≤T≤30) which is the number of test cases. For each test case, the first line contains two number separated by a blank. One is the number p(1≤p≤10^4) which represents the number of ponds she owns, and the other is the number m(1≤m≤10^5) which represents the number of pipes. The next line contains p numbers v1，···，vp, where vi(1≤vi≤10^8) indicating the value of pond i. Each of the last m lines contain two numbers a and b, which indicates that pond a and pond b are connected by a pipe. Output FormatFor each test case, output the sum of the value of all connected components consisting of odd number of ponds after removing all the ponds connected with less than two pipes. 样例输入1234567891017 71 2 3 4 5 6 71 41 54 52 32 63 62 7 样例输出121 题目来源ACM-ICPC 2015 Changchun Preliminary Contest 题意：给一个无向图，池塘之间有管道相连，每个池塘有一个权值，现在要拆掉所有度数小于2的池塘，直至不能拆为止，最后求连通个数为奇数的池塘的权值和 题解：删除一个度数为1的结点之后，这个点的边所通向的点的度数也要减一，就可能产生新的度数小于2的点，有点拓扑排序的意思，出现度数小于2的点就存入q，直到q为空，按照题意写就行 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1000005;int d[N],w[N],u[N],v[N],sum[N];LL ans;vector&lt;vector&lt;int&gt; &gt;tu;bool vis[N];int fa[N];void init(int x)&#123; for(int i=1;i&lt;=x;i++)fa[i]=i; memset(d,0,sizeof(d)); memset(vis,false,sizeof(vis)); memset(sum,0,sizeof(sum)); tu.resize(x+1); tu.clear();&#125;int find(int x)&#123; int tmp=x; while(fa[tmp]!=tmp)tmp=fa[tmp]; fa[x]=tmp; return tmp;&#125;void join(int x,int y)&#123; if(find(x)!=find(y))fa[find(x)]=fa[find(y)];&#125;int main()&#123; int t,n,m; scanf("%d",&amp;t); while(t--)&#123; ans=0; scanf("%d%d",&amp;n,&amp;m); init(n); for(int i=1;i&lt;=n;i++)scanf("%d",&amp;w[i]); for(int i=1;i&lt;=m;i++)&#123; scanf("%d%d",&amp;u[i],&amp;v[i]); d[u[i]]++;d[v[i]]++; tu[u[i]].push_back(v[i]); tu[v[i]].push_back(u[i]); &#125; queue&lt;int&gt;q; for(int i=1;i&lt;=n;i++)&#123; if(d[i]&lt;=1)&#123; vis[i]=true; q.push(i); &#125; &#125; while(!q.empty())&#123; int tmp=q.front(); q.pop(); for(int i=0;i&lt;tu[tmp].size();i++)&#123; int nod=tu[tmp][i]; d[nod]--; if(d[nod]&lt;=1&amp;&amp;vis[nod]==false)&#123; vis[nod]=true; q.push(nod); &#125; &#125; &#125; for(int i=1;i&lt;=m;i++)&#123; if(vis[u[i]]==false&amp;&amp;vis[v[i]]==false)join(u[i],v[i]); &#125; for(int i=1;i&lt;=n;i++)&#123; if(vis[i]==false)sum[find(i)]++; &#125; for(int i=1;i&lt;=n;i++)&#123; if(vis[i]==false&amp;&amp;sum[find(i)]&amp;1)ans+=w[i]; &#125; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>拓扑排序</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Minimum Cut（读题。。）]]></title>
@@ -447,6 +649,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1879 继续畅通工程（最小生成树）]]></title>
@@ -455,6 +660,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1875 畅通工程再续（最小生成树）]]></title>
@@ -463,6 +672,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1863 畅通工程（最小生成树）]]></title>
@@ -471,6 +684,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1301 Jungle Roads（最小生成树）]]></title>
@@ -479,6 +696,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1233 还是畅通工程（最小生成树）]]></title>
@@ -487,6 +708,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1162 Eddy's picture（最小生成树）]]></title>
@@ -495,6 +720,10 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1102 Constructing Roads(最小生成树)]]></title>
@@ -503,6 +732,11 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>最小生成树</tag>
+        <tag>kruskal</tag>
+        <tag>prim</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1198 Farm Irrigation（并查集）]]></title>
@@ -511,6 +745,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1856 More is better（并查集）]]></title>
@@ -519,6 +756,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1232 畅通工程（并查集）]]></title>
@@ -527,6 +767,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1272 小希的迷宫（并查集）]]></title>
@@ -535,6 +778,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hdu 1325 Is it a tree？（并查集）]]></title>
@@ -543,14 +789,21 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[poj 1182 食物链（并查集）]]></title>
     <url>%2F2018%2F08%2F18%2Fpoj%201182%20%E9%A3%9F%E7%89%A9%E9%93%BE%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://poj.org/problem?id=1182 Time Limit: 1000MS Memory Limit: 10000K Description动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。有人用两种说法对这N个动物所构成的食物链关系进行描述：第一种说法是”1 X Y”，表示X和Y是同类。第二种说法是”2 X Y”，表示X吃Y。此人对N个动物，用上述两种说法，一句接一句地说出K句话，这K句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。1） 当前的话与前面的某些真的话冲突，就是假话；2） 当前的话中X或Y比N大，就是假话；3） 当前的话表示X吃X，就是假话。你的任务是根据给定的N（1 &lt;= N &lt;= 50,000）和K句话（0 &lt;= K &lt;= 100,000），输出假话的总数。 Input第一行是两个整数N和K，以一个空格分隔。以下K行每行是三个正整数 D，X，Y，两数之间用一个空格隔开，其中D表示说法的种类。若D=1，则表示X和Y是同类。若D=2，则表示X吃Y。 Output只有一个整数，表示假话的数目。 Sample Input12345678100 71 101 1 2 1 22 2 3 2 3 3 1 1 3 2 3 1 1 5 5 Sample Output13 题解：分成三类 所以用 并查集+数组加倍 不知道当时在哪看到的这种数组加倍的写法 反正巨好用 i (i+n) (i+2*n) 分别代表abc三个种类 如果a吃b 就分别把三种的a和b的下一个join起来 注意这题不合法的输入也要处理成假话 下面是网上找的带权并查集的写法 但是我还是喜欢数组加倍。。https://blog.csdn.net/sunmaoxiang/article/details/80959300 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;cstdio&gt;using namespace std;const int N=50005;int fa[N*3];int find(int x)&#123; return fa[x]==x?x:fa[x]=find(fa[x]);&#125; void join(int x,int y)&#123; fa[find(x)]=find(y);&#125;int main()&#123; int n,k,ans=0; scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;=3*n;i++)fa[i]=i; for(int i=0;i&lt;k;i++)&#123; int a,b,d; scanf("%d%d%d",&amp;d,&amp;a,&amp;b); if(a&gt;n||b&gt;n||a&lt;1||b&lt;1)&#123; ans++; continue; &#125; else if(d==1)&#123; if(find(a)==find(b+n)||find(a)==find(b+2*n))&#123; ans++; continue; &#125; join(a,b); join(a+n,b+n); join(a+2*n,b+2*n); &#125; else &#123; if(find(a)==find(b)||find(a)==find(b+2*n))&#123; ans++; continue; &#125; else&#123; join(a,b+n); join(a+n,b+2*n); join(a+2*n,b); &#125; &#125; &#125; printf("%d\n",ans);&#125;]]></content>
+    <content type="text"><![CDATA[http://poj.org/problem?id=1182 Time Limit: 1000MS Memory Limit: 10000K Description动物王国中有三类动物A,B,C，这三类动物的食物链构成了有趣的环形。A吃B， B吃C，C吃A。现有N个动物，以1－N编号。每个动物都是A,B,C中的一种，但是我们并不知道它到底是哪一种。有人用两种说法对这N个动物所构成的食物链关系进行描述：第一种说法是”1 X Y”，表示X和Y是同类。第二种说法是”2 X Y”，表示X吃Y。此人对N个动物，用上述两种说法，一句接一句地说出K句话，这K句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。1） 当前的话与前面的某些真的话冲突，就是假话；2） 当前的话中X或Y比N大，就是假话；3） 当前的话表示X吃X，就是假话。你的任务是根据给定的N（1 &lt;= N &lt;= 50,000）和K句话（0 &lt;= K &lt;= 100,000），输出假话的总数。 Input第一行是两个整数N和K，以一个空格分隔。以下K行每行是三个正整数 D，X，Y，两数之间用一个空格隔开，其中D表示说法的种类。若D=1，则表示X和Y是同类。若D=2，则表示X吃Y。 Output只有一个整数，表示假话的数目。 Sample Input12345678100 71 101 1 2 1 22 2 3 2 3 3 1 1 3 2 3 1 1 5 5 Sample Output13 题解：分成三类 所以用 并查集+数组加倍 不知道当时在哪看到的这种数组加倍的写法 反正巨好用 i (i+n) (i+2*n)分别代表abc三个种类 如果a吃b 就分别把三种的a和b的下一个join起来 注意这题不合法的输入也要处理成假话 下面是网上找的带权并查集的写法 但是我还是喜欢数组加倍。。https://blog.csdn.net/sunmaoxiang/article/details/80959300 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;cstdio&gt;using namespace std;const int N=50005;int fa[N*3];int find(int x)&#123; return fa[x]==x?x:fa[x]=find(fa[x]);&#125; void join(int x,int y)&#123; fa[find(x)]=find(y);&#125;int main()&#123; int n,k,ans=0; scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;=3*n;i++)fa[i]=i; for(int i=0;i&lt;k;i++)&#123; int a,b,d; scanf("%d%d%d",&amp;d,&amp;a,&amp;b); if(a&gt;n||b&gt;n||a&lt;1||b&lt;1)&#123; ans++; continue; &#125; else if(d==1)&#123; if(find(a)==find(b+n)||find(a)==find(b+2*n))&#123; ans++; continue; &#125; join(a,b); join(a+n,b+n); join(a+2*n,b+2*n); &#125; else &#123; if(find(a)==find(b)||find(a)==find(b+2*n))&#123; ans++; continue; &#125; else&#123; join(a,b+n); join(a+n,b+2*n); join(a+2*n,b); &#125; &#125; &#125; printf("%d\n",ans);&#125;]]></content>
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+        <tag>数组加倍</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[poj 1988 Cube Stacking（并查集）]]></title>
@@ -559,6 +812,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Teemo's bad day（并查集）]]></title>
@@ -567,6 +823,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1365 浴火银河星际跳跃（并查集）]]></title>
@@ -575,6 +834,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>并查集</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1240 莫比乌斯函数（数论）]]></title>
@@ -583,14 +845,20 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>莫比乌斯函数</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1256 乘法逆元（数论）]]></title>
     <url>%2F2018%2F08%2F18%2F1256%20%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出2个数M和N(M &lt; N)，且M与N互质，找出一个数K满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input输入2个数M, N中间用空格分隔（1 &lt;= M &lt; N &lt;= 10^9) Output输出一个数K，满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input示例12 3 Output示例12 题解：数论 —— 扩展欧几里得 ax+by=gcd(a,b) a,b互质 有ax+by=1 ax%b=1%b 记x为inv(a) 则a*inv(a)%b=1%b 代码：123456789101112131415161718192021222324252627282930313233343536#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define LL long longvoid ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123; if(!b)&#123; d=a;x=1;y=0; &#125; else&#123; ex_gcd(b,a%b,y,x,d); y-=x*(a/b); &#125;&#125;LL inv(LL t,LL p)&#123; LL d,x,y; ex_gcd(t,p,x,y,d); return d==1?(x%p+p)%p:-1;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",inv(m,n)); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出2个数M和N(M &lt; N)，且M与N互质，找出一个数K满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input输入2个数M, N中间用空格分隔（1 &lt;= M &lt; N &lt;= 10^9) Output输出一个数K，满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input示例12 3 Output示例12 题解：数论 —— 扩展欧几里得 ax+by=gcd(a,b) a,b互质 有ax+by=1 ax%b=1%b 记x为inv(a) 则 a*inv(a)%b=1%b 代码：123456789101112131415161718192021222324252627282930313233343536#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define LL long longvoid ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123; if(!b)&#123; d=a;x=1;y=0; &#125; else&#123; ex_gcd(b,a%b,y,x,d); y-=x*(a/b); &#125;&#125;LL inv(LL t,LL p)&#123; LL d,x,y; ex_gcd(t,p,x,y,d); return d==1?(x%p+p)%p:-1;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",inv(m,n)); return 0;&#125;]]></content>
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>逆元</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1264 线段相交（计算几何）]]></title>
@@ -599,6 +867,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>计算几何</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1265 四点共面（计算几何）]]></title>
@@ -607,6 +878,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>计算几何</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1298 圆与三角形（计算几何）]]></title>
@@ -615,6 +889,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>计算几何</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1384 全排列（STL/dfs）]]></title>
@@ -623,6 +900,11 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>stl</tag>
+        <tag>dfs</tag>
+        <tag>全排列</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1459 迷宫游戏（Dijkstra）]]></title>
@@ -631,6 +913,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>dijkstra</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[F.The Best Path--ACM-ICPC 2016 Qingdao Preliminary Contest]]></title>
@@ -639,6 +924,9 @@
       <categories>
         <category>图论</category>
       </categories>
+      <tags>
+        <tag>欧拉路径</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[D.Tea--ACM-ICPC 2016 Qingdao Preliminary Contest]]></title>
@@ -647,6 +935,9 @@
       <categories>
         <category>杂</category>
       </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[2006 飞行员配对(二分图最大匹配,匈牙利算法)]]></title>
@@ -655,14 +946,22 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>二分图</tag>
+        <tag>匈牙利算法</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mac Os下用「hexo+github」搭建个人博客！]]></title>
+    <title><![CDATA[Mac OS下用「hexo+github」搭建个人博客！]]></title>
     <url>%2F2018%2F08%2F14%2Fblog%2F</url>
     <content type="text"><![CDATA[这个不是教程 只是搭建过程记录向 记录一下我报错查教程改错报错查教程改错报错查教程改错。。的过程 前面有些步骤在后面有报错然后修正 所以千万不要相信我的步骤 准备工作 安装nodejs和git（这个自己在官网安装就可以） 接着要用npm安装hexo 在终端输入npm install -g hexo-cli 很多报错 可以看见好几个都是permission denied（因为权限不足无法访问）可以看见提示的建议是：Please try running this command again as root/Administrator.所以重新输入sudo npm install -g hexo-cli（sudo：申请root权限）下图表明安装成功 用hexo在本地新建一个博客 新建文件夹然后右键「新建位于文件夹位置的终端窗口」（第一次使用的话可以在【finder-服务-服务偏好设置】中勾选上那一项） 文件夹位置下终端输入 1234hexo i blog//blog是项目名，叫别的也随便cd blog//进入blog文件夹hexo g//编译hexo s//本地预览 （后两句不加sudo的话同样会出现permission denied的问题 所以在开头加上sudo给他权限就可以啦 下面有些地方还会遇到sudo的问题 就不赘述了 报权限不够的错误的话自己加上） 成功后会给出一个链接 一个在本地的博客就这样建好了 点开就可以发现已经有一个博客的大概了 这里用到了4000端口 如果该端口被占用的话可以查一下是什么东西占用了这个端口sudo lsof -i:端口号 如果没有输出表面该端口没有被占用 被占用的话会给出一个进程 里面有一个PID号 如果是没设么用的进程 输入sudo kill -9 pid号结束掉他即可 默认给的是个叫「landscape」的主题 不同主题有不同的功能布局外观 当然也可以自己写个主题出来不过这种是大佬们的操作 我这个小白还是先找个主题用吧。。这里放上一些主题：https://github.com/hexojs/hexo/wiki/Themes 此外知乎上也有关于hexo主题的讨论 设置博客主题 在文件夹打开终端输入git clone加上所选主题的地址 (此处以及后面所说的终端一般都是blog文件夹终端了) git clone https://github.com/iissnan/hexo-theme-next themes/next 打开文件夹下的这个文件 官方名叫站点配置文件 然后找到里面的theme并更改 回到终端输入 123hexo cleanhexo ghero s 点进生成的blog可以看见主题已经换好啦 在[themes/next/config.yml]里配置next 冒号后面是有空格的 后面有些地方也是一样！！！一定要有空格 不然会报很长很长的错！！！ 可以看见备注写了三个方案给你选 然后重新输入以下代码查看效果 123hexo cleanhexo ghero s 这时候这里出现了一个警告 https://github.com/theme-next/hexo-theme-next 我用的这个next主题已经移动到别的地方了 所以问题不大复制一下然后找到这个主题的新的地址 按照上面步骤改一下就行注意要把之前的主题所在文件夹删了 或者生成的时候自己换个不同的文件夹名字 上面是Gemini 还蛮好看蛮直男审美的 就这个吧诶嘿 以上就是在本地建立了一个看得过去的blog了下面要把这个本地blog上传到github 把博客部署到GitHub上 先在GitHub上创建一个新项目 项目名必须按如下格式输入 最后一项选上 创建后点项目的setting 下拉找到github pages 看不懂就翻译了一下 那么发现啦那个网址就是我们要用的现在还是宇宙洪荒混沌初始的状态 接下来要把hexo上的内容部署到github上 打开之前提到过的站点配置文件 把最后几行改成如下格式 在终端输入如下 装个插件 npm install hexo-deployer-git --save emmmmmm???报了一堆错 没事 照他的提示在mac终端输入npm i -g npm更新一下就好了更新成功的界面如下 查一下也可以发现变成 6.3.0 版本了。。这不重要 然后就是最后激动人心的一步了！！！！！ 输入hexo d把它部署到github的网站上去 然后就走上了漫长的报错之路。。 然后又经历了一系列艰苦卓绝我也不知道发生了啥的几个小时的查来查去试来试去！最后 终于突然一下的改好了？？！ emmmmm不废话了先记录下来 大概讲讲我干了些啥 主要问题还是出在站点配置文件上 因为报错的时候一直说这个找不到那个找不到。。你都找不到我哪找得到啊 然后去找了一些有关hexo站点配置的教程 其中这份讲的是比较详细的了 照着这个改了最后那一段 https://blog.csdn.net/xuezhisdc/article/details/53130383 然后输入 1234npm install hexo-deployer-git --save sudo hexo clean sudo hexo g sudo hexo d 还原一下我的小白操作。。最后终端的结果没报错了也没说啥奇奇怪怪得话了就说明成功了 回到github上可以发现 这些东西已经上传到GitHub了 然后就点开github之前给的那个链接 如图 之前的本地网站已经上传了！！撒花！！！！ 补充一点内容：首先是关于博客美化的问题 这个就看到什么好看的功能就往上使就是了 next主题美化教程还是很多哒 还有一些关于目录标签的功能 都很好上手 然后就是耍了几天博客会发现一个严重的问题！百度！Google！！竟然查不到我自己的网站 但是吧这个坑已经挖了。。不填怎么行。。网上找一下百度Google递交搜索引擎的教程就好了 但是百度的http认证到现在都没通过 还不知道问题出在哪 这个坑挖着先。。 google的效率倒是相当快操作也很简洁 站点地图也交好了 一觉醒来在google上搜索到自己博客的感觉 还蛮妙2333333 这里在站点地图提交的时候遇到一个问题 此位置的 Sitemap 不允许此网址 是因为之前在站点配置文件里的 url: 那一项没有设置 要改成自己网站的地址 改完后提交站点地图就不会报错了 更新：关于百度http认证无法通过的问题有一次用百度蜘蛛爬了一下，然后发现了抓取失败的原因是被拒绝访问了 解决 Github Pages 禁止百度爬虫的方法与可行性分析 这篇是15年的文章，里面有github support部门的回复的原因 如何解决百度爬虫无法爬取搭建在Github上的个人博客的问题？ 目前的办法可能是要用cdn加速一下0.0，但是去看了一下站点最近的一些指数，索引量抓取频次啥的都有各种数据了，而且百度已经收录了不少博文了，不像刚开始一条直线。。所以暂时先偷个懒吧(/ω＼)]]></content>
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>mac OS</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[1995 三子棋]]></title>
@@ -671,6 +970,9 @@
       <categories>
         <category>51nod基础题</category>
       </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hello-world [Topping]]]></title>

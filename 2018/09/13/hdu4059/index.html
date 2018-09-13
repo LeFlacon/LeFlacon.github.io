@@ -136,16 +136,17 @@
 
 
   <meta name="description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)http://acm.hdu.edu.cn/showproblem.php?pid=4059 Problem DescriptionOn Mars, there is a huge company called ACM (A huge">
+<meta name="keywords" content="逆元,容斥">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hdu 4059 The Boss on Mars（容斥，四次方和，逆元）">
+<meta property="og:title" content="hdu 4059 The Boss on Mars（与n互质的数的四次方的和）">
 <meta property="og:url" content="http://leflacon.github.io/2018/09/13/hdu4059/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)http://acm.hdu.edu.cn/showproblem.php?pid=4059 Problem DescriptionOn Mars, there is a huge company called ACM (A huge">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://leflacon.github.io/2018/09/13/hdu4059/1.png">
-<meta property="og:updated_time" content="2018-09-13T06:33:27.385Z">
+<meta property="og:updated_time" content="2018-09-13T08:21:04.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hdu 4059 The Boss on Mars（容斥，四次方和，逆元）">
+<meta name="twitter:title" content="hdu 4059 The Boss on Mars（与n互质的数的四次方的和）">
 <meta name="twitter:description" content="Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 32768/32768 K (Java/Others)http://acm.hdu.edu.cn/showproblem.php?pid=4059 Problem DescriptionOn Mars, there is a huge company called ACM (A huge">
 <meta name="twitter:image" content="http://leflacon.github.io/2018/09/13/hdu4059/1.png">
 
@@ -164,7 +165,7 @@
   };
 </script>
 
-  <title>hdu 4059 The Boss on Mars（容斥，四次方和，逆元） | LeFlacon's Blog</title>
+  <title>hdu 4059 The Boss on Mars（与n互质的数的四次方的和） | LeFlacon's Blog</title>
   
 
 
@@ -268,9 +269,9 @@
         
         
           
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
         
         
@@ -383,7 +384,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hdu 4059 The Boss on Mars（容斥，四次方和，逆元）
+          <h1 class="post-title" itemprop="name headline">hdu 4059 The Boss on Mars（与n互质的数的四次方的和）
               
             
           </h1>
@@ -408,7 +409,7 @@
                 
               
 
-              <time title="创建时间：2018-09-13 14:30:00 / 修改时间：14:33:27" itemprop="dateCreated datePublished" datetime="2018-09-13T14:30:00+08:00">2018-09-13</time>
+              <time title="创建时间：2018-09-13 14:30:00 / 修改时间：16:21:04" itemprop="dateCreated datePublished" datetime="2018-09-13T14:30:00+08:00">2018-09-13</time>
             
 
             
@@ -454,7 +455,7 @@
 
           
           
-             <span id="/2018/09/13/hdu4059/" class="leancloud_visitors" data-flag-title="hdu 4059 The Boss on Mars（容斥，四次方和，逆元）">
+             <span id="/2018/09/13/hdu4059/" class="leancloud_visitors" data-flag-title="hdu 4059 The Boss on Mars（与n互质的数的四次方的和）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -507,7 +508,7 @@
 <p>公式里有个除以30，那么显然要用到逆元的知识了，费马小定理一下，除以30就是乘以<code>pow(30,p-2)%p</code></p>
 <p>getnum(n)那个函数就是用来求四次方和的，写的时候括号来括号去的要小心0.0，反正我偷懒写一行然后wa了几次。。下次还是分开写清楚点。。（补上分开写的了，不过注释掉了）</p>
 <p>然后就是容斥了</p>
-<p>来举个例子吧，比如n=6，素因子是2，3，存入vector中，然后ans=1^3+2^3+3^3+4^3+5^3+6^3=2275，接下来枚举状态 [1,2^2)，即01，10，11，（第i位为1表示取第i个素因子），a记录当前状态素因子个数来确定容斥正负号，now记录当前状态素因子之积，那么答案就是：<code>ans=ans-2^4*(3^4+2^4+1^4)-3^4*(2^4+1^4)+6^4*(1^4)</code>，getnum(n/now)这个很巧妙的把该因子所有的倍数都算上了，2^4*(3^4+2^4+1^4)也就是2和2的所有倍数的四次方和（6^4+4^4+2^4）</p>
+<p>来举个例子吧，比如n=6，素因子是2，3，存入vector中，然后ans=1^4+2^4+3^4+4^4+5^4+6^4=2275，接下来枚举状态 [1,2^2)，即01，10，11，（第i位为1表示取第i个素因子），a记录当前状态素因子个数来确定容斥正负号，now记录当前状态素因子之积，那么答案就是：<code>ans=ans-2^4*(3^4+2^4+1^4)-3^4*(2^4+1^4)+6^4*(1^4)</code>，getnum(n/now)这个很巧妙的把该因子所有的倍数都算上了，2^4*(3^4+2^4+1^4)也就是2和2的所有倍数的四次方和（6^4+4^4+2^4）</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p=<span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100005</span>;</span><br><span class="line">LL inv30,n;</span><br><span class="line"><span class="keyword">int</span> prime[N],ji;</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"><span class="built_in">vector</span>&lt;LL&gt;v;</span><br><span class="line"><span class="function">LL <span class="title">qpow</span><span class="params">(LL a,LL b)</span></span>&#123;</span><br><span class="line">    LL ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans=(ans*a)%p;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        b/=<span class="number">2</span>;</span><br><span class="line">        a=a*a%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	inv30=qpow(<span class="number">30L</span>L,p<span class="number">-2</span>);</span><br><span class="line">	ji=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;N;i++)&#123;<span class="comment">//埃筛素数</span></span><br><span class="line">		<span class="keyword">if</span>(vis[i])<span class="keyword">continue</span>;</span><br><span class="line">		prime[ji++]=i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>*i;j&lt;N;j+=i)vis[j]=<span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">getnum</span><span class="params">(LL n)</span></span>&#123;</span><br><span class="line">	<span class="comment">//(1^4+2^4+……+n^4)=n*(n+1)*(2n+1)*(3*n*n+3*n-1)/30</span></span><br><span class="line"></span><br><span class="line">	LL ans;</span><br><span class="line">	ans=(n*(n+<span class="number">1</span>)%p*(<span class="number">2</span>*n+<span class="number">1</span>)%p*((<span class="number">3</span>*n*n)%p+(<span class="number">3</span>*n<span class="number">-1</span>)%p))%p;</span><br><span class="line">	ans=(ans*inv30)%p;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*分开写的版本</span></span><br><span class="line"><span class="comment">	LL ans;</span></span><br><span class="line"><span class="comment">	ans=(n*((n+1)%p))%p;</span></span><br><span class="line"><span class="comment">	ans=(ans*((2*n+1)%p))%p;</span></span><br><span class="line"><span class="comment">	ans=(ans*((3*n*n)%p+(3*n-1)%p))%p;</span></span><br><span class="line"><span class="comment">	ans=(ans*inv30)%p;</span></span><br><span class="line"><span class="comment">	return ans;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	v.clear();</span><br><span class="line">	LL tmp=n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ji;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(tmp%prime[i]==<span class="number">0</span>)&#123;</span><br><span class="line">			v.push_back(prime[i]);</span><br><span class="line">			<span class="keyword">while</span>(tmp%prime[i]==<span class="number">0</span>)tmp/=prime[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(tmp&gt;<span class="number">1</span>)v.push_back(tmp);</span><br><span class="line">	LL ans=getnum(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;v.size());i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">		LL now=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;v.size();j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j))&#123;</span><br><span class="line">				a++;</span><br><span class="line">				now=now*v[j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		LL res=qpow(now,<span class="number">4L</span>L)*(getnum(n/now)%p)%p;</span><br><span class="line">		<span class="keyword">if</span>(a&amp;<span class="number">1</span>)ans=(ans-res+p)%p;</span><br><span class="line">		<span class="keyword">else</span> ans=(ans+res+p)%p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">    	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">    	solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -525,6 +526,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/逆元/" rel="tag"># 逆元</a>
+          
+            <a href="/tags/容斥/" rel="tag"># 容斥</a>
+          
+        </div>
       
 
       
@@ -544,6 +553,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/13/Sum of the Line/" rel="prev" title="Sum of the Line -- ACM-ICPC 2017 Asia Urumqi（容斥，平方和，逆元）">
+                Sum of the Line -- ACM-ICPC 2017 Asia Urumqi（容斥，平方和，逆元） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -616,9 +629,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -659,6 +672,123 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -807,7 +937,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有54.3k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有55.0k字啦 </span>
 </div>
 
 <br>

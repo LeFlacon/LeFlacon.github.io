@@ -142,7 +142,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="To encourage visitors active movement among the attractions, a circular path with ice creamstands was built in the park some time ago. A discount system common for all stands wasalso introduced. When">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-09T07:29:00.303Z">
+<meta property="og:updated_time" content="2018-09-13T07:20:10.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTU 2017 G.Ice cream samples（乱搞一通）">
 <meta name="twitter:description" content="To encourage visitors active movement among the attractions, a circular path with ice creamstands was built in the park some time ago. A discount system common for all stands wasalso introduced. When">
@@ -266,9 +266,9 @@
         
         
           
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
         
         
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-09 15:29:00" itemprop="dateModified" datetime="2018-09-09T15:29:00+08:00">2018-09-09</time>
+                <time title="修改时间：2018-09-13 15:20:10" itemprop="dateModified" datetime="2018-09-13T15:20:10+08:00">2018-09-13</time>
               
             
           </span>
@@ -507,7 +507,7 @@
 <h3 id="Output-for-Sample-Input"><a href="#Output-for-Sample-Input" class="headerlink" title="Output for Sample Input"></a>Output for Sample Input</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">-1</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给N个序列，N个序列不一定长度相同，序列由1~K的整数构成，现在选定连续的几个序列（首尾也算连续，想象它们是一个圈），使得1、2、3……K全在这些数列中，求选出数列所有数字个数和的最小值</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>序列只能整个整个的取，而且要连续，所以肯定要加倍，循环2*n，设两个指针cur1=0，cur2=-1，然后开始实行扩圈和缩圈的操作</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>序列只能整个整个的取，而且要连续，所以肯定要加倍，循环2xn，设两个指针cur1=0，cur2=-1，然后开始实行扩圈和缩圈的操作</p>
 <p>如果当前k个数都有了，就更新ans，然后缩圈（cur1++），看看是否有更少的解</p>
 <p>如果k个数还没有全，就要继续扩圈（cur2++），然后把新的序列里的数遍历一遍</p>
 <p>这里要注意的是，cur2达到上限或已经取了n个连续序列时，就没有扩圈的机会了，只能缩圈找最优</p>
@@ -626,9 +626,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -669,6 +669,123 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -817,7 +934,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有54.3k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有55.0k字啦 </span>
 </div>
 
 <br>
