@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Best Solver -- ACM-ICPC 2015 Shenyang（推公式，广义斐波那契）]]></title>
+    <url>%2F2018%2F09%2F13%2FBest%20Solver%2F</url>
+    <content type="text"><![CDATA[https://nanti.jisuanke.com/t/29121 样例输入1234567870 463371 463373 463371 4633721 46337321 463374321 46337 样例输出1234567Case #1: 97Case #2: 969Case #3: 16537Case #4: 969Case #5: 40453Case #6: 10211Case #7: 17947 题目来源ACM-ICPC 2015 Shenyang Preliminary Contest 题意：￼，求[y]%m m&lt;=46337且为质数，x&lt;2^32 题解：先凑个新的整数数列an出来，如下图： ￼ 由a0=2 a1=10 a2=98 a3=970 a4=9602 a5=95050 递推得an=10*an-1-an-2 又因为an%m且m不大 所以找an的循环结（为什么有循环结？？！按题目m不大猜的。。） 然后求(2^x-1)对应的是循环中的哪个，那个值减一即为整数部分 2333333t了 233333a了 不用加欧拉函数的优化还快了一点点(#ﾟДﾟ)。。？？？迷啊迷 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long const int N=233333;int p,f[N];int init()&#123; f[1]=10;f[2]=98; for(int i=3;;i++)&#123; f[i]=(10*f[i-1]%p-f[i-2]+p)%p; if(f[i-2]%p==2&amp;&amp;f[i-1]%p==10)return i-2; &#125;&#125;/*int phi(int x)&#123; int ans=x; for(int i=2;i*i&lt;=x;i++)&#123; if(x%i==0)&#123; ans=ans/i*(i-1); while(x%i==0)x/=i; &#125; &#125; if(x&gt;1)ans=ans/x*(x-1); return ans;&#125;*/int qpow(int a,int b,int m)&#123; // a=a%m; // b=b%phi(m); int ans=1; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%m; b--; &#125; a=a*a%m; b&gt;&gt;=1; &#125; return ans;&#125;int main()&#123; int t; scanf("%d",&amp;t); for(int i=1;i&lt;=t;i++)&#123; int x; scanf("%d%d",&amp;x,&amp;p); memset(f,0,sizeof(f)); int cur=init(); int ans=(qpow(2,x,cur)+1)%cur; printf("Case #%d: %d\n",i,(f[ans]-1+p)%p); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>广义斐波那契</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[D. Pave the Parallelepiped -- Codeforces Round]]></title>
     <url>%2F2018%2F09%2F13%2FD.%20Pave%20the%20Parallelepiped%20--%20Codeforces%20Round%20%23497%20%EF%BC%88%E5%AE%B9%E6%96%A5%EF%BC%8Cgcd%EF%BC%8C%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[http://codeforces.com/problemset/problem/1008/D time limit per test2 secondsmemory limit per test256 megabytes You are given a rectangular parallelepiped with sides of positive integer lengthsA, B and C.Find the number of different groups of three integers (a, b, c) such that 1≤a≤b≤c and parallelepiped A×B×C can be paved with parallelepipeds a×b×c. Note, that all small parallelepipeds have to be rotated in the same direction. For example, parallelepiped 1×5×6 can be divided into parallelepipeds 1×3×5, but can not be divided into parallelepipeds 1×2×3. InputThe first line contains a single integer t (1≤t≤10^5) — the number of test cases.Each of the next t lines contains three integers A, B and C (1≤A,B,C≤10^5) — the sizes of the parallelepiped. OutputFor each test case, print the number of different groups of three points that satisfy all given conditions. Example input1234541 1 11 6 12 2 2100 100 100 output1234144165 NoteIn the first test case, rectangular parallelepiped (1,1,1) can be only divided into rectangular parallelepiped with sizes (1,1,1). In the second test case, rectangular parallelepiped (1,6,1) can be divided into rectangular parallelepipeds with sizes (1,1,1), (1,1,2), (1,1,3) and (1,1,6). In the third test case, rectangular parallelepiped (2,2,2) can be divided into rectangular parallelepipeds with sizes (1,1,1), (1,1,2), (1,2,2) and (2,2,2). 题意：给(A,B,C)，求无序三元组(a,b,c)满足a|A,b|B,c|C的种数，一共T组数据，T,A,B,C≤105 题解：首先上一个小结论：从n个元素里允许重复地选择r个元素的方案数是C(r,n+r−1) 证明：设xi为n个元素里第i个元素的个数，则有方程x1+x2+……+xn=r，即n元一次方程非负整数解的个数，高中数学问题(｡･ω･｡)，（x1+1）+（x2+1）+…+(xn+1)=n+r，隔板法得C(r,n+r−1) 考虑把所有因数分组，使得每一组的因数都不同，将其分为7组，用二进制状态s表示：第1位为1表示这个因数为A的因数，第2位为1表示这个因数为B的因数，第3位为1表示这个因数为C的因数 ，cnt[s]表示状态为s的因数的个数，用（gcd+容斥）求，然后abc枚举状态，先判断是否合法（是否ABC的因数都存在），合法就算组合数，use[i]表示三个数中状态为i的数有几个 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;#define LL long longconst int MAXN=100005;int n,q[MAXN],m,cnt[10],use[10],fac[MAXN];LL C(int n,int m)&#123; long long res=1; for(int i=1;i&lt;=m;i++)res*=(n-i+1); for(int i=1;i&lt;=m;i++)res/=i; return res;&#125;bool check(int a,int b,int c)&#123; if((a&amp;1)&amp;&amp;(b&amp;2)&amp;&amp;(c&amp;4))return true; if((a&amp;1)&amp;&amp;(c&amp;2)&amp;&amp;(b&amp;4))return true; if((b&amp;1)&amp;&amp;(a&amp;2)&amp;&amp;(c&amp;4))return true; if((b&amp;1)&amp;&amp;(c&amp;2)&amp;&amp;(a&amp;4))return true; if((c&amp;1)&amp;&amp;(a&amp;2)&amp;&amp;(b&amp;4))return true; if((c&amp;1)&amp;&amp;(b&amp;2)&amp;&amp;(a&amp;4))return true; return false;&#125;int gcd(int a,int b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; //预处理每个数的因数个数 for(int i=1;i&lt;MAXN;i++) for(int j=i;j&lt;MAXN;j+=i) fac[j]++; int T,X,Y,Z; scanf("%d",&amp;T); LL ans; while(T--)&#123; scanf("%d%d%d",&amp;X,&amp;Y,&amp;Z); m=0; int xy=gcd(X,Y),yz=gcd(Y,Z),xz=gcd(X,Z); int xyz=gcd(xy,Z); //计算每种状态的因数个数 cnt[7]=fac[xyz];//111 cnt[6]=fac[yz]-fac[xyz];//110 cnt[5]=fac[xz]-fac[xyz];//101 cnt[4]=fac[Z]-fac[xz]-fac[yz]+fac[xyz];//100 cnt[3]=fac[xy]-fac[xyz];//011 cnt[2]=fac[Y]-fac[yz]-fac[xy]+fac[xyz];//010 cnt[1]=fac[X]-fac[xy]-fac[xz]+fac[xyz];//001 ans=0; for(int a=1;a&lt;8;a++) for(int b=a;b&lt;8;b++) for(int c=b;c&lt;8;c++) if(check(a,b,c))&#123;//检查合法 memset(use,0,sizeof(use)); use[a]++;use[b]++;use[c]++; LL tmp=1; for(int i=1;i&lt;8;i++) if(use[i]) tmp*=C(cnt[i]+use[i]-1,use[i]);//组合数计算 if(tmp&gt;0)ans+=tmp; &#125; printf("%I64d\n",ans); &#125; return 0;&#125;]]></content>
@@ -10,8 +22,8 @@
       <tags>
         <tag>容斥</tag>
         <tag>推公式</tag>
-        <tag>cf</tag>
         <tag>gcd</tag>
+        <tag>cf</tag>
       </tags>
   </entry>
   <entry>
@@ -159,6 +171,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -167,17 +190,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
         <tag>java大数</tag>
       </tags>
   </entry>
@@ -211,8 +223,8 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
-        <tag>java大数</tag>
         <tag>斐波那契</tag>
+        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
@@ -245,8 +257,8 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
-        <tag>java大数</tag>
         <tag>斐波那契</tag>
+        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
@@ -395,8 +407,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>rmq</tag>
+        <tag>dp</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -454,8 +466,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>java大数</tag>
         <tag>斐波那契</tag>
+        <tag>java大数</tag>
         <tag>黄金分割数</tag>
       </tags>
   </entry>
@@ -498,8 +510,8 @@
         <category>杂</category>
       </categories>
       <tags>
-        <tag>构造</tag>
         <tag>cf</tag>
+        <tag>构造</tag>
       </tags>
   </entry>
   <entry>
@@ -521,8 +533,8 @@
         <category>博弈论</category>
       </categories>
       <tags>
-        <tag>博弈论</tag>
         <tag>矩阵快速幂</tag>
+        <tag>博弈论</tag>
         <tag>推公式</tag>
       </tags>
   </entry>
