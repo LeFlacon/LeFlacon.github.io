@@ -23,7 +23,7 @@ String.prototype.renderTip = function (context) {
 var re = /x/;
 console.log(re);
 re.toString = function() {
-    showMessage('哈哈，你打开了控制台，是想要看看我的秘密吗？', 5000);
+    showMessage('诶嘿，你打开了控制台，是想要看看我的秘密吗？', 5000);
     return '';
 };
 
@@ -81,9 +81,9 @@ initTips();
                 text = '早上好！一日之计在于晨，美好的一天就要开始了！';
             } else if (now > 7 && now <= 11) {
                 text = '上午好！工作顺利嘛，不要久坐，多起来走动走动哦！';
-            } else if (now > 11 && now <= 14) {
+            } else if (now > 11 && now <= 13) {
                 text = '中午了，工作了一个上午，现在是午餐时间！';
-            } else if (now > 14 && now <= 17) {
+            } else if (now > 13 && now <= 17) {
                 text = '午后很容易犯困呢，今天的运动目标完成了吗？';
             } else if (now > 17 && now <= 19) {
                 text = '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~~';

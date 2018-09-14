@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[D.xor序列 -- 牛客练习赛26（线性基）]]></title>
+    <url>%2F2018%2F09%2F14%2FD.xor%E5%BA%8F%E5%88%97%20--%20%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B26%EF%BC%88%E7%BA%BF%E6%80%A7%E5%9F%BA%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[https://www.nowcoder.com/acm/contest/180/D 题目描述小a有n个数，他提出了一个很有意思的问题：他想知道对于任意的x, y，能否将x与这n个数中的任意多个数异或任意多次后变为y 输入描述:第一行为一个整数n，表示元素个数第二行一行包含n个整数，分别代表序列中的元素第三行为一个整数Q，表示询问次数接下来Q行，每行两个数x,y，含义如题所示 输出描述:输出Q行，若x可以变换为y，输出“YES”，否则输出“NO” 示例1输入 12345651 2 3 4 536 7 2 13 8 输出 123YESYESNO 说明对于(6,7)来说，6可以先和3异或，再和2异或对于(2,1)来说，2可以和3异或对于(3,8)来说，3不论如何都不能变换为8 备注:对于100%的数据，n,Q&lt;=10^5保证所有运算均在int范围内 题解：刚开始写线性基，随便写点啥吧 线性基就是把一组数转化成一个集合，新集合里所有数能相互异或得到原集合的所有相互异或得到的值，且线性基是满足这一条件的最小集合 随便举个例子，一个线性基大概长这个样子：（p[i]表示第i位为1） 1234567891?????? p[6]01????? p[5]001???? p[4]0001??? p[3]00001?? p[2]000001? p[1]0000001 p[0]0表示这位没有，？表示这位是0或1 把这个题目转化一下，假设集合里的n个数任取几个异或可以得到a，那么要判断x^a=y能否成立，移项一下就是判断a=x^y能否成立，所以题目就是求x^y任意异或这n个数能不能得到0 线性基的本质是贪心的思想 假设已经有了这么一组线性基，把a=x^y转化成二进制，最高位是第k位，那么找p[k]，因为p[k-i]的第k位都是0，所以如果要转化成0，必须异或上p[k]这个数，所以就更新a，a=a^p[k]，继续往下匹配 如果p[k]不存在，那么更新p[k]，p[k]=a; 那么要把第k位变成0，为什么不能异或p[k+i]呢，因为这样p[k+i]位是1，异或之后虽然p[k]位顺心如意的变成了0，但是p[k+i]却变成了1，而且继续往低位找这个1就绝对不可能被消掉了 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;LL p[61];void f(LL x)&#123; for(int i=60;i&gt;=0;i--)&#123; if((x&gt;&gt;i)&amp;1)&#123; if(!p[i])&#123; p[i]=x; break; &#125; else x^=p[i]; &#125; &#125;&#125;int main()&#123; int n; LL c; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%lld",&amp;c); f(c); &#125; int m; scanf("%d",&amp;m); while(m--)&#123; LL x,y; scanf("%lld%lld",&amp;x,&amp;y); x=x^y; for(int i=60;i&gt;=0;i--)&#123; if((x&gt;&gt;i)&amp;1)&#123; if(!p[i])break; x=x^p[i]; &#125; &#125; if(x==0)puts("YES"); else puts("NO"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>线性基</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[B.烟花 -- 牛客练习赛26（概率dp）]]></title>
+    <url>%2F2018%2F09%2F14%2FB.%E7%83%9F%E8%8A%B1%20--%20%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B26%EF%BC%88%E6%A6%82%E7%8E%87dp%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[https://www.nowcoder.com/acm/contest/180/B 题目描述小a有个烟花，每个烟花代表着互不相同的颜色，对于第i个烟花，它有pi的概率点燃，现在小a要去点燃它们，他想知道产生颜色的期望个数 及 产生恰好产生k种颜色的概率 输入描述:第一行两个整数n,k接下来一行n个数，第i个数pi表示第i个烟花被点燃的概率 输出描述:输出有两行第一行表示产生不同颜色的期望个数第二行表示产生恰好k种颜色的概率以换行符分割 示例输入 123 20.5 0.25 0.75 输出 121.50000.4062 备注:对于30%的数据：n&lt;=6,k&lt;=n对于100%的数据：n&lt;=10^5,k&lt;=2*10^2输出均保留4位小数,若你的答案误差与std不超过即为正确 题解：第一问产生不同颜色的期望个数为：∑pi 第二问产生恰好k种颜色的概率： 用概率dp做，dp[i][j]表示前i个烟花恰好有j个点燃，根据第i个烟花点燃和没点燃的可能获得状态转移方程如下：dp[i][j]=dp[i-1][j-1]*pi+dp[i-1][j]*(1-pi) 初始化dp[0][0]=1，0个烟花点燃0个概率是1，dp[0][i]=0，0个烟花点燃i个概率是0 还要初始化一下dp[i][0]的情况，就是i个烟花点燃0个，读入的时候累乘一下就行 代码：1234567891011121314151617181920212223242526272829303132#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;double p[N],dp[N][300];int main()&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); double sum=0; dp[0][0]=1; for(int i=1;i&lt;=n;i++)&#123; scanf("%lf",&amp;p[i]); sum+=p[i]; dp[0][i]=0; dp[i][0]=(1-p[i])*dp[i-1][0]; &#125; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=k;j++) dp[i][j]=dp[i-1][j-1]*p[i]+(1-p[i])*dp[i-1][j]; printf("%.4lf\n%.4lf\n",sum,dp[n][k]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>概率dp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Best Solver -- ACM-ICPC 2015 Shenyang（推公式，广义斐波那契）]]></title>
     <url>%2F2018%2F09%2F13%2FBest%20Solver%2F</url>
     <content type="text"><![CDATA[https://nanti.jisuanke.com/t/29121 样例输入1234567870 463371 463373 463371 4633721 46337321 463374321 46337 样例输出1234567Case #1: 97Case #2: 969Case #3: 16537Case #4: 969Case #5: 40453Case #6: 10211Case #7: 17947 题目来源ACM-ICPC 2015 Shenyang Preliminary Contest 题意：￼，求[y]%m m&lt;=46337且为质数，x&lt;2^32 题解：先凑个新的整数数列an出来，如下图： ￼ 由a0=2 a1=10 a2=98 a3=970 a4=9602 a5=95050 递推得an=10*an-1-an-2 又因为an%m且m不大 所以找an的循环结（为什么有循环结？？！按题目m不大猜的。。） 然后求(2^x-1)对应的是循环中的哪个，那个值减一即为整数部分 2333333t了 233333a了 不用加欧拉函数的优化还快了一点点(#ﾟДﾟ)。。？？？迷啊迷 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long const int N=233333;int p,f[N];int init()&#123; f[1]=10;f[2]=98; for(int i=3;;i++)&#123; f[i]=(10*f[i-1]%p-f[i-2]+p)%p; if(f[i-2]%p==2&amp;&amp;f[i-1]%p==10)return i-2; &#125;&#125;/*int phi(int x)&#123; int ans=x; for(int i=2;i*i&lt;=x;i++)&#123; if(x%i==0)&#123; ans=ans/i*(i-1); while(x%i==0)x/=i; &#125; &#125; if(x&gt;1)ans=ans/x*(x-1); return ans;&#125;*/int qpow(int a,int b,int m)&#123; // a=a%m; // b=b%phi(m); int ans=1; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%m; b--; &#125; a=a*a%m; b&gt;&gt;=1; &#125; return ans;&#125;int main()&#123; int t; scanf("%d",&amp;t); for(int i=1;i&lt;=t;i++)&#123; int x; scanf("%d%d",&amp;x,&amp;p); memset(f,0,sizeof(f)); int cur=init(); int ans=(qpow(2,x,cur)+1)%cur; printf("Case #%d: %d\n",i,(f[ans]-1+p)%p); &#125; return 0;&#125;]]></content>
@@ -22,8 +45,8 @@
       <tags>
         <tag>容斥</tag>
         <tag>推公式</tag>
-        <tag>gcd</tag>
         <tag>cf</tag>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -60,8 +83,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>容斥</tag>
         <tag>逆元</tag>
+        <tag>容斥</tag>
       </tags>
   </entry>
   <entry>
@@ -72,8 +95,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>容斥</tag>
         <tag>逆元</tag>
+        <tag>容斥</tag>
       </tags>
   </entry>
   <entry>
@@ -510,8 +533,8 @@
         <category>杂</category>
       </categories>
       <tags>
-        <tag>cf</tag>
         <tag>构造</tag>
+        <tag>cf</tag>
       </tags>
   </entry>
   <entry>
