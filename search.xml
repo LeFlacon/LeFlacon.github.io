@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1106 质数检测（米勒罗宾判素数和直接判）]]></title>
+    <url>%2F2018%2F09%2F17%2F1106%20%E8%B4%A8%E6%95%B0%E6%A3%80%E6%B5%8B%EF%BC%88%E7%B1%B3%E5%8B%92%E7%BD%97%E5%AE%BE%E5%88%A4%E7%B4%A0%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个正整数，检测每个数是否为质数。如果是，输出”Yes”，否则输出”No”。 Input第1行：一个数N，表示正整数的数量。(1 &lt;= N &lt;= 1000)第2 - N + 1行：每行1个数(2 &lt;= S[i] &lt;= 10^9) Output输出共N行，每行为 Yes 或 No。 Input示例123456523456 Output示例12345YesYesNoYesNo 题解：第一个代码是不知出自何处的米勒罗宾判素数的模版，懒得研究了直接模版吧。。这里设置了50次循环 反正原理是费马小定理，假如a是整数，p是质数，且a,p互质，那么a^(p-1)%p=1恒成立， 即若 a^(p-1)%p !=1 (0&lt;a&lt;p)，p一定是合数，若 a^(p-1)%p ==1 (0&lt;a&lt;p) 则它可能是合数可能是素数，概率算法的概率就在这个 a上体现 第二个代码是榜上学来的方法，这个想法蛮妙蛮清晰的，跑的比第一个快，就是先埃筛，然后先直接干掉偶数，对于奇数n，向上取整根号n得到e，然后如果所有[2,e]的质数都不能整除n的话，那么n肯定是个质数 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longbool witness(LL a,LL n)&#123; LL t,d,x; d=1; int i=ceil(log(n/1.0)/log(2.0))-1; for(;i&gt;=0;i--)&#123; x=d;d=(d*d)%n; if(d==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return true; if(((n-1)&amp;(1&lt;&lt;i))&gt;0)d=(d*a)%n; &#125; return d==1?false:true;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n==1||((n&amp;1)==0))return false; for(int i=0;i&lt;50;i++)&#123; LL a=rand()*(n-2)/RAND_MAX+1; if(witness(a, n))return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;int vis[N],prime[N],ji=0;void init()&#123; for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if((n&amp;1)==0)&#123; puts(n==2?"YES":"NO"); continue; &#125; int e=(int)sqrt(n)+1,i; for(i=1;prime[i]&lt;=e;i++)if(n%prime[i]==0)break; puts(prime[i]&lt;=e?"NO":"YES"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>埃筛素数</tag>
+        <tag>米勒罗宾</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1118 机器人走方格（组合数）]]></title>
+    <url>%2F2018%2F09%2F16%2F1118%20%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B0%E6%96%B9%E6%A0%BC%EF%BC%88%E7%BB%84%E5%90%88%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB M * N的方格，一个机器人从左上走到右下，只能向右或向下走。有多少种不同的走法？由于方法数量可能很大，只需要输出Mod 10^9 + 7的结果。 Input第1行，2个数M,N，中间用空格隔开。（2 &lt;= m,n &lt;= 1000) Output输出走法的数量。 Input示例12 3 Output示例13 题解：C(m+n-2,m-1)，直接上组合数模版 组合数模版原理：a/x mod p=a*x^(p-2) mod p 证明： 由费马小定理有x^(p-1) mod p=1，即x*x^(p-2) mod p=1，x和x^(p-2)互为逆元，所以a/x mod p=a*x^(p-2) mod p成立 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1000000007;LL qpow(LL a,LL b)&#123; LL ans=1; a%=p; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans=1; for(int i=1;i&lt;=m;i++)&#123; LL a=(n+i-m)%p; LL b=i%p; ans=ans*(a*qpow(b,p-2)%p)%p; &#125; return ans;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",C(m+n-2,m-1)); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>组合数</tag>
+        <tag>逆元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1130 N的阶乘的长度 V2（斯特林公式取n阶乘位数）]]></title>
+    <url>%2F2018%2F09%2F16%2F%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的10进制表示的长度。例如6! = 720，长度为3。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 1000) 第2 - T + 1行：每行1个数N。（1 &lt;= N &lt;= 10^9) Output共T行，输出对应的阶乘的长度。 Input示例12343456 Output示例123233 题解：stirling公式 因为这题是十进制，所以两边对10取对数得 [ ]表示取整，即LL ans=0.5*log10(2.0*PI*n)+n*log10(1.0*n/e)+1 同理，如果是a进制下的位数，数学公式懒得打了0.0直接放代码吧。。 LL ans=(0.5*log(2.0*PI*n)+n*log(1.0*n/e))/log(a)+1 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst double PI=asin(1.0)*2,e=2.718281828459;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); LL ans=0.5*log10(2.0*PI*n)+n*log10(1.0*n/e)+1; cout&lt;&lt;ans&lt;&lt;endl; &#125;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>斯特林公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1134 最长递增子序列（dp）]]></title>
+    <url>%2F2018%2F09%2F16%2F1134%20%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%EF%BC%88dp%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出长度为N的数组，找出这个数组的最长递增子序列。(递增子序列是指，子序列的元素是递增的） 例如：5 1 6 8 2 4 5 10，最长递增子序列是1 2 4 5 10。 Input第1行：1个数N，N为序列的长度(2 &lt;= N &lt;= 50000)第2 - N + 1行：每行1个数，对应序列的元素(-10^9 &lt;= S[i] &lt;= 10^9) Output输出最长递增子序列的长度。 Input示例1234567898516824510 Output示例15 题解：一开始暴力dp然后又T又wa的。。 123456for(int i=2;i&lt;=n;i++)&#123; for(int j=i-1;j&gt;=0;j--)&#123; if(a[i]&gt;a[j])dp[i]=max(dp[i],dp[j]+1); &#125; ans=max(ans,dp[i]);&#125; 优化的方法见代码： 对样例来说5，1，6，8，2，4，5，10，dp[1]=5，dp[1]=1，dp[2]=6，dp[3]=8，dp[2]=2，dp[3]=4，dp[4]=5，dp[5]=10，答案为5 代码：1234567891011121314151617181920212223242526272829303132333435#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int dp[N],a[N];int main()&#123; int n,len=0; scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++)&#123; scanf("%d",&amp;a[i]); dp[i]=1; &#125; for(int i=1;i&lt;=n;i++)&#123; if(i==1)dp[++len]=a[i]; else&#123; if(a[i]&gt;dp[len])dp[++len]=a[i]; else&#123; int cur=lower_bound(dp+1,dp+len+1,a[i])-dp; dp[cur]=a[i]; &#125; &#125; &#125; printf("%d\n",len); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1135 原根（原根性质）]]></title>
+    <url>%2F2018%2F09%2F16%2F1135%20%E5%8E%9F%E6%A0%B9%EF%BC%88%E5%8E%9F%E6%A0%B9%E6%80%A7%E8%B4%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 设m是正整数，a是整数，若a模m的阶等于φ(m)，则称a为模m的一个原根。（其中φ(m)表示m的欧拉函数） 给出1个质数P，找出P最小的原根。 Input输入1个质数P(3 &lt;= P &lt;= 10^9) Output输出P最小的原根。 Input示例13 Output示例12 题解：百度百科关于阶的解释： 其在数论中的定义为： 设a，p是整数，a和p互素，那么： 使 a^n≡1(mod p) 成立的最小正整数n叫做a模p的阶。 百度百科关于原根的性质： 原根具有以下性质： （1）可以证明，如果正整数(a,m) = 1和正整数 d 满足a^d≡1(mod m)，则 d 整除 φ(m)。因此Ordm(a)整除φ(m)。在例子中，当a= 3时，我们仅需要验证 3 的 1 、2、3 和 6 次方模 7 的余数即可。 （2）记δ = Ordm(a)，则a^1，……a^(δ-1)模 m 两两不同余。因此当a是模m的原根时，a^0,a^1，……a^(δ-1)构成模 m 的简化剩余系。 （3）模m有原根的充要条件是m= 1,2,4,p,2p,p^n，其中p是奇质数，n是任意正整数。 （4）对正整数(a,m) = 1，如果 a 是模 m 的原根，那么 a 是整数模n乘法群（即加法群 Z/mZ的可逆元，也就是所有与 m 互素的正整数构成的等价类构成的乘法群）Zn的一个生成元。由于Zn有 φ(m)个元素，而它的生成元的个数就是它的可逆元个数，即 φ(φ(m))个，因此当模m有原根时，它有φ(φ(m))个原根。 性质一大堆0.0，但是怎么求原根呢 首先p为质数，φ(p)=p-1，即a^n≡1(mod p)当且仅当n=p-1时成立，如果直接从1～n-2都暴力判断过去会妥妥的t 这时候性质的第一条就派上用场了：可以证明，如果正整数(a,m) = 1和正整数 d 满足a^d≡1(mod m)，则 d 整除 φ(m) 举个例子： 假如输入的p=7，那么φ(p)=6 因为要找最小的那个，所以a从2开始找，2^3=8≡1(mod 7)，2^6=64≡1(mod7)，2^3≡2^6(mod7)，所以2不是模7的原根，那么a=3，3^1≡3(mod 7)，3^2≡2(mod 7)，3^3≡6(mod 7)，3^4≡4(mod 7)，3^5≡5(mod 7)，3^6≡1(mod 7)，按照定义3是模7的一个原根，而根据性质1，整除的才有可能得到1，所以只需要验证3^1，3^2，3^3，3^6即可，这样可以跑的飞快 最后代码就是先埃筛，再处理p-1的质因子b[i]，因为只要判断a^((p-1)/b[i])≡1(mod p)是否成立即可，只要有一个成立，那当前的a就不是原根 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1000005;bool vis[N];vector&lt;int&gt;p,b;void init()&#123;//埃筛素数 memset(vis,false,sizeof(vis)); for(int i=2;i&lt;=N;i++)&#123; if(!vis[i])&#123; p.push_back(i); for(int j=i+i;j&lt;=N;j+=i)vis[j]=true; &#125; &#125;&#125;void getnum(LL n)&#123;//分解质因子 int tmp=sqrt(n); for(int i=0;i&lt;p.size();i++)&#123; if(n%p[i]==0)&#123; b.push_back(p[i]); while(n%p[i]==0)n/=p[i]; &#125; &#125; if(n&gt;1)b.push_back(n);&#125;LL qpow(LL a,LL b,LL p)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;int main()&#123; LL x; scanf("%lld",&amp;x); init(); getnum(x-1); for(int i=2;i&lt;x;i++)&#123; int flag=0; for(int j=0;j&lt;b.size();j++)&#123; LL tmp=(x-1)/b[j]; if(qpow(i,tmp,x)==1)&#123; flag=1;break; &#125; &#125; if(!flag)&#123; printf("%d\n",i); break; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>埃筛素数</tag>
+        <tag>原根</tag>
+        <tag>阶</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[codevs 1425 最长公共子串（STL）]]></title>
     <url>%2F2018%2F09%2F15%2Fcodevs%201425%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E4%B8%B2%EF%BC%88STL%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目描述 Description输入N（2&lt;=N&lt;=20）个字符串，输出最长公共子串。 输入描述 Input Description输入N 再输入N个字符串 输出描述 Output Description输出最大公共子串。 样例输入 Sample Input12345673abcecabkjaab 样例输出 Sample Output1ab substr(i,j)取出这段字符串 str.find(x）返回字符串x在str中的位置，如果没有找到，则返回-1 string::npos表示字符串的末尾 代码：12345678910111213141516171819202122232425262728293031#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123; int n; string str[25]; scanf("%d",&amp;n); int minlen=INT_MAX; for(int i=0;i&lt;n;i++)&#123; cin&gt;&gt;str[i]; if(str[i].length()&lt;minlen)minlen=str[i].length(); &#125; if(n==1)&#123; cout&lt;&lt;str[0]; return 0; &#125; //从最长的可能性开始找 for(int i=minlen;i&gt;=0;i--)&#123; for(int j=0;j&lt;str[0].length()-i;j++)&#123; int flag=1; for(int k=1;k&lt;n;k++)&#123; if(str[k].find(str[0].substr(j,i))==string::npos)flag=0;//如果不匹配flag=0 &#125; if(flag)&#123; cout&lt;&lt;str[0].substr(j,i); return 0; &#125; &#125; &#125; return 0;&#125;]]></content>
@@ -115,10 +174,10 @@
         <category>数论</category>
       </categories>
       <tags>
+        <tag>组合数</tag>
         <tag>推公式</tag>
         <tag>分割平面</tag>
         <tag>欧拉公式</tag>
-        <tag>大组合数</tag>
         <tag>卢卡斯定理</tag>
       </tags>
   </entry>
@@ -241,17 +300,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -260,6 +308,17 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+        <tag>java大数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
         <tag>java大数</tag>
       </tags>
   </entry>
@@ -477,8 +536,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>rmq</tag>
         <tag>dp</tag>
+        <tag>rmq</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -490,8 +549,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>中国剩余定理</tag>
         <tag>逆元</tag>
+        <tag>中国剩余定理</tag>
       </tags>
   </entry>
   <entry>
