@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1257 背包问题 V3（二分，贪心）]]></title>
+    <url>%2F2018%2F09%2F17%2F1257%20%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%20V3%EF%BC%88%E4%BA%8C%E5%88%86%EF%BC%8C%E8%B4%AA%E5%BF%83%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：3 秒 空间限制：131072 KB N个物品的体积为W1，W2……Wn（Wi为整数），与之相对应的价值为P1,P2……Pn（Pi为整数），从中选出K件物品（K &lt;= N)，使得单位体积的价值最大。 Input第1行：包括2个数N, K(1 &lt;= K &lt;= N &lt;= 50000) 第2 - N + 1行：每行2个数Wi, Pi（1 &lt;= Wi, Pi &lt;= 50000) Output输出单位体积的价值（用约分后的分数表示）。 Input示例12343 22 25 32 1 Output示例13/4 题解：一开始以为是贪心，直接取pi/wi最大的那k个，然后想想不对，因为如果p1=1,p2=101,w1=1000,w2=100000,如果照这种贪心策略就取第二个，但是这样体积很大，假如当前最优的W，P还需这两个之中的一个，那么(1+P)/(1000+W)可能比(101+P)/(100000+W)更优 所以贪心只能保证个体最优，却不能保证全局最优 这题的思路应当是二分单位体积最大价值，然后判断是否合法即可，也有用到贪心，不过不是上面那种贪心思路 判断是否合法的方法是，假设单位体积最大价值是p，wp[i].v=wp[i].p-wp[i].w*p，wp[i].w*p是当前物品体积需要的价值，然后就是贪心取最大的k个将其v值相加，判断是否大于等于0即可，因为反正多退少补的原则，大于等于0就合法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long#define eps 1e-6const int N=50005;LL x,y;int n,k;struct WP&#123; int w,p; double v;&#125;wp[N];bool cmp(struct WP wp1,struct WP wp2)&#123; return wp1.v&gt;wp2.v;&#125;LL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;bool ok(double p)&#123; for(int i=0;i&lt;n;i++)wp[i].v=wp[i].p-wp[i].w*p; sort(wp,wp+n,cmp); x=0;y=0;double lp=0.0; for(int i=0;i&lt;k;i++)&#123; x+=wp[i].p; y+=wp[i].w; lp+=wp[i].v; &#125; if(lp&gt;=0)return true; else return false;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;n;i++)scanf("%d%d",&amp;wp[i].w,&amp;wp[i].p); double l=0,r=50000,m; LL fz,fm; while(fabs(l-r)&gt;eps)&#123; m=(l+r)/2; if(ok(m))&#123; l=m; fz=x;fm=y; &#125; else r=m; &#125; LL G=gcd(max(fz,fm),min(fz,fm)); fz/=G; fm/=G; printf("%lld/%lld\n",fz,fm); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod5级算法题</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>二分</tag>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1086 背包问题 V2（二进制优化多重背包）]]></title>
+    <url>%2F2018%2F09%2F17%2F1086%20%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%20V2%EF%BC%88%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%98%E5%8C%96%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[1086 背包问题 V2基准时间限制：1 秒 空间限制：131072 KB 有N种物品，每种物品的数量为C1，C2……Cn。从中任选若干件放在容量为W的背包里，每种物品的体积为W1，W2……Wn（Wi为整数），与之相对应的价值为P1,P2……Pn（Pi为整数）。求背包能够容纳的最大价值。 Input第1行，2个整数，N和W中间用空格隔开。N为物品的种类，W为背包的容量。(1 &lt;= N &lt;= 100，1 &lt;= W &lt;= 50000)第2 - N + 1行，每行3个整数，Wi，Pi和Ci分别是物品体积、价值和数量。(1 &lt;= Wi, Pi &lt;= 10000， 1 &lt;= Ci &lt;= 200) Output输出可以容纳的最大价值。 Input示例12343 62 2 53 3 81 4 1 Output示例19 题解：先是水水的01背包1085 背包问题（01背包） 这题与01背包不同在于每件物品有多个，思路还是一样，多一步把相同价值和重量的物品看成不同的物品，再按01背包的算法解决，但是01背包那个复杂度是o（n*W），多重背包的n相当于c1+c2+……+cn，所以用二进制进一步优化 不把n件相同物品看成不同的n件，而是看成(w,v),(2*w,2*v),(2^2*w,2^2*v)...这样的形式，比如有15个价值1重量1的物品，就看成（1，1）（2，2）（4，4）（8，8）这样四件物品，14个就看成（1，1）（2，2）（4，4）（7，7），不是直接看二进制为1的位，而是要保证分出来的这些数能凑出[1,c]的所有数，这样就能用少少的物品数涵盖所有情况了 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=1005;int dp[50005],w[N],p[N];int main()&#123; int n,W,ww,pp,c; scanf("%d%d",&amp;n,&amp;W); int ji=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%d%d%d",&amp;ww,&amp;pp,&amp;c); int tmp=1; while(c)&#123; if(c&gt;=tmp)&#123; w[++ji]=tmp*ww; p[ji]=tmp*pp; c-=tmp; &#125; else&#123; w[++ji]=c*ww; p[ji]=c*pp; c=0; &#125; tmp*=2; &#125; &#125; for(int i=1;i&lt;=ji;i++)&#123; for(int j=W;j&gt;=w[i];j--) dp[j]=max(dp[j],dp[j-w[i]]+p[i]); &#125; printf("%d\n",dp[W]); return 0;&#125;#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=1005;int dp[50005],w[N],p[N];int main()&#123; int n,W,ww,pp,c; scanf("%d%d",&amp;n,&amp;W); int ji=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%d%d%d",&amp;ww,&amp;pp,&amp;c); int tmp=1; while(c)&#123; if(c&gt;=tmp)&#123; w[++ji]=tmp*ww; p[ji]=tmp*pp; c-=tmp; &#125; else&#123; w[++ji]=c*ww; p[ji]=c*pp; c=0; &#125; tmp*=2; &#125; &#125; for(int i=1;i&lt;=ji;i++)&#123; for(int j=W;j&gt;=w[i];j--) dp[j]=max(dp[j],dp[j-w[i]]+p[i]); &#125; printf("%d\n",dp[W]); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod4级算法题</category>
+      </categories>
+      <tags>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1085 背包问题（01背包）]]></title>
+    <url>%2F2018%2F09%2F17%2F1085%20%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8801%E8%83%8C%E5%8C%85%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 在N件物品取出若干件放在容量为W的背包里，每件物品的体积为W1，W2……Wn（Wi为整数），与之相对应的价值为P1,P2……Pn（Pi为整数）。求背包能够容纳的最大价值。 Input第1行，2个整数，N和W中间用空格隔开。N为物品的数量，W为背包的容量。(1 &lt;= N &lt;= 100，1 &lt;= W &lt;= 10000)第2 - N + 1行，每行2个整数，Wi和Pi，分别是物品的体积和物品的价值。(1 &lt;= Wi, Pi &lt;= 10000) Output输出可以容纳的最大价值。 Input示例12343 62 53 84 9 Output示例114 题解：01背包水题 dp[w]表示容量为w能放的最大价值 dp[j]=max(dp[j],dp[j-w]+p);就是第i个物品不取和取 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=10005;int dp[N],a[105];int main()&#123; int n,W,w,p; scanf("%d%d",&amp;n,&amp;W); for(int i=1;i&lt;=n;i++)&#123; scanf("%d%d",&amp;w,&amp;p); for(int j=W;j&gt;=w;j--) dp[j]=max(dp[j],dp[j-w]+p); &#125; printf("%d\n",dp[W]); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1073 约瑟夫环（递推）]]></title>
+    <url>%2F2018%2F09%2F17%2F1073%20%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &lt;= N, K &lt;= 10^6) Output最后剩下的人的编号 Input示例13 2 Output示例13 题解：好像是大一c++作业，当时还是直接模拟写的2333333 约瑟夫环结论见代码 证明如下： n个人，编号1-n，从1开始报数，报到k的退出，剩下人继续从1开始报数 第一个人编号（k%n）出列，剩下的n-1个人组成一个新的约瑟夫环，从编号（k%n+1）开始，k+1,k+2…n-2,n-1,n,1,2…k-2,k-1，编号k+1的人报1，那么重新编号一下k+1-&gt;1,k+2-&gt;2…k-2-&gt;n-2,k-1-&gt;n-1，变成了n-1个人报数的子问题 那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结局了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解 令f[i]表示i个人玩游戏报k退出最后胜利者的编号，f[1]=1; f[i]=(f[i-1]+k)%i; (i&gt;1) 有了这个公式，从2-n顺序算出f[i]的数值，编号从1开始，所以最后答案输出f[n]+1 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); int ans=0; for(int i=2;i&lt;=n;i++)ans=(ans+k)%i; printf("%d\n",ans+1); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>约瑟夫环</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[1106 质数检测（米勒罗宾判素数和直接判）]]></title>
     <url>%2F2018%2F09%2F17%2F1106%20%E8%B4%A8%E6%95%B0%E6%A3%80%E6%B5%8B%EF%BC%88%E7%B1%B3%E5%8B%92%E7%BD%97%E5%AE%BE%E5%88%A4%E7%B4%A0%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个正整数，检测每个数是否为质数。如果是，输出”Yes”，否则输出”No”。 Input第1行：一个数N，表示正整数的数量。(1 &lt;= N &lt;= 1000)第2 - N + 1行：每行1个数(2 &lt;= S[i] &lt;= 10^9) Output输出共N行，每行为 Yes 或 No。 Input示例123456523456 Output示例12345YesYesNoYesNo 题解：第一个代码是不知出自何处的米勒罗宾判素数的模版，懒得研究了直接模版吧。。这里设置了50次循环 反正原理是费马小定理，假如a是整数，p是质数，且a,p互质，那么a^(p-1)%p=1恒成立， 即若 a^(p-1)%p !=1 (0&lt;a&lt;p)，p一定是合数，若 a^(p-1)%p ==1 (0&lt;a&lt;p) 则它可能是合数可能是素数，概率算法的概率就在这个 a上体现 第二个代码是榜上学来的方法，这个想法蛮妙蛮清晰的，跑的比第一个快，就是先埃筛，然后先直接干掉偶数，对于奇数n，向上取整根号n得到e，然后如果所有[2,e]的质数都不能整除n的话，那么n肯定是个质数 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longbool witness(LL a,LL n)&#123; LL t,d,x; d=1; int i=ceil(log(n/1.0)/log(2.0))-1; for(;i&gt;=0;i--)&#123; x=d;d=(d*d)%n; if(d==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return true; if(((n-1)&amp;(1&lt;&lt;i))&gt;0)d=(d*a)%n; &#125; return d==1?false:true;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n==1||((n&amp;1)==0))return false; for(int i=0;i&lt;50;i++)&#123; LL a=rand()*(n-2)/RAND_MAX+1; if(witness(a, n))return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;int vis[N],prime[N],ji=0;void init()&#123; for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if((n&amp;1)==0)&#123; puts(n==2?"YES":"NO"); continue; &#125; int e=(int)sqrt(n)+1,i; for(i=1;prime[i]&lt;=e;i++)if(n%prime[i]==0)break; puts(prime[i]&lt;=e?"NO":"YES"); &#125; return 0;&#125;]]></content>
@@ -20,8 +67,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>组合数</tag>
         <tag>逆元</tag>
+        <tag>组合数</tag>
       </tags>
   </entry>
   <entry>
@@ -300,6 +347,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -308,17 +366,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
         <tag>java大数</tag>
       </tags>
   </entry>
@@ -549,8 +596,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>中国剩余定理</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
