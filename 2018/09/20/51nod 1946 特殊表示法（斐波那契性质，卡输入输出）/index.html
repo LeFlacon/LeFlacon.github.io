@@ -136,14 +136,14 @@
 
 
   <meta name="description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题  众所周知，斐波那契数列是人们常用来讨论的一个递推式系数为整数而具有无理数递推式的数列。 F[0]=1;F[1]=1;F[2]=2;F[3]=3;F[4]=5;….. 下面规定，对一个数n，它的特殊表示法为    a[1]*F[1]+a[2]*F[2]+...a[n]*F[n]。其中a[1..n]为一个取值0/1的">
-<meta name="keywords" content="模拟,斐波那契">
+<meta name="keywords" content="斐波那契,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="51nod 1946 特殊表示法（斐波那契性质，卡输入输出）">
 <meta property="og:url" content="http://leflacon.github.io/2018/09/20/51nod 1946 特殊表示法（斐波那契性质，卡输入输出）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题  众所周知，斐波那契数列是人们常用来讨论的一个递推式系数为整数而具有无理数递推式的数列。 F[0]=1;F[1]=1;F[2]=2;F[3]=3;F[4]=5;….. 下面规定，对一个数n，它的特殊表示法为    a[1]*F[1]+a[2]*F[2]+...a[n]*F[n]。其中a[1..n]为一个取值0/1的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-20T04:56:05.559Z">
+<meta property="og:updated_time" content="2018-09-20T06:21:55.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1946 特殊表示法（斐波那契性质，卡输入输出）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题  众所周知，斐波那契数列是人们常用来讨论的一个递推式系数为整数而具有无理数递推式的数列。 F[0]=1;F[1]=1;F[2]=2;F[3]=3;F[4]=5;….. 下面规定，对一个数n，它的特殊表示法为    a[1]*F[1]+a[2]*F[2]+...a[n]*F[n]。其中a[1..n]为一个取值0/1的">
@@ -407,7 +407,7 @@
                 
               
 
-              <time title="创建时间：2018-09-20 12:56:00 / 修改时间：12:56:05" itemprop="dateCreated datePublished" datetime="2018-09-20T12:56:00+08:00">2018-09-20</time>
+              <time title="创建时间：2018-09-20 12:56:00 / 修改时间：14:21:55" itemprop="dateCreated datePublished" datetime="2018-09-20T12:56:00+08:00">2018-09-20</time>
             
 
             
@@ -493,7 +493,7 @@
 <h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line"><span class="symbol">0 </span><span class="number">0</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>整整t了一个一个晚上早上加一个中午啊啊啊，一开始没思路就去看题解了，然后题解给了斐波那契的三个性质，说按照性质模拟即可，我只会用两个，然后t了，scanf改成读入挂read()，又t了，然后开始怀疑人生。。是不是因为没用第三个性质所以卡不过去？？然后就陷入了。。无边无际的发呆之中。。这个题卡的我TAT完全刷新了对输入输出的认识，总之最后读入直接getchar，输出putchar，ac。。</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>整整t了一个晚上一个早上加一个中午啊啊啊，一开始没思路就去看题解了，然后题解给了斐波那契的三个性质，说按照性质模拟即可，我只会用两个，然后t了，scanf改成读入挂read()，又t了，然后开始怀疑人生。。是不是因为没用第三个性质所以卡不过去？？然后就陷入了。。无边无际的发呆之中。。这个题卡的我TAT完全刷新了对输入输出的认识，总之最后读入直接getchar，输出putchar，ac。。</p>
 <p>下面讲思路：</p>
 <p>题解是说利用斐波那契的这三个性质：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F[i]+F[i+<span class="number">1</span>]=F[i+<span class="number">2</span>]</span><br><span class="line"><span class="number">2</span>f(i)=F(i<span class="number">-2</span>)+F(i+<span class="number">1</span>)</span><br><span class="line">∑f(i)&#123;i=<span class="number">1</span>~n&#125;=f(n+<span class="number">2</span>)<span class="number">-1</span></span><br></pre></td></tr></table></figure>
@@ -526,9 +526,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/模拟/" rel="tag"># 模拟</a>
-          
             <a href="/tags/斐波那契/" rel="tag"># 斐波那契</a>
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
           
         </div>
       
@@ -550,6 +550,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/20/1829 函数/" rel="prev" title="51nod 1829 函数（斯特林数）">
+                51nod 1829 函数（斯特林数） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -624,7 +628,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">128</span>
+                    <span class="site-state-item-count">131</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -822,7 +826,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">73</span>
+                      
+                    
+                    <span class="site-state-item-count">74</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -974,7 +980,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有75.2k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有76.9k字啦 </span>
 </div>
 
 <br>
