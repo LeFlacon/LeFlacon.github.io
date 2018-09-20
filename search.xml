@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1946 特殊表示法（斐波那契性质，卡输入输出）]]></title>
+    <url>%2F2018%2F09%2F20%2F51nod%201946%20%E7%89%B9%E6%AE%8A%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%80%A7%E8%B4%A8%EF%BC%8C%E5%8D%A1%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 众所周知，斐波那契数列是人们常用来讨论的一个递推式系数为整数而具有无理数递推式的数列。 F[0]=1;F[1]=1;F[2]=2;F[3]=3;F[4]=5;….. 下面规定，对一个数n，它的特殊表示法为 a[1]*F[1]+a[2]*F[2]+...a[n]*F[n]。其中a[1..n]为一个取值0/1的数列。（不包括F[0]）同时，规定a数列不存在两个相邻的1，并且a[n]=1。现在给两个数A和B的特殊表示法，需要你求出A+B的特殊表示法。保证n,m&lt;=1,000,000 Input第一行一个数n，表示A的特殊表示法的长度。第二行n个数，表示A的特殊表示法。第三行一个数m，表示B的特殊表示法的长度。第四行m个数，表示B的特殊表示法。 Output第一行一个数L，表示A+B的特殊表示法的长度。第二行L个数，表示A+B的特殊表示法。 Input示例123420 111 Output示例1230 0 1 题解：整整t了一个一个晚上早上加一个中午啊啊啊，一开始没思路就去看题解了，然后题解给了斐波那契的三个性质，说按照性质模拟即可，我只会用两个，然后t了，scanf改成读入挂read()，又t了，然后开始怀疑人生。。是不是因为没用第三个性质所以卡不过去？？然后就陷入了。。无边无际的发呆之中。。这个题卡的我TAT完全刷新了对输入输出的认识，总之最后读入直接getchar，输出putchar，ac。。 下面讲思路： 题解是说利用斐波那契的这三个性质： 123F[i]+F[i+1]=F[i+2]2f(i)=F(i-2)+F(i+1)∑f(i)&#123;i=1~n&#125;=f(n+2)-1 做这题之前还真没发现斐波那契数列有第三个性质，推导过程如下： 123456789f(0)+f(1)=f(2)f(1)+f(2)=f(3)f(2)+f(3)=f(4)...f(n-2)+f(n-1)=f(n)f(n-1)+f(n)=f(n+1)f(n)+f(n+1)=f(n+2)叠加抵消得∑f(i)&#123;i=1~n&#125;=f(n+2)-f(1)，即∑f(i)=f(n+2)-1， 但是事实是。。我用不来啊。。懵逼 所以就利用第一二个性质，因为特殊表示只有0，1存在，所以相加后的数组，有2出现的话都是要处理掉的，问题在于怎么处理能不遗漏且最简 先从前往后把2处理一遍，处理方法用性质1和2，每次处理都要更新n，因为如果有操作i+1之类的话，最后的长度会变大，然后对于a[1]，a[2]来说需要特判，这里有个问题0.0，我后来看了榜里别人的代码，在对于a[2]=3的处理中，我认为应该是下面这样，但是我看了两个人的代码他们写的都是a[2]–，虽然两种都ac了，但是？？？？？。。。。。 1234if(a[2]==3)&#123; a[3]++;a[2]-=2;a[1]++; n=max(n,3);&#125; 倒着处理完了之后，再正着处理几遍，原理很简单就利用性质1，比如样例1 1，就是0 0 1，一直往后推，直到磨几遍把这个序列都摊成01就可以了 读入直接getchar，输出putchar读入直接getchar，输出putchar读入直接getchar，输出putchar 好了至此这个题就a掉了，应该没啥坑点了0.0 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;using namespace std;const int N=1000005;int a[N];void read(int &amp;x)&#123; char ch=getchar();x=0; for(;ch&lt;'0'||ch&gt;'9';ch=getchar()); for(;ch&gt;='0'&amp;&amp;ch&lt;='9';ch=getchar())x=x*10+ch-'0';&#125;int main()&#123; int n,m,c; scanf("%d",&amp;n);getchar(); for(int i=1;i&lt;=n;i++)a[i]=getchar()-'0',getchar(); scanf("%d",&amp;m);getchar(); for(int i=1;i&lt;=m;i++)&#123; c=getchar()-'0',getchar(); a[i]+=c; &#125; n=max(m,n); for(int i=n;i&gt;=3;i--)&#123; if(a[i]&gt;=2)&#123; a[i+1]++;a[i]-=2;a[i-2]++; n=max(n,i+1); &#125; if(a[i]&amp;&amp;a[i-1])&#123; a[i+1]++;a[i]--;a[i-1]--; n=max(n,i+1); &#125; &#125; //for(int i=1;i&lt;=n;i++)printf("%d ",a[i]); if(a[2]==3)&#123; a[3]++;a[2]-=2;a[1]++; n=max(n,3); &#125; else if(a[1]&gt;=2&amp;&amp;!a[2])&#123; a[2]++;a[1]-=2; n=max(n,2); &#125; while(1)&#123; bool flag=0; for(int i=1;i&lt;=n;i++)&#123; if(a[i]&amp;&amp;a[i+1]&amp;&amp;!a[i+2])&#123; a[i+2]++;a[i]--;a[i+1]--; n=max(n,i+2); flag=1; &#125; &#125; if(!flag)break; &#125; printf("%d\n",n); for(int i=1;i&lt;=n;i++)putchar(a[i]+48),putchar(' '); printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>模拟</tag>
+        <tag>斐波那契</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 2000 四边形分割平面（n个m边形分割平面公式推导）]]></title>
     <url>%2F2018%2F09%2F19%2F51nod%202000%2F</url>
     <content type="text"><![CDATA[题目来源： syu比赛题基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 用N个四边方形最多可以把平面分成几个区域? Input第一行输入一个整数T，表示数据组数（1&lt;=T&lt;=10000）；第二行输入一个正整数n(1&lt;=n&lt;=1000)； Output对于每组数据，请输出结果。 Input示例123212 Output示例12210 题解：这题可以扩展为n个m边形最多可以把平面分成几个区域 首先f(1)=2对任意m都成立 然后求递推式f(n)=f(n-1)+2*m(n-1)，就拿四边形来举例 要加上第三个四边形的时候，四条边一条一条加，看图可以发现多加的红边实际上就是切割了已有的两个四边形的角，从而产生了四个蓝圈内的新区域，总共可以加四条红边，所以每加一个四边形增加的区域数就是2*4*(n-1) 所以对m边形来说，每加一个m边形增加的区域数为2*m(n-1)，即证 代码：123456789101112131415161718192021222324252627282930#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long const int N=1005;LL f[N];void init()&#123; f[1]=2; for(int i=2;i&lt;N;i++)f[i]=f[i-1]+8*(i-1);&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); printf("%lld\n",f[n]); &#125; return 0;&#125;]]></content>
@@ -43,8 +55,8 @@
       </categories>
       <tags>
         <tag>树状数组</tag>
-        <tag>归并排序</tag>
         <tag>离散化</tag>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -234,8 +246,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>树状数组</tag>
+        <tag>前缀和</tag>
         <tag>线段树</tag>
       </tags>
   </entry>
@@ -435,10 +447,10 @@
         <category>数论</category>
       </categories>
       <tags>
+        <tag>gcd</tag>
         <tag>推公式</tag>
         <tag>容斥</tag>
         <tag>cf</tag>
-        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -499,8 +511,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java大数</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -522,9 +534,9 @@
         <category>博弈论</category>
       </categories>
       <tags>
+        <tag>java大数</tag>
         <tag>威佐夫博弈</tag>
         <tag>二分</tag>
-        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
@@ -569,8 +581,8 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>java大数</tag>
+        <tag>推公式</tag>
         <tag>海伦公式</tag>
       </tags>
   </entry>
@@ -586,17 +598,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -604,7 +605,18 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
+        <tag>java大数</tag>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
         <tag>java大数</tag>
       </tags>
   </entry>
@@ -638,8 +650,8 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
-        <tag>斐波那契</tag>
         <tag>java大数</tag>
+        <tag>斐波那契</tag>
       </tags>
   </entry>
   <entry>
@@ -672,8 +684,8 @@
         <category>java--BigInteger</category>
       </categories>
       <tags>
-        <tag>斐波那契</tag>
         <tag>java大数</tag>
+        <tag>斐波那契</tag>
       </tags>
   </entry>
   <entry>
@@ -822,8 +834,8 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>dp</tag>
+        <tag>线段树</tag>
         <tag>rmq</tag>
       </tags>
   </entry>
@@ -881,8 +893,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>斐波那契</tag>
         <tag>java大数</tag>
+        <tag>斐波那契</tag>
         <tag>黄金分割数</tag>
       </tags>
   </entry>
@@ -925,8 +937,8 @@
         <category>杂</category>
       </categories>
       <tags>
-        <tag>构造</tag>
         <tag>cf</tag>
+        <tag>构造</tag>
       </tags>
   </entry>
   <entry>
@@ -961,8 +973,8 @@
         <category>博弈论</category>
       </categories>
       <tags>
-        <tag>思维</tag>
         <tag>博弈论</tag>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -1018,8 +1030,8 @@
         <category>博弈论</category>
       </categories>
       <tags>
-        <tag>sg函数</tag>
         <tag>尼姆博弈</tag>
+        <tag>sg函数</tag>
         <tag>组合游戏</tag>
       </tags>
   </entry>
@@ -1075,8 +1087,8 @@
         <category>博弈论</category>
       </categories>
       <tags>
-        <tag>博弈论</tag>
         <tag>尼姆博弈</tag>
+        <tag>博弈论</tag>
       </tags>
   </entry>
   <entry>
