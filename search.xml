@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1799 二分答案（二分，阶乘分块打表）]]></title>
+    <url>%2F2018%2F09%2F22%2F51nod%201799%20%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%EF%BC%88%E4%BA%8C%E5%88%86%EF%BC%8C%E9%98%B6%E4%B9%98%E5%88%86%E5%9D%97%E6%89%93%E8%A1%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 lyk最近在研究二分答案类的问题。对于一个有n个互不相同的数且从小到大的正整数数列a（其中最大值不超过n），若要找一个在a中出现过的数字m，一个正确的二分程序是这样子的： 123456l=1; r=n; mid=(l+r)/2;while (l&lt;=r)&#123; if (a[mid]&lt;=m) l=mid+1; else r=mid-1; mid=(l+r)/2;&#125; 最终a[r]一定等于m。但是这个和谐的程序被熊孩子打乱了。熊孩子在一开始就将a数组打乱顺序。（共有n!种可能）lyk想知道最终r=k的期望。由于小数点非常麻烦，所以你只需输出将答案乘以n!后对1000000007取模就可以了。 在样例中，共有2个数，被熊孩子打乱后的数列共有两种可能(1,2)或者(2,1)，其中(1,2)经过上述操作后r=1，(2,1)经过上述操作后r=0。r=k的期望为0.5，0.5*2!=1，所以输出1。 Input3个整数n,m,k(1&lt;=m&lt;=n&lt;=10^9,0&lt;=k&lt;=n)。 Output一行表示答案 Input示例12 1 1 Output示例11 题解：刚开始读题读了好久，一直没读懂，后来才发现没理解第一句话，“有n个互不相同的数且从小到大的正整数数列a（其中最大值不超过n）”，其实就是1-n这n个数。。 那就可以做了，运用一下二分的原理，如果确定最后要走到k那个位置的话，其实二分的路径实际上是已经确定了的，就是一个mid点跳到另一个mid点…最后到的mid点是k，所以只要求出大于k的位置的mid的个数和小于k的位置的mid的个数 对于小于等于k的位置的small个数来说，可以填比m小或等于m的数，即有A(m,small)种情况，对于大于k的位置的big个数来说，可以填比m大的数，即有A(n-m,big)种情况 对于剩下非mid的位置来说，就是求剩余数字的阶乘 这题求阶乘也要用技巧，毕竟1e9太大了，所以要分块打表，1e7到1e9，每隔1e7打一个，这样求大点的数阶乘可以在1e7内次循环求出，代码也放在下面了 还有一个注意点就是乘的时候要强制类型转化成LL，否则会wa 这个题做了很久才想通。。还是我太菜了见的太少了啊T^T不过还是有收获哒(・ω・)ノ 代码：1234567891011121314151617181920212223#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longconst int p=1000000007;int main()&#123; LL ans=1; int n=1e7; for(int i=2;i&lt;=n;i++)&#123; ans=ans*i%p; &#125; printf("%lld\n",ans); while(n&lt;=1e9)&#123; for(int i=n+1;i&lt;=n+1e7;i++)&#123; ans=(LL)ans*i%p; &#125; n+=1e7; printf("%lld\n",ans); &#125; return 0;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long const int p=1000000007;const int N=10000000;const int num[]=&#123;1,682498929,491101308,76479948,723816384, 67347853,27368307,625544428,199888908,888050723, 927880474,281863274,661224977,623534362,970055531, 261384175,195888993,66404266,547665832,109838563, 933245637,724691727,368925948,268838846,136026497, 112390913,135498044,217544623,419363534,500780548, 668123525,128487469,30977140,522049725,309058615, 386027524,189239124,148528617,940567523,917084264, 429277690,996164327,358655417,568392357,780072518, 462639908,275105629,909210595,99199382,703397904, 733333339,97830135,608823837,256141983,141827977, 696628828,637939935,811575797,848924691,131772368, 724464507,272814771,326159309,456152084,903466878, 92255682,769795511,373745190,606241871,825871994, 957939114,435887178,852304035,663307737,375297772, 217598709,624148346,671734977,624500515,748510389, 203191898,423951674,629786193,672850561,814362881, 823845496,116667533,256473217,627655552,245795606, 586445753,172114298,193781724,778983779,83868974, 315103615,965785236,492741665,377329025,847549272,698611116&#125;;int getnum(int n)&#123; if(!n)return 1; int tmp=num[n/N]; for(int i=n/N*N+1;i&lt;=n;i++)tmp=(LL)tmp*i%p; return tmp;&#125;int main()&#123; int n,m,k,l,r,mid,big,small; int ans=1; scanf("%d%d%d",&amp;n,&amp;m,&amp;k); l=1;r=n;big=small=0; while(l&lt;=r)&#123; mid=(l+r)/2; if(mid&lt;=k)&#123; l=mid+1;small++; &#125; else&#123; r=mid-1;big++; &#125; &#125; for(int i=m-small+1;i&lt;=m;i++)ans=(LL)ans*i%p; for(int i=n-m-big+1;i&lt;=n-m;i++)ans=(LL)ans*i%p; ans=(LL)ans*getnum(n-big-small)%p; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>二分</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 1717 好数（找规律）]]></title>
     <url>%2F2018%2F09%2F20%2F51nod%201717%20%E5%A5%BD%E6%95%B0%EF%BC%88%E6%89%BE%E8%A7%84%E5%BE%8B%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 有n个数 a[1],a[2],…,a[n]开始都是0现在进行操作 t从1~n依次增加每次把下标时t的倍数的数都反转（0变成1,1变成0）如果最后a[i]为0，那么称此时的i为好数。现在对于给定的n，求这时候的好数个数。n&lt;=1e15 Input一个数n，表示有n个数。（n&lt;=1e15） Output一个数，表示好数的个数。 Input示例12 Output示例11 题解：先模拟一下，跑一下下面这段代码，找“好数”的规律 123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;stack&gt;using namespace std;#define LL long longbool a[105];int main()&#123; memset(a,false,sizeof(a)); for(int i=1;i&lt;105;i++)&#123; for(int j=i;j&lt;105;j+=i)a[j]=!a[j]; &#125; for(int i=1;i&lt;105;i++) if(a[i])printf("%d ",i); return 0;&#125; 输出1 4 9 16 25 36 49 64 81 100 可以发现有且只有完全平方数不是好数 那么答案就是n-sqrt(n) 代码：1234567891011#include &lt;cstdio&gt;#include &lt;cmath&gt;using namespace std;#define LL long longint main()&#123; LL n; scanf("%lld",&amp;n); printf("%lld\n",(LL)(n-sqrt(n)+1)); return 0;&#125;]]></content>
@@ -27,8 +39,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
         <tag>组合数</tag>
         <tag>斯特林数</tag>
       </tags>
@@ -120,17 +132,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1012 最小公倍数LCM]]></title>
-    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>gcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1018 排序]]></title>
     <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
@@ -139,6 +140,17 @@
       </categories>
       <tags>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012 最小公倍数LCM]]></title>
+    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -228,17 +240,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
-    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
@@ -247,6 +248,17 @@
       </categories>
       <tags>
         <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
+    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
@@ -385,9 +397,9 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
+        <tag>埃筛素数</tag>
         <tag>原根</tag>
         <tag>阶</tag>
-        <tag>埃筛素数</tag>
       </tags>
   </entry>
   <entry>
@@ -409,8 +421,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>推公式</tag>
+        <tag>前缀和</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -544,8 +556,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>java大数</tag>
         <tag>dp</tag>
+        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
@@ -631,6 +643,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -640,17 +663,6 @@
       <tags>
         <tag>java大数</tag>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
-        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
