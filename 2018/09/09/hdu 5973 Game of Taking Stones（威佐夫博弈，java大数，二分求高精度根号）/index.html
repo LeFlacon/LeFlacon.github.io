@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=5973 Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionTwo people face two piles of stones and make a gam">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-13T07:10:06.859Z">
+<meta property="og:updated_time" content="2018-09-24T06:05:52.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 5973 Game of Taking Stones（威佐夫博弈，java大数，二分求高精度根号）">
 <meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=5973 Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionTwo people face two piles of stones and make a gam">
@@ -424,7 +424,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-13 15:10:06" itemprop="dateModified" datetime="2018-09-13T15:10:06+08:00">2018-09-13</time>
+                <time title="修改时间：2018-09-24 14:05:52" itemprop="dateModified" datetime="2018-09-24T14:05:52+08:00">2018-09-24</time>
               
             
           </span>
@@ -508,7 +508,7 @@
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>首先这是个威佐夫博弈裸题 判断<code>(b-a)*((√5+1)/2)==a</code>是否成立即可，麻烦在于又加了大数</p>
 <p>刚开始直接用之前算过的1000位黄金分割数 <a href="https://leflacon.github.io/2018/08/22/计算黄金分割数小数点后1000位/">计算黄金分割数小数点后1000位</a> 交了一发，然后wa了？？？黑人问号。。</p>
 <p>然后查了网上的写法，是二分求高精度√5，具体见代码</p>
-<p>跑500次二分精确度只能到两百多位，那为啥那个精确到一千位的数不行么（我当时跑了10000次循环来着）。。猜测可能是赋值问题吧emmmmmm。。</p>
+<p>跑500次二分精确度只能到两百多位，那为啥那个精确到一千位的数不行么（我当时跑了10000次循环来着）。。猜测可能是赋值问题吧emmmmmm。。不管了</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner <span class="attribute">cin</span>=new Scanner(System.<span class="keyword">in</span>);</span><br><span class="line">        BigDecimal a,b,tmp,hj;</span><br><span class="line">        BigDecimal <span class="attribute">l</span>=BigDecimal.valueOf(2),r=BigDecimal.valueOf(3);</span><br><span class="line">        <span class="keyword">for</span>(int <span class="attribute">i</span>=0;i&lt;500;i++) &#123;</span><br><span class="line">        	BigDecimal <span class="attribute">m</span>=l.add(r).divide(BigDecimal.valueOf(2));</span><br><span class="line">        	<span class="keyword">if</span>(m.multiply(m).compareTo(BigDecimal.valueOf(5))&lt;0)<span class="attribute">l</span>=m;</span><br><span class="line">        	<span class="keyword">else</span> <span class="attribute">r</span>=m;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">hj</span>=l.add(BigDecimal.valueOf(1)).divide(BigDecimal.valueOf(2));</span><br><span class="line">        <span class="keyword">while</span>(cin.hasNext()) &#123;</span><br><span class="line">        	<span class="attribute">a</span>=cin.nextBigDecimal();</span><br><span class="line">        	<span class="attribute">b</span>=cin.nextBigDecimal();</span><br><span class="line">        	<span class="keyword">if</span>(a.compareTo(b)&gt;0) &#123;</span><br><span class="line">        		<span class="attribute">tmp</span>=a;a=b;b=tmp;</span><br><span class="line">        	&#125;</span><br><span class="line">        	<span class="attribute">a</span>=a.setScale(0,BigDecimal.ROUND_DOWN);</span><br><span class="line">        	<span class="attribute">b</span>=b.subtract(a).multiply(hj);</span><br><span class="line">        	<span class="attribute">b</span>=b.setScale(0,BigDecimal.ROUND_DOWN);</span><br><span class="line">        	<span class="keyword">if</span>(a.compareTo(b)==0)System.out.println(<span class="string">"0"</span>);</span><br><span class="line">        	<span class="keyword">else</span> System.out.println(<span class="string">"1"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        cin.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -633,7 +633,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">140</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -835,9 +835,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -989,7 +987,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有81.0k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有82.7k字啦 </span>
 </div>
 
 <br>

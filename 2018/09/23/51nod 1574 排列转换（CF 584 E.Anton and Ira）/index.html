@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="题目来源： CodeForces http://codeforces.com/contest/584/problem/E 基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 现在有两个长度为n的排列p和s。要求通过交换使得p变成s。交换 pi 和 pj 的代价是|i-j|。要求使用最少的代价让p变成s。 Input单组测试数据。第一行有一个整数n (1≤n≤2000">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-23T10:00:11.383Z">
+<meta property="og:updated_time" content="2018-09-24T07:32:34.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1574 排列转换（CF 584 E.Anton and Ira）">
 <meta name="twitter:description" content="题目来源： CodeForces http://codeforces.com/contest/584/problem/E 基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 现在有两个长度为n的排列p和s。要求通过交换使得p变成s。交换 pi 和 pj 的代价是|i-j|。要求使用最少的代价让p变成s。 Input单组测试数据。第一行有一个整数n (1≤n≤2000">
@@ -407,12 +407,24 @@
                 
               
 
-              <time title="创建时间：2018-09-23 17:59:00 / 修改时间：18:00:11" itemprop="dateCreated datePublished" datetime="2018-09-23T17:59:00+08:00">2018-09-23</time>
+              <time title="创建时间：2018-09-23 17:59:00" itemprop="dateCreated datePublished" datetime="2018-09-23T17:59:00+08:00">2018-09-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-24 15:32:34" itemprop="dateModified" datetime="2018-09-24T15:32:34+08:00">2018-09-24</time>
               
             
           </span>
@@ -493,7 +505,7 @@
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>下面这个来自评论区的思路我一直都没咋理解。。可能是放假静不下心吧。。先mark着（鸽巢原理）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">具体操作是:</span><br><span class="line">假设排列s是1,2,3,...,n</span><br><span class="line">k为排列p中最大的 没有放到正确位置的数,k的位置为pos</span><br><span class="line">k的右边一定有一个数x&lt;=pos(因为&lt;=pos的数有pos个,不可能全挤在pos-1个位置里)</span><br><span class="line">交换k和x,两个数都离目标更近了且没有走远路.</span><br><span class="line">重复这个步骤</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">猜了一下结论,居然对了..........</span><br><span class="line">具体操作是:</span><br><span class="line">假设排列s是<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,...,n</span><br><span class="line">k为排列p中最大的 没有放到正确位置的数,k的位置为pos</span><br><span class="line">k的右边一定有一个数x&lt;=pos(因为&lt;=pos的数有pos个,不可能全挤在pos<span class="number">-1</span>个位置里)</span><br><span class="line">交换k和x,两个数都离目标更近了且没有走远路.</span><br><span class="line">重复这个步骤</span><br></pre></td></tr></table></figure>
 <p>我的思路如下：</p>
 <p>一个数c要到它的目标位置，最短代价就是i和a[c]的距离，所以只要证明每个数都只需要移动abs(i-a[c])最终可以使整个数列达到要求</p>
 <p>那么递推的想，对于两个数来说，如果他们是刚好需要互换位子的，直接换即可</p>
@@ -620,7 +632,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">140</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -822,9 +834,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -976,7 +986,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有81.0k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有82.7k字啦 </span>
 </div>
 
 <br>

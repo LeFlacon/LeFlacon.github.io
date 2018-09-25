@@ -148,7 +148,7 @@
 <meta property="og:image" content="http://leflacon.github.io/2018/09/15/Marisa’s%20Cake/2.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/09/15/Marisa’s%20Cake/3.png">
 <meta property="og:image" content="http://leflacon.github.io/2018/09/15/Marisa’s%20Cake/4.png">
-<meta property="og:updated_time" content="2018-09-15T07:57:07.457Z">
+<meta property="og:updated_time" content="2018-09-24T06:22:03.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 5448 Marisa’s Cake（凸多边形面积，推公式，前缀和）">
 <meta name="twitter:description" content="Sample Input123456789101112240 01 01 10 251 13 13 22 31 2 Sample Output12950 Source2015 ACM/ICPC Asia Regional Changchun Online  题意：给一个凸n边形，n个点任选大于等于三个点，求所Marisa’s Cake有情况的面积之和，答案为2*S%(1e9+7)，n&amp;lt;1e">
@@ -413,12 +413,24 @@
                 
               
 
-              <time title="创建时间：2018-09-15 12:32:00 / 修改时间：15:57:07" itemprop="dateCreated datePublished" datetime="2018-09-15T12:32:00+08:00">2018-09-15</time>
+              <time title="创建时间：2018-09-15 12:32:00" itemprop="dateCreated datePublished" datetime="2018-09-15T12:32:00+08:00">2018-09-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-24 14:22:03" itemprop="dateModified" datetime="2018-09-24T14:22:03+08:00">2018-09-24</time>
               
             
           </span>
@@ -497,7 +509,7 @@
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个凸n边形，n个点任选大于等于三个点，求所Marisa’s Cake有情况的面积之和，答案为<code>2*S%(1e9+7)</code>，n&lt;1e6</p>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>面积用叉积算（计算几何里计算多边形面积）<br><img src="/2018/09/15/Marisa’s Cake/1.png" alt=""></p>
-<p>随便展开n=5时的情况可以发现，每一项<code>Ci*Cj</code>其实有重复计算，因此试图求出<code>Ci*Cj</code>前的系数，任取两个点i，j，假设有j&lt;i然后考虑在j到i的逆时针方向区域内取点和在二者外部取点，易得方法数是个组合数的和，即2^?-1</p>
+<p>随便展开n=5时的情况可以发现，每一项<code>Ci*Cj</code>其实有重复计算，因此试图求出<code>Ci*Cj</code>前的系数，任取两个点i，j，假设有<code>j&lt;i</code>然后考虑在j到i的逆时针方向区域内取点和在二者外部取点，易得方法数是个组合数的和，即2^?-1</p>
 <p>最终会得到如下公式</p>
 <p><img src="/2018/09/15/Marisa’s Cake/2.png" alt=""></p>
 <p>化简推出的公式如下 但是照这个公式过不了样例</p>
@@ -505,7 +517,7 @@
 <p>因为我愚蠢的忘了前后是在一个循环算的，二者循环次数不同，所以应将公式改为如下，使循环次数相同</p>
 <p><img src="/2018/09/15/Marisa’s Cake/4.png" alt=""></p>
 <p>按顺序记为一二三四部分</p>
-<p>本来算上面这个式子要i和j都算过去，这样的复杂度是O(n^2),所以考虑优化，这里利用前缀和的思想，把上面这个式子分成四部分来看，第二和四部分利用前缀和每次累加上新的一个Cj*2^(-j)，具体见代码，所以最后这个问题只要O(n)扫一遍就好啦</p>
+<p>本来算上面这个式子要i和j都算过去，这样的复杂度是O(n^2),所以考虑优化，这里利用前缀和的思想，把上面这个式子分成四部分来看，第二和四部分利用前缀和每次累加上新的一个<code>Cj*2^(-j)</code>，具体见代码，所以最后这个问题只要O(n)扫一遍就好啦</p>
 <p>开头要预处理 2^i 和 2^(-i) </p>
 <p>然后由于我又愚蠢的初始化反了nx，ny，mx，my的值。。。就一直deeeeeeeebug</p>
 <p>被注释掉的那段代码是费马小定理求2的逆元用的，后来发现其实没啥用。。直接inv2=(1e9+7+1)/2 多省事。。</p>
@@ -634,7 +646,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">140</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -836,9 +848,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -990,7 +1000,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有81.0k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有82.7k字啦 </span>
 </div>
 
 <br>

@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 lyk最近在研究二分答案类的问题。对于一个有n个互不相同的数且从小到大的正整数数列a（其中最大值不超过n），若要找一个在a中出现过的数字m，一个正确的二分程序是这样子的： 123456l=1; r=n; mid=(l+r)/2;while (l&amp;lt;=r)&amp;#123;    if (a[mid]&amp;lt;=m) l">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-21T18:00:06.746Z">
+<meta property="og:updated_time" content="2018-09-24T07:32:02.047Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1799 二分答案（二分，阶乘分块打表）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 lyk最近在研究二分答案类的问题。对于一个有n个互不相同的数且从小到大的正整数数列a（其中最大值不超过n），若要找一个在a中出现过的数字m，一个正确的二分程序是这样子的： 123456l=1; r=n; mid=(l+r)/2;while (l&amp;lt;=r)&amp;#123;    if (a[mid]&amp;lt;=m) l">
@@ -407,12 +407,24 @@
                 
               
 
-              <time title="创建时间：2018-09-22 00:03:00 / 修改时间：02:00:06" itemprop="dateCreated datePublished" datetime="2018-09-22T00:03:00+08:00">2018-09-22</time>
+              <time title="创建时间：2018-09-22 00:03:00" itemprop="dateCreated datePublished" datetime="2018-09-22T00:03:00+08:00">2018-09-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-09-24 15:32:02" itemprop="dateModified" datetime="2018-09-24T15:32:02+08:00">2018-09-24</time>
               
             
           </span>
@@ -488,7 +500,7 @@
 <p>lyk最近在研究二分答案类的问题。<br>对于一个有n个互不相同的数且从小到大的正整数数列a（其中最大值不超过n），若要找一个在a中出现过的数字m，一个正确的二分程序是这样子的：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">l</span>=1; <span class="attribute">r</span>=n; mid=(l+r)/2;</span><br><span class="line"><span class="keyword">while</span> (l&lt;=r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (a[mid]&lt;=m) <span class="attribute">l</span>=mid+1; <span class="keyword">else</span> <span class="attribute">r</span>=mid-1;</span><br><span class="line">    mid=(l+r)/2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最终a[r]一定等于m。<br>但是这个和谐的程序被熊孩子打乱了。<br>熊孩子在一开始就将a数组打乱顺序。（共有n!种可能）<br>lyk想知道最终r=k的期望。<br>由于小数点非常麻烦，所以你只需输出将答案乘以n!后对1000000007取模就可以了。  </p>
-<p>在样例中，共有2个数，被熊孩子打乱后的数列共有两种可能(1,2)或者(2,1)，其中(1,2)经过上述操作后r=1，(2,1)经过上述操作后r=0。r=k的期望为0.5，0.5*2!=1，所以输出1。</p>
+<p>在样例中，共有2个数，被熊孩子打乱后的数列共有两种可能(1,2)或者(2,1)，其中(1,2)经过上述操作后r=1，(2,1)经过上述操作后r=0。r=k的期望为0.5，<code>0.5*2!=1</code>，所以输出1。</p>
 <h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>3个整数n,m,k(1&lt;=m&lt;=n&lt;=10^9,0&lt;=k&lt;=n)。</p>
 <h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>一行表示答案</p>
 <h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">2 </span><span class="number">1</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -625,7 +637,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-count">140</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -827,9 +839,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -981,7 +991,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> |  不知不觉已经有81.0k字啦 </span>
+  <span class="post-count"> |  不知不觉已经有82.7k字啦 </span>
 </div>
 
 <br>
