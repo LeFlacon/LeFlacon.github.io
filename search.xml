@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1675 序列变换（莫比乌斯函数）]]></title>
+    <url>%2F2018%2F09%2F26%2F51nod%201675%20%E5%BA%8F%E5%88%97%E5%8F%98%E6%8D%A2%EF%BC%88%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Input示例12331 1 11 1 1 Output示例17 题解：虽然学了莫比乌斯但是没写过题就不咋会用(⌒-⌒; ) 炫酷反演魔术 这篇还没看懂0.0 mark一下 然后丢个官方题解吧 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1e5+5;int a[N],b[N],prime[N],num[N],mu[N],n;bool vis[N];void mobius()&#123; memset(vis,false,sizeof(vis)); mu[1]=1; int ji=0; for(int i=2;i&lt;N;i++)&#123; if(!vis[i])&#123; prime[ji++]=i; mu[i]=-1; &#125; for(int j=0;j&lt;ji;j++)&#123; if(i*prime[j]&gt;N)break; vis[i*prime[j]]=true; if(i%prime[j]==0)&#123; mu[i*prime[j]]=0;break; &#125; else mu[i*prime[j]]=-mu[i]; &#125; &#125;&#125;LL solve(int x)&#123; LL res=0; for(int i=x;i&lt;=n;i+=x)num[b[a[i]]]++; for(int i=x;i&lt;=n;i+=x)res+=num[a[b[i]]]; for(int i=x;i&lt;=n;i+=x)num[b[a[i]]]--; return res;&#125;int main()&#123; mobius(); scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++)scanf("%d",&amp;a[i]); for(int i=1;i&lt;=n;i++)scanf("%d",&amp;b[i]); LL ans=0; for(int i=1;i&lt;=n;i++)ans+=mu[i]*solve(i); printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>容斥</tag>
+        <tag>莫比乌斯函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 6304 Chiaki Sequence Revisited（二分）]]></title>
+    <url>%2F2018%2F09%2F26%2Fhdu%206304%20Chiaki%20Sequence%20Revisited%EF%BC%88%E4%BA%8C%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题意：数列定义如上，求前n项和 题解：打个表 然后oeis一下 然后。。就没有然后了0.0 先记录一下数字i的出现次数 123456789数字 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ……次数 2 2 1 3 1 2 1 4 1 2 1 3 1 2 1 ……最后出现该数字的项数 2 4 5 8 9 11 12 16 17 19 20 23 21 23 24 1次: (1),3,5,7,9,... 公差为２（1特例先不管）2次: 2,6,10,14,... 公差为４3次: 4,12,20,28,... 公差为８4次: 8,24,40,56... 公差为16 可以发现i的出现次数为（1除外） 可以推出最后出现该数字的项数，即下文f(i)，比如最后出现数字5的项数为8，即f(5)=5+2+1=8，联系上述规律代码很好理解 sum(i)表示数字i出现完为止的和是多少，就是高斯求和一下乘个倍数，注意大数取模所以除以二要改成乘以inv2 先二分小于等于n的fun(x)的最大的x是多少，那么多出的部分全都是x+1，所以多出部分答案为(n-fun(x)-1)*(x+1)+1（1多出现了一次） 然后再加上前面的sum(x)即可 精度问题wa了好多发 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;set&gt;using namespace std;#define LL long longconst LL inv2=5e8+4;const int N=1e5+5;const int p=1e9+7;void read(LL &amp;x)&#123; char ch=getchar();x=0; for(;ch&lt;'0'||ch&gt;'9';ch=getchar()); for(;ch&gt;='0'&amp;&amp;ch&lt;='9';ch=getchar())x=x*10+ch-'0';&#125;LL f(LL x)&#123; LL res=0; while(x)&#123; res+=x; x&gt;&gt;=1; &#125; return res;&#125;LL sum(LL x)&#123; LL res=0,tmp=1; while(x)&#123; res=(res+x%p*((x+1)%p)%p*inv2%p*tmp%p)%p; x&gt;&gt;=1; tmp=tmp*2%p; &#125; return res;&#125;int main()&#123; int t; LL n; scanf("%d",&amp;t); while(t--)&#123; read(n); LL l=1,r=n,m; while(l&lt;=r)&#123; m=(l+r)&gt;&gt;1; if(f(m)+1&lt;=n)l=m+1; else r=m-1; &#125; LL ans=((n-f(r)-1)%p)*((r+1)%p)%p; ans=(ans+sum(r)+1)%p; printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>二分</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>逆元</tag>
+        <tag>二分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 6301 Distinct Values（贪心，set）]]></title>
     <url>%2F2018%2F09%2F25%2Fhdu%206301%20Distinct%20Values%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cset%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Chiaki has an array of n positive integers. You are told some facts about the array: for every two elements ai and aj in the subarray al..r (l≤i&lt;j≤r), ai≠aj holds.Chiaki would like to find a lexicographically minimal array which meets the facts. 题意：构造一个长为n的整数序列，给m个要求，每个要求给出一个[l,r]区间，区间内任意两个数不相等，求满足这m个限制且字典序最小的序列 题解：如果没有限制，那么构造的序列显然就是n个1，假如[l,r]有限制，那么[l,r]内就应该被替换成2，3，4，5，……就是贪心的思路，但是。。我不知道咋写。。还是看标程去了，标程真的好妙啊(つД`)ノ 首先如果大区间包含小区间的话，小区间相当于没有用，所以q[i]数组存的是以i为左端点的最大右端点位子 然后从q[1]开始处理，q[i]即当前需要处理到的位子，l,r两个指针，r表示当前已经处理到的位子，l右移更新set中待填入的元素，如果r&lt;q[i]那么就从集合中取出数字构造答案 l右移更新那段真的妙，我只能靠纸上模拟。。以后再想想吧 代码：12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;set&gt;using namespace std;const int N=100005;int q[N],ans[N];set&lt;int&gt;s;int main()&#123; int t,n,m,l,r; scanf("%d",&amp;t); while(t--)&#123; s.clear(); scanf("%d%d",&amp;n,&amp;m); for(int i=1;i&lt;=n;i++)q[i]=i; while(m--)&#123; scanf("%d%d",&amp;l,&amp;r); q[l]=max(q[l],r); &#125; for(int i=1;i&lt;=n;i++)s.insert(i); l=1;r=0; for(int i=1;i&lt;=n;i++)&#123; if(r&gt;q[i])continue; while(l&lt;i)&#123; s.insert(ans[l]); l++; &#125; while(r&lt;q[i])&#123; ans[++r]=*s.begin(); s.erase(ans[r]); &#125; &#125; for(int i=1;i&lt;n;i++)printf("%d ",ans[i]); printf("%d\n",ans[n]); &#125; return 0;&#125;]]></content>
@@ -728,17 +753,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java--BigInteger</category>
-      </categories>
-      <tags>
-        <tag>java大数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -748,6 +762,17 @@
       <tags>
         <tag>java大数</tag>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java--BigInteger</category>
+      </categories>
+      <tags>
+        <tag>java大数</tag>
       </tags>
   </entry>
   <entry>
