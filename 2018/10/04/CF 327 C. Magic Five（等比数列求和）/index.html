@@ -144,7 +144,7 @@
 <meta property="og:description" content="There is a long plate s containing n digits. Iahub wants to delete some digits (possibly none, but he is not allowed to delete all the digits) to form his “magic number” on the plate, a number that is">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fvvk1psywhj30d901vjr7.jpg">
-<meta property="og:updated_time" content="2018-10-03T18:04:09.086Z">
+<meta property="og:updated_time" content="2018-10-04T16:15:51.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CF 327 C. Magic Five（等比数列求和）">
 <meta name="twitter:description" content="There is a long plate s containing n digits. Iahub wants to delete some digits (possibly none, but he is not allowed to delete all the digits) to form his “magic number” on the plate, a number that is">
@@ -409,12 +409,24 @@
                 
               
 
-              <time title="创建时间：2018-10-04 02:03:00 / 修改时间：02:04:09" itemprop="dateCreated datePublished" datetime="2018-10-04T02:03:00+08:00">2018-10-04</time>
+              <time title="创建时间：2018-10-04 02:03:00" itemprop="dateCreated datePublished" datetime="2018-10-04T02:03:00+08:00">2018-10-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-05 00:15:51" itemprop="dateModified" datetime="2018-10-05T00:15:51+08:00">2018-10-05</time>
               
             
           </span>
@@ -503,7 +515,7 @@
 <p>若a[i]=0或5,因为<code>a[i+len],a[i+len*2]……a[i+len*(k-1)]</code>都等于a[i]，所以他们的个数等比数列求和为：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fvvk1psywhj30d901vjr7.jpg" alt=""></p>
 <p>大数取模分子逆元一下，就乘以pow(2^len-1,p-2)</p>
-<p>最后，啥玩意儿啊精度问题也太可怕了吧。。wa5了好多发，最后ans三个乘以起再取模是使不得的◡ ヽ(`Д´)ﾉ ┻━┻ 必须得前两个先取模，不然就爆LL了</p>
+<p>最后，啥玩意儿啊精度问题也太可怕了吧。。wa5了好多发，最后ans三个乘一起再取模是使不得的(#ﾟДﾟ) 必须得前两个先取模，不然就爆LL了</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="built_in">string</span> a;</span><br><span class="line"><span class="keyword">int</span> k,len;</span><br><span class="line">LL ans=<span class="number">0</span>;</span><br><span class="line"><span class="function">LL <span class="title">qpow</span><span class="params">(LL a,LL b)</span></span>&#123;</span><br><span class="line">    LL ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans=(ans*a)%p;</span><br><span class="line">            b--;</span><br><span class="line">        &#125;</span><br><span class="line">        b/=<span class="number">2</span>;</span><br><span class="line">        a=a*a%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123; </span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">    len=a.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==<span class="string">'0'</span>||a[i]==<span class="string">'5'</span>)</span><br><span class="line">            ans=(ans+qpow(<span class="number">2</span>,i))%p;</span><br><span class="line">    &#125;</span><br><span class="line">    LL fm=qpow(<span class="number">2</span>,len),fz=qpow(fm,k);</span><br><span class="line">    fm=(fm<span class="number">-1</span>+p)%p;fz=(fz<span class="number">-1</span>+p)%p;</span><br><span class="line">    ans=((ans*fz)%p*qpow(fm,p<span class="number">-2</span>))%p;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -548,6 +560,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/04/C. Stretching Streamers（NAIPC 2017）（记忆化dp）/" rel="prev" title="C. Stretching Streamers（NAIPC 2017）（记忆化dp）">
+                C. Stretching Streamers（NAIPC 2017）（记忆化dp） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -622,7 +638,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">176</span>
+                    <span class="site-state-item-count">181</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -996,7 +1012,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:98.8k</span>
+  <span class="post-count"> | Words:101.7k</span>
 </div>
 
 <br>
