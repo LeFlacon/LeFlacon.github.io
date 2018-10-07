@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="Chiaki has an array of n positive integers. You are told some facts about the array: for every two elements ai and aj in the subarray al..r (l≤i&amp;lt;j≤r), ai≠aj holds.Chiaki would like to find a lexico">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-25T09:36:58.072Z">
+<meta property="og:updated_time" content="2018-10-07T07:37:05.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 6301 Distinct Values（贪心，set）">
 <meta name="twitter:description" content="Chiaki has an array of n positive integers. You are told some facts about the array: for every two elements ai and aj in the subarray al..r (l≤i&amp;lt;j≤r), ai≠aj holds.Chiaki would like to find a lexico">
@@ -407,12 +407,24 @@
                 
               
 
-              <time title="创建时间：2018-09-25 16:51:00 / 修改时间：17:36:58" itemprop="dateCreated datePublished" datetime="2018-09-25T16:51:00+08:00">2018-09-25</time>
+              <time title="创建时间：2018-09-25 16:51:00" itemprop="dateCreated datePublished" datetime="2018-09-25T16:51:00+08:00">2018-09-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-07 15:37:05" itemprop="dateModified" datetime="2018-10-07T15:37:05+08:00">2018-10-07</time>
               
             
           </span>
@@ -489,7 +501,7 @@
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>如果没有限制，那么构造的序列显然就是n个1，假如[l,r]有限制，那么[l,r]内就应该被替换成2，3，4，5，……就是贪心的思路，但是。。我不知道咋写。。还是看标程去了，标程真的好妙啊(つД`)ノ</p>
 <p>首先如果大区间包含小区间的话，小区间相当于没有用，所以q[i]数组存的是以i为左端点的最大右端点位子</p>
 <p>然后从q[1]开始处理，q[i]即当前需要处理到的位子，l,r两个指针，r表示当前已经处理到的位子，l右移更新set中待填入的元素，如果<code>r&lt;q[i]</code>那么就从集合中取出数字构造答案</p>
-<p>l右移更新那段真的妙，我只能靠纸上模拟。。以后再想想吧</p>
+<p>l右移更新那段真的妙，我只能靠纸上模拟。。mark以后再想想吧</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cstdio&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cstring&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cmath&gt;</span></span><br><span class="line"><span class="comment">#include &lt;set&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const <span class="keyword">int</span> N=<span class="number">100005</span>;</span><br><span class="line"><span class="keyword">int</span> <span class="string">q[N]</span>,ans[N];</span><br><span class="line">set&lt;<span class="keyword">int</span>&gt;<span class="keyword">s</span>;</span><br><span class="line"><span class="keyword">int</span> main()&#123;</span><br><span class="line">    <span class="keyword">int</span> t,n,<span class="keyword">m</span>,l,r;</span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        s.clear();</span><br><span class="line">        scanf(<span class="string">"%d%d"</span>,&amp;n,&amp;<span class="keyword">m</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="string">q[i]</span>=i;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">m</span>--)&#123;</span><br><span class="line">            scanf(<span class="string">"%d%d"</span>,&amp;l,&amp;r);</span><br><span class="line">            <span class="string">q[l]</span>=max(<span class="string">q[l]</span>,r);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)s.insert(i);</span><br><span class="line">        l=<span class="number">1</span>;r=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(r&gt;<span class="string">q[i]</span>)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;i)&#123;</span><br><span class="line">                s.insert(ans[l]);</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(r&lt;<span class="string">q[i]</span>)&#123;</span><br><span class="line">                ans[++r]=*s.begin();</span><br><span class="line">                s.erase(ans[r]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)<span class="keyword">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br><span class="line">        <span class="keyword">printf</span>(<span class="string">"%d\n"</span>,ans[n]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -656,7 +668,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -829,9 +843,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">80</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -991,7 +1003,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:104.0k</span>
+  <span class="post-count"> | Words:104.1k</span>
 </div>
 
 <br>

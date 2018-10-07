@@ -142,7 +142,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="题目来源： CodeForces http://codeforces.com/contest/518/problem/F 基准时间限制：1.5 秒 空间限制：131072 KB 分值: 40 难度：4级算法题  现在要在一个城市中铺设管道。 这个城市是由 n×m 小方格组成的。每一个小方格要么是空的（管道可以铺设在上面），要么是实的（管道不能铺在上面）。空的用’.’表示，实的用’#’表示。 管道铺">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-22T13:27:20.125Z">
+<meta property="og:updated_time" content="2018-10-07T08:01:22.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1580 铺管道（CF 518 F.Pasha and Pipe）">
 <meta name="twitter:description" content="题目来源： CodeForces http://codeforces.com/contest/518/problem/F 基准时间限制：1.5 秒 空间限制：131072 KB 分值: 40 难度：4级算法题  现在要在一个城市中铺设管道。 这个城市是由 n×m 小方格组成的。每一个小方格要么是空的（管道可以铺设在上面），要么是实的（管道不能铺在上面）。空的用’.’表示，实的用’#’表示。 管道铺">
@@ -406,12 +406,24 @@
                 
               
 
-              <time title="创建时间：2018-09-22 21:06:00 / 修改时间：21:27:20" itemprop="dateCreated datePublished" datetime="2018-09-22T21:06:00+08:00">2018-09-22</time>
+              <time title="创建时间：2018-09-22 21:06:00" itemprop="dateCreated datePublished" datetime="2018-09-22T21:06:00+08:00">2018-09-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-07 16:01:22" itemprop="dateModified" datetime="2018-10-07T16:01:22+08:00">2018-10-07</time>
               
             
           </span>
@@ -515,7 +527,7 @@
 <p>就大佬博文里的那四种情况，直上直下，一个折，两个折同向，两个折反向，然后再把图转向做一遍，思路很简单但是代码不好写啊。。</p>
 <p>a[i][j]false表示空，true表示实</p>
 <p>先预处理d[i][j]和u[i][j]两个数组，分别表示t[1][j]-&gt;t[i][j]下达和t[n][j]-&gt;t[i][j]上达</p>
-<p>因为起点只能在边缘上，折线也不是很复杂，所以枚举起点然后累加方法数，具体见代码注释，要是自己写好像还是写不出来。。</p>
+<p>因为起点只能在边缘上，折线也不是很复杂，所以枚举起点然后累加方法数，具体见代码注释，要是自己写好像还是写不出来。。mark</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define <span class="symbol">LL</span> long long</span><br><span class="line">const int <span class="symbol">N</span>=<span class="number">2005</span>;</span><br><span class="line">int n,m;</span><br><span class="line">char s[<span class="symbol">N</span>];</span><br><span class="line">bool a[<span class="symbol">N</span>][<span class="symbol">N</span>],b[<span class="symbol">N</span>][<span class="symbol">N</span>],d[<span class="symbol">N</span>][<span class="symbol">N</span>],u[<span class="symbol">N</span>][<span class="symbol">N</span>];</span><br><span class="line"><span class="symbol">LL</span> ans=<span class="number">0</span>;</span><br><span class="line">void solve(bool t[][<span class="symbol">N</span>],int nn,int mm,int flag)&#123;</span><br><span class="line">    memset(d,false,sizeof(d));</span><br><span class="line">    memset(u,false,sizeof(u));</span><br><span class="line">    for(int i=<span class="number">1</span>;i&lt;=nn;i++)</span><br><span class="line">        //down，t[i<span class="number">-1</span>][j]-&gt;t[i][j]</span><br><span class="line">        //其实是t[<span class="number">1</span>][j]-&gt;t[i][j]，合法为<span class="number">0</span></span><br><span class="line">        for(int j=<span class="number">1</span>;j&lt;=mm;j++)</span><br><span class="line">            d[i][j]=d[i<span class="number">-1</span>][j]|t[i][j];</span><br><span class="line">    for(int i=nn;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">        //up，t[i+<span class="number">1</span>][j]-&gt;t[i][j]</span><br><span class="line">        //其实是t[n][j]-&gt;t[i][j]，合法为<span class="number">0</span></span><br><span class="line">        for(int j=<span class="number">1</span>;j&lt;=mm;j++)</span><br><span class="line">            u[i][j]=u[i+<span class="number">1</span>][j]|t[i][j];</span><br><span class="line">    for(int i=<span class="number">2</span>;i&lt;nn;i++)&#123;</span><br><span class="line">        int tmp=<span class="number">0</span>;</span><br><span class="line">        if(!t[i][<span class="number">1</span>]&amp;&amp;flag)tmp=<span class="number">1</span>;</span><br><span class="line">        d[i][<span class="number">1</span>]=u[i][<span class="number">1</span>]=<span class="number">1</span>;//管道上处于边缘的格子，仅有一个相邻的格子处于管道上</span><br><span class="line">        for(int j=<span class="number">2</span>;j&lt;mm;j++)&#123;</span><br><span class="line">            if(t[i][j])&#123;</span><br><span class="line">                tmp=<span class="number">0</span>;continue;</span><br><span class="line">            &#125;</span><br><span class="line">            ans+=((!d[i][j])+(!u[i][j]))*tmp;</span><br><span class="line">            //上[右……右]下，下[右……右]上，上[右……右]上，下[右……右]下，</span><br><span class="line">            //[右……右]下，[右……右]上</span><br><span class="line">            ans+=(!d[i][j]&amp;&amp;!u[i][j<span class="number">-1</span>])+(!u[i][j]&amp;&amp;!d[i][j<span class="number">-1</span>]);</span><br><span class="line">            //上右上，下右下</span><br><span class="line">            tmp+=(!d[i][j<span class="number">-1</span>])+(!u[i][j<span class="number">-1</span>]);</span><br><span class="line">            //算能到达第i行的部分数配合下一次循环使用</span><br><span class="line">        &#125;</span><br><span class="line">        if(!t[i][mm]&amp;&amp;flag)</span><br><span class="line">            ans+=tmp+(!d[i][mm<span class="number">-1</span>])+(!u[i][mm<span class="number">-1</span>]);</span><br><span class="line">        //下[右……右]，上[右……右]，左右直达</span><br><span class="line">    &#125;</span><br><span class="line">    if(flag)&#123;//左右直达在别的里面求了，所以不用</span><br><span class="line">        for(int j=<span class="number">2</span>;j&lt;mm;j++)ans+=(!d[nn][j]);//上下直达</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    scanf(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    for(int i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        scanf(<span class="string">"%s"</span>,s+<span class="number">1</span>);</span><br><span class="line">        for(int j=<span class="number">1</span>;j&lt;=m;j++)a[i][j]=s[j]==<span class="string">'#'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    solve(a,n,m,<span class="number">1</span>);</span><br><span class="line">    //把图转过来再来一遍</span><br><span class="line">    for(int i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        for(int j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">            b[j][i]=a[i][j];</span><br><span class="line">    solve(b,m,n,<span class="number">0</span>);</span><br><span class="line">    printf(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -671,7 +683,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -844,9 +858,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">80</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1006,7 +1018,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:104.0k</span>
+  <span class="post-count"> | Words:104.1k</span>
 </div>
 
 <br>
