@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leflacon.github.io/categories/index.html</loc>
+    
+    <lastmod>2018-10-08T06:58:35.058Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leflacon.github.io/2018/10/08/busuanzi%E8%AE%A1%E6%95%B0%E5%8A%9F%E8%83%BD%E5%A4%B1%E6%95%88%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</loc>
     
     <lastmod>2018-10-08T05:57:44.387Z</lastmod>
@@ -926,13 +933,6 @@
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/categories/android.html</loc>
-    
-    <lastmod>2018-09-13T12:42:28.799Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://leflacon.github.io/2018/09/13/cf%201008D%20Pave%20the%20Parallelepiped%20--%EF%BC%88%E5%AE%B9%E6%96%A5%EF%BC%8Cgcd%EF%BC%8C%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%89/</loc>
     
     <lastmod>2018-09-13T10:44:15.389Z</lastmod>
@@ -1377,111 +1377,6 @@
     <loc>http://leflacon.github.io/2018/08/19/Minimum%20Cut%EF%BC%88%E8%AF%BB%E9%A2%98%E3%80%82%E3%80%82%EF%BC%89/</loc>
     
     <lastmod>2018-09-09T07:30:48.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/cf.html</loc>
-    
-    <lastmod>2018-09-06T18:04:38.960Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/java--BigInteger.html</loc>
-    
-    <lastmod>2018-09-03T16:38:48.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E7%9E%8E%E6%8A%98%E8%85%BE(=%EF%BE%9F%CF%89%EF%BE%9F)%EF%BE%89.html</loc>
-    
-    <lastmod>2018-08-30T14:04:42.665Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/hexo.html</loc>
-    
-    <lastmod>2018-08-28T15:30:22.042Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/index.html</loc>
-    
-    <lastmod>2018-08-23T16:20:16.978Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E8%B4%AA%E5%BF%83.html</loc>
-    
-    <lastmod>2018-08-18T10:33:41.834Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95.html</loc>
-    
-    <lastmod>2018-08-18T10:33:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.html</loc>
-    
-    <lastmod>2018-08-18T10:32:37.579Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/dp.html</loc>
-    
-    <lastmod>2018-08-18T10:32:11.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E6%9D%82.html</loc>
-    
-    <lastmod>2018-08-18T10:31:47.846Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E5%8D%9A%E5%BC%88%E8%AE%BA.html</loc>
-    
-    <lastmod>2018-08-18T10:31:08.286Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E6%95%B0%E8%AE%BA.html</loc>
-    
-    <lastmod>2018-08-18T10:30:44.559Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/%E5%9B%BE%E8%AE%BA.html</loc>
-    
-    <lastmod>2018-08-18T10:30:16.013Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/poi.html</loc>
-    
-    <lastmod>2018-08-18T10:29:40.715Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/categories/51nod%E5%9F%BA%E7%A1%80%E9%A2%98.html</loc>
-    
-    <lastmod>2018-08-18T10:25:06.536Z</lastmod>
     
   </url>
   
