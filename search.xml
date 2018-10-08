@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[busuanzi计数功能失效及解决办法]]></title>
+    <url>%2F2018%2F10%2F08%2Fbusuanzi%E8%AE%A1%E6%95%B0%E5%8A%9F%E8%83%BD%E5%A4%B1%E6%95%88%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[上课前水一篇博客 这两天发现博客的计数区不计数了，如图： 然后上了一下busuanzi的官网，发现是js文件转移了 所以在foot.swig里改一下以前的开头即可 123&lt;script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;改为&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 1094 和为k的连续区间（前缀和，map）]]></title>
     <url>%2F2018%2F10%2F07%2F51nod%201094%20%E5%92%8C%E4%B8%BAk%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%8C%BA%E9%97%B4%EF%BC%88%E5%89%8D%E7%BC%80%E5%92%8C%EF%BC%8Cmap%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一整数数列a1, a2, … , an（有正有负），以及另一个整数k，求一个区间[i, j]，(1 &lt;= i &lt;= j &lt;= n)，使得a[i] + … + a[j] = k。 Input第1行：2个数N,K。N为数列的长度。K为需要求的和。(2 &lt;= N &lt;= 10000，-10^9 &lt;= K &lt;= 10^9)第2 - N + 1行：Ai。 Output如果没有这样的序列输出No Solution。输出2个数i, j，分别是区间的起始和结束位置。如果存在多个，输出i最小的。如果i相等，输出j最小的。 Input示例12345676 10123456 Output示例11 4 题解：前缀和 o(n^2)暴力竟然过了，看了讨论区还可以再用map优化一下，优化后的代码也放下面了，62ms-&gt;15ms(・ω・)ノ 代码：o(n^2) 12345678910111213141516171819202122232425262728293031#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1e4+5;LL a[N];int main()&#123; int n,flag=0; LL k,c; scanf("%d%lld",&amp;n,&amp;k); a[0]=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;c); a[i]=a[i-1]+c; &#125; for(int i=0;i&lt;=n-1;i++)&#123; if(flag)break; for(int j=i+1;j&lt;=n;j++) if(a[j]-a[i]==k)&#123; flag=1; printf("%d %d\n",i+1,j); break; &#125; &#125; if(!flag)printf("No Solution"); return 0;&#125; 12345678910111213141516171819202122232425262728293031323334353637#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;map&gt;using namespace std;#define LL long longconst int N=1e4+5;LL a[N];map&lt;LL,LL&gt;m;int main()&#123; int n,flag=0; LL k,c; scanf("%d%lld",&amp;n,&amp;k); a[0]=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;c); a[i]=a[i-1]+c; m[a[i]]++; &#125; for(int i=0;i&lt;=n-1;i++)&#123; if(flag)break; if(m[a[i]+k])&#123; for(int j=i+1;j&lt;=n;j++) if(a[j]-a[i]==k)&#123; flag=1; printf("%d %d\n",i+1,j); break; &#125; &#125; &#125; if(!flag)printf("No Solution"); return 0;&#125;]]></content>
@@ -866,17 +877,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
-    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
@@ -885,6 +885,17 @@
       </categories>
       <tags>
         <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
+    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
