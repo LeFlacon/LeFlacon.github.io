@@ -136,7 +136,7 @@
 
 
   <meta name="description" content="Sample Input123456789101112240 01 01 10 251 13 13 22 31 2 Sample Output12950 Source2015 ACM/ICPC Asia Regional Changchun Online  题意：给一个凸n边形，n个点任选大于等于三个点，求所Marisa’s Cake有情况的面积之和，答案为2*S%(1e9+7)，n&amp;lt;1e">
-<meta name="keywords" content="推公式,前缀和,计算几何">
+<meta name="keywords" content="前缀和,推公式,计算几何">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdu 5448 Marisa’s Cake（凸多边形面积，推公式，前缀和）">
 <meta property="og:url" content="http://leflacon.github.io/2018/09/15/Marisa’s Cake/index.html">
@@ -542,9 +542,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/推公式/" rel="tag"># 推公式</a>
-          
             <a href="/tags/前缀和/" rel="tag"># 前缀和</a>
+          
+            <a href="/tags/推公式/" rel="tag"># 推公式</a>
           
             <a href="/tags/计算几何/" rel="tag"># 计算几何</a>
           
@@ -646,7 +646,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">190</span>
+                    <span class="site-state-item-count">191</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -864,7 +864,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">81</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -889,6 +901,48 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shiien.github.io/" title="SaucerHi" target="_blank" rel="external nofollow noopener noreferrer">SaucerHi</a>
+                  </li>
+                
+              </ul>
+              <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("08/11/2018 00:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+<script type="text/javascript" src="//ra.revolvermaps.com/0/0/8.js?i=0k7pcukxypn&amp;m=1&amp;c=ffc000&amp;cr1=00fff6&amp;f=comic_sans_ms&amp;l=49&amp;s=230&amp;bv=70" async="async"></script>
+            </div>
           
 
           
@@ -1024,7 +1078,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:105.7k</span>
+  <span class="post-count"> | Words:107.2k</span>
 </div>
 
 <br>
@@ -1567,5 +1621,10 @@ setInterval("createtime()",250);
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/src/love.js"></script>
 
-
+<!-- 加速 -->
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('/js/src/sw.js');
+}
+</script>
 

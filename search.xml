@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[大因数分解 -- Pollard Rho算法]]></title>
+    <url>%2F2018%2F10%2F09%2F%E5%A4%A7%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%20--%20Pollard%20Rho%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[研究了一篇论文，讲的很好，由浅入深，大致记录一下 试除法首先如果要对一个数进行因数分解，最直接的做法就是「试除法」 假设N是一个能被分解为p*q的数，就暴力的从i=2（i++）开始判断能否整除n，当然由于一半是偶数，所以可以优化先判断2，然后从3开始（i+=2）继续判断 这种方法可以改的更加暴力，不从i=2开始，直接给一个随机数i然后判断i能否整除n，那么对于n=p*q来说，找出其因数的概率是2/(n-1)，相当小啊，这不是我们要的 所以接下来要开一个叫 「Birthday Trick」（生日悖论） 的挂 生日悖论生日悖论问题： 如果一个房间里有23个或23个以上的人，那么至少有两个人的生日相同的概率要大于50%。这就意味着在一个典型的标准小学班级(30人)中，存在两人生日相同的可能性更高。对于60或者更多的人，这种概率要大于99%。 那么举个取随机数的例子，在[1,1000]中随机取一个数，取得42这个数的概率是1/1000，那么现在修改一下这个问题，在[1,1000]中随机取两个数i,j(i!=j)，i-j=42的概率是多少，如下：479/249750，差不多是1/500，快了一半 那么大胆假设，如果在[1,1000]中随机取k个数，x1,x2…xk，满足xi-xj=42的概率是多少呢（关于这段论文里的代码我没咋搞明白就懒得试了，mark一下再说吧，先直接丢结果） 然后回到之前的试除法，对于n=p*q来说，取一个[1,n]的随机数，直接得到p或q的概率是很小的，但是取k个数，xi-xj整除n的概率就会随着k的增大而增大，上面这种情况当k=√n时，概率已经上升到50%以上 用gcd优化对于一个10位整数来说，需要选取k=10^5个随机数（原因大概就是√n的时候的精确度已经差不多了），然而，这并没有优化，因为我们要做k^2=10^10次比较，所以这时候又出现了一个更妙的想法 选取k个数x1,x2…xk，询问是否存在gcd(xi-xj,n)&gt;1，举个例子，如果问有多少个数能整除n，答案只有两个，p和q，如果问有多少个数使得gcd(x,n)&gt;1，答案便很多了p,2p,3p…(q-1)p,q,2q,3q…(p-1)q，也就是说共有p+q-2个数 所以思路就是在[2,n-1]中随机选k个数，x1,x2…xk，判读是否存在gcd(xi-xj,n)&gt;1，若存在，则gcd(xi-xj,n)是n的一个因子，即之前举例的p或q 伪随机数：生成10^5个随机数要用到伪随机数的神奇函数f(i)=(x^2+a)mod n 可以自己指定a，也可以用rand()生成，f1=2（别的也行） 对于大多数数字，这个函数都是完全ok的，但是对于某些特殊数字，会陷入循环0.0，也就是传说中的f环，然后就找不到因子了，比如x1=2，a=1，n=8051就会出现f环，所以需要探测环的出现 一种方法用一个vis数组记录当前产生的所有数，但是如果n变大，内存就炸了 所以又要开挂了，Floyd周期检测策略，Floyd好厉害啊ʕ •ᴥ•ʔ 探测f环（Floyd周期检测策略）：假设我们在一个很长很长的圆形轨道上行走，我们如何知道我们已经走完了一圈呢？机智的方法是让A和B，从同一起点开始往前走，B的速度是A的速度的两倍，那么当B第一次赶上A时(套圈)，B就已经走了至少一圈了 所以如果有环，重新给个种子a就ok了 Pollard’s Rho 算法 ：以上都结合起来，就差不多是Pollard’s Rho 算法了 复杂度o(玄学n^(1/4))，不想看复杂度证明了╮(￣▽￣””)╭ 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;#define LL long longvector&lt;LL&gt;v;LL qpow(LL a,LL b,LL p)&#123;//快速幂 LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b/=2; a=a*a%p; &#125; return ans;&#125;LL mul(LL a,LL b,LL p)&#123;//快速乘，防爆LL LL res=0; while(b)&#123; if(b&amp;1)res=(res+a)%p; b&gt;&gt;=1; a=(a+a)%p; &#125; return res;&#125;LL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;LL Pollard_Rho(LL n,int c)&#123; LL i=1,k=2,x,y; x=rand()%(n-1)+1,y=x; while(1)&#123; i++; x=(mul(x,x,n)+c)%n; LL p=gcd((y-x+n)%n,n); if(p!=1&amp;&amp;p!=n)return p; if(y==x)return n;//出现f环 if(i==k)&#123; y=x; k&lt;&lt;=1; &#125; &#125;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=20,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;void find(LL n,LL c)&#123; if(n==1)return; if(Miller_Rabin(n))&#123; v.push_back(n); return; &#125; LL p=n,k=c; while(p&gt;=n)p=Pollard_Rho(p,c--); find(p,k); find(n/p,k);&#125;int main()&#123; LL n; cin&gt;&gt;n; find(n,111); sort(v.begin(),v.end()); for(int i=0;i&lt;v.size();i++)&#123; cout&lt;&lt;v[i]&lt;&lt;" "; &#125; cout&lt;&lt;endl; return 0;&#125; 终于搞定了睡觉去～\(≧▽≦)/明天去搞两个题耍耍，最后附上那篇论文的链接 -&gt; A Quick Tutorial on Pollard’s Rho Algorithm]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
+        <tag>生日悖论</tag>
+        <tag>Pollard Rho算法</tag>
+        <tag>Floyd周期检测</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[busuanzi计数功能失效及解决办法]]></title>
     <url>%2F2018%2F10%2F08%2Fbusuanzi%E8%AE%A1%E6%95%B0%E5%8A%9F%E8%83%BD%E5%A4%B1%E6%95%88%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%2F</url>
     <content type="text"><![CDATA[上课前水一篇博客 这两天发现博客的计数区不计数了，如图： 然后上了一下busuanzi的官网，发现是js文件转移了 所以在foot.swig里改一下以前的开头即可 123&lt;script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;改为&lt;script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;]]></content>
@@ -186,17 +200,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
-      <categories>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
     <url>%2F2018%2F10%2F03%2F51nod%201433%200%E5%92%8C5%EF%BC%88%E8%83%BD%E8%A2%AB9%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
@@ -217,6 +220,17 @@
       <tags>
         <tag>推公式</tag>
         <tag>三分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
+      <categories>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -769,17 +783,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1018 排序]]></title>
-    <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>归并排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1012 最小公倍数LCM]]></title>
     <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
@@ -788,6 +791,17 @@
       </categories>
       <tags>
         <tag>gcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1018 排序]]></title>
+    <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -877,17 +891,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
-    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
@@ -896,6 +899,17 @@
       </categories>
       <tags>
         <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
+    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -934,16 +948,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1257 背包问题 V3（分数优化，二分，贪心）]]></title>
+    <title><![CDATA[1257 背包问题 V3（分数规划，二分）]]></title>
     <url>%2F2018%2F09%2F17%2F1257%20%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%20V3%EF%BC%88%E4%BA%8C%E5%88%86%EF%BC%8C%E8%B4%AA%E5%BF%83%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：3 秒 空间限制：131072 KB 51nod5级算法题 N个物品的体积为W1，W2……Wn（Wi为整数），与之相对应的价值为P1,P2……Pn（Pi为整数），从中选出K件物品（K &lt;= N)，使得单位体积的价值最大。 Input第1行：包括2个数N, K(1 &lt;= K &lt;= N &lt;= 50000) 第2 - N + 1行：每行2个数Wi, Pi（1 &lt;= Wi, Pi &lt;= 50000) Output输出单位体积的价值（用约分后的分数表示）。 Input示例12343 22 25 32 1 Output示例13/4 题解：一开始以为是贪心，直接取pi/wi最大的那k个，然后想想不对，因为如果p1=1,p2=101,w1=1000,w2=100000,如果照这种贪心策略就取第二个，但是这样体积很大，假如当前最优的W，P还需这两个之中的一个，那么(1+P)/(1000+W)可能比(101+P)/(100000+W)更优 所以贪心只能保证个体最优，却不能保证全局最优 这题的思路应当是二分单位体积最大价值，然后判断是否合法即可，也有用到贪心，不过不是上面那种贪心思路 判断是否合法的方法是，假设单位体积最大价值是p，wp[i].v=wp[i].p-wp[i].w*p，wp[i].w*p是当前物品体积需要的价值，然后就是贪心取最大的k个将其v值相加，判断是否大于等于0即可，因为反正多退少补的原则，大于等于0就合法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long#define eps 1e-6const int N=50005;LL x,y;int n,k;struct WP&#123; int w,p; double v;&#125;wp[N];bool cmp(struct WP wp1,struct WP wp2)&#123; return wp1.v&gt;wp2.v;&#125;LL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;bool ok(double p)&#123; for(int i=0;i&lt;n;i++)wp[i].v=wp[i].p-wp[i].w*p; sort(wp,wp+n,cmp); x=0;y=0;double lp=0.0; for(int i=0;i&lt;k;i++)&#123; x+=wp[i].p; y+=wp[i].w; lp+=wp[i].v; &#125; if(lp&gt;=0)return true; else return false;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;n;i++)scanf("%d%d",&amp;wp[i].w,&amp;wp[i].p); double l=0,r=50000,m; LL fz,fm; while(fabs(l-r)&gt;eps)&#123; m=(l+r)/2; if(ok(m))&#123; l=m; fz=x;fm=y; &#125; else r=m; &#125; LL G=gcd(max(fz,fm),min(fz,fm)); fz/=G; fm/=G; printf("%lld/%lld\n",fz,fm); return 0;&#125;]]></content>
       <categories>
         <category>二分</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
+        <tag>背包</tag>
         <tag>二分</tag>
-        <tag>背包 - 分数规划</tag>
+        <tag>分数规划</tag>
       </tags>
   </entry>
   <entry>
@@ -1058,8 +1072,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>前缀和</tag>
+        <tag>推公式</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1280,6 +1294,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java高精度</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -1288,17 +1313,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java高精度</category>
-      </categories>
-      <tags>
         <tag>java高精度</tag>
       </tags>
   </entry>
