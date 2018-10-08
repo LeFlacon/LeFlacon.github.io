@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1094 和为k的连续区间（前缀和，map）]]></title>
+    <url>%2F2018%2F10%2F07%2F51nod%201094%20%E5%92%8C%E4%B8%BAk%E7%9A%84%E8%BF%9E%E7%BB%AD%E5%8C%BA%E9%97%B4%EF%BC%88%E5%89%8D%E7%BC%80%E5%92%8C%EF%BC%8Cmap%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一整数数列a1, a2, … , an（有正有负），以及另一个整数k，求一个区间[i, j]，(1 &lt;= i &lt;= j &lt;= n)，使得a[i] + … + a[j] = k。 Input第1行：2个数N,K。N为数列的长度。K为需要求的和。(2 &lt;= N &lt;= 10000，-10^9 &lt;= K &lt;= 10^9)第2 - N + 1行：Ai。 Output如果没有这样的序列输出No Solution。输出2个数i, j，分别是区间的起始和结束位置。如果存在多个，输出i最小的。如果i相等，输出j最小的。 Input示例12345676 10123456 Output示例11 4 题解：前缀和 o(n^2)暴力竟然过了，看了讨论区还可以再用map优化一下，优化后的代码也放下面了，62ms-&gt;15ms(・ω・)ノ 代码：o(n^2) 12345678910111213141516171819202122232425262728293031#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1e4+5;LL a[N];int main()&#123; int n,flag=0; LL k,c; scanf("%d%lld",&amp;n,&amp;k); a[0]=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;c); a[i]=a[i-1]+c; &#125; for(int i=0;i&lt;=n-1;i++)&#123; if(flag)break; for(int j=i+1;j&lt;=n;j++) if(a[j]-a[i]==k)&#123; flag=1; printf("%d %d\n",i+1,j); break; &#125; &#125; if(!flag)printf("No Solution"); return 0;&#125; 12345678910111213141516171819202122232425262728293031323334353637#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;map&gt;using namespace std;#define LL long longconst int N=1e4+5;LL a[N];map&lt;LL,LL&gt;m;int main()&#123; int n,flag=0; LL k,c; scanf("%d%lld",&amp;n,&amp;k); a[0]=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;c); a[i]=a[i-1]+c; m[a[i]]++; &#125; for(int i=0;i&lt;=n-1;i++)&#123; if(flag)break; if(m[a[i]+k])&#123; for(int j=i+1;j&lt;=n;j++) if(a[j]-a[i]==k)&#123; flag=1; printf("%d %d\n",i+1,j); break; &#125; &#125; &#125; if(!flag)printf("No Solution"); return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>前缀和</tag>
+        <tag>stl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1095 Anigram单词（map）]]></title>
+    <url>%2F2018%2F10%2F07%2F51nod%201095%20Anigram%E5%8D%95%E8%AF%8D%EF%BC%88map%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个单词a如果通过交换单词中字母的顺序可以得到另外的单词b，那么定义b是a的Anigram，例如单词army和mary互为Anigram。另：相同的2个单词不算Anigram。现在给定一个字典，输入Q个单词，从给出的字典中找出这些单词的Anigram。 Input第1行：1个数N，表示字典中单词的数量。(1 &lt;= N &lt;= 10000)第2 - N + 1行，字典中的单词，单词长度 &lt;= 10。第N + 2行：查询的数量Q。(1 &lt;= Q &lt;= 10000)第N + 3 - N + Q - 2行：用作查询的单词，单词长度 &lt;= 10。 Output共Q行，输出Anigram的数量，如果没有输出0。 Input示例123456789105adddadbadcaddid3addcacdda Output示例123102 题解：stl好厉害啊 用两个map，一个记录某字符串个数，一个记录某字符串排序后的串的个数，对于某串来说，能变成的串的个数就是上述两数相减 代码：1234567891011121314151617181920212223242526272829303132#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;map&gt;using namespace std;map&lt;string,int&gt;m1,m2;int main()&#123; int n,q,len; char s[11]; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%s",s); len=strlen(s); m1[s]++; sort(s,s+len); m2[s]++; &#125; scanf("%d",&amp;q); int t1,t2; for(int i=0;i&lt;q;i++)&#123; scanf("%s",s); len=strlen(s); t1=m1[s]; sort(s,s+len); t2=m2[s]; printf("%d\n",t2-t1); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>stl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1126 1119 机器人走方格 V2]]></title>
+    <url>%2F2018%2F10%2F07%2F51nod%201126%201119%20%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B0%E6%96%B9%E6%A0%BC%20V2%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 M * N的方格，一个机器人从左上走到右下，只能向右或向下走。有多少种不同的走法？由于方法数量可能很大，只需要输出Mod 10^9 + 7的结果。 Input第1行，2个数M,N，中间用空格隔开。（2 &lt;= m,n &lt;= 1000000) Output输出走法的数量 Mod 10^9 + 7。 Input示例12 3 Output示例13 题解：c(m+n-2,m-1) 用费马小定理求组合数的板子交了一发200ms+(#ﾟДﾟ) 写了个扩展欧几里得的板子交还是200ms+… 然后看了下榜里的板子，研究了一下人家的15ms，发现是我求组合数那个函数跑得慢，之前写的那个循环m次每次都求了逆元再相乘，其实可以直接先相乘得到分母，最后求一次逆元即可，改了一下，现在两个都是15ms了(￣▽￣) 12345678910LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans=1; for(int i=1;i&lt;=m;i++)&#123; LL a=(n+i-m)%p; LL b=i%p; ans=ans*(a*qpow(b,p-2)%p)%p; &#125; return ans;&#125; 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1e9+7;LL qpow(LL a,LL b)&#123; LL ans=1; a%=p; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans,a=1,b=1; for(int i=1;i&lt;=m;i++)&#123; a=(a*(n+i-m)%p)%p; b=(b*i%p)%p; &#125; ans=(a*qpow(b,p-2)%p)%p; return ans;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",C(m+n-2,m-1)); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1e9+7;void ex_gcd(LL a,LL b,LL &amp;d,LL &amp;x,LL &amp;y)&#123; if(b==0)&#123; x=1;y=0;d=a; return; &#125; ex_gcd(b,a%b,d,y,x); y-=x*(a/b);&#125;LL inv(LL a)&#123; LL x,y,d; ex_gcd(a,p,d,x,y); if(d!=1)return 0; return (x%p+p)%p;&#125;LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans,a=1,b=1; for(int i=1;i&lt;=m;i++)&#123; a=(a*(n+i-m)%p)%p; b=(b*i%p)%p; &#125; ans=(a*inv(b)%p)%p; return ans;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",C(m+n-2,m-1)); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>逆元</tag>
+        <tag>组合数</tag>
+        <tag>扩展欧几里得</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 1126 求递推序列的第N项（找循环结，矩阵快速幂）]]></title>
     <url>%2F2018%2F10%2F06%2F51nod%201126%20%E6%B1%82%E9%80%92%E6%8E%A8%E5%BA%8F%E5%88%97%E7%9A%84%E7%AC%ACN%E9%A1%B9%EF%BC%88%E6%89%BE%E5%BE%AA%E7%8E%AF%E7%BB%93%EF%BC%8C%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 有一个序列是这样定义的：f(1) = 1, f(2) = 1, f(n) = (A * f(n - 1) + B * f(n - 2)) mod 7.给出A，B和N，求f(n)的值。 Input输入3个数：A,B,N。数字之间用空格分割。(-10000 &lt;= A, B &lt;= 10000, 1 &lt;= N &lt;= 10^9) Output输出f(n)的值。 Input示例13 -1 5 Output示例16 题解：和这个题差不多 -&gt; Best Solver – ACM-ICPC 2015 Shenyang（推公式，广义斐波那契） 找循环结，因为模7所以按理说很快就能找到然后return的，但是下面这种写法又t又wa 存在以下三个问题： 1.负数取模的问题 改成f[i]=((a*f[i-1]%7+b*f[i-2])%7+7)%7; 2.刚好是循环结倍数的特殊情况 当n%x=0，n+=x 3.循环条件问题 改成这样才行for(int i=3;i&lt;N;i++)，不然会t。。一开始不知道为啥，打表了这组数据2322 -6048 525119718，发现第三项开始是546231546231……，好特殊啊，自己半路循环了起来0.0 都改完之后那组数据还是re，2322 -6048 525119718，把return i-2改成了break，在最后return，然后就。。ac了。。ac了。。ac了。。(╯°□°）╯︵ ┻━┻ 嗯共计交了21发，下次再写循环结0.0我一定不要wa了 还有一个方法是矩阵快速幂，构造如下矩阵然后套板子，代码也放下面了 12( F(n) ) = ( a b )*( F(n-1) ) F(n-1) 1 0 F(n-2) 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int N=2333; int f[N],a,b,n;int getnum()&#123; f[0]=1;f[1]=1;f[2]=1; int i; for(i=3;i&lt;N;i++)&#123; f[i]=((a*f[i-1]%7+b*f[i-2])%7+7)%7; if(f[i]==1&amp;&amp;f[i-1]==1)break; &#125; return i-2;&#125;int main()&#123; scanf("%d%d%d",&amp;a,&amp;b,&amp;n); int x=getnum(); n%=x; if(n==0)n+=x; printf("%d\n",f[n]); return 0;&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;typedef vector&lt;int&gt;row;typedef vector&lt;row&gt;mat;const int p=7;mat mul(mat a,mat b)&#123; mat c(a.size(),row(b[0].size())); for(int i=0;i&lt;a.size();i++)&#123; for(int j=0;j&lt;b[0].size();j++)&#123; for(int k=0;k&lt;b.size();k++) c[i][j]=(c[i][j]+a[i][k]*b[k][j])%p; &#125; &#125; return c;&#125;mat qpow(mat a,int x)&#123; mat b(a.size(),row(a.size())); for(int i=0;i&lt;a.size();i++)b[i][i]=1; while(x&gt;0)&#123; if(x&amp;1)b=mul(b,a); a=mul(a,a); x&gt;&gt;=1; &#125; return b;&#125;int main()&#123; int n,aa,bb; scanf("%d%d%d",&amp;aa,&amp;bb,&amp;n); while(aa&lt;0)aa+=p; while(bb&lt;0)bb+=p; mat a(2,row(2)),b(2,row(1)),c(2,row(1)); a[0][0]=aa;a[0][1]=bb;a[1][0]=1;a[1][1]=0; b[0][0]=1;b[1][0]=1; if(n&gt;=3)&#123; a=qpow(a,n-2); c=mul(a,b); printf("%d\n",c[0][0]); &#125; else&#123; printf("1\n"); &#125; return 0;&#125;]]></content>
@@ -139,18 +175,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
-      <categories>
-        <category>计算几何</category>
-      </categories>
-      <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
     <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
@@ -170,6 +194,18 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+      <categories>
+        <category>计算几何</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -722,17 +758,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1012 最小公倍数LCM]]></title>
-    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>gcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1018 排序]]></title>
     <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
@@ -741,6 +766,17 @@
       </categories>
       <tags>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012 最小公倍数LCM]]></title>
+    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -830,17 +866,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
-    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>Manacher</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1057 N的阶乘（java大数）]]></title>
     <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
@@ -849,6 +874,17 @@
       </categories>
       <tags>
         <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
+    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>Manacher</tag>
       </tags>
   </entry>
   <entry>
@@ -1146,8 +1182,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java高精度</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1169,8 +1205,8 @@
         <category>博弈论</category>
       </categories>
       <tags>
-        <tag>威佐夫博弈</tag>
         <tag>java高精度</tag>
+        <tag>威佐夫博弈</tag>
         <tag>二分</tag>
       </tags>
   </entry>
@@ -1216,8 +1252,8 @@
         <category>java高精度</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>java高精度</tag>
+        <tag>推公式</tag>
         <tag>海伦公式</tag>
       </tags>
   </entry>
