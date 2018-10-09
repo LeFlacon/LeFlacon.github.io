@@ -1,0 +1,150 @@
+.overlay-figure {
+  position: relative;
+/*
+   You can safely give the entire complex a size, or just a width or height. If a
+   size isn't specified then the overlay-figure-content element's size defines
+   the overall size (i.e. the IMG element defines the overall size).
+
+   width: 480px;
+   height: 320px;
+*/
+  display: table;
+  border: solid 1px black;
+}
+
+.overlay-figure-content {
+  width: 100%;
+  height: 100%;
+ -webkit-transform: scale(1.0) translateZ(0);
+    -moz-transform: scale(1.0) translateZ(0);
+         transform: scale(1.0) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease 0.25s;
+     -moz-transition:    -moz-transform 0.5s ease 0.25s;
+          transition:         transform 0.5s ease 0.25s;
+}
+
+.overlay-figure:hover
+.overlay-figure-content {
+    -webkit-transform: scale(0.95) translateZ(0);
+       -moz-transform: scale(0.95) translateZ(0);
+            transform: scale(0.95) translateZ(0);
+}
+
+.overlay-figure-content > img {
+    display: block;
+}
+
+.overlay-figure-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-image: linear-gradient(to bottom, rgba(38,50,72, 0.5), rgba(38,50,72, 0.85));
+}
+
+.overlay-figure:hover
+.overlay-figure-background {
+  opacity: 1;
+}
+
+.overlay-figure-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-family: adobe-clean, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: white;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.25s;
+     -moz-transition: opacity ease 0.25s;
+          transition: opacity ease 0.25s;
+}
+
+.overlay-figure:hover
+.overlay-figure-caption {
+    opacity: 1;
+}
+
+.overlay-figure-caption
+.contents {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-figure-caption
+.contents-stack {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 5%;
+}
+
+.overlay-figure-caption
+.title {
+  display: block;
+  margin-bottom: 0;
+  opacity: 0;
+  -webkit-transform: translateY(-100%) translateZ(0);
+     -moz-transform: translateY(-100%) translateZ(0);
+          transform: translateY(-100%) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+     -moz-transition:    -moz-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+          transition:         transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+}
+
+.overlay-figure:hover 
+.title {
+  opacity: 1;
+  -webkit-transform: translateY(0) translateZ(0);
+     -moz-transform: translateY(0) translateZ(0);
+          transform: translateY(0) translateZ(0);
+}
+
+.overlay-figure
+.separator {
+  display: block;
+  margin: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 2px;
+  width: 30%;
+  background-color: white;
+  -webkit-transform: scaleX(0) translateZ(0);
+     -moz-transform: scaleX(0) translateZ(0);
+          transform: scaleX(0) translateZ(0);
+  -webkit-transition: -webkit-transform 0.25s ease 0.25s;
+     -moz-transition:    -moz-transform 0.25s ease 0.25s;
+          transition:         transform 0.25s ease 0.25s;
+}
+
+.overlay-figure:hover
+.separator {
+  -webkit-transform: scaleX(1) translateZ(0);
+     -moz-transform: scaleX(1) translateZ(0);
+          transform: scaleX(1) translateZ(0);
+}
+
+.overlay-figure-caption 
+.text {
+  display: block;
+  margin-top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100%) translateZ(0);
+     -moz-transform: translateY(100%) translateZ(0);
+          transform: translateY(100%) translateZ(0);
+  -webkit-transition: -webkit-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+     -moz-transition:    -moz-transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+          transition:         transform 0.5s ease 0.25s, opacity 0.15s ease 0.25s;
+}
+
+.overlay-figure:hover
+.text {
+  opacity: 1;
+  -webkit-transform: translateY(0) translateZ(0);
+     -moz-transform: translateY(0) translateZ(0);
+          transform: translateY(0) translateZ(0);
+}

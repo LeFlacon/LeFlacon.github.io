@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2d016c;
+  background: #e4ff5d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2788,7 +2788,8 @@ img:hover {
   display: block;
   color: #7f7f7f;
   font-size: 15px;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 @-moz-keyframes heartAnimate {
   0%, 100% {
