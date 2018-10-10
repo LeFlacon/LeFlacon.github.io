@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ural 1593 Square Country. Version 2（n最少能表示成几个完全平方数的和）]]></title>
+    <url>%2F2018%2F10%2F10%2Fural%201593%20Square%20Country.%20Version%202%EF%BC%88n%E6%9C%80%E5%B0%91%E8%83%BD%E8%A1%A8%E7%A4%BA%E6%88%90%E5%87%A0%E4%B8%AA%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.timus.ru/problem.aspx?space=1&amp;num=1593 Time limit: 1.0 secondMemory limit: 64 MB There live square people in a square country. Everything in this country is square also. Thus, the Square Parliament has passed a law about a land. According to the law each citizen of the country has a right to buy land. A land is sold in squares, surely. Moreover, a length of a square side must be a positive integer amount of meters. Buying a square of land with a side a one pays a2 quadrics (a local currency) and gets a square certificate of a landowner.One citizen of the country has decided to invest all of his N quadrics into the land. He can, surely, do it, buying square pieces 1 × 1 meters. At the same time the citizen has requested to minimize an amount of pieces he buys: “It will be easier for me to pay taxes,” — he has said. He has bought the land successfully.Your task is to find out a number of certificates he has gotten. InputThe only line contains a positive integer N ≤ 1015 , that is a number of quadrics that the citizen has invested. OutputThe only line contains a number of certificates that he has gotten. Sample1234input344output3 题意：给一个数n，n&lt;=1e15，求n最少能表示成几个完全平方数的和 题解：这个题的基础版：ural 1073 Square Country 还是用到四平方和定理：“每个正整数均可表示为4个整数的平方和” 直接暴力判断1，2，3的情况，其余输出4，但是这题n太大了，毫无意外的t掉了，所以要来点定理优化 n≠4^a*(8m+7)是n可以用三个平方数表示的一个充分必要条件 正整数n能表示为两平方数之和的充要条件，是在它的标准分解式中，形如4k+3的素因数的幂指数是偶数 形如 4k+3 的整数有形如 4k+3 的素因子 先判断1，然后除去n的所有因子2得m，此时如果m%4!=3，也就是说“4k+3的素因数的幂指数是奇数”的情况不存在，那么可以继续判断答案为2的可能，如果m=1那么符合定理要求答案为2，其余情况就要暴力找有没有可能是两个数的平方和，当然这里暴力也是要优化一下的，枚举的范围在[sqrt(n-sqrt(n)*sqrt(n)),sqrt(n)] 判断3，4时用到上面第一个定理，因为是充要条件，所以直接判断，不是3就是4，直接干掉快的不行 最后跑了312ms 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long int main()&#123; LL n,m,sum,tmp1,tmp2; scanf("%lld",&amp;n); tmp1=sqrt(n); if(tmp1*tmp1==n)&#123; puts("1"); return 0; &#125; m=n; while(!(m&amp;1))m/=2; if(m%4!=3)&#123; if(m==1)&#123; puts("2"); return 0; &#125; m=n; sum=n; tmp1=sqrt(m); m=m-tmp1*tmp1; tmp2=sqrt(m); for(LL i=tmp1;i&gt;=tmp2;i--)&#123; m=sum; m=m-i*i; tmp2=sqrt(m); if(tmp2*tmp2+i*i==sum)&#123; puts("2"); return 0; &#125; &#125; &#125; m=n; while(m%4==0)m/=4; if(m%8!=7)&#123; puts("3"); &#125; else puts("4"); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>四平方和定理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ural 1073 Square Country（四平方和定理，完全背包）]]></title>
+    <url>%2F2018%2F10%2F10%2Fural%201073%20Square%20Country%2F</url>
+    <content type="text"><![CDATA[http://acm.timus.ru/problem.aspx?space=1&amp;num=1073 Time limit: 1.0 secondMemory limit: 64 MB There live square people in a square country. Everything in this country is square also. Thus, the Square Parliament has passed a law about a land. According to the law each citizen of the country has a right to buy land. A land is sold in squares, surely. Moreover, a length of a square side must be a positive integer amount of meters. Buying a square of land with a side a one pays a2 quadrics (a local currency) and gets a square certificate of a landowner.One citizen of the country has decided to invest all of his N quadrics into the land. He can, surely, do it, buying square pieces 1 × 1 meters. At the same time the citizen has requested to minimize an amount of pieces he buys: “It will be easier for me to pay taxes,” — he has said. He has bought the land successfully.Your task is to find out a number of certificates he has gotten. InputThe only line contains a positive integer N ≤ 60 000 , that is a number of quadrics that the citizen has invested. OutputThe only line contains a number of certificates that he has gotten. Sample1234input344output3 题意：给一个数n，n&lt;=60000，求n最少能表示成几个完全平方数的和 题解：因为这个题n不大，所以有两种方法，而进阶版的题n是1e15，背包的话状态就开不下了，需要用数学性质解决 -&gt; 1593. Square Country. Version 2 一种是当成完全背包做，dp[j]代表j最少能表示成几个完全平方数的和，从1-√n枚举i，状态转移方程为dp[j]=min(dp[j],dp[j-i*i]+1) 第二种方法是当成一个数论题做，用到四平方和定理：“每个正整数均可表示为4个整数的平方和” 所以直接暴力判断1，2，3的情况，其余输出4即可，不过写的时候要注意，如果当前找到了3的一组答案，不能直接输出，因为后续可能有2的答案，之前没考虑这个就wa了一发 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define INF 0x3f3f3f3fconst int N=60005;int dp[N];int main()&#123; int n; scanf("%d",&amp;n); memset(dp,INF,sizeof(dp)); dp[0]=0; for(int i=1;i*i&lt;=n;i++) for(int j=i*i;j&lt;=n;j++) dp[j]=min(dp[j],dp[j-i*i]+1); printf("%d\n",dp[n]); return 0;&#125; 1234567891011121314151617181920212223242526272829303132333435363738#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,flag=0,tmp1,tmp2; scanf("%d",&amp;n); for(int i=sqrt(n);i&gt;0;i--)&#123; tmp1=n-i*i; if(tmp1==0)&#123; flag=1; puts("1"); return 0; &#125; else&#123; for(int j=sqrt(tmp1);j&gt;0;j--)&#123; tmp2=tmp1-j*j; if(tmp2==0)&#123; flag=1; puts("2"); return 0; &#125; else&#123; int k=sqrt(tmp2); if(k*k==tmp2)&#123; flag=1; &#125; &#125; &#125; &#125; &#125; if(!flag)puts("4"); else puts("3"); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>背包</tag>
+        <tag>四平方和定理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 3864 D_num（Pollard Rho大因数分解）]]></title>
     <url>%2F2018%2F10%2F09%2Fhdu%203864%20D_num%EF%BC%88Pollard%20Rho%E5%A4%A7%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionOregon Maple was waiting for Bob When Bob go back home. Oregon Maple asks Bob a problem that as a Positive number N, if there are only four Positive number M makes Gcd(N, M) == M then we called N is a D_num. now, Oregon Maple has some Positive numbers, and if a Positive number N is a D_num , he want to know the four numbers M. But Bob have something to do, so can you help Oregon Maple?Gcd is Greatest common divisor. InputSome cases (case &lt; 100);Each line have a numeral N（1&lt;=N&lt;10^18） OutputFor each N, if N is a D_NUM, then output the four M (if M &gt; 1) which makes Gcd(N, M) = M. output must be Small to large, else output “is not a D_num”. Sample Input1236109 Sample Output1232 3 62 5 10is not a D_num 题意：给一个数n，n范围1e18，如果n有四个因数，输出除1以外的三个因数 题解：大因数分解 – Pollard Rho算法 分解完判断因数，只有两种情况可能有四个因数，一种是1,a,b,a*b，还有一种是1,a,a^2,a^3 t了无数发。。因为之前的板子快速幂里面的乘法还是直接乘，然后改成快速乘之后78ms过了。。太可怕了 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;#define LL long longvector&lt;LL&gt;v,ans;LL mul(LL a,LL b,LL p)&#123;//快速乘，防爆LL a%=p; LL res=0; while(b)&#123; if(b&amp;1)res=(res+a)%p; b&gt;&gt;=1; a=(a&lt;&lt;1)%p; &#125; return res;&#125;LL qpow(LL a,LL b,LL p)&#123;//快速幂 a%=p;b%=p; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=mul(ans,a,p); &#125; b&gt;&gt;=1; a=mul(a,a,p); &#125; return ans;&#125;LL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=20,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; srand(100); while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;LL Pollard_Rho(LL n,int c)&#123; LL i=1,k=2,x,y; x=rand()%(n-1)+1;y=x; while(1)&#123; i++; x=(mul(x,x,n)+c)%n; if(y==x)return n; LL d=gcd((y-x+n)%n,n); if(d!=1&amp;&amp;d!=n)return d; if(i==k)&#123; y=x; k&lt;&lt;=1; &#125; &#125;&#125;void find(LL n)&#123; if(n==1)return; if(Miller_Rabin(n))&#123; v.push_back(n); return; &#125; LL p=n; while(p&gt;=n)p=Pollard_Rho(p,rand()%(n-1)+1); find(p); find(n/p);&#125;int main()&#123; LL n; while(scanf("%lld",&amp;n)!=EOF)&#123; v.clear();ans.clear(); find(n); sort(v.begin(),v.end()); if(v.size()==2&amp;&amp;v[0]!=v[1]) printf("%lld %lld %lld\n",v[0],v[1],v[0]*v[1]); else if(v.size()==3&amp;&amp;v[0]==v[1]&amp;&amp;v[1]==v[2])&#123; printf("%lld %lld %lld\n",v[0],v[0]*v[0],v[0]*v[0]*v[0]); &#125; else printf("is not a D_num\n"); &#125; return 0;&#125;]]></content>
@@ -211,6 +235,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+      <categories>
+        <category>计算几何</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>三分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
     <url>%2F2018%2F10%2F03%2F51nod%201433%200%E5%92%8C5%EF%BC%88%E8%83%BD%E8%A2%AB9%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
@@ -230,18 +266,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
-      <categories>
-        <category>计算几何</category>
-      </categories>
-      <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -902,17 +926,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
-    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>Manacher</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1057 N的阶乘（java大数）]]></title>
     <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
@@ -921,6 +934,17 @@
       </categories>
       <tags>
         <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
+    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>Manacher</tag>
       </tags>
   </entry>
   <entry>
@@ -1083,8 +1107,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>前缀和</tag>
+        <tag>推公式</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1323,8 +1347,8 @@
         <category>java高精度</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>java高精度</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
