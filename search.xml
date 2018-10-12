@@ -354,8 +354,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -368,6 +368,18 @@
       <tags>
         <tag>dp</tag>
         <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+      <categories>
+        <category>计算几何</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -390,18 +402,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
-      <categories>
-        <category>计算几何</category>
-      </categories>
-      <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -732,8 +732,8 @@
         <category>二分</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
         <tag>二分</tag>
       </tags>
   </entry>
@@ -861,8 +861,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
         <tag>组合数</tag>
         <tag>斯特林数</tag>
       </tags>
@@ -875,8 +875,8 @@
         <category>模拟</category>
       </categories>
       <tags>
-        <tag>斐波那契</tag>
         <tag>模拟</tag>
+        <tag>斐波那契</tag>
       </tags>
   </entry>
   <entry>
@@ -921,9 +921,9 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
+        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
-        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1243,8 +1243,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>推公式</tag>
+        <tag>前缀和</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1465,17 +1465,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java高精度</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -1485,6 +1474,17 @@
       <tags>
         <tag>java高精度</tag>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java高精度</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
