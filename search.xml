@@ -1,6 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1033 骨牌覆盖 V2（插头dp，矩阵快速幂）]]></title>
+    <url>%2F2018%2F10%2F12%2F51nod%201033%20%E9%AA%A8%E7%89%8C%E8%A6%86%E7%9B%96%20V2%EF%BC%88%E6%8F%92%E5%A4%B4dp%EF%BC%8C%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 320 难度：7级算法题 在m*n的一个长方形方格中，用一个1*2的骨牌排满方格。问有多少种不同的排列方法。（n &lt;= 5) 例如：3 * 2的方格，共有3种不同的排法。（由于方案的数量巨大，只输出 Mod 10^9 + 7 的结果） Input2个数M N，中间用空格分隔（2 &lt;= m &lt;= 10^9，2 &lt;= n &lt;= 5） Output输出数量 Mod 10^9 + 7 Input示例12 3 Output示例13 题解：对插头dp还是。。拨云见雾0.0，先会了这题再说 dp[i][j]表示上一列状态为i到这一列状态为j是否合法，也就是两个块能不能插在一起，dfs后会得到一个(2^n)*(2^n)的矩阵 dfs(x,pre,now)代表第x行，pre状态和now状态，那么有三种合法情况，pre的第x行没有/now的第x行有，pre的第x行有/now的第x行没有，pre的第x行和x+1行和now的第x行和x+1行都是0（其实也就相当于两列里面有一个铺了2x1），也就是说无论如何要把x行填满才能继续下去 123401001□■□□■■□■■□10110 不想画图_(:з」∠)_反正大概就长成这个样子，可以拼一起就行 比如样例2x3的合法状态有： 1234567891011120 71 62 53 40 44 35 26 17 04 00 11 0 然后就是理解矩阵相乘了，因为最初dp[i][j]存的是两例之间的可达性，最后能形成一列，所以需要矩阵相乘，dp[i][j]=∑dp[i][k]*dp[k][j]，也就是如果ik可达kj可达，那么ij可达，且多一个完整的列，最后的答案是dp[0][(1&lt;&lt;n)-1]，也就是首列是空状态0，末列是满状态(1&lt;&lt;n)-1，总共m+1列，m个列满 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;#define LL long long typedef vector&lt;LL&gt;row;typedef vector&lt;row&gt;mat;const int p=1e9+7;LL dp[1&lt;&lt;5][1&lt;&lt;5];int n,m;mat mul(mat a,mat b)&#123; mat c(a.size(),row(b[0].size())); for(int i=0;i&lt;a.size();i++)&#123; for(int j=0;j&lt;b[0].size();j++)&#123; for(int k=0;k&lt;b.size();k++) c[i][j]=(c[i][j]+a[i][k]*b[k][j])%p; &#125; &#125; return c;&#125;mat qpow(mat a,int x)&#123; mat b(a.size(),row(a.size())); for(int i=0;i&lt;a.size();i++)b[i][i]=1; while(x&gt;0)&#123; if(x&amp;1)b=mul(b,a); a=mul(a,a); x&gt;&gt;=1; &#125; return b;&#125;void dfs(int x,int pre,int now)&#123; if(x&gt;n)return; if(x==n)&#123; dp[pre][now]++; // cout&lt;&lt;pre&lt;&lt;" "&lt;&lt;now&lt;&lt;endl; return; &#125; dfs(x+1,pre&lt;&lt;1,now&lt;&lt;1|1); dfs(x+1,pre&lt;&lt;1|1,now&lt;&lt;1); dfs(x+2,pre&lt;&lt;2,now&lt;&lt;2);&#125;int main()&#123; scanf("%d%d",&amp;m,&amp;n); mat a(1&lt;&lt;n,row(1&lt;&lt;n)); dfs(0,0,0); for(int i=0;i&lt;(1&lt;&lt;n);i++) for(int j=0;j&lt;(1&lt;&lt;n);j++) a[i][j]=dp[i][j]; a=qpow(a,m+1); printf("%lld\n",a[0][(1&lt;&lt;n)-1]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>矩阵快速幂</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1031 骨牌覆盖（斐波那契）]]></title>
+    <url>%2F2018%2F10%2F12%2F51nod%201031%20%E9%AA%A8%E7%89%8C%E8%A6%86%E7%9B%96%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 在2*N的一个长方形方格中，用一个1*2的骨牌排满方格。问有多少种不同的排列方法。 例如：2*3的方格，共有3种不同的排法。（由于方案的数量巨大，只输出 Mod 10^9 + 7 的结果） Input输入N(N &lt;= 1000) Output输出数量 Mod 10^9 + 7 Input示例13 Output示例13 题解：考虑最左边一列的铺法，因为要铺满，所以如果横向铺两个，方法数加上f[n-2]，如果纵向铺一个，方法数加上f[n-1]，那么f[n]=f[n-1]+f[n-2]，就是个赤裸裸的斐波那契了 初始f[1]=1，只有纵向一个，f[2]=2，纵向两个或者横向两个 代码：123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int p=1e9+7;const int N=1005;int f[N];int main()&#123; int n; scanf("%d",&amp;n); f[1]=1;f[2]=2; for(int i=3;i&lt;=n;i++)f[i]=(f[i-1]+f[i-2])%p; printf("%d\n",f[n]); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>斐波那契</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1007 正整数分组（01背包）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201007%20%E6%AD%A3%E6%95%B4%E6%95%B0%E5%88%86%E7%BB%84%EF%BC%8801%E8%83%8C%E5%8C%85%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 将一堆正整数分为2组，要求2组的和相差最小。例如：1 2 3 4 5，将1 2 4分为1组，3 5分为1组，两组和相差1，是所有方案中相差最少的。 Input第1行：一个数N，N为正整数的数量。第2 - N+1行，N个正整数。(N &lt;= 100, 所有正整数的和 &lt;= 10000) Output输出这个最小差 Input示例123456512345 Output示例11 题解：01背包，背包大小sum/2，根据取不取当前数有状态转移方程dp[j]=max(dp[j],dp[j-a[i]]+a[i]) 代码：123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int N=10005;int a[N],dp[N];int main()&#123; int n,sum=0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;a[i]); sum+=a[i]; &#125; memset(dp,0,sizeof(dp)); for(int i=0;i&lt;n;i++)&#123; for(int j=sum/2;j&gt;=a[i];j--) dp[j]=max(dp[j],dp[j-a[i]]+a[i]); &#125; printf("%d\n",sum-2*dp[sum/2]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1024 矩阵中不重复的元素（暴力）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201024%20%E7%9F%A9%E9%98%B5%E4%B8%AD%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%85%83%E7%B4%A0%EF%BC%88%E6%9A%B4%E5%8A%9B%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： Project Euler基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个m*n的矩阵。 该矩阵的第一列是a^b,(a+1)^b,…..(a + n - 1)^b第二列是a^(b+1),(a+1)^(b+1),…..(a + n - 1)^(b+1)…….第m列是a^(b + m - 1),(a+1)^(b + m - 1),…..(a + n - 1)^(b + m - 1)(a^b表示a的b次方） 下面是一个4*4的矩阵： 2^2=4, 2^3=8, 2^4=16, 2^5=323^2=9, 3^3=27, 3^4=81, 3^5=2434^2=16, 4^3=64, 4^4=256, 4^5=10245^2=25, 5^3=125, 5^4=625, 5^5=3125 问这个矩阵里有多少不重复的数（比如4^3 = 8^2，这样的话就有重复了) 2^2=4, 2^3=8, 2^4=16, 2^5=323^2=9, 3^3=27, 3^4=81, 3^5=2434^2=16, 4^3=64, 4^4=256, 4^5=1024 m = 4, n = 3, a = 2, b = 2。其中2^4与4^2是重复的元素。 Input输入数据包括4个数：m,n,a,b。中间用空格分隔。m，n为矩阵的长和宽（2 &lt;= m,n &lt;= 100)。a，b为矩阵的第1个元素，a^b（2 &lt;= a , b &lt;= 100）。 Output输出不重复元素的数量。 Input示例14 3 2 2 Output示例111 题解：j^i，对j取log2然后相乘即可，也等同于直接取ln 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;#define LL long long#define eps 1e-6vector&lt;double&gt;v;int main()&#123; int n,m,a,b; scanf("%d%d%d%d",&amp;m,&amp;n,&amp;a,&amp;b); for(int i=b;i&lt;=b+m-1;i++)&#123; for(int j=a;j&lt;=a+n-1;j++)&#123; v.push_back((double)i*log(j)); &#125; &#125; int num=v.size(),ans=m*n; sort(v.begin(),v.end()); for(int i=1;i&lt;num;i++) if(v[i]-v[i-1]&lt;eps)ans--; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1014 X^2 Mod P（枚举）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201014%20X%5E2%20Mod%20P%EF%BC%88%E6%9E%9A%E4%B8%BE%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 X*X mod P = A，其中P为质数。给出P和A，求&lt;=P的所有X。 Input两个数P A，中间用空格隔开。(1 &lt;= A &lt; P &lt;= 1000000, P为质数) Output输出符合条件的X，且0 &lt;= X &lt;= P，如果有多个，按照升序排列，中间用空格隔开。如果没有符合条件的X，输出：No Solution Input示例113 3 Output示例14 9 题解：暴力枚举 代码：1234567891011121314151617181920212223#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std;#define LL long longvector&lt;int&gt;v;int main()&#123; int p,a; scanf("%d%d",&amp;p,&amp;a); for(int i=1;i&lt;=p;i++)&#123; if((LL)i*i%p==a)v.push_back(i); &#125; int num=v.size(); if(num==0)puts("No Solution"); else&#123; for(int i=0;i&lt;num;i++)printf("%d ",v[i]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1010 只包含因子2 3 5的数（打表+二分，stl）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201010%20%E5%8F%AA%E5%8C%85%E5%90%AB%E5%9B%A0%E5%AD%902%203%205%E7%9A%84%E6%95%B0%EF%BC%88%E6%89%93%E8%A1%A8%2B%E4%BA%8C%E5%88%86%EF%BC%8Cstl%EF%BC%89%20%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 K的因子中只包含2 3 5。满足条件的前10个数是： 2,3,4,5,6,8,9,10,12,15。所有这样的K组成了一个序列S，现在给出一个数n，求S中 &gt;= 给定数的最小的数。例如：n = 13，S中 &gt;= 13的最小的数是15，所以输出15。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 10000)第2 - T + 1行：每行1个数N(1 &lt;= N &lt;= 10^18) Output共T行，每行1个数，输出&gt;= n的最小的只包含因子2 3 5的数。 Input示例123456518133577 Output示例1234528153680 题解：打表然后二分答案，也可以直接用stl，lower_bound 代码：12345678910111213141516171819202122232425262728293031323334353637#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst LL maxx=1e18+233;const int N=50005;LL a[N];int ji=0;void init()&#123; for(LL i=1;i&lt;maxx;i*=2) for(LL j=1;i*j&lt;maxx;j*=3) for(LL k=1;k*i*j&lt;maxx;k*=5) a[ji++]=i*j*k;&#125;int main()&#123; init(); sort(a,a+ji); int t; LL n; scanf("%d",&amp;t); while(t--)&#123; scanf("%lld",&amp;n); LL l=1,r=ji,m; while(l&lt;r)&#123; m=(l+r)&gt;&gt;1; if(a[m]&gt;=n)r=m; else l=m+1; &#125; printf("%lld\n",a[l]); //printf("%lld\n",a[lower_bound(a+1,a+ji+1,n)-a]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>二分</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>stl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1050 循环数组最大子段和（dp）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201050%20%E5%BE%AA%E7%8E%AF%E6%95%B0%E7%BB%84%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C%EF%BC%88dp%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 N个整数组成的循环序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的连续的子段和的最大值（循环序列是指n个数围成一个圈，因此需要考虑a[n-1],a[n],a[1],a[2]这样的序列）。当所给的整数均为负数时和为0。例如：-2,11,-4,13,-5,-2，和最大的子段为：11,-4,13。和为20。 Input第1行：整数序列的长度N（2 &lt;= N &lt;= 50000)第2 - N+1行：N个整数 (-10^9 &lt;= S[i] &lt;= 10^9)Output输出循环数组的最大子段和。 Input示例12345676-211-413-5-2 Output示例120 题解：dp[i]表示以a[i]结尾的最大子段和是多少 状态转移方程 dp[i]=max(a[i],dp[i-1]+a[i]) 循环数组，那么有两种情况，第一种就是直接取到一个数组的最大子段和，还有一种情况是中间有一段和是特别小的负数，所以首位相连，比较这两种答案取大的那个 第一种情况直接跑一遍最大子段和dp即得，第二种情况就是先求总和sum，然后跑一遍最小子段和，总和减去最小子段和就是首尾相连情况能得到的最大子段和 代码：1234567891011121314151617181920212223242526272829#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;LL a[N],dp1[N],dp2[N];int main()&#123; int n; scanf("%d",&amp;n); LL sum=0; for(int i=0;i&lt;n;i++)&#123; scanf("%lld",&amp;a[i]); sum+=a[i]; &#125; LL ans=a[0],res=a[0]; dp1[0]=a[0];dp2[0]=a[0]; for(int i=1;i&lt;n;i++)&#123; dp1[i]=max(a[i],dp1[i-1]+a[i]); ans=max(ans,dp1[i]); dp2[i]=min(a[i],dp2[i-1]+a[i]); res=min(res,dp2[i]); &#125; printf("%lld\n",max(ans,sum-res)); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2516 取石子游戏（斐波那契博弈）]]></title>
+    <url>%2F2018%2F10%2F11%2Fhdu%202516%20%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Problem Description1堆石子有n个,两人轮流取.先取者第1次可以取任意多个，但不能全部取完.以后每次取的石子数不能超过上次取子数的2倍。取完者胜.先取者负输出”Second win”.先取者胜输出”First win”. Input输入有多组.每组第1行是2&lt;=n&lt;2^31. n=0退出. Output先取者负输出”Second win”. 先取者胜输出”First win”.参看Sample Output. Sample Input1234213100000 Sample Output123Second winSecond winFirst win 题解：斐波那契博弈 证明见这篇 -&gt;51nod 1070 Bash游戏 V4（斐波那契博弈） 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long int f[100];int main()&#123; f[1]=1;f[2]=1; for(int i=3;i&lt;=80;i++)f[i]=f[i-1]+f[i-2]; LL n; while(scanf("%lld",&amp;n)&amp;&amp;n)&#123; int flag=0; for(int i=1;i&lt;=80;i++) if(f[i]==n)&#123; flag=1; puts("Second win"); break; &#125; if(!flag)puts("First win"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>博弈论</category>
+      </categories>
+      <tags>
+        <tag>斐波那契</tag>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1070 Bash游戏 V4（斐波那契博弈）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201070%20Bash%E6%B8%B8%E6%88%8F%20V4%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 有一堆石子共有N个。A B两个人轮流拿，A先拿。每次拿的数量最少1个，最多不超过对手上一次拿的数量的2倍（A第1次拿时要求不能全拿走）。拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N，问最后谁能赢得比赛。例如N = 3。A只能拿1颗或2颗，所以B可以拿到最后1颗石子。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 1000)第2 - T + 1行：每行1个数N。(1 &lt;= N &lt;= 10^9) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例12343234 Output示例123BBA 题解：斐波那契博弈 结论是：斐波那契数列的数1,2,3,5,8,13,21,34,55,89……必败 粗糙的证明（数学归纳法）： 先证斐波那契数时先手必败 1.n=2时，先手必败，符合 2.假设i&lt;=k时，结论成立，对于i=k+1，f[k+1]=f[k]+f[k-1]，那么把这些石子分成两堆，f[k]和f[k-1]，对于f[k-1]，由假设得后手必胜，那么只需考虑后手取最后一堆最后取几个，以判断在后手取完f[k-1]之后，先手有没有可能一步取完f[k]，如果没有可能的话，由假设得还是先手胜 那么回到f[k-1]，后手取最多的情况是，先手第一次取的数目为x==f[k-1]/3，后手取y=2*f[k-1]/3，那么需要证2*y&lt;f[k]，即4*f[k-1]&lt;3*f[k]，用做差法： 12345673*f[k]-4*f[k-1]=3*f[k-1]+3*f[k-2]-4*f[k-1]=3*f[k-2]-f[k-1]=3*f[k-2]-f[k-2]-f[k-3]=2*f[k-2]-f[k-3]=2*f[k-3]+2*f[k-4]-f[k-3]=f[k-3]+2*f[k-4]&gt;0 由1，2得，假设成立，是斐波那契数必败 然后再考虑n不是斐波那契数的情况 用一下“Zeckendorf定理”（齐肯多夫定理）：任何正整数可以表示为若干个不连续的Fibonacci数之和 即把n分成k堆，n=f[a1]+f[a2]+……+f[ak]（a1&gt;a2&gt;……&gt;ap） 先手必胜策略是：先手先取完f[ak]，即最小的这一堆，由于是若干个不连续的Fibonacci数，由斐波那契数列定义有f[k]=f[k-1]+f[k-2]，即2*f[k]&lt;f[k-1]，所以f[a(k-1)]&gt;2*f[ak]，后手只能取f[a(k-1)]这一堆，且不能一次取完，此时后手相当于面临这个子游戏n=f[a(k-1)]，后手必败 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f[80];int main()&#123; f[1]=1;f[2]=1; for(int i=3;i&lt;=45;i++)f[i]=f[i-1]+f[i-2]; int t,n; scanf("%d",&amp;t); while(t--)&#123; int flag=0; scanf("%d",&amp;n); for(int i=1;i&lt;=45;i++) if(f[i]==n)&#123; flag=1; puts("B"); break; &#125; if(!flag)puts("A"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>博弈论</category>
+      </categories>
+      <tags>
+        <tag>斐波那契</tag>
+        <tag>博弈论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1068 Bash游戏 V3（巴什博弈）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201068%20Bash%E6%B8%B8%E6%88%8F%20V3%EF%BC%88%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： Ural 1180 基准时间限制：1 秒 空间限制：131072 KB 分值: 20 难度：3级算法题 有一堆石子共有N个。A B两个人轮流拿，A先拿。每次拿的数量只能是2的正整数次幂，比如(1,2,4,8,16….)，拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N，问最后谁能赢得比赛。 例如N = 3。A只能拿1颗或2颗，所以B可以拿到最后1颗石子。（输入的N可能为大数） Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 1000)第2 - T + 1行：每行1个数N。(1 &lt;= N &lt;= 10^1000) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例12343234 Output示例123ABA 题解：hdu 1847 Good Luck in CET-4 Everybody!（巴什博弈） 3的倍数必败，这个题给的n是10^1000，所以判断这个数能否被三整除，求一下各项和即可 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int t,num,len; string n; scanf("%d",&amp;t); while(t--)&#123; cin&gt;&gt;n; len=n.length(); num=0; for(int i=0;i&lt;len;i++)num+=(n[i]-'0'); if(num%3==0)puts("B"); else puts("A"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>博弈论</category>
+      </categories>
+      <tags>
+        <tag>巴什博弈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1067 Bash游戏 V2（打表找规律）]]></title>
+    <url>%2F2018%2F10%2F11%2F51nod%201067%20Bash%E6%B8%B8%E6%88%8F%20V2%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 有一堆石子共有N个。A B两个人轮流拿，A先拿。每次只能拿1，3，4颗，拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N，问最后谁能赢得比赛。例如N = 2。A只能拿1颗，所以B可以拿到最后1颗石子。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 10000)第2 - T + 1行：每行1个数N。(1 &lt;= N &lt;= 10^9) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例12343234 Output示例123BAA 题解：这个题每次只能拿1，3，4颗，先根据N/P状态打个表： 1234567891011121314int f[233];int main()&#123; memset(f,0,sizeof(f)); f[1]=f[3]=f[4]=1;f[2]=-1; for(int i=1;i&lt;=100;i++)&#123; if(f[i+1]==0||f[i+1]==-1)f[i+1]=-f[i]; if(f[i+3]==0||f[i+3]==-1)f[i+3]=-f[i]; if(f[i+4]==0||f[i+4]==-1)f[i+4]=-f[i]; &#125; for(int i=1;i&lt;=100;i++)&#123; if(f[i]==-1)cout&lt;&lt;i&lt;&lt;" "; &#125; return 0;&#125; 结果如下： 2 7 9 14 16 21 23 28 30 35 37 42 44 49 51 56 58 63 65 70 72 77 79 84 86 91 93 98 所以答案就是n%7==0或n%7==2先手必败，其余先手必胜 知道结论了可以粗糙的证明一下： 12345n=7k+1，先手取1，留给后手必败7kn=7k+3，先手取3，留给后手必败7k，或取1，留给后手必败7k+2n=7k+4，先手取4，留给后手必败7kn=7k+5，先手取3，留给后手必败7k+2n=7k+6，先手取4，留给后手必败7k+2 代码：1234567891011121314151617#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(n%7==0||n%7==2)puts("B"); else puts("A"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>博弈论</category>
+      </categories>
+      <tags>
+        <tag>巴什博弈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1092 回文字符串（dp，lcs）]]></title>
+    <url>%2F2018%2F10%2F10%2F51nod%201092%20%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88dp%EF%BC%8Clcs%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。每个字符串都可以通过向中间添加一些字符，使之变为回文字符串。例如：abbc 添加2个字符可以变为 acbbca，也可以添加3个变为 abbcbba。方案1只需要添加2个字符，是所有方案中添加字符数量最少的。 Input输入一个字符串Str，Str的长度 &lt;= 1000。 Output输出最少添加多少个字符可以使之变为回文字串。 Input示例1abbc Output示例12 题解：将字符串翻转，然后求新串和原串的最长公共子序列，和原串长度相减即为所求 基础lcs，dp[i][j]表示s1的前i个和s2的前j个的最长公共子序列，状态转移方程是 dp[i+1][j+1]=max(dp[i+1][j],dp[i][j+1],dp[i][j]+(s1[i]==s2[j]?1:0)) 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int N=1005;string s1,s2;int dp[N][N],len1,len2;void lcs()&#123; for(int i=0;i&lt;len1;i++)&#123; for(int j=0;j&lt;len2;j++)&#123; if(s1[i]==s2[j])dp[i+1][j+1]=dp[i][j]+1; else dp[i+1][j+1]=max(dp[i+1][j],dp[i][j+1]); &#125; &#125;&#125;int main()&#123; cin&gt;&gt;s1; s2=s1;reverse(s2.begin(),s2.end()); len1=len2=s1.length(); lcs(); printf("%d\n",len1-dp[len1][len1]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>lcs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ural 1593 Square Country. Version 2（n最少能表示成几个完全平方数的和）]]></title>
     <url>%2F2018%2F10%2F10%2Fural%201593%20Square%20Country.%20Version%202%EF%BC%88n%E6%9C%80%E5%B0%91%E8%83%BD%E8%A1%A8%E7%A4%BA%E6%88%90%E5%87%A0%E4%B8%AA%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%89%2F</url>
     <content type="text"><![CDATA[http://acm.timus.ru/problem.aspx?space=1&amp;num=1593 Time limit: 1.0 secondMemory limit: 64 MB There live square people in a square country. Everything in this country is square also. Thus, the Square Parliament has passed a law about a land. According to the law each citizen of the country has a right to buy land. A land is sold in squares, surely. Moreover, a length of a square side must be a positive integer amount of meters. Buying a square of land with a side a one pays a2 quadrics (a local currency) and gets a square certificate of a landowner.One citizen of the country has decided to invest all of his N quadrics into the land. He can, surely, do it, buying square pieces 1 × 1 meters. At the same time the citizen has requested to minimize an amount of pieces he buys: “It will be easier for me to pay taxes,” — he has said. He has bought the land successfully.Your task is to find out a number of certificates he has gotten. InputThe only line contains a positive integer N ≤ 1015 , that is a number of quadrics that the citizen has invested. OutputThe only line contains a number of certificates that he has gotten. Sample1234input344output3 题意：给一个数n，n&lt;=1e15，求n最少能表示成几个完全平方数的和 题解：这个题的基础版：ural 1073 Square Country 还是用到四平方和定理：“每个正整数均可表示为4个整数的平方和” 直接暴力判断1，2，3的情况，其余输出4，但是这题n太大了，毫无意外的t掉了，所以要来点定理优化 n≠4^a*(8m+7)是n可以用三个平方数表示的一个充分必要条件 正整数n能表示为两平方数之和的充要条件，是在它的标准分解式中，形如4k+3的素因数的幂指数是偶数 形如 4k+3 的整数有形如 4k+3 的素因子 先判断1，然后除去n的所有因子2得m，此时如果m%4!=3，也就是说“4k+3的素因数的幂指数是奇数”的情况不存在，那么可以继续判断答案为2的可能，如果m=1那么符合定理要求答案为2，其余情况就要暴力找有没有可能是两个数的平方和，当然这里暴力也是要优化一下的，枚举的范围在[sqrt(n-sqrt(n)*sqrt(n)),sqrt(n)] 判断3，4时用到上面第一个定理，因为是充要条件，所以直接判断，不是3就是4，直接干掉快的不行 最后跑了312ms 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long int main()&#123; LL n,m,sum,tmp1,tmp2; scanf("%lld",&amp;n); tmp1=sqrt(n); if(tmp1*tmp1==n)&#123; puts("1"); return 0; &#125; m=n; while(!(m&amp;1))m/=2; if(m%4!=3)&#123; if(m==1)&#123; puts("2"); return 0; &#125; m=n; sum=n; tmp1=sqrt(m); m=m-tmp1*tmp1; tmp2=sqrt(m); for(LL i=tmp1;i&gt;=tmp2;i--)&#123; m=sum; m=m-i*i; tmp2=sqrt(m); if(tmp2*tmp2+i*i==sum)&#123; puts("2"); return 0; &#125; &#125; &#125; m=n; while(m%4==0)m/=4; if(m%8!=7)&#123; puts("3"); &#125; else puts("4"); return 0;&#125;]]></content>
@@ -235,14 +371,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
       <categories>
-        <category>贪心</category>
+        <category>计算几何</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
+        <tag>推公式</tag>
+        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -257,15 +394,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
       <categories>
-        <category>计算几何</category>
+        <category>贪心</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -818,17 +954,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1012 最小公倍数LCM]]></title>
-    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>gcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1018 排序]]></title>
     <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
@@ -837,6 +962,17 @@
       </categories>
       <tags>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012 最小公倍数LCM]]></title>
+    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -1032,7 +1168,7 @@
   <entry>
     <title><![CDATA[1106 质数检测（米勒罗宾判素数和直接判）]]></title>
     <url>%2F2018%2F09%2F17%2F1106%20%E8%B4%A8%E6%95%B0%E6%A3%80%E6%B5%8B%EF%BC%88%E7%B1%B3%E5%8B%92%E7%BD%97%E5%AE%BE%E5%88%A4%E7%B4%A0%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个正整数，检测每个数是否为质数。如果是，输出”Yes”，否则输出”No”。 Input第1行：一个数N，表示正整数的数量。(1 &lt;= N &lt;= 1000)第2 - N + 1行：每行1个数(2 &lt;= S[i] &lt;= 10^9) Output输出共N行，每行为 Yes 或 No。 Input示例123456523456 Output示例12345YesYesNoYesNo 题解：第一个代码是不知出自何处的米勒罗宾判素数的模版，懒得研究了直接模版吧。。这里设置了50次循环 反正原理是费马小定理，假如a是整数，p是质数，且a,p互质，那么a^(p-1)%p=1恒成立， 即若 a^(p-1)%p !=1 (0&lt;a&lt;p)，p一定是合数，若 a^(p-1)%p ==1 (0&lt;a&lt;p) 则它可能是合数可能是素数，概率算法的概率就在这个 a上体现 第二个代码是榜上学来的方法，这个想法蛮妙蛮清晰的，跑的比第一个快，就是先埃筛，然后先直接干掉偶数，对于奇数n，向上取整根号n得到e，然后如果所有[2,e]的质数都不能整除n的话，那么n肯定是个质数 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longbool witness(LL a,LL n)&#123; LL t,d,x; d=1; int i=ceil(log(n/1.0)/log(2.0))-1; for(;i&gt;=0;i--)&#123; x=d;d=(d*d)%n; if(d==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return true; if(((n-1)&amp;(1&lt;&lt;i))&gt;0)d=(d*a)%n; &#125; return d==1?false:true;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n==1||((n&amp;1)==0))return false; for(int i=0;i&lt;50;i++)&#123; LL a=rand()*(n-2)/RAND_MAX+1; if(witness(a, n))return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;int vis[N],prime[N],ji=0;void init()&#123; for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if((n&amp;1)==0)&#123; puts(n==2?"YES":"NO"); continue; &#125; int e=(int)sqrt(n)+1,i; for(i=1;prime[i]&lt;=e;i++)if(n%prime[i]==0)break; puts(prime[i]&lt;=e?"NO":"YES"); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个正整数，检测每个数是否为质数。如果是，输出”Yes”，否则输出”No”。 Input第1行：一个数N，表示正整数的数量。(1 &lt;= N &lt;= 1000)第2 - N + 1行：每行1个数(2 &lt;= S[i] &lt;= 10^9) Output输出共N行，每行为 Yes 或 No。 Input示例123456523456 Output示例12345YesYesNoYesNo 题解：第一个代码是不知出自何处的米勒罗宾判素数的模版，懒得研究了直接模版吧。。这里设置了50次循环 反正原理是费马小定理，假如a是整数，p是质数，且a,p互质，那么a^(p-1)%p=1恒成立， 即若 a^(p-1)%p !=1 (0&lt;a&lt;p)，p一定是合数，若 a^(p-1)%p ==1 (0&lt;a&lt;p) 则它可能是合数可能是素数，概率算法的概率就在这个 a上体现 第二个代码是榜上学来的方法，这个想法蛮妙蛮清晰的，跑的比第一个快，就是先埃筛，然后先直接干掉偶数，对于奇数n，向上取整根号n得到e，然后如果所有[2,e]的质数都不能整除n的话，那么n肯定是个质数 更新：第三个代码，米勒罗宾模版二号 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longbool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=20,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; srand(100); while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;int vis[N],prime[N],ji=0;void init()&#123; for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if((n&amp;1)==0)&#123; puts(n==2?"YES":"NO"); continue; &#125; int e=(int)sqrt(n)+1,i; for(i=1;prime[i]&lt;=e;i++)if(n%prime[i]==0)break; puts(prime[i]&lt;=e?"NO":"YES"); &#125; return 0;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longLL mul(LL a,LL b,LL p)&#123; a%=p; LL res=0; while(b)&#123; if(b&amp;1)res=(res+a)%p; b&gt;&gt;=1; a=(a&lt;&lt;1)%p; &#125; return res;&#125;LL qpow(LL a,LL b,LL p)&#123; a%=p;b%=p; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=mul(ans,a,p); &#125; b&gt;&gt;=1; a=mul(a,a,p); &#125; return ans;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=2,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; srand(100); while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>51nod基础题</category>
       </categories>
@@ -1329,17 +1465,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java高精度</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -1348,6 +1473,17 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+        <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java高精度</category>
+      </categories>
+      <tags>
         <tag>java高精度</tag>
       </tags>
   </entry>
