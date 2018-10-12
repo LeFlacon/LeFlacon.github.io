@@ -371,18 +371,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
-      <categories>
-        <category>计算几何</category>
-      </categories>
-      <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
     <url>%2F2018%2F10%2F03%2F51nod%201433%200%E5%92%8C5%EF%BC%88%E8%83%BD%E8%A2%AB9%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
@@ -402,6 +390,18 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+      <categories>
+        <category>计算几何</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -921,9 +921,9 @@
         <category>51nod基础题</category>
       </categories>
       <tags>
-        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -954,17 +954,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1012 最小公倍数LCM]]></title>
-    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>gcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1018 排序]]></title>
     <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
@@ -973,6 +962,17 @@
       </categories>
       <tags>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012 最小公倍数LCM]]></title>
+    <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -1243,8 +1243,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>前缀和</tag>
+        <tag>推公式</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1483,8 +1483,8 @@
         <category>java高精度</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>java高精度</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
