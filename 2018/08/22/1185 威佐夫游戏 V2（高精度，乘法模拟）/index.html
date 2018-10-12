@@ -144,7 +144,7 @@
 <meta name="keywords" content="威佐夫博弈,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1185 威佐夫游戏 V2（高精度，乘法模拟）">
-<meta property="og:url" content="http://leflacon.github.io/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  有2堆石子。A B两个人轮流拿，A先拿。每次可以从一堆中取任意个或从2堆中取相同数量的石子，但不可不取。拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出2堆石子的数量，问最后谁能赢得比赛。 例如：2堆石子分别为3颗和5颗。那么不论A怎样拿，B都有对应的方法拿到最后1颗。 Input第1行">
 <meta property="og:locale" content="zh-CN">
@@ -158,7 +158,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/">
+  <link rel="canonical" href="http://leflacon.tk/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/">
 
 
 
@@ -379,7 +379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/08/22/1185 威佐夫游戏 V2（高精度，乘法模拟）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -525,7 +525,7 @@
 <p>如下模拟：(具体见代码)</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">      x0   x1   x2</span></span><br><span class="line"><span class="code">  *         q    h</span></span><br><span class="line">----------------------</span><br><span class="line"><span class="code">      x0*h x1*h x2*h</span></span><br><span class="line"><span class="code"> x0*q x1*q x2*q</span></span><br><span class="line">----------------------</span><br></pre></td></tr></table></figure>
 <h3 id="附加："><a href="#附加：" class="headerlink" title="附加："></a>附加：</h3><p>这题还牵扯到另一个问题，这个27位小数从何而来，下面这个直接用根号求出的显然是不行的<code>x[3]={618033988,74989490,2525738871}</code>，那么如何在没有百度情况下获得高精度的黄金分割数呢？</p>
-<p>补充在了这一篇中 <a href="https://leflacon.github.io/2018/08/22/%E8%AE%A1%E7%AE%97%E9%BB%84%E9%87%91%E5%88%86%E5%89%B2%E6%95%B0%E5%B0%8F%E6%95%B0%E7%82%B9%E5%90%8E100%E4%BD%8D/">计算黄金分割数小数点后几位</a></p>
+<p>补充在了这一篇中 <a href="https://leflacon.github.io/2018/08/22/%E8%AE%A1%E7%AE%97%E9%BB%84%E9%87%91%E5%88%86%E5%89%B2%E6%95%B0%E5%B0%8F%E6%95%B0%E7%82%B9%E5%90%8E100%E4%BD%8D/" rel="external nofollow noopener noreferrer" target="_blank">计算黄金分割数小数点后几位</a></p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line">LL x[<span class="number">3</span>]=&#123;<span class="number">618033988</span>,<span class="number">749894848</span>,<span class="number">204586834</span>&#125;;</span><br><span class="line"><span class="comment">//1.618033988,749894848,204586834</span></span><br><span class="line"><span class="keyword">const</span> LL p=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	LL a,b,t;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;a,&amp;b);</span><br><span class="line">		<span class="keyword">if</span>(a&gt;b)&#123;</span><br><span class="line">			LL tmp=a;a=b;b=tmp;</span><br><span class="line">		&#125;</span><br><span class="line">		LL num=b-a;</span><br><span class="line">		LL q=num/p,h=num%p;</span><br><span class="line">		LL ans=x[<span class="number">2</span>]*h;</span><br><span class="line">		ans=ans/p+x[<span class="number">1</span>]*h+x[<span class="number">2</span>]*q;</span><br><span class="line">		ans=ans/p+x[<span class="number">0</span>]*h+x[<span class="number">1</span>]*q;</span><br><span class="line">		ans=ans/p+x[<span class="number">0</span>]*q+num;</span><br><span class="line">		<span class="keyword">if</span>(ans==a)<span class="built_in">printf</span>(<span class="string">"B\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"A\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       

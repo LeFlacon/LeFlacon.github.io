@@ -144,23 +144,23 @@
 <meta name="keywords" content="逆元,容斥">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sum of the Line -- ACM-ICPC 2017 Asia Urumqi（容斥，平方和，逆元）">
-<meta property="og:url" content="http://leflacon.github.io/2018/09/13/Sum of the Line/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/09/13/Sum of the Line/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="https://nanti.jisuanke.com/t/28970  样例输入123223 样例输出1215  题意：求1-n中与n互质的数的平方和 题解：把这个题的代码改改就能交了hdu 4059 The Boss on Mars（容斥，四次方和，逆元） 思路和上面那个hdu4059一毛一样：转化为求1-n中与n不互质的数的平方的和，所以要先筛出素因子，然后利用容斥原理求解 下面是具体做法：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://leflacon.github.io/2018/09/13/Sum%20of%20the%20Line/1.png">
+<meta property="og:image" content="http://leflacon.tk/2018/09/13/Sum%20of%20the%20Line/1.png">
 <meta property="og:updated_time" content="2018-09-13T08:33:59.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sum of the Line -- ACM-ICPC 2017 Asia Urumqi（容斥，平方和，逆元）">
 <meta name="twitter:description" content="https://nanti.jisuanke.com/t/28970  样例输入123223 样例输出1215  题意：求1-n中与n互质的数的平方和 题解：把这个题的代码改改就能交了hdu 4059 The Boss on Mars（容斥，四次方和，逆元） 思路和上面那个hdu4059一毛一样：转化为求1-n中与n不互质的数的平方的和，所以要先筛出素因子，然后利用容斥原理求解 下面是具体做法：">
-<meta name="twitter:image" content="http://leflacon.github.io/2018/09/13/Sum%20of%20the%20Line/1.png">
+<meta name="twitter:image" content="http://leflacon.tk/2018/09/13/Sum%20of%20the%20Line/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/09/13/Sum of the Line/">
+  <link rel="canonical" href="http://leflacon.tk/2018/09/13/Sum of the Line/">
 
 
 
@@ -381,7 +381,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/09/13/Sum of the Line/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/09/13/Sum of the Line/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -506,7 +506,7 @@
 <h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>求1-n中与n互质的数的平方和</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>把这个题的代码改改就能交了<br><a href="https://leflacon.github.io/2018/09/13/hdu4059/">hdu 4059 The Boss on Mars（容斥，四次方和，逆元）</a></p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>把这个题的代码改改就能交了<br><a href="https://leflacon.github.io/2018/09/13/hdu4059/" rel="external nofollow noopener noreferrer" target="_blank">hdu 4059 The Boss on Mars（容斥，四次方和，逆元）</a></p>
 <p>思路和上面那个hdu4059一毛一样：转化为求1-n中与n不互质的数的平方的和，所以要先筛出素因子，然后利用容斥原理求解</p>
 <p>下面是具体做法：</p>
 <p>首先抛一个平方和公式<code>1^2+2^2+...+n^2=n*(n+1)*(2*n+1)/6</code><br>公式里有个除以6，求逆元费马小定理一下，除以6就是乘以pow(6,p-2)%p</p>

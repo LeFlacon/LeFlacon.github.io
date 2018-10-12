@@ -144,7 +144,7 @@
 <meta name="keywords" content="dp,背包,四平方和定理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ural 1073 Square Country（四平方和定理，完全背包）">
-<meta property="og:url" content="http://leflacon.github.io/2018/10/10/ural 1073 Square Country/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/10/10/ural 1073 Square Country/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://acm.timus.ru/problem.aspx?space=1&amp;amp;num=1073 Time limit: 1.0 secondMemory limit: 64 MB There live square people in a square country. Everything in this country is square also. Thus, the Squar">
 <meta property="og:locale" content="zh-CN">
@@ -160,7 +160,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/10/10/ural 1073 Square Country/">
+  <link rel="canonical" href="http://leflacon.tk/2018/10/10/ural 1073 Square Country/">
 
 
 
@@ -381,7 +381,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/10/10/ural 1073 Square Country/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/10/10/ural 1073 Square Country/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -508,7 +508,7 @@
 <h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input</span><br><span class="line"><span class="number">344</span></span><br><span class="line">output</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个数n，n&lt;=60000，求n最少能表示成几个完全平方数的和</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>因为这个题n不大，所以有两种方法，而进阶版的题n是1e15，背包的话状态就开不下了，需要用数学性质解决 -&gt; <a href="https://leflacon.github.io/2018/10/10/ural%201593%20Square%20Country.%20Version%202%EF%BC%88n%E6%9C%80%E5%B0%91%E8%83%BD%E8%A1%A8%E7%A4%BA%E6%88%90%E5%87%A0%E4%B8%AA%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%89/">1593. Square Country. Version 2</a></p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>因为这个题n不大，所以有两种方法，而进阶版的题n是1e15，背包的话状态就开不下了，需要用数学性质解决 -&gt; <a href="https://leflacon.github.io/2018/10/10/ural%201593%20Square%20Country.%20Version%202%EF%BC%88n%E6%9C%80%E5%B0%91%E8%83%BD%E8%A1%A8%E7%A4%BA%E6%88%90%E5%87%A0%E4%B8%AA%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%E7%9A%84%E5%92%8C%EF%BC%89/" rel="external nofollow noopener noreferrer" target="_blank">1593. Square Country. Version 2</a></p>
 <p>一种是当成<strong>完全背包</strong>做，dp[j]代表j最少能表示成几个完全平方数的和，从1-√n枚举i，状态转移方程为<code>dp[j]=min(dp[j],dp[j-i*i]+1)</code></p>
 <p>第二种方法是当成一个数论题做，用到<strong>四平方和定理</strong>：“每个正整数均可表示为4个整数的平方和”</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw38vey5zlj30ma0580t3.jpg" alt=""></p>

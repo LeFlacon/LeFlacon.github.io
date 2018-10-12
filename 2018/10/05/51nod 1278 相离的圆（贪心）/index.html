@@ -144,7 +144,7 @@
 <meta name="keywords" content="贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="51nod 1278 相离的圆（贪心）">
-<meta property="og:url" content="http://leflacon.github.io/2018/10/05/51nod 1278 相离的圆（贪心）/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/10/05/51nod 1278 相离的圆（贪心）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 平面上有N个圆，他们的圆心都在X轴上，给出所有圆的圆心和半径，求有多少对圆是相离的。 例如：4个圆分别位于1, 2, 3, 4的位置，半径分别为1, 1, 2, 1，那么{1, 2}, {1, 3} {2, 3} {2, 4} {3, 4}这5对都有交点，只有{1, 4}是相离的。 Input第1行：一个数N，表示">
 <meta property="og:locale" content="zh-CN">
@@ -158,7 +158,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/10/05/51nod 1278 相离的圆（贪心）/">
+  <link rel="canonical" href="http://leflacon.tk/2018/10/05/51nod 1278 相离的圆（贪心）/">
 
 
 
@@ -379,7 +379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/10/05/51nod 1278 相离的圆（贪心）/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/10/05/51nod 1278 相离的圆（贪心）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -507,7 +507,7 @@
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>把圆相离转化一下问题就变成了给n条线段[l,r]，求没有交点的线段个数</p>
-<p>可以和这个题联系起来 -&gt; <a href="https://leflacon.github.io/2018/10/05/51nod%201428%20%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%89/">n条线段最多重叠个数</a></p>
+<p>可以和这个题联系起来 -&gt; <a href="https://leflacon.github.io/2018/10/05/51nod%201428%20%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%89/" rel="external nofollow noopener noreferrer" target="_blank">n条线段最多重叠个数</a></p>
 <p>里面提供的这种记录入点出点再排序的思路在这个题上同样适用</p>
 <p>要注意的是上面那个题在端点重合时是出点排入点前，而这个题相切的圆不算向离，所以入点排出点前，先少一个能相离的圆再结算前面的圆</p>
 <p>令num=圆的个数，排序后遍历，遇到入点说明少一个能相离的圆num–，遇到出点ans+=num，妙啊妙啊</p>

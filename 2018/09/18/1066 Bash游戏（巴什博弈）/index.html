@@ -144,7 +144,7 @@
 <meta name="keywords" content="巴什博弈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1066 Bash游戏（巴什博弈）">
-<meta property="og:url" content="http://leflacon.github.io/2018/09/18/1066 Bash游戏（巴什博弈）/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/09/18/1066 Bash游戏（巴什博弈）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB  有一堆石子共有N个。A B两个人轮流拿，A先拿。每次最少拿1颗，最多拿K颗，拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N和K，问最后谁能赢得比赛。 例如N = 3，K = 2。无论A如何拿，B都可以拿到最后1颗石子。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &amp;lt;= T &amp;lt;">
 <meta property="og:locale" content="zh-CN">
@@ -158,7 +158,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/09/18/1066 Bash游戏（巴什博弈）/">
+  <link rel="canonical" href="http://leflacon.tk/2018/09/18/1066 Bash游戏（巴什博弈）/">
 
 
 
@@ -379,7 +379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/09/18/1066 Bash游戏（巴什博弈）/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/09/18/1066 Bash游戏（巴什博弈）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -507,7 +507,7 @@
 <h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">7 </span><span class="number">3</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">B</span><br><span class="line"><span class="keyword">A</span></span><br><span class="line"><span class="keyword">A</span></span><br><span class="line">B</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p><a href="https://leflacon.github.io/2018/08/19/hdu%201846%20Brave%20Game%EF%BC%88%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%EF%BC%89/">hdu 1846 Brave Game（巴什博弈）
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p><a href="https://leflacon.github.io/2018/08/19/hdu%201846%20Brave%20Game%EF%BC%88%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%EF%BC%89/" rel="external nofollow noopener noreferrer" target="_blank">hdu 1846 Brave Game（巴什博弈）
 </a></p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    <span class="built_in">int</span> t<span class="comment">;</span></span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;t)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">int</span> n,k<span class="comment">;</span></span><br><span class="line">        scanf(<span class="string">"%d%d"</span>,&amp;n,&amp;k)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">if</span>(n%(k+<span class="number">1</span>)==<span class="number">0</span>)puts(<span class="string">"B"</span>)<span class="comment">;</span></span><br><span class="line">        <span class="keyword">else</span> puts(<span class="string">"A"</span>)<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       

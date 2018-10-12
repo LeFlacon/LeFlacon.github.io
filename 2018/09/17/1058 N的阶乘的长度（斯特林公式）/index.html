@@ -144,7 +144,7 @@
 <meta name="keywords" content="斯特林公式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1058 N的阶乘的长度（斯特林公式）">
-<meta property="og:url" content="http://leflacon.github.io/2018/09/17/1058 N的阶乘的长度（斯特林公式）/index.html">
+<meta property="og:url" content="http://leflacon.tk/2018/09/17/1058 N的阶乘的长度（斯特林公式）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB  输入N求N的阶乘的10进制表示的长度。例如6! = 720，长度为3。 Input输入N(1 &amp;lt;= N &amp;lt;= 10^6) Output输出N的阶乘的长度 Input示例16 Output示例13  又水了一题。。 关于斯特林公式的解释看这篇1130 N的阶乘的长度 V2（斯特林公式取n阶乘位数） 代码：123456789101112">
 <meta property="og:locale" content="zh-CN">
@@ -158,7 +158,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.github.io/2018/09/17/1058 N的阶乘的长度（斯特林公式）/">
+  <link rel="canonical" href="http://leflacon.tk/2018/09/17/1058 N的阶乘的长度（斯特林公式）/">
 
 
 
@@ -379,7 +379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/09/17/1058 N的阶乘的长度（斯特林公式）/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/09/17/1058 N的阶乘的长度（斯特林公式）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -518,7 +518,7 @@
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>又水了一题。。</p>
-<p>关于斯特林公式的解释看这篇<a href="https://leflacon.github.io/2018/09/16/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/">1130 N的阶乘的长度 V2（斯特林公式取n阶乘位数）</a></p>
+<p>关于斯特林公式的解释看这篇<a href="https://leflacon.github.io/2018/09/16/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/" rel="external nofollow noopener noreferrer" target="_blank">1130 N的阶乘的长度 V2（斯特林公式取n阶乘位数）</a></p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI=<span class="built_in">asin</span>(<span class="number">1.0</span>)*<span class="number">2</span>,e=<span class="number">2.718281828459</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    LL ans=<span class="number">0.5</span>*<span class="built_in">log10</span>(<span class="number">2.0</span>*PI*n)+n*<span class="built_in">log10</span>(<span class="number">1.0</span>*n/e)+<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
