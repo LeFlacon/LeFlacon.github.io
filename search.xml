@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ural 1309 Dispute（相当奇妙的递推）]]></title>
+    <url>%2F2018%2F10%2F15%2Fural%201309%20Dispute%EF%BC%88%E7%9B%B8%E5%BD%93%E5%A5%87%E5%A6%99%E7%9A%84%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[周末学一个叫化归的东西٩(˃̶͈̀௰˂̶͈́)و，化归思想就是转化和归结，emmmm大概就是学一下这种解题手法，把一个看起来复杂实际也复杂的数列蜜汁操作一下变成我们熟悉的形式 http://acm.timus.ru/problem.aspx?space=1&amp;num=1309 题意：1234f(0) = 0, f(n) = g(n, f(n-1)), g(x,y) = ((y-1)x^5+x^3–x*y+3x+7y) % 9973 求f(n)，n是1e8 题解：先考虑怎么把这个复杂的大问题变成容易解决的小问题 看看这个数列有什么特点 g(x,y)=((y-1)x^5+x^3–x*y+3x+7y)%9973 然后把这个式子整理一下，把x看作常数，那么这个式子就将变成一个关于y的一阶线性递推数列 g(x,y)=((x^5-x+7)y-x^5+x^3+3x)%9973=g(n,f(n-1)) 也就是f(x)=((x^5-x+7)*f(n-1)-x^5+x^3+3x)%9973 令A=(x^5-x+7)，B=(-x^5+x^3+3x)，那么f(n)=An*f(n-1)+Bn，对于An，Bn，周期为p，易求 然后由f(n)=An*f(n-1)+Bn继续往下写出f(n-1)=A(n-1)*f(n-2)+B(n-1)...f(n-p)=A(n-p+1)*f(n-p)+B(n-p+1)，（公式太难打了就不写具体步骤了，纸上算一下答案就有了），代入整理一下最后得：f(n)=An*A(n-1)*...*A(n-p+1)*f(n-p)+An...A2B1+...+AnAn-1Bn-2+AnBn-1（差不多是这样吧。。0.0如有错误请指出），写清爽一点就是f(n)=Pn*f(n-p)+Qn，也就是说f(n)也存在周期p，当然那些一长串的东西变成的Qn,Pn同样也是以p为周期 这样以后问题就解决了，（n/p）和（n%p），先计算f(n%p)，然后继续递推（n/p）次计算f(n)，即转化为两次小递推 写完交了wa在10，输入了0，1，9973，9974这种关键点大概排查了一下，发现是9973有问题，直接输出0了。。改了一点小问题就got an ac啦\(≧▽≦)/ 代码：123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int p=9973;int n,bei;int getA(int x)&#123; int res=1; for(int i=0;i&lt;5;i++)res=(res*x)%p; res=((res-x+7)%p+p)%p; return res;&#125;int getB(int x)&#123; int res,tmp5=1,tmp3=1; for(int i=0;i&lt;5;i++)tmp5=(tmp5*x)%p; for(int i=0;i&lt;3;i++)tmp3=(tmp3*x)%p; res=((tmp3-tmp5+3*x%p)%p+p)%p; return res;&#125;int f(int x)&#123; if(x==0)return 0; return (getA(x)*f(x-1)%p+getB(x))%p;&#125;int main()&#123; scanf("%d",&amp;n); bei=n/p; n%=p; int P=1,Q=0,ans=f(n); for(int i=n+p;i&gt;n;i--)&#123; int tmp=i%p; Q=(Q+P*getB(tmp))%p; P=(P*getA(tmp))%p; &#125; // cout&lt;&lt;P&lt;&lt;" "&lt;&lt;Q&lt;&lt;endl; for(int i=0;i&lt;bei;i++) ans=(P*ans+Q)%p; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforces Round 516 Div. 2]]></title>
+    <url>%2F2018%2F10%2F15%2FCodeforces%20Round%20516%20Div.%202%2F</url>
+    <content type="text"><![CDATA[1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int main()&#123; int a[3]; scanf("%d%d%d",&amp;a[0],&amp;a[1],&amp;a[2]); sort(a,a+3); if(a[0]+a[1]&gt;a[2])printf("0\n"); else printf("%d\n",a[2]-a[1]-a[0]+1); return 0;&#125; 1064 B. Equations of Mathematical Magichttp://codeforces.com/contest/1064/problem/B 题意：给一个a，求满足条件的非负x的个数（式子中那个符号是异或） 也就是a=(a⊕x)+x，那么式子成立的条件是，a为0的位x也为0，a位1的位x为1或0，所以答案就是2^(a中1的个数) 我也不知道我干嘛写了个快速幂。。小手一抖就写了，这不重要(･-･; 123456789101112131415161718192021222324252627282930313233343536#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;#define LL long longLL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a); b--; &#125; b/=2; a=a*a; &#125; return ans;&#125;int main()&#123; int t,num; LL n,tmp; scanf("%d",&amp;t); while(t--)&#123; scanf("%I64d",&amp;n); tmp=n;num=0; while(tmp)&#123; if(tmp&amp;1)num++; tmp/=2; &#125; printf("%I64d\n",qpow(2,num)); &#125; return 0;&#125; 1064 C. Oh Those Palindromeshttp://codeforces.com/contest/1064/problem/C 题意：给你一个字符串，问它怎么排列能使回文子序列最多 我还在想怎么对称的时候学长秒给思路，tql，字母同样的放一起就行 1234567891011121314151617181920212223#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int a[26];string s;int main()&#123; int n; scanf("%d",&amp;n); cin&gt;&gt;s; memset(a,0,sizeof(a)); for(int i=0;i&lt;n;i++)a[s[i]-'a']++; for(int i=0;i&lt;26;i++)&#123; for(int j=0;j&lt;a[i];j++) printf("%c",(char)(i+'a')); &#125; printf("\n"); return 0;&#125; 1064 D. Labyrinthhttp://codeforces.com/contest/1064/problem/D 题意：给一个nxm的图，图上有空格和障碍格，给一个起点(r,c)（保证起点不是障碍格），给两个值x，y表示最多只能向左x次向右y次，上下不限，求问能到达多少个格子（起点也算） 一下子就写完了bfs，然后就陷入了无穷无尽的wa13，然后各种改乱交了好几发，我就睡着了╭(°A°`)╮，嗷都是躺椅的锅。。 因为我bfs的思路有点问题，一个点如果vis了我就直接return掉了，但是可能存在一些情况是，这个点可以在左右次数剩余不同的情况下被vis，那么两个状态实际上都可以继续延伸，需要取更优的那种，所以这里就会出现问题了 看了别人的代码，有一种很巧妙的双端队列的写法，动上下的时候push_front，动左右的时候push_back，这样就可以保证优先性了，妙啊妙啊 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;deque&gt;using namespace std;const int N=2005;int a[N][N],vis[N][N],n,m,l,r,sx,sy,ans;char str[N];struct ss&#123; int x,y,ll,rr; ss(int a,int b,int c,int d)&#123; x=a;y=b;ll=c;rr=d; &#125;&#125;;void bfs()&#123; deque&lt;ss&gt;q; q.push_front(ss(sx,sy,l,r)); vis[sx][sy]=1; while(!q.empty())&#123; ss u=q.front(); q.pop_front(); if(u.x+1&lt;=n&amp;&amp;!vis[u.x+1][u.y]&amp;&amp;a[u.x+1][u.y])&#123; vis[u.x+1][u.y]=1; q.push_front(ss(u.x+1,u.y,u.ll,u.rr)); &#125; if(u.x-1&gt;=1&amp;&amp;!vis[u.x-1][u.y]&amp;&amp;a[u.x-1][u.y])&#123; vis[u.x-1][u.y]=1; q.push_front(ss(u.x-1,u.y,u.ll,u.rr)); &#125; if(u.y+1&lt;=m&amp;&amp;!vis[u.x][u.y+1]&amp;&amp;u.rr&gt;=1&amp;&amp;a[u.x][u.y+1])&#123; vis[u.x][u.y+1]=1; q.push_back(ss(u.x,u.y+1,u.ll,u.rr-1)); &#125; if(u.y-1&gt;=1&amp;&amp;!vis[u.x][u.y-1]&amp;&amp;u.ll&gt;=1&amp;&amp;a[u.x][u.y-1])&#123; vis[u.x][u.y-1]=1; q.push_back(ss(u.x,u.y-1,u.ll-1,u.rr)); &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; cin&gt;&gt;sx&gt;&gt;sy; cin&gt;&gt;l&gt;&gt;r; for(int i=1;i&lt;=n;i++)&#123; scanf("%s",str); for(int j=1;j&lt;=m;j++)&#123; if(str[j-1]=='*')a[i][j]=0; else a[i][j]=1; vis[i][j]=0; &#125; &#125; bfs(); ans=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) ans+=vis[i][j]; printf("%d\n",ans); return 0;&#125; 1064 E. Dwarves, Hats and Extrasensory Abilitieshttp://codeforces.com/contest/1064/problem/E 题意：给出n，然后有n次交互，输出一个坐标，然后系统返回是黑色或白色，表面刚刚输入的坐标是黑子或白子，最后要找到一条直线分开所有黑子和白子 没写过交互题0.0，和一般的题差别就是：输出之后要清空缓存区，fflush(stdout); 这个题大概算是个思维题吧，用一下二分的思想，还没想太清楚，代码待补 F. Candies for Childrenhttp://codeforces.com/contest/1064/problem/F]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[「Python+有道」实现简易中译英英译中命令行字典]]></title>
+    <url>%2F2018%2F10%2F15%2F%E3%80%8CPython%2B%E6%9C%89%E9%81%93%E3%80%8D%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E4%B8%AD%E8%AF%91%E8%8B%B1%E8%8B%B1%E8%AF%91%E4%B8%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%97%E5%85%B8%2F</url>
+    <content type="text"><![CDATA[整理我堆积如山的桌面的时候发现之前还搞了这么个玩意儿——用Python写的命令行字典，虽然Google浏览器可以直接翻译长篇大论，mac右键也可以直接查词，但是玩玩练练手也无妨啦～ 先放效果图： 英译中：正常查词是可以的，但是搞事情查词我也不晓得会出现什么 中译英：只能一个一个词查，不支持翻译句子，否则就会变成hello cute ∠( ᐛ 」∠)＿ 1.基本思路与可行性分析用有道查词可以发现，地址栏其实是没啥变化的，也就是http://dict.youdao.com/w/要查的单词/#keyfrom=dict2.top，所以我们就可以输入一个单词，自己构造出对应的url，然后就能获取对应的网页了 那么下一个问题是如何获取词义，截了张图（请忽视那些。。乱七八糟的不知道在讲什么的东西(♯｀∧´)） 清清楚楚就这四个，那么关键词就是“详细释义”：（google翻译就不行。。啥都找不着） Python实在是太强了，那么就可以使用正则表达式来查找我们要的词义 2.具体实现1）导入requests模块和re模块Requests官方文档 requests用来获取有道的网页 re.findall()用来查找「详细释义」的地方从而找到具体释义 2）获取网页url=&quot;http://dict.youdao.com/w/&quot;+word+&quot;/#keyfrom=dict2.index&quot; 然后用decode()方法对获取的内容解码： decode()方法 描述 Python decode() 方法以 encoding 指定的编码格式解码字符串。默认编码为字符串编码。 语法 str.decode(encoding=’UTF-8’,errors=’strict’) 参数（第二个可省略） encoding – 要使用的编码，如”UTF-8”。 errors – 设置不同错误的处理方案。默认为 ‘strict’,意为编码错误引起一个UnicodeError。 其他可能得值有 ‘ignore’, ‘replace’, ‘xmlcharrefreplace’, ‘backslashreplace’ 以及通过 codecs.register_error() 注册的任何值。 返回值 该方法返回解码后的字符串。 3）获取词义以及字符串处理re.findall语法如下：（返回形式是一个数组） findall(pattern, string, flags=0) 所以获取词义就在之前get()函数获得的内容中寻找&quot;详细释义.+&lt;p class=\&quot;collapse-content\&quot;&gt;&quot;这样的形式，第一步处理的内容放在l1中，接下来还要对l1进行第二步处理，只取里面的字母数子汉字部分 123l1=re.findall("详细释义.+&lt;p class=\"collapse-content\"&gt;",get(),re.S)l2=re.findall(" \w+",str(l1)) 下面顺便贴一下正则表达式里常用字符的意思，因为我记不住啊ORZ 正则表达式 \w \s \d \b . 匹配除换行符以外的任意字符 \w 匹配字母或数字或下划线或汉字 等价于 ‘[^A-Za-z0-9_]’ \s 匹配任意的空白符 \d 匹配数字 \b 匹配单词的开始或结束 ^ 匹配字符串的开始 $ 匹配字符串的结束 然后用strip()方法对l2数组里的字符串进行简单处理 strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列，该方法只能删除开头或是结尾的字符，不能删除中间部分的字符 4）输出结果好像没啥好说的，把l2中的元素print就行了 3.代码中译英和英译中差不多，直接看代码吧。。 英译中https://github.com/LeFlacon/Simple-Python-Practice/blob/master/dict.py 中译英https://github.com/LeFlacon/Simple-Python-Practice/blob/master/dict2.py 丢到github上了，emmmm其实是为了试一下git，因为之前好像没有什么能传的东西来着]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[《奇遇人生》 第3期：印尼攀峰！窦骁登5000米查亚峰，阿雅因高反放弃痛哭]]></title>
+    <url>%2F2018%2F10%2F14%2F%E3%80%8A%E5%A5%87%E9%81%87%E4%BA%BA%E7%94%9F%E3%80%8B%20%E7%AC%AC3%E6%9C%9F%EF%BC%9A%E5%8D%B0%E5%B0%BC%E6%94%80%E5%B3%B0%EF%BC%81%E7%AA%A6%E9%AA%81%E7%99%BB5000%E7%B1%B3%E6%9F%A5%E4%BA%9A%E5%B3%B0%EF%BC%8C%E9%98%BF%E9%9B%85%E5%9B%A0%E9%AB%98%E5%8F%8D%E6%94%BE%E5%BC%83%E7%97%9B%E5%93%AD%2F</url>
+    <content type="text"><![CDATA[看完这期觉得窦骁也太棒了吧TAT，虽然我之前没有听说过这个人 登山可能就这样，就有很多的不确定性，所以我是觉得最可能这种变化，是我们必须要去面对的，在登山过程中，你们要更多的耐心，然后就是永远要期待，更好的事情发生 窦骁：今天不行还有明天，放轻松（阿雅：万一明天不行呢？）后天啊，（那万一后天也不行呢？）明日何其多，真的是 明日复明日，明日何其多 ～ 一个题写不出来没关系，反正明天我也不一定写的出来2333333，但是万一大大大大大后天突然会了呢∠( ᐛ 」∠)＿ 你的预期永远不要说让它，变成一个限定，框住你的一个东西，你是自由的 窦骁：Yosua，给你，这是她的包，陪她一起走，别催她，无论什么时候，只要她感觉不舒服或者状态不好，就把她带下去 这段真的被暖到了，窦骁真的太太太贴心了啊 阿雅：我刚才其实还是很想往上走，可是我就想到我的家人，然后我想到我女儿……所以我就想说，虽然我很想跟大家一起往上走，但是，但是我要为了我爱的人，要保护好自己，可是还是很不甘心 还是很不甘心，不管怎样，最后我总会妥协，因为我没法拿自己的安全开玩笑，我给不了他们10分的保证，所以只能大哭一场然后若无其事的平静的妥协，我不想这样可是除了这样我别无他法 或许是每一个维特在不同的社会环境不同的时代背景下都会有各自的烦恼吧 对于我来说每一次登山，都会是一个，新的一个体验，在你不断不断一次次试探自己的过程中，需要有经验，一步一个脚印，建立了勇气，它跟鲁莽是不一样，它跟玩命是不一样的 J’aime ma vie]]></content>
+      <categories>
+        <category>love&amp;peace</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[《奇遇人生》 第2期：美国追龙卷风！春夏与阿雅公路捕风，街头听歌落泪]]></title>
+    <url>%2F2018%2F10%2F14%2F%E3%80%8A%E5%A5%87%E9%81%87%E4%BA%BA%E7%94%9F%E3%80%8B%20%E7%AC%AC2%E6%9C%9F%EF%BC%9A%E7%BE%8E%E5%9B%BD%E8%BF%BD%E9%BE%99%E5%8D%B7%E9%A3%8E%EF%BC%81%E6%98%A5%E5%A4%8F%E4%B8%8E%E9%98%BF%E9%9B%85%E5%85%AC%E8%B7%AF%E6%8D%95%E9%A3%8E%EF%BC%8C%E8%A1%97%E5%A4%B4%E5%90%AC%E6%AD%8C%E8%90%BD%E6%B3%AA%2F</url>
+    <content type="text"><![CDATA[（我听说自闭症的孩子交流的方式很不同）确实，你必须像口译员一样（你经常拥抱她吗）经常拥抱，她也经常拥抱我（那很棒） 谢谢，你做的很好，你是摄影师吗？（不是）你可以的，你能成为一名很棒的摄影师（ ..）你当然可以，为什么不会呢（..）拿起相机去拍吧，你可以成为世界闻名的摄影师（..）真的，拿起相机去拍吧（可以，试试看）为什么不呢，你这么年轻，一切皆有可能 虽然调侃自己的时候会说，我都二十岁啦，已经老了啊，但是其实大多数情况下这是言不由衷，真话是：“为什么不呢，我这么年轻，一切皆有可能 ~ ” 人的心思就是很微妙，你一定有一个阶段，就是非常希望自己变得普通，当你过了那个阶段，你走到一个位置上，你意识到你只是一个普通人的时候，又非常希望自己不普通 春夏：我刚跟马丁说我觉得这是一个窗口，然后马丁说他也这么觉得，然后他说他觉得这个窗口就是上帝，然后他觉得上帝是女孩儿，是女性，我也这么觉得 春夏：就是因为你那么接近过那个目标，但你就是碰不到它，我觉得生活中大部分时候还是那种，我快要追到了，然后发现我完全没追到，就每天肯定都是，就是你想要的和你拥有的之间，是有很大差距的 我觉得追龙卷风的一个乐趣就是，可能我们没有追到风，但是在风的背后，我们可以看到这些美丽的景色，所以不要只关注龙卷风，而是要享受整个过程，就像一个盛大的自助餐 我们多么想要一个结果，但是我们追求的目的根本就不纯粹，我们根本没有享受这件事情 这块粉红花岗岩石头，是最坚硬的岩石之一，它不是圆形的，因为河水无法打磨它，它太坚硬了，因为我觉得你很坚强，内在坚强就像花岗岩石一样，把它做礼物是想告诉你，你已经拥有坚强的品质，时刻都要坚强，记住你才是自己生活的主人 J’aime ma vie]]></content>
+      <categories>
+        <category>love&amp;peace</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[《奇遇人生》 第1期：赞比亚荒野呼唤！阿雅小s探访大象孤儿院，遇残忍盗猎流泪]]></title>
+    <url>%2F2018%2F10%2F14%2F%E3%80%8A%E5%A5%87%E9%81%87%E4%BA%BA%E7%94%9F%E3%80%8B%20%E7%AC%AC1%E6%9C%9F%EF%BC%9A%E8%B5%9E%E6%AF%94%E4%BA%9A%E8%8D%92%E9%87%8E%E5%91%BC%E5%94%A4%EF%BC%81%E9%98%BF%E9%9B%85%E5%B0%8Fs%E6%8E%A2%E8%AE%BF%E5%A4%A7%E8%B1%A1%E5%AD%A4%E5%84%BF%E9%99%A2%EF%BC%8C%E9%81%87%E6%AE%8B%E5%BF%8D%E7%9B%97%E7%8C%8E%E6%B5%81%E6%B3%AA%2F</url>
+    <content type="text"><![CDATA[唯有足够强大的爱，才能平息这世界的残忍 我想我们三个，永远永远永远，不要结婚 虽然为了大晚上的为了防卡开的低清画质，但是总有一天！我也要去看这样的星空 小s：就是像我们的小孩如果不见了，（阿雅：你不要这样问），我想说如果是我女儿出门，然后没回家，怎么找都找不到人，我真是崩溃了，我会崩溃的 我不是不坚强，只是有那么一瞬间真的会很脆弱，感觉自己很脆弱，保护不好自己，也对不起爱我的人 我认为是的，Chamilando是象群的首领，它妈妈被杀害的时候，它就在旁边，它来到这里之后，每天晚上睡觉都会尖叫，因为它很受伤，它会做噩梦 以前说人文主义，现在说博爱，当然，不是下图百度字典里的这个博爱，它太粗浅了 看到大象被猎杀的那个画面真的很难受，何况这只是1/100，只是1/(100*365)，只是1/(100*365*赞比亚荒野)，所以小s说的下面这段话可能就是让我突然想记录下来的原因吧： 生命真的很需要被尊重，千万不要觉得，好像我们只是一点点小力量，做了真的会改变这个世界吗，我觉得不管力量有多小，你就是做，就像你改变了我，我可以再用我微小的力量再改变其他人 J’aime ma vie]]></content>
+      <categories>
+        <category>love&amp;peace</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1315 合法整数集]]></title>
+    <url>%2F2018%2F10%2F13%2F51nod%201315%20%E5%90%88%E6%B3%95%E6%95%B4%E6%95%B0%E9%9B%86%2F</url>
+    <content type="text"><![CDATA[题目来源： TopCoder 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个整数集合S是合法的，指S的任意子集subS有Fun（SubS）！=X，其中X是一个固定整数，Fun(A)的定义如下：A为一个整数集合，设A中有n个元素，分别为a0，a1，a2,…,an-1,那么定义：Fun(A)=a0 or a1 or … or an-1；Fun({}) = 0,即空集的函数值为0.其中，or为或操作。现在给你一个集合Y与整数X的值，问在集合Y至少删除多少个元素能使集合Y合法？ 例如：Y = {1,2,4}，X=7；显然现在的Y不合法，因为 1 or 2 or 4 = 7，但是删除掉任何一个元素后Y将合法。所以，答案是1. Input第一行两个整数N，X，其中N为Y集合元素个数，X如题所述，且1&lt;=N&lt;=50,1&lt;=X&lt;=1,000,000,000.之后N行，每行一个整数yi，即集合Y中的第i个元素，且1&lt;=yi&lt;=1,000,000,000. Output一个整数，表示最少删除多少个元素。 Input示例1234565 712478 Output示例12 题解：读不懂题。。静下心来才看懂。。 题意就是给你一个集合，集合的一个子集中的数或起来的值不等于x就是合法，求使集合合法至少要删除集合中几个元素 那么先把集合中的数排除掉一部分，对那些(ai|x)&gt;x的数来说，不管怎样最后都不会等于x的，这些数一定不删除 然后剩下的就是(ai|x)&lt;=x的数，就运用位运算的性质来解决，每个数用二进制表示，然后二进制不进位的相加，比如题中例子1，2，4，7，8就得到1222，每一位都和x对应的位比较，如果x的二进制i位为1，就说明可以通过删除所有包含i位的数来达到目的，也就是a[i]的大小 还有两种特殊情况，如果所有数都是一定不用删除的，特判一下输出0，如果还没删除之前x的i位是1，而没有任何数的i位是1，那么就可以直接输出0 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define INF 0x3f3f3f3fint a[233];int main()&#123; int n,x,c,cur,num=0,len,flag=0; scanf("%d%d",&amp;n,&amp;x); memset(a,0,sizeof(a)); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;c); if((c|x)&gt;x)continue; flag=1; cur=0; while(c)&#123; if(c&amp;1)a[cur]++; c/=2; cur++; &#125; num=max(num,cur); &#125; if(!flag)&#123; puts("0"); return 0; &#125; c=x; while(c)&#123; len++; c/=2; &#125; int ans=INF; for(int i=0;i&lt;len;i++)&#123; if(x&amp;(1&lt;&lt;i))&#123; if(a[i]==0)&#123; puts("0"); return 0; &#125; ans=min(a[i],ans); &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[如何给个人博客换上专属免费域名[hexo+github+freenom]]]></title>
     <url>%2F2018%2F10%2F12%2F%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%AE%89%E6%8E%92%E4%B8%8A%E4%B8%93%E5%B1%9E%E5%85%8D%E8%B4%B9%E5%9F%9F%E5%90%8D%5Bhexo%2Bgithub%2Bfreenom%5D%2F</url>
     <content type="text"><![CDATA[今天，天气有点冷，风没有往常喧嚣，我，终于有了自己的域名 又能水一篇博客了，前排感谢SunriseFox学长 ！！！ 首先前提是你有了一个部署在githubpage上的个人博客，比如这篇文章里写的这样 Mac OS下用「hexo+github」搭建个人博客！ 1.申请一个免费域名首先是域名申请网站 freenom 申请好像没啥好说的，就是输入一个自己想要的名字，然后选免费的购买233333，各种注册验证啥的 那么现在已经获得了一个想要的域名：leflacon.tk 2.DNS解析虽然学长给我讲了一下直接在freenom上面进行DNS解析的方法，但是我好像没咋耍成!?(･_･;?，所以转身寻求第三方DNS工具了 这里用的是CloudXNS 点击左上脚添加域名 输入获得的域名 这时候会发现接管状态这一项是“X” 点击域名会跳出如下页面，这里给的四个蓝色链接下面会用到 这里说要将域名的NS服务器修改，具体步骤如下 打开最右侧manage domain选项 然后Management Tools-&gt;Nameservers 选择Use custom nameservers (enter below)这项，如图填入之前给的四个蓝色链接 过一会会儿就收到邮件啦，此时接管状态已经显示ok了 然后点开域名，如图添加记录 3.新建CNAME文件在博客根目录的source文件夹下生成一个无后缀的文件“CNAME” 具体方法如下： 在source打开终端，输入sudo touch CNAME 然后打开CNAME文件内输入获得的域名leflacon.tk，我是用sublime的，不会出现啥无法读写的问题 然后在站点配置文件里修改如下两项： 这个是为了防止这两个文件被渲染 然后就是一系列hexo-clean-g-d 等待一下，现在无论在浏览器输入leflacon.tk还是leflacon.github.io都会跳转到leflacon.tk啦～ 其他搬运到新域名之后还是有一些些问题的 一个是busuanzi的访客量统计全部清零了(#ﾟДﾟ)简直是让人。。嘤嘤嘤嘤嘤嘤嘤。。。 还有一个是leancloud评论系统不能用了，这是因为没有把新域名添加到leancloud安全中心的Web安全域名中，所以如下进入设置-&gt;安全中心，添加域名再保存即可 好了，至此我目前能解决的问题都解决了，开始用新域名愉快的玩耍吧～先向百度Google交个链接∠( ᐛ 」∠)＿ 终于能过百度的http认证啦～（因为github禁止百度蜘蛛所以GitHubpage是过不了这个认证的）]]></content>
@@ -382,11 +445,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201433%200%E5%92%8C5%EF%BC%88%E8%83%BD%E8%A2%AB9%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
       <categories>
-        <category>数论</category>
+        <category>贪心</category>
       </categories>
       <tags>
         <tag>贪心</tag>
@@ -405,11 +468,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201433%200%E5%92%8C5%EF%BC%88%E8%83%BD%E8%A2%AB9%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>贪心</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>贪心</tag>
@@ -1073,17 +1136,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
-    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
@@ -1092,6 +1144,17 @@
       </categories>
       <tags>
         <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
+    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -1476,6 +1539,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java高精度</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -1484,17 +1558,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java高精度</category>
-      </categories>
-      <tags>
         <tag>java高精度</tag>
       </tags>
   </entry>
