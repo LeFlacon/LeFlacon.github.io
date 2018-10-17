@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[bzoj 1085 SCOI2005 骑士精神（暴搜+剪枝,IDA*）]]></title>
+    <url>%2F2018%2F10%2F17%2Fbzoj%201085%20SCOI2005%20%E9%AA%91%E5%A3%AB%E7%B2%BE%E7%A5%9E%EF%BC%88%E6%9A%B4%E6%90%9C%2B%E5%89%AA%E6%9E%9D%2CIDA*%EF%BC%89%20%2F</url>
+    <content type="text"><![CDATA[Time Limit: 10 Sec Memory Limit: 162 MB Description 在一个5×5的棋盘上有12个白色的骑士和12个黑色的骑士， 且有一个空位。在任何时候一个骑士都能按照骑士的走法（它可以走到和它横坐标相差为1，纵坐标相差为2或者横坐标相差为2，纵坐标相差为1的格子）移动到空位上。 给定一个初始的棋盘，怎样才能经过移动变成如下目标棋盘： 为了体现出骑士精神，他们必须以最少的步数完成任务。 Input 第一行有一个正整数T(T&lt;=10)，表示一共有N组数据。接下来有T个5×5的矩阵，0表示白色骑士，1表示黑色骑士，*表示空位。两组数据之间没有空行。 Output 对于每组数据都输出一行。如果能在15步以内（包括15步）到达目标状态，则输出步数，否则输出－1。 Sample Input123456789101121011001*1110111010010000001011110*1011100101000100 Sample Output127-1 题解：写题十分钟。。找错一下午。。深深绝望 IDA* 因为如果当前有num个棋子不在应该的位置上，那么至少需要num次移动，所以估价函数就是当前不同的格子数+当前步数&lt;最大步数，否则就return，本质就是暴搜加剪枝 剪完之后跑的飞快～ 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int t,a[5][5],x,y,ans;int res[5][5]=&#123;1,1,1,1,1, 0,1,1,1,1, 0,0,2,1,1, 0,0,0,0,1, 0,0,0,0,0&#125;;int dx[8]=&#123;1,1,-1,-1,2,2,-2,-2&#125;,dy[8]=&#123;2,-2,2,-2,1,-1,1,-1&#125;;char str[6];int ok()&#123; int num=0; for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) num+=(a[i][j]!=res[i][j]); return num;&#125;void dfs(int d,int xx,int yy)&#123; int tmp=ok(); if(tmp==0)&#123; ans=d; return; &#125; if(d+tmp-1&gt;=ans)return; int nx,ny; for(int i=0;i&lt;8;i++)&#123; int nx=xx+dx[i],ny=yy+dy[i]; if(nx&lt;0||nx&gt;4||ny&lt;0||ny&gt;4)continue; swap(a[xx][yy],a[nx][ny]); dfs(d+1,nx,ny); swap(a[xx][yy],a[nx][ny]); &#125;&#125;int main()&#123; scanf("%d",&amp;t); while(t--)&#123; ans=16; for(int i=0;i&lt;5;i++)&#123; scanf("%s",str); for(int j=0;j&lt;5;j++)&#123; if(str[j]=='*')&#123; x=i;y=j; a[i][j]=2; &#125; else a[i][j]=(int)(str[j]-'0'); &#125; &#125; dfs(0,x,y); if(ans==16)printf("-1\n"); else printf("%d\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>搜索</category>
+      </categories>
+      <tags>
+        <tag>dfs</tag>
+        <tag>IDA*</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1835 完全图（dp+组合数打表）]]></title>
+    <url>%2F2018%2F10%2F16%2F51nod%201835%20%E5%AE%8C%E5%85%A8%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题 初始有n个点，任意两个点之间有一条无向边，现在要移除一些无向边（至少一条），问移除后有恰好m个连通块的方案数是多少。 两个方案不同当且仅当存在至少一条无向边在某个方案中被移除，但是在另一个方案中没被移除。 答案可能很大请模一个998,244,353。 Input第一行读入n,m。1&lt;=m&lt;=n&lt;=500 Output第一行输出方案数。 Input示例13 2 Output示例13 题解：dp(i,j)表示i个点的完全图分成j个连通块的方案数 首先考虑先固定某个点，比如编号为x的点，那么假设某个连通块一定包含这个点，那么这个连通块所包含的点数范围是[1,i-(j-1)] 假设这个有点x的连通块共有k个点，k的范围是[1,i-(j-1)]，那么dp(i,j)的方法数就是C(i-1,k-1)*dp(k,1)*dp(i-k,j-1) 也就是在的剩下的i-1个点中选k-1个和x放一个连通块里，选好后连接的方法数为dp(k,1)，然后剩余点的方法数是dp(i-k,j-1) 综上，状态转移方程为： 然后考虑怎么求dp(k,1)，k个点在1个连通块的方法数，是所有连接的总方法数2^[i*(i-1)/2]（某条边连或不连），减去那些不合法的方法数，也就是形成多个连通块 最后wa了一组数据，n=500，m=1，因为题中说“移除一些无向边（至少一条）”，所以m=1的时候要减去完全图的那种情况，特判一下，即m=1时答案是dp(i,1)-1 此外，还从别人代码里学了个妙妙的组合数初始化，因为这题所有组合数差不多都要用到，所以先利用组合数性质c[i][j]=c[i-1][j-1]+c[i-1][j]，就可以o(n^2)递推打表～ 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;#define LL long longconst int p=998244353;const int N=505;LL dp[N][N],c[N][N];int n,m;LL qpow(LL a,LL b)&#123; LL ans=1; a%=p; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;void init()&#123; for(int i=0;i&lt;=n;i++)&#123; c[i][0]=c[i][i]=1; for(int j=1;j&lt;i;j++) c[i][j]=(c[i-1][j-1]+c[i-1][j])%p; &#125;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); init(); dp[1][1]=1; for(int i=2;i&lt;=n;i++)&#123; for(int j=2;j&lt;=i;j++)&#123; dp[i][j]=0; for(int k=1;k&lt;=i-j+1;k++) dp[i][j]=(dp[i][j]+(((c[i-1][k-1]*dp[k][1])%p)*dp[i-k][j-1])%p)%p; &#125; dp[i][1]=qpow(2,i*(i-1)/2); for(int j=2;j&lt;=i;j++) dp[i][1]=(dp[i][1]-dp[i][j]+p)%p; &#125; printf("%lld\n",dp[n][m]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>组合数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1102 面积最大的矩形（单调栈）]]></title>
+    <url>%2F2018%2F10%2F16%2F51nod%201102%20%E9%9D%A2%E7%A7%AF%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2%EF%BC%88%E5%8D%95%E8%B0%83%E6%A0%88%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 20 难度：3级算法题 有一个正整数的数组，化为直方图，求此直方图包含的最大矩形面积。例如 2,1,5,6,2,3，对应的直方图如下： 面积最大的矩形为5,6组成的宽度为2的矩形，面积为10。 Input第1行：1个数N，表示数组的长度(0 &lt;= N &lt;= 50000)第2 - N + 1行：数组元素A[i]。(1 &lt;= A[i] &lt;= 10^9) Output输出最大的矩形面积 Input示例12345676215623 Output示例110 题解：单调栈 直接对样例操作一波吧，先是0入栈，a[0]&gt;a[1]，算一波先，(1-0)*2=2，然后没了，那么先更新一下a[0]=1，因为延伸过去最高是1格，继续a[2]入栈，a[3]入栈，a[4]&lt;a[3]，然后卡在这里继续算一波，s.top()变为a[3]，(4-3)*6=1，s.top()变为a[2]，(4-2)*5=10，然后出栈，更新a[2]=a[4]=2，因为此时a[2]延伸过去可以到2格，然后a[5]入栈，最后算一波(6-5)*2=2，s.top()变为a[2]，(6-2)*2=8 代码：1234567891011121314151617181920212223242526272829303132333435#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;#define LL long longconst int N=50005;LL a[N];stack&lt;int&gt;s;int main()&#123; int n,cur; LL ans=0,tmp; scanf("%d",&amp;n); while(!s.empty())s.pop(); for(int i=0;i&lt;n;i++)scanf("%lld",&amp;a[i]); a[n]=-1; for(int i=0;i&lt;=n;i++)&#123; if(s.empty()||a[i]&gt;a[s.top()])s.push(i); else if(a[i]&lt;a[s.top()])&#123; while(!s.empty()&amp;&amp;a[i]&lt;a[s.top()])&#123; tmp=(i-s.top())*a[s.top()]; ans=max(ans,tmp); cur=s.top(); s.pop(); &#125; a[cur]=a[i]; s.push(cur); &#125; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>stl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Codeforces Round 516 Div. 2（A-E）]]></title>
     <url>%2F2018%2F10%2F15%2FCodeforces%20Round%20516%20Div.%202%2F</url>
-    <content type="text"><![CDATA[1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int main()&#123; int a[3]; scanf("%d%d%d",&amp;a[0],&amp;a[1],&amp;a[2]); sort(a,a+3); if(a[0]+a[1]&gt;a[2])printf("0\n"); else printf("%d\n",a[2]-a[1]-a[0]+1); return 0;&#125; 1064 B. Equations of Mathematical Magichttp://codeforces.com/contest/1064/problem/B 题意：给一个a，求满足条件的非负x的个数（式子中那个符号是异或） 也就是a=(a⊕x)+x，那么式子成立的条件是，a为0的位x也为0，a位1的位x为1或0，所以答案就是2^(a中1的个数) 我也不知道我干嘛写了个快速幂。。小手一抖就写了，这不重要(･-･; 123456789101112131415161718192021222324252627282930313233343536#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;#define LL long longLL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a); b--; &#125; b/=2; a=a*a; &#125; return ans;&#125;int main()&#123; int t,num; LL n,tmp; scanf("%d",&amp;t); while(t--)&#123; scanf("%I64d",&amp;n); tmp=n;num=0; while(tmp)&#123; if(tmp&amp;1)num++; tmp/=2; &#125; printf("%I64d\n",qpow(2,num)); &#125; return 0;&#125; 1064 C. Oh Those Palindromeshttp://codeforces.com/contest/1064/problem/C 题意：给你一个字符串，问它怎么排列能使回文子序列最多 我还在想怎么对称的时候学长秒给思路，tql，字母同样的放一起就行 1234567891011121314151617181920212223#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int a[26];string s;int main()&#123; int n; scanf("%d",&amp;n); cin&gt;&gt;s; memset(a,0,sizeof(a)); for(int i=0;i&lt;n;i++)a[s[i]-'a']++; for(int i=0;i&lt;26;i++)&#123; for(int j=0;j&lt;a[i];j++) printf("%c",(char)(i+'a')); &#125; printf("\n"); return 0;&#125; 1064 D. Labyrinthhttp://codeforces.com/contest/1064/problem/D 题意：给一个nxm的图，图上有空格和障碍格，给一个起点(r,c)（保证起点不是障碍格），给两个值x，y表示最多只能向左x次向右y次，上下不限，求问能到达多少个格子（起点也算） 一下子就写完了bfs，然后就陷入了无穷无尽的wa13，然后各种改乱交了好几发，我就睡着了╭(°A°’’)╮，嗷都是躺椅的锅。。 因为我bfs的思路有点问题，一个点如果vis了我就直接return掉了，但是可能存在一些情况是，这个点可以在左右次数剩余不同的情况下被vis，那么两个状态实际上都可以继续延伸，需要取更优的那种，所以这里就会出现问题了 看了别人的代码，有一种很巧妙的双端队列的写法，动上下的时候push_front，动左右的时候push_back，这样就可以保证优先性了，妙啊妙啊 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;deque&gt;using namespace std;const int N=2005;int a[N][N],vis[N][N],n,m,l,r,sx,sy,ans;char str[N];struct ss&#123; int x,y,ll,rr; ss(int a,int b,int c,int d)&#123; x=a;y=b;ll=c;rr=d; &#125;&#125;;void bfs()&#123; deque&lt;ss&gt;q; q.push_front(ss(sx,sy,l,r)); vis[sx][sy]=1; while(!q.empty())&#123; ss u=q.front(); q.pop_front(); if(u.x+1&lt;=n&amp;&amp;!vis[u.x+1][u.y]&amp;&amp;a[u.x+1][u.y])&#123; vis[u.x+1][u.y]=1; q.push_front(ss(u.x+1,u.y,u.ll,u.rr)); &#125; if(u.x-1&gt;=1&amp;&amp;!vis[u.x-1][u.y]&amp;&amp;a[u.x-1][u.y])&#123; vis[u.x-1][u.y]=1; q.push_front(ss(u.x-1,u.y,u.ll,u.rr)); &#125; if(u.y+1&lt;=m&amp;&amp;!vis[u.x][u.y+1]&amp;&amp;u.rr&gt;=1&amp;&amp;a[u.x][u.y+1])&#123; vis[u.x][u.y+1]=1; q.push_back(ss(u.x,u.y+1,u.ll,u.rr-1)); &#125; if(u.y-1&gt;=1&amp;&amp;!vis[u.x][u.y-1]&amp;&amp;u.ll&gt;=1&amp;&amp;a[u.x][u.y-1])&#123; vis[u.x][u.y-1]=1; q.push_back(ss(u.x,u.y-1,u.ll-1,u.rr)); &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; cin&gt;&gt;sx&gt;&gt;sy; cin&gt;&gt;l&gt;&gt;r; for(int i=1;i&lt;=n;i++)&#123; scanf("%s",str); for(int j=1;j&lt;=m;j++)&#123; if(str[j-1]=='*')a[i][j]=0; else a[i][j]=1; vis[i][j]=0; &#125; &#125; bfs(); ans=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) ans+=vis[i][j]; printf("%d\n",ans); return 0;&#125; 1064 E. Dwarves, Hats and Extrasensory Abilitieshttp://codeforces.com/contest/1064/problem/E 题意：给出n，然后有n次交互，输出一个坐标，然后系统返回是黑色或白色，表明刚刚输入的坐标是黑子或白子，最后要找到一条直线分开所有黑子和白子 没写过交互题0.0，和一般的题差别就是：输出之后要清空缓存区，fflush(stdout); 这个题大概算是个思维题吧，用一下二分的思想，画个图其实蛮好想的，而且n&lt;=30巨水，大致构造思路如下：（1，2，3，4记录了线m移动的顺序） 初始化l，r，m=(l+r)/2，并标记当前棋子颜色，然后每次同色的就使l=m，更新m的位置继续，如果不同色那么就使r=m，更新m继续，不断往中间挤，这样保证能把不同色棋子分到两边 注意这里要记录最后一次线往左移还是往右移，往右移的话最后那个线就是y=-x+b，过(m+0.5,m+0.5)，往左移的话就过(m-0.5,m-0.5)，初始化flag=1，也就是+0.5那种，因为特例只有一个点，那么不能把线移到负坐标轴去 感觉我这题代码写的蛮优美的嘻嘻∠( ᐛ 」∠)＿12345678910111213141516171819202122232425262728293031323334#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;deque&gt;using namespace std;string s;int now,n,m,l=0,r=(1&lt;&lt;29),flag=1;int solve(int x,int y)&#123; cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl; fflush(stdout); cin&gt;&gt;s; return s[0]=='b';&#125;int main()&#123; scanf("%d",&amp;n); n--; now=solve(0,0); while(n--)&#123; m=(l+r)&gt;&gt;1; if(solve(m,m)==now)&#123; l=m;flag=1; &#125; else&#123; r=m;flag=0; &#125; &#125; if(flag)printf("%d %d %d %d\n",m,m+1,m+1,m); else printf("%d %d %d %d\n",m,m-1,m-1,m); fflush(stdout); return 0;&#125; F. Candies for Childrenhttp://codeforces.com/contest/1064/problem/F]]></content>
+    <content type="text"><![CDATA[1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int main()&#123; int a[3]; scanf("%d%d%d",&amp;a[0],&amp;a[1],&amp;a[2]); sort(a,a+3); if(a[0]+a[1]&gt;a[2])printf("0\n"); else printf("%d\n",a[2]-a[1]-a[0]+1); return 0;&#125; 1064 B. Equations of Mathematical Magic（思维）http://codeforces.com/contest/1064/problem/B 题意：给一个a，求满足条件的非负x的个数（式子中那个符号是异或） 也就是a=(a⊕x)+x，那么式子成立的条件是，a为0的位x也为0，a位1的位x为1或0，所以答案就是2^(a中1的个数) 我也不知道我干嘛写了个快速幂。。小手一抖就写了，这不重要(･-･; 123456789101112131415161718192021222324252627282930313233343536#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;#define LL long longLL qpow(LL a,LL b)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a); b--; &#125; b/=2; a=a*a; &#125; return ans;&#125;int main()&#123; int t,num; LL n,tmp; scanf("%d",&amp;t); while(t--)&#123; scanf("%I64d",&amp;n); tmp=n;num=0; while(tmp)&#123; if(tmp&amp;1)num++; tmp/=2; &#125; printf("%I64d\n",qpow(2,num)); &#125; return 0;&#125; 1064 C. Oh Those Palindromes（字符串）http://codeforces.com/contest/1064/problem/C 题意：给你一个字符串，问它怎么排列能使回文子序列最多 我还在想怎么对称的时候学长秒给思路，tql，字母同样的放一起就行 1234567891011121314151617181920212223#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int a[26];string s;int main()&#123; int n; scanf("%d",&amp;n); cin&gt;&gt;s; memset(a,0,sizeof(a)); for(int i=0;i&lt;n;i++)a[s[i]-'a']++; for(int i=0;i&lt;26;i++)&#123; for(int j=0;j&lt;a[i];j++) printf("%c",(char)(i+'a')); &#125; printf("\n"); return 0;&#125; 1064 D. Labyrinth（bfs）http://codeforces.com/contest/1064/problem/D 题意：给一个nxm的图，图上有空格和障碍格，给一个起点(r,c)（保证起点不是障碍格），给两个值x，y表示最多只能向左x次向右y次，上下不限，求问能到达多少个格子（起点也算） 一下子就写完了bfs，然后就陷入了无穷无尽的wa13，然后各种改乱交了好几发，我就睡着了╭(°A°’’)╮，嗷都是躺椅的锅。。 因为我bfs的思路有点问题，一个点如果vis了我就直接return掉了，但是可能存在一些情况是，这个点可以在左右次数剩余不同的情况下被vis，那么两个状态实际上都可以继续延伸，需要取更优的那种，所以这里就会出现问题了 看了别人的代码，有一种很巧妙的双端队列的写法，动上下的时候push_front，动左右的时候push_back，这样就可以保证优先性了，妙啊妙啊 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;deque&gt;using namespace std;const int N=2005;int a[N][N],vis[N][N],n,m,l,r,sx,sy,ans;char str[N];struct ss&#123; int x,y,ll,rr; ss(int a,int b,int c,int d)&#123; x=a;y=b;ll=c;rr=d; &#125;&#125;;void bfs()&#123; deque&lt;ss&gt;q; q.push_front(ss(sx,sy,l,r)); vis[sx][sy]=1; while(!q.empty())&#123; ss u=q.front(); q.pop_front(); if(u.x+1&lt;=n&amp;&amp;!vis[u.x+1][u.y]&amp;&amp;a[u.x+1][u.y])&#123; vis[u.x+1][u.y]=1; q.push_front(ss(u.x+1,u.y,u.ll,u.rr)); &#125; if(u.x-1&gt;=1&amp;&amp;!vis[u.x-1][u.y]&amp;&amp;a[u.x-1][u.y])&#123; vis[u.x-1][u.y]=1; q.push_front(ss(u.x-1,u.y,u.ll,u.rr)); &#125; if(u.y+1&lt;=m&amp;&amp;!vis[u.x][u.y+1]&amp;&amp;u.rr&gt;=1&amp;&amp;a[u.x][u.y+1])&#123; vis[u.x][u.y+1]=1; q.push_back(ss(u.x,u.y+1,u.ll,u.rr-1)); &#125; if(u.y-1&gt;=1&amp;&amp;!vis[u.x][u.y-1]&amp;&amp;u.ll&gt;=1&amp;&amp;a[u.x][u.y-1])&#123; vis[u.x][u.y-1]=1; q.push_back(ss(u.x,u.y-1,u.ll-1,u.rr)); &#125; &#125;&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; cin&gt;&gt;sx&gt;&gt;sy; cin&gt;&gt;l&gt;&gt;r; for(int i=1;i&lt;=n;i++)&#123; scanf("%s",str); for(int j=1;j&lt;=m;j++)&#123; if(str[j-1]=='*')a[i][j]=0; else a[i][j]=1; vis[i][j]=0; &#125; &#125; bfs(); ans=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) ans+=vis[i][j]; printf("%d\n",ans); return 0;&#125; 1064 E. Dwarves, Hats and Extrasensory Abilities（二分+思维）http://codeforces.com/contest/1064/problem/E 题意：给出n，然后有n次交互，输出一个坐标，然后系统返回是黑色或白色，表明刚刚输入的坐标是黑子或白子，最后要找到一条直线分开所有黑子和白子 没写过交互题0.0，和一般的题差别就是：输出之后要清空缓存区，fflush(stdout); 这个题大概算是个思维题吧，用一下二分的思想，画个图其实蛮好想的，而且n&lt;=30巨水，大致构造思路如下：（1，2，3，4记录了线m移动的顺序） 初始化l，r，m=(l+r)/2，并标记当前棋子颜色，然后每次同色的就使l=m，更新m的位置继续，如果不同色那么就使r=m，更新m继续，不断往中间挤，这样保证能把不同色棋子分到两边 注意这里要记录最后一次线往左移还是往右移，往右移的话最后那个线就是y=-x+b，过(m+0.5,m+0.5)，往左移的话就过(m-0.5,m-0.5)，初始化flag=1，也就是+0.5那种，因为特例只有一个点，那么不能把线移到负坐标轴去 感觉我这题代码写的蛮优美的嘻嘻∠( ᐛ 」∠)＿12345678910111213141516171819202122232425262728293031323334#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;deque&gt;using namespace std;string s;int now,n,m,l=0,r=(1&lt;&lt;29),flag=1;int solve(int x,int y)&#123; cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl; fflush(stdout); cin&gt;&gt;s; return s[0]=='b';&#125;int main()&#123; scanf("%d",&amp;n); n--; now=solve(0,0); while(n--)&#123; m=(l+r)&gt;&gt;1; if(solve(m,m)==now)&#123; l=m;flag=1; &#125; else&#123; r=m;flag=0; &#125; &#125; if(flag)printf("%d %d %d %d\n",m,m+1,m+1,m); else printf("%d %d %d %d\n",m,m-1,m-1,m); fflush(stdout); return 0;&#125; F. Candies for Childrenhttp://codeforces.com/contest/1064/problem/F]]></content>
       <categories>
         <category>题解</category>
       </categories>
+      <tags>
+        <tag>二分</tag>
+        <tag>思维</tag>
+        <tag>bfs</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[ural 1309 Dispute（相当奇妙的递推）]]></title>
@@ -428,8 +468,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>逆元</tag>
+        <tag>推公式</tag>
       </tags>
   </entry>
   <entry>
@@ -442,6 +482,17 @@
       <tags>
         <tag>dp</tag>
         <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
+      <categories>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -465,17 +516,6 @@
       <tags>
         <tag>推公式</tag>
         <tag>三分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201413%20%E6%9D%83%E5%8A%BF%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%88CF%20538%20B.%20Quasi%20Binary%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
-      <categories>
-        <category>贪心</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -806,8 +846,8 @@
         <category>二分</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>逆元</tag>
+        <tag>推公式</tag>
         <tag>二分</tag>
       </tags>
   </entry>
@@ -935,8 +975,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>逆元</tag>
+        <tag>推公式</tag>
         <tag>组合数</tag>
         <tag>斯特林数</tag>
       </tags>
@@ -1136,17 +1176,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
-    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
-      <categories>
-        <category>51nod基础题</category>
-      </categories>
-      <tags>
-        <tag>Manacher</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1057 N的阶乘（java大数）]]></title>
     <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
@@ -1155,6 +1184,17 @@
       </categories>
       <tags>
         <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
+    <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
+      <categories>
+        <category>51nod基础题</category>
+      </categories>
+      <tags>
+        <tag>Manacher</tag>
       </tags>
   </entry>
   <entry>
@@ -1317,8 +1357,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>推公式</tag>
         <tag>前缀和</tag>
+        <tag>推公式</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1557,8 +1597,8 @@
         <category>java高精度</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>java高精度</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
