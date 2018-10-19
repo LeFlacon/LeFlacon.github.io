@@ -148,14 +148,14 @@
 
 
   <meta name="description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1502 Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionConsider words of length 3n over alphabet {A, B, C">
-<meta name="keywords" content="java高精度,dp">
+<meta name="keywords" content="dp,java高精度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdu 1502 Regular Words（dp，java高精度）">
 <meta property="og:url" content="http://leflacon.tk/2018/09/09/hdu 1502 Regular Words（dp，java高精度）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1502 Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionConsider words of length 3n over alphabet {A, B, C">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-07T07:40:24.063Z">
+<meta property="og:updated_time" content="2018-10-18T09:45:41.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 1502 Regular Words（dp，java高精度）">
 <meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1502 Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionConsider words of length 3n over alphabet {A, B, C">
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-07 15:40:24" itemprop="dateModified" datetime="2018-10-07T15:40:24+08:00">2018-10-07</time>
+                <time title="修改时间：2018-10-18 17:45:41" itemprop="dateModified" datetime="2018-10-18T17:45:41+08:00">2018-10-18</time>
               
             
           </span>
@@ -532,7 +532,7 @@
 <h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="number">42</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>ABC三个字母每个字母n个，排列成一个长度为3*n的串，要求任意前缀满足，A的个数大于等于B的个数大于等于C的个数，即A(c)&gt;= B(c) &gt;= C(c) ，求方法数</p>
+<h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>ABC三个字母每个字母n个，排列成一个长度为<code>3*n</code>的串，要求任意前缀满足，A的个数大于等于B的个数大于等于C的个数，即<code>A(c)&gt;= B(c) &gt;= C(c)</code> ，求方法数</p>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>dp[i][j][k]表示当前串由i个A，j个B，k个C组成的方法数   </p>
 <p>状态转移方程为 <code>dp[i][j][k] = dp[i-1][j][k] + dp[i][j-1][k] + dp[i][j][k-1]</code></p>
 <p>初始化dp[0][0][0]=1，每一项加的时候判断一下是否合法即可</p>
@@ -558,9 +558,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java高精度/" rel="tag"># java高精度</a>
-          
             <a href="/tags/dp/" rel="tag"># dp</a>
+          
+            <a href="/tags/java高精度/" rel="tag"># java高精度</a>
           
         </div>
       
@@ -1572,6 +1572,13 @@ setInterval("createtime()",250);
   
 
   
+  
+
+  
+  
+
+  
+
 
   
   

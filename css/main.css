@@ -1846,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4b4aff;
+  background: #7026db;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2612,7 +2612,7 @@ body {
   line-height: 1.5;
 }
 .header-inner {
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 5px;
 }
 .posts-expand {
@@ -2631,9 +2631,9 @@ body {
 }
 .site-title {
   font-family: Times;
-  font-size: 38px;
+  font-size: 35px;
   font-weight: bold;
-  color: #727272;
+  color: #222;
 }
 .site-subtitle {
   padding-top: 11px;

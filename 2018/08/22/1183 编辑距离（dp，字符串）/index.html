@@ -155,7 +155,7 @@
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。 例如将kitten一字转成sitting：sitten （k-&amp;gt;s）sittin （e-&amp;gt;i）s">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-13T07:29:03.936Z">
+<meta property="og:updated_time" content="2018-10-18T09:31:14.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1183 编辑距离（dp，字符串）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题  编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。 例如将kitten一字转成sitting：sitten （k-&amp;gt;s）sittin （e-&amp;gt;i）s">
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-13 15:29:03" itemprop="dateModified" datetime="2018-09-13T15:29:03+08:00">2018-09-13</time>
+                <time title="修改时间：2018-10-18 17:31:14" itemprop="dateModified" datetime="2018-10-18T17:31:14+08:00">2018-10-18</time>
               
             
           </span>
@@ -526,7 +526,7 @@
 <h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kitten</span></span><br><span class="line"><span class="attribute">sitting</span></span><br></pre></td></tr></table></figure>
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="提解："><a href="#提解：" class="headerlink" title="提解："></a>提解：</h3><p>dp[i][j]表示字符串a的[0,i)和字符串b的[0,j)的最小编辑距离</p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>dp[i][j]表示字符串a的[0,i)和字符串b的[0,j)的最小编辑距离</p>
 <p>写出状态转移方程dp[i][j]=min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]==b[j-1]?0:1))</p>
 <ul>
 <li>dp[i-1][j]+1表示前[0,i-1)[0,j)已经相同，要改第i位</li>
@@ -970,7 +970,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input示例"><span class="nav-number">3.</span> <span class="nav-text">Input示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output示例"><span class="nav-number">4.</span> <span class="nav-text">Output示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提解："><span class="nav-number">5.</span> <span class="nav-text">提解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">2.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input示例"><span class="nav-number">3.</span> <span class="nav-text">Input示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output示例"><span class="nav-number">4.</span> <span class="nav-text">Output示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解："><span class="nav-number">5.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li></ol></div>
             
 
           </div>
@@ -1565,6 +1565,13 @@ setInterval("createtime()",250);
   
 
   
+  
+
+  
+  
+
+  
+
 
   
   

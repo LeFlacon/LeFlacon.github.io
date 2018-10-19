@@ -156,7 +156,7 @@
 <meta property="og:description" content="https://nanti.jisuanke.com/t/28205 Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’s intelligen">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://res.jisuanke.com/img/upload/20180703/f32e80b481a421fcf94d5ed040138bbc778728d7.png">
-<meta property="og:updated_time" content="2018-09-13T07:05:08.459Z">
+<meta property="og:updated_time" content="2018-10-18T08:44:08.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pawns（博弈，思维）">
 <meta name="twitter:description" content="https://nanti.jisuanke.com/t/28205 Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’s intelligen">
@@ -447,7 +447,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-13 15:05:08" itemprop="dateModified" datetime="2018-09-13T15:05:08+08:00">2018-09-13</time>
+                <time title="修改时间：2018-10-18 16:44:08" itemprop="dateModified" datetime="2018-10-18T16:44:08+08:00">2018-10-18</time>
               
             
           </span>
@@ -561,54 +561,8 @@
 <p>B 。。。B<br>。B 。。。<br>。。B 。。<br>。。。B 。<br>WWWWW</p>
 <p>对于第一，五列那种双方都有能力的棋子来说，不管先手走一步还是两步，后手都可以走（3-i）步使这一列一人走一次然后作废，所以n=5时这种列也不考虑。<br>对于第二列，B要优先破坏W的能力。<br>对于第三，四列，只要数可走步数即可。  </p>
 <p>因为剩下的策略都满足上面的n&gt;5时，所以n=5虽然有特殊，但是并不用考虑特殊策略。</p>
-<hr>
-<pre><code>#include &lt;algorithm&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;iostream&gt;
-#include &lt;map&gt;
-#include &lt;queue&gt;
-#include &lt;string&gt;
-#include &lt;set&gt;
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">40</span>;</span><br><span class="line"><span class="keyword">char</span> p[N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t,num=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n,m;</span><br><span class="line">        <span class="keyword">int</span> cw=<span class="number">0</span>,cb=<span class="number">0</span>,cd=<span class="number">0</span>,bushu=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">        <span class="built_in">memset</span>(p,<span class="number">0</span>,<span class="keyword">sizeof</span>(p));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;p[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> b,w;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p[j][i]==<span class="string">'B'</span>)b=j;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(p[j][i]==<span class="string">'W'</span>)w=j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(b==<span class="number">1</span>&amp;&amp;w==n&amp;&amp;n&gt;<span class="number">3</span>)cd++;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(b==<span class="number">1</span>&amp;&amp;w&gt;<span class="number">3</span>)cw+=w<span class="number">-3</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(w==n&amp;&amp;b&lt;n<span class="number">-2</span>)cb+=n<span class="number">-2</span>-b;</span><br><span class="line">                bushu+=(w-b<span class="number">-1</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>((n==<span class="number">4</span>&amp;&amp;cd%<span class="number">2</span>==<span class="number">1</span>)||(cw&lt;cb)||(((cb==cw<span class="number">-1</span>)||(cb==cw))&amp;&amp;bushu%<span class="number">2</span>==<span class="number">1</span>))<span class="built_in">printf</span>(<span class="string">"White wins\n"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"Black wins\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-using namespace std;
-const int N=40;
-char p[N][N];
-
-int main()
-{
-    int t,num=0;
-    scanf(&quot;%d&quot;, &amp;t);
-    while(t--){
-        int n,m;
-        int cw=0,cb=0,cd=0,bushu=0;
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-        memset(p,0,sizeof(p));
-        for(int i=1;i&lt;=n;i++){
-            for(int j=1;j&lt;=m;j++){
-                cin&gt;&gt;p[i][j];
-            }
-        }
-        for(int i=1;i&lt;=m;i++){
-            int b,w;
-            for(int j=1;j&lt;=n;j++){
-                if(p[j][i]==&apos;B&apos;)b=j;
-                else if(p[j][i]==&apos;W&apos;)w=j;
-            }
-            if(b==1&amp;&amp;w==n&amp;&amp;n&gt;3)cd++;
-            else{
-                if(b==1&amp;&amp;w&gt;3)cw+=w-3;
-                else if(w==n&amp;&amp;b&lt;n-2)cb+=n-2-b;
-                bushu+=(w-b-1);
-            } 
-        }
-        if((n==4&amp;&amp;cd%2==1)||(cw&lt;cb)||(((cb==cw-1)||(cb==cw))&amp;&amp;bushu%2==1))printf(&quot;White wins\n&quot;);
-        else printf(&quot;Black wins\n&quot;);
-    }
-    return 0;
-}
-</code></pre>
       
     </div>
 
@@ -1642,6 +1596,13 @@ setInterval("createtime()",250);
   
 
   
+  
+
+  
+  
+
+  
+
 
   
   
