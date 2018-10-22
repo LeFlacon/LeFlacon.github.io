@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mac OS下sublime3配置c++环境（支持输入，支持c++11）]]></title>
+    <url>%2F2018%2F10%2F22%2FmacOS%E4%B8%8Bsublime3%E9%85%8D%E7%BD%AEc%2B%2B%E7%8E%AF%E5%A2%83%EF%BC%88%E6%94%AF%E6%8C%81%E8%BE%93%E5%85%A5%EF%BC%8C%E6%94%AF%E6%8C%81c%2B%2B11%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[终于配上了c++11，可以用auto了，快乐～ 但是构建好懵逼啊。。一头雾水。。还是得参考=照搬别人的代码 新建环境【tools-&gt;build system-&gt;new build system】 输入以下内容保存 构建系统——json文件12345678910111213&#123; "cmd": ["bash", "-c", "g++ '$&#123;file&#125;' -std=c++11 -stdlib=libc++ -o '$&#123;file_path&#125;/$&#123;file_base_name&#125;'"], "file_regex": "^(..&#123;FNXX==XXFN&#125;*):([0-9]+):?([0-9]+)?:? (.*)$", "working_dir": "$&#123;file_path&#125;", "selector": "source.c, source.c++", "variants": [ &#123; "name": "Run", "cmd": ["bash", "-c", "g++ '$&#123;file&#125;' -std=c++11 -stdlib=libc++ -o '$&#123;file_path&#125;/$&#123;file_base_name&#125;' &amp;&amp; open -a Terminal.app '$&#123;file_path&#125;/$&#123;file_base_name&#125;'"] &#125; ]&#125; Ctrl+Shift+B即可运行 和之前配置的不能c++11的环境比最大差别应该是改了这个-std=c++11 -stdlib=libc++ -o Build Systems (Batch Processing)下面放一点点解释： 标准选项列表 说明 cmd 要执行的实际命令行 file_regex Perl样式的正则表达式，用于从外部程序的输出中捕获错误信息，比如上面的格式是：文件名，行号，列号和错误消息 selector 匹配selector文件的范围自动找到活动文件的相应构建系统 variants 使用variants，可以在同一.sublime-build文件中指定多个构建系统任务 变量 说明 $file_path 当前文件的目录，例如C：\ Files。 $file 当前文件的完整路径，例如C：\ Files \ Chapter1.txt。 $file_name 当前文件的名称部分，例如Chapter1.txt。 $file_extension 当前文件的扩展部分，例如txt。 $file_base_name 当前文件的仅名称部分，例如Document。 $folder 在当前项目中打开的第一个文件夹的路径。 $project 当前项目文件的完整路径。 $project_path 当前项目文件的目录。 $project_name 当前项目文件的名称部分。 $project_extension 当前项目文件的扩展部分。 $project_base_name 当前项目文件的仅名称部分。 $packages Packages 文件夹的完整路径。 修改环境如果是之前已经配过环境，直接修改然后保存即可 打开xxx.sublime-build的方法如下： 【preferences-&gt;browse packages】 xxx.sublime-build在所打开页面的【user】文件夹下 最后放上官方文档链接 Build Systems (Batch Processing)]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+      <tags>
+        <tag>mac OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java第二次作业（线段类）]]></title>
+    <url>%2F2018%2F10%2F22%2FJava%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A%EF%BC%88%E7%BA%BF%E6%AE%B5%E7%B1%BB%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[线段类编写一个线段类MyLine，主要属性有e1,e2,端点类型为Point，编写构造方法，编写成员方法（是否位于第一象限，长度，两线段是否相交，点到线段距离，其他方法） 实现思路：使用java.awt.Point，然后编写线段类MyLine，两个Point类型的私有变量u,v表示两线段端点 构造函数中直接给两个端点赋值就行 xmult函数算叉积，zero函数判断x是否等于0（因为要控制精度所以不能直接写==0，开头声明一个eps来控制精度范围static double eps=1e-6;） 判断线段是否相交（包括端点和重合），利用三个函数，dots_inline判三点共线，dots_online_in判点是否在线段上，包括端点，same_side判两点是否在线段同侧 求点到线段距离，为了避免出现线段是一个点的情况，先特判线段长度是否为0 遇到问题及解决办法：1.The import java.awt cannot be resolve 【项目右键-&gt;build path-&gt;configure build path-&gt;library-&gt;add library】 2.The operator || is undefined for the argument type(s) int, int 【因为把几个int型函数或起来了，在Java内部只能出现boolean类型的运算使用运算符||，Integer之间使用运算符||时，会报此错误，解决办法，转化为boolean类型进行运算，加个大于0啥的】 3.Syntax error on token &quot;module&quot;, interface expected 【直接删掉。。我是谁我在哪我在干嘛。。】 4.No enclosing instance of type Main is accessible. 【我写的类以public class开头，是动态的，而主程序public static class main是静态，在Java中，类中的静态方法不能直接调用动态方法，只有将某个内部类修饰为静态类，然后才能够在静态类中调用该类的成员变量与成员方法，直接将public class改为public static class】 运行效果： 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990package test; import java.io.*; import java.math.*;import java.util.*;import java.awt.Point; public class Main &#123; static double eps=1e-8; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); Point p1=new Point(),p2=new Point(),p3=new Point(),p4=new Point(); p1.x=cin.nextInt();p1.y=cin.nextInt(); p2.x=cin.nextInt();p2.y=cin.nextInt(); p3.x=cin.nextInt();p3.y=cin.nextInt(); p4.x=cin.nextInt();p4.y=cin.nextInt(); MyLine l1=new MyLine(p1,p2); MyLine l2=new MyLine(p3,p4); System.out.println("1.l1线段是否在第一象限: "); l1.check(); System.out.println("2.l2的长度: "); System.out.println(l2.length()); System.out.println("3.l1和l2是否相交: "); if(l1.xiangjiao(l2)==1)System.out.println("相交"); else System.out.println("不相交"); System.out.println("4.p1到l2的距离: "); System.out.println(l2.juli(p1)); cin.close(); &#125; public static class MyLine&#123; private Point u,v; MyLine(Point a,Point b)&#123; u=a; v=b; &#125; public boolean check() &#123; if(u.x&gt;0&amp;&amp;u.y&gt;0&amp;&amp;v.x&gt;0&amp;&amp;v.y&gt;0) &#123; System.out.println("Yes,线段在第一象限"); return true; &#125; else &#123; System.out.println("No，线段不在第一象限"); return false; &#125; &#125; public double length() &#123; return (float)Math.sqrt((u.x-v.x)*(u.x-v.x)+(u.y-v.y)*(u.y-v.y)); &#125; public double length2(Point p1,Point p2) &#123; return (float)Math.sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)); &#125; public double xmult(Point p1,Point p2,Point p0) &#123; return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y); &#125; public int zero(double x) &#123; if(x&gt;0) &#123; if(x&lt;eps)return 1; else return 0; &#125; else &#123; if((-x)&lt;eps)return 1; else return 0; &#125; &#125; public boolean dots_inline(Point p1,Point p2,Point p3) &#123; if(zero(xmult(p1,p2,p3))==1)return true; else return false; &#125; public int dots_online_in(Point p,Point l1,Point l2) &#123; if((zero(xmult(p,l1,l2))==1)&amp;&amp;(l1.x-p.x)*(l2.x-p.x)&lt;eps&amp;&amp; (l1.y-p.y)*(l2.y-p.y)&lt;eps)return 1; else return 0; &#125; public boolean same_side(MyLine l2) &#123; return (xmult(l2.u,u,l2.v)*xmult(l2.u,v,l2.v))&gt;eps; &#125; public int xiangjiao(MyLine l2) &#123; if(!dots_inline(u,v,l2.u)||!dots_inline(u,v,l2.v)) if(!this.same_side(l2)&amp;&amp;!l2.same_side(this))return 1; else return 0; if(dots_online_in(u,l2.u,l2.v)&gt;0||dots_online_in(v,l2.u,l2.v)&gt;0|| dots_online_in(l2.u,u,v)&gt;0||dots_online_in(l2.v,u,v)&gt;0)return 1; else return 0; &#125; public double juli(Point p) &#123; if(zero(length2(u,v))!=1)return Math.abs(xmult(p,u,v)/length2(u,v)); else return length2(p,u); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>作业</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java第一次作业（素数，日历）]]></title>
+    <url>%2F2018%2F10%2F22%2FJava%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%EF%BC%88%E7%B4%A0%E6%95%B0%EF%BC%8C%E6%97%A5%E5%8E%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[1）显示2～100中的质数，每行显示5个实现思路：写个判素数函数，是素数就输出，当然也可以用埃筛素数 运行效果： 遇到的问题及解决：printf提示参数类型不对，Type The method print(int) in the type …… 因为默认的兼容版本为1.3，在项目属性的java complier中改成1.5以上就ok了 代码：1234567891011121314151617181920212223242526import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; int num=1; for(int i=2;i&lt;=100;i++) &#123; if(isprime(i)&amp;&amp;num%5!=0) &#123; System.out.printf("%3s",i); num++; &#125; else if(isprime(i)&amp;&amp;num%5==0) &#123; System.out.printf("%3s",i); System.out.println(); num++; &#125; &#125; &#125; public static boolean isprime(int n) &#123; for(int i=2;i*i&lt;=n;i++) &#123; if(n%i==0)return false; &#125; return true; &#125;&#125; 2）编写程序，显示出当月日历实现思路：利用java中的java.util.Calendar，先记录当前年月，然后指向这个月一号，一直输出到当前天月份不为之前记录的月份为止 运行效果： 代码：1234567891011121314151617181920212223242526272829303132import java.io.*; import java.math.*;import java.util.*;import java.text.DateFormatSymbols; public class Main &#123; public static void main(String[] args) &#123; Calendar cal=Calendar.getInstance(); int m=cal.get(Calendar.MONTH); int y=cal.get(Calendar.YEAR); System.out.println(y+"年"+(m+1)+"月");//月份记录的是[0,11] String wk[]=new DateFormatSymbols().getShortWeekdays();//星期名数组[1,7] for(int i=1;i&lt;=7;i++) System.out.print(wk[i]+" "); System.out.println(); cal.set(Calendar.DAY_OF_MONTH,1);//1号 int w=cal.get(Calendar.DAY_OF_WEEK); int cur=1; while(wk[cur]!=wk[w]) &#123; System.out.print(" "); cur++; &#125; do &#123; int d=cal.get(Calendar.DAY_OF_MONTH); System.out.printf("%3s",d); System.out.print(" "); if(wk[cal.get(Calendar.DAY_OF_WEEK)]==wk[7]) System.out.println(); cal.add(Calendar.DAY_OF_MONTH,1);//下一天 &#125;while(cal.get(Calendar.MONTH)==m); &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>作业</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[数据结构第二次作业（扩展链表，双向循环链表）]]></title>
+    <url>%2F2018%2F10%2F22%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A%EF%BC%88%E6%89%A9%E5%B1%95%E9%93%BE%E8%A1%A8%EF%BC%8C%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[1.扩展链表题目：编写一个非成员方法meld，它生成一个新的扩展的链表c，它从a的首元素开始，交替的包含a和b的元素。如果一个链表的元素取完了，就把另一个链表的剩余元素附加到新的扩展链表中，方法的复杂度应与链表a和b的长度具有线性关系 实现方法：加个尾节点last，然后添加成员函数append直接在链表尾部添加节点 用两个指针遍历链表AB，这样就可以通过append函数o(n)填充链表C 写的时候遇到的问题及解决办法： 在SauserHi大佬的解释下，豁然开朗，我好菜啊ORZ 因为我写了析构函数，没有另写拷贝构造函数，所以我的返回值被我自己析构了(#ﾟДﾟ)，以下说明来自百度百科 解决方法是把写的析构函数给删了，或者写一个拷贝构造函数，代码中我采用了第一种 运行效果： 代码：别的功能都没试过，随手写的或许充满bug╮(￣▽￣””)╭ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;template &lt;class T&gt;class ChainNode&#123;public: T data; ChainNode&lt;T&gt; *next;&#125;;template&lt;class T&gt;class extendedChain&#123; public: extendedChain()&#123;first=NULL;last=NULL;&#125; bool IsEmpty() const&#123;return first==NULL;&#125; int Length()const; bool Find(int k, T&amp; x)const; int Search(const T&amp; x)const; extendedChain&lt;T&gt;&amp; Delete(int k,T&amp; x); extendedChain&lt;T&gt;&amp; Insert(int k,const T&amp; x); void Output(ostream&amp; out)const; void Erase(); extendedChain&lt;T&gt;&amp; Append(const T&amp; x); public: ChainNode&lt;T&gt; *first,*last;&#125;;template&lt;class T&gt;int extendedChain&lt;T&gt;::Length() const&#123; ChainNode&lt;T&gt; *current=first; int len=0; while(current)&#123; len++; current=current-&gt;next; &#125; return len;&#125; template&lt;class T&gt;bool extendedChain&lt;T&gt;::Find(int k,T&amp; x) const&#123; if(k&lt;1)return false; ChainNode&lt;T&gt; *current=first; int index=1; while(index&lt;k&amp;&amp;current)&#123; current=current-&gt;next; index++; &#125; if(current)&#123; x=current-&gt;data; return true; &#125; return false; &#125;template&lt;class T&gt;int extendedChain&lt;T&gt;::Search(const T&amp; x) const&#123; ChainNode&lt;T&gt; *current=first; int index=1; while(current&amp;&amp;current-&gt;data!=x)&#123; current=current-&gt;next; index++; &#125; if(current)return index; return 0;&#125;template&lt;class T&gt;void extendedChain&lt;T&gt;::Output(ostream&amp; out) const&#123; ChainNode&lt;T&gt; *current; for(current=first;current;current=current-&gt;next) out&lt;&lt;current-&gt;data&lt;&lt;" ";&#125;template &lt;class T&gt;ostream&amp; operator&lt;&lt;(ostream&amp; out, const extendedChain&lt;T&gt;&amp; x)&#123; x.Output(out); return out;&#125;template&lt;class T&gt;extendedChain&lt;T&gt;&amp; extendedChain&lt;T&gt;::Delete(int k,T&amp; x)&#123; if(k&lt;1||!first)cout&lt;&lt;"WORNG"&lt;&lt;endl; ChainNode&lt;T&gt; *p=first; if(k==1)first=first-&gt;next; else&#123; ChainNode&lt;T&gt; *q=first; for(int index=1;index&lt;k-1&amp;&amp;q;index++)q=q-&gt;next; if(!q||!q-&gt;next)cout&lt;&lt;"WORNG"&lt;&lt;endl; p=q-&gt;next; q-&gt;next=p-&gt;next; &#125; x=p-&gt;data; delete p; return *this;&#125;template&lt;class T&gt;extendedChain&lt;T&gt;&amp; extendedChain&lt;T&gt;::Insert(int k,const T&amp; x)&#123; if(k&lt;0)cout&lt;&lt;"WORNG"&lt;&lt;endl; ChainNode&lt;T&gt; *p=first; for(int index=1;index&lt;k&amp;&amp;p;index++)p=p-&gt;next; if(k&gt;0&amp;&amp;!p)cout&lt;&lt;"WORNG"&lt;&lt;endl; ChainNode&lt;T&gt; *y=new ChainNode&lt;T&gt;; y-&gt;data=x; if(k&amp;&amp;p-&gt;next==NULL)&#123;//添加到尾部 y-&gt;next=NULL; p-&gt;next=y; last=y; &#125; else if(k)&#123; y-&gt;next=p-&gt;next; p-&gt;next=y; &#125; else&#123; y-&gt;next=first; first=y; last=y; &#125; return *this;&#125;template&lt;class T&gt;void extendedChain&lt;T&gt;::Erase()&#123; ChainNode&lt;T&gt; *next; while(first)&#123; next=first-&gt;next; delete first; first=next; &#125;&#125;template&lt;class T&gt;extendedChain&lt;T&gt;&amp; extendedChain&lt;T&gt;::Append(const T&amp; x)&#123; ChainNode&lt;T&gt; *y=new ChainNode&lt;T&gt;; y-&gt;data=x; y-&gt;next=NULL; if(first!=NULL)&#123; last-&gt;next=y; last=y; &#125; else first=last=y; return *this;&#125;template&lt;class T&gt;extendedChain&lt;T&gt; meld(extendedChain&lt;T&gt; A,extendedChain&lt;T&gt; B)&#123; extendedChain&lt;T&gt; C; ChainNode&lt;T&gt; *a,*b,*c; a=A.first;b=B.first; while(a!=NULL&amp;&amp;b!=NULL)&#123; C.Append(a-&gt;data); a=a-&gt;next; C.Append(b-&gt;data); b=b-&gt;next; &#125; if(a==NULL)&#123; while(b)&#123; C.Append(b-&gt;data); b=b-&gt;next; &#125; &#125; else if(b==NULL)&#123; while(a)&#123; C.Append(a-&gt;data); a=a-&gt;next; &#125; &#125; return C;&#125;int main()&#123; extendedChain&lt;int&gt; A,B,C; for(int i=1;i&lt;50;i++)A.Append(i); for(int i=1;i&lt;25;i++)B.Append(i); A.Output(cout);B.Output(cout); C=meld(A,B); C.Output(cout); return 0;&#125; 2.双向循环链表题目：使用带有头节点的双向循环链表 1）编写一个非成员方法split(a,b)，它生成两个链表a和b，a包含c中索引为奇数的元素，b包含c中其余的元素，这个方法不能改变c 2）编写方法chain::split，它与1)的函数类似，然而，它用输入链表*this的空间建立了链表a和b 思路：第一种：非成员函数，分配新的内存空间 和作业17题差不多，用append方法，用一个指针c扫一遍链表C，然后交叉的添加到A,B的尾端，因为是双向循环链表，所以append函数中要处理一下RightEnd 【运行效果】 第二种：成员函数，直接用链表c的内存空间 比如1 2 3 4 5 6，本来是1⇄2⇄3⇄4⇄5⇄6这样的结构，如果要利用C的内存空间产生AB那么就是1⇄3⇄5，2⇄4⇄6，所以只需要修改一下指针的指向即可，本来[1]-&gt;right=[2],则修改为[1]-&gt;right=[3]，[3]-&gt;left=[1]，还是用指针c遍历一遍，复杂度是o(n)的，头尾节点要特殊处理一下 【运行效果】 代码：附带了别的双向循环链表函数，正确性未知╮(￣▽￣””)╭ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;template &lt;class T&gt;class DoubleNode &#123; public: T data; DoubleNode&lt;T&gt; *left,*right;&#125;;template&lt;class T&gt;class DoubleChain &#123; public: DoubleChain() &#123;LeftEnd=RightEnd=NULL;&#125;; int Length() const; bool Find(int k, T&amp; x) const; int Search(const T&amp; x) const; DoubleChain&lt;T&gt;&amp; Delete(int k,T&amp; x); DoubleChain&lt;T&gt;&amp; Insert(int k,const T&amp; x); void Output(ostream&amp; out) const; DoubleChain&lt;T&gt;&amp; Append(const T&amp; x); void split(DoubleChain&lt;T&gt; &amp;A,DoubleChain&lt;T&gt; &amp;B); public: DoubleNode&lt;T&gt; *LeftEnd,*RightEnd;&#125;; template&lt;class T&gt;int DoubleChain&lt;T&gt;::Length() const&#123; DoubleNode&lt;T&gt; *current=LeftEnd; int len=0; while(current)&#123; len++; current=current-&gt;right; &#125; return len;&#125; template&lt;class T&gt;bool DoubleChain&lt;T&gt;::Find(int k,T&amp; x) const&#123; if(k&lt;1)return false; DoubleNode&lt;T&gt; *current=LeftEnd; int index=1; while(index&lt;k&amp;&amp;current)&#123; current=current-&gt;right; index++; &#125; if(current)&#123; x=current-&gt;data; return true; &#125; return false; &#125;template&lt;class T&gt;int DoubleChain&lt;T&gt;::Search(const T&amp; x) const&#123; DoubleNode&lt;T&gt; *current=LeftEnd; int index=1; while(current&amp;&amp;current-&gt;data!=x)&#123; current=current-&gt;right; index++; &#125; if(current)return index; return 0;&#125;template&lt;class T&gt;void DoubleChain&lt;T&gt;::Output(ostream&amp; out) const&#123; DoubleNode&lt;T&gt; *current; for(current=LeftEnd;current;current=current-&gt;right) out&lt;&lt;current-&gt;data&lt;&lt;" ";&#125;template &lt;class T&gt;ostream&amp; operator&lt;&lt;(ostream&amp; out, const DoubleChain&lt;T&gt;&amp; x)&#123; x.Output(out); return out;&#125;template&lt;class T&gt;DoubleChain&lt;T&gt;&amp; DoubleChain&lt;T&gt;::Delete(int k,T&amp; x)&#123; if(k&lt;1||!LeftEnd)cout&lt;&lt;"WORNG"&lt;&lt;endl; DoubleNode&lt;T&gt; *p=LeftEnd; if(k==1)LeftEnd=LeftEnd-&gt;right; else&#123; DoubleNode&lt;T&gt; *q=LeftEnd; for(int index=1;index&lt;k-1&amp;&amp;q;index++)q=q-&gt;right; if(!q||!q-&gt;right)cout&lt;&lt;"WORNG"&lt;&lt;endl; p-&gt;left-&gt;right=p-&gt;right; p-&gt;right-&gt;left=p-&gt;left; &#125; x=p-&gt;data; delete p; return *this;&#125;template&lt;class T&gt;DoubleChain&lt;T&gt;&amp; DoubleChain&lt;T&gt;::Insert(int k,const T&amp; x)&#123; if(k&lt;0)cout&lt;&lt;"WORNG"&lt;&lt;endl; DoubleNode&lt;T&gt; *p=LeftEnd; for(int index=1;index&lt;k&amp;&amp;p;index++)p=p-&gt;right; if(k&gt;0&amp;&amp;!p)cout&lt;&lt;"WORNG"&lt;&lt;endl; DoubleNode&lt;T&gt; *y=new DoubleNode&lt;T&gt;; y-&gt;data=x; if(k&amp;&amp;p-&gt;next==NULL)&#123;//添加到尾部 y-&gt;right=NULL; y-&gt;left=p; p-&gt;right=y; RightEnd=y; &#125; else if(k)&#123;//中间 y-&gt;left=p-&gt;left; p-&gt;left-&gt;right=y; y-&gt;right=p; p-&gt;left=y; &#125; else&#123;//头部 y-&gt;left=NULL; y-&gt;right=p; p-&gt;left=y; LeftEnd=y; &#125; return *this;&#125;template&lt;class T&gt;DoubleChain&lt;T&gt;&amp; DoubleChain&lt;T&gt;::Append(const T&amp; x)&#123; DoubleNode&lt;T&gt; *y=new DoubleNode&lt;T&gt;; y-&gt;data=x; y-&gt;right=NULL; if(RightEnd)&#123; RightEnd-&gt;right=y; y-&gt;left=RightEnd; RightEnd=y; &#125; else&#123; y-&gt;left=NULL; LeftEnd=RightEnd=y; &#125; return *this;&#125;template&lt;class T&gt;void split(DoubleChain&lt;T&gt; C,DoubleChain&lt;T&gt; &amp;A,DoubleChain&lt;T&gt; &amp;B)&#123; DoubleNode&lt;T&gt; *y=new DoubleNode&lt;T&gt;; y=C.LeftEnd; T tmp; while(y)&#123; tmp=y-&gt;data; A.Append(tmp); y=y-&gt;right; if(y)&#123; tmp=y-&gt;data; B.Append(tmp); y=y-&gt;right; &#125; &#125;&#125;template&lt;class T&gt;void DoubleChain&lt;T&gt;::split(DoubleChain&lt;T&gt; &amp;A,DoubleChain&lt;T&gt; &amp;B)&#123; DoubleNode&lt;T&gt; *a,*b,*c; c=a=A.LeftEnd=this-&gt;LeftEnd; c=c-&gt;right; b=B.LeftEnd=c; B.LeftEnd-&gt;left=NULL; c=c-&gt;right; //cout&lt;&lt;A.LeftEnd-&gt;data&lt;&lt;" "&lt;&lt;B.LeftEnd-&gt;data&lt;&lt;endl; while(c)&#123; a-&gt;right=c; c-&gt;left=a; a=c; c=c-&gt;right; if(c)&#123; b-&gt;right=c; c-&gt;left=b; b=c; c=c-&gt;right; &#125; &#125; a-&gt;right=NULL; A.RightEnd=a; b-&gt;right=NULL; B.RightEnd=b;&#125;int main()&#123; DoubleChain&lt;int&gt; A,B,C; for(int i=1;i&lt;100;i++)C.Append(i); C.split(A,B); //split(C,A,B); A.Output(cout); cout&lt;&lt;endl; B.Output(cout); cout&lt;&lt;endl; //C.Output(cout); return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>作业</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[bzoj 1085 SCOI2005 骑士精神（暴搜+剪枝,IDA*）]]></title>
     <url>%2F2018%2F10%2F17%2Fbzoj%201085%20SCOI2005%20%E9%AA%91%E5%A3%AB%E7%B2%BE%E7%A5%9E%EF%BC%88%E6%9A%B4%E6%90%9C%2B%E5%89%AA%E6%9E%9D%2CIDA*%EF%BC%89%20%2F</url>
     <content type="text"><![CDATA[Time Limit: 10 Sec Memory Limit: 162 MB Description 在一个5×5的棋盘上有12个白色的骑士和12个黑色的骑士， 且有一个空位。在任何时候一个骑士都能按照骑士的走法（它可以走到和它横坐标相差为1，纵坐标相差为2或者横坐标相差为2，纵坐标相差为1的格子）移动到空位上。 给定一个初始的棋盘，怎样才能经过移动变成如下目标棋盘： 为了体现出骑士精神，他们必须以最少的步数完成任务。 Input 第一行有一个正整数T(T&lt;=10)，表示一共有N组数据。接下来有T个5×5的矩阵，0表示白色骑士，1表示黑色骑士，*表示空位。两组数据之间没有空行。 Output 对于每组数据都输出一行。如果能在15步以内（包括15步）到达目标状态，则输出步数，否则输出－1。 Sample Input123456789101121011001*1110111010010000001011110*1011100101000100 Sample Output127-1 题解：写题十分钟。。找错一下午。。深深绝望 IDA* 因为如果当前有num个棋子不在应该的位置上，那么至少需要num次移动，所以估价函数就是当前不同的格子数+当前步数&lt;最大步数，否则就return，本质就是暴搜加剪枝 剪完之后跑的飞快～ 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;stack&gt;using namespace std;int t,a[5][5],x,y,ans;int res[5][5]=&#123;1,1,1,1,1, 0,1,1,1,1, 0,0,2,1,1, 0,0,0,0,1, 0,0,0,0,0&#125;;int dx[8]=&#123;1,1,-1,-1,2,2,-2,-2&#125;,dy[8]=&#123;2,-2,2,-2,1,-1,1,-1&#125;;char str[6];int ok()&#123; int num=0; for(int i=0;i&lt;5;i++) for(int j=0;j&lt;5;j++) num+=(a[i][j]!=res[i][j]); return num;&#125;void dfs(int d,int xx,int yy)&#123; int tmp=ok(); if(tmp==0)&#123; ans=d; return; &#125; if(d+tmp-1&gt;=ans)return; int nx,ny; for(int i=0;i&lt;8;i++)&#123; int nx=xx+dx[i],ny=yy+dy[i]; if(nx&lt;0||nx&gt;4||ny&lt;0||ny&gt;4)continue; swap(a[xx][yy],a[nx][ny]); dfs(d+1,nx,ny); swap(a[xx][yy],a[nx][ny]); &#125;&#125;int main()&#123; scanf("%d",&amp;t); while(t--)&#123; ans=16; for(int i=0;i&lt;5;i++)&#123; scanf("%s",str); for(int j=0;j&lt;5;j++)&#123; if(str[j]=='*')&#123; x=i;y=j; a[i][j]=2; &#125; else a[i][j]=(int)(str[j]-'0'); &#125; &#125; dfs(0,x,y); if(ans==16)printf("-1\n"); else printf("%d\n",ans); &#125; return 0;&#125;]]></content>
@@ -580,7 +624,7 @@
     <url>%2F2018%2F10%2F01%2F51nod%201873%20%E5%88%9D%E4%B8%AD%E7%9A%84%E7%AE%97%E6%9C%AF%EF%BC%88java%E9%AB%98%E7%B2%BE%E5%BA%A6%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Input示例1234样例输入10.4321 20样例输入21.0100 12 Output示例1234样例输出1.00000005148554641076956121994511276767154838481760200726351203835429763013462401样例输出21.126825030131969720661201 又水了一题 java虽然没有很快 但是它写的快呀╮(￣▽￣””)╭ 代码：123456789101112131415161718import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigDecimal a=cin.nextBigDecimal(); int n=cin.nextInt(); a=a.pow(n); String res=a.stripTrailingZeros().toPlainString(); if(res.startsWith("0"))&#123; res=res.substring(1); &#125; System.out.println(res); cin.close(); &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1032,12 +1076,12 @@
     <url>%2F2018%2F09%2F19%2F1019%20%E9%80%86%E5%BA%8F%E6%95%B0%EF%BC%88%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%EF%BC%8C%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 在一个排列中，如果一对数的前后位置与大小顺序相反，即前面的数大于后面的数，那么它们就称为一个逆序。一个排列中逆序的总数就称为这个排列的逆序数。 如2 4 3 1中，2 1，4 3，4 1，3 1是逆序，逆序数是4。给出一个整数序列，求该序列的逆序数。 Input第1行：N，N为序列的长度（n &lt;= 50000)第2 - N + 1行：序列中的元素（0 &lt;= A[i] &lt;= 10^9） Output输出逆序数 Input示例1234542431 Output示例14 题解：先是树状数组，原理就是排序思想加上区间求和和点更新，（用线段树也有一样的效果），62ms 首先一般的排序思想是这样的：比如对4 2 3 1这个序列来说，先找最小的1，在他前面有三个数，那么记下+3，把这个1变成0，然后找2，在他前面有一个数，记下+1，把2变成0，然后3前面有一个数，记下+1，3变成0，答案就是3+1+1=5 怎么和树状数组联系到一块呢，比如当前4 2 3 1对应着1 1 1 1，然后第四个位置前面有三个1，区间求和，答案加3 树状数组具体操作是倒过来的，一开始都是0 0 0 0，然后第一位的数字是“4”，是第四小，先更新为1，即0 0 0 1，然后求和[1,4]得1，答案加上（i-1=0），然后第二位数字是“2”，是第二小，更新为1，即0 1 0 1，然后求和[1,2]得1，答案加上（i-1=1），第三位数字是3，是第三小，更新为1，即0 1 1 1，求和[1,3]得2，答案加上（i-2=1），第四位数字是1，第一小，1 1 1 1，求和[1,1]得1，答案加上（i-1=3），所以逆序数就是0+1+1+3=5， 要先离散化一波，具体见代码 第二种方法是归并排序，冒泡儿水不过去╮(￣▽￣””)╭ 那么问题在于归并排序的逆序数咋求，这时候就要在“并”里加句妙妙的话，ans+=(m-q)，见代码 举个例子: 1 3 4 2 5 6 l mid mid+1 r 填入1，然后判断3&gt;2在右边选择2填的时候，3和3后面的所有数（即3，4）都大于2，所以这时候逆序数就加2 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;int c[N],n,tmp[N];int lowbit(int x)&#123; return (x&amp;-x);&#125;LL sum(int x)&#123;//求和1～x LL ans=0; while(x&gt;0)&#123; ans+=c[x]; x-=lowbit(x); &#125; return ans;&#125;void add(int x,int d)&#123;//更新 while(x&lt;=n)&#123; c[x]+=d; x+=lowbit(x); &#125;&#125;int main()&#123; pair&lt;int,int&gt;a[N]; int ans=0; scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++)&#123;//first记录数字，second记录数字所在位子 scanf("%d",&amp;a[i].first); a[i].second=i; &#125; sort(a+1,a+1+n); for(int i=1;i&lt;=n;i++)tmp[a[i].second]=i; //tmp[i]存的是第i位上的数排第几小 //和上面结合起来其实是做了离散化的操作 for(int i=1;i&lt;=n;i++)&#123; add(tmp[i],1); ans+=i-sum(tmp[i]); &#125; printf("%d\n",ans); return 0;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int ans=0,a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; ans+=(m-q);//计算逆序数 &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数据结构</category>
       </categories>
       <tags>
+        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
-        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1045,7 +1089,7 @@
     <url>%2F2018%2F09%2F19%2F1005%20%E5%A4%A7%E6%95%B0%E5%8A%A0%E6%B3%95%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出2个大整数A,B，计算A+B的结果。 Input第1行：大数A第2行：大数B(A,B的长度 &lt;= 10000 需注意：A B有可能为负数） Output输出A + B Input示例1268932147586468711654886 Output示例1537643802472 12345678910111213141516import java.io.*; import java.math.*;import java.util.*;public class Main&#123; public static void main(String[] args)&#123; Scanner cin=new Scanner(System.in); int t; BigInteger a,b,c; a=cin.nextBigInteger(); b=cin.nextBigInteger(); c=a.add(b); System.out.println(c); cin.close(); &#125;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1056,7 +1100,7 @@
     <url>%2F2018%2F09%2F19%2F1008%20N%E7%9A%84%E9%98%B6%E4%B9%98%20mod%20P%20%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N和P（P为质数），求N! Mod P = ? (Mod 就是求模 %) 例如：n = 10， P = 11，10! = 36288003628800 % 11 = 10 Input两个数N,P，中间用空格隔开。(N &lt; 10000, P &lt; 10^9) Output输出N! mod P的结果。 Input示例110 11 Output示例110 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longint main()&#123; LL n,p,ans=1; scanf("%lld%lld",&amp;n,&amp;p); for(int i=1;i&lt;=n;i++)&#123; ans=(ans*i)%p; &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
   </entry>
   <entry>
@@ -1064,7 +1108,7 @@
     <url>%2F2018%2F09%2F19%2F1000%20A%20%2B%20B%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出2个整数A和B，计算两个数的和。 Input2个整数A B，中间用空格分割。（0 &lt;= A, B &lt;= 10^9） Output输出A + B的计算结果。 Input示例11 2 Output示例13 不集齐全部题目。。就有点。。难受 123456789101112#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longint main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a+b); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
   </entry>
   <entry>
@@ -1072,7 +1116,7 @@
     <url>%2F2018%2F09%2F19%2F1018%20%E6%8E%92%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数据结构</category>
       </categories>
       <tags>
         <tag>归并排序</tag>
@@ -1083,7 +1127,7 @@
     <url>%2F2018%2F09%2F19%2F1012%20%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0LCM%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>gcd</tag>
@@ -1094,7 +1138,7 @@
     <url>%2F2018%2F09%2F19%2F1011%20%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0GCD%20%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最大公约数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最大公约数。 Input示例130 105 Output示例115 毫无意义的水了一发。。只是想把51nod基础题那个分类凑齐而已。。 1234567891011121314#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;int gcd(int a,int b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; int a,b; scanf("%d%d",&amp;a,&amp;b); printf("%d\n",gcd(a,b)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>gcd</tag>
@@ -1105,7 +1149,7 @@
     <url>%2F2018%2F09%2F18%2F1027%20%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出2个大整数A,B，计算A*B的结果。 Input第1行：大数A第2行：大数B(A,B的长度 &lt;= 1000，A,B &gt;= 0） Output输出A * B Input示例12123456234567 Output示例128958703552 水。。1234567891011121314import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger a,b; a=cin.nextBigInteger(); b=cin.nextBigInteger(); System.out.println(a.multiply(b)); cin.close(); &#125;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1116,7 +1160,7 @@
     <url>%2F2018%2F09%2F18%2F1006%20%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97Lcs%EF%BC%88dp%2B%E8%B7%AF%E5%BE%84%E6%89%93%E5%8D%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出两个字符串A B，求A与B的最长公共子序列（子序列不要求是连续的）。 比如两个串为： abcicbaabdkscab ab是两个串的子序列，abc也是，abca也是，其中abca是这两个字符串最长的子序列。 Input第1行：字符串A 第2行：字符串B (A,B的长度 &lt;= 1000) Output输出最长的子序列，如果有多个，随意输出1个。 Input示例12abcicbaabdkscab Output示例1abca 题解：基础lcs加上一个路径打印 dp[i][j]表示s1的前i个和s2的前j个的最长公共子序列 状态转移方程是 dp[i+1][j+1]=max(dp[i+1][j],dp[i][j+1],dp[i][j]+(s1[i]==s2[j]?1:0)) 路径打印见代码注释，根据dp关系写出路径 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=1005;char s1[N],s2[N],ans[N];int dp[N][N],len1,len2;void lcs()&#123; for(int i=0;i&lt;len1;i++)&#123; for(int j=0;j&lt;len2;j++)&#123; if(s1[i]==s2[j])dp[i+1][j+1]=dp[i][j]+1; else dp[i+1][j+1]=max(dp[i+1][j],dp[i][j+1]); &#125; &#125;&#125;int main()&#123; scanf("%s %s",s1,s2); len1=strlen(s1);len2=strlen(s2); lcs(); int c1=len1-1,c2=len2-1; int ji=0; while(c1&gt;=0&amp;&amp;c2&gt;=0)&#123; if(s1[c1]==s2[c2])&#123; ans[ji++]=s1[c1]; c1--;c2--; &#125; else if(dp[c1+1][c2]&gt;=dp[c1][c2+1])c2--; //说明答案出自s1的[0,c1]和s2的[0,c2-1] else c1--; //同理答案出自s1的[0,c1-1]和s2的[0,c2] &#125; for(int i=ji-1;i&gt;=0;i--)printf("%c",ans[i]); printf("\n"); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>dp</tag>
@@ -1128,7 +1172,7 @@
     <url>%2F2018%2F09%2F18%2F1066%20Bash%E6%B8%B8%E6%88%8F%EF%BC%88%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 有一堆石子共有N个。A B两个人轮流拿，A先拿。每次最少拿1颗，最多拿K颗，拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N和K，问最后谁能赢得比赛。 例如N = 3，K = 2。无论A如何拿，B都可以拿到最后1颗石子。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 10000) 第2 - T + 1行：每行2个数N，K。中间用空格分隔。（1 &lt;= N,K &lt;= 10^9) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例1234543 24 27 38 3 Output示例1234BAAB 题解：hdu 1846 Brave Game（巴什博弈） 代码：123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); if(n%(k+1)==0)puts("B"); else puts("A"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>博弈论</category>
       </categories>
       <tags>
         <tag>巴什博弈</tag>
@@ -1139,7 +1183,7 @@
     <url>%2F2018%2F09%2F18%2F1046%20A%5EB%20Mod%20C%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出3个正整数A B C，求A^B Mod C。 例如，3 5 8，3^5 Mod 8 = 3。 Input3个正整数A B C，中间用空格分隔。(1 &lt;= A,B,C &lt;= 10^9) Output输出计算结果 Input示例13 5 8 Output示例13 代码：1234567891011121314151617181920212223242526272829303132#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long LL qpow(LL a,LL b,LL p)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;int main()&#123; LL a,b,c; scanf("%lld%lld%lld",&amp;a,&amp;b,&amp;c); printf("%lld\n",qpow(a,b,c)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
   </entry>
   <entry>
@@ -1147,7 +1191,7 @@
     <url>%2F2018%2F09%2F18%2F1069%20Nim%E6%B8%B8%E6%88%8F%EF%BC%88%E5%B0%BC%E5%A7%86%E5%8D%9A%E5%BC%88%EF%BC%89%20%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 有N堆石子。A B两个人轮流拿，A先拿。每次只能从一堆中取若干个，可将一堆全取走，但不可不取，拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出N及每堆石子的数量，问最后谁能赢得比赛。 例如：3堆石子，每堆1颗。A拿1颗，B拿1颗，此时还剩1堆，所以A可以拿到最后1颗石子。 Input第1行：一个数N，表示有N堆石子。（1 &lt;= N &lt;= 1000) 第2 - N + 1行：N堆石子的数量。(1 &lt;= A[i] &lt;= 10^9) Output如果A获胜输出A，如果B获胜输出B。 Input示例12343111 Output示例1A 题解：[hdu 2176 取(m堆)石子游戏（尼姆博弈）]https://leflacon.github.io/2018/08/19/hdu%202176%20%E5%8F%96(m%E5%A0%86)%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%EF%BC%88%E5%B0%BC%E5%A7%86%E5%8D%9A%E5%BC%88%EF%BC%89/ 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=200005;int main()&#123; int n; scanf("%d",&amp;n); int sum=0,c[N]; for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;c[i]); sum^=c[i]; &#125; if(sum==0)printf("B\n"); else printf("A\n"); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>博弈论</category>
       </categories>
       <tags>
         <tag>尼姆博弈</tag>
@@ -1158,7 +1202,7 @@
     <url>%2F2018%2F09%2F18%2F1049%20%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C%EF%BC%88dp%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB N个整数组成的序列a[1],a[2],a[3],…,a[n]，求该序列如a[i]+a[i+1]+…+a[j]的连续子段和的最大值。当所给的整数均为负数时和为0。 例如：-2,11,-4,13,-5,-2，和最大的子段为：11,-4,13。和为20。 Input第1行：整数序列的长度N（2 &lt;= N &lt;= 50000)第2 - N + 1行：N个整数（-10^9 &lt;= A[i] &lt;= 10^9） Output输出最大子段和。 Input示例12345676-211-413-5-2 Output示例120 题解：dp[i]表示以a[i]结尾的最大子段和是多少 状态转移方程 dp[i]=max(a[i],dp[i-1]+a[i])，也就是说如果dp[i-1]小于0，那么前面都不要了直接从a[i]继续连 代码：1234567891011121314151617181920212223242526272829#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;LL a[N],dp[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%lld",&amp;a[i]); LL ans=a[0]; dp[0]=a[0]; for(int i=1;i&lt;n;i++)&#123; dp[i]=max(a[i],dp[i-1]+a[i]); ans=max(ans,dp[i]); &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>dp</tag>
@@ -1169,7 +1213,7 @@
     <url>%2F2018%2F09%2F18%2F1072%20%E5%A8%81%E4%BD%90%E5%A4%AB%E6%B8%B8%E6%88%8F%20%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 有2堆石子。A B两个人轮流拿，A先拿。每次可以从一堆中取任意个或从2堆中取相同数量的石子，但不可不取。拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出2堆石子的数量，问最后谁能赢得比赛。 例如：2堆石子分别为3颗和5颗。那么不论A怎样拿，B都有对应的方法拿到最后1颗。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 10000) 第2 - T + 1行：每行2个数分别是2堆石子的数量，中间用空格分隔。(1 &lt;= N &lt;= 2000000) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例123433 53 41 9 Output示例123BAA 水。。 威佐夫博弈原理在博客的这篇里 –&gt; hdu 2177 取(2堆)石子游戏（威佐夫博弈）https://leflacon.github.io/2018/08/19/hdu%202177%20%E5%8F%96(2%E5%A0%86)%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%EF%BC%88%E5%A8%81%E4%BD%90%E5%A4%AB%E5%8D%9A%E5%BC%88%EF%BC%89/ 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int a,b,t; scanf("%d",&amp;t); while(t--)&#123; scanf("%d%d",&amp;a,&amp;b); if(a&gt;b)&#123; int temp=a;a=b;b=temp; &#125; if((int)((sqrt(5)+1)*(b-a)/2)==a)printf("B\n"); else printf("A\n"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>博弈论</category>
       </categories>
       <tags>
         <tag>威佐夫博弈</tag>
@@ -1180,7 +1224,7 @@
     <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1191,7 +1235,7 @@
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>杂</category>
       </categories>
       <tags>
         <tag>Manacher</tag>
@@ -1202,7 +1246,7 @@
     <url>%2F2018%2F09%2F18%2F1089%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%20V2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。 输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 100000) Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：对马拉车算法的原理还是半知半解乱七八糟。。以后再想吧。。 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>杂</category>
       </categories>
       <tags>
         <tag>Manacher</tag>
@@ -1213,7 +1257,7 @@
     <url>%2F2018%2F09%2F17%2F1058%20N%E7%9A%84%E9%98%B6%E4%B9%98%E7%9A%84%E9%95%BF%E5%BA%A6%EF%BC%88%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的10进制表示的长度。例如6! = 720，长度为3。 Input输入N(1 &lt;= N &lt;= 10^6) Output输出N的阶乘的长度 Input示例16 Output示例13 又水了一题。。 关于斯特林公式的解释看这篇1130 N的阶乘的长度 V2（斯特林公式取n阶乘位数） 代码：12345678910111213141516171819202122#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst double PI=asin(1.0)*2,e=2.718281828459;int main()&#123; int n; cin&gt;&gt;n; LL ans=0.5*log10(2.0*PI*n)+n*log10(1.0*n/e)+1; cout&lt;&lt;ans&lt;&lt;endl;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>斯特林公式</tag>
@@ -1224,7 +1268,7 @@
     <url>%2F2018%2F09%2F17%2F1081%20%E5%AD%90%E6%AE%B5%E6%B1%82%E5%92%8C%EF%BC%88%E5%89%8D%E7%BC%80%E5%92%8C%EF%BC%8C%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%EF%BC%8C%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出一个长度为N的数组，进行Q次查询，查询从第i个元素开始长度为l的子段所有元素之和。例如，1 3 7 9 -1，查询第2个元素开始长度为3的子段和，1 {3 7 9} -1。3 + 7 + 9 = 19，输出19。 Input第1行：一个数N，N为数组的长度(2 &lt;= N &lt;= 50000)。 第2 至 N + 1行：数组的N个元素。(-10^9 &lt;= N[i] &lt;= 10^9)第N + 2行：1个数Q，Q为查询的数量。 第N + 3 至 N + Q + 2行：每行2个数，i，l（1 &lt;= i &lt;= N，i + l &lt;= N) Output共Q行，对应Q次查询的计算结果。 Input示例123456789101151379-141 22 23 21 5 Output示例12344101619 题解：第一段先水一波前缀和,281ms 第二段再水一波树状数组，281ms 之前一直不是很懂树状数组原理，看了这篇突然有点懂了0.0 搞懂树状数组 第三段最后水一波线段树，312ms 代码：1234567891011121314151617181920212223242526272829303132#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;LL sum[N];int main()&#123; int n,q,l,r; LL c; scanf("%d",&amp;n); sum[0]=0; for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;c); sum[i]=sum[i-1]+c; &#125; scanf("%d",&amp;q); while(q--)&#123; scanf("%d%d",&amp;l,&amp;r); printf("%lld\n",sum[l+r-1]-sum[l-1]); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;LL c[N],a[N],n;int lowbit(int x)&#123; return (x&amp;-x);&#125;LL sum(int x)&#123;//求和1～x LL ans=0; while(x&gt;0)&#123; ans+=c[x]; x-=lowbit(x); &#125; return ans;&#125;void add(int x,int d)&#123;//更新 while(x&lt;=n)&#123; c[x]+=d; x+=lowbit(x); &#125;&#125;int main()&#123; int q,l,r; LL c; scanf("%lld",&amp;n); for(int i=1;i&lt;=n;i++)&#123; scanf("%lld",&amp;a[i]); add(i,a[i]); &#125; scanf("%d",&amp;q); while(q--)&#123; scanf("%d%d",&amp;l,&amp;r); printf("%lld\n",sum(l+r-1)-sum(l-1)); &#125; return 0;&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long long#define lson l,m,rt&lt;&lt;1#define rson m+1,r,rt&lt;&lt;1|1const int N=50005;LL sum[N&lt;&lt;2];void pushup(int rt)&#123; sum[rt]=sum[rt&lt;&lt;1]+sum[rt&lt;&lt;1|1];&#125; void build(int l,int r,int rt)&#123; if(l==r)&#123; scanf("%lld",&amp;sum[rt]); return; &#125; int m=(l+r)&gt;&gt;1; build(lson); build(rson); pushup(rt);&#125;void update(int p,int add,int l,int r,int rt)&#123; if(l==r)&#123; sum[rt]+=add; return; &#125; int m=(l+r)&gt;&gt;1; if(p&lt;=m)update(p,add,lson); else update(p,add,rson); pushup(rt);&#125;LL query(int L,int R,int l,int r,int rt)&#123; if(L&lt;=l&amp;&amp;R&gt;=r)&#123; return sum[rt]; &#125; int m=(l+r)&gt;&gt;1; LL ans=0; if(L&lt;=m)ans+=query(L,R,lson); if(R&gt;m)ans+=query(L,R,rson); return ans;&#125; int main()&#123; int n,m; scanf("%d",&amp;n); build(1,n,1); scanf("%d",&amp;m); while(m--)&#123; int a,b; scanf("%d%d",&amp;a,&amp;b); printf("%lld\n",query(a,a+b-1,1,n,1)); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数据结构</category>
       </categories>
       <tags>
         <tag>树状数组</tag>
@@ -1261,7 +1305,7 @@
     <url>%2F2018%2F09%2F17%2F1085%20%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%8801%E8%83%8C%E5%8C%85%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 在N件物品取出若干件放在容量为W的背包里，每件物品的体积为W1，W2……Wn（Wi为整数），与之相对应的价值为P1,P2……Pn（Pi为整数）。求背包能够容纳的最大价值。 Input第1行，2个整数，N和W中间用空格隔开。N为物品的数量，W为背包的容量。(1 &lt;= N &lt;= 100，1 &lt;= W &lt;= 10000)第2 - N + 1行，每行2个整数，Wi和Pi，分别是物品的体积和物品的价值。(1 &lt;= Wi, Pi &lt;= 10000) Output输出可以容纳的最大价值。 Input示例12343 62 53 84 9 Output示例114 题解：01背包水题 dp[w]表示容量为w能放的最大价值 dp[j]=max(dp[j],dp[j-w]+p);就是第i个物品不取和取 代码：1234567891011121314151617181920212223242526#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=10005;int dp[N],a[105];int main()&#123; int n,W,w,p; scanf("%d%d",&amp;n,&amp;W); for(int i=1;i&lt;=n;i++)&#123; scanf("%d%d",&amp;w,&amp;p); for(int j=W;j&gt;=w;j--) dp[j]=max(dp[j],dp[j-w]+p); &#125; printf("%d\n",dp[W]); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>背包</tag>
@@ -1272,7 +1316,7 @@
     <url>%2F2018%2F09%2F17%2F1073%20%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &lt;= N, K &lt;= 10^6) Output最后剩下的人的编号 Input示例13 2 Output示例13 题解：好像是大一c++作业，当时还是直接模拟写的2333333 约瑟夫环结论见代码 证明如下： n个人，编号1-n，从1开始报数，报到k的退出，剩下人继续从1开始报数 第一个人编号（k%n）出列，剩下的n-1个人组成一个新的约瑟夫环，从编号（k%n+1）开始，k+1,k+2…n-2,n-1,n,1,2…k-2,k-1，编号k+1的人报1，那么重新编号一下k+1-&gt;1,k+2-&gt;2…k-2-&gt;n-2,k-1-&gt;n-1，变成了n-1个人报数的子问题 那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结局了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解 令f[i]表示i个人玩游戏报k退出最后胜利者的编号，f[1]=1; f[i]=(f[i-1]+k)%i; (i&gt;1) 有了这个公式，从2-n顺序算出f[i]的数值，编号从1开始，所以最后答案输出f[n]+1 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); int ans=0; for(int i=2;i&lt;=n;i++)ans=(ans+k)%i; printf("%d\n",ans+1); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>约瑟夫环</tag>
@@ -1284,7 +1328,7 @@
     <url>%2F2018%2F09%2F17%2F1106%20%E8%B4%A8%E6%95%B0%E6%A3%80%E6%B5%8B%EF%BC%88%E7%B1%B3%E5%8B%92%E7%BD%97%E5%AE%BE%E5%88%A4%E7%B4%A0%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个正整数，检测每个数是否为质数。如果是，输出”Yes”，否则输出”No”。 Input第1行：一个数N，表示正整数的数量。(1 &lt;= N &lt;= 1000)第2 - N + 1行：每行1个数(2 &lt;= S[i] &lt;= 10^9) Output输出共N行，每行为 Yes 或 No。 Input示例123456523456 Output示例12345YesYesNoYesNo 题解：第一个代码是不知出自何处的米勒罗宾判素数的模版，懒得研究了直接模版吧。。这里设置了50次循环 反正原理是费马小定理，假如a是整数，p是质数，且a,p互质，那么a^(p-1)%p=1恒成立， 即若 a^(p-1)%p !=1 (0&lt;a&lt;p)，p一定是合数，若 a^(p-1)%p ==1 (0&lt;a&lt;p) 则它可能是合数可能是素数，概率算法的概率就在这个 a上体现 第二个代码是榜上学来的方法，这个想法蛮妙蛮清晰的，跑的比第一个快，就是先埃筛，然后先直接干掉偶数，对于奇数n，向上取整根号n得到e，然后如果所有[2,e]的质数都不能整除n的话，那么n肯定是个质数 更新：第三个代码，米勒罗宾模版二号 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longbool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=20,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; srand(100); while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=100005;int vis[N],prime[N],ji=0;void init()&#123; for(int i=2;i&lt;N;i++)&#123;//埃筛素数 if(vis[i])continue; prime[ji++]=i; for(int j=2*i;j&lt;N;j+=i)vis[j]=true; &#125;&#125;int main()&#123; int t,n; init(); scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if((n&amp;1)==0)&#123; puts(n==2?"YES":"NO"); continue; &#125; int e=(int)sqrt(n)+1,i; for(i=1;prime[i]&lt;=e;i++)if(n%prime[i]==0)break; puts(prime[i]&lt;=e?"NO":"YES"); &#125; return 0;&#125; 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longLL mul(LL a,LL b,LL p)&#123; a%=p; LL res=0; while(b)&#123; if(b&amp;1)res=(res+a)%p; b&gt;&gt;=1; a=(a&lt;&lt;1)%p; &#125; return res;&#125;LL qpow(LL a,LL b,LL p)&#123; a%=p;b%=p; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=mul(ans,a,p); &#125; b&gt;&gt;=1; a=mul(a,a,p); &#125; return ans;&#125;bool Miller_Rabin(LL n)&#123; if(n==2)return true; if(n&lt;2||!(n&amp;1))return false; int cishu=2,ji=0; LL m=n-1; while(!(m&amp;1))&#123; ji++; m&gt;&gt;=1; &#125; srand(100); while(cishu--)&#123; LL a=rand()%(n-1)+1; LL x=qpow(a,m,n),tmp=0; for(int i=0;i&lt;ji;i++)&#123; tmp=mul(x,x,n); if(tmp==1&amp;&amp;x!=1&amp;&amp;x!=n-1)return false; x=tmp; &#125; if(tmp!=1)return false; &#125; return true;&#125;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); if(Miller_Rabin(n))puts("YES"); else puts("NO"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>埃筛素数</tag>
@@ -1296,7 +1340,7 @@
     <url>%2F2018%2F09%2F16%2F1118%20%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B5%B0%E6%96%B9%E6%A0%BC%EF%BC%88%E7%BB%84%E5%90%88%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB M * N的方格，一个机器人从左上走到右下，只能向右或向下走。有多少种不同的走法？由于方法数量可能很大，只需要输出Mod 10^9 + 7的结果。 Input第1行，2个数M,N，中间用空格隔开。（2 &lt;= m,n &lt;= 1000) Output输出走法的数量。 Input示例12 3 Output示例13 题解：C(m+n-2,m-1)，直接上组合数模版 组合数模版原理：a/x mod p=a*x^(p-2) mod p 证明： 由费马小定理有x^(p-1) mod p=1，即x*x^(p-2) mod p=1，x和x^(p-2)互为逆元，所以a/x mod p=a*x^(p-2) mod p成立 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int p=1000000007;LL qpow(LL a,LL b)&#123; LL ans=1; a%=p; while(b)&#123; if(b&amp;1)&#123; ans=ans*a%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans=1; for(int i=1;i&lt;=m;i++)&#123; LL a=(n+i-m)%p; LL b=i%p; ans=ans*(a*qpow(b,p-2)%p)%p; &#125; return ans;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",C(m+n-2,m-1)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>逆元</tag>
@@ -1308,7 +1352,7 @@
     <url>%2F2018%2F09%2F16%2F%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的10进制表示的长度。例如6! = 720，长度为3。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 1000) 第2 - T + 1行：每行1个数N。（1 &lt;= N &lt;= 10^9) Output共T行，输出对应的阶乘的长度。 Input示例12343456 Output示例123233 题解：stirling公式 因为这题是十进制，所以两边对10取对数得 [ ]表示取整，即LL ans=0.5*log10(2.0*PI*n)+n*log10(1.0*n/e)+1 同理，如果是a进制下的位数，数学公式懒得打了0.0直接放代码吧。。 LL ans=(0.5*log(2.0*PI*n)+n*log(1.0*n/e))/log(a)+1 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst double PI=asin(1.0)*2,e=2.718281828459;int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); LL ans=0.5*log10(2.0*PI*n)+n*log10(1.0*n/e)+1; cout&lt;&lt;ans&lt;&lt;endl; &#125;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>斯特林公式</tag>
@@ -1319,7 +1363,7 @@
     <url>%2F2018%2F09%2F16%2F1134%20%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%EF%BC%88dp%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出长度为N的数组，找出这个数组的最长递增子序列。(递增子序列是指，子序列的元素是递增的） 例如：5 1 6 8 2 4 5 10，最长递增子序列是1 2 4 5 10。 Input第1行：1个数N，N为序列的长度(2 &lt;= N &lt;= 50000)第2 - N + 1行：每行1个数，对应序列的元素(-10^9 &lt;= S[i] &lt;= 10^9) Output输出最长递增子序列的长度。 Input示例1234567898516824510 Output示例15 题解：一开始暴力dp然后又T又wa的。。 123456for(int i=2;i&lt;=n;i++)&#123; for(int j=i-1;j&gt;=0;j--)&#123; if(a[i]&gt;a[j])dp[i]=max(dp[i],dp[j]+1); &#125; ans=max(ans,dp[i]);&#125; 优化的方法见代码： 对样例来说5，1，6，8，2，4，5，10，dp[1]=5，dp[1]=1，dp[2]=6，dp[3]=8，dp[2]=2，dp[3]=4，dp[4]=5，dp[5]=10，答案为5 代码：1234567891011121314151617181920212223242526272829303132333435#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int dp[N],a[N];int main()&#123; int n,len=0; scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++)&#123; scanf("%d",&amp;a[i]); dp[i]=1; &#125; for(int i=1;i&lt;=n;i++)&#123; if(i==1)dp[++len]=a[i]; else&#123; if(a[i]&gt;dp[len])dp[++len]=a[i]; else&#123; int cur=lower_bound(dp+1,dp+len+1,a[i])-dp; dp[cur]=a[i]; &#125; &#125; &#125; printf("%d\n",len); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>dp</tag>
@@ -1330,12 +1374,12 @@
     <url>%2F2018%2F09%2F16%2F1135%20%E5%8E%9F%E6%A0%B9%EF%BC%88%E5%8E%9F%E6%A0%B9%E6%80%A7%E8%B4%A8%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 设m是正整数，a是整数，若a模m的阶等于φ(m)，则称a为模m的一个原根。（其中φ(m)表示m的欧拉函数） 给出1个质数P，找出P最小的原根。 Input输入1个质数P(3 &lt;= P &lt;= 10^9) Output输出P最小的原根。 Input示例13 Output示例12 题解：百度百科关于阶的解释： 其在数论中的定义为： 设a，p是整数，a和p互素，那么： 使 a^n≡1(mod p) 成立的最小正整数n叫做a模p的阶。 百度百科关于原根的性质： 原根具有以下性质： （1）可以证明，如果正整数(a,m) = 1和正整数 d 满足a^d≡1(mod m)，则 d 整除 φ(m)。因此Ordm(a)整除φ(m)。在例子中，当a= 3时，我们仅需要验证 3 的 1 、2、3 和 6 次方模 7 的余数即可。 （2）记δ = Ordm(a)，则a^1，……a^(δ-1)模 m 两两不同余。因此当a是模m的原根时，a^0,a^1，……a^(δ-1)构成模 m 的简化剩余系。 （3）模m有原根的充要条件是m= 1,2,4,p,2p,p^n，其中p是奇质数，n是任意正整数。 （4）对正整数(a,m) = 1，如果 a 是模 m 的原根，那么 a 是整数模n乘法群（即加法群 Z/mZ的可逆元，也就是所有与 m 互素的正整数构成的等价类构成的乘法群）Zn的一个生成元。由于Zn有 φ(m)个元素，而它的生成元的个数就是它的可逆元个数，即 φ(φ(m))个，因此当模m有原根时，它有φ(φ(m))个原根。 性质一大堆0.0，但是怎么求原根呢 首先p为质数，φ(p)=p-1，即a^n≡1(mod p)当且仅当n=p-1时成立，如果直接从1～n-2都暴力判断过去会妥妥的t 这时候性质的第一条就派上用场了：可以证明，如果正整数(a,m) = 1和正整数 d 满足a^d≡1(mod m)，则 d 整除 φ(m) 举个例子： 假如输入的p=7，那么φ(p)=6 因为要找最小的那个，所以a从2开始找，2^3=8≡1(mod 7)，2^6=64≡1(mod7)，2^3≡2^6(mod7)，所以2不是模7的原根，那么a=3，3^1≡3(mod 7)，3^2≡2(mod 7)，3^3≡6(mod 7)，3^4≡4(mod 7)，3^5≡5(mod 7)，3^6≡1(mod 7)，按照定义3是模7的一个原根，而根据性质1，整除的才有可能得到1，所以只需要验证3^1，3^2，3^3，3^6即可，这样可以跑的飞快 最后代码就是先埃筛，再处理p-1的质因子b[i]，因为只要判断a^((p-1)/b[i])≡1(mod p)是否成立即可，只要有一个成立，那当前的a就不是原根 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=1000005;bool vis[N];vector&lt;int&gt;p,b;void init()&#123;//埃筛素数 memset(vis,false,sizeof(vis)); for(int i=2;i&lt;=N;i++)&#123; if(!vis[i])&#123; p.push_back(i); for(int j=i+i;j&lt;=N;j+=i)vis[j]=true; &#125; &#125;&#125;void getnum(LL n)&#123;//分解质因子 int tmp=sqrt(n); for(int i=0;i&lt;p.size();i++)&#123; if(n%p[i]==0)&#123; b.push_back(p[i]); while(n%p[i]==0)n/=p[i]; &#125; &#125; if(n&gt;1)b.push_back(n);&#125;LL qpow(LL a,LL b,LL p)&#123; LL ans=1; while(b)&#123; if(b&amp;1)&#123; ans=(ans*a)%p; b--; &#125; b&gt;&gt;=1; a=a*a%p; &#125; return ans;&#125;int main()&#123; LL x; scanf("%lld",&amp;x); init(); getnum(x-1); for(int i=2;i&lt;x;i++)&#123; int flag=0; for(int j=0;j&lt;b.size();j++)&#123; LL tmp=(x-1)/b[j]; if(qpow(i,tmp,x)==1)&#123; flag=1;break; &#125; &#125; if(!flag)&#123; printf("%d\n",i); break; &#125; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
+        <tag>埃筛素数</tag>
         <tag>原根</tag>
         <tag>阶</tag>
-        <tag>埃筛素数</tag>
       </tags>
   </entry>
   <entry>
@@ -1492,8 +1536,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java高精度</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1525,7 +1569,7 @@
     <url>%2F2018%2F09%2F08%2Fhdu%205047%20Sawtooth%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%8C%E5%88%86%E5%89%B2%E5%B9%B3%E9%9D%A2%E9%97%AE%E9%A2%98%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionThink about a plane: ● One straight line can divide a plane into two regions.● Two lines can divide a plane into at most four regions.● Three lines can divide a plane into at most seven regions.● And so on… Now we have some figure constructed with two parallel rays in the same direction, joined by two straight segments. It looks like a character “M”. You are given N such “M”s. What is the maximum number of regions that these “M”s can divide a plane ? InputThe first line of the input is T (1 ≤ T ≤ 100000), which stands for the number of test cases you need to solve. Each case contains one single non-negative integer, indicating number of “M”s. (0 ≤ N ≤ 1012) OutputFor each test case, print a line “Case #t: ”(without quotes, t means the index of the test case) at the beginning. Then an integer that is the maximum number of regions N the “M” figures can divide. Sample Input123212 Sample Output12Case #1: 2Case #2: 19 Source2014 ACM/ICPC Asia Regional Shanghai Online 题意：如图有n个“M”，求能把矩形分成几块 题解：ans=8*n*n-7*n+1 首先n条直线可以把平面分成n*(n+1)/2+1个区域，那么对于4*n条直线来说，可以分成2*n*(4*n+1)+1个区域，一个“M”延长出去后，最多会多9块，也就是说因为“M”型的特殊性，每次会少9*n个块，所以答案为8*n*n-7*n+1 其余各种类型分割平面见这个传送门，学习了学习了∑(ﾟДﾟ) 折线分割平面问题总结 代码：1234567891011121314151617181920import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger n,ans; for(int i=1;i&lt;=t;i++) &#123; n=cin.nextBigInteger(); ans=n.multiply(BigInteger.valueOf(8)).multiply(n); ans=ans.subtract(n.multiply(BigInteger.valueOf(7))); ans=ans.add(BigInteger.valueOf(1)); System.out.println("Case #"+i+": "+ans.toString()); &#125; cin.close(); &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1537,7 +1581,7 @@
     <url>%2F2018%2F09%2F07%2Fhdu5050%2F</url>
     <content type="text"><![CDATA[Time Limit: 8000/4000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Problem DescriptionIt’s time to fight the local despots and redistribute the land. There is a rectangular piece of land granted from the government, whose length and width are both in binary form. As the mayor, you must segment the land into multiple squares of equal size for the villagers. What are required is there must be no any waste and each single segmented square land has as large area as possible. The width of the segmented square land is also binary. InputThe first line of the input is T (1 ≤ T ≤ 100), which stands for the number of test cases you need to solve. Each case contains two binary number represents the length L and the width W of given land. (0 &lt; L, W ≤ 21000) OutputFor each test case, print a line “Case #t: ”(without quotes, t means the index of the test case) at the beginning. Then one number means the largest width of land that can be divided from input data. And it will be show in binary. Do not have any useless number or space. Sample Input1234310 100100 11010010 1100 Sample Output123Case #1: 10Case #2: 10Case #3: 110 Source2014 ACM/ICPC Asia Regional Shanghai Online 题解：a,b两个二进制边长，分成大小相等的小正方形，即求gcd(a,b) java二进制都封装好了T^T太好用了吧 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger a,b; for(int i=1;i&lt;=t;i++) &#123; a=cin.nextBigInteger(2); b=cin.nextBigInteger(2); System.out.println("Case #"+i+": "+a.gcd(b).toString(2)); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1548,7 +1592,7 @@
     <url>%2F2018%2F09%2F07%2Fhdu1212%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1212 Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionAs we know, Big Number is always troublesome. But it’s really important in our ACM. And today, your task is to write a program to calculate A mod B. To make the problem easier, I promise that B will be smaller than 100000. Is it too hard? No, I work it out in 10 minutes, and my program contains less than 25 lines. InputThe input contains several test cases. Each test case consists of two positive integers A and B. The length of A will not exceed 1000, and B will be smaller than 100000. Process to the end of file. OutputFor each test case, you have to ouput the result of A mod B. Sample Input1232 312 7152455856554521 3250 Sample Output123251521 题意：求A%B，A的长度不超过1000，B小于100000 代码：【c++】 123456789101112131415#include&lt;iostream&gt;#include&lt;stdio.h&gt;#include&lt;algorithm&gt;#include&lt;math.h&gt;using namespace std;int main()&#123; string s; int n; while(cin&gt;&gt;s&gt;&gt;n)&#123; int ans=s[0]-'0'; for(int i=1;i&lt;s.length();i++)ans=(ans*10+s[i]-'0')%n; cout&lt;&lt;ans&lt;&lt;endl; &#125;&#125; 【java】 123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger a,b; while(cin.hasNext()) &#123; a=cin.nextBigInteger(); b=cin.nextBigInteger(); System.out.println(a.remainder(b)); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1559,7 +1603,7 @@
     <url>%2F2018%2F09%2F07%2Fhdu%206222%20Heron%20and%20His%20Triangle%EF%BC%88%E6%89%93%E8%A1%A8%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 262144/262144 K (Java/Others) Problem DescriptionA triangle is a Heron’s triangle if it satisfies that the side lengths of it are consecutive integers t-1, t, t+ 1 and thatits area is an integer. Now, for given n you need to find a Heron’s triangle associated with the smallest t biggerthan or equal to n. InputThe input contains multiple test cases. The first line of a multiple input is an integer T (1 ≤ T ≤ 30000) followedby T lines. Each line contains an integer N (1 ≤ N ≤ 10^30). OutputFor each test case, output the smallest t in a line. If the Heron’s triangle required does not exist, output -1. Sample Input1234541234 Sample Output12344444 Source2017ACM/ICPC亚洲区沈阳站-重现赛（感谢东北大学） 题意：三角形三边为t-1,t,t+1，且面积为整数 给定一个n，找出大于等于n的最小的t 题解：求面积这题用海伦公式： 12p=(a+b+c)/2S=√p(p-a)(p-b)(p-c) 然后写个c++打表找满足的t 12345678int main()&#123; for(int i=1;i&lt;10000;i++)&#123; long double t=i,p=t*3/2,s=p*(p-t)*(p-t-1)*(p-t+1); LL tmp=sqrt(s); if(tmp*tmp==s)printf("%d ",i); &#125; return 0;&#125; 得到序列：(2) 4 14 52 194 724 2702…… 这里2也满足式子，但是1，2，3不能构成三角形，不过2在推公式时候可以用一下 发现递推式f[n]=4*f[n-1]-f[n-2] 然后10^30就是java大数搞一搞了 代码：12345678910111213141516171819202122232425262728import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger f[]=new BigInteger[105]; f[1]=BigInteger.valueOf(4);f[2]=BigInteger.valueOf(14); BigInteger tmp=BigInteger.valueOf(10); int ji=2; while(f[ji].compareTo(tmp.pow(30))&lt;=0) &#123; ji++; f[ji]=f[ji-1].multiply(BigInteger.valueOf(4)).subtract(f[ji-2]); &#125; int t; t=cin.nextInt(); while(t--&gt;0) &#123; BigInteger n=cin.nextBigInteger(); for(int i=1;i&lt;=ji;i++) &#123; if(n.compareTo(f[i])&lt;=0) &#123; System.out.println(f[i]); break; &#125; &#125; &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1572,18 +1616,7 @@
     <url>%2F2018%2F09%2F06%2Fhdu2054%2F</url>
     <content type="text"><![CDATA[Time Limit: 1000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Problem DescriptionGive you two numbers A and B, if A is equal to B, you should print “YES”, or print “NO”. Inputeach test case contains two numbers A and B. Outputfor each case, if A is equal to B, you should print “YES”, or print “NO”. Sample Input12341 22 23 34 3 Sample Output1234NOYESYESNO 虽然样例给的都是整数，但是题目里说给的是两个数，所以有小数。。用BigDecimal就行 代码：12345678910111213141516import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigDecimal a,b; while(cin.hasNext()) &#123; a=cin.nextBigDecimal(); b=cin.nextBigDecimal(); if(a.compareTo(b)==0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1594,10 +1627,21 @@
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>贪心</tag>
+        <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
         <tag>java高精度</tag>
       </tags>
   </entry>
@@ -1606,7 +1650,7 @@
     <url>%2F2018%2F09%2F05%2Fjava%E5%A4%A7%E6%95%B4%E6%95%B0%E9%A2%98%E9%9B%86%2F</url>
     <content type="text"><![CDATA[自从有一次用java写一个卡特兰数 C. Catalan Square 的题之后，觉得再不写写java大整数就老了。。啊c++高精度模拟再见吧╮(￣▽￣””)╭ 先水个几题感受一下～ hdu 1002 A + B Problem II 开头肯定是万恶之源a+b hdu 1753 大明A+B小数a+b hdu 2054 A == B ?判断两个大数（可能是小数）是否相等 hdu 1047 Integer Inquiry很多大数相加 hdu 1212 Big Numbera%b hdu 1042 N！阶乘 hdu 1715 大菲波数大斐波那契 hdu 1250 Hat’s Fibonacci类似斐波那契 hdu 1316 How Many Fibs? 区间斐波那契 hdu 1063 Exponentiation 小数的n次方高精度 hdu 5050 Divided Land 二进制大数 还有些没那么那么水的题就不收录在这篇了，放在分类java–BigInteger下面了]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1617,7 +1661,7 @@
     <url>%2F2018%2F09%2F05%2Fhdu1753%2F</url>
     <content type="text"><![CDATA[Time Limit: 3000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) http://acm.hdu.edu.cn/showproblem.php?pid=1753 Problem Description话说，经过了漫长的一个多月，小明已经成长了许多，所以他改了一个名字叫“大明”。这时他已经不是那个只会做100以内加法的那个“小明”了，现在他甚至会任意长度的正小数的加法。 现在，给你两个正的小数A和B，你的任务是代表大明计算出A+B的值。 Input本题目包含多组测试数据，请处理到文件结束。每一组测试数据在一行里面包含两个长度不大于400的正小数A和B。 Output请在一行里面输出输出A+B的值，请输出最简形式。详细要求请见Sample Output。 Sample Input1231.1 2.91.1111111111 2.34443233431 1.1 Sample Output12343.45554344542.1 代码：12345678910111213141516import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigDecimal a,b; while(cin.hasNext()) &#123; a=cin.nextBigDecimal(); b=cin.nextBigDecimal(); String ans=a.add(b).stripTrailingZeros().toPlainString();//化简 System.out.println(ans); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1628,7 +1672,7 @@
     <url>%2F2018%2F09%2F05%2Fhdu1316%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1316 Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionRecall the definition of the Fibonacci numbers:f1 := 1f2 := 2fn := fn-1 + fn-2 (n &gt;= 3) Given two numbers a and b, calculate how many Fibonacci numbers are in the range [a, b]. InputThe input contains several test cases. Each test case consists of two non-negative integer numbers a and b. Input is terminated by a = b = 0. Otherwise, a &lt;= b &lt;= 10^100. The numbers a and b are given with no superfluous leading zeros. OutputFor each test case output on a single line the number of Fibonacci numbers fi with a &lt;= fi &lt;= b. Sample Input12310 1001234567890 98765432100 0 Sample Output1254 SourceUniversity of Ulm Local Contest 2000 [a,b]区间内有多少个斐波那契数，a &lt;= b &lt;= 10^100 代码：1234567891011121314151617181920212223242526import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int ans; BigInteger a,b; BigInteger f[]=new BigInteger[1005]; f[1]=BigInteger.valueOf(1); f[2]=BigInteger.valueOf(2); for(int i=3;i&lt;=1000;i++)f[i]=f[i-1].add(f[i-2]); while(cin.hasNextBigInteger()) &#123; ans=0; a=cin.nextBigInteger(); b=cin.nextBigInteger(); if(a.compareTo(BigInteger.valueOf(0))==0&amp;&amp;b.compareTo(BigInteger.valueOf(0))==0)break; for(int i=1;i&lt;=1000;i++) &#123; if(a.compareTo(f[i])&lt;=0&amp;&amp;b.compareTo(f[i])&gt;=0)ans++; if(b.compareTo(f[i])&lt;0)break; &#125; System.out.println(ans); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1640,7 +1684,7 @@
     <url>%2F2018%2F09%2F05%2Fhdu1063%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1063Time Limit: 2000/500 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionProblems involving the computation of exact values of very large magnitude and precision are common. For example, the computation of the national debt is a taxing experience for many computer systems. This problem requires that you write a program to compute the exact value of Rn where R is a real number ( 0.0 &lt; R &lt; 99.999 ) and n is an integer such that 0 &lt; n &lt;= 25. InputThe input will consist of a set of pairs of values for R and n. The R value will occupy columns 1 through 6, and the n value will be in columns 8 and 9. OutputThe output will consist of one line for each line of input giving the exact value of R^n. Leading zeros should be suppressed in the output. Insignificant trailing zeros must not be printed. Don’t print the decimal point if the result is an integer. Sample Input12345695.123 120.4321 205.1234 156.7592 998.999 101.0100 12 Sample Output123456548815620517731830194541.899025343415715973535967221869852721.0000000514855464107695612199451127676715483848176020072635120383542976301346240143992025569.92857370126648804114665499331870370751166629547672049395302429448126.76412102161816443020690903717327667290429072743629540498.1075960194566517745610440100011.126825030131969720661201 SourceEast Central North America 1988 求R^n，( 0.0 &lt; R &lt; 99.999，0 &lt; n &lt;= 25 ) 代码：123456789101112131415161718import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); while(cin.hasNext()) &#123; BigDecimal ans=cin.nextBigDecimal(); int n=cin.nextInt(); String res=ans.pow(n).stripTrailingZeros().toPlainString();//整数去掉小数点和后面的0 if(res.startsWith("0"))&#123; res=res.substring(1);//从第一位开始取，即去前导0 &#125; System.out.println(res); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1651,7 +1695,7 @@
     <url>%2F2018%2F09%2F05%2Fhdu1250%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1250 Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionA Fibonacci sequence is calculated by adding the previous two members the sequence, with the first two members being both 1.F(1) = 1, F(2) = 1, F(3) = 1,F(4) = 1, F(n&gt;4) = F(n - 1) + F(n-2) + F(n-3) + F(n-4)Your task is to take a number as input, and print that Fibonacci number. InputEach line will contain an integers. Process to end of file. OutputFor each case, output the result in a line. Sample Input1100 Sample Output14203968145672990846840663646 Note:No generated Fibonacci number in excess of 2005 digits will be in the test data, ie. F(20) = 66526 has 5 digits. 代码：12345678910111213141516171819202122import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger []f=new BigInteger[10005]; f[1]=BigInteger.valueOf(1); f[2]=BigInteger.valueOf(1); f[3]=BigInteger.valueOf(1); f[4]=BigInteger.valueOf(1); for(int i=5;i&lt;=10000;i++) &#123; f[i]=f[i-1].add(f[i-2].add(f[i-3].add(f[i-4]))); &#125; int n; while(cin.hasNext()) &#123; n=cin.nextInt(); System.out.println(f[n]); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1662,7 +1706,7 @@
     <url>%2F2018%2F09%2F04%2Fhdu1715%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1715 Time Limit: 1000/1000 MS (Java/Others) Memory Limit: 32768/32768 K (Java/Others) Problem DescriptionFibonacci数列，定义如下：f(1)=f(2)=1f(n)=f(n-1)+f(n-2) n&gt;=3。计算第n项Fibonacci数值。 Input输入第一行为一个整数N，接下来N行为整数Pi（1&lt;=Pi&lt;=1000）。 Output输出为N行，每行为对应的f(Pi)。 Sample Input123456512345 Sample Output1234511235 代码：1234567891011121314151617181920import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger []f=new BigInteger[1005]; f[1]=BigInteger.valueOf(1); f[2]=BigInteger.valueOf(1); for(int i=3;i&lt;=1000;i++) &#123; f[i]=f[i-1].add(f[i-2]); &#125; int t=cin.nextInt(),n; while(t--&gt;0) &#123; n=cin.nextInt(); System.out.println(f[n]); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1674,7 +1718,7 @@
     <url>%2F2018%2F09%2F04%2Fhdu1047%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1047 Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionOne of the first users of BIT’s new supercomputer was Chip Diller. He extended his exploration of powers of 3 to go from 0 to 333 and he explored taking various sums of those numbers.“This supercomputer is great,” remarked Chip. “I only wish Timothy were here to see these results.” (Chip moved to a new apartment, once one became available on the third floor of the Lemon Sky apartments on Third Street.) InputThe input will consist of at most 100 lines of text, each of which contains a single VeryLongInteger. Each VeryLongInteger will be 100 or fewer characters in length, and will only contain digits (no VeryLongInteger will be negative). The final input line will contain a single zero on a line by itself. OutputYour program should output the sum of the VeryLongIntegers given in the input. This problem contains multiple test cases! The first line of a multiple input is an integer N, then a blank line followed by N input blocks. Each input block is in the format indicated in the problem description. There is a blank line between input blocks. The output format consists of N output blocks. There is a blank line between output blocks. Sample Input123456711234567890123456789012345678901234567890123456789012345678901234567890123456789012345678900 Sample Output1370370367037037036703703703670 SourceEast Central North America 1996 最多100个100个字符那么长的大数相加 最后一行不多一个换行 代码：import java.io.*; import java.math.*; import java.util.*; public class Main { public static void main(String[] args){ Scanner cin=new Scanner(System.in); int t; BigInteger ans,a; t=cin.nextInt(); while(t--&gt;0){ ans=BigInteger.valueOf(0); while(cin.hasNextBigInteger()) { a=cin.nextBigInteger(); if(!a.equals(BigInteger.valueOf(0))) { ans=ans.add(a); } else { System.out.println(ans); if(t&gt;0)System.out.println(&quot;&quot;); break; } } } } }]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1685,7 +1729,7 @@
     <url>%2F2018%2F09%2F04%2Fhdu1042%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1042 Time Limit: 10000/5000 MS (Java/Others) Memory Limit: 262144/262144 K (Java/Others) Problem DescriptionGiven an integer N(0 ≤ N ≤ 10000), your task is to calculate N! InputOne N in one line, process to the end of file. OutputFor each N, output N! in one line. Sample Input123123 Sample Output123126 一路写水题的感觉真的好舒服0.0 不过这个题wa到怀疑人生啊。。直到我发现0的阶乘竟然是0！ 代码：1234567891011121314151617181920import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger []a=new BigInteger[10005]; a[0]=BigInteger.valueOf(1); a[1]=BigInteger.valueOf(1); int n; for(int i=2;i&lt;=10000;i++) &#123; a[i]=a[i-1].multiply(BigInteger.valueOf(i)); &#125; while(cin.hasNext()) &#123; n=cin.nextInt(); System.out.println(a[n]); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1696,7 +1740,7 @@
     <url>%2F2018%2F09%2F04%2Fhdu1002%2F</url>
     <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=1002 Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionI have a very simple problem for you. Given two integers A and B, your job is to calculate the Sum of A + B. InputThe first line of the input contains an integer T(1&lt;=T&lt;=20) which means the number of test cases. Then T lines follow, each line consists of two positive integers, A and B. Notice that the integers are very large, that means you should not process them by using 32-bit integer. You may assume the length of each integer will not exceed 1000. OutputFor each test case, you should output two lines. The first line is “Case #:”, # means the number of the test case. The second line is the an equation “A + B = Sum”, Sum means the result of A + B. Note there are some spaces int the equation. Output a blank line between two test cases. Sample Input12321 2112233445566778899 998877665544332211 Sample Output12345Case 1:1 + 2 = 3Case 2:112233445566778899 + 998877665544332211 = 1111111111111111110 题意：a+b 长度小于1000 代码：pe了无数次。。只好去网上找代码，最后一行没有附加换行。。 import java.io.*; import java.math.*; import java.util.*; public class Main{ public static void main(String[] args){ Scanner cin=new Scanner(System.in); int t; BigInteger a,b,c; t=cin.nextInt(); for(int i=1;i&lt;=t;i++){ a=cin.nextBigInteger(); b=cin.nextBigInteger(); c=a.add(b); System.out.println(&quot;Case &quot;+i+&quot;:&quot;); System.out.println(a+&quot; + &quot;+b+&quot; = &quot;+c); if(i&lt;t)System.out.println(); } } }]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1707,7 +1751,7 @@
     <url>%2F2018%2F09%2F04%2FC.Catalan%20Square%2F</url>
     <content type="text"><![CDATA[题目里公式太多了0.0，懒得贴题目了直接抛链接吧https://nanti.jisuanke.com/t/30371 题意：求卡特兰数的第n+1项，n范围[0,5000] 通项公式：f(n)=C(n,2n)/(n+1)=(2n)!/((n!)*(n+1)!)=C(n,2n)-C(n+1,2n) 递推公式：f(n)=f(n-1)*(4*n-2)/(n+1) 1,1,2,5,14,42,132,429,1430…… 代码：123456789101112131415161718192021222324import java.io.*; import java.math.*;import java.util.*; public class Main&#123; public static void main(String[] args)&#123; Scanner cin=new Scanner(System.in); BigInteger []a=new BigInteger[5005]; BigInteger start=new BigInteger("1"); a[0]=start; a[1]=start; for(int i=2;i&lt;5005;i++)&#123; Integer t1=i+1; Integer t2=4*i-2; BigInteger k1=new BigInteger(t1.toString()); BigInteger k2=new BigInteger(t2.toString()); a[i]=(a[i-1].multiply(k2)).divide(k1); &#125; while(cin.hasNext())&#123; int n = cin.nextInt(); System.out.println(a[n]); &#125; &#125;&#125;]]></content>
       <categories>
-        <category>java高精度</category>
+        <category>java</category>
       </categories>
       <tags>
         <tag>java高精度</tag>
@@ -1792,7 +1836,7 @@
     <url>%2F2018%2F08%2F23%2F1136%20%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 对正整数n，欧拉函数是少于或等于n的数中与n互质的数的数目。此函数以其首名研究者欧拉命名，它又称为Euler’s totient function、φ函数、欧拉商数等。例如：φ(8) = 4（Phi(8) = 4），因为1,3,5,7均和8互质。 Input输入一个数N。(2 &lt;= N &lt;= 10^9) Output输出Phi(n)。 Input示例18 Output示例14 题解：要求一个数欧拉函数，要先知道容斥是什么，这里就不写了 那么先随便举个例子比如 24 好了 24=2*2*2*3 2的倍数有：2，4，6，8，10，12，14，16，18，20，22，243的倍数有：3，66，9，12，15，18，21，24 那些既是2的倍数又是3的倍数的数就要靠容斥来处理了 phi(24)=24-24/2-24/3+24/(2*3) 这样一来就求好了 但是如果要写容斥分母要枚举啊好麻烦的 所以这里有一个妙妙的等式(●°u°●)​ 」phi(24)=24*(1-1/2-1/3+1/2*3)=24*(1-1/2)*(1-1/3) 所以只要找出n的质因子a，然后乘以（1-1/a）就好了,当然这里要通分一下方便操作 代码：123456789101112131415161718192021222324#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;int phi(int x)&#123; int ans=x; for(int i=2;i*i&lt;=x;i++)&#123;//i*i&lt;=x！！！ if(x%i==0)&#123; ans=ans/i*(i-1); while(x%i==0)x/=i; &#125; &#125; if(x&amp;&amp;x!=1)ans=ans/x*(x-1);//不要忘了这句！！ return ans;&#125;int main()&#123; int n; scanf("%d",&amp;n); printf("%d\n",phi(n)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>欧拉函数</tag>
@@ -1804,7 +1848,7 @@
     <url>%2F2018%2F08%2F23%2F1137%20%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出2个N * N的矩阵M1和M2，输出2个矩阵相乘后的结果。 Input第1行：1个数N，表示矩阵的大小(2 &lt;= N &lt;= 100)第2 - N + 1行，每行N个数，对应M1的1行(0 &lt;= M1[i] &lt;= 1000)第N + 2 - 2N + 1行，每行N个数，对应M2的1行(0 &lt;= M2[i] &lt;= 1000) Output输出共N行，每行N个数，对应M1 * M2的结果的一行。 Input示例1234521 00 10 11 0 Output示例120 11 0 题解：矩阵乘法基本操作 看了榜里别人的代码 如果直接一边乘一边输出的话就不用跑两遍了 会快很多 代码：123456789101112131415161718192021222324252627282930313233343536373839#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;#define LL long longtypedef vector&lt;LL&gt;row;typedef vector&lt;row&gt;mat;mat mul(mat a,mat b)&#123; mat c(a.size(),row(b[0].size()));//c的行数列数分别是a的行数，b的列数 for(int i=0;i&lt;a.size();i++)&#123;//a的第i行，b的第j列 for(int j=0;j&lt;b.size();j++)&#123; for(int k=0;k&lt;b[0].size();k++) c[i][j]=c[i][j]+a[i][k]*b[k][j]; &#125; &#125; return c;&#125;int main()&#123; int n; scanf("%d",&amp;n); mat m1(n,row(n)),m2(n,row(n)); for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)scanf("%lld",&amp;m1[i][j]); &#125; for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)scanf("%lld",&amp;m2[i][j]); &#125; mat m=mul(m1,m2); for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)&#123; if(j!=n-1)printf("%lld ",m[i][j]); else printf("%lld\n",m[i][j]); &#125; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
   </entry>
   <entry>
@@ -1812,7 +1856,7 @@
     <url>%2F2018%2F08%2F23%2F1174%20%E5%8C%BA%E9%97%B4%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E6%95%B0%EF%BC%88RMQ%EF%BC%8Cdp%EF%BC%8C%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出一个有N个数的序列，编号0 – N-1。进行Q次查询，查询编号i至j的所有数中，最大的数是多少。 例如: 1 7 6 3 1。i = 1, j = 3，对应的数为7 6 3，最大的数为7。（该问题也被称为RMQ问题） Input第1行：1个数N，表示序列的长度。(2 &lt;= N &lt;= 10000)第2 - N + 1行：每行1个数，对应序列中的元素。(0 &lt;= S[i] &lt;= 10^9)第N + 2行：1个数Q，表示查询的数量。(2 &lt;= Q &lt;= 10000)第N + 3 - N + Q + 2行：每行2个数，对应查询的起始编号i和结束编号j。(0 &lt;= i &lt;= j &lt;= N - 1) Output共Q行，对应每一个查询区间的最大值。 Input示例1234567891051763130 11 33 4 Output示例123773 题解：求区间最值，直接线段树水一发125ms RMQ也跑了125ms RMQ: dp[i][j]表示[i,i+2^j)个数中的最大值初始化F[i,0]即为输入的第i个数把dp[i][j]分成两段： [i,i+2^(j-1))[i+2^(j-1),i+2^j) 状态转移方程：dp[i][j]=max(dp[i][j-1],dp[i+2^(j-1)][j-1]) 查询：要查询[i,j],需要找到覆盖这个区间的两段区间长度为(j-i+1)，取k=log2(j-i+1)则ans=max(dp[i][k],dp[j-2^k+1][k])，也就是[i,i+2^k),[j-2^k+1,j+1)这两段 代码：【线段树】 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;#define lson l,m,rt&lt;&lt;1#define rson m+1,r,rt&lt;&lt;1|1const int N=200005;int MAX[N&lt;&lt;2];void pushup(int rt)&#123; MAX[rt]=max(MAX[rt&lt;&lt;1],MAX[rt&lt;&lt;1|1]);&#125;void build(int l,int r,int rt)&#123; if(l==r)&#123; scanf("%d",&amp;MAX[rt]); return; &#125; int m=(l+r)&gt;&gt;1; build(lson); build(rson); pushup(rt);&#125;void update(int p,int sc,int l,int r,int rt)&#123; if(l==r)&#123; MAX[rt]=sc; return; &#125; int m=(l+r)&gt;&gt;1; if(m&gt;=p)update(p,sc,lson); else update(p,sc,rson); pushup(rt);&#125;int query(int L,int R,int l,int r,int rt)&#123; if(L&lt;=l&amp;&amp;R&gt;=r)&#123; return MAX[rt]; &#125; int m=(l+r)&gt;&gt;1; int ans=0; if(m&gt;=L)ans=max(ans,query(L,R,lson)); if(R&gt;m)ans=max(ans,query(L,R,rson)); return ans;&#125;int main()&#123; int n,m; scanf("%d",&amp;n); build(1,n,1); scanf("%d",&amp;m); while(m--)&#123; int a,b; scanf("%d%d",&amp;a,&amp;b); a++;b++; printf("%d\n",query(a,b,1,n,1)); &#125; return 0;&#125; 【RMQ】 12345678910111213141516171819202122232425262728293031#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;const int N=10005;int dp[N][15],n,m;void rmq()&#123; for(int j=1;(1&lt;&lt;j)&lt;=n;j++)&#123; for(int i=1;i&lt;=n;i++)&#123; if(i+(1&lt;&lt;j)-1&lt;=n) dp[i][j]=max(dp[i][j-1],dp[i+(1&lt;&lt;(j-1))][j-1]); &#125; &#125;&#125;int main()&#123; scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++)scanf("%d",&amp;dp[i][0]); rmq(); scanf("%d",&amp;m); while(m--)&#123; int l,r; scanf("%d%d",&amp;l,&amp;r); l++;r++; int k=log(r-l+1)/log(2); printf("%d\n",max(dp[l][k],dp[r-(1&lt;&lt;k)+1][k])); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>dp</tag>
@@ -1825,7 +1869,7 @@
     <url>%2F2018%2F08%2F22%2F1079%20%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 一个正整数K，给出K Mod 一些质数的结果，求符合条件的最小的K。例如，K % 2 = 1, K % 3 = 2, K % 5 = 3。符合条件的最小的K = 23。 Input第1行：1个数N表示后面输入的质数及模的数量。（2 &lt;= N &lt;= 10)第2 - N + 1行，每行2个数P和M，中间用空格分隔，P是质数，M是K % P的结果。（2 &lt;= P &lt;= 100, 0 &lt;= K &lt; P) Output输出符合条件的最小的K。数据中所有K均小于10^9。 Input示例123432 13 25 3 Output示例123 题意：给n对数，pi，mi表示k%pi=mi,问是否存在一个最小的k满足所有pi和mi 题解：中国剩余定理 相当水的裸题 直接模版上就好了 先拿样例举例一下(・ω・)ノ 1234567891011121314151617181920212223242526k%2=1 k%3=2 k%5=3 先构造一下下面这个东西，逆元搞一下3*5*inv(3*5,2)%2=1 1*3*5*inv(3*5,2)%2=12*5*inv(2*5,3)%3=1 ==&gt; 2*2*5*inv(2*5,3)%3=2 2*3*inv(2*3,5)%5=1 3*2*3*inv(2*3,5)%5=3 然后和上面式子一比 余数就这么出来啦令k1=1*3*5*inv(3*5,2),k2=2*2*5*inv(2*5,3),k3=3*2*3*inv(2*3,5)也就是k1%2=1,且k1是3和5的倍数k2%3=2,且k2是2和5的倍数k3%5=3,且k3是2和3的倍数令k=k1+k2+k3k%2=k1%2+k2%2+k3%2=1+0+0k%3=k1%3+k2%3+k3%3=0+2+0k%5=k1%5+k2%5+k3%5=0+0+3所以k就是要求的那个答案啦 代码：123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;#define LL long longconst int p=1000000007;void ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123; if(!b)&#123; d=a;x=1;y=0; &#125; else&#123; ex_gcd(b,a%b,y,x,d); y-=x*(a/b); &#125;&#125;LL inv(LL t,LL p)&#123; LL d,x,y; ex_gcd(t,p,x,y,d); return d==1?(x%p+p)%p:-1;&#125;LL china(int n,LL *a,LL *m)&#123; LL M=1,ret=0; for(int i=0;i&lt;n;i++)M*=m[i]; for(int i=0;i&lt;n;i++)&#123; LL w=M/m[i]; ret=(ret+w*inv(w,m[i])*a[i])%M; &#125; return (ret+M)%M;&#125;int main()&#123; int n; LL a[11],m[11]; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%lld%lld",&amp;m[i],&amp;a[i]); &#125; printf("%lld\n",china(n,a,m)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>中国剩余定理</tag>
@@ -1837,7 +1881,7 @@
     <url>%2F2018%2F08%2F22%2F1181%20%E8%B4%A8%E6%95%B0%E4%B8%AD%E7%9A%84%E8%B4%A8%E6%95%B0%EF%BC%88%E8%B4%A8%E6%95%B0%E7%AD%9B%E6%B3%95%2C%E5%9F%83%E7%AD%9B%E7%B4%A0%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[题目来源： Sgu基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 如果一个质数，在质数列表中的编号也是质数，那么就称之为质数中的质数。例如：3 5分别是排第2和第3的质数，所以他们是质数中的质数。现在给出一个数N，求&gt;=N的最小的质数中的质数是多少（可以考虑用质数筛法来做）。 Input输入一个数N(N &lt;= 10^6) Output输出&gt;=N的最小的质数中的质数。 Input示例120 Output示例131 题解：埃筛素数 加个计数和break判断就行 j会爆int，要开long long 代码：12345678910111213141516171819202122232425262728#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;#define LL long longconst int N=1000233;bool prime[N];int main()&#123; int n,cnt=0; scanf("%d",&amp;n); memset(prime,true,sizeof(prime)); prime[1]=false; prime[2]=true; for(LL i=2;i&lt;N;i++)&#123; if(prime[i])&#123; cnt++; if(prime[cnt]&amp;&amp;i&gt;=n)&#123; printf("%lld\n",i); break; &#125; for(LL j=i*i;j&lt;N;j+=i)prime[j]=false; &#125; &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>埃筛素数</tag>
@@ -1848,7 +1892,7 @@
     <url>%2F2018%2F08%2F22%2F1183%20%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%EF%BC%88dp%EF%BC%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 编辑距离，又称Levenshtein距离（也叫做Edit Distance），是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。许可的编辑操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。 例如将kitten一字转成sitting：sitten （k-&gt;s）sittin （e-&gt;i）sitting （-&gt;g）所以kitten和sitting的编辑距离是3。俄罗斯科学家Vladimir Levenshtein在1965年提出这个概念。 给出两个字符串a,b，求a和b的编辑距离。 Input第1行：字符串a(a的长度 &lt;= 1000)。第2行：字符串b(b的长度 &lt;= 1000)。 Output输出a和b的编辑距离 Input示例12kittensitting Output示例13 题解：dp[i][j]表示字符串a的[0,i)和字符串b的[0,j)的最小编辑距离 写出状态转移方程dp[i][j]=min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]==b[j-1]?0:1)) dp[i-1][j]+1表示前[0,i-1)[0,j)已经相同，要改第i位 dp[i][j-1]+1表示前[0,i)[0,j-1)已经相同，要改第j位 dp[i-1][j-1]+(a[i-1]==b[j-1]?0:1）表示前[0,i-1)[0,j-1)已经相同，如果ai和bj相同就改其中一个 代码：123456789101112131415161718192021222324#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;const int N=1005;char a[N],b[N],ans[N];int dp[N][N];int main()&#123; scanf("%s%s",a,b); int lena=strlen(a),lenb=strlen(b); for(int i=0;i&lt;=lena;i++)dp[i][0]=i; for(int i=0;i&lt;=lenb;i++)dp[0][i]=i; for(int i=1;i&lt;=lena;i++)&#123; for(int j=1;j&lt;=lenb;j++)&#123; dp[i][j]=min(dp[i-1][j]+1,dp[i][j-1]+1); dp[i][j]=min(dp[i][j],dp[i-1][j-1]+(a[i-1]==b[j-1]?0:1)); &#125; &#125; printf("%d\n",dp[lena][lenb]); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>dp</tag>
@@ -1859,7 +1903,7 @@
     <url>%2F2018%2F08%2F22%2F1185%20%E5%A8%81%E4%BD%90%E5%A4%AB%E6%B8%B8%E6%88%8F%20V2%EF%BC%88%E9%AB%98%E7%B2%BE%E5%BA%A6%EF%BC%8C%E4%B9%98%E6%B3%95%E6%A8%A1%E6%8B%9F%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 有2堆石子。A B两个人轮流拿，A先拿。每次可以从一堆中取任意个或从2堆中取相同数量的石子，但不可不取。拿到最后1颗石子的人获胜。假设A B都非常聪明，拿石子的过程中不会出现失误。给出2堆石子的数量，问最后谁能赢得比赛。 例如：2堆石子分别为3颗和5颗。那么不论A怎样拿，B都有对应的方法拿到最后1颗。 Input第1行：一个数T，表示后面用作输入测试的数的数量。（1 &lt;= T &lt;= 10000)第2 - T + 1行：每行2个数分别是2堆石子的数量，中间用空格分隔。(1 &lt;= N &lt;= 10^18) Output共T行，如果A获胜输出A，如果B获胜输出B。 Input示例123433 53 41 9 Output示例123BAA 题解：很水的威佐夫博弈 想都没想直接LL一发然后wa了 因为n太大了，和黄金分割数相乘精度不够，所以要手动乘法模拟 把LL分成前9位q，后9位h (sqrt(5)+1)/2的小数部分分成x[3]={618033988,749894848,204586834} 如下模拟：(具体见代码) 123456 x0 x1 x2 * q h---------------------- x0*h x1*h x2*h x0*q x1*q x2*q---------------------- 附加：这题还牵扯到另一个问题，这个27位小数从何而来，下面这个直接用根号求出的显然是不行的x[3]={618033988,74989490,2525738871}，那么如何在没有百度情况下获得高精度的黄金分割数呢？ 补充在了这一篇中 计算黄金分割数小数点后几位 代码：123456789101112131415161718192021222324252627282930#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;cmath&gt;using namespace std;#define LL long longLL x[3]=&#123;618033988,749894848,204586834&#125;;//1.618033988,749894848,204586834const LL p=1e9;int main()&#123; LL a,b,t; scanf("%lld",&amp;t); while(t--)&#123; scanf("%lld%lld",&amp;a,&amp;b); if(a&gt;b)&#123; LL tmp=a;a=b;b=tmp; &#125; LL num=b-a; LL q=num/p,h=num%p; LL ans=x[2]*h; ans=ans/p+x[1]*h+x[2]*q; ans=ans/p+x[0]*h+x[1]*q; ans=ans/p+x[0]*q+num; if(ans==a)printf("B\n"); else printf("A\n"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>博弈论</category>
       </categories>
       <tags>
         <tag>威佐夫博弈</tag>
@@ -1896,7 +1940,7 @@
     <url>%2F2018%2F08%2F21%2F1212%20%E6%97%A0%E5%90%91%E5%9B%BE%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 N个点M条边的无向连通图，每条边有一个权值，求该图的最小生成树。 Input第1行：2个数N,M中间用空格分隔，N为点的数量，M为边的数量。（2 &lt;= N &lt;= 1000, 1 &lt;= M &lt;= 50000)第2 - M + 1行：每行3个数S E W，分别表示M条边的2个顶点及权值。(1 &lt;= S, E &lt;= N，1 &lt;= W &lt;= 10000) Output输出最小生成树的所有边的权值之和。 Input示例1234567891011121314159 141 2 42 3 83 4 74 5 95 6 106 7 27 8 18 9 72 8 113 9 27 9 63 6 44 6 141 8 8 Output示例 137 题解：水一发最小生成树模版 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std; const int N=1005;struct Edge&#123; int u,v; int cap;&#125;Edge[N*N];int n,ans,cnt;int fa[N];int find(int x)&#123; if(x!=fa[x])fa[x]=find(fa[x]); return fa[x];&#125;void join(int x,int y)&#123; int a=find(x),b=find(y); if(a==b)return; else&#123; fa[a]=b; &#125;&#125; bool cmp(struct Edge a,struct Edge b)&#123; return a.cap&lt;b.cap;&#125;void kruskal()&#123; sort(Edge,Edge+cnt,cmp); for(int i=0;i&lt;cnt;i++)&#123; int fx=find(Edge[i].u),fy=find(Edge[i].v); if(fx==fy)continue; ans+=Edge[i].cap; join(fx,fy); &#125;&#125;int main()&#123; int s,e,w; scanf("%d%d",&amp;n,&amp;cnt); for(int i=1;i&lt;=n;i++)fa[i]=i; for(int i=0;i&lt;cnt;i++)&#123; scanf("%d%d%d",&amp;s,&amp;e,&amp;w); Edge[i].u=s; Edge[i].v=e; Edge[i].cap=w; &#125; ans=0; kruskal(); printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>图论</category>
       </categories>
       <tags>
         <tag>最小生成树</tag>
@@ -1907,7 +1951,7 @@
     <url>%2F2018%2F08%2F21%2F1242%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9A%84%E7%AC%ACN%E9%A1%B9%EF%BC%88%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 斐波那契数列的定义如下： F(0) = 0F(1) = 1F(n) = F(n - 1) + F(n - 2) (n &gt;= 2) (1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, …) 给出n，求F(n)，由于结果很大，输出F(n) % 1000000009的结果即可。 Input输入1个数n(1 &lt;= n &lt;= 10^18)。 Output输出F(n) % 1000000009的结果。 Input示例11 Output示例89 题解：矩阵快速幂 F(n) = F(n - 1) + F(n - 2) 递推式如下。。macdown打不出数学公式。。就这样吧。。 12( F(n) ) = ( 1 1 )*( F(n-1) ) F(n-1) 1 0 F(n-2) 下面这种存矩阵的方法是在大牛博客看到的 先学为敬(=ﾟωﾟ)ﾉ 代码：1234567891011121314151617181920212223242526272829303132333435363738#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;vector&gt;using namespace std; #define LL long longtypedef vector&lt;LL&gt;row;typedef vector&lt;row&gt;mat;const LL p=1000000009;mat mul(mat a,mat b)&#123; mat c(a.size(),row(b[0].size()));//c的行数列数分别是a的行数，b的列数 for(int i=0;i&lt;a.size();i++)&#123; for(int j=0;j&lt;b[0].size();j++)&#123; for(int k=0;k&lt;b.size();k++) c[i][j]=(c[i][j]+a[i][k]*b[k][j])%p; &#125; &#125; return c;&#125;mat qpow(mat a,LL x)&#123; mat b(a.size(),row(a.size())); for(int i=0;i&lt;a.size();i++)b[i][i]=1; while(x&gt;0)&#123; if(x&amp;1)b=mul(b,a); a=mul(a,a); x&gt;&gt;=1; &#125; return b;&#125;int main()&#123; LL n; scanf("%lld",&amp;n); mat a(2,row(2)); a[0][0]=1;a[0][1]=1;a[1][0]=1;a[1][1]=0; a=qpow(a,n); printf("%lld\n",a[1][0]); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>矩阵快速幂</tag>
@@ -2306,7 +2350,7 @@
     <url>%2F2018%2F08%2F18%2F1240%20%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 莫比乌斯函数，由德国数学家和天文学家莫比乌斯提出。梅滕斯(Mertens)首先使用μ(n)（miu(n)）作为莫比乌斯函数的记号。（据说，高斯(Gauss)比莫比乌斯早三十年就曾考虑过这个函数）。 具体定义如下： 如果一个数包含平方因子，那么miu(n) = 0。例如：miu(4), miu(12), miu(18) = 0。 如果一个数不包含平方因子，并且有k个不同的质因子，那么miu(n) = (-1)^k。例如：miu(2), miu(3), miu(30) = -1,miu(1), miu(6), miu(10) = 1。 给出一个数n, 计算miu(n)。 Input输入包括一个数n，(2 &lt;= n &lt;= 10^9) Output输出miu(n)。 Input示例5 Output示例-1 题解：只有一个输入 直接求因子数就好 不用线筛 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define LL long longint mu(int x)&#123; int flag=0,num=0; for(int i=2;i*i&lt;=x;i++)&#123; if(x%i==0)&#123; x/=i; num++; if(x%i==0)&#123; flag=1;//包含平方因子 return 0; &#125; &#125; &#125; if(num&amp;1)return 1; else return -1;&#125;/*o(n)线筛int mu[N],prime[N];bool vis[N];int ji;void init()&#123; mu[1]=1; memset(vis,false,sizeof(vis)); for(int i=2;i&lt;N;i++)&#123; if(!vis[i])&#123; prime[ji++]=i; mu[i]=-1; &#125; for(int j=0;j&lt;ji&amp;&amp;i*prime[j]&lt;N;j++)&#123; vis[i*prime[j]]=true; if(i%prime[j])mu[i*prime[j]]=-mu[i]; else&#123; mu[i*prime[j]]=0; break; &#125; &#125; &#125;&#125;*/int main()&#123; int n; scanf("%d",&amp;n); printf("%d\n",mu(n)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>莫比乌斯函数</tag>
@@ -2317,7 +2361,7 @@
     <url>%2F2018%2F08%2F18%2F1256%20%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出2个数M和N(M &lt; N)，且M与N互质，找出一个数K满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input输入2个数M, N中间用空格分隔（1 &lt;= M &lt; N &lt;= 10^9) Output输出一个数K，满足0 &lt; K &lt; N且K * M % N = 1，如果有多个满足条件的，输出最小的。 Input示例12 3 Output示例12 题解：数论 —— 扩展欧几里得 ax+by=gcd(a,b) a,b互质 有ax+by=1 ax%b=1%b 记x为inv(a) 则 a*inv(a)%b=1%b 代码：123456789101112131415161718192021222324252627282930313233343536#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define LL long longvoid ex_gcd(LL a,LL b,LL &amp;x,LL &amp;y,LL &amp;d)&#123; if(!b)&#123; d=a;x=1;y=0; &#125; else&#123; ex_gcd(b,a%b,y,x,d); y-=x*(a/b); &#125;&#125;LL inv(LL t,LL p)&#123; LL d,x,y; ex_gcd(t,p,x,y,d); return d==1?(x%p+p)%p:-1;&#125;int main()&#123; LL m,n; scanf("%lld%lld",&amp;m,&amp;n); printf("%lld\n",inv(m,n)); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>逆元</tag>
@@ -2328,7 +2372,7 @@
     <url>%2F2018%2F08%2F17%2F1264%20%E7%BA%BF%E6%AE%B5%E7%9B%B8%E4%BA%A4%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出平面上两条线段的两个端点，判断这两条线段是否相交（有一个公共点或有部分重合认为相交）。 如果相交，输出”Yes”，否则输出”No”。 Input第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 1000)第2 - T + 1行：每行8个数，x1,y1,x2,y2,x3,y3,x4,y4。(-10^8 &lt;= xi, yi &lt;= 10^8)(直线1的两个端点为x1,y1 | x2, y2,直线2的两个端点为x3,y3 | x4, y4) Output输出共T行，如果相交输出”Yes”，否则输出”No”。 Input示例12321 2 2 1 0 0 2 2-1 1 1 1 0 0 1 -1 Output示例12YesNo 题解：计算几何判断线段相交模版 注释掉的部分是不包括端点和线段重合的模版 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define eps 1e-8#define zero(x) (((x)&gt;0?(x):-(x))&lt;eps)struct point&#123; double x,y,z;&#125;q[4];//叉积double xmult(point p1,point p2,point p0)&#123; return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);&#125;//判三点共线int dots_inline(point p1,point p2,point p3)&#123; return zero(xmult(p1,p2,p3));&#125;//判点是否在线段上，包括端点int dot_online_in(point p,point l1,point l2)&#123; return zero(xmult(p,l1,l2)&amp;&amp;(l1.x-p.x)*(l2.x-p.x)&lt;eps&amp;&amp;(l1.y-p.y)*(l2.y-p.y)&lt;eps);&#125;//判两点在线段同侧,点在线段上返回0int same_side(point p1,point p2,point l1,point l2)&#123; return xmult(l1,p1,l2)*xmult(l1,p2,l2)&gt;eps;&#125;//判两线段相交，包括端点和重合(p14)int intersect_in(point u1,point u2,point v1,point v2)&#123; if(!dots_inline(u1,u2,v1)||!dots_inline(u1,u2,v2)) return !same_side(u1,u2,v1,v2)&amp;&amp;!same_side(v1,v2,u1,u2); return (dot_online_in(u1,v1,v2)||dot_online_in(u2,v1,v2)|| dot_online_in(v1,u1,u2)||dot_online_in(v2,u1,u2));&#125;/*//判两点在线段异侧int opposite_side(point p1,point p2,point l1,point l2)&#123; return xmult(l1,p1,l2)*xmult(l1,p2,l2)&lt;-eps;&#125;//判两线段相交，不包括端点和重合int intersect_ex(point u1,point u2,point v1,point v2)&#123; return opposite_side(u1,u2,v1,v2)&amp;&amp;opposite_side(v1,v2,u1,u2);&#125;*/int main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; for(int i=0;i&lt;4;i++)scanf("%lf%lf",&amp;q[i].x,&amp;q[i].y); if(intersect_in(q[0],q[1],q[2],q[3]))puts("Yes"); else puts("No"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>计算几何</category>
       </categories>
       <tags>
         <tag>计算几何</tag>
@@ -2339,7 +2383,7 @@
     <url>%2F2018%2F08%2F17%2F1265%20%E5%9B%9B%E7%82%B9%E5%85%B1%E9%9D%A2%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出三维空间上的四个点（点与点的位置均不相同），判断这4个点是否在同一个平面内（4点共线也算共面）。如果共面，输出”Yes”，否则输出”No”。 Input第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 1000)第2 - 4T + 1行：每行4行表示一组数据，每行3个数，x, y, z, 表示该点的位置坐标(-1000 &lt;= x, y, z &lt;= 1000)。 Output输出共T行，如果共面输出”Yes”，否则输出”No”。 Input示例1234511 2 02 3 04 0 00 0 0 Output示例1Yes 题解：计算几何四点共面模版 已经包含四点共线的情况了 如果四点不能共线 那就用两次三点共线判断一下就行 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define eps 1e-8#define zero(x) (((x)&gt;0?(x):-(x))&lt;eps)struct point&#123; double x,y,z;&#125;q[4];//叉积point xmult(point u,point v)&#123; point ret; ret.x=u.y*v.z-v.y*u.z; ret.y=u.z*v.x-u.x*v.z; ret.z=u.x*v.y-u.y*v.x; return ret;&#125;//点积double dmult(point u,point v)&#123; return u.x*v.x+u.y*v.y+u.z*v.z;&#125;//矢量差point subt(point u,point v)&#123; point ret; ret.x=u.x-v.x; ret.y=u.y-v.y; ret.z=u.z-v.z; return ret;&#125;//取平面法向量point pvec(point s1,point s2,point s3)&#123; return xmult(subt(s1,s2),subt(s2,s3));&#125;//向量大小double vlen(point p)&#123; return sqrt(p.x*p.x+p.y*p.y+p.z*p.z);&#125;//判三点共线int dots_inline(point a,point b,point c)&#123; return vlen(xmult(subt(a,b),subt(b,c)))&lt;eps;&#125;//判四点共面int dots_onplane(point a,point b,point c,point d)&#123; return zero(dmult(pvec(a,b,c),subt(d,a)));&#125;bool check()&#123; if(dots_onplane(q[0],q[1],q[2],q[3]))return true; return false;&#125;int main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; for(int i=0;i&lt;4;i++)&#123; scanf("%lf%lf%lf",&amp;q[i].x,&amp;q[i].y,&amp;q[i].z); &#125; if(check())puts("Yes"); else puts("No"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>计算几何</category>
       </categories>
       <tags>
         <tag>计算几何</tag>
@@ -2350,7 +2394,7 @@
     <url>%2F2018%2F08%2F17%2F1298-%E5%9C%86%E4%B8%8E%E4%B8%89%E8%A7%92%E5%BD%A2%2F</url>
     <content type="text"><![CDATA[Input第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 10000)，之后每4行用来描述一组测试数据。4-1：三个数，前两个数为圆心的坐标xc, yc，第3个数为圆的半径R。(-3000 &lt;= xc, yc &lt;= 3000, 1 &lt;= R &lt;= 3000）4-2：2个数，三角形第1个点的坐标。4-3：2个数，三角形第2个点的坐标。4-4：2个数，三角形第3个点的坐标。(-3000 &lt;= xi, yi &lt;= 3000） Output共T行，对于每组输入数据，相交输出”Yes”，否则输出”No”。 Input示例12345678920 0 1010 015 015 50 0 100 05 05 5 Output示例12YesNo 题解：判断圆和三角形是否相交 直接判断三角形三条线段和圆是否有交点 上个计算几何模版 最初的思路是分成三种情况考虑 一种是内包含 只要判断三个点是否都在圆内即可 第二种是外包含 要判断三个点都在圆外且圆心到三边距离都大于半径 第三种是下图情况 就不好操作了 所以还是直接用模版啦 然后系统说我编译错误 明明sublime编译通过了的 麻烦诶。。然后用devc++试了下 报了下图的错 查了是因为distance和内置的函数重名了 改改就好了下次注意 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;#define eps 1e-8double a0,b0,r,a1,a2,a3,b1,b2,b3;struct point&#123; double x,y;&#125;q0,q1,q2,q3;double xmult(point p1,point p2,point p0)&#123; return (p1.x-p0.x)*(p2.y-p0.y)-(p2.x-p0.x)*(p1.y-p0.y);&#125;double Distance(point p1,point p2)&#123; return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));&#125;// 点到直线距离double disptoline(point p,point l1,point l2)&#123; return fabs(xmult(p,l1,l2)/Distance(l1,l2));&#125;// 判断线段和圆相交，包括端点和相切(p33)int intersect_seg_circle(point c,double r0,point l1,point l2)&#123; double t1=Distance(c,l1)-r,t2=Distance(c,l2)-r; point t=c; if(t1&lt;eps||t2&lt;eps)return t1&gt;-eps||t2&gt;-eps; t.x+=l1.y-l2.y; t.y+=l2.x-l1.x; return xmult(l1,c,t)*xmult(l2,c,t)&lt;eps&amp;&amp;disptoline(c,l1,l2)-r&lt;eps;&#125;bool check()&#123; if(intersect_seg_circle(q0,r,q1,q2))return true; if(intersect_seg_circle(q0,r,q1,q3))return true; if(intersect_seg_circle(q0,r,q2,q3))return true; return false;&#125; int main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; scanf("%lf%lf%lf",&amp;a0,&amp;b0,&amp;r);q0.x=a0;q0.y=b0; scanf("%lf%lf",&amp;a1,&amp;b1);q1.x=a1;q1.y=b1; scanf("%lf%lf",&amp;a2,&amp;b2);q2.x=a2;q2.y=b2; scanf("%lf%lf",&amp;a3,&amp;b3);q3.x=a3;q3.y=b3; if(check())puts("Yes"); else puts("No"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>计算几何</category>
       </categories>
       <tags>
         <tag>计算几何</tag>
@@ -2361,7 +2405,7 @@
     <url>%2F2018%2F08%2F17%2F1384%20%E5%85%A8%E6%8E%92%E5%88%97%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 给出一个字符串S（可能有重复的字符），按照字典序从小到大，输出S包括的字符组成的所有排列。例如：S = “1312”，输出为： 112311321213123113121321211321312311311231213211 Input输入一个字符串S（S的长度 &lt;= 9，且只包括0 - 9的阿拉伯数字） Output输出S所包含的字符组成的所有排列 Input示例11312 Output示例123456789101112112311321213123113121321211321312311311231213211 题解：题意很简单 就水水的全排列 直接next_permutation就好啦 诶好用 printf竟然tle了 改成 puts() 之后跑了46ms 不过这样太依赖stl了 还是乖乖再写个dfs吧。。 然后又t了。。1900ms+。。把printf改成cout就过了 跑了484ms 不是很懂 printf不是比cout快的嘛？？？ 而且加上输入输出优化之后ios::sync_with_stdio(false);cin.tie(0); 没有跑得更快反而慢了一丢丢 代码：1234567891011121314151617181920212223242526#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;int main()&#123; char s[10]; scanf("%s",s); int len=strlen(s); sort(s,s+len); do&#123; // printf("%s\n",s); puts(s); &#125;while(next_permutation(s,s+len)); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;char s[10];int ans[10],len;bool vis[10];void dfs(int x)&#123; if(x==len)&#123; for(int i=0;i&lt;len;i++)cout&lt;&lt;ans[i]; cout&lt;&lt;endl; return; &#125; for(int i=0;i&lt;len;i++)&#123; if(!vis[i])&#123; vis[i]=true; ans[x]=s[i]-'0'; dfs(x+1); vis[i]=false; while(i&lt;=len&amp;&amp;s[i]==s[i+1])i++;//去重 &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); sort(s,s+len); memset(vis,false,sizeof(vis)); dfs(0); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>搜索</category>
       </categories>
       <tags>
         <tag>stl</tag>
@@ -2374,7 +2418,7 @@
     <url>%2F2018%2F08%2F16%2F1459%20%E8%BF%B7%E5%AE%AB%E6%B8%B8%E6%88%8F%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 你来到一个迷宫前。该迷宫由若干个房间组成，每个房间都有一个得分，第一次进入这个房间，你就可以得到这个分数。还有若干双向道路连结这些房间，你沿着这些道路从一个房间走到另外一个房间需要一些时间。游戏规定了你的起点和终点房间，你首要目标是从起点尽快到达终点，在满足首要目标的前提下，使得你的得分总和尽可能大。现在问题来了，给定房间、道路、分数、起点和终点等全部信息，你能计算在尽快离开迷宫的前提下，你的最大得分是多少么？ Input第一行4个整数n (&lt;=500), m, start, end。n表示房间的个数，房间编号从0到(n - 1)，m表示道路数,任意两个房间之间最多只有一条道路，start和end表示起点和终点房间的编号。第二行包含n个空格分隔的正整数(不超过600)，表示进入每个房间你的得分。再接下来m行，每行3个空格分隔的整数x, y, z (0&lt;z&lt;=200)表示道路,表示从房间x到房间y(双向)的道路,注意，最多只有一条道路连结两个房间, 你需要的时间为z。输入保证从start到end至少有一条路径。 Output一行，两个空格分隔的整数，第一个表示你最少需要的时间，第二个表示你在最少时间前提下可以获得的最大得分。 Input示例12343 2 0 21 2 30 1 101 2 11 Output示例121 6 题解：dijkstra 最短路径问题—Dijkstra算法详解 这题还要在最短路的基础上求权值最大 开个数组记录一下然后和路径一起更新就行 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;const int N=505;const int INF=0x3f3f3f3f;int a[N],cost[N],ans[N];bool vis[N];int n,m,start,endd;vector&lt;int&gt;mp[N];vector&lt;int&gt;t[N];void dij()&#123; int x=start; vis[x]=true; while(x!=endd)&#123; for(int i=0;i&lt;mp[x].size();i++)&#123; int y=mp[x][i]; int tmpcost=cost[x]+t[x][i]; int tmpans=ans[x]+a[y]; if(cost[y]==0||tmpcost&lt;cost[y]||(tmpcost==cost[y]&amp;&amp;tmpans&gt;ans[y]))&#123; //如果x-&gt;y的路在之前还未连通 //或者新路径从x-&gt;y的时间小于原来的，或等于但是权值更大，就更新答案 ans[y]=tmpans; cost[y]=tmpcost; &#125; &#125; int minn=INF,maxx=0; for(int i=0;i&lt;n;i++)&#123; //如果i没有标记过且x-&gt;i目前最优，从i出发继续找 if(!vis[i]&amp;&amp;cost[i]!=0&amp;&amp;(cost[i]&lt;minn||(cost[i]==minn&amp;&amp;ans[i]&gt;maxx)))&#123; minn=cost[i]; maxx=ans[i]; x=i; &#125; &#125; vis[x]=true; &#125;&#125;int main()&#123; scanf("%d%d%d%d",&amp;n,&amp;m,&amp;start,&amp;endd); memset(vis,false,sizeof(vis)); memset(cost,0,sizeof(cost)); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;a[i]); ans[i]=a[i]; &#125; int u,v,w; for(int i=0;i&lt;m;i++)&#123; scanf("%d%d%d",&amp;u,&amp;v,&amp;w); mp[u].push_back(v); mp[v].push_back(u); t[u].push_back(w); t[v].push_back(w); &#125; dij(); printf("%d %d\n",cost[endd],ans[endd]); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>图论</category>
       </categories>
       <tags>
         <tag>dijkstra</tag>
@@ -2407,7 +2451,7 @@
     <url>%2F2018%2F08%2F15%2F2006%20%E9%A3%9E%E8%A1%8C%E5%91%98%E9%85%8D%E5%AF%B9%2F</url>
     <content type="text"><![CDATA[题目来源： 网络流24题基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 第二次世界大战时期，英国皇家空军从沦陷国征募了大量外籍飞行员。由皇家空军派出的每一架飞机都需要配备在航行技能和语言上能互相配合的2名飞行员，其中1名是英国飞行员，另1名是外籍飞行员。在众多的飞行员中，每一名外籍飞行员都可以与其他若干名英国飞行员很好地配合。如何选择配对飞行的飞行员才能使一次派出最多的飞机。对于给定的外籍飞行员与英国飞行员的配合情况，试设计一个算法找出最佳飞行员配对方案，使皇家空 军一次能派出最多的飞机 。对于给定的外籍飞行员与英国飞行员的配合情况，编程找出一个最佳飞行员配对方案， 使皇家空军一次能派出最多的飞机。 Input第1行有2个正整数 m 和 n。n 是皇家空军的飞行 员总数(n&lt;100);m 是外籍飞行员数。外籍飞行员编号为 1~m;英国飞行员编号为 m+1~n。接下来每行有 2 个正整数 i 和 j，表示外籍飞行员 i 可以和英国飞行员 j 配合。输入最后以 2 个-1 结束。 Output第 1 行是最佳飞行 员配对方案一次能派出的最多的飞机数 M。如果所求的最佳飞行员配对方案不存在，则输出‘No Solution!’。 题解：裸的匈牙利算法求二分图最大匹配 这篇讲的超级生动形象了https://blog.csdn.net/cillyb/article/details/55511666 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;#include &lt;vector&gt;using namespace std;const int N=105;vector&lt;int&gt;g[N];int n,m,ans=0,match[N];bool vis[N];bool dfs(int x)&#123; for(int i=0;i&lt;g[x].size();i++)&#123; int v=g[x][i]; if(!vis[v])&#123; vis[v]=true;//标记已试图匹配 if(match[v]==-1||dfs(match[v]))&#123; //这个点没匹配过或者这个点匹配的可拆 match[v]=x; return true; &#125; &#125; &#125; return false;&#125;int main()&#123; scanf("%d%d",&amp;m,&amp;n); int x,y; while(scanf("%d%d",&amp;x,&amp;y),x!=-1&amp;&amp;y!=-1)&#123; g[x].push_back(y); g[y].push_back(x); &#125; memset(match,-1,sizeof(match)); for(int i=1;i&lt;=m;i++)&#123; memset(vis,false,sizeof(vis)); if(dfs(i))ans++; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>图论</category>
       </categories>
       <tags>
         <tag>二分图</tag>
@@ -2431,7 +2475,7 @@
     <url>%2F2018%2F08%2F14%2F1995%20%E4%B8%89%E5%AD%90%E6%A3%8B%20%20%2F</url>
     <content type="text"><![CDATA[题目来源： syu校赛基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 小的时候大家一定玩过“井”字棋吧。也就是在九宫格中，只要任意行、列，或者任意连续对角线上面出现三个相同的，就能获胜。现在小明和小花也在玩三子棋，但是他们不是在九宫格里，而是在3×4的格子里面。现在小明先下，但是他知道小花这个人很聪明，他想知道第一步下在哪一个地方最合适，你能帮帮他吗？ Input第一行输入一个整数T，表示数据组数（1&lt;T&lt;10000）；第二行输入两个整数x,y,表示3×4格子里面的一个坐标(x,y)（1&lt;=x&lt;=3,1&lt;=y&lt;=4）； Output每组数据输出最后小明输赢的结果，如果小明一定能赢，第一行输出“Win”,第二行输出小明所需要花的最少步数；如果小明跟小花只能打成平手，第一行输出“Equal”，第二行输出数字0；如果小明不能赢也不能跟小花打成平手，第一行输出“Lose”,第二行输出小花赢小明所需要花的最少步数 题解：抱着作a+b的心态开始刷基础题，结果基础题怎么这么不水呢么。。没想到啥好方法，就自己跟自己下模拟；策略就和一般五子棋差不多，关于最少步数，由于对手也是绝顶聪明的，所以不会让你下在很快赢的地方，其实应该算最多步数的最少步数那个意思。。大概； 棋盘是对称的，所以只要看（1，1）（1，2）（2，1）（2，2）四个点就可以；如下表： 1 2 2 1 3 4 4 3 1 2 2 1 然后结论是对先手来说（1，1）（1，2）（2，2）必胜，（2，1）平局； （1，1）的最短路是6：先手:11-&gt;12-&gt;31-&gt;23-&gt;32形成“双二”再下一步就赢了后手:21-&gt;13-&gt;21-&gt;34-&gt; （1，2）的最短路是4：先手:12-&gt;23-&gt;32形成“双二”再下一步就赢了后手:13-&gt;34-&gt; （2，2）的最短路是4：先手:22-&gt;13-&gt;11形成“双二”再下一步就赢了后手:23-&gt;31-&gt; 代码：123456789101112131415161718192021222324252627#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;string&gt;#include &lt;set&gt;#include &lt;cmath&gt;#include &lt;list&gt;using namespace std;int a[3][4]=&#123;6,4,4,6,0,4,4,0,6,4,4,6&#125;;int main()&#123; int t,x,y; scanf("%d",&amp;t); while(t--)&#123; scanf("%d%d",&amp;x,&amp;y); x--; y--; if(a[x][y]==0)printf("Equal\n0\n"); else printf("Win\n%d\n",a[x][y]); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>51nod基础题</category>
+        <category>博弈论</category>
       </categories>
       <tags>
         <tag>思维</tag>
@@ -2442,7 +2486,7 @@
     <url>%2F2018%2F08%2F11%2Fhello-world%2F</url>
     <content type="text"><![CDATA[❤️ 十月加油 ❤️]]></content>
       <categories>
-        <category>poi</category>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
   </entry>
 </search>
