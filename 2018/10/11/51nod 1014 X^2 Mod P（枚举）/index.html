@@ -14,25 +14,23 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
-
-
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="3FORR_lh2cND4GVPAiHDPHcrxjUHx3pzmzA50e6gWls">
-<meta name="baidu-site-verification" content="s4E8WMNwLk">
+
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
 <style>
     .pace .pace-progress {
         background: #ffffff; /*进度条颜色*/
         height: 3px;
     }
     .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #d1d1d1, 0 0 5px     #d1d1d1; /*阴影颜色*/
+         box-shadow: 0 0 10px #ffffff, 0 0 5px     #ffffff; /*阴影颜色*/
     }
     .pace .pace-activity {
         border-top-color: #ffffff;    /*上边框颜色*/
@@ -50,13 +48,20 @@
 
 
 
-
 <meta http-equiv="Cache-Control" content="no-transform">
 <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
-  <meta name="google-site-verification" content="true">
+
+
+
+
+
+
+
+
+
 
 
 
@@ -75,35 +80,23 @@
 
 
 
-  <meta name="baidu-site-verification" content="true">
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
 
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon.ico?v=6.4.2">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon (1).ico?v=6.4.2">
 
 
-
-
-
-<link href="/VEN/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon.ico?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon (1).ico?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
 
 
 
@@ -117,9 +110,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"hide123","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -136,9 +129,7 @@
 </script>
 
 
-
   
-
 
 
 
@@ -150,7 +141,7 @@
   <meta name="description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 X*X mod P = A，其中P为质数。给出P和A，求&amp;lt;=P的所有X。 Input两个数P A，中间用空格隔开。(1 &amp;lt;= A &amp;lt; P &amp;lt;= 1000000, P为质数) Output输出符合条件的X，且0 &amp;lt;= X &amp;lt;= P，如果有多个，按照升序排列，中间用空格隔开。如果没有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="51nod 1014 X^2 Mod P（枚举）">
-<meta property="og:url" content="http://leflacon.tk/2018/10/11/51nod 1014 X^2 Mod P（枚举）/index.html">
+<meta property="og:url" content="http://leflacon.github.io/2018/10/11/51nod 1014 X^2 Mod P（枚举）/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 X*X mod P = A，其中P为质数。给出P和A，求&amp;lt;=P的所有X。 Input两个数P A，中间用空格隔开。(1 &amp;lt;= A &amp;lt; P &amp;lt;= 1000000, P为质数) Output输出符合条件的X，且0 &amp;lt;= X &amp;lt;= P，如果有多个，按照升序排列，中间用空格隔开。如果没有">
 <meta property="og:locale" content="zh-CN">
@@ -164,7 +155,7 @@
 
 
 
-  <link rel="canonical" href="http://leflacon.tk/2018/10/11/51nod 1014 X^2 Mod P（枚举）/">
+  <link rel="canonical" href="http://leflacon.github.io/2018/10/11/51nod 1014 X^2 Mod P（枚举）/">
 
 
 
@@ -212,7 +203,6 @@
   </style>
 </noscript>
 
-    
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -224,7 +214,9 @@
 
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
-    <a href="https://github.com/LeFlacon" class="github-corner" aria-label="View source on Github" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
+    <a href="https://your-url" class="github-corner" aria-label="View source on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -385,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.tk/2018/10/11/51nod 1014 X^2 Mod P（枚举）/">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/2018/10/11/51nod 1014 X^2 Mod P（枚举）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
@@ -638,7 +630,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">221</span>
+                    <span class="site-state-item-count">222</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -886,17 +878,17 @@
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/LeFlacon" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i></a>
+                  <a href="https://github.com/leflacon" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="15356373111@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i></a>
+                  <a href="mailto:15356373111@163.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://instagram.com/zhuujx" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i></a>
+                  <a href="https://instagram.com/zhuujx" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
                   
                 </span>
               
@@ -975,7 +967,6 @@ show_date_time();
 
     <footer id="footer" class="footer">
 
-
       <link rel="stylesheet" href="/live2d/css/live2d.css">
       <div id="landlord">
           <div class="message" style="opacity:0"></div>
@@ -1010,42 +1001,21 @@ show_date_time();
 
 
 
-
 <div class="powered-by">
   <i class="fa fa-user"></i><span id="busuanzi_container_site_uv">
     <span id="busuanzi_value_site_uv"></span>  
   </span>|
-  </div>
+</div>
 
 <div class="powered-by">
   <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv">
     <span id="busuanzi_value_site_pv"></span> 
   </span>
-  </div>
-
-<!--
-
-  
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
-
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
-
--->
-
-
+</div>
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:127.6k</span>
+  <span class="post-count"> | Words:128.2k</span>
 </div>
 
 <br>
@@ -1068,6 +1038,23 @@ show_date_time();
 setInterval("createtime()",250);
 </script>
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
 
         
 
@@ -1080,27 +1067,21 @@ setInterval("createtime()",250);
 
         
       </div>
-
     </footer>
 
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
-          <span id="scrollpercent"><span>0</span>%</span>
-        
       </div>
     
 
     
-  
+	
     
 
     
-
   </div>
-
-
 
   
 
@@ -1137,42 +1118,42 @@ setInterval("createtime()",250);
 
   
   
-    <script type="text/javascript" src="https://ajax.cat.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/VEN/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/VEN/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
 
 
 
@@ -1206,8 +1187,8 @@ setInterval("createtime()",250);
         notify: true,
         appId: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
         appKey: 'ICpyPTKA9w5RlR5UTydeoKif',
-        placeholder: 'Just go go ヾﾉ≧∀≦)o',
-        avatar:'mp',
+        placeholder: 'Just go go',
+        avatar:'mm',
         meta:guest,
         pageSize:'10' || 10,
         visitor: true
@@ -1549,13 +1530,6 @@ setInterval("createtime()",250);
   
 
   
-  
-
-  
-  
-
-  
-
 
   
   
@@ -1571,7 +1545,23 @@ setInterval("createtime()",250);
   
 
 
-<!--百度自动递交链接-->
+<script type="text/javascript" src="/js/src/instantclick.min.js" data-no-instant=""></script>
+<script data-no-instant="">InstantClick.init();</script>
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('/js/src/sw.js');
+}
+</script>
+
+
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1586,19 +1576,3 @@ setInterval("createtime()",250);
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-
-
-</body>
-
-</html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-<!-- 加速 -->
-<script>
-if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('/js/src/sw.js');
-}
-</script>
-
