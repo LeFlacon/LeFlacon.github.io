@@ -1865,7 +1865,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7e3216;
+  background: #86f6b5;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2939,4 +2939,8 @@ img:hover {
 .headband {
   height: 1.5px;
   background-image: linear-gradient(90deg, #e3cae4 0%, #fff 15%, #d6ceff 30%, #e3cae4 44%, #afc4e0 58%, #d2e4fd 72%, #d1d1ef 86%, #e3cae4 100%);
+}
+::selection {
+  background-color: #fced6d;
+  color: #222;
 }

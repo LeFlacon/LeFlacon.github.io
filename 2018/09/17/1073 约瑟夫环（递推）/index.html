@@ -168,7 +168,7 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB  N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &amp;lt;= N, K &amp;lt;= 10^6) Output最后剩下的人的编号 Input示例">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-22T09:33:53.099Z">
+<meta property="og:updated_time" content="2018-10-25T12:02:04.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="1073 约瑟夫环（递推）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB  N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &amp;lt;= N, K &amp;lt;= 10^6) Output最后剩下的人的编号 Input示例">
@@ -459,7 +459,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-22 17:33:53" itemprop="dateModified" datetime="2018-10-22T17:33:53+08:00">2018-10-22</time>
+                <time title="修改时间：2018-10-25 20:02:04" itemprop="dateModified" datetime="2018-10-25T20:02:04+08:00">2018-10-25</time>
               
             
           </span>
@@ -544,7 +544,7 @@ var _hmt = _hmt || [];
 <p>证明如下：</p>
 <p>n个人，编号1-n，从1开始报数，报到k的退出，剩下人继续从1开始报数</p>
 <p>第一个人编号（k%n）出列，剩下的n-1个人组成一个新的约瑟夫环，从编号（k%n+1）开始，k+1,k+2…n-2,n-1,n,1,2…k-2,k-1，编号k+1的人报1，那么重新编号一下k+1-&gt;1,k+2-&gt;2…k-2-&gt;n-2,k-1-&gt;n-1，变成了n-1个人报数的子问题</p>
-<p>那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结局了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解</p>
+<p>那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结束了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解</p>
 <p>令f[i]表示i个人玩游戏报k退出最后胜利者的编号，f[1]=1; f[i]=(f[i-1]+k)%i; (i&gt;1) 有了这个公式，从2-n顺序算出f[i]的数值，编号从1开始，所以最后答案输出f[n]+1</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line">using namespace std<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    <span class="built_in">int</span> n,k<span class="comment">;</span></span><br><span class="line">    scanf(<span class="string">"%d%d"</span>,&amp;n,&amp;k)<span class="comment">;</span></span><br><span class="line">    <span class="built_in">int</span> ans=<span class="number">0</span><span class="comment">;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">2</span><span class="comment">;i&lt;=n;i++)ans=(ans+k)%i;</span></span><br><span class="line">    printf(<span class="string">"%d\n"</span>,ans+<span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -668,7 +668,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">222</span>
+                    <span class="site-state-item-count">234</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -902,7 +902,11 @@ var _hmt = _hmt || [];
                     
                       
                     
-                    <span class="site-state-item-count">88</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1055,7 +1059,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:128.2k</span>
+  <span class="post-count"> | Words:134.9k</span>
 </div>
 
 <br>

@@ -1,6 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[poj 2417 Discrete Logging（bsgs算法，baby-step giant-step）]]></title>
+    <url>%2F2018%2F10%2F26%2Fpoj%202417%20Discrete%20Logging%EF%BC%88bsgs%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 5000MS Memory Limit: 65536K Given a prime P, 2 &lt;= P &lt; 231, an integer B, 2 &lt;= B &lt; P, and an integer N, 1 &lt;= N &lt; P, compute the discrete logarithm of N, base B, modulo P. That is, find an integer L such that B^L == N (mod P) InputRead several lines of input, each containing P,B,N separated by a space. OutputFor each line print the logarithm on a separate line. If there are several, print the smallest; if there is none, print “no solution”. Sample Input12345678910111213145 2 15 2 25 2 35 2 45 3 15 3 25 3 35 3 45 4 15 4 25 4 35 4 412345701 2 11111111111111121 65537 1111111111 Sample Output1234567891011121314013203120no solutionno solution19584351462803587 HintThe solution to this problem requires a well known result in number theory that is probably expected of you for Putnam but not ACM competitions. It is Fermat’s theorem that states B(P-1) == 1 (mod P) for any prime P and some other (fairly rare) numbers known as base-B pseudoprimes. A rarer subset of the base-B pseudoprimes, known as Carmichael numbers, are pseudoprimes for every base between 2 and P-1. A corollary to Fermat’s theorem is that for any m B(-m) == B(P-1-m) (mod P) . SourceWaterloo Local 2002.01.26 题意：给定b,n,p,求最小的非负整数l,满足b^l ≡ n(mod p) 题解：学个新东西，bsgs算法（baby step giant step大步小步算法）其实我觉得它的别名北上广深算法拔山盖世算法更好听一点╮(￣▽￣””)╭ 不晓得这个算法是怎么被想出来的，大致做法如下： 令l=i*m-j，m=ceil(√p)，ceil()是向上取整 代入原式得 12b^(i*m-j) ≡ n(mod p)b^(i*m) ≡ n*b^j(mod p) 枚举j[0,m]，将n*b^j(mod p)存入hash表，枚举i[1,m]，在hash表中寻找第一个满足b^(i*m) ≡ n*b^j(mod p)的，l=i*m-j即为答案 看完这个做法还是懵逼的，所以接下来来证明为什么m=ceil(sqrt(p))范围内就可以找到 有l=i*m-j=i*ceil(√p)-j&lt;p，所以实际上是要证明l&lt;=p的范围内就能找到合法的l 再把这个问题转化为用费马小定理证明这个式子：b^(k mod (p-1)) ≡ b^k(mod p) 证明： k mod (p-1)等价于k-m(p-1)，则有b^(k-m(p-1)) ≡ b^k(mod p)，化简得b^(m(p-1)) ≡ 1(mod p) 由费马小定理，已知：当p为质数且(a,p)=1时，a^(p-1) ≡ 1(mod p) 所以当(b,p)!=1有b^(m(p-1)) ≡ b^(p-1)(mod p)，即证b^(k mod (p-1)) ≡ b^k(mod p) m=ceil(sqrt(p))可行 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;map&gt;using namespace std;#define LL long longLL p,b,l,n,m,ans;map&lt;LL,int&gt;mp;LL qpow(LL a,LL b)&#123; LL anss=1; while(b)&#123; if(b&amp;1)&#123; anss=(anss*a)%p; b--; &#125; b/=2; a=a*a%p; &#125; return anss;&#125;int main()&#123; while(scanf("%lld%lld%lld",&amp;p,&amp;b,&amp;n)!=EOF)&#123; if(b%p==0)&#123; puts("no solution"); continue; &#125; mp.clear(); ans=-1; m=ceil(sqrt(p)); LL tmp=n%p; mp[tmp]=0; for(int i=1;i&lt;=m;i++)&#123; tmp=(tmp*b)%p; mp[tmp]=i; &#125; tmp=1; LL num=qpow(b,m); for(int i=1;i&lt;=m;i++)&#123; tmp=(tmp*num)%p; if(mp[tmp])&#123; ans=i*m-mp[tmp]; ans=(ans%p+p)%p; printf("%lld\n",ans); break; &#125; &#125; if(ans==-1)puts("no solution");; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>bsgs算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[汉诺塔题集（递归 hdu 1995 1996 2064 2077 2175）]]></title>
+    <url>%2F2018%2F10%2F26%2F%20%E6%B1%89%E8%AF%BA%E5%A1%94%E9%A2%98%E9%9B%86%EF%BC%88%E9%80%92%E5%BD%92%20hdu%201995%201996%202064%202077%202175%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[汉诺塔基本原理：1）将A上n-1个盘子借助C移到B上；2）把A上剩下的一个盘移到C上；3）将n-1个盘从B借助于A移到C上。 123456789void hanoi(int n,char x,char y,char z)&#123; if(n==1)cout&lt;&lt;x&lt;&lt;"--&gt;"&lt;&lt;z&lt;&lt;endl; else&#123; hanoi(n-1,x,z,y);//前n-1个盘子从x移动到y上 cout&lt;&lt;x&lt;&lt;“—&gt;”&lt;&lt;z&lt;&lt;endl;//将最底下的最后一个盘子从x移动到z上 hanoi(n-1,y,x,z);//将y上的n-1个盘子移动到z上 &#125; return;&#125; 题目：1.hdu 1995 汉诺塔V题意：盘子的数目n，盘号k，求汉诺塔之后，k号盘需要的最少的移动次数 题解：因为比k小的盘子移动不会牵扯k移动，所以这个问题等价于n-k+1阶汉诺塔中一号盘子的移动次数，然后回到开头的汉诺塔移动原理，由于步骤2）中一号盘子不移动，所以得到递推式f[n]=2*f[n-1] 其实就是个等比数列，最后答案是：2^(n-k) 代码：123456789101112131415#include&lt;bits/stdc++.h&gt;using namespace std;#define LL long longint main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); a-=b; printf("%lld\n",(LL)pow(2,a)); &#125; return 0;&#125; 2.hdu 1996 汉诺塔VI题意： 题解：所有可能的序列，其实就是每个盘子可能摆在任意一个柱子上，然后每个柱子都上小下大，即3^n 代码：1234567891011121314#include&lt;bits/stdc++.h&gt;using namespace std;#define LL long longint main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; LL a; scanf("%lld",&amp;a); printf("%lld\n",(LL)pow(3,a)); &#125; return 0;&#125; 3.hdu 2064 汉诺塔III题意：改变游戏的玩法，不允许直接从最左(右)边移到最右(左)边(每次移动一定是移到中间杆或从中间移出) 题解：设将n层塔从A经B挪到C需要f[n]步 在新规则下的具体步骤是： 将上面n-1层从A经B挪到C需要f[n-1]步，再将第n层从A挪到B，需要一步，再将上n-1层从C经B挪到A，需要f[n-1]步，再将第n层从B挪到C，需要一步，再将上n-1层从A经B挪到C，需要f[n-1]步 即f[n]=3*f[n-1]+2 初始化f[1]=2 这个题。。好像pow用不了？？得自己写一个。。太久远的代码了。。记不清了 代码：123456789101112131415161718#include&lt;bits/stdc++.h&gt;using namespace std;#define LL long longLL pow(int a,int b)&#123; LL ans=1; for(int i=0;i&lt;b;i++)&#123; ans*=a; &#125; return ans;&#125;int main()&#123; int n; while(~scanf("%d",&amp;n))&#123; printf("%I64d\n",pow(3,n)-1); &#125; return 0;&#125; 4.hdu 2077 汉诺塔IV题意：改变游戏的玩法，不允许直接从最左(右)边移到最右(左)边(每次移动一定是移到中间杆或从中间移出)，可以将最大的一个放在上面！ 题解：由hdu2064汉诺塔III已知递推式f[n]=3*f[n-1]+2，那么将n-1个盘子像汉诺塔III的规则一样先移动到B，因为最大盘子可以放上面，所以把最大盘子移到B，再到C，再将B上的移到C，所以和hdu2064相比只是递推式的最后一步变了，只需要在f[n-1]的基础上再加2即可，a[n]=f[n-1]+2 至于代码为什么长那个样子，好像是因为我当时是直接看样例猜的就水过去了吧╮(￣▽￣””)╭ 代码：12345678910111213#include&lt;bits/stdc++.h&gt;using namespace std;#define LL long longint main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); printf("%I64d\n",(LL)pow(3,n-1)+1); &#125; return 0;&#125; 5.hdu 2175 汉诺塔IX题意： 题解：对于第一个盘子从第一次2^0开始,后面每次要等一个盘子移动完它就移动,也就是说1号盘子隔一个移动一次,即1,3,5,7…是它移动的顺序 对于第二个盘子从第二次2^1开始，需要等比它号码高的一个盘子移动后还要等比它号码低的盘子全部移动后才能移动,即2号要等1号移动完,需要等2^1+2^1=2^2次，即2号盘子每次移动的序号是2,6,10,14.. 对于第3个盘子从2^2开始,同样需要等比它号码高的一个盘子移动后还要等比它号码低的盘子全部移动完后才能移动,即3号要等1,2号移动完才行，需要等2^1+2^2+2^1=2^3次即3号盘子每次移动的序号是4,12,20… 规律已经出现 代码：12345678910111213141516#include&lt;bits/stdc++.h&gt;using namespace std;#define LL long longint main()&#123; int m,n; while(scanf("%d%d",&amp;n,&amp;m)&amp;&amp;(m+n))&#123; int i; for(i=1;i&lt;=n;i++)&#123; if(m%2)break; m/=2; &#125; printf("%d\n",i); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>汉诺塔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一点点ACM递推递归题集]]></title>
+    <url>%2F2018%2F10%2F25%2FACM%E9%80%92%E6%8E%A8%E9%80%92%E5%BD%92%E9%A2%98%E9%9B%86%2F</url>
+    <content type="text"><![CDATA[汉诺塔题集（递归 hdu 1995 1996 2064 2077 2175） hdu 2041 超级楼梯 hdu 2046 骨牌铺方格 hdu 2044 一只小蜜蜂… 51nod 1002 数塔取数问题（dp） hdu 2045 不容易系列之(3)—— LELE的RPG难题 hdu 2047 阿牛的EOF牛肉串 hdu 2048 神、上帝以及老天爷（全错排，递推） hdu 2049 不容易系列之(4)——考新郎（全错排，递推） hdu 2050 折线分割平面 51nod 2000 四边形分割平面（n个m边形分割平面公式推导） hdu 5047 Sawtooth（java大数，分割平面问题） poj 2229 Sumsets（递推，完全背包） 1073 约瑟夫环（递推） Catalan Square – NCPC 2014 （卡特兰数） Best Solver – ICPC 2015 Shenyang（广义斐波那契） ural 1309 Dispute]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2041 超级楼梯（递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202041%20%E8%B6%85%E7%BA%A7%E6%A5%BC%E6%A2%AF%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description有一楼梯共M级，刚开始时你在第一级，若每次只能跨上一级或二级，要走上第M级，共有多少种走法？ Input输入数据首先包含一个整数N，表示测试实例的个数，然后是N行数据，每行包含一个整数M（1&lt;=M&lt;=40）,表示楼梯的级数。 Output对于每个测试实例，请输出不同走法的数量 Sample Input123223 Sample Output1212 题解：要走到第n级台阶，要么是n-1级再走一级上来的，要么是n-2级直接走两级上来的 递推式为f[i]=f[i-1]+f[i-2] 代码：12345678910111213141516171819#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f[50];int main()&#123; int t,n; scanf("%d",&amp;t); f[1]=1;f[2]=1; for(int i=3;i&lt;=40;i++)f[i]=f[i-1]+f[i-2]; while(t--)&#123; scanf("%d",&amp;n); printf("%d\n",f[n]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2050 折线分割平面（分割平面问题）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202050%20%E6%8A%98%E7%BA%BF%E5%88%86%E5%89%B2%E5%B9%B3%E9%9D%A2%EF%BC%88%E5%88%86%E5%89%B2%E5%B9%B3%E9%9D%A2%E9%97%AE%E9%A2%98%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description我们看到过很多直线分割平面的题目，今天的这个题目稍微有些变化，我们要求的是n条折线分割平面的最大数目。比如，一条折线可以将平面分成两部分，两条折线最多可以将平面分成7部分，具体如下所示。 Input输入数据的第一行是一个整数C,表示测试实例的个数，然后是C 行数据，每行包含一个整数n(0&lt;n&lt;=10000),表示折线的数量。 Output对于每个测试实例，请输出平面的最大分割数，每个实例的输出占一行。 Sample Input123212 Sample Output1227 题解：也就是求n个“V”型可以把平面分成多少区域 ans=2*n*n-n+1 首先n条直线可以把平面分成n*(n+1)/2+1个区域，那么对于2*n条直线来说，可以分成n*(2*n+1)+1个域，一个“V”延长出去后，最多会多2块，也就是说因为“V”型的特殊性，每次会少2*n个块，所以答案为2*n*n-n+1 代码：12345678910111213141516#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,t; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); printf("%d\n",2*n*n-n+1); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>分割平面</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2049 不容易系列之(4)——考新郎（全错排，递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu2049%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description国庆期间,省城HZ刚刚举行了一场盛大的集体婚礼,为了使婚礼进行的丰富一些,司仪临时想出了有一个有意思的节目,叫做”考新郎”,具体的操作是这样的: 首先,给每位新娘打扮得几乎一模一样,并盖上大大的红盖头随机坐成一排;然后,让各位新郎寻找自己的新娘.每人只准找一个,并且不允许多人找一个.最后,揭开盖头,如果找错了对象就要当众跪搓衣板… 看来做新郎也不是容易的事情… 假设一共有N对新婚夫妇,其中有M个新郎找错了新娘,求发生这种情况一共有多少种可能. Input输入数据的第一行是一个整数C,表示测试实例的个数，然后是C行数据，每行包含两个整数N和M(1&lt;M&lt;=N&lt;=20)。 Output对于每个测试实例，请输出一共有多少种发生这种情况的可能，每个实例的输出占一行。 Sample Input12322 23 2 Sample Output1213 题解：n个数字，求全排列中m个错排的数量 首先需要知道全错排的求法 -&gt;hdu 2048 神、上帝以及老天爷（全错排，递推） 全错排的递推式是f[n]=(n-1)*(f[n-1]+f[n-2]) 那么n个人中有m-n个人选对了，剩下的m个全错排，所以只要在n个人中选出m个错误的人然后全错排即可，答案为C(n,m)*f[m] 代码：123456789101112131415161718192021222324252627282930#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long LL f[25];LL C(LL n,LL m)&#123; if(m&gt;n)return 0; LL ans=1; for(int i=1;i&lt;=m;i++)&#123; LL a=n+i-m; ans=ans*a/i; &#125; return ans;&#125;int main()&#123; int n,m,t; scanf("%d",&amp;t); f[1]=0;f[2]=1; for(int i=3;i&lt;=20;i++)f[i]=(i-1)*(f[i-1]+f[i-2]); while(t--)&#123; scanf("%d%d",&amp;m,&amp;n); if(m&gt;n)swap(m,n); printf("%lld\n",C(n,m)*f[m]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2048 神、上帝以及老天爷（全错排，递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202048%20%E7%A5%9E%E3%80%81%E4%B8%8A%E5%B8%9D%E4%BB%A5%E5%8F%8A%E8%80%81%E5%A4%A9%E7%88%B7%EF%BC%88%E5%85%A8%E9%94%99%E6%8E%92%EF%BC%8C%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem DescriptionHDU 2006’10 ACM contest的颁奖晚会隆重开始了！为了活跃气氛，组织者举行了一个别开生面、奖品丰厚的抽奖活动，这个活动的具体要求是这样的： 首先，所有参加晚会的人员都将一张写有自己名字的字条放入抽奖箱中；然后，待所有字条加入完毕，每人从箱中取一个字条；最后，如果取得的字条上写的就是自己的名字，那么“恭喜你，中奖了！” 大家可以想象一下当时的气氛之热烈，毕竟中奖者的奖品是大家梦寐以求的Twins签名照呀！不过，正如所有试图设计的喜剧往往以悲剧结尾，这次抽奖活动最后竟然没有一个人中奖！ 我的神、上帝以及老天爷呀，怎么会这样呢？ 不过，先不要激动，现在问题来了，你能计算一下发生这种情况的概率吗？ 不会算？难道你也想以悲剧结尾？！ Input输入数据的第一行是一个整数C,表示测试实例的个数，然后是C 行数据，每行包含一个整数n(1&lt;n&lt;=20),表示参加抽奖的人数。 Output对于每个测试实例，请输出发生这种情况的百分比，每个实例的输出占一行, 结果保留两位小数(四舍五入)，具体格式请参照sample output。 Sample Input1212 Sample Output150.00% 题解：每个人不拿到自己的名字，也就是经典全错排问题 递推的思路，f[i]记为i个人全错排的方法数 如果前n-1个人拿前i-1个名字都没拿到自己名字，那么第n个人必定拿到自己名字，如果要让第n个人拿不到自己的名字，只需要把名字n和前面任意一个人的名字互换即可，总共有n-1种互换方法，即(n-1)*f[n-1] 如果前n-1个人恰好有1个人拿到了自己的名字，也就是说有n-2个人拿对应的n-2个名字没有自己名字，那么只要把这个人的名字和第n个人互换，就能满足所有人都拿不到自己名字的情况，即C(n-1,1)*f[n-2] 其余情况都是重复的了 所以得到递推式f[n]=(n-1)*(f[n-1]+f[n-2]) 总排列数为全排列A(n,n)，最后答案为f[n]/A(n,n) 代码：123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long LL f[25],a[25];int main()&#123; int n,t; scanf("%d",&amp;t); f[1]=0;f[2]=1; a[1]=1; for(int i=2;i&lt;=20;i++)a[i]=a[i-1]*i; for(int i=3;i&lt;=20;i++)f[i]=(i-1)*(f[i-1]+f[i-2]); while(t--)&#123; scanf("%d",&amp;n); double ans=(double)f[n]/a[n]*100; printf("%.2lf",ans); cout&lt;&lt;"%"&lt;&lt;endl; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2047 阿牛的EOF牛肉串（递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202047%20%E9%98%BF%E7%89%9B%E7%9A%84EOF%E7%89%9B%E8%82%89%E4%B8%B2%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description今年的ACM暑期集训队一共有18人，分为6支队伍。其中有一个叫做EOF的队伍，由04级的阿牛、XC以及05级的COY组成。在共同的集训生活中，大家建立了深厚的友谊，阿牛准备做点什么来纪念这段激情燃烧的岁月，想了一想，阿牛从家里拿来了一块上等的牛肉干，准备在上面刻下一个长度为n的只由”E” “O” “F”三种字符组成的字符串（可以只有其中一种或两种字符，但绝对不能有其他字符）,阿牛同时禁止在串中出现O相邻的情况，他认为，”OO”看起来就像发怒的眼睛，效果不好。 你，NEW ACMer,EOF的崇拜者，能帮阿牛算一下一共有多少种满足要求的不同的字符串吗？ PS: 阿牛还有一个小秘密，就是准备把这个刻有 EOF的牛肉干，作为神秘礼物献给杭电五十周年校庆，可以想象，当校长接过这块牛肉干的时候该有多高兴！这里，请允许我代表杭电的ACMer向阿牛表示感谢！ 再次感谢！ Input输入数据包含多个测试实例,每个测试实例占一行,由一个整数n组成，(0&lt;n&lt;40)。 Output对于每个测试实例，请输出全部的满足要求的涂法，每个实例的输出占一行。 Sample Input1212 Sample Output1238 题解：用递推的思路求解 考虑第n个字符 如果第n个字符填O，那么n-1个字符的位置只能是E/F，如果n-1的位置是E/F，那么对于一个合法的n-2来说任何情况都可以，不会再出现OO的情况，方法数为f[n-2]*2 如果第n个字符填E/F，那么对于一个合法的n-1来说任何情况都可以，方法数为f[n-1]*2 所以递推式为：f[n]=2*(f[n-1]+f[n-2]) 代码：123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long LL f[50];int main()&#123; int n; f[1]=3;f[2]=8; for(int i=3;i&lt;=55;i++)f[i]=2*(f[i-1]+f[i-2]); while(scanf("%d",&amp;n)!=EOF)&#123; printf("%lld\n",f[n]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>推公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2046 骨牌铺方格（斐波那契）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202046%20%E9%AA%A8%E7%89%8C%E9%93%BA%E6%96%B9%E6%A0%BC%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description在2×n的一个长方形方格中,用一个1× 2的骨牌铺满方格,输入n ,输出铺放方案的总数.例如n=3时,为2× 3方格，骨牌的铺放方案有三种,如下图： Input输入数据由多行组成，每行包含一个整数n,表示该测试实例的长方形方格的规格是2×n (0&lt;n&lt;=50)。 Output对于每个测试实例，请输出铺放方案的总数，每个实例的输出占一行。 Sample Input123132 Sample Output123132 题解：51nod 1031 骨牌覆盖（斐波那契） 代码：123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long long LL f[55];int main()&#123; int n; f[1]=1;f[2]=2; for(int i=3;i&lt;=55;i++)f[i]=f[i-1]+f[i-2]; while(scanf("%d",&amp;n)!=EOF)&#123; printf("%lld\n",f[n]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>斐波那契</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2045 不容易系列之(3)—— LELE的RPG难题（递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu2045%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description人称“AC女之杀手”的超级偶像LELE最近忽然玩起了深沉，这可急坏了众多“Cole”（LELE的粉丝,即”可乐”）,经过多方打探，某资深Cole终于知道了原因，原来，LELE最近研究起了著名的RPG难题: 有排成一行的ｎ个方格，用红(Red)、粉(Pink)、绿(Green)三色涂每个格子，每格涂一色，要求任何相邻的方格不能同色，且首尾两格也不同色．求全部的满足要求的涂法. 以上就是著名的RPG难题. 如果你是Cole,我想你一定会想尽办法帮助LELE解决这个问题的;如果不是,看在众多漂亮的痛不欲生的Cole女的面子上,你也不会袖手旁观吧? Input输入数据包含多个测试实例,每个测试实例占一行,由一个整数N组成，(0&lt;n&lt;=50)。 Output对于每个测试实例，请输出全部的满足要求的涂法，每个实例的输出占一行。 Sample Input1212 Sample Output1236 题解：考虑第n个格子 如果前n-1个格子直接照搬n-1时的合法涂法，也就是前n-1个格子的1和n-1不同色且相邻不同色，那么对于第n个格子来说，不能涂1也不能涂n-1的颜色，所以只剩一种颜色可以涂 如果前n-2个格子直接照搬n-2时的合法涂法，第n-1个格子涂和1一样的颜色，那么对于第n个格子来说还剩两种颜色可以涂 所以递推式就是dp[n]=dp[n-1]+2*dp[n-2] 有个小小的坑点是n=3的时候答案为6，123，132，213，231，312，321，即dp[1]=3,dp[2]=3*2=6,dp[3]=6 代码：123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longLL dp[55];int main()&#123; int n; dp[1]=3;dp[2]=6;dp[3]=6; for(int i=4;i&lt;=50;i++)dp[i]=dp[i-1]+2*dp[i-2]; while(scanf("%d",&amp;n)!=EOF)&#123; printf("%lld\n",dp[n]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2044 一只小蜜蜂...（递推）]]></title>
+    <url>%2F2018%2F10%2F25%2Fhdu%202044%20%E4%B8%80%E5%8F%AA%E5%B0%8F%E8%9C%9C%E8%9C%82...%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/32768 K (Java/Others) Problem Description有一只经过训练的蜜蜂只能爬向右侧相邻的蜂房，不能反向爬行。请编程计算蜜蜂从蜂房a爬到蜂房b的可能路线数。其中，蜂房的结构如下所示。 Input输入数据的第一行是一个整数N,表示测试实例的个数，然后是N 行数据，每行包含两个整数a和b(0&lt;a&lt;b&lt;50)。 Output对于每个测试实例，请输出蜜蜂从蜂房a爬到蜂房b的可能路线数，每个实例的输出占一行。 Sample Input12321 23 6 Sample Output1213 题解：水水的递推，对于一个数n来说，能到达它的数就是n-1和n-2，所以dp[n]=dp[n-1]+dp[n-2]，斐波那契，a-&gt;b的实际方法数等同于1-&gt;b-a+1 要开LL 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define LL long longLL dp[55];int main()&#123; int t,a,b; scanf("%d",&amp;t); dp[1]=1;dp[2]=1; for(int i=3;i&lt;50;i++)dp[i]=dp[i-1]+dp[i-2]; while(t--)&#123; scanf("%d%d",&amp;a,&amp;b); if(a&gt;=b)puts("0"); else printf("%lld\n",dp[b-a+1]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>斐波那契</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[poj 2229 Sumsets（递推，完全背包）]]></title>
+    <url>%2F2018%2F10%2F25%2Fpoj%202229%20Sumsets%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%8C%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[Time Limit: 2000MS Memory Limit: 200000K Farmer John commanded his cows to search for different sets of numbers that sum to a given number. The cows use only numbers that are an integer power of 2. Here are the possible sets of numbers that sum to 7: 1234561) 1+1+1+1+1+1+1 2) 1+1+1+1+1+2 3) 1+1+1+2+2 4) 1+1+1+4 5) 1+2+2+2 6) 1+2+4 Help FJ count all possible representations for a given integer N (1 &lt;= N &lt;= 1,000,000).Input A single line with a single integer, N.Output The number of ways to represent N as the indicated sum. Due to the potential huge size of this number, print only last 9 digits (in base 10 representation). Sample Input17 Sample Output16 SourceUSACO 2005 January Silver 题意：给一个n，把它分成2的幂次的和，求方法数 题解：方法1）递推：（63ms）记数i的方法数为dp[i] 对于一个n 如果他是奇数，那只能在偶数的基础上加个1，所以答案就是dp[n-1] 如果n是偶数，那么分成两种情况，一种是有1，那么在原来奇数的基础上加1就能变成n，还有一种是没有1，只用除了1以外的2的幂次，这个方法数等于dp[n/2] 为什么是dp[n/2]呢？因为对于任意一个偶数n来说，把(n/2)&lt;&lt;1即可得到n，也就是说，对于（n/2）的任意情况来说，只要把组合中的每个数*2，就可以得到组成n且没有1的情况 随便举个例子1，2，4可以组成7，那么2，4，8就可以组成14 所以偶数的状态转移就是dp[i]=(dp[i-1]+dp[i&gt;&gt;1])%p 从1开始递推即得答案 方法2）完全背包（1000ms）如果一下子想不出递推式的话，就把这个题当成一个完全背包水题做，物品就是1，2，4，……数量不限 先预处理出2的幂次，然后dp[j]=(dp[j]+dp[j-pow2[i]])%p; 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int N=1e6+5;const int p=1e9;int dp[N];int main()&#123; int n; scanf("%d",&amp;n); dp[0]=1; for(int i=1;i&lt;=n;i++)&#123; if(i&amp;1)dp[i]=dp[i-1]; else dp[i]=(dp[i-1]+dp[i&gt;&gt;1])%p; &#125; printf("%d\n",dp[n]); return 0;&#125; 12345678910111213141516171819202122#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int N=1e6+5;const int p=1e9;int pow2[N],dp[N];int main()&#123; int n; scanf("%d",&amp;n); pow2[0]=1; dp[0]=1; for(int i=1;i&lt;20;i++)pow2[i]=pow2[i-1]&lt;&lt;1; for(int i=0;i&lt;20;i++) for(int j=pow2[i];j&lt;=n;j++) dp[j]=(dp[j]+dp[j-pow2[i]])%p; printf("%d\n",dp[n]); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>背包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[I.Riddle（状压dp）-- 2018 CCPC 秦皇岛]]></title>
     <url>%2F2018%2F10%2F24%2FCCPC%202018%20%E7%A7%A6%E7%9A%87%E5%B2%9B%20I%E9%A2%98%20Riddle%2F</url>
     <content type="text"><![CDATA[补题ing ∠( ᐛ 」∠)＿ 题意：给一个n个数的数组，数组中的数字可能代表物品，也可能代表背包，a[i]的具体数值代表一个物品或背包的大小，如果a[i]代表背包的话，必须有对应的物品把背包恰好填满才合法，求有多少种合法的可能 题解：思路是网上学的，先把任意背包和物品的复杂组合简化一下，只看一个背包，处理出一个背包和装入它的物品的可行性，然后用这些子状态dp，很好的处理手法，具体如下： 状压dp，用二进制表示n位数的状态，dp[i]表示状态i的数组下的方法数 预处理出2^15种组合sum[i]，表示状态i的数值和 然后再求合法的背包大小，比较a[i]和sum[j]，如果sum[j]-a[i]==a[i]，也就是说当前a[i]可以作为背包大小，有某种非自身的组合可以填入这个背包，那么f[j]++，f[i]表示状态为i的能否满足恰好是一个背包和装入该背包的物品的情况（即物品全装入这个背包），如果能，方法数为f[i]，初始化为0 然后枚举2^15个背包打包物品状态i，tmp=(1&lt;&lt;n)-i-1;for(int j=(1&lt;&lt;n)-i-1;;j=(j-1)&amp;tmp)可以依次枚举当前背包状态下合法的剩余状态j 状态转移方程为：dp[i|j]+=dp[j]*f[i]; 样例：123456789101112input331 1 151 1 2 2 3101 2 3 4 5 6 7 8 9 10output715127 代码：123456789101112131415161718192021222324252627282930313233343536#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int dp[1&lt;&lt;15|5],f[1&lt;&lt;15|5],a[16],sum[1&lt;&lt;15|5];int main()&#123; int t,n; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); for(int i=0;i&lt;(1&lt;&lt;n);i++)&#123; dp[i]=1; sum[i]=f[i]=0; &#125; for(int i=1;i&lt;=n;i++)scanf("%d",&amp;a[i]); for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;(1&lt;&lt;n);j++) if(j&amp;(1&lt;&lt;(i-1)))sum[j]+=a[i]; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;(1&lt;&lt;n);j++) if(j&amp;(1&lt;&lt;(i-1))) if(sum[j]-a[i]==a[i])f[j]++; for(int i=1;i&lt;(1&lt;&lt;n);i++)&#123; int tmp=(1&lt;&lt;n)-i-1; for(int j=tmp;;j=(j-1)&amp;tmp)&#123; dp[i|j]+=dp[j]*f[i]; if(j==0)break; &#125; &#125; printf("%d\n",dp[(1&lt;&lt;n)-1]); &#125; return 0;&#125;]]></content>
@@ -187,7 +321,7 @@
     <url>%2F2018%2F10%2F12%2F51nod%201031%20%E9%AA%A8%E7%89%8C%E8%A6%86%E7%9B%96%EF%BC%88%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 在2*N的一个长方形方格中，用一个1*2的骨牌排满方格。问有多少种不同的排列方法。 例如：2*3的方格，共有3种不同的排法。（由于方案的数量巨大，只输出 Mod 10^9 + 7 的结果） Input输入N(N &lt;= 1000) Output输出数量 Mod 10^9 + 7 Input示例13 Output示例13 题解：考虑最左边一列的铺法，因为要铺满，所以如果横向铺两个，方法数加上f[n-2]，如果纵向铺一个，方法数加上f[n-1]，那么f[n]=f[n-1]+f[n-2]，就是个赤裸裸的斐波那契了 初始f[1]=1，只有纵向一个，f[2]=2，纵向两个或者横向两个 代码：123456789101112131415161718#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;const int p=1e9+7;const int N=1005;int f[N];int main()&#123; int n; scanf("%d",&amp;n); f[1]=1;f[2]=2; for(int i=3;i&lt;=n;i++)f[i]=(f[i-1]+f[i-2])%p; printf("%d\n",f[n]); return 0;&#125;]]></content>
       <categories>
-        <category>数论</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>推公式</tag>
@@ -524,8 +658,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
       </tags>
   </entry>
   <entry>
@@ -538,18 +672,6 @@
       <tags>
         <tag>dp</tag>
         <tag>背包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
-    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
-      <categories>
-        <category>计算几何</category>
-      </categories>
-      <tags>
-        <tag>推公式</tag>
-        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -572,6 +694,18 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1629 B君的圆锥（推公式，三分）]]></title>
+    <url>%2F2018%2F10%2F03%2F51nod%201629%20B%E5%90%9B%E7%9A%84%E5%9C%86%E9%94%A5%EF%BC%88%E6%8E%A8%E5%85%AC%E5%BC%8F%EF%BC%8C%E4%B8%89%E5%88%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 B君要用一个表面积为S的圆锥将白山云包起来。 B君希望包住的白山云体积尽量大，B君想知道体积最大可以是多少。 注意圆锥的表面积包括底面和侧面。 Input一行一个整数，表示表面积S。(1 &lt;= S &lt;= 10^9) Output一行一个实数，表示体积。 Input示例18 Output示例11.504506 题解：懒得打公式了。。直接写吧 这是个上凸函数，所以还有一种方法是三分，因为没有写过三分的题所以虽然上面那种推公式的方法很方便，不过还是去写了三分法（我记得之前有个三分的题没补来着(#ﾟДﾟ)然而忘了什么题了） 初始三分的时候，要注意保证半径的合法性l=0,r=sqrt(s/(2*pai))，也就是极限情况h=∞或h=0 两种方法跑的都很快快 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define pai M_PIint main()&#123; double s,rr; scanf("%lf",&amp;s); rr=s/(4*pai); printf("%lf\n",(double)sqrt(rr*s*s-2*pai*s*rr*rr)/3); return 0;&#125; 123456789101112131415161718192021222324#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;#define eps 1e-6#define pai M_PIdouble s;double v(double r)&#123; return (double)sqrt(r*r*s*s-2*pai*s*r*r*r*r)/3;&#125;int main()&#123; scanf("%lf",&amp;s); double l=0,r=sqrt(s/(2*pai)),m,rm; while(r-l&gt;eps)&#123; m=(l+r)/2.0;rm=(m+r)/2.0; if(v(m)&gt;=v(rm))r=rm; else l=m; &#125; printf("%lf\n",v(l)); return 0;&#125;]]></content>
+      <categories>
+        <category>计算几何</category>
+      </categories>
+      <tags>
+        <tag>推公式</tag>
+        <tag>三分</tag>
       </tags>
   </entry>
   <entry>
@@ -902,8 +1036,8 @@
         <category>二分</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
         <tag>二分</tag>
       </tags>
   </entry>
@@ -1031,8 +1165,8 @@
         <category>数论</category>
       </categories>
       <tags>
-        <tag>逆元</tag>
         <tag>推公式</tag>
+        <tag>逆元</tag>
         <tag>组合数</tag>
         <tag>斯特林数</tag>
       </tags>
@@ -1091,9 +1225,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
+        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
-        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1232,17 +1366,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
-    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1088 最长回文子串（Manacher算法）]]></title>
     <url>%2F2018%2F09%2F18%2F1088%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%EF%BC%88Manacher%E7%AE%97%E6%B3%95%EF%BC%89%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 回文串是指aba、abba、cccbccc、aaaa这种左右对称的字符串。输入一个字符串Str，输出Str里最长回文子串的长度。 Input输入Str（Str的长度 &lt;= 1000） Output输出最长回文子串的长度L。 Input示例1daabaac Output示例15 题解：这题数据范围水。。不用马拉车也能水过去，1089那题必须用o(n)的马拉车 最长回文子串——Manacher 算法 代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=100005;int p[N&lt;&lt;1],ji,len,ans=0,maxl=0,cur=0;char s[N],ss[N&lt;&lt;1];void init()&#123; ji=0; ss[ji]='@'; for(int i=0;i&lt;len;i++)&#123; ss[++ji]='#'; ss[++ji]=s[i]; &#125; ss[++ji]='#';&#125;void manacher()&#123; len=ji; for(int i=1;i&lt;ji;i++)&#123; if(i&lt;maxl)p[i]=min(maxl-i,p[2*cur-i]);//小于最长边界 else p[i]=1;//边界外，初始化为1，然后扩展直到不配对 while(ss[i+p[i]]==ss[i-p[i]])p[i]++;//直到不配对 ans=max(ans,p[i]);//更新答案 if(p[i]+i&gt;maxl)&#123;//更新最长边界 cur=i; maxl=p[i]+i; &#125; &#125;&#125;int main()&#123; scanf("%s",s); len=strlen(s); init(); manacher(); printf("%d\n",ans-1); return 0;&#125;]]></content>
@@ -1251,6 +1374,17 @@
       </categories>
       <tags>
         <tag>Manacher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1057 N的阶乘（java大数）]]></title>
+    <url>%2F2018%2F09%2F18%2F1057%20N%E7%9A%84%E9%98%B6%E4%B9%98%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入N求N的阶乘的准确值。 Input输入N(1 &lt;= N &lt;= 10000) Output输出N的阶乘 Input示例15 Output示例1120 水一发java。。 代码：123456789101112131415import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n; n=cin.nextBigInteger(); int num=n.intValue(); for(int i=1;i&lt;num;i++)n=n.multiply(BigInteger.valueOf(i)); System.out.println(n); cin.close(); &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -1326,7 +1460,7 @@
   <entry>
     <title><![CDATA[1073 约瑟夫环（递推）]]></title>
     <url>%2F2018%2F09%2F17%2F1073%20%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%EF%BC%88%E9%80%92%E6%8E%A8%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &lt;= N, K &lt;= 10^6) Output最后剩下的人的编号 Input示例13 2 Output示例13 题解：好像是大一c++作业，当时还是直接模拟写的2333333 约瑟夫环结论见代码 证明如下： n个人，编号1-n，从1开始报数，报到k的退出，剩下人继续从1开始报数 第一个人编号（k%n）出列，剩下的n-1个人组成一个新的约瑟夫环，从编号（k%n+1）开始，k+1,k+2…n-2,n-1,n,1,2…k-2,k-1，编号k+1的人报1，那么重新编号一下k+1-&gt;1,k+2-&gt;2…k-2-&gt;n-2,k-1-&gt;n-1，变成了n-1个人报数的子问题 那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结局了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解 令f[i]表示i个人玩游戏报k退出最后胜利者的编号，f[1]=1; f[i]=(f[i-1]+k)%i; (i&gt;1) 有了这个公式，从2-n顺序算出f[i]的数值，编号从1开始，所以最后答案输出f[n]+1 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); int ans=0; for(int i=2;i&lt;=n;i++)ans=(ans+k)%i; printf("%d\n",ans+1); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB N个人坐成一个圆环（编号为1 - N），从第1个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 例如：N = 3，K = 2。2号先出列，然后是1号，最后剩下的是3号。 Input2个数N和K，表示N个人，数到K出列。(2 &lt;= N, K &lt;= 10^6) Output最后剩下的人的编号 Input示例13 2 Output示例13 题解：好像是大一c++作业，当时还是直接模拟写的2333333 约瑟夫环结论见代码 证明如下： n个人，编号1-n，从1开始报数，报到k的退出，剩下人继续从1开始报数 第一个人编号（k%n）出列，剩下的n-1个人组成一个新的约瑟夫环，从编号（k%n+1）开始，k+1,k+2…n-2,n-1,n,1,2…k-2,k-1，编号k+1的人报1，那么重新编号一下k+1-&gt;1,k+2-&gt;2…k-2-&gt;n-2,k-1-&gt;n-1，变成了n-1个人报数的子问题 那么根据这个新编号可以得到变回原编号的方程，即得到n个人情况的解，变回去的公式是，x’=(x+k)%n，所以问题就结束了，递推，要知道n-1人问题的解，只需要知道n-2人问题的解，然后继续往前得知道n-3问题的解 令f[i]表示i个人玩游戏报k退出最后胜利者的编号，f[1]=1; f[i]=(f[i-1]+k)%i; (i&gt;1) 有了这个公式，从2-n顺序算出f[i]的数值，编号从1开始，所以最后答案输出f[n]+1 代码：123456789101112131415161718192021#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,k; scanf("%d%d",&amp;n,&amp;k); int ans=0; for(int i=2;i&lt;=n;i++)ans=(ans+k)%i; printf("%d\n",ans+1); return 0;&#125;]]></content>
       <categories>
         <category>数论</category>
       </categories>
@@ -1413,8 +1547,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>推公式</tag>
+        <tag>前缀和</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -1548,8 +1682,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java高精度</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -1635,6 +1769,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
+    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java高精度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hdu 5920 Ugly Problem（贪心，java大数）]]></title>
     <url>%2F2018%2F09%2F06%2Fhdu%205920%20Ugly%20Problem%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%8Cjava%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
     <content type="text"><![CDATA[Time Limit: 2000/1000 MS (Java/Others) Memory Limit: 65536/65536 K (Java/Others) Special Judge Problem DescriptionEveryone hates ugly problems. You are given a positive integer. You must represent that number by sum of palindromic numbers. A palindromic number is a positive integer such that if you write out that integer as a string in decimal without leading zeros, the string is an palindrome. For example, 1 is a palindromic number and 10 is not. InputIn the first line of input, there is an integer T denoting the number of test cases. For each test case, there is only one line describing the given integer s (1≤s≤10^1000). OutputFor each test case, output “Case #x:” on the first line where x is the number of that test case starting from 1. Then output the number of palindromic numbers you used, n, on one line. n must be no more than 50. en output n lines, each containing one of your palindromic numbers. Their sum must be exactly s. Sample Input1232181000000000000 Sample Output12345678Case #1:299Case #2:29999999999991 Hint129 + 9 = 18999999999999 + 1 = 1000000000000 Source2016中国大学生程序设计竞赛（长春）-重现赛 题意：给一个数n，把它分成50个以内回文数，这些回文数的和等于n 题解：题目竟然叫ugly problem。。果然不beautiful。。wa了好多次。。c++的话大概是要再写一个高精度减法 思路是构造的时候贪心的去构造，对一个数x来说，先取他的前（len+1）/2 位，记为l，然后再复制（len/2）位记为r，（这两个式子对奇偶都适用） 如果生成的这个长度相同的数now比x小，那么直接更新x，用新的x重复上诉操作 如果生成的now比x大，那么就把l-1，用新的l来算出r和now 举个例子：12345x=654321则一开始l=654，这样r=456，now=654456，但是654456&gt;654321，所以l--，l=653，r=356，now=653356，更新x，x=654321-653356=965，l=96，r=9，now=969，969&gt;965，l=95，r=9，now=959，x=965-959=6，跳出while，存入最后一个6 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); int t; t=cin.nextInt(); BigInteger x=BigInteger.valueOf(0),num,jian; String s=null,r=null,l=null,now=null; String ans[]=new String[55]; for(int cas=1;cas&lt;=t;cas++) &#123; int ji=0; x=cin.nextBigInteger(); System.out.println("Case #"+cas+":"); s=x.toString(); int len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); while(x.compareTo(BigInteger.valueOf(11))&gt;=0) &#123; l=num.toString(); r=""; for(int i=len/2-1;i&gt;=0;i--)r=r+l.charAt(i); now=l+r; jian=new BigInteger(now); if(x.compareTo(jian)&gt;=0) &#123; x=x.subtract(jian); ans[ji++]=now; s=x.toString(); len=s.length(); now=s.substring(0,(len+1)/2); num=new BigInteger(now); &#125; else &#123; num=num.subtract(BigInteger.valueOf(1)); &#125; &#125; int res=x.intValue(); if(res&gt;=10) &#123; ans[ji++]="9"; ans[ji++]=String.valueOf(res-9); &#125; else if(res!=0)&#123; ans[ji++]=String.valueOf(res); &#125; System.out.println(ji); for(int i=0;i&lt;ji;i++)System.out.println(ans[i]); &#125; &#125;&#125;]]></content>
@@ -1643,17 +1788,6 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>java高精度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hdu 4523 威威猫系列故事——过生日（java大数）]]></title>
-    <url>%2F2018%2F09%2F06%2Fhdu%204523%20%E5%A8%81%E5%A8%81%E7%8C%AB%E7%B3%BB%E5%88%97%E6%95%85%E4%BA%8B%E2%80%94%E2%80%94%E8%BF%87%E7%94%9F%E6%97%A5%EF%BC%88java%E5%A4%A7%E6%95%B0%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[http://acm.hdu.edu.cn/showproblem.php?pid=4523 Time Limit: 500/200 MS (Java/Others) Memory Limit: 65535/32768 K (Java/Others) Problem Description 2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。 大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。 假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？ Input多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。[Technical Specification]3 &lt;= n &lt;= 10^1000 &lt; m &lt;= 10^1000 &lt;= p &lt;= 10^100 Output每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；每组数据输出一行。 Sample Input14 5 1 Sample Output1YES HintSample对应的示意图如下： Source2013腾讯编程马拉松初赛第四场（3月24日） 题解：切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内 代码：1234567891011121314151617import java.io.*; import java.math.*;import java.util.*; public class Main &#123; public static void main(String[] args) &#123; Scanner cin=new Scanner(System.in); BigInteger n,m,p; while(cin.hasNextBigInteger()) &#123; n=cin.nextBigInteger(); m=cin.nextBigInteger(); p=cin.nextBigInteger(); if(m.compareTo(BigInteger.valueOf(3))&gt;=0&amp;&amp;m.compareTo(n.add(p))&lt;=0)System.out.println("YES"); else System.out.println("NO"); &#125; &#125;&#125;]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
         <tag>java高精度</tag>
       </tags>
   </entry>
