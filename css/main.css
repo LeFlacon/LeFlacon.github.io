@@ -1865,7 +1865,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9a2583;
+  background: #57131c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2858,10 +2858,6 @@ body {
 }
 .posts-expand .post-body img {
   border: none;
-  padding: 0px;
-}
-.post-gallery .post-gallery-img img {
-  padding: 3px;
 }
 .posts-expand .post-title {
   font-family: Times;
