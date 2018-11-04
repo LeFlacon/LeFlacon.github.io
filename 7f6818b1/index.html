@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+
+<!--百度统计-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?306d3b2269aee3277229cfb83b08e17b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<style>
+    .pace .pace-progress {
+        background: #ffffff; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #ffffff, 0 0 5px     #ffffff; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #ffffff;    /*上边框颜色*/
+        border-left-color: #ffffff;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="true">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="true">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "2cfb517c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon.ico?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon (1).ico?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+  <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
+
+
+  <meta name="description" content="本来想在这篇深入研究一下暴雪的字符串哈希的，据说是最快的字符串哈希，而且人家可靠性特好，然而。。里面有一堆奇妙的不明所以的常数。。之前写计概论文的时候算那个sqrt的神奇常数0x5f3759df就搞了半天。。现在已经忘了最小二乘法咋写了ಠ_ಠ 更惨的是。。周末就这样过完了TAT，我的模电作业还没写完。。模电啊模电TAT。。完全从最初只是帮人写个数据结构哈希表跑偏了233333 暴雪的hash一些细">
+<meta name="keywords" content="作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）">
+<meta property="og:url" content="http://leflacon.github.io/7f6818b1/index.html">
+<meta property="og:site_name" content="LeFlacon&#39;s Blog">
+<meta property="og:description" content="本来想在这篇深入研究一下暴雪的字符串哈希的，据说是最快的字符串哈希，而且人家可靠性特好，然而。。里面有一堆奇妙的不明所以的常数。。之前写计概论文的时候算那个sqrt的神奇常数0x5f3759df就搞了半天。。现在已经忘了最小二乘法咋写了ಠ_ಠ 更惨的是。。周末就这样过完了TAT，我的模电作业还没写完。。模电啊模电TAT。。完全从最初只是帮人写个数据结构哈希表跑偏了233333 暴雪的hash一些细">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwwctce8h4j305q0430si.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fww6ijaep0j30b00dg74c.jpg">
+<meta property="og:updated_time" content="2018-11-04T14:28:19.108Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）">
+<meta name="twitter:description" content="本来想在这篇深入研究一下暴雪的字符串哈希的，据说是最快的字符串哈希，而且人家可靠性特好，然而。。里面有一堆奇妙的不明所以的常数。。之前写计概论文的时候算那个sqrt的神奇常数0x5f3759df就搞了半天。。现在已经忘了最小二乘法咋写了ಠ_ಠ 更惨的是。。周末就这样过完了TAT，我的模电作业还没写完。。模电啊模电TAT。。完全从最初只是帮人写个数据结构哈希表跑偏了233333 暴雪的hash一些细">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwwctce8h4j305q0430si.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://leflacon.github.io/7f6818b1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希） | LeFlacon's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://your-url" class="github-corner" aria-label="View source on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LeFlacon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">小小的脑袋大大的疑惑!?(･_･;?)</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-留言板">
+    <a href="/nothing" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-star"></i> <br>留言板</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+    <a href="/404" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-友链">
+    <a href="/friends" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>友链</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/7f6818b1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-04 22:24:00 / 修改时间：22:28:19" itemprop="dateCreated datePublished" datetime="2018-11-04T22:24:00+08:00">2018-11-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/7f6818b1/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/7f6818b1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/7f6818b1/" class="leancloud_visitors" data-flag-title="数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本来想在这篇深入研究一下暴雪的字符串哈希的，据说是最快的字符串哈希，而且人家可靠性特好，然而。。里面有一堆奇妙的不明所以的常数。。之前写计概论文的时候算那个sqrt的神奇常数0x5f3759df就搞了半天。。现在已经忘了最小二乘法咋写了ಠ_ಠ</p>
+<p>更惨的是。。周末就这样过完了TAT，我的模电作业还没写完。。模电啊模电TAT。。完全从最初只是帮人写个数据结构哈希表跑偏了233333</p>
+<p>暴雪的hash一些细节留着有空再研究吧，先懂个大概的核心思路，mark一下，顺便膜一下。。暴雪的基础函数都。。好酷的样子啊0.0</p>
+<hr>
+<h1 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h1><p>我也不知道题目啥要求╮(￣▽￣””)╭，反正就是写个字符串哈希</p>
+<h1 id="hash基本思路："><a href="#hash基本思路：" class="headerlink" title="hash基本思路："></a>hash基本思路：</h1><p>下面这些乱七八糟的一堆东西。。大多都是四处学习<s>复制粘贴</s>的。。虽然很多方法并不优。。就当了解一下了</p>
+<p>哈希表（Hash table，也叫散列表），是根据关键码值（Key）而直接进行访问的数据结构</p>
+<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>通过某种函数使元素的存储位置与它的key之间能够建立一一映射的关系，那么要查找某个key对应的value的值，本来直接查找的话需要o(n)扫一遍，但是如果可以通过key直接求得value存储的位子，那么o(1)就可以得到value的值</p>
+<h2 id="基本操作："><a href="#基本操作：" class="headerlink" title="基本操作："></a>基本操作：</h2><h3 id="1-插入insert："><a href="#1-插入insert：" class="headerlink" title="1.插入insert："></a>1.插入insert：</h3><p>根据待插入元素的key，用某种函数（有很多种hash函数）计算出该元素的存储位置并按此位置进行存放</p>
+<h3 id="2-搜索find："><a href="#2-搜索find：" class="headerlink" title="2.搜索find："></a>2.搜索find：</h3><p>对元素的key进行同样的计算，把求得的函数值当做元素的存储位置，在结构中按此位置取元素比较，若关键码相等，则搜索成功</p>
+<h2 id="哈希冲突："><a href="#哈希冲突：" class="headerlink" title="哈希冲突："></a>哈希冲突：</h2><p>哈希函数将两个不同的key映射到同一个地方的情况</p>
+<p>哈希冲突是不可避免的，如果遇到冲突，最常用的解决办法就是开放定址法和链地址法</p>
+<h3 id="1-开放地址法"><a href="#1-开放地址法" class="headerlink" title="1.开放地址法"></a>1.开放地址法</h3><blockquote>
+<p>当发生哈希冲突时，如果哈希表未被装满，说明在哈希表中必然还有空位置，那么可以把key存放到表中下一个空位中。</p>
+<p>寻找下一个空余位置要用到两种方法：线性探测和二次探测</p>
+<p>1）线性探测：</p>
+<p>从发生冲突的位置开始，依次继续向后探测，直到找到空位置为止</p>
+<p>2）二次探测：</p>
+<p>研究表明：当表的长度为质数且表装载因子a不超过0.5时，新的表项一定能够插入，而且任何一个位置都不会被探查两次。因此只要表中有一半的空位置，就不会存在表满的问题。在搜索时可以不考虑表装满的情况，但在插入时必须确保表的装载因子a不超过0.5；如果超出必须考虑增容</p>
+</blockquote>
+<h3 id="2-链地址法"><a href="#2-链地址法" class="headerlink" title="2.链地址法"></a>2.链地址法</h3><blockquote>
+<p>首先对key用hash函数计算地址，具有相同地址的key归于同一子集合，每一个子集合称为一个桶，各个桶中的元素通过一个单链表链接起来，各链表的头结点存储在哈希表中</p>
+<p>应用链地址法处理溢出，需要增设链接指针，似乎增加了存储开销，然而事实上，由于开地址法必须保持大量的空闲空间以确保搜索效率，而表项所占空间又比指针大的多，所以使用链地址法反而比开地址法节省存储空间</p>
+<p>大概就是下图。。如有雷同。。我的图是盗的0.0</p>
+</blockquote>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwwctce8h4j305q0430si.jpg" alt=""></p>
+<h2 id="哈希函数："><a href="#哈希函数：" class="headerlink" title="哈希函数："></a>哈希函数：</h2><p>BKDRHash，APHash，DJBHash，JSHash，RSHash，SDBMHash，PJWHash，ELFHash</p>
+<h3 id="1-直接定址法"><a href="#1-直接定址法" class="headerlink" title="1.直接定址法"></a>1.直接定址法</h3><p>取某个线性函数：<code>hash(key)=A*key+B</code></p>
+<p>适合查找比较小且连续的情况</p>
+<h3 id="2-除留余数法"><a href="#2-除留余数法" class="headerlink" title="2.除留余数法"></a>2.除留余数法</h3><p>设散列表中允许的地址数为m，取一个不大于m，但最接近或者等于m的质数p作为除数，按照哈希函数：<code>hash(key)=key%p(p&lt;=m)</code>,将关键码转换成哈希地址</p>
+<h3 id="3-平方取中法"><a href="#3-平方取中法" class="headerlink" title="3.平方取中法"></a>3.平方取中法</h3><p>假设关键字为1234，对它平方就是1522756，抽取中间的3位227作为哈希地址；</p>
+<p>平方取中法比较适合：不知道关键字的分布，而位数又不是很大的情况</p>
+<h3 id="4-折叠法"><a href="#4-折叠法" class="headerlink" title="4.折叠法"></a>4.折叠法</h3><p>折叠法是将关键字从左到右分割成位数相等的几部分(最后一部分位数可以短些)，然后将这几部分叠加求和，并按散列表表长，取后几位作为散列地址</p>
+<p>折叠法适合事先不需要知道关键字的分布，适合关键字位数比较多的情况</p>
+<h3 id="5-随机数法"><a href="#5-随机数法" class="headerlink" title="5.随机数法"></a>5.随机数法</h3><p>选择一个随机函数，取关键字的随机函数值为它的哈希地址，即H(key)=random(key),其中random为随机数函数通常应用于关键字长度不等时采用此法</p>
+<h3 id="6-数学分析法"><a href="#6-数学分析法" class="headerlink" title="6.数学分析法"></a>6.数学分析法</h3><p>名字很牛逼其实就是根据实际数据特点人工分析。。好像没啥用？</p>
+<p>例如：假设要存储某家公司员工登记表，如果用手机号作为关键字，那么极有可能前7位都是相同的，那么我们可以选择后面的四位作为散列地址，如果这样的抽取工作还容易出现冲突，还可以对抽取出来的数字进行反转(如1234改成4321)、右环位移(如1234改成4123)、左环移位、前两数与后两数叠加(如1234改成12+34=46)等方法</p>
+<p>查了一堆hash函数常用质数：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">61</span>,<span class="number">83</span>,<span class="number">113</span>,<span class="number">151</span>,<span class="number">211</span>,<span class="number">281</span>,<span class="number">379</span>,<span class="number">509683</span>,<span class="number">911</span>/一千以下</span><br><span class="line"></span><br><span class="line"><span class="number">1217</span>,<span class="number">1627</span>,<span class="number">2179</span>,<span class="number">2909</span>,<span class="number">3881</span>,<span class="number">6907</span>,<span class="number">9209</span>,/一万以下</span><br><span class="line"></span><br><span class="line"><span class="number">12281</span>,<span class="number">16381</span>,<span class="number">21841</span>,<span class="number">29123</span>,<span class="number">38833</span>,<span class="number">51787</span>,<span class="number">69061</span>,<span class="number">92083</span>,/十万以下</span><br><span class="line"></span><br><span class="line"><span class="number">122777</span>,<span class="number">163729</span>,<span class="number">218357</span>,<span class="number">291143</span>,<span class="number">388211</span>,<span class="number">517619</span>,<span class="number">690163</span>,<span class="number">999983</span>,/百万以下</span><br><span class="line"></span><br><span class="line"><span class="number">1226959</span>,<span class="number">1635947</span>,<span class="number">2181271</span>,<span class="number">2908361</span>,<span class="number">3877817</span>,<span class="number">5170427</span>,<span class="number">6893911</span>,<span class="number">9191891</span>,/千万以下</span><br><span class="line"></span><br><span class="line"><span class="number">12255871</span>,<span class="number">16341163</span>,<span class="number">21788233</span>,<span class="number">29050993</span>,<span class="number">38734667</span>,<span class="number">51646229</span>,<span class="number">68861641</span>,<span class="number">91815541</span>,/一亿以下</span><br><span class="line"></span><br><span class="line"><span class="number">1e9</span>+<span class="number">7</span>和<span class="number">1e9</span>+<span class="number">9</span><span class="comment">//十亿左右</span></span><br><span class="line"></span><br><span class="line"><span class="number">122420729</span>,<span class="number">163227661</span>,<span class="number">217636919</span>,<span class="number">290182597</span>,<span class="number">386910137</span>,<span class="number">515880193</span>,<span class="number">687840301</span>,<span class="number">917120411</span>,/十亿以下</span><br><span class="line"></span><br><span class="line"><span class="number">1222827239</span>,<span class="number">1610612741</span>,<span class="number">3221225473</span>ul,<span class="number">4294967291</span>ul/十亿以上</span><br></pre></td></tr></table></figure>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><p>哈希冲突用的是链地址法，哈希函数用的time33</p>
+<p>因为题目好像真的没啥要求。。所以写了个差不多得了的哈希╮(￣▽￣””)╭</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> size=<span class="number">911</span>;<span class="comment">//随便找了个看得顺眼的常用质数</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="built_in">string</span> key;</span><br><span class="line">	<span class="built_in">string</span> value;</span><br><span class="line">	node *next;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hash_Table</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Hash_Table()&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">				HT[i]=<span class="keyword">new</span> node;</span><br><span class="line">				HT[i]=<span class="literal">NULL</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="built_in">string</span> key)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">bool</span> <span class="title">vis</span><span class="params">(<span class="built_in">string</span> key)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">string</span> key,<span class="built_in">string</span> value)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">get_value</span><span class="params">(<span class="built_in">string</span> key)</span></span>;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		node *HT[size];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//time33</span></span><br><span class="line"><span class="keyword">int</span> Hash_Table::hash(<span class="built_in">string</span> key)&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> len=key.length();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		tmp=(tmp*<span class="number">33</span>+(<span class="keyword">int</span>)key[i])%size;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// cout&lt;&lt;tmp&lt;&lt;endl;</span></span><br><span class="line">	<span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//是否存过</span></span><br><span class="line"><span class="keyword">bool</span> Hash_Table::vis(<span class="built_in">string</span> key)&#123;</span><br><span class="line">	node* p;</span><br><span class="line">	<span class="keyword">int</span> index=hash(key);</span><br><span class="line">	<span class="keyword">for</span>(p=HT[index];p!=<span class="literal">NULL</span>;p=p-&gt;next)&#123;</span><br><span class="line">		<span class="keyword">if</span>(key.compare(p-&gt;key)==<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入</span></span><br><span class="line"><span class="keyword">void</span> Hash_Table::insert(<span class="built_in">string</span> key,<span class="built_in">string</span> value)&#123;</span><br><span class="line">	node *p,*tmp;</span><br><span class="line">	<span class="keyword">int</span> index=hash(key);</span><br><span class="line">	<span class="comment">// cout&lt;&lt;index&lt;&lt;endl;</span></span><br><span class="line">	<span class="keyword">if</span>(!vis(key))&#123;</span><br><span class="line">		<span class="keyword">if</span>(HT[index]==<span class="literal">NULL</span>)&#123;</span><br><span class="line">			tmp=<span class="keyword">new</span> node;</span><br><span class="line">			tmp-&gt;key=key;</span><br><span class="line">			tmp-&gt;value=value;</span><br><span class="line">			tmp-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">			HT[index]=tmp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">for</span>(p=HT[index];p-&gt;next!=<span class="literal">NULL</span>;p=p-&gt;next);</span><br><span class="line">			tmp=<span class="keyword">new</span> node;</span><br><span class="line">			tmp-&gt;key=key;</span><br><span class="line">			tmp-&gt;value=value;</span><br><span class="line">			tmp-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">			p-&gt;next=tmp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(p=HT[index];p-&gt;next!=<span class="literal">NULL</span>;p=p-&gt;next)</span><br><span class="line">			<span class="keyword">if</span>(key.compare(p-&gt;key)==<span class="number">0</span>)</span><br><span class="line">				p-&gt;value=value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> Hash_Table::get_value(<span class="built_in">string</span> key)&#123;</span><br><span class="line">	<span class="keyword">int</span> index=hash(key);</span><br><span class="line">	node* p;</span><br><span class="line">	<span class="keyword">for</span>(p=HT[index];p!=<span class="literal">NULL</span>;p=p-&gt;next)&#123;</span><br><span class="line">		<span class="keyword">if</span>(key.compare(p-&gt;key)==<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">"该key对应的value是："</span>&lt;&lt;p-&gt;value&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"啥玩意儿啊找不着啊QWQ"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Hash_Table ht;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="built_in">string</span> kk,vv;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"请输入哈希对数："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"请输入第"</span>&lt;&lt;i&lt;&lt;<span class="string">"组哈希："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;kk;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;vv;</span><br><span class="line">		ht.insert(kk,vv);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"请输入要求的key："</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s)&#123;</span><br><span class="line">		ht.get_value(s);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h2><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fww6ijaep0j30b00dg74c.jpg" alt=""></p>
+<hr>
+<h1 id="暴雪字符串哈希"><a href="#暴雪字符串哈希" class="headerlink" title="暴雪字符串哈希"></a>暴雪字符串哈希</h1><p>妙在一个key有三个哈希值，然后就能风驰电掣又准确的单刀直入的完成一些妙妙的比较</p>
+<p>两个不同的字符串经过一个hash算法可能得到同一个地址，但用三个不同的hash算法算出的结果都一致，那就是个很小很小很小的概率，据说这个概率是1:18889465931478580854784，对一个游戏程序来说足够安全了</p>
+<p>至于其余那些迷之常数，尚未参透0.0</p>
+<h2 id="大概思路："><a href="#大概思路：" class="headerlink" title="大概思路："></a>大概思路：</h2><p>一个字符串有三个哈希值，一个用来确定位置，另外两个用来校验</p>
+<p>对于一个字符串来说，先哈希函数求的它的位置</p>
+<p>1）察看哈希表中的这个位置 </p>
+<p>2）若这个位置为空，则该字符串肯定不存在，返回不存在</p>
+<p>3）这个位置不为空，则检查其他两个哈希值是否也匹配，假如匹配，则返回存在</p>
+<p>4）移到下一个位置，假如越界，则返回不存在</p>
+<p>5）检查是不是又回到了原来的位置，假如是，则返回不存在</p>
+<p>6）回到2 </p>
+<h2 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*********************************StringHash.h*********************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXTABLELEN 1024 <span class="comment">// 默认哈希索引表大小 </span></span></span><br><span class="line"><span class="comment">////////////////////////////////////////////////////////////////////////// </span></span><br><span class="line"><span class="comment">// 哈希索引表定义 </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">HASHTABLE</span></span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">　　<span class="keyword">long</span> nHashA; </span><br><span class="line">　　<span class="keyword">long</span> nHashB; </span><br><span class="line">　　<span class="keyword">bool</span> bExists; </span><br><span class="line">&#125;HASHTABLE, *PHASHTABLE ;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StringHash</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">　　StringHash(<span class="keyword">const</span> <span class="keyword">long</span> nTableLength = MAXTABLELEN);</span><br><span class="line">　　~StringHash(<span class="keyword">void</span>);</span><br><span class="line"><span class="keyword">private</span>: </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> cryptTable[<span class="number">0x500</span>]; </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> m_tablelength; <span class="comment">// 哈希索引表长度 </span></span><br><span class="line">　 HASHTABLE *m_HashIndexTable; </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">　　<span class="function"><span class="keyword">void</span> <span class="title">InitCryptTable</span><span class="params">()</span></span>; <span class="comment">// 对哈希索引表预处理 </span></span><br><span class="line">　　<span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">HashString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; lpszString, <span class="keyword">unsigned</span> <span class="keyword">long</span> dwHashType)</span></span>; <span class="comment">// 求取哈希值 </span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">　　<span class="function"><span class="keyword">bool</span> <span class="title">Hash</span><span class="params">(<span class="built_in">string</span> url)</span></span>;</span><br><span class="line">　　<span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">Hashed</span><span class="params">(<span class="built_in">string</span> url)</span></span>; <span class="comment">// 检测url是否被hash过</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">/*********************************StringHash.cpp*********************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"StdAfx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"StringHash.h"</span></span></span><br><span class="line"></span><br><span class="line">StringHash::StringHash(<span class="keyword">const</span> <span class="keyword">long</span> nTableLength <span class="comment">/*= MAXTABLELEN*/</span>)</span><br><span class="line">&#123;</span><br><span class="line">　　InitCryptTable(); </span><br><span class="line">　　m_tablelength = nTableLength; </span><br><span class="line">　　<span class="comment">//初始化hash表</span></span><br><span class="line">　　m_HashIndexTable = <span class="keyword">new</span> HASHTABLE[nTableLength]; </span><br><span class="line">　　<span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nTableLength; i++ ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　m_HashIndexTable[i].nHashA = <span class="number">-1</span>; </span><br><span class="line">　　　　m_HashIndexTable[i].nHashB = <span class="number">-1</span>; </span><br><span class="line">　　　　m_HashIndexTable[i].bExists = <span class="literal">false</span>; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StringHash::~StringHash(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">　　<span class="comment">//清理内存</span></span><br><span class="line">　　<span class="keyword">if</span> ( <span class="literal">NULL</span> != m_HashIndexTable ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　<span class="keyword">delete</span> []m_HashIndexTable; </span><br><span class="line">　　　　m_HashIndexTable = <span class="literal">NULL</span>; </span><br><span class="line">　　　　m_tablelength = <span class="number">0</span>; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="comment">/*函数名：InitCryptTable</span></span><br><span class="line"><span class="comment">/*功 能：对哈希索引表预处理 </span></span><br><span class="line"><span class="comment">/*返回值：无</span></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="keyword">void</span> StringHash::InitCryptTable() </span><br><span class="line">&#123; </span><br><span class="line">　 <span class="keyword">unsigned</span> <span class="keyword">long</span> seed = <span class="number">0x00100001</span>, index1 = <span class="number">0</span>, index2 = <span class="number">0</span>, i;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">for</span>( index1 = <span class="number">0</span>; index1 &lt; <span class="number">0x100</span>; index1++ ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　<span class="keyword">for</span>( index2 = index1, i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++, index2 += <span class="number">0x100</span> ) </span><br><span class="line">　　　　&#123; </span><br><span class="line">　　　　　　<span class="keyword">unsigned</span> <span class="keyword">long</span> temp1, temp2; </span><br><span class="line">　　　　　　seed = (seed * <span class="number">125</span> + <span class="number">3</span>) % <span class="number">0x2AAAAB</span>; </span><br><span class="line">　　　　　　temp1 = (seed &amp; <span class="number">0xFFFF</span>) &lt;&lt; <span class="number">0x10</span>; </span><br><span class="line">　　　　　　seed = (seed * <span class="number">125</span> + <span class="number">3</span>) % <span class="number">0x2AAAAB</span>; </span><br><span class="line">　　　　　　temp2 = (seed &amp; <span class="number">0xFFFF</span>); </span><br><span class="line">　　　　　　cryptTable[index2] = ( temp1 | temp2 ); </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="comment">/*函数名：HashString</span></span><br><span class="line"><span class="comment">/*功 能：求取哈希值 </span></span><br><span class="line"><span class="comment">/*返回值：返回hash值</span></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> StringHash::HashString(<span class="keyword">const</span> <span class="built_in">string</span>&amp; lpszString, <span class="keyword">unsigned</span> <span class="keyword">long</span> dwHashType) </span><br><span class="line">&#123; </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">char</span> *key = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *)(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(lpszString.c_str())); </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> seed1 = <span class="number">0x7FED7FED</span>, seed2 = <span class="number">0xEEEEEEEE</span>; </span><br><span class="line">　　<span class="keyword">int</span> ch;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">while</span>(*key != <span class="number">0</span>) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　ch = <span class="built_in">toupper</span>(*key++);</span><br><span class="line"></span><br><span class="line">　　　　seed1 = cryptTable[(dwHashType &lt;&lt; <span class="number">8</span>) + ch] ^ (seed1 + seed2); </span><br><span class="line">　　　　seed2 = ch + seed1 + seed2 + (seed2 &lt;&lt; <span class="number">5</span>) + <span class="number">3</span>; </span><br><span class="line">　　&#125; </span><br><span class="line">　　<span class="keyword">return</span> seed1; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="comment">/*函数名：Hashed</span></span><br><span class="line"><span class="comment">/*功 能：检测一个字符串是否被hash过</span></span><br><span class="line"><span class="comment">/*返回值：如果存在，返回位置；否则，返回-1</span></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> StringHash::Hashed(<span class="built_in">string</span> lpszString)</span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line">　　<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> HASH_OFFSET = <span class="number">0</span>, HASH_A = <span class="number">1</span>, HASH_B = <span class="number">2</span>; </span><br><span class="line">　 <span class="comment">//不同的字符串三次hash还会碰撞的几率无限接近于不可能</span></span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHash = HashString(lpszString, HASH_OFFSET); </span><br><span class="line">　 <span class="keyword">unsigned</span> <span class="keyword">long</span> nHashA = HashString(lpszString, HASH_A); </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHashB = HashString(lpszString, HASH_B); </span><br><span class="line">　 <span class="keyword">unsigned</span> <span class="keyword">long</span> nHashStart = nHash % m_tablelength, </span><br><span class="line">　　nHashPos = nHashStart;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">while</span> ( m_HashIndexTable[nHashPos].bExists) </span><br><span class="line">　　&#123; </span><br><span class="line">　　<span class="keyword">if</span> (m_HashIndexTable[nHashPos].nHashA == nHashA &amp;&amp; m_HashIndexTable[nHashPos].nHashB == nHashB)</span><br><span class="line">　　　　<span class="keyword">return</span> nHashPos; </span><br><span class="line">　　<span class="keyword">else</span> </span><br><span class="line">　　nHashPos = (nHashPos + <span class="number">1</span>) % m_tablelength;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">if</span> (nHashPos == nHashStart) </span><br><span class="line">　　<span class="keyword">break</span>; </span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//没有找到 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="comment">/*函数名：Hash</span></span><br><span class="line"><span class="comment">/*功 能：hash一个字符串 </span></span><br><span class="line"><span class="comment">/*返回值：成功，返回true；失败，返回false</span></span><br><span class="line"><span class="comment">/************************************************************************/</span></span><br><span class="line"><span class="keyword">bool</span> StringHash::Hash(<span class="built_in">string</span> lpszString)</span><br><span class="line">&#123; </span><br><span class="line">　　<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> HASH_OFFSET = <span class="number">0</span>, HASH_A = <span class="number">1</span>, HASH_B = <span class="number">2</span>; </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHash = HashString(lpszString, HASH_OFFSET); </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHashA = HashString(lpszString, HASH_A); </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHashB = HashString(lpszString, HASH_B); </span><br><span class="line">　　<span class="keyword">unsigned</span> <span class="keyword">long</span> nHashStart = nHash % m_tablelength, </span><br><span class="line">　　nHashPos = nHashStart;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">while</span> ( m_HashIndexTable[nHashPos].bExists) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　nHashPos = (nHashPos + <span class="number">1</span>) % m_tablelength; </span><br><span class="line">　　　　<span class="keyword">if</span> (nHashPos == nHashStart) <span class="comment">//一个轮回 </span></span><br><span class="line">　　　　&#123; </span><br><span class="line">　　　　　　<span class="comment">//hash表中没有空余的位置了,无法完成hash</span></span><br><span class="line">　　　　　　<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125; </span><br><span class="line">　　m_HashIndexTable[nHashPos].bExists = <span class="literal">true</span>; </span><br><span class="line">　　m_HashIndexTable[nHashPos].nHashA = nHashA; </span><br><span class="line">　　m_HashIndexTable[nHashPos].nHashB = nHashB;</span><br><span class="line"></span><br><span class="line">　　<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/作业/" rel="tag"># 作业</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/10336297/" rel="next" title="数据结构第?次作业（bfs+路径打印）">
+                <i class="fa fa-chevron-left"></i> 数据结构第?次作业（bfs+路径打印）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/0.png" alt="LeFlacon">
+            
+              <p class="site-author-name" itemprop="name">LeFlacon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">243</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/leflacon" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:15356373111@163.com" target="_blank" title="E-Mail" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-envelope"></i></a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://instagram.com/zhuujx" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("08/11/2018 00:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+<script type="text/javascript" src="//ra.revolvermaps.com/0/0/8.js?i=0k7pcukxypn&amp;m=1&amp;c=fff600&amp;cr1=00fff6&amp;f=comic_sans_ms&amp;l=0&amp;s=230&amp;bv=70" async="async"></script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目要求："><span class="nav-number">1.</span> <span class="nav-text">题目要求：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hash基本思路："><span class="nav-number">2.</span> <span class="nav-text">hash基本思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-number">2.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作："><span class="nav-number">2.2.</span> <span class="nav-text">基本操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-插入insert："><span class="nav-number">2.2.1.</span> <span class="nav-text">1.插入insert：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-搜索find："><span class="nav-number">2.2.2.</span> <span class="nav-text">2.搜索find：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希冲突："><span class="nav-number">2.3.</span> <span class="nav-text">哈希冲突：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开放地址法"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.开放地址法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-链地址法"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.链地址法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希函数："><span class="nav-number">2.4.</span> <span class="nav-text">哈希函数：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接定址法"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.直接定址法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-除留余数法"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.除留余数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-平方取中法"><span class="nav-number">2.4.3.</span> <span class="nav-text">3.平方取中法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-折叠法"><span class="nav-number">2.4.4.</span> <span class="nav-text">4.折叠法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-随机数法"><span class="nav-number">2.4.5.</span> <span class="nav-text">5.随机数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-数学分析法"><span class="nav-number">2.4.6.</span> <span class="nav-text">6.数学分析法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行效果："><span class="nav-number">3.1.</span> <span class="nav-text">运行效果：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#暴雪字符串哈希"><span class="nav-number">4.</span> <span class="nav-text">暴雪字符串哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大概思路："><span class="nav-number">4.1.</span> <span class="nav-text">大概思路：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码："><span class="nav-number">4.2.</span> <span class="nav-text">源码：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+
+      <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+
+
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LeFlacon</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+  <i class="fa fa-user"></i><span id="busuanzi_container_site_uv">
+    <span id="busuanzi_value_site_uv"></span>  
+  </span>|
+</div>
+
+<div class="powered-by">
+  <i class="fa fa-eye"></i><span id="busuanzi_container_site_pv">
+    <span id="busuanzi_value_site_pv"></span> 
+  </span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count"> | Words:147.9k</span>
+</div>
+
+<br>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/11/2018 00:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "( ´ ▽ ` )ﾉ 本站已经在各种不知名错误下运行了 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://ajax.cat.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        appKey: 'ICpyPTKA9w5RlR5UTydeoKif',
+        placeholder: 'Just go go(((o(*ﾟ▽ﾟ*)o)))',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+
+<script type="text/javascript" src="/js/src/instantclick.min.js" data-no-instant=""></script>
+<script data-no-instant="">InstantClick.init();</script>
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('/js/src/sw.js');
+}
+</script>
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
