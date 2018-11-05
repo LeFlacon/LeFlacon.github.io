@@ -277,21 +277,14 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
-a,
-span.exturl {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  background-color: transparent;
-  color: #555;
+a {
+  color: #8a8a8a;
   text-decoration: none;
   outline: none;
   border-bottom: 1px solid #999;
-  cursor: pointer;
+  word-wrap: break-word;
 }
-a:hover,
-span.exturl:hover,
-a:active,
-span.exturl:active {
+a:hover {
   color: #222;
   border-bottom-color: #222;
 }
@@ -413,7 +406,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
   font-size: 14px;
-  word-break: break-all;
+  word-wrap: break-all;
 }
 table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -518,9 +511,8 @@ code {
   font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   padding: 2px 4px;
+  word-wrap: break-word;
   color: #555;
   background: #eee;
   border-radius: 3px;
@@ -938,7 +930,7 @@ pre .javascript .function {
 }
 .post-body .tabs ul.nav-tabs li.tab.active a {
   cursor: default;
-  color: #555;
+  color: #8a8a8a;
 }
 .post-body .tabs .tab-content {
   background-color: #fff;
@@ -957,7 +949,7 @@ pre .javascript .function {
   display: inline-block;
   padding: 0 20px;
   font-size: 14px;
-  color: #555;
+  color: #8a8a8a;
   background: transparent;
   border: 2px solid #222;
   text-decoration: none;
@@ -1237,13 +1229,12 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-.post-body span.exturl .fa {
-  font-size: 14px;
-  margin-left: 4px;
+@media (max-width: 767px) {
+  .post-body {
+    word-break: break-word;
+  }
 }
 .post-body .fancybox img {
   display: block !important;
@@ -1475,9 +1466,8 @@ pre .javascript .function {
   display: none;
 }
 .posts-expand .post-title {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   text-align: center;
+  word-break: break-word;
   font-weight: 400;
 }
 .posts-expand .post-title-link {
@@ -1599,7 +1589,7 @@ pre .javascript .function {
   display: block;
   line-height: 25px;
   font-size: 14px;
-  color: #555;
+  color: #8a8a8a;
   border-bottom: none;
 }
 .post-nav-item a:hover {
@@ -1765,23 +1755,15 @@ pre .javascript .function {
   max-width: 96px;
   height: auto;
   border: 2px solid #333;
-  opacity: 1;
-}
-.site-author-image {
-  -webkit-transition: -webkit-transform 1s ease-out;
-  -moz-transition: -moz-transform 1s ease-out;
-  -ms-transition: -ms-transform 1s ease-out;
-  transition: transform 1s ease-out;
+  border-radius: 60%;
+  transition: 2.5s all;
 }
 .site-author-image:hover {
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
   -ms-transform: rotate(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 .site-author-name {
   margin: 5px 0 0;
@@ -1865,7 +1847,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2ff;
+  background: #785d69;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1994,13 +1976,10 @@ pre .javascript .function {
 .footer-inner {
   text-align: center;
 }
-#animate {
-  animation: iconAnimate 1.33s ease-in-out infinite;
-}
 .with-love {
   display: inline-block;
   margin: 0 5px;
-  color: #f79797;
+  color: #808080;
 }
 .powered-by,
 .theme-info {
