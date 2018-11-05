@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leflacon.github.io/something/index.html</loc>
+    
+    <lastmod>2018-11-05T10:48:22.534Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leflacon.github.io/friends/index.html</loc>
+    
+    <lastmod>2018-11-05T10:23:54.173Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leflacon.github.io/nothing/index.html</loc>
+    
+    <lastmod>2018-11-05T09:34:15.741Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leflacon.github.io/7f6818b1/</loc>
     
     <lastmod>2018-11-04T14:28:19.108Z</lastmod>
@@ -1283,14 +1304,14 @@
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/2d58815c/</loc>
+    <loc>http://leflacon.github.io/7ee1bb3b/</loc>
     
     <lastmod>2018-10-29T03:05:08.576Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/7ee1bb3b/</loc>
+    <loc>http://leflacon.github.io/2d58815c/</loc>
     
     <lastmod>2018-10-29T03:05:08.576Z</lastmod>
     
@@ -1535,14 +1556,14 @@
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/c746a48a/</loc>
+    <loc>http://leflacon.github.io/b972d127/</loc>
     
     <lastmod>2018-10-29T03:05:08.503Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/b972d127/</loc>
+    <loc>http://leflacon.github.io/c746a48a/</loc>
     
     <lastmod>2018-10-29T03:05:08.503Z</lastmod>
     
@@ -1654,14 +1675,14 @@
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/57427b30/</loc>
+    <loc>http://leflacon.github.io/ec404005/</loc>
     
     <lastmod>2018-10-29T03:05:08.465Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/ec404005/</loc>
+    <loc>http://leflacon.github.io/57427b30/</loc>
     
     <lastmod>2018-10-29T03:05:08.465Z</lastmod>
     
@@ -1703,13 +1724,6 @@
   </url>
   
   <url>
-    <loc>http://leflacon.github.io/friends/index.html</loc>
-    
-    <lastmod>2018-10-23T08:12:39.648Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://leflacon.github.io/404/index.html</loc>
     
     <lastmod>2018-10-23T06:31:47.160Z</lastmod>
@@ -1734,13 +1748,6 @@
     <loc>http://leflacon.github.io/google1d00a974e9137a21.html</loc>
     
     <lastmod>2018-09-23T17:37:37.675Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/nothing/index.html</loc>
-    
-    <lastmod>2018-09-12T15:29:03.545Z</lastmod>
     
   </url>
   
