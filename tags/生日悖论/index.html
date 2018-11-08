@@ -29,6 +29,7 @@ var _hmt = _hmt || [];
 </script>
 
 
+
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -55,6 +56,13 @@ var _hmt = _hmt || [];
 
 
 
+
+  
+  
+    
+    
+  <script src="/VEN/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/VEN/pace/pace-theme-mac-osx.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -247,7 +255,7 @@ var _hmt = _hmt || [];
     </div>
     
       
-        <p class="site-subtitle">小小的脑袋大大的疑惑!?(･_･;?)</p>
+        <h1 class="site-subtitle" itemprop="description">小小的脑袋大大的疑惑!?(･_･;?)</h1>
       
     
   </div>
@@ -398,8 +406,8 @@ var _hmt = _hmt || [];
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>生日悖论<small>标签</small>
-        </h1>
+        <h2>生日悖论<small>标签</small>
+        </h2>
       </div>
 
       
@@ -408,7 +416,7 @@ var _hmt = _hmt || [];
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/ffac8316/" itemprop="url">
               
@@ -416,7 +424,7 @@ var _hmt = _hmt || [];
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2018-10-09T00:21:00+08:00" content="2018-10-09">
@@ -479,7 +487,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">243</span>
+                    <span class="site-state-item-count">245</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -742,7 +750,7 @@ var _hmt = _hmt || [];
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="15356373111@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i></a>
+                  <a href="15356373111@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
                   
                 </span>
               
@@ -844,6 +852,8 @@ show_date_time();
 </div>
 
 
+  
+
 
 
 <div class="powered-by">
@@ -863,7 +873,7 @@ show_date_time();
   
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -872,7 +882,7 @@ show_date_time();
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.0</div>
 
 -->
 
@@ -880,7 +890,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:147.9k</span>
+  <span class="post-count"> | Words:152.7k</span>
 </div>
 
 <br>
@@ -1415,6 +1425,72 @@ setInterval("createtime()",250);
   
 
   
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
 
 
 <!--百度自动递交链接-->
