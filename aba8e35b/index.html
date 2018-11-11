@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw87ccekazj304000hmwx.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw87vsl2xvj30lq05ejrd.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fw99teqb7nj30b007x3yd.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.674Z">
+<meta property="og:updated_time" content="2018-11-10T14:51:00.753Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 516 Div. 2（A-E）">
 <meta name="twitter:description" content="1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;">
@@ -461,7 +461,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
+                <time title="修改时间：2018-11-10 22:51:00" itemprop="dateModified" datetime="2018-11-10T22:51:00+08:00">2018-11-10</time>
               
             
           </span>
@@ -563,6 +563,7 @@ var _hmt = _hmt || [];
 <p>感觉我这题代码写的蛮优美的嘻嘻∠( ᐛ 」∠)＿</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">int</span> now,n,m,l=<span class="number">0</span>,r=(<span class="number">1</span>&lt;&lt;<span class="number">29</span>),flag=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    fflush(<span class="built_in">stdout</span>);</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">    <span class="keyword">return</span> s[<span class="number">0</span>]==<span class="string">'b'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    n--;</span><br><span class="line">    now=solve(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        m=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(solve(m,m)==now)&#123;</span><br><span class="line">            l=m;flag=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            r=m;flag=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag)<span class="built_in">printf</span>(<span class="string">"%d %d %d %d\n"</span>,m,m+<span class="number">1</span>,m+<span class="number">1</span>,m);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d %d %d %d\n"</span>,m,m<span class="number">-1</span>,m<span class="number">-1</span>,m);</span><br><span class="line">    fflush(<span class="built_in">stdout</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="F-Candies-for-Children"><a href="#F-Candies-for-Children" class="headerlink" title="F. Candies for Children"></a>F. Candies for Children</h1><p><a href="http://codeforces.com/contest/1064/problem/F" rel="external nofollow noopener noreferrer" target="_blank">http://codeforces.com/contest/1064/problem/F</a></p>
+<p><a href="http://leflacon.github.io/13028674">CF 516 D. Candies for Children（分类讨论）</a></p>
 
       
     </div>
@@ -687,7 +688,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">246</span>
+                    <span class="site-state-item-count">248</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1106,7 +1107,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:153.9k</span>
+  <span class="post-count"> | Words:155.5k</span>
 </div>
 
 <br>
