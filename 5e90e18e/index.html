@@ -180,8 +180,8 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxav8h40a5j307d01m0sj.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxae9809bzj30ke08dmxc.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxu7ac4yj30fr0370sn.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxv9az4mj30fs034a9z.jpg">
-<meta property="og:updated_time" content="2018-11-17T05:33:05.429Z">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxb14apqufj307t00vdfm.jpg">
+<meta property="og:updated_time" content="2018-11-17T07:33:55.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS下安装Python第三方库报错“Command &quot;python setup.py egg_info&quot; failed with error code 1”的解决办法（附如何卸载自己安装的python）">
 <meta name="twitter:description" content="前面只是记录向，如果要看我最终如何解决的这个问题，可以直接跳到最后第三点，由于这个错误网上有很多种解决方法，所以这个方法并不一定能解决你的问题 But I was successful with it (=ﾟωﾟ)ﾉ 这个星期试了很多很多很多很多没有works for me的方法，相当绝望。。数电下课前跟旁边小妹妹说我又浪费了三节课然后！！！！！在下课前一分钟啊啊啊啊啊啊啊出现了Successfu">
@@ -448,7 +448,7 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2018-11-17 13:22:00 / 修改时间：13:33:05" itemprop="dateCreated datePublished" datetime="2018-11-17T13:22:00+08:00">2018-11-17</time>
+              <time title="创建时间：2018-11-17 13:22:00 / 修改时间：15:33:55" itemprop="dateCreated datePublished" datetime="2018-11-17T13:22:00+08:00">2018-11-17</time>
             
 
             
@@ -549,9 +549,10 @@ var _hmt = _hmt || [];
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxav8h40a5j307d01m0sj.jpg" alt=""></p>
 <h1 id="3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法"><a href="#3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法" class="headerlink" title="3.“Command “python setup.py egg_info” failed with error code 1”的解决办法"></a>3.“Command “python setup.py egg_info” failed with error code 1”的解决办法</h1><p>如果你已经获得了一个合适版本的python，那么请继续</p>
 <p>总之我这个报错是macOS高版本引发的（我的macOS版本是10.13.6），和openssl有关，OS 10.11开始，苹果sdk中不再提供openssl，因为openssl是mac不推荐的加密方式，mac有自己的加密方式，于是安装这些第三方库的时候就可能出现找不到openssl</p>
+<p>所以解决办法就是在安装前设置一下SSL library</p>
 <h2 id="1-升级pip（不更新应该也行）"><a href="#1-升级pip（不更新应该也行）" class="headerlink" title="1.升级pip（不更新应该也行）"></a>1.升级pip（不更新应该也行）</h2><p>因为官网python3.6.2带的pip版本是9.0.1，所以先升级一下pip，<code>pip3 install --upgrade pip</code>，更新后的pip版本是18.1</p>
 <h2 id="2-wheel"><a href="#2-wheel" class="headerlink" title="2.wheel"></a>2.wheel</h2><p>然后我中途安装了一个wheel，<code>pip3 install wheel</code></p>
-<p>不清楚对问题的解决有无影响，但它是和egg_info有关的</p>
+<p>对问题的解决应该没有影响，但它是和egg_info有点关系，就记录一下</p>
 <p>wheel是新的Python的disribution，用于替代Python传统的egg文件，目前有超过一半的库文件有对应的wheel文件</p>
 <p>也就是说，wheel相当于编译后的东西，可以直接安装。pip默认先下载wheel文件安装，没有的话再源码编译安装</p>
 <h2 id="3-openssl"><a href="#3-openssl" class="headerlink" title="3.openssl"></a>3.openssl</h2><p>下面要输入一些至关重要的话！</p>
@@ -563,9 +564,12 @@ var _hmt = _hmt || [];
 <h2 id="4-安装pycurl和pyspider"><a href="#4-安装pycurl和pyspider" class="headerlink" title="4.安装pycurl和pyspider"></a>4.安装pycurl和pyspider</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip3</span> <span class="comment">install</span> <span class="comment">pycurl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">compile</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">cache</span><span class="literal">-</span><span class="comment">dir</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxu7ac4yj30fr0370sn.jpg" alt=""></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> pyspider</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxv9az4mj30fs034a9z.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxb14apqufj307t00vdfm.jpg" alt=""></p>
 <p>successfully!~(≧▽≦)/~</p>
 <p>可以用Pyspider愉快的玩耍了～</p>
+<hr>
+<p>然而！我以为这么就完了的时候！这还没有完！</p>
+<p>如果你成功安装后在终端输入<code>pyspider</code>却遇到了<code>command not found</code>的问题，可以继续参考这篇 -&gt; <a href="http://leflacon.github.io/7bbef420/"><br>macOS下安装Pyspider和安装完成后command not found的解决办法（包括python环境变量配置）</a></p>
 
       
     </div>
@@ -601,8 +605,8 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/7bbef420/" rel="next" title="macOS下安装Pyspider">
-                <i class="fa fa-chevron-left"></i> macOS下安装Pyspider
+              <a href="/3fcdc8fa/" rel="next" title="递归 —— 三色汉诺塔（分离型）">
+                <i class="fa fa-chevron-left"></i> 递归 —— 三色汉诺塔（分离型）
               </a>
             
           </div>
@@ -610,6 +614,10 @@ var _hmt = _hmt || [];
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/7bbef420/" rel="prev" title="macOS下安装Pyspider和安装完成后command not found的解决办法（包括python环境变量配置）">
+                macOS下安装Pyspider和安装完成后command not found的解决办法（包括python环境变量配置） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1099,7 +1107,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:160.6k</span>
+  <span class="post-count"> | Words:161.2k</span>
 </div>
 
 <br>
