@@ -181,7 +181,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxae9809bzj30ke08dmxc.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxu7ac4yj30fr0370sn.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxb14apqufj307t00vdfm.jpg">
-<meta property="og:updated_time" content="2018-11-17T07:33:55.057Z">
+<meta property="og:updated_time" content="2018-11-17T13:45:40.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="macOS下安装Python第三方库报错“Command &quot;python setup.py egg_info&quot; failed with error code 1”的解决办法（附如何卸载自己安装的python）">
 <meta name="twitter:description" content="前面只是记录向，如果要看我最终如何解决的这个问题，可以直接跳到最后第三点，由于这个错误网上有很多种解决方法，所以这个方法并不一定能解决你的问题 But I was successful with it (=ﾟωﾟ)ﾉ 这个星期试了很多很多很多很多没有works for me的方法，相当绝望。。数电下课前跟旁边小妹妹说我又浪费了三节课然后！！！！！在下课前一分钟啊啊啊啊啊啊啊出现了Successfu">
@@ -448,7 +448,7 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2018-11-17 13:22:00 / 修改时间：15:33:55" itemprop="dateCreated datePublished" datetime="2018-11-17T13:22:00+08:00">2018-11-17</time>
+              <time title="创建时间：2018-11-17 13:22:00 / 修改时间：21:45:40" itemprop="dateCreated datePublished" datetime="2018-11-17T13:22:00+08:00">2018-11-17</time>
             
 
             
@@ -550,18 +550,18 @@ var _hmt = _hmt || [];
 <h1 id="3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法"><a href="#3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法" class="headerlink" title="3.“Command “python setup.py egg_info” failed with error code 1”的解决办法"></a>3.“Command “python setup.py egg_info” failed with error code 1”的解决办法</h1><p>如果你已经获得了一个合适版本的python，那么请继续</p>
 <p>总之我这个报错是macOS高版本引发的（我的macOS版本是10.13.6），和openssl有关，OS 10.11开始，苹果sdk中不再提供openssl，因为openssl是mac不推荐的加密方式，mac有自己的加密方式，于是安装这些第三方库的时候就可能出现找不到openssl</p>
 <p>所以解决办法就是在安装前设置一下SSL library</p>
-<h2 id="1-升级pip（不更新应该也行）"><a href="#1-升级pip（不更新应该也行）" class="headerlink" title="1.升级pip（不更新应该也行）"></a>1.升级pip（不更新应该也行）</h2><p>因为官网python3.6.2带的pip版本是9.0.1，所以先升级一下pip，<code>pip3 install --upgrade pip</code>，更新后的pip版本是18.1</p>
-<h2 id="2-wheel"><a href="#2-wheel" class="headerlink" title="2.wheel"></a>2.wheel</h2><p>然后我中途安装了一个wheel，<code>pip3 install wheel</code></p>
+<h2 id="1-升级pip（不更新应该也行）"><a href="#1-升级pip（不更新应该也行）" class="headerlink" title="1).升级pip（不更新应该也行）"></a>1).升级pip（不更新应该也行）</h2><p>因为官网python3.6.2带的pip版本是9.0.1，所以先升级一下pip，<code>pip3 install --upgrade pip</code>，更新后的pip版本是18.1</p>
+<h2 id="2-wheel"><a href="#2-wheel" class="headerlink" title="2).wheel"></a>2).wheel</h2><p>然后我中途安装了一个wheel，<code>pip3 install wheel</code></p>
 <p>对问题的解决应该没有影响，但它是和egg_info有点关系，就记录一下</p>
 <p>wheel是新的Python的disribution，用于替代Python传统的egg文件，目前有超过一半的库文件有对应的wheel文件</p>
 <p>也就是说，wheel相当于编译后的东西，可以直接安装。pip默认先下载wheel文件安装，没有的话再源码编译安装</p>
-<h2 id="3-openssl"><a href="#3-openssl" class="headerlink" title="3.openssl"></a>3.openssl</h2><p>下面要输入一些至关重要的话！</p>
+<h2 id="3-openssl"><a href="#3-openssl" class="headerlink" title="3).openssl"></a>3).openssl</h2><p>下面要输入一些至关重要的话！</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export PYCURL_SSL_LIBRARY=openssl</span><br><span class="line"></span><br><span class="line">export LDFLAGS=-L/usr/local/opt/openssl/<span class="class"><span class="keyword">lib</span></span></span><br><span class="line"></span><br><span class="line">export CPPFLAGS=-I/usr/local/opt/openssl/<span class="keyword">include</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxae9809bzj30ke08dmxc.jpg" alt=""></p>
 <p>不是很懂<code>export PYCURL_SSL_LIBRARY=openssl</code>，但是差不多干的事情就是：“匹配pycurl（或其他）期望的SSL库”</p>
 <p>具体讨论可以见stackoverflow的这个问题：<a href="https://stackoverflow.com/questions/21096436/ssl-backend-error-when-using-openssl" rel="external nofollow noopener noreferrer" target="_blank">SSL backend error when using OpenSSL
 </a></p>
-<h2 id="4-安装pycurl和pyspider"><a href="#4-安装pycurl和pyspider" class="headerlink" title="4.安装pycurl和pyspider"></a>4.安装pycurl和pyspider</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip3</span> <span class="comment">install</span> <span class="comment">pycurl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">compile</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">cache</span><span class="literal">-</span><span class="comment">dir</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-安装pycurl和pyspider"><a href="#4-安装pycurl和pyspider" class="headerlink" title="4).安装pycurl和pyspider"></a>4).安装pycurl和pyspider</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">pip3</span> <span class="comment">install</span> <span class="comment">pycurl</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">compile</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">cache</span><span class="literal">-</span><span class="comment">dir</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxaxu7ac4yj30fr0370sn.jpg" alt=""></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> pyspider</span><br></pre></td></tr></table></figure>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxb14apqufj307t00vdfm.jpg" alt=""></p>
@@ -692,7 +692,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">254</span>
+                    <span class="site-state-item-count">255</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1015,7 +1015,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-一堆乱七八糟没啥用的记录"><span class="nav-number">1.</span> <span class="nav-text">1.一堆乱七八糟没啥用的记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-macOS下如何卸载自己安装的Python"><span class="nav-number">2.</span> <span class="nav-text">2.macOS下如何卸载自己安装的Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1）删除框架"><span class="nav-number">2.1.</span> <span class="nav-text">1）删除框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2）删除应用"><span class="nav-number">2.2.</span> <span class="nav-text">2）删除应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3）删除指向python的链接"><span class="nav-number">2.3.</span> <span class="nav-text">3）删除指向python的链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法"><span class="nav-number">3.</span> <span class="nav-text">3.“Command “python setup.py egg_info” failed with error code 1”的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-升级pip（不更新应该也行）"><span class="nav-number">3.1.</span> <span class="nav-text">1.升级pip（不更新应该也行）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-wheel"><span class="nav-number">3.2.</span> <span class="nav-text">2.wheel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-openssl"><span class="nav-number">3.3.</span> <span class="nav-text">3.openssl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装pycurl和pyspider"><span class="nav-number">3.4.</span> <span class="nav-text">4.安装pycurl和pyspider</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-一堆乱七八糟没啥用的记录"><span class="nav-number">1.</span> <span class="nav-text">1.一堆乱七八糟没啥用的记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-macOS下如何卸载自己安装的Python"><span class="nav-number">2.</span> <span class="nav-text">2.macOS下如何卸载自己安装的Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1）删除框架"><span class="nav-number">2.1.</span> <span class="nav-text">1）删除框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2）删除应用"><span class="nav-number">2.2.</span> <span class="nav-text">2）删除应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3）删除指向python的链接"><span class="nav-number">2.3.</span> <span class="nav-text">3）删除指向python的链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-“Command-“python-setup-py-egg-info”-failed-with-error-code-1”的解决办法"><span class="nav-number">3.</span> <span class="nav-text">3.“Command “python setup.py egg_info” failed with error code 1”的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-升级pip（不更新应该也行）"><span class="nav-number">3.1.</span> <span class="nav-text">1).升级pip（不更新应该也行）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-wheel"><span class="nav-number">3.2.</span> <span class="nav-text">2).wheel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-openssl"><span class="nav-number">3.3.</span> <span class="nav-text">3).openssl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装pycurl和pyspider"><span class="nav-number">3.4.</span> <span class="nav-text">4).安装pycurl和pyspider</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1107,7 +1107,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:161.2k</span>
+  <span class="post-count"> | Words:163.5k</span>
 </div>
 
 <br>

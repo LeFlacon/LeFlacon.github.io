@@ -166,23 +166,23 @@ var _hmt = _hmt || [];
   <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
 
 
-  <meta name="description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 数据样式如下：  sklea">
+  <meta name="description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 每年的十一月一日是西方国家的">
 <meta name="keywords" content="k-means,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 数据挖掘之k-means算法实现聚类（Ps：万圣节快乐呀🎃）">
 <meta property="og:url" content="http://leflacon.github.io/5a29f513/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 数据样式如下：  sklea">
+<meta property="og:description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 每年的十一月一日是西方国家的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwn22m3mz5j30ku0ex0te.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwob0lik8ej30iq05haa8.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwp5k65574j30ck0ac74c.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwp5khwny8j308d0gdq2v.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwn8k2limxj30d706bdft.jpg">
-<meta property="og:updated_time" content="2018-10-30T09:15:18.792Z">
+<meta property="og:updated_time" content="2018-11-20T04:26:27.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 数据挖掘之k-means算法实现聚类（Ps：万圣节快乐呀🎃）">
-<meta name="twitter:description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 数据样式如下：  sklea">
+<meta name="twitter:description" content="临危受命0.0现学现卖。。过神经网络之门而不入。。万事开头难啊，就剩半天了写个kmeans先，有空再试试神经网络吧，不过数据挖掘还蛮有意思的，要是以后有这个课我就去选一个 蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。  题目背景： 每年的十一月一日是西方国家的">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwn22m3mz5j30ku0ex0te.jpg">
 
 
@@ -463,7 +463,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-30 17:15:18" itemprop="dateModified" datetime="2018-10-30T17:15:18+08:00">2018-10-30</time>
+                <time title="修改时间：2018-11-20 12:26:27" itemprop="dateModified" datetime="2018-11-20T12:26:27+08:00">2018-11-20</time>
               
             
           </span>
@@ -539,6 +539,7 @@ var _hmt = _hmt || [];
 <p>蟹蟹AllenOris大佬大概给我讲的点思路and愚蠢至极的bug(;´༎ຶД༎ຶ`)，「blood」竟然算某种颜色，我以为是「成分」的意思，找了半个晚上的bug最后竟然是枚举漏了。。</p>
 <hr>
 <h1 id="题目背景："><a href="#题目背景：" class="headerlink" title="题目背景："></a>题目背景：</h1><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fwn22m3mz5j30ku0ex0te.jpg" alt=""></p>
+<p>每年的十一月一日是西方国家的万圣节，请用数据建立模型对鬼的类型进行分类</p>
 <p>数据样式如下：</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwob0lik8ej30iq05haa8.jpg" alt=""></p>
 <p><code>sklearn</code>中的<code>train_test_split()</code>函数就可以直接将矩阵随机划分为训练子集和测试子集，详见<a href="https://leflacon.github.io/8b10921e/">sklearn随机划分数据函数</a>，当时划分数据部分未做处理，只完成了用数据建立模型对鬼进行分类</p>
@@ -691,7 +692,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">254</span>
+                    <span class="site-state-item-count">255</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1106,7 +1107,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:161.2k</span>
+  <span class="post-count"> | Words:163.5k</span>
 </div>
 
 <br>
