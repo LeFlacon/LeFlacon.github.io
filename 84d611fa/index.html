@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy6lkyn31rj30f009y74b.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy6llqirbnj30mb1lv13i.jpg">
-<meta property="og:updated_time" content="2018-12-14T13:38:09.883Z">
+<meta property="og:updated_time" content="2018-12-23T05:58:11.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java第八次作业（模拟银行，多线程程序）">
 <meta name="twitter:description" content="题目：编写一个“模拟银行”的多线程程序，实现如下要求： 银行于某时刻开始营业，运行若干时间后自动关门。营业期间有多名顾客随机的来银行存钱取钱，但是只有一名工作人员提供服务。每次存取钱，银行就报告一次该顾客到当时为止存入和取出的总数及余额，银行关门时在报告一次。不允许透支。 银行和顾客分别用不同的线程实现 思路： 线程 有时被称为轻量进程(Lightweight Process，LWP），是程序执行">
@@ -435,12 +435,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2018-12-14 21:33:00 / 修改时间：21:38:09" itemprop="dateCreated datePublished" datetime="2018-12-14T21:33:00+08:00">2018-12-14</time>
+              <time title="创建时间：2018-12-14 21:33:00" itemprop="dateCreated datePublished" datetime="2018-12-14T21:33:00+08:00">2018-12-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-23 13:58:11" itemprop="dateModified" datetime="2018-12-23T13:58:11+08:00">2018-12-23</time>
               
             
           </span>
@@ -542,7 +554,7 @@ var _hmt = _hmt || [];
 <p>随机生成一个顾客，然后put(顾客)到队列里<code>cuss.put(new customer(tmp.nextInt(1000),tmp.nextInt(1000),tmp.nextInt(2),tmp.nextInt(1000)));</code></p>
 <h2 id="职员线程staff"><a href="#职员线程staff" class="headerlink" title="职员线程staff"></a>职员线程staff</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;<span class="comment">//用于表示是否营业中</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> customer_num=<span class="number">0</span>;<span class="comment">//处理的顾客数</span></span><br><span class="line"><span class="keyword">private</span> customers cuss;<span class="comment">//待处理的顾客队列</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> money=<span class="number">23333333</span>;<span class="comment">//银行余额</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> save_money=<span class="number">0</span>;<span class="comment">//当前处理的总存入金额</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> withdraw_money=<span class="number">0</span>;<span class="comment">//当前处理的总取出金额</span></span><br></pre></td></tr></table></figure>
 <p>写一个函数使<code>flag=false</code>，这样银行关门不再处理顾客的业务</p>
-<p>一个<code>show()</code>函数用于在每次操作玩和银行关门后输出银行信息</p>
+<p>一个<code>show()</code>函数用于在每次操作完和银行关门后输出银行信息</p>
 <p>重写<code>run()</code></p>
 <p>如果当前队列没有顾客就continue，如果有顾客，就从队列中取出队首顾客<code>customer cus_cur=cuss.take();</code>然后停顾客需要的操作时间<code>TimeUnit.MILLISECONDS.sleep(cus_cur.get_time());</code>最后根据顾客操作修改银行信息</p>
 <h1 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h1><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fy6lkyn31rj30f009y74b.jpg" alt=""></p>
@@ -667,7 +679,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">274</span>
+                    <span class="site-state-item-count">278</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -909,9 +921,7 @@ var _hmt = _hmt || [];
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1086,7 +1096,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:190.4k</span>
+  <span class="post-count"> | Words:193.5k</span>
 </div>
 
 <br>
