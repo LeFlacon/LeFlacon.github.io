@@ -173,12 +173,10 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="❤️ 2019 ❤️">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyq9fa23ksj30iw0i3q6p.jpg">
-<meta property="og:updated_time" content="2018-12-31T14:53:18.114Z">
+<meta property="og:updated_time" content="2018-12-31T15:00:52.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello 2019">
 <meta name="twitter:description" content="❤️ 2019 ❤️">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyq9fa23ksj30iw0i3q6p.jpg">
 
 
 
@@ -433,7 +431,7 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2018-12-31 11:00:00 / 修改时间：22:53:18" itemprop="dateCreated datePublished" datetime="2018-12-31T11:00:00+08:00">2018-12-31</time>
+              <time title="创建时间：2018-12-31 11:00:00 / 修改时间：23:00:52" itemprop="dateCreated datePublished" datetime="2018-12-31T11:00:00+08:00">2018-12-31</time>
             
 
             
@@ -510,37 +508,46 @@ var _hmt = _hmt || [];
       
 
       
-        <hr>
-<blockquote class="blockquote-center"><p>❤️ 2019 ❤️</p>
-</blockquote>
-<center><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyq9fa23ksj30iw0i3q6p.jpg" width="200
-" height="200"></center>
-
-<a id="more"></a>
-<blockquote class="blockquote-center"><p>立一些可能要倒要倒的flag</p>
-</blockquote>
-<p>1）不挂科</p>
-<p>2）学个logic pro x（ &lt;_&lt; 有钱了再去买个正版。。）</p>
-<p>3）不要停留在五十音了。。</p>
-<p>4）佛系搞创，然后就可以变强，现实是先把初审过了再说</p>
-<p>5）有没有人社会实践带上我TAT嘤嘤嘤</p>
-<p>6）ACM加油</p>
-<p>7）想想十二月的惨状，六级是肯定要再来的。。而且之前报的口语班学的都忘光了。。</p>
-<p>8）多看书，18年看的书好少啊，怀念高二高三夜自修和某炮偷偷看书的快乐时光@Charlotte</p>
-<p>9）那个不知道是谁的奇人，19年要向他靠拢，世间竟有如此奇人啊啊啊啊啊啊啊啊啊啊</p>
-<p>10）19年也超级喜欢杨超越</p>
-<p>11）少喝酒。。喝不来。。</p>
-<p>12）控制体重？？</p>
-<p>13）长高？？哦不对可能是。。不长矮</p>
-<p>14）to be continued…</p>
-<blockquote class="blockquote-center"><p>我好像。。需要<s>一点啊不</s>很多行动力，天天做梦是不可能的。。</p>
-<p>最后，有些不知道怎么写下来的事真的不知道我能做到哪一步，但是选择了就没有退路了，只能说。。2019！加油吧！٩(˃̶͈̀௰˂̶͈́)و</p>
-</blockquote>
-<hr>
-<center><font size="12" color="#5959ff">J</font><font size="12" color="#a5b2ff">’</font><font size="8" color="#8888fd">a</font><font size="8" color="#7762fd">i</font><font size="8" color="#f1a8ce">m</font><font size="8" color="#a97afd">e </font><font size="8" color="#a7a7f5">m</font><font size="8" color="#628dfd">a </font><font size="8" color="#6363ff">v</font><font size="8" color="#8e64ff">i</font><font size="8" color="#ffafc7">e</font></center>
-
-<hr>
-
+        <script src="/js/crypto-js.js"></script>
+<script>
+function doDecrypt (pwd, onError) {
+	console.log('in doDecrypt');
+	const txt = document.getElementById('enc_content').innerHTML;
+	let plantext;
+	try {
+		const bytes = CryptoJS.AES.decrypt(txt, pwd);
+		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+	} catch(err) {
+		if(onError) {
+			onError(err);
+		}
+		return;
+	}
+	document.getElementById('enc_content').innerHTML = plaintext;
+	document.getElementById('enc_content').style.display = 'block';
+	document.getElementById('enc_passwd').style.display = 'none';
+	if(typeof MathJax !== 'undefined') {
+		MathJax.Hub.Queue(
+			['resetEquationNumbers', MathJax.InputJax.TeX],
+			['PreProcess', MathJax.Hub],
+			['Reprocess', MathJax.Hub]
+		);
+	}
+}
+</script>
+<div id="enc_content" style="display:none">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</div>
+<div id="enc_passwd"> <input id="enc_pwd_input" type="password" style="border-radius: 5px;border-style: groove;height: 30px;width: 50%;cursor: auto;font-size: 102%;color: currentColor;outline: none;text-overflow: initial;padding-left: 5px;" onkeydown="if (event.keyCode == 13) { decrypt(); return false;}"> <input type="submit" value="解&nbsp;密" onclick="decrypt()" style="width: 58px;height: 34px;border-radius: 5px;background-color: white;border-style: solid;color: currentColor;"><div id="enc_error" style="display: inline-block;color: #d84527;margin-left: 10px"></div>
+<script>
+var onError = function(error) {
+	document.getElementById("enc_error").innerHTML = "password error!"
+};
+function decrypt() {
+var passwd = document.getElementById("enc_pwd_input").value;
+console.log(passwd);
+doDecrypt(passwd, onError);
+}
+</script>
+</div>
       
     </div>
 
@@ -1042,7 +1049,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:193.8k</span>
+  <span class="post-count"> | Words:193.6k</span>
 </div>
 
 <br>
