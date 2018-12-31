@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://leflacon.github.io/2019/</loc>
+    <lastmod>2018-12-31T14:53:18.114Z</lastmod>
+  </url>  <url>
     <loc>http://leflacon.github.io/52e47f72/</loc>
-    <lastmod>2018-12-26T14:04:12.166Z</lastmod>
+    <lastmod>2018-12-31T14:52:34.284Z</lastmod>
+  </url>  <url>
+    <loc>http://leflacon.github.io/6bd2e86e/</loc>
+    <lastmod>2018-12-27T05:16:07.304Z</lastmod>
   </url>  <url>
     <loc>http://leflacon.github.io/7f353e7f/</loc>
     <lastmod>2018-12-26T13:54:41.353Z</lastmod>
@@ -51,9 +57,6 @@
   </url>  <url>
     <loc>http://leflacon.github.io/f1048293/</loc>
     <lastmod>2018-12-14T11:46:39.545Z</lastmod>
-  </url>  <url>
-    <loc>http://leflacon.github.io/6bd2e86e/</loc>
-    <lastmod>2018-12-12T18:37:16.568Z</lastmod>
   </url>  <url>
     <loc>http://leflacon.github.io/408c21d7/</loc>
     <lastmod>2018-12-10T07:41:09.616Z</lastmod>
@@ -469,10 +472,10 @@
     <loc>http://leflacon.github.io/d67f02ad/</loc>
     <lastmod>2018-10-29T03:05:08.720Z</lastmod>
   </url>  <url>
-    <loc>http://leflacon.github.io/438d787/</loc>
+    <loc>http://leflacon.github.io/276c371d/</loc>
     <lastmod>2018-10-29T03:05:08.718Z</lastmod>
   </url>  <url>
-    <loc>http://leflacon.github.io/276c371d/</loc>
+    <loc>http://leflacon.github.io/438d787/</loc>
     <lastmod>2018-10-29T03:05:08.718Z</lastmod>
   </url>  <url>
     <loc>http://leflacon.github.io/e86890fb/</loc>
