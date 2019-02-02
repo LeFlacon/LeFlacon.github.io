@@ -179,7 +179,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxr3uldnc7j30fa05smx1.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxrlgjnjacj30fb05st8l.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxrlu3mchqj30no34nx20.jpg">
-<meta property="og:updated_time" content="2018-12-01T16:05:21.193Z">
+<meta property="og:updated_time" content="2019-01-05T03:16:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java第六次作业（JFrame 计算器）">
 <meta name="twitter:description" content="写bug和补作业的一天又一天 本来写的差不多了的。。但是我作死的觉得一个有灵魂的计算器。。一定要会叫“归零”“归零”“归零”“归零”“归零”“归零”。。所以研究了一下怎么播放声音注入灵魂。。然后。。各种方法都失败了，说啥AudioClip废弃了。。算了懒得搞了。。失去灵魂   题目：创建一个Frame，完成一个计算器的功能  思路：1.初始化Main继承自JFrame 1）布局首先确定布局，如下图">
@@ -455,7 +455,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-02 00:05:21" itemprop="dateModified" datetime="2018-12-02T00:05:21+08:00">2018-12-02</time>
+                <time title="修改时间：2019-01-05 11:16:23" itemprop="dateModified" datetime="2019-01-05T11:16:23+08:00">2019-01-05</time>
               
             
           </span>
@@ -544,7 +544,7 @@ var _hmt = _hmt || [];
 <p>此外，还有下面几个变量</p>
 <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="built_in">boolean</span> is_first_num=<span class="keyword">true</span>;<span class="comment">//记录是否开始输入数字</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">double</span> ans_number=<span class="number">0.0</span>;<span class="comment">//保存运算结果</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">String</span> operator=<span class="string">"="</span>;<span class="comment">//保存操作符</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">boolean</span> legal=<span class="keyword">true</span>;<span class="comment">//是否合法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">double</span> store_number=<span class="number">0.0</span>;<span class="comment">//保存M系列功能键存储的数</span></span><br></pre></td></tr></table></figure>
 <h3 id="3）布局实现"><a href="#3）布局实现" class="headerlink" title="3）布局实现"></a>3）布局实现</h3><p>用一些panel实现布局，具体见init()函数</p>
-<p>main_button和command_button对应的main_panel和command_panel放一个panel1里，这样这两个就可以变成一块，仔放到最大的panel中间<code>getContentPane().add(panel1,BorderLayout.CENTER);</code>，同理，文本框对应的panel放north，其他other放west</p>
+<p><code>main_button</code>和<code>command_button</code>对应的<code>main_panel</code>和<code>command_panel</code>放一个panel1里，这样这两个就可以变成一块，再放到最大的panel中间<code>getContentPane().add(panel1,BorderLayout.CENTER);</code>，同理，文本框对应的panel放north，其他other放west</p>
 <h4 id="网格布局"><a href="#网格布局" class="headerlink" title="@网格布局"></a>@网格布局</h4><blockquote>
 <p>GridLayout()：</p>
 <p>创建具有默认值的网格布局，即每个组件占据一行一列。</p>
@@ -558,9 +558,9 @@ var _hmt = _hmt || [];
 <h2 id="2-actionPerformed"><a href="#2-actionPerformed" class="headerlink" title="2.actionPerformed"></a>2.actionPerformed</h2><p>事件监听器函数，处理单击不同按钮时触发的事件</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span>(<span class="params">ActionEvent e</span>)</span>&#123;</span><br><span class="line">    String cur_button=e.getActionCommand();</span><br><span class="line">    <span class="keyword">if</span>(cur_button.<span class="keyword">equals</span>(command_option[<span class="number">0</span>]))&#123;</span><br><span class="line">        set_back();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cur_button.<span class="keyword">equals</span>(command_option[<span class="number">1</span>]))&#123;</span><br><span class="line">        tf.setText(<span class="string">"0"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cur_button.<span class="keyword">equals</span>(command_option[<span class="number">2</span>]))&#123;</span><br><span class="line">        set_c();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"0123456789."</span>.indexOf(cur_button)&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">        set_number(cur_button);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cur_button.indexOf(<span class="string">"M"</span>)!=<span class="number">-1</span>)&#123;</span><br><span class="line">        set_m(cur_button);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        set_cal(cur_button);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里有五个set_xxx的函数，分别对应不同的功能</p>
-<h2 id="3-功能函数"><a href="#3-功能函数" class="headerlink" title="3.功能函数"></a>3.功能函数</h2><p>五个set_xxx的函数和一个附加的获取数字的函数</p>
+<h2 id="3-功能函数"><a href="#3-功能函数" class="headerlink" title="3.功能函数"></a>3.功能函数</h2><p>五个<code>set_xxx</code>的函数和一个附加的获取数字的函数</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set_back</span><span class="params">()</span></span>;<span class="comment">//回退</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set_number</span><span class="params">(String text)</span></span>;<span class="comment">//设置数字</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set_m</span><span class="params">(String cur_button)</span></span>;<span class="comment">//存储功能键</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set_c</span><span class="params">()</span></span>;<span class="comment">//全部清零</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set_cal</span><span class="params">(String cur_button)</span></span>;<span class="comment">//其他求值运算符</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">get_text_number</span><span class="params">()</span></span>;<span class="comment">//获取输入数字</span></span><br></pre></td></tr></table></figure>
-<p>设置数字set_number这个函数中要注意对小数点的处理，如果有小数点了就不能再加了，这样从文本框中读取数据时才不会出错</p>
+<p>设置数字<code>set_number</code>这个函数中要注意对小数点的处理，如果有小数点了就不能再加了，这样从文本框中读取数据时才不会出错</p>
 <p>运算逻辑就是如果输入数字就输入数字，初始化操作符为“=”，如果按了某操作符，那么先执行初始化的等于，再将该按下的操作符保存，输入另一个数，在按下下一个操作符时，这时候调用的操作符就是上一次按的那个，就可以完成对前两个数字的运算，并将结果更新到文本框中</p>
 <p>输出结果的时候还要控制一下小数形式还是整数形式，实现如下</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">long <span class="built_in">t1</span><span class="comment">;</span></span><br><span class="line">double <span class="built_in">t2</span><span class="comment">;</span></span><br><span class="line"><span class="built_in">t1</span>=(long)ans_number<span class="comment">;</span></span><br><span class="line"><span class="built_in">t2</span>=ans_number-<span class="built_in">t1</span><span class="comment">;</span></span><br><span class="line">if(<span class="built_in">t2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">    tf.setText(String.valueOf(<span class="built_in">t1</span>))<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    tf.setText(String.valueOf(ans_number))<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -688,7 +688,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1031,6 +1031,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1105,7 +1123,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1728,7 +1746,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1742,4 +1759,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

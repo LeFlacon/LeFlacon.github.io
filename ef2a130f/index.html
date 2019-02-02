@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fvw6zkweu6j30o70bujrw.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fvw707hqloj30gn0c1mxk.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fvw70kwu39j30n70c9dgc.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.660Z">
+<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C. Stretching Streamers（NAIPC 2017）（记忆化dp）">
 <meta name="twitter:description" content="12345678910111213141516input4303245output1input4330245output3  题意：n个点有次序的围成一圈，每个点有一个权值a[i]，只有gcd&amp;gt;1的两个数之间才能连线，每个点都要被连到且任意线之间不交叉，求方法数 题解：先n^2跑一遍建个图，表明i，j间能否相连 然后dp(i,j,c)，c表示ij是否相连，考虑某两个点i,j (i&amp;lt">
@@ -656,7 +656,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -999,6 +999,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1073,7 +1091,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1696,7 +1714,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1710,4 +1727,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

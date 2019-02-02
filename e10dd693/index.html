@@ -183,7 +183,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx10fd0dn5j305t02mmx0.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx10fp3im3j305z0dldfu.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx16dj9bpzj30ix4t17wh.jpg">
-<meta property="og:updated_time" content="2018-11-14T17:54:32.937Z">
+<meta property="og:updated_time" content="2018-11-14T17:54:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java第四次作业（CD Store）">
 <meta name="twitter:description" content="题目：假设你在业余时间经营一个会员制的CD出租销售店，需要一个管理程序，可以增加会员，删除会员，出租，销售，进货，统计等，请设计适当的功能，并实现该程序  下次写这种乱七八糟的东西的时候0.0我一定先列个提纲。。这次完全是想到啥写啥东补西补啊。。其实还有好多东西可以补，并且有些实现并不是o(1)的最优方法（可以实现但是我懒得写）。。 此外，添加了各种判断，因为要排除各种库存不足，cd名输错，手机号">
@@ -700,7 +700,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1043,6 +1043,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1117,7 +1135,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1740,7 +1758,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1754,4 +1771,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

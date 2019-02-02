@@ -179,7 +179,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwcej1cnmcj30fu05baa0.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwcemo52z4j30fr06sjrf.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwcg9xb60sj30ft059q2w.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.868Z">
+<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构第二次作业（扩展链表，双向循环链表）">
 <meta name="twitter:description" content="1.扩展链表题目：编写一个非成员方法meld，它生成一个新的扩展的链表c，它从a的首元素开始，交替的包含a和b的元素。如果一个链表的元素取完了，就把另一个链表的剩余元素附加到新的扩展链表中，方法的复杂度应与链表a和b的长度具有线性关系 实现方法：加个尾节点last，然后添加成员函数append直接在链表尾部添加节点 用两个指针遍历链表AB，这样就可以通过append函数o(n)填充链表C 写的时候">
@@ -671,7 +671,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1014,6 +1014,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1088,7 +1106,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1711,7 +1729,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1725,4 +1742,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

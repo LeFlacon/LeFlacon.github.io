@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwh32ruis7j303g02sa9v.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwh2iszfzuj306103xglh.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.691Z">
+<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java第一次作业（素数，日历）">
 <meta name="twitter:description" content="1）显示2～100中的质数，每行显示5个实现思路：写个判素数函数，是素数就输出，当然也可以用埃筛素数 运行效果： 遇到的问题及解决：printf提示参数类型不对，Type The method print(int) in the type …… 因为默认的兼容版本为1.3，在项目属性的java complier中改成1.5以上就ok了 代码：1234567891011121314151617181">
@@ -652,7 +652,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -995,6 +995,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1069,7 +1087,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1692,7 +1710,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1706,4 +1723,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

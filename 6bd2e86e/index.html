@@ -189,7 +189,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy4i912jelj307604ct8k.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fy4ibafrpbj309k041a9y.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy4ifh9weej304p056743.jpg">
-<meta property="og:updated_time" content="2018-12-27T05:16:07.304Z">
+<meta property="og:updated_time" content="2018-12-27T05:16:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构第?次作业（R-B Tree红黑树c++实现插入删除，旋转调整图解）">
 <meta name="twitter:description" content="之前写的调整函数有点问题。。因为当时写完如释重负然后粗心大意的只测试了删除一个的情况，所以当时没有发现问题。。如果删除多个的话，可能会出现段错误，还是红黑赋颜色和判断出了问题 现在已经修改了 此外，推荐一下wiki的红黑树讲解https://en.wikipedia.org/wiki/Red%E2%80%93black_tree，讲的很详细。。不过我太菜了有英文障碍(＜_＜)  题目：据说是要实现">
@@ -736,7 +736,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1079,6 +1079,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1153,7 +1171,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1776,7 +1794,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1790,4 +1807,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

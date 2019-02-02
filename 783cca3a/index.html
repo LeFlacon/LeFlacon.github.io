@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwoxblhmv9j30ge0bxwei.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwoxcgrmy8j30l206gwei.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwoxcixukwj30ir036dfq.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:18:39.604Z">
+<meta property="og:updated_time" content="2018-10-29T03:18:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="给hexo添加访客小地球插件revolvermaps">
 <meta name="twitter:description" content="这个小插件是无意间看到的，感觉好神奇，就搞来用了这是官网地址和官网截图：   revolvermaps——3D访客地图  使用方法是先高级选项搞个自己喜欢的样式，然后复制那段html代码    然后找个你想放到的地方，因为放在了侧栏的最下方，所以就写一下放在侧栏的操作 打开themes/next/layout/_custom/sidebar.swig，在最后粘贴上复制的那段代码就可以了，重新编译一">
@@ -647,7 +647,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -974,6 +974,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1048,7 +1066,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1671,7 +1689,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1685,4 +1702,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

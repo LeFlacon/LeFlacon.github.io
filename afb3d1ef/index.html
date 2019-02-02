@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxrnkn92nkj30gu0dn746.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxrnkx5t9mj30ig0eyt8n.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxrnj7gfcoj306x05j3yc.jpg">
-<meta property="og:updated_time" content="2018-12-01T16:07:55.625Z">
+<meta property="og:updated_time" content="2018-12-01T16:07:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QT 涂鸦程序，放大">
 <meta name="twitter:description" content="之前小学期的代码。。这个说明我竟然连个rtfd都没留。。只有一个pdf版的。。而且每句话结尾都是分号。。什么毛病-_-#  题目基于Qt鼠标事件和2D绘图，实现一个涂鸦程序，可在“画布”上绘出鼠标左键按下后拖动的轨迹 选做：添加“放大”按钮，可实现放大功能，并能在放大后的画布上继续作图 效果  实现思路1.新建了一个myLine结构，这个结构包括QPoint startp和QPoint endp，">
@@ -661,7 +661,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1004,6 +1004,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1078,7 +1096,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1701,7 +1719,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1715,4 +1732,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

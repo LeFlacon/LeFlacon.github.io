@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw0rt6nxjsj30ep03b3ye.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fw0rtsd0n1j30h701rdfo.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.708Z">
+<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="busuanzi计数功能失效及解决办法">
 <meta name="twitter:description" content="上课前水一篇博客 这两天发现博客的计数区不计数了，如图：  然后上了一下busuanzi的官网，发现是js文件转移了  所以在foot.swig里改一下以前的开头即可 123&amp;lt;script async src=&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&amp;gt;&amp;lt;/script&amp;gt;改为&amp;lt;sc">
@@ -641,7 +641,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -968,6 +968,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1042,7 +1060,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1665,7 +1683,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1679,4 +1696,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

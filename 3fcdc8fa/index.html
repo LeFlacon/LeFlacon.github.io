@@ -203,7 +203,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx8rstu6iuj30lr07o744.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx8rtfmv8rj30ld07kdfo.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx8srskhm6j307j073q2s.jpg">
-<meta property="og:updated_time" content="2018-11-15T08:04:00.818Z">
+<meta property="og:updated_time" content="2018-11-15T08:04:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归 —— 三色汉诺塔（分离型）">
 <meta name="twitter:description" content="双色和单色 -&amp;gt; 递归 —— 汉诺塔&amp;amp;双色汉诺塔（分离型） 三色汉诺塔（分离型）三色汉诺塔如图：  1）三色汉诺塔基本思路：根据分离型二色思路慢慢来 首先肯定是要写一个像二色和单色那样的基础递归hanoi，n=1时每次移三个 1234567891011121314void hanoi(int n,char a,char b,char c)&amp;#123;	if(n==1)&amp;#123;">
@@ -722,7 +722,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1065,6 +1065,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1139,7 +1157,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1762,7 +1780,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1776,4 +1793,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

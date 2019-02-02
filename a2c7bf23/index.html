@@ -175,7 +175,7 @@ var _hmt = _hmt || [];
 <meta property="og:description" content="之前的permalink是这样的permalink: :year/:month/:day/:title/ 然后在网上看见说这种命名方式太多层了，爬虫不好爬，而且中文命名方式如果要引用自己的链接的话就很麻烦，（因为会重新编码成好长一串），并且中文链接在百度Google权重很低 然后在网上找到了一个大神写的插件hexo-abbrlink，酷，很酷，特别酷  hexo-abbrlink实现思路：对标题+">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwp21xdjmtj30br020wec.jpg">
-<meta property="og:updated_time" content="2018-10-29T07:26:39.942Z">
+<meta property="og:updated_time" content="2018-10-29T07:26:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo-abbrlink（hexo链接优化）">
 <meta name="twitter:description" content="之前的permalink是这样的permalink: :year/:month/:day/:title/ 然后在网上看见说这种命名方式太多层了，爬虫不好爬，而且中文命名方式如果要引用自己的链接的话就很麻烦，（因为会重新编码成好长一串），并且中文链接在百度Google权重很低 然后在网上找到了一个大神写的插件hexo-abbrlink，酷，很酷，特别酷  hexo-abbrlink实现思路：对标题+">
@@ -641,7 +641,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -984,6 +984,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1058,7 +1076,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1681,7 +1699,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1695,4 +1712,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

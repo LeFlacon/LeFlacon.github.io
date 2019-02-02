@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwyg5dn653j309e03rq2t.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwyi0mjpg3j30bq05n0sn.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwyisejy1mj30bu05zwee.jpg">
-<meta property="og:updated_time" content="2018-11-08T08:30:37.470Z">
+<meta property="og:updated_time" content="2018-11-08T08:30:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构第四次作业（delete浅析，约瑟夫环-链表法和公式法，栈Stack）">
 <meta name="twitter:description" content="说好的以前yjf数据结构一个学期才五个作业呢。。。。。。。难道是因为换了助教!?(･-･;?不过好歹这次是周一布置周六交了  delete浅析：首先一定要记录一下delete，在第三次被析构函数各种报错各种野指针之后。。我终于= =痛定思痛的去找了找有关delete的东西：（虽然这次出现野指针的问题是因为我delete first之后没有把last指向NULL。。） delete到底删了什么？为什">
@@ -683,7 +683,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1026,6 +1026,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1100,7 +1118,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1723,7 +1741,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1737,4 +1754,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

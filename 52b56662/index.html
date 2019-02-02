@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwoxbcwwiqj30io07bt91.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwoxbh1fecj30it04iglp.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwoxblhmv9j30ge0bxwei.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:17:48.844Z">
+<meta property="og:updated_time" content="2018-10-29T03:17:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文章阅读次数显示：Counter not initialized! See more at consoleerr msg的解决办法">
 <meta name="twitter:description" content="按照网上的leancloud教程配置下来，但是就是显示Counter not initialized! See more at consoleerr msg 然后百度查到了这篇文章：Leancloud访客统计插件重大安全漏洞修复指南 猜测应该和next升级版啥的或者安全性有关，就按照这篇文章里说的配置了各种， 装了「leancloud-counter-security」这个插件，本以为能解决了的，">
@@ -663,7 +663,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -990,6 +990,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1064,7 +1082,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1687,7 +1705,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1701,4 +1718,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

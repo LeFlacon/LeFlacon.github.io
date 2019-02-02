@@ -185,7 +185,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fxro4kppqcj30id02a747.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxro5jyvzdj30ii0at407.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxrobno6mzj3073035dfo.jpg">
-<meta property="og:updated_time" content="2018-12-01T16:07:59.174Z">
+<meta property="og:updated_time" content="2018-12-01T16:07:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QT 简易浏览器+截图">
 <meta name="twitter:description" content="之前小学期的代码。。大作业做的这个实话实说没啥功能并不好用的浏览器。。这个当时没写实现说明来着。。那就没有说明啦  架构 效果isafari，当时随手用心取的名字。。  这是一个基于Qt WebEngine Widgets的浏览器； 目前具有多窗口网页浏览/网页缩放/工具栏显示隐藏/工具栏风格设置/fusion风格/macintosh风格/windows风格/网页内容查找/历史记录/全网页截图/截">
@@ -683,7 +683,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1026,6 +1026,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1100,7 +1118,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1723,7 +1741,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1737,4 +1754,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 

@@ -178,7 +178,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw0sr901jxj30md05pmxi.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw0qiiukabj30b208e3yi.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw0sj4txd0j30g6086glh.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.857Z">
+<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大因数分解 -- Pollard Rho算法">
 <meta name="twitter:description" content="研究了一篇论文，讲的很好，由浅入深，大致记录一下 试除法首先如果要对一个数进行因数分解，最直接的做法就是「试除法」 假设N是一个能被分解为p*q的数，就暴力的从i=2（i++）开始判断能否整除n，当然由于一半是偶数，所以可以优化先判断2，然后从3开始（i+=2）继续判断 这种方法可以改的更加暴力，不从i=2开始，直接给一个随机数i然后判断i能否整除n，那么对于n=p*q来说，找出其因数的概率是2/">
@@ -679,7 +679,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">280</span>
+                    <span class="site-state-item-count">285</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1022,6 +1022,24 @@ show_date_time();
       </div>
     </main>
 
+
+<!-- 页面雪花 -->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/src/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+
+
     <footer id="footer" class="footer">
 
 
@@ -1096,7 +1114,7 @@ show_date_time();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:195.7k</span>
+  <span class="post-count"> | Words:198.0k</span>
 </div>
 
 <br>
@@ -1719,7 +1737,6 @@ setInterval("createtime()",250);
 })();
 </script>
 
-
 </body>
 
 </html>
@@ -1733,4 +1750,5 @@ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('/js/src/sw.js');
 }
 </script>
+
 
