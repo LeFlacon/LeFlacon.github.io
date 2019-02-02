@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mixed Content ”The page at 'xxxdomain' was loaded over HTTPS, but requested an insecure script 'xxx'.This request has been blocked.the content must be served over HTTPS“ 的解决办法]]></title>
+    <url>%2F128c2cae%2F</url>
+    <content type="text"><![CDATA[本来是给博客加了个JQuery+Html5实现的3D雪花飞舞特效。。因为gif的雪花太辣鸡了。。想着过年装修一下的。。 这是教程原文 -&gt; JQuery+Html5实现超真实3D雪花飞舞特效 然后本地预览啥的都没问题，效果贼满意 但是上传后啥特效都没有。。跑去控制台一看。。果然出问题了 Mixed Content: The page at &#39;xxx_domain&#39; was loaded over HTTPS, but requested an insecure script &#39;http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js&#39;. This request has been blocked; the content must be served over HTTPS. 翻译一下就是，这个页面是通过https加载的，但是请求了一个不安全的脚本jquery，所以这个请求被阻止了，内容必须通过https提供 下图是原先的代码： 顺便这段要放在&lt;body&gt;里的最后，但又要在&lt;footer&gt;前面。。不知道为啥。。原作者是说“将如下代码放入后即可，推荐放在底部，不影响别的内容加载”，然后我试了几次得到了这个结果，别的位置都显示不了。。 上文说到http请求jquery库不安全，所以在代码中直接改成https，可以访问 1234-&lt;script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;+&lt;script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt; 这种方法。。简单粗暴有效（我最终使用的就是这种简单粗暴有效的方法∠( ᐛ 」∠)＿） 还有一种方法是在页面的&lt;head&gt;中加上一句话，可以自动把不安全的http请求转化为https请求 1&lt;meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"&gt; 其他还有CSP设置upgrade-insecure-requests的方法，不是很懂。。具体见这篇博客 -&gt; https://www.cnblogs.com/hustskyking/p/upgrade-insecure-requests.html） 然后上传一下就成功下雪啦(((o(*ﾟ▽ﾟ*)o)))]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[❄️ 宇宙よりも遠い場所]]></title>
     <url>%2Fa2936721%2F</url>
     <content type="text"><![CDATA[比宇宙更远的地方 这部番！吹就完事了！！全是小天使！！！吃了安利没有错过真是太好了TAT 开始尝试没做过的事情时 我总是在想万一做不好该怎么办 失败的话会很不爽吧 会后悔吧… 那…要不要一起去？ 乘上与平时方向相反的电车 为了去看未曾见过的风景 当你无法回头的时候 才是真正的旅途 人性中是有恶意的 不要以恶意去应对恶意 昂首挺胸吧 选项一直都有 但是我们选择了这里 是我们自己选择的 令时针转动最快的就是忙碌的工作 我想和无拘无束的人去什么都没有的地方 但是 只有内心的想法才能突破现实中的不讲道理 令不可能成为可能 推动自己前进 J’aime ma vie]]></content>
@@ -65,10 +73,21 @@
   <entry>
     <title><![CDATA[Hello 2019]]></title>
     <url>%2F2019%2F</url>
-    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
+    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[poj 1738 An old Stone Game（GarsiaWachs算法）]]></title>
+    <url>%2F6e50cfa7%2F</url>
+    <content type="text"><![CDATA[Time Limit: 5000MS Memory Limit: 30000K DescriptionThere is an old stone game.At the beginning of the game the player picks n(1&lt;=n&lt;=50000) piles of stones in a line. The goal is to merge the stones in one pile observing the following rules: At each step of the game,the player can merge two adjoining piles to a new pile.The score is the number of stones in the new pile. You are to write a program to determine the minimum of the total score. InputThe input contains several test cases. The first line of each test case contains an integer n, denoting the number of piles. The following n integers describe the number of stones in each pile at the beginning of the game. The last test case is followed by one zero. OutputFor each test case output the answer on a single line.You may assume the answer will not exceed 1000000000. Sample Input1234567110033 4 341 1 1 10 Sample Output1230178 题解：线性石子合并 51nod 1023 石子归并 V3（GarsiaWachs算法） 代码：123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std;#define LL long longconst int N=50005;int stone[N],n,t;LL ans;void join(int k)&#123; int sum=stone[k]+stone[k-1]; ans+=sum; for(int i=k;i&lt;t-1;i++)stone[i]=stone[i+1]; t--; int j; for(j=k-1;j&gt;0&amp;&amp;stone[j-1]&lt;sum;j--)stone[j]=stone[j-1]; stone[j]=sum; while(j&gt;=2&amp;&amp;stone[j]&gt;=stone[j-2])&#123; int d=t-j; join(j-1); j=t-d; &#125;&#125;int main()&#123; while(scanf("%d",&amp;n)&amp;&amp;n)&#123; for(int i=0;i&lt;n;i++)scanf("%d",&amp;stone[i]); ans=0;t=1; for(int i=1;i&lt;n;i++)&#123; stone[t++]=stone[i]; while(t&gt;=3&amp;&amp;stone[t-3]&lt;=stone[t-1])join(t-2); &#125; while(t&gt;1)join(t-1); printf("%lld\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[51nod 1023 石子归并 V3（GarsiaWachs算法）]]></title>
@@ -199,8 +218,8 @@
       <tags>
         <tag>dp</tag>
         <tag>gcd</tag>
-        <tag>思维</tag>
         <tag>dfs</tag>
+        <tag>思维</tag>
         <tag>构造</tag>
       </tags>
   </entry>
@@ -1646,8 +1665,8 @@
         <category>杂</category>
       </categories>
       <tags>
-        <tag>思维</tag>
         <tag>stl</tag>
+        <tag>思维</tag>
       </tags>
   </entry>
   <entry>
@@ -2100,8 +2119,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>推公式</tag>
+        <tag>前缀和</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -2235,8 +2254,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java高精度</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>

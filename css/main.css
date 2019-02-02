@@ -1847,7 +1847,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ab464e;
+  background: #75a8ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2818,10 +2818,10 @@ hr {
   border-style: none none dashed none;
 }
 body {
-  background: url("https://hbimg.b0.upaiyun.com/fe7343d213869361a4428c581278d427e3d2b0aa9725-Os4lwD_fw658");
+  background: url("https://ws1.sinaimg.cn/large/006tNc79ly1fzsamrk7xuj30r90c6jsc.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100% 100%;
 }
 .headband {
   height: 2px;
