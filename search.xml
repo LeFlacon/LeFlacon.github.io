@@ -65,7 +65,7 @@
   <entry>
     <title><![CDATA[Hello 2019]]></title>
     <url>%2F2019%2F</url>
-    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
+    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } U2FsdGVkX19MrUYbUI2PHVgjOGzoWn0CcEnjDqx9CeAGbpM+4mmZGYX8TuyVK2FvJOpCb1NuRhZmSOkJDStKFfLpZpbOV1u2xxcye/BzWfli5hszNbt0Ad87BUoev+ZkgxHQr/pMvL+FhvzJiwrLK8Ws3xdAmlUZbAKXA3R59+AhmXQjSHTbUwTVHgDrTpR5yMK+S+dLy8ejZIL6cNHzL9q0f0q2jMr1gojUPpDm9qNqW1jfnvYWdXfdAr9s1j/aEZHh+2UUIV2Q8+lx15SWFHo0Pv4e2OA7fxwUPsONUCoDJj3EG+zWyCOH6a1TqCdXTEba/gFsqR0J2fgFg375L6HAy/h0M3DZa1C2cGChbcSs8RJRY+p39yKFVremFn3MvhGDKkWHImFCaS0Ly0vpyW9hxdPgrwwTZZ+MDfSRiDhy2dQDTFVMnV6iqy7NxuaJkicrzs1rh7kt+taeNwEBwzG872TQKRJfC9ansxcoaZ4LfJZVmE7ZKK4+fWAhxOe9dZT5HFWZsdHXT5RUrdyDL25pW3R9bwRy99U0oqoxQ/PPy0g58WbYb6YrlHXgCL4rtaMkG5+GuaoG+4R8GXrf8vuFjAGdaCdcvbcRx3SN03SlXHCZLwyJgu07V8uISQOSikTXpouYfj/hej27Nknrt2MqVgh5l3w75jjHATTuDJpB377GrrlJJaZA3sheuNDPeM/NSqFCTULoYv9mq4jRkpDicA2mEKqSkXvfHzLRe0DfG40rK/50IlLRhNv85jY+eHWnwiCytL2UYW73PiFaoReqEuKH2PlXh2hpZBt+l+JDd371dEH4YCzTZNgWMZ5cMnNacdet0yddwQBcDlt1+brXDGcHR1FpUPlAcEXSpu3U0+YjTLfWowPyYeTRCUXczGj5F/1H+XuW5ln2NRydrK5AhGMDUYaIPWIvQFV7eWTgk/+TKSXy7/W5losv5DWHK3LSfdL0mQeQsQGySX5XyJw///CcAt3GhMpTTf7UbklOQy36rC6V/Hgt62rT5yasfDibvUqjT0pj7JdsMwJdU35Em/N3ZQM0An2UErqxQqNDLu80O1iYkOTfzodl0hN4c3UQWujt43Xi3Ljm66E6nyS0P3FpsHjHZCCfEGuGkKu8yvK263EurNNYelyiK72V1L2pMgYgFii/lc+4zY45XbqDoRyGdw0gNRg3hhsmyjdv1iVn9U/LFhcZJaKl1NyZ70SHgaZJXdqgfiuSAxkYTaK1lAj5lO5qubd5iljoQ0Np8PaUUrZkEw5dJCWvfzAUGL9NtS9erdmCsYgvMqRjQ+tU/pa6/s92V4VOC9wUhfyQbF0tcajb5Zc8IgW+EMvvoXRjt69NnNVe4fe9oSK+cDcRvmQ4kwpx6X9o8SasZLhvQSuACzVCnVCJH+RaRYyCR4gfQnqaLHALyi1uCn6lDKnl3C3Amsl3ARMCplyDpUdTKY7CNQlmpC5zQgdAGfZxy8Yn+6LYlWfl9YlqiKabIOMu4ZTnAsLBgtPJodvp+s/dGhr1feOTNufWt+9tWqCPTdGwQjLBzt4YFjlwT36QHDk7kC9nbkvkckZUvRYAAqfFnj4wovRGTm+vKh9WKYi9ecG5F2p8/7NIDXJv6r/dKyqpd5bK57L04NotBFi17EzWPAkOTSkWmEOGRmA+sMRgfGaBrPGqGb1QgJfFmdqApvi8kWbn4Q/OkKkN7iYlEWxsatXuWie5bewcMpH5FiWx0d6BWly/a3Prc6uL5F6e5cx6sUT9dWpxyZ7H3oXvg6vAN21ZR55aA5m+3wP0VcUCq7gxxdSd+IvUlzTAewvEyymLBcbNHHqomVo8tGTdZIn9vwmfEo79JeXixBwmZeh3G0fdna6WefZhDxkuiyakUWmtGEoA8H7WecERiyMdq6/rJTMuMcUDueewDjyYJAtQXxqUg/HgvdH0hVe/ddksbrfnHJMdgFAlVB+twzXXwK/IE8V/uDoeennz20l5gfFaDz3//v9yrFTPlKLSVjRBRNk6URTWFVm6vcUlQoG5purBOydPxr6VeurHB2RnD6zD+Ku+XOCAVL8mSYCsX76BECo1wlet1dSfnb5KC16vs5oz+TGqpWI9MFh2c1kAwfXVQEJ6XHcod4sUjKfN96pgWMsunuGQChlqPZ5WXpZHB7BWIpeGaUYLgKqV8Pl2UW6HZ2ilpPMpKd1Px1DJT2PkhzTf4l/mQPq2SE9SJsF7N8tjEzR/OVsMcBhCk6QmcLlpZtZf0KekHPWyVQc+zoXGZD4V94ykNnRaUO/S+kb3qbLRJsGzUfW+3DJCIMo1zvMyi5FYFxge8oITPBLWlnpWUB92TfyU7yp6pqMqRbXjmbOWfoWQfU/StrOHqdYeD2IXu9f0DGq/tU+OgNaMiyn/LbbfvFA4ZdA1AP53pc7EQy9fnwa+Uoj83NCwWh1Fb0+I7o/whviwxVwcxdqX0BruzLXq8is4YOpkn/CSmZrrcw5rbsS9yXWBQe0KjhA9xqWd14eRlQTs/0vqbYH6g7Tc73W5yqOn/yZ73zlckzR1pxuWUtjrtlM6RPG0P7KssEJ44gWVVAezLo4MmqOxzMTH84PtgmZrmHfj+AJQXnnWusa9GhjApd8Y+m1h7TaW3vzMoyOAUfZ346KGp+SiAZHS6Cq56EZ8qjbYqqtXER9f1Mg1Rvq27T4UVUiJKL4dYHV1EdmCfGf0wdqfBriMI+Eii6VNDHJ+HUQ+ZJMdCPGalXc7CnZFjKrxmqMI7aAeD7WFDJEbPsynu3ASrT6dDlcfUa1RBPV3SPqhGeuoPV6U7MP8kPdkGtRI/eTDUH1CNEKhBdhDt14oqopIrYE9ClRa54K0IkvC0cfZ8Z5CXZE4BPwzS1gK7/+L4uwtzd1rYofrLy/FLbkiWEs/pYZjmenAzX/HIeV+LgjG8q+p9ztSuvg= var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
@@ -517,8 +517,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>k-means</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1811,17 +1811,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1018 排序]]></title>
-    <url>%2F5fc91746%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>归并排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1012 最小公倍数LCM]]></title>
     <url>%2Fec404005%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
@@ -1830,6 +1819,17 @@
       </categories>
       <tags>
         <tag>gcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1018 排序]]></title>
+    <url>%2F5fc91746%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -3182,7 +3182,7 @@
   <entry>
     <title><![CDATA[hello-world [Topping]]]></title>
     <url>%2F52e47f72%2F</url>
-    <content type="text"><![CDATA[春节快乐]]></content>
+    <content type="text"><![CDATA[春节快乐 不想吃饺子想吃汤圆(￣^￣)]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
