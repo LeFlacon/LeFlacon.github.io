@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
 
   <!--百度统计-->
@@ -105,6 +105,37 @@ var _hmt = _hmt || [];
 
 
 
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="fonts.lug.ustc.edu.cn/css?family=Comic Neue:300,300italic,400,400italic,700,700italicComic Neue:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -136,7 +167,7 @@ var _hmt = _hmt || [];
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '6.4.0',
     sidebar: {"position":"left","display":"hide123","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: false,
@@ -169,16 +200,16 @@ var _hmt = _hmt || [];
   <meta name="description" content="n&amp;lt;=50000, k&amp;lt;=10  题解：有拐点，显然状态分割 dp[k][i][0/1]表示[1,i]中的一些点组成的集合f(S)=k，且最后一段以i结尾，最后一段上升记为1，下降记为0 状态转移方程如下：  求和部分用树状数组优化一下 代码：12345678910111213141516171819202122232425262728293031323334353637383940">
 <meta name="keywords" content="dp,树状数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bzoj3688 折线统计&#x2F;sjtu1123（dp+树状数组）">
+<meta property="og:title" content="bzoj3688 折线统计&#x2F;sjtu1123（树状数组优化dp）">
 <meta property="og:url" content="http://leflacon.github.io/27bf595a/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="n&amp;lt;=50000, k&amp;lt;=10  题解：有拐点，显然状态分割 dp[k][i][0/1]表示[1,i]中的一些点组成的集合f(S)=k，且最后一段以i结尾，最后一段上升记为1，下降记为0 状态转移方程如下：  求和部分用树状数组优化一下 代码：12345678910111213141516171819202122232425262728293031323334353637383940">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g047es0ae8j30os0fmq4m.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g047qlcigyj30e104zaal.jpg">
-<meta property="og:updated_time" content="2019-02-13T08:32:16.534Z">
+<meta property="og:updated_time" content="2019-02-16T15:29:04.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bzoj3688 折线统计&#x2F;sjtu1123（dp+树状数组）">
+<meta name="twitter:title" content="bzoj3688 折线统计&#x2F;sjtu1123（树状数组优化dp）">
 <meta name="twitter:description" content="n&amp;lt;=50000, k&amp;lt;=10  题解：有拐点，显然状态分割 dp[k][i][0/1]表示[1,i]中的一些点组成的集合f(S)=k，且最后一段以i结尾，最后一段上升记为1，下降记为0 状态转移方程如下：  求和部分用树状数组优化一下 代码：12345678910111213141516171819202122232425262728293031323334353637383940">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g047es0ae8j30os0fmq4m.jpg">
 
@@ -197,7 +228,7 @@ var _hmt = _hmt || [];
   };
 </script>
 
-  <title>bzoj3688 折线统计/sjtu1123（dp+树状数组） | LeFlacon's Blog</title>
+  <title>bzoj3688 折线统计/sjtu1123（树状数组优化dp） | LeFlacon's Blog</title>
   
 
 
@@ -331,9 +362,6 @@ var _hmt = _hmt || [];
   
 
   
-    
-
-  
 
   
     <div class="site-search">
@@ -375,6 +403,9 @@ var _hmt = _hmt || [];
       <div class="main-inner">
         <div class="content-wrap">
           
+            
+
+          
           <div id="content" class="content">
             
 
@@ -398,7 +429,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="联系方式见邮箱或右下角">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -411,7 +442,7 @@ var _hmt = _hmt || [];
 
         
         
-          <h2 class="post-title" itemprop="name headline">bzoj3688 折线统计/sjtu1123（dp+树状数组）
+          <h2 class="post-title" itemprop="name headline">bzoj3688 折线统计/sjtu1123（树状数组优化dp）
               
             
           </h2>
@@ -436,12 +467,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-02-13 16:32:00 / 修改时间：16:32:16" itemprop="dateCreated datePublished" datetime="2019-02-13T16:32:00+08:00">2019-02-13</time>
+              <time title="创建时间：2019-02-13 16:32:00" itemprop="dateCreated datePublished" datetime="2019-02-13T16:32:00+08:00">2019-02-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-16 23:29:04" itemprop="dateModified" datetime="2019-02-16T23:29:04+08:00">2019-02-16</time>
               
             
           </span>
@@ -482,7 +525,7 @@ var _hmt = _hmt || [];
 
           
           
-             <span id="/27bf595a/" class="leancloud_visitors" data-flag-title="bzoj3688 折线统计/sjtu1123（dp+树状数组）">
+             <span id="/27bf595a/" class="leancloud_visitors" data-flag-title="bzoj3688 折线统计/sjtu1123（树状数组优化dp）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -566,6 +609,10 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/666b36a2/" rel="prev" title="poj2823 Sliding Window（deque双端队列，模拟）">
+                poj2823 Sliding Window（deque双端队列，模拟） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -629,7 +676,7 @@ var _hmt = _hmt || [];
               <img class="site-author-image" itemprop="image" src="/images/0.png" alt="LeFlacon">
             
               <p class="site-author-name" itemprop="name">LeFlacon</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">联系方式见邮箱或右下角</p>
           </div>
 
           
@@ -639,7 +686,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">291</span>
+                    <span class="site-state-item-count">297</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -686,7 +733,9 @@ var _hmt = _hmt || [];
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -883,7 +932,9 @@ var _hmt = _hmt || [];
                     
                       
                     
-                    <span class="site-state-item-count">92</span>
+                      
+                    
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -903,11 +954,6 @@ var _hmt = _hmt || [];
               
                 <span class="links-of-author-item">
                   <a href="15356373111@163.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i></a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://instagram.com/zhuujx" target="_blank" title="Instagram" rel="external nofollow noopener noreferrer"><i class="fa fa-fw fa-instagram"></i></a>
                   
                 </span>
               
@@ -1068,7 +1114,7 @@ z-index:100001;
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.0</div>
 
 -->
 
@@ -1076,7 +1122,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:202.8k</span>
+  <span class="post-count"> | Words:205.8k</span>
 </div>
 
 <br>
@@ -1193,6 +1239,13 @@ setInterval("createtime()",250);
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
