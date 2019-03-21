@@ -197,12 +197,12 @@ var _hmt = _hmt || [];
   <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
 
 
-  <meta name="description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色待补。。  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  12345678910void hanoi(int n,cha">
+  <meta name="description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&amp;gt; 递归 —— 三色汉诺塔（分离型）  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  1234567">
 <meta property="og:type" content="article">
 <meta property="og:title" content="递归 —— 汉诺塔&amp;双色汉诺塔（分离型）">
 <meta property="og:url" content="http://leflacon.github.io/a8a3dabc/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色待补。。  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  12345678910void hanoi(int n,cha">
+<meta property="og:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&amp;gt; 递归 —— 三色汉诺塔（分离型）  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  1234567">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwphs80xj8j30lo0ftmx2.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwphtq8f31j30l907gmwz.jpg">
@@ -212,10 +212,10 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwpkdnljnjj30l407iq2r.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwq85lslcpj30g10cgq2x.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwq87dy77lj30fz0d3t8q.jpg">
-<meta property="og:updated_time" content="2018-11-02T06:31:08.000Z">
+<meta property="og:updated_time" content="2019-03-17T13:37:51.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归 —— 汉诺塔&amp;双色汉诺塔（分离型）">
-<meta name="twitter:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色待补。。  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  12345678910void hanoi(int n,cha">
+<meta name="twitter:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&amp;gt; 递归 —— 三色汉诺塔（分离型）  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  1234567">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwphs80xj8j30lo0ftmx2.jpg">
 
 
@@ -489,7 +489,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-02 14:31:08" itemprop="dateModified" datetime="2018-11-02T14:31:08+08:00">2018-11-02</time>
+                <time title="修改时间：2019-03-17 21:37:51" itemprop="dateModified" datetime="2019-03-17T21:37:51+08:00">2019-03-17</time>
               
             
           </span>
@@ -562,7 +562,7 @@ var _hmt = _hmt || [];
 
       
         <p>网上甚至连<s>能盗用的</s>好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西</p>
-<p>双色的和网上的答案对拍了一下，应该是正解，三色待补。。</p>
+<p>双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&gt; <a href="https://leflacon.github.io/3fcdc8fa/">递归 —— 三色汉诺塔（分离型）</a></p>
 <hr>
 <h1 id="1-单色汉诺塔"><a href="#1-单色汉诺塔" class="headerlink" title="1.单色汉诺塔"></a>1.单色汉诺塔</h1><p>首先回忆一下普通汉诺塔的递归原理：</p>
 <blockquote>
@@ -708,7 +708,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">303</span>
+                    <span class="site-state-item-count">311</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1144,7 +1144,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:211.0k</span>
+  <span class="post-count"> | Words:214.6k</span>
 </div>
 
 <br>
