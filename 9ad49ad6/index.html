@@ -209,7 +209,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1g0z16s590cj308101j74e.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1g0z17oyfy2j303c02za9t.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcly1g0z4cj9gryj30fg07owfg.jpg">
-<meta property="og:updated_time" content="2019-03-11T13:12:57.720Z">
+<meta property="og:updated_time" content="2019-03-23T02:47:52.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环小数及其位数的有趣性质及详细定理证明">
 <meta name="twitter:description" content="最近什么都学不进去。。明明有很多事要干但是又什么都不想干。。Σ（ﾟдﾟlll）！是焦虑的感觉！所以不如学论文好了。。要是学不会就会更焦虑，然后就真的更焦虑了。。  学一篇有关循环小数的一些性质的论文，我不知道循环节那个点应该如何打出来，太麻烦了，所以下文小数括号里的部分表示循环节 1.分数和循环小数的互化如果是分数化成循环小数就是小学除法，如果是循环小数化成分数就是解方程，比如： 1234561/">
@@ -469,12 +469,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-03-11 21:08:00 / 修改时间：21:12:57" itemprop="dateCreated datePublished" datetime="2019-03-11T21:08:00+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-11 21:08:00" itemprop="dateCreated datePublished" datetime="2019-03-11T21:08:00+08:00">2019-03-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-23 10:47:52" itemprop="dateModified" datetime="2019-03-23T10:47:52+08:00">2019-03-23</time>
               
             
           </span>
@@ -596,7 +608,7 @@ var _hmt = _hmt || [];
 <p>结论与证明如下：</p>
 <p>设p是奇质数，如果<code>1/p</code>有d位循环节，利用定理1可以证明：<code>1/p^2</code>的循环节位数是d或者dp，同理，若<code>1/p^n</code>的循环节位数是<code>dp^m(0≤m&lt;n)</code>，则<code>1/p^(n+1)</code>的循环节位数是<code>dp^m</code>或<code>dp^(m+1)</code></p>
 <h1 id="7-证明和为9的奇妙性质"><a href="#7-证明和为9的奇妙性质" class="headerlink" title="7.证明和为9的奇妙性质"></a>7.证明和为9的奇妙性质</h1><p>回到第二点的那个奇妙的性质：假设循环节长度为2n，前后分成两段，第k个数和第k+n个数的和永远等于9</p>
-<p>证明如下：（好像没有很严谨的证明，但是论文里的大致就是i 这个意思，意会意会( ? _ ? )）</p>
+<p>证明如下：（好像没有很严谨的证明，但是论文里的大致就是这个意思，意会意会( ? _ ? )）</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">比如<span class="number">24</span>/<span class="number">91</span>，<span class="number">10</span>^<span class="number">6</span>≡<span class="number">1</span>(mod <span class="number">91</span>)，<span class="number">10</span>^<span class="number">3</span>≡−<span class="number">1</span>(mod <span class="number">91</span>)，</span><br><span class="line"><span class="number">91</span>整除(<span class="number">10</span>^<span class="number">3</span>+<span class="number">1</span>), <span class="number">91</span>也整除<span class="number">24</span>*(<span class="number">10</span>^<span class="number">3</span>+<span class="number">1</span>)=<span class="number">24</span>+<span class="number">24000</span></span><br><span class="line"></span><br><span class="line"><span class="number">24</span>/<span class="number">91</span>=<span class="number">0.</span>(<span class="number">263</span> <span class="number">736</span>)</span><br><span class="line"><span class="number">24000</span>/<span class="number">91</span>=n+<span class="number">0.</span>(<span class="number">736</span> <span class="number">263</span>)</span><br><span class="line"><span class="number">24</span>/<span class="number">91</span>+<span class="number">24000</span>/<span class="number">91</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">那么这两个数相加只能是<span class="number">0.9999999999999999</span>……</span><br><span class="line"></span><br><span class="line">所以必然会有和为<span class="number">9</span>的性质</span><br></pre></td></tr></table></figure>
 <h1 id="8-定理5"><a href="#8-定理5" class="headerlink" title="8.定理5"></a>8.定理5</h1><font size="3" color="#5959ff">「定理5」：如果<code>p≥7</code>是个质数，n与m是任意正整数且p不整除m，则m/p^n的循环节有偶数位，将此循环节分成前后两段，则此两段之对应项的和皆为9</font>
 
@@ -724,7 +736,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">311</span>
+                    <span class="site-state-item-count">316</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -972,7 +984,9 @@ var _hmt = _hmt || [];
                     
                       
                     
-                    <span class="site-state-item-count">93</span>
+                      
+                    
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1160,7 +1174,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:214.6k</span>
+  <span class="post-count"> | Words:217.1k</span>
 </div>
 
 <br>
