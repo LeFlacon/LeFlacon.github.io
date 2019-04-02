@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[51nod 1276 岛屿的数量（思维）]]></title>
+    <url>%2F76493566%2F</url>
+    <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题 有N个岛连在一起形成了一个大的岛屿，如果海平面上升超过某些岛的高度时，则这个岛会被淹没。原本的大岛屿则会分为多个小岛屿，如果海平面一直上升，则所有岛都会被淹没在水下。给出N个岛的高度。然后有Q个查询，每个查询给出一个海平面的高度H，问当海平面高度达到H时，海上共有多少个岛屿。例如：岛屿的高度为：{2, 1, 3, 2, 3}, 查询为：{0, 1, 3, 2}。当海面高度为0时，所有的岛形成了1个岛屿。当海面高度为1时，岛1会被淹没，总共有2个岛屿{2} {3, 2, 3}。当海面高度为3时，所有岛都会被淹没，总共0个岛屿。当海面高度为2时，岛0, 1, 3会被淹没，总共有2个岛屿{3} {3}。 输入第1行：2个数N, Q中间用空格分隔，其中N为岛的数量，Q为查询的数量(1 &lt;= N, Q &lt;= 50000)。第2 - N + 1行，每行1个数，对应N个岛屿的高度(1 &lt;= A[i] &lt;= 10^9)。第N + 2 - N + Q + 1行，每行一个数，对应查询的海平面高度(1 &lt;= Q[i] &lt;= 10^9)。 输出输出共Q行，对应每个查询的岛屿数量。 输入样例123456789105 4213230132 输出样例12341202 题解：题意就是求大于某个数的区间个数，一开始往数据结构上想了。。但是维护啥完全没有思路啊 看了讨论区才有点明白0.0思维题，妙啊妙啊 就是要想到：对于121型的来说，如果顶峰2被淹了，那么岛屿数-1，对于212型的来说，如果底峰1被淹了，那么岛屿数+1 所以离线做，存好所有询问并从小到大排，记录所有岛屿的位置，然后按高低排序，对于某个岛屿，比较他左右两个岛屿即可，用一个vis[i]表示第i号岛屿有没有被淹，如果一个岛屿两边岛屿都被淹，那么淹了这个岛屿之后岛屿数减一，如果一个岛屿两边岛屿都没有被淹，那么淹了这个岛屿之后岛屿数加一，其他情况岛屿不变，注意最左和最右的两个需要特殊处理一下 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;using namespace std;const int N=5e4+5;struct node&#123; int h; int pos;&#125;a[N],q[N];int res[N],vis[N];bool cmp(node n1,node n2)&#123; return n1.h&lt;n2.h;&#125;int main()&#123; int n,qq; scanf("%d%d",&amp;n,&amp;qq); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;a[i].h); a[i].pos=i; &#125; for(int i=0;i&lt;qq;i++)&#123; scanf("%d",&amp;q[i].h); q[i].pos=i; &#125; sort(a,a+n,cmp); sort(q,q+qq,cmp); int cur=0,ans=1; memset(vis,0,sizeof(vis)); for(int i=0;i&lt;qq;i++)&#123; while(a[cur].h&lt;=q[i].h&amp;&amp;cur&lt;n)&#123; if(a[cur].pos==0)&#123; if(vis[1])ans--; &#125; else if(a[cur].pos==n-1)&#123; if(vis[n-2])ans--; &#125; else&#123; if(vis[a[cur].pos-1]&amp;&amp;vis[a[cur].pos+1]) ans--; else if((!vis[a[cur].pos-1])&amp;&amp;(!vis[a[cur].pos+1])) ans++; &#125; vis[a[cur].pos]=1; cur++; &#125; res[q[i].pos]=ans; &#125; for(int i=0;i&lt;qq;i++)&#123; printf("%d\n",res[i]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>杂</category>
+      </categories>
+      <tags>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1272 最大距离（贪心）]]></title>
+    <url>%2F79f86570%2F</url>
+    <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题 给出一个长度为N的整数数组A，对于每一个数组元素，如果他后面存在大于等于该元素的数，则这两个数可以组成一对。每个元素和自己也可以组成一对。例如：{5, 3, 6, 3, 4, 2}，可以组成11对，如下（数字为下标）：(0,0), (0, 2), (1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (3, 3), (3, 4), (4, 4), (5, 5)。其中(1, 4)是距离最大的一对，距离为3。 输入第1行：1个数N，表示数组的长度(2 &lt;= N &lt;= 50000)。第2 - N + 1行：每行1个数，对应数组元素Ai(1 &lt;= Ai &lt;= 10^9)。 输出输出最大距离。 输入样例12345676536342 输出样例13 题解：先记录一下每个数的位置pos，然后按照数字大小排序，大小相同的位置小的在前面，这样前面的数一定比后面的小，就可以O(n)扫一遍更新最大距离 代码：12345678910111213141516171819202122232425262728293031#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N=5e4+5;struct node&#123; int v,pos;&#125;a[N];bool cmp(node n1,node n2)&#123; return (n1.v==n2.v)?n1.pos&lt;n2.pos:n1.v&lt;n2.v;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;a[i].v); a[i].pos=i; &#125; sort(a,a+n,cmp); int cur=n-1,ans=0; for(int i=0;i&lt;n;i++)&#123; if(a[i].pos&lt;cur)cur=a[i].pos; else ans=max(ans,a[i].pos-cur); &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>贪心</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1270 数组的最大代价（dp）]]></title>
+    <url>%2F30019b4a%2F</url>
+    <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题数组A包含N个元素A1, A2……AN。数组B包含N个元素B1, B2……BN。并且数组A中的每一个元素Ai，都满足1 &lt;= Ai &lt;= Bi。数组A的代价定义如下： （公式表示所有两个相邻元素的差的绝对值之和）给出数组B，计算可能的最大代价S。 输入第1行：1个数N，表示数组的长度(1 &lt;= N &lt;= 50000)。第2 - N+1行：每行1个数，对应数组元素Bi(1 &lt;= Bi &lt;= 10000)。 输出输出最大代价S。 输入样例123456510110110 输出样例136 题解：要使绝对值最大，a[i]要么取最小的1，要么取最大的b[i]，dp[i][0/1]分别表示取到第i个数，取1或者取b[i] 可以写出状态转移方程，总共四种情况： 12dp[i][0]=max(dp[i-1][0],dp[i-1][1]+b[i-1]-1);dp[i][1]=max(dp[i-1][0]+b[i]-1,dp[i-1][1]+abs(b[i-1]-b[i])); 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N=5e4+5;int b[N],dp[N][2];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;b[i]); dp[0][0]=0; int ans=0; for(int i=1;i&lt;n;i++)&#123; dp[i][0]=max(dp[i-1][0],dp[i-1][1]+b[i-1]-1); dp[i][1]=max(dp[i-1][0]+b[i]-1,dp[i-1][1]+abs(b[i-1]-b[i])); ans=max(dp[i][0],dp[i][1]); // cout&lt;&lt;ans&lt;&lt;" "; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1268 和为K的组合（bfs）]]></title>
+    <url>%2Ff2eae8bb%2F</url>
+    <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题 给出N个正整数组成的数组A，求能否从中选出若干个，使他们的和为K。如果可以，输出：”Yes”，否则输出”No”。 输入第1行：2个数N, K, N为数组的长度, K为需要判断的和(2 &lt;= N &lt;= 20，1 &lt;= K &lt;= 10^9).第2 - N + 1行：每行1个数，对应数组的元素A[i] (1 &lt;= A[i] &lt;= 10^6) 输出如果可以，输出：”Yes”，否则输出”No”。 输入样例1234565 13246810 输出样例1No 题解：n=20，bfs 代码：123456789101112131415161718192021222324252627282930#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;vector&gt;using namespace std;const int N=25;int a[N],n,k;int main()&#123; scanf("%d%d",&amp;n,&amp;k); for(int i=1;i&lt;=n;i++)scanf("%d",&amp;a[i]); vector&lt;int&gt; sum; sum.push_back(0); for(int i=1;i&lt;=n;i++)&#123; int sz=sum.size(); for(int j=0;j&lt;sz;j++)&#123; if(sum[j]+a[i]==k)&#123; puts("Yes"); return 0; &#125; else if(sum[j]+a[i]&lt;k)&#123; sum.push_back(sum[j]+a[i]); &#125; &#125; &#125; puts("No"); return 0;&#125;]]></content>
+      <categories>
+        <category>搜索</category>
+      </categories>
+      <tags>
+        <tag>bfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[51nod 1247 可能的路径（数论，思维）]]></title>
+    <url>%2Fca5b30d3%2F</url>
+    <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题 在一个无限大的二维网格上，你站在(a,b)点上，下一步你可以移动到(a + b, b), (a, a + b), (a - b, b), 或者 (a, a - b)这4个点。给出起点坐标(a,b)，以及终点坐标(x,y)，问你能否从起点移动到终点。如果可以，输出”Yes”，否则输出”No”。例如：(1,1) 到 (2,3)，(1,1) -&gt; (2,1) -&gt; (2,3)。 输入第1行：一个数T，表示输入的测试数量(1 &lt;= T &lt;= 5000)第2 - T + 1行：每行4个数，a, b, x, y，中间用空格分隔(1 &lt;= a, b, x, y &lt;= 10^18) 输出输出共T行，每行对应1个结果，如果可以，输出”Yes”，否则输出”No”。 输入样例12321 1 2 32 1 2 3 输出样例12YesYes 题解：好难。。模拟出奇迹。。先乱走看看有没有什么可用的结论 如果(a,b)-&gt;(a+b,b)，那么有(a+b,b)-&gt;(a,b).如果(a,b)-&gt;(a,a+b)，那么有(a,a+b)-&gt;(2a+b,a+b)-&gt;(2a+b,a)-&gt;(a+b,a)-&gt;(a+b,b)-&gt;(a,b).如果(a,b)-&gt;(a-b,b)，那么有(a-b,b)-&gt;(a,b).如果(a,b)-&gt;(a,a-b)，那么有(a,a-b)-&gt;(a,b). 可以得到不管从哪走都可以回到原点(a,b)，所以可以推出结论一：“路径可逆” 如果(a,b)-&gt;(a+b,b)-&gt;(a+b,a)-&gt;(b,a)，所以可以推出结论二：“(a,b)-&gt;(b,a)可行” (a,b)-&gt;(a+b,a)-&gt;(2a+b,a)-&gt;(3a+b,a)-&gt;...-&gt;(na+b,a)即(na+b,a)-&gt;...-&gt;(a,b)-&gt;...-&gt;(b,a)，数论一下，也就是(a,b)-&gt;...-&gt;(a%b,b) 同理，(a,b)-&gt;(a,a+b)-&gt;(a,2a+b)-&gt;...-&gt;(a,na+b)即(a,na+b)-&gt;...-&gt;(a,b%a) 记c=gcd(a,b)，(a,b)-&gt;(c,c) 所以最终如果gcd(a,b)==gcd(x,y)，那么就可达 代码：12345678910111213141516171819202122#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; int t; scanf("%d",&amp;t); while(t--)&#123; LL a,b,x,y; scanf("%lld%lld%lld%lld",&amp;a,&amp;b,&amp;x,&amp;y); if(gcd(a,b)==gcd(x,y))puts("Yes"); else puts("No"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
+        <tag>思维</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[51nod 1246 罐子和硬币（思维）]]></title>
     <url>%2Ff82cf35b%2F</url>
     <content type="text"><![CDATA[1 秒 131,072 KB 20 分 3 级题 有n个罐子，有k个硬币，每个罐子可以容纳任意数量的硬币。罐子是不透明的，你可以把这k个硬币任意分配到罐子里。然后罐子被打乱顺序，你从外表无法区别罐子。最后罐子被编上号1-n。每次你可以询问某个罐子，如果该罐子里有硬币，则你可以得到1个（但你不知道该罐子中还有多少硬币），如果该罐子是空的，你得不到任何硬币，但会消耗1次询问的机会。你最终要得到至少c枚硬币（c &lt;= k)，问题是给定n,k,c，由你来选择一种分配方式，使得在最坏情况下，询问的次数最少，求这个最少的次数。 例如：有3个罐子，10个硬币，需要得到7个硬币，(n = 3, k = 10, c = 7)。你可以将硬币分配为：3 3 4，然后对于每个罐子询问2次，可以得到6个硬币，再随便询问一个罐子，就可以得到7个硬币了。 输入输入3个数：n,k,c (1 &lt;= n &lt;= 10^9, 1 &lt;= c &lt;= k &lt;= 10^9)。 输出输出最坏情况下所需的最少询问次数。 输入样例14 2 2 输出样例14 题解：一开始想分配策略没有思路，题也没咋读懂。。还是看讨论区去了。。 然后才明白题意是这样：虽然你不知道哪个罐子是哪个，但是你知道是怎么分配的，所以拿的时候也不是随机的是有策略的 比如考虑一种k%n==0的特殊情况，这时候每个罐子平均分到k/n个硬币，所以其实每个罐子都一样，相当于你知道每个罐子里有多少硬币，要多少拿多少就是了次数就是c 而一般情况下，无法实现所有硬币平均分配，有些罐子里的硬币不一样，就有可能会拿到空罐子，消耗次数 最少的询问次数，除了成功拿到硬币的c次之外，就是询问空罐子的次数 n个罐子，需要拿c个硬币，设一个变量x，如果每个罐子都能放x及x以上个，并且n*x≥c，那么每个罐子依次拿，最后可以在不询问空罐子的情况下拿到k个，所以就是倒过来求一下这个x 上面这个不等式可以得到x&gt;(c-1)/n，那么x=(c-1)/n+1，总共k个硬币，每个罐子x个最优，如果确实能装好x个，则不用询问空罐子，如果装不好，那么一部分瓶子还是装x个，另一部分空着，最差情况下所有空着或者可能拿空的瓶子都会被访问一次，然后剩下的直接依次取即可，此时空瓶子的个数为n-k/x 所以综合一下答案就是ans=c+max(0,n-k/((c-1)/n+1))，机智O(1) 代码：12345678910111213#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;using namespace std;int main()&#123; int n,k,c; scanf("%d%d%d",&amp;n,&amp;k,&amp;c); printf("%d\n",c+max(0,n-k/((c-1)/n+1))); return 0;&#125;]]></content>
@@ -395,7 +452,7 @@
   <entry>
     <title><![CDATA[Hello 2019]]></title>
     <url>%2F2019%2F</url>
-    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
+    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
@@ -538,8 +595,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>gcd</tag>
         <tag>dp</tag>
+        <tag>gcd</tag>
         <tag>dfs</tag>
         <tag>思维</tag>
         <tag>构造</tag>
@@ -1573,22 +1630,22 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
-    <url>%2F50df051%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
+    <url>%2F73d62e33%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
       <categories>
-        <category>数论</category>
+        <category>贪心</category>
       </categories>
       <tags>
         <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[51nod 1413 权势二进制（CF 538 B. Quasi Binary）]]></title>
-    <url>%2F73d62e33%2F</url>
-    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/538/B 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。 当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。 Input单组测试数据。第一行给出一个整数n (1&lt;=n&lt;=1,000,000) Output输出答案占一行。 Input示例19 Output示例19 题解：这个题放二级里有点太水了。。 就是取所有位中出现的最大的那个数字 然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0 代码：123456789101112131415#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; string s; cin&gt;&gt;s; int ans=1,len=s.length(); for(int i=0;i&lt;len;i++)ans=max(ans,s[i]-'0'); printf("%d\n",ans); return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int f(int w)&#123; if(w==1)return 1; else if(w==2)return 10; else if(w==3)return 100; else if(w==4)return 1000; else if(w==5)return 10000; else if(w==6)return 100000; else return 1000000;&#125;int main()&#123; int n,wei,tmp,ans[11],ji=0,res; scanf("%d",&amp;n); while(n)&#123; wei=0;tmp=n;res=0; while(tmp)&#123; tmp/=10;wei++; &#125; tmp=n; for(int i=wei;i&gt;0;i--)&#123; if(tmp/f(i))&#123; tmp-=f(i);res+=f(i); &#125; if(tmp/f(i))tmp%=f(i); &#125; n-=res; ans[ji++]=res; &#125; printf("%d\n",ji); for(int i=0;i&lt;ji-1;i++)printf("%d ",ans[i]); printf("%d\n",ans[ji-1]); return 0;&#125;]]></content>
+    <title><![CDATA[51nod 1433 0和5（CF 352 A. Jeff and Digits）]]></title>
+    <url>%2F50df051%2F</url>
+    <content type="text"><![CDATA[题目来源： CodeForceshttp://codeforces.com/problemset/problem/352/A 基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 小K手中有n张牌，每张牌上有一个一位数的数，这个字数不是0就是5。小K从这些牌在抽出任意张（不能抽0张），排成一行这样就组成了一个数。使得这个数尽可能大，而且可以被90整除。 注意： 1.这个数没有前导0， 2.小K不需要使用所有的牌。 Input每个测试数据输入共2行。第一行给出一个n，表示n张牌。(1&lt;=n&lt;=1000)第二行给出n个整数a[0],a[1],a[2],…,a[n-1] ，a[i]是0或5 ，表示牌上的数字。 Output共一行，表示由所给牌组成的可以被90整除的最大的数，如果没有答案则输出”-1”（没有引号） Input示例1245 0 5 0 Output示例10 题解：水题。。然而wa了十几发。。原地爆炸。。 各项和相加是9的倍数的数才能被9整除 证明： 先假设一个三位数abc能被9整除，即有100*a+10*b+c=9k，移项得：a+b+c=9k-99a-9b=9(k-11a-b)，即各项和能被9整除 再假设一个n位数ab……yz，有10……0*a+……+10y+z=9k，a+b+……+z=9k-99……9a-……-9y，各项和能被9整除 所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数 代码：12345678910111213141516171819202122232425#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int main()&#123; int n,num5=0,x,num0; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)&#123; scanf("%d",&amp;x); if(x==5)num5++; &#125; num0=n-num5; if(num0==0)puts("-1"); else if(num5&lt;9)puts("0"); else&#123; num5=(int)(num5/9)*9; for(int i=0;i&lt;num5;i++)printf("5"); for(int i=0;i&lt;num0;i++)printf("0"); printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
-        <category>贪心</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>贪心</tag>
@@ -2152,17 +2209,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1018 排序]]></title>
-    <url>%2F5fc91746%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>归并排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1012 最小公倍数LCM]]></title>
     <url>%2Fec404005%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
@@ -2171,6 +2217,17 @@
       </categories>
       <tags>
         <tag>gcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1018 排序]]></title>
+    <url>%2F5fc91746%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2417,9 +2474,9 @@
         <category>数论</category>
       </categories>
       <tags>
+        <tag>埃筛素数</tag>
         <tag>原根</tag>
         <tag>阶</tag>
-        <tag>埃筛素数</tag>
       </tags>
   </entry>
   <entry>
