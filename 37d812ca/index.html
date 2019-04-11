@@ -222,7 +222,7 @@ var _hmt = _hmt || [];
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g1v50nit6bj30gs042mxy.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g1v56fgrouj309v037q34.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g1v561kouzj30cu02o3yr.jpg">
-<meta property="og:updated_time" content="2019-04-08T05:09:31.375Z">
+<meta property="og:updated_time" content="2019-04-08T07:26:01.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow学习记录（二）MNIST手写数字识别（softmax回归）">
 <meta name="twitter:description" content="1.MNIST介绍及下载 wiki的介绍：https://en.wikipedia.org/wiki/MNIST_database 这是MNIST的官网，在里面可以获取这个数据集：http://yann.lecun.com/exdb/mnist/ 把下面这四个下下来放一个文件夹里就好了   比如下图就是四张手写数字图片，在MNIST中一个手写数字被保存为二维矩阵的形式，28*28=784   接下">
@@ -482,7 +482,7 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-04-08 13:07:00 / 修改时间：13:09:31" itemprop="dateCreated datePublished" datetime="2019-04-08T13:07:00+08:00">2019-04-08</time>
+              <time title="创建时间：2019-04-08 13:07:00 / 修改时间：15:26:01" itemprop="dateCreated datePublished" datetime="2019-04-08T13:07:00+08:00">2019-04-08</time>
             
 
             
@@ -595,7 +595,10 @@ var _hmt = _hmt || [];
 <p>本地循环1000次的效果：</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g1v56fgrouj309v037q34.jpg" alt=""></p>
 <p>在colab上跑循环10000次的效果：</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g1v561kouzj30cu02o3yr.jpg" alt=""></h2><p>最后。。图大都从官方盗的。。就不注明出处了ORZ</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g1v561kouzj30cu02o3yr.jpg" alt=""></p>
+<p>此外，如果把梯度下降速率从0.01改大为0.5，训练效果变好了0.0</p>
+<hr>
+<p>最后。。图大都从官方盗的。。就不注明出处了ORZ</p>
 
       
     </div>
@@ -638,6 +641,10 @@ var _hmt = _hmt || [];
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ad83609f/" rel="prev" title="bzoj1003 (ZJOI2006)物流运输（dp+最短路）">
+                bzoj1003 (ZJOI2006)物流运输（dp+最短路） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -712,7 +719,7 @@ var _hmt = _hmt || [];
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">326</span>
+                    <span class="site-state-item-count">332</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -962,7 +969,11 @@ var _hmt = _hmt || [];
                     
                       
                     
-                    <span class="site-state-item-count">94</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1040,7 +1051,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MNIST介绍及下载"><span class="nav-number">1.</span> <span class="nav-text">1.MNIST介绍及下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-构建模型——softmax回归-softmax-regression"><span class="nav-number">2.</span> <span class="nav-text">2.构建模型——softmax回归(softmax regression)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-cost-loss"><span class="nav-number">3.</span> <span class="nav-text">3.cost/loss</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-代码"><span class="nav-number">4.</span> <span class="nav-text">4.代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">4.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MNIST介绍及下载"><span class="nav-number">1.</span> <span class="nav-text">1.MNIST介绍及下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-构建模型——softmax回归-softmax-regression"><span class="nav-number">2.</span> <span class="nav-text">2.构建模型——softmax回归(softmax regression)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-cost-loss"><span class="nav-number">3.</span> <span class="nav-text">3.cost/loss</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-代码"><span class="nav-number">4.</span> <span class="nav-text">4.代码</span></a></li></ol></div>
             
 
           </div>
@@ -1150,7 +1161,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:222.8k</span>
+  <span class="post-count"> | Words:226.7k</span>
 </div>
 
 <br>
