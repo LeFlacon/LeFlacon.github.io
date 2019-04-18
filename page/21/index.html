@@ -197,16 +197,13 @@ var _hmt = _hmt || [];
   <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
 
 
-  <meta name="description" content="联系方式见邮箱或右下角">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="LeFlacon&#39;s Blog">
 <meta property="og:url" content="http://leflacon.github.io/page/21/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="联系方式见邮箱或右下角">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeFlacon&#39;s Blog">
-<meta name="twitter:description" content="联系方式见邮箱或右下角">
 
 
 
@@ -331,9 +328,17 @@ var _hmt = _hmt || [];
         
         
           
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
   </li>
         
         
@@ -422,11 +427,213 @@ var _hmt = _hmt || [];
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/6a5982f6/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/6a5982f6/" itemprop="url">
+                  51nod 1574 排列转换（CF 584 E.Anton and Ira）
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-23 17:59:00" itemprop="dateCreated datePublished" datetime="2018-09-23T17:59:00+08:00">2018-09-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/贪心/" itemprop="url" rel="index"><span itemprop="name">贪心</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/6a5982f6/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/6a5982f6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/6a5982f6/" class="leancloud_visitors" data-flag-title="51nod 1574 排列转换（CF 584 E.Anton and Ira）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          题目来源： CodeForces http://codeforces.com/contest/584/problem/E
+基准时间限制：1 秒 空间限制：131072 KB 分值: 40 难度：4级算法题
+现在有两个长度为n的排列p和s。要求通过交换使得p变成s。交换 pi 和 pj 的代价是|i-j|。要求使用最少的代价让p变成s。
+Input单组测试数据。第一行有一个整数n (1≤n≤2000
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/6a5982f6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	    
+    
+	    
+	      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/15885f20/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -629,7 +836,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -830,7 +1037,7 @@ lyk最近在研究二分答案类的问题。对于一个有n个互不相同的�
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1032,7 +1239,7 @@ Output
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1234,7 +1441,7 @@ Output
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1437,7 +1644,7 @@ Inp
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1639,7 +1846,7 @@ F[0]=1;F[1]=1;F[2]=2;F[3]=3;F[4]=5;…..
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1845,7 +2052,7 @@ Output示例12210
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2050,7 +2257,7 @@ LYK最近在研究范德蒙矩阵与矩阵乘法，一个范德蒙矩阵的形�
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2231,208 +2438,6 @@ Input第一行
 
 	    
     
-	    
-	      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/cf682b8e/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/cf682b8e/" itemprop="url">
-                  1019 逆序数（树状数组，归并排序）
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-19 13:12:00" itemprop="dateCreated datePublished" datetime="2018-09-19T13:12:00+08:00">2018-09-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/cf682b8e/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/cf682b8e/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/cf682b8e/" class="leancloud_visitors" data-flag-title="1019 逆序数（树状数组，归并排序）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          基准时间限制：1 秒 空间限制：131072 KB 
-在一个排列中，如果一对数的前后位置与大小顺序相反，即前面的数大于后面的数，那么它们就称为一个逆序。一个排列中逆序的总数就称为这个排列的逆序数。
-如2 4 3 1中，2 1，4 3，4 1，3 1是逆序，逆序数是4。给出一个整数序列，求该序列的逆序数。
-Input第1行：N，N为序列的长度（n &lt;= 50000)第2 - N + 1行：序列
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/cf682b8e/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-	    
-    
   </section>
 
   
@@ -2472,7 +2477,7 @@ Input第1行：N，N为序列的长度（n &lt;= 50000)第2 - N + 1行：序列
               <img class="site-author-image" itemprop="image" src="/images/0.png" alt="LeFlacon">
             
               <p class="site-author-name" itemprop="name">LeFlacon</p>
-              <p class="site-description motion-element" itemprop="description">联系方式见邮箱或右下角</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           
@@ -2480,9 +2485,9 @@ Input第1行：N，N为序列的长度（n &lt;= 50000)第2 - N + 1行：序列
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives">
+                  <a href="/archives/">
                 
-                    <span class="site-state-item-count">332</span>
+                    <span class="site-state-item-count">333</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2908,7 +2913,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:226.7k</span>
+  <span class="post-count"> | Words:229.5k</span>
 </div>
 
 <br>

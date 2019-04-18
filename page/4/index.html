@@ -197,16 +197,13 @@ var _hmt = _hmt || [];
   <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
 
 
-  <meta name="description" content="联系方式见邮箱或右下角">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="LeFlacon&#39;s Blog">
 <meta property="og:url" content="http://leflacon.github.io/page/4/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="联系方式见邮箱或右下角">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeFlacon&#39;s Blog">
-<meta name="twitter:description" content="联系方式见邮箱或右下角">
 
 
 
@@ -331,9 +328,17 @@ var _hmt = _hmt || [];
         
         
           
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
   </li>
         
         
@@ -422,11 +427,213 @@ var _hmt = _hmt || [];
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/4d078eb9/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/4d078eb9/" itemprop="url">
+                  51nod 1035 最长的循环节（循环小数定理）
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-13 16:53:00" itemprop="dateCreated datePublished" datetime="2019-03-13T16:53:00+08:00">2019-03-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-19 20:24:05" itemprop="dateModified" datetime="2019-03-19T20:24:05+08:00">2019-03-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数论/" itemprop="url" rel="index"><span itemprop="name">数论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/4d078eb9/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/4d078eb9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/4d078eb9/" class="leancloud_visitors" data-flag-title="51nod 1035 最长的循环节（循环小数定理）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          正整数k的倒数1/k，写为10进制的小数如果为无限循环小数，则存在一个循环节，求&lt;=n的数中，倒数循环节长度最长的那个数，假如存在多个最优的答案，输出所有答案中最大的那个数。
+1/6= 0.1(6) 循环节长度为1.1/7= 0.(142857) 循环节长度为6.1/9= 0.(1)  循环节长度为1.  
+输入输入n（10 &lt;= n &lt;= 1000)
+输出输出&lt;=n的数中
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/4d078eb9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	    
+    
+	    
+	      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/9ad49ad6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -629,7 +836,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -821,7 +1028,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1020,7 +1227,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1224,7 +1431,7 @@ dp[i]记为到i的方法数，因为上车后只能在该车终点下车，上�
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1428,7 +1635,7 @@ Sample Output1277 33 69 5131492 20523 3890 19243
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1621,7 +1828,7 @@ Sample Output1277 33 69 5131492 20523 3890 19243
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1828,7 +2035,7 @@ Sample Output1277 33 69 5131492 20523 3890 19243
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2031,7 +2238,7 @@ Sample Output1277 33 69 5131492 20523 3890 19243
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2212,200 +2419,6 @@ Sample Output1277 33 69 5131492 20523 3890 19243
 
 	    
     
-	    
-	      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/436ccaaf/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/436ccaaf/" itemprop="url">
-                  macOS下下载anaconda和安装完后commmand not found的解决办法
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-25 09:00:00 / 修改时间：13:52:50" itemprop="dateCreated datePublished" datetime="2019-02-25T09:00:00+08:00">2019-02-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/436ccaaf/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/436ccaaf/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/436ccaaf/" class="leancloud_visitors" data-flag-title="macOS下下载anaconda和安装完后commmand not found的解决办法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.下载安装在官网选择对应版本的anaconda下载，然后打开安装包安装
-https://www.anaconda.com/distribution/#macos
-
-2.commmand not found下载完后命令行无法识别conda
-
-遇到次数多了就会解决这类问题了，和之前的pyspider一样，就是环境变量没有配置好
-终端输入vi ~/.bash_profile
-然后如果没有的话就在环境变
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/436ccaaf/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-	    
-    
   </section>
 
   
@@ -2445,7 +2458,7 @@ https://www.anaconda.com/distribution/#macos
               <img class="site-author-image" itemprop="image" src="/images/0.png" alt="LeFlacon">
             
               <p class="site-author-name" itemprop="name">LeFlacon</p>
-              <p class="site-description motion-element" itemprop="description">联系方式见邮箱或右下角</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           
@@ -2453,9 +2466,9 @@ https://www.anaconda.com/distribution/#macos
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives">
+                  <a href="/archives/">
                 
-                    <span class="site-state-item-count">332</span>
+                    <span class="site-state-item-count">333</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2881,7 +2894,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:226.7k</span>
+  <span class="post-count"> | Words:229.5k</span>
 </div>
 
 <br>

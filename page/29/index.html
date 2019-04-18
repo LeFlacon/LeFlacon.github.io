@@ -197,16 +197,13 @@ var _hmt = _hmt || [];
   <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/2cfb517c.js","daovoice")</script>
 
 
-  <meta name="description" content="联系方式见邮箱或右下角">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="LeFlacon&#39;s Blog">
 <meta property="og:url" content="http://leflacon.github.io/page/29/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
-<meta property="og:description" content="联系方式见邮箱或右下角">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeFlacon&#39;s Blog">
-<meta name="twitter:description" content="联系方式见邮箱或右下角">
 
 
 
@@ -331,9 +328,17 @@ var _hmt = _hmt || [];
         
         
           
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
   </li>
         
         
@@ -422,11 +427,213 @@ var _hmt = _hmt || [];
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/216acbe1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/216acbe1/" itemprop="url">
+                  1181 质数中的质数（质数筛法,埃筛素数）
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-22 17:01:18" itemprop="dateCreated datePublished" datetime="2018-08-22T17:01:18+08:00">2018-08-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数论/" itemprop="url" rel="index"><span itemprop="name">数论</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/216acbe1/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/216acbe1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/216acbe1/" class="leancloud_visitors" data-flag-title="1181 质数中的质数（质数筛法,埃筛素数）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          题目来源： Sgu基准时间限制：1 秒 空间限制：131072 KB 分值: 0 难度：基础题 
+如果一个质数，在质数列表中的编号也是质数，那么就称之为质数中的质数。例如：3 5分别是排第2和第3的质数，所以他们是质数中的质数。现在给出一个数N，求&gt;=N的最小的质数中的质数是多少（可以考虑用质数筛法来做）。
+Input输入一个数N(N &lt;= 10^6)
+Output输出&gt;=N的最
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/216acbe1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	    
+    
+	    
+	      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/29b25bed/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -627,7 +834,7 @@ var _hmt = _hmt || [];
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -829,7 +1036,7 @@ Input第1行
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1031,7 +1238,7 @@ Input第1行
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1230,7 +1437,7 @@ Input第1行
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1431,7 +1638,7 @@ Input第1行：2个数N,M中间用空格分隔，N为点的数量，M为边的�
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1634,7 +1841,7 @@ F(0) = 0F(1) = 1F(n) = F(n - 1) + F(n - 2) (n &gt;= 2)
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -1834,7 +2041,7 @@ As the boat drifts down the river, a wood full of blossoms shows up on the river
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2034,7 +2241,7 @@ As the boat drifts down the river, a wood full of blossoms shows up on the river
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/0.png">
     </span>
 
@@ -2216,206 +2423,6 @@ Bob错误的认为，三堆石子的Nim游戏只需要少的两堆的石子数
 
 	    
     
-	    
-	      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/61e3cbc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="联系方式见邮箱或右下角">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/61e3cbc/" itemprop="url">
-                  Pawns（博弈，思维）
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-20 01:32:58" itemprop="dateCreated datePublished" datetime="2018-08-20T01:32:58+08:00">2018-08-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/博弈论/" itemprop="url" rel="index"><span itemprop="name">博弈论</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/61e3cbc/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/61e3cbc/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/61e3cbc/" class="leancloud_visitors" data-flag-title="Pawns（博弈，思维）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          https://nanti.jisuanke.com/t/28205
-Carl and Nathan are completely bored with the game of chess; it’s too easy! They have come up with their own game, which is surely a greater test of one’s intelligen
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/61e3cbc/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-	    
-    
   </section>
 
   
@@ -2455,7 +2462,7 @@ Carl and Nathan are completely bored with the game of chess; it’s too easy! Th
               <img class="site-author-image" itemprop="image" src="/images/0.png" alt="LeFlacon">
             
               <p class="site-author-name" itemprop="name">LeFlacon</p>
-              <p class="site-description motion-element" itemprop="description">联系方式见邮箱或右下角</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           
@@ -2463,9 +2470,9 @@ Carl and Nathan are completely bored with the game of chess; it’s too easy! Th
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives">
+                  <a href="/archives/">
                 
-                    <span class="site-state-item-count">332</span>
+                    <span class="site-state-item-count">333</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2891,7 +2898,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:226.7k</span>
+  <span class="post-count"> | Words:229.5k</span>
 </div>
 
 <br>
