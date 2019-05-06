@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[bzoj1059 [ZJOI2007]矩阵游戏（二分图最大匹配）]]></title>
+    <url>%2Ff1269118%2F</url>
+    <content type="text"><![CDATA[Sample Input12345678220 00 130 0 10 1 01 0 0 Sample Output12NoYes 【数据规模】 对于100%的数据，N ≤ 200 题解：本来以为是个模拟一下猜结论的题。。结果是个二分图最大匹配ORZ。。妙啊是我见的少了 因为同行（或同列）的点不管怎么变换还是同行（或同列），所以问题转化为能不能找到n个不同行也不同列的点 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std; const int N=205;vector&lt;int&gt;g[N&lt;&lt;1];int match[N&lt;&lt;1];bool vis[N&lt;&lt;1];bool dfs(int x)&#123; for(int i=0;i&lt;g[x].size();i++)&#123; int v=g[x][i]; if(!vis[v])&#123; vis[v]=true; if(match[v]==-1||dfs(match[v]))&#123; match[v]=x; return true; &#125; &#125; &#125; return false;&#125;int main()&#123; int n,t; scanf("%d",&amp;t); while(t--)&#123; scanf("%d",&amp;n); int a,ans=0; for(int i=0;i&lt;N;i++)g[i].clear(); for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;n;j++)&#123; scanf("%d",&amp;a); if(a)&#123; g[i].push_back(j+N); g[j+N].push_back(i); &#125; &#125; &#125; memset(match,-1,sizeof(match)); for(int i=0;i&lt;n;i++)&#123; memset(vis,false,sizeof(vis)); if(dfs(i))ans++; &#125; if(ans==n)puts("Yes"); else puts("No"); &#125; return 0; &#125;]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>匈牙利算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[bzoj1191 [HNOI2006]超级英雄Hero（二分图最大匹配）]]></title>
+    <url>%2F550df37c%2F</url>
+    <content type="text"><![CDATA[Sample Input12345675 6 3 22 0 0 3 0 43 23 2 Sample Output14 题解：二分图最大匹配，匈牙利算法 明明很水。。然后wa了，，这才发现题读少了得过了一题才能做下一题，所以如果当前已经没法匹配了就需要break 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;vector&gt;using namespace std; const int N=1005;vector&lt;int&gt;g[N&lt;&lt;1];int match[N&lt;&lt;1];bool vis[N&lt;&lt;1];bool dfs(int x)&#123; for(int i=0;i&lt;g[x].size();i++)&#123; int v=g[x][i]; if(!vis[v])&#123; vis[v]=true; if(match[v]==-1||dfs(match[v]))&#123; match[v]=x; return true; &#125; &#125; &#125; return false;&#125;int main()&#123; int n,m,ans=0; scanf("%d%d",&amp;n,&amp;m); int a,b; for(int i=0;i&lt;m;i++)&#123; scanf("%d%d",&amp;a,&amp;b); g[i].push_back(a+N);g[a+N].push_back(i); g[i].push_back(b+N);g[b+N].push_back(i); &#125; memset(match,-1,sizeof(match)); for(int i=0;i&lt;m;i++)&#123; memset(vis,false,sizeof(vis)); if(dfs(i))ans++; else break; &#125; printf("%d\n",ans); return 0; &#125;]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>匈牙利算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[bzoj1270 [BeijingWc2008]雷涛的小猫（dp）]]></title>
+    <url>%2F6f905954%2F</url>
+    <content type="text"><![CDATA[题解：ans[i]为跳到高度i最多能有几个柿子，dp[j]表示当前在高度i且在第j颗树最多有几个柿子 根据高度从上往下dp，每层都可以跳到别的树 代码：1234567891011121314151617181920212223242526272829303132333435363738#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std; const int N=5005;int dp[N],ans[N],a[N][N];int main()&#123; int n,h,d,num,tmp; scanf("%d%d%d",&amp;n,&amp;h,&amp;d); memset(a,0,sizeof(a)); memset(dp,0,sizeof(dp)); for(int i=1;i&lt;=n;i++)&#123; scanf("%d",&amp;num); while(num--)&#123; scanf("%d",&amp;tmp); a[i][tmp]++; &#125; &#125; for(int i=h;i&gt;0;i--)&#123; if(i+d&lt;=h)&#123; for(int j=1;j&lt;=n;j++)&#123; dp[j]=max(dp[j],ans[i+d])+a[j][i]; ans[i]=max(ans[i],dp[j]); &#125; &#125; else&#123; for(int j=1;j&lt;=n;j++)&#123; dp[j]+=a[j][i]; ans[i]=max(ans[i],dp[j]); &#125; &#125; &#125; printf("%d\n",ans[1]); return 0; &#125;]]></content>
+      <categories>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[macOS下运行x.sh脚本报错permission denied权限不够的解决办法]]></title>
     <url>%2Fb7b0d9f3%2F</url>
     <content type="text"><![CDATA[运行一个x.sh脚本报错permission denied 给777，即最高权限，然后就可以运行该脚本了 12chmod 777 build-libevent.sh./build-libevent.sh]]></content>
@@ -638,7 +671,7 @@
   <entry>
     <title><![CDATA[Hello 2019]]></title>
     <url>%2F2019%2F</url>
-    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
+    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
@@ -2362,9 +2395,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2395,17 +2428,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1012 最小公倍数LCM]]></title>
-    <url>%2Fec404005%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
-      <categories>
-        <category>数论</category>
-      </categories>
-      <tags>
-        <tag>gcd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1018 排序]]></title>
     <url>%2F5fc91746%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
@@ -2414,6 +2436,17 @@
       </categories>
       <tags>
         <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1012 最小公倍数LCM]]></title>
+    <url>%2Fec404005%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
+      <categories>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>gcd</tag>
       </tags>
   </entry>
   <entry>
@@ -2819,8 +2852,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java高精度</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -3766,7 +3799,7 @@
   <entry>
     <title><![CDATA[「hello-world」]]></title>
     <url>%2F52e47f72%2F</url>
-    <content type="text"><![CDATA[生活不易 多才多艺]]></content>
+    <content type="text"><![CDATA[]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
