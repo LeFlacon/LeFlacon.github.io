@@ -206,8 +206,8 @@ var _hmt = _hmt || [];
 <meta property="og:description" content="相当惨的一场。。但是题还是要补的。。不过真的拖了好久啊。。好像是。。一个星期多前的了ORZ 又可以自己钻进辣鸡箱了（；＿；） 终于补完了可以去补java作业了，要不是要体测。。不然就可以修仙仙了  A. Elections（贪心）http://codeforces.com/contest/1043/problem/A 题意：n个人，每个人都有k票，投给两个人，现在已知这n个人每个人会投给对手a[i">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwtrsqnkv5j306y00p3ya.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx0j26a0r8j30ie038jr9.jpg">
-<meta property="og:updated_time" content="2018-11-08T08:33:30.000Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2sl8f20jfj30ie038aa5.jpg">
+<meta property="og:updated_time" content="2019-05-07T03:23:47.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 519 Div.2（A-F）">
 <meta name="twitter:description" content="相当惨的一场。。但是题还是要补的。。不过真的拖了好久啊。。好像是。。一个星期多前的了ORZ 又可以自己钻进辣鸡箱了（；＿；） 终于补完了可以去补java作业了，要不是要体测。。不然就可以修仙仙了  A. Elections（贪心）http://codeforces.com/contest/1043/problem/A 题意：n个人，每个人都有k票，投给两个人，现在已知这n个人每个人会投给对手a[i">
@@ -483,12 +483,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2018-11-08 13:05:00 / 修改时间：16:33:30" itemprop="dateCreated datePublished" datetime="2018-11-08T13:05:00+08:00">2018-11-08</time>
+              <time title="创建时间：2018-11-08 13:05:00" itemprop="dateCreated datePublished" datetime="2018-11-08T13:05:00+08:00">2018-11-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 11:23:47" itemprop="dateModified" datetime="2019-05-07T11:23:47+08:00">2019-05-07</time>
               
             
           </span>
@@ -596,7 +608,7 @@ var _hmt = _hmt || [];
 <p>然后看样例感受一下思路，<code>10 6 15</code>这三个数，<code>2*5</code>和<code>2*3</code>可以干掉3和5，然后2和<code>3*5</code>gcd=1满足条件，也就是说每次两个数合并可以干掉一些不同的质因子，最后要使所有质因子都被干掉</p>
 <p>用dp[i][j]表示集合大小为i，gcd为j的集合的方案数，最后要求的答案是<code>dp[i][1]&gt;0</code>的最小值</p>
 <p>状态转移方程如下：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx0j26a0r8j30ie038jr9.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2sl8f20jfj30ie038aa5.jpg" alt=""></p>
 <p>num[j]表示集合中能被j整除的数的个数，处理只要o(n^2)扫一遍就可以累加得到，C(num[j],i)就是在这些数中取i个，那么这些数gcd肯定是kj</p>
 <p>要使这些数的gcd是j，就要利用容斥的思想减去其他2j,3j,…kj的部分，也就是<code>dp[i][k] (j|k)</code></p>
 <p>然后优化一下空间变成一维，因为之前已经证明一个子集里的数字个数一定小于等于7，所以i从1～7枚举，如果当前i对应的的dp[1]&gt;0，直接输出i即可</p>

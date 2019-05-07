@@ -206,11 +206,11 @@ var _hmt = _hmt || [];
 <meta property="og:description" content="Sample Input123456789101112240 01 01 10 251 13 13 22 31 2 Sample Output12950 Source2015 ACM/ICPC Asia Regional Changchun Online  题意：给一个凸n边形，n个点任选大于等于三个点，求所有情况的面积之和，答案为2*S%(1e9+7)，n&amp;lt;1e6 题解：面积用叉积算（计">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwox9nvkxuj30r70dwjso.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwox9tq5buj308x01w0sj.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwox9xa3v3j30bx01wa9w.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwoxa1xx1aj30bu01w744.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwoxa6tn73j30br01wglg.jpg">
-<meta property="og:updated_time" content="2019-04-29T01:36:01.713Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4bv2qitj308x01wwed.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4c239tgj30bx01wt8o.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4c5jo14j30bu01wdfu.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2s4cjw4czj30br01waa2.jpg">
+<meta property="og:updated_time" content="2019-05-06T17:39:39.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 5448 Marisa’s Cake（凸多边形面积，推公式，前缀和）">
 <meta name="twitter:description" content="Sample Input123456789101112240 01 01 10 251 13 13 22 31 2 Sample Output12950 Source2015 ACM/ICPC Asia Regional Changchun Online  题意：给一个凸n边形，n个点任选大于等于三个点，求所有情况的面积之和，答案为2*S%(1e9+7)，n&amp;lt;1e6 题解：面积用叉积算（计">
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-29 09:36:01" itemprop="dateModified" datetime="2019-04-29T09:36:01+08:00">2019-04-29</time>
+                <time title="修改时间：2019-05-07 01:39:39" itemprop="dateModified" datetime="2019-05-07T01:39:39+08:00">2019-05-07</time>
               
             
           </span>
@@ -581,14 +581,15 @@ var _hmt = _hmt || [];
 <h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>2015 ACM/ICPC Asia Regional Changchun Online</p>
 <hr>
 <h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给一个凸n边形，n个点任选大于等于三个点，求所有情况的面积之和，答案为<code>2*S%(1e9+7)</code>，n&lt;1e6</p>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>面积用叉积算（计算几何里计算多边形面积）<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwox9tq5buj308x01w0sj.jpg" alt=""></p>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>面积用叉积算（计算几何里计算多边形面积）</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4bv2qitj308x01wwed.jpg" alt=""></p>
 <p>随便展开n=5时的情况可以发现，每一项<code>Ci*Cj</code>其实有重复计算，因此试图求出<code>Ci*Cj</code>前的系数，任取两个点i，j，假设有<code>j&lt;i</code>然后考虑在j到i的逆时针方向区域内取点和在二者外部取点，易得方法数是个组合数的和，即2^?-1</p>
 <p>最终会得到如下公式</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fwox9xa3v3j30bx01wa9w.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4c239tgj30bx01wt8o.jpg" alt=""></p>
 <p>化简推出的公式如下 但是照这个公式过不了样例</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwoxa1xx1aj30bu01w744.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4c5jo14j30bu01wdfu.jpg" alt=""></p>
 <p>因为我愚蠢的忘了前后是在一个循环算的，二者循环次数不同，所以应将公式改为如下，使循环次数相同</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fwoxa6tn73j30br01wglg.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2s4cjw4czj30br01waa2.jpg" alt=""></p>
 <p>按顺序记为一二三四部分</p>
 <p>本来算上面这个式子要i和j都算过去，这样的复杂度是O(n^2),所以考虑优化，这里利用前缀和的思想，把上面这个式子分成四部分来看，第二和四部分利用前缀和每次累加上新的一个<code>Cj*2^(-j)</code>，具体见代码，所以最后这个问题只要O(n)扫一遍就好啦</p>
 <p>开头要预处理 2^i 和 2^(-i) </p>

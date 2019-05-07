@@ -205,9 +205,9 @@ var _hmt = _hmt || [];
 <meta property="og:description" content="本来是给博客加了个JQuery+Html5实现的3D雪花飞舞特效。。因为gif的雪花太辣鸡了。。想着过年装修一下的。。 这是教程原文 -&amp;gt; JQuery+Html5实现超真实3D雪花飞舞特效 然后本地预览啥的都没问题，效果贼满意   但是上传后啥特效都没有。。跑去控制台一看。。果然出问题了  Mixed Content: The page at &amp;#39;xxx_domain&amp;#39; wa">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fzs6ryc7eig30dc08wx6p.gif">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fzs6bvrb3qj30fd03e74x.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fzs6ij31vpj30er08pta2.jpg">
-<meta property="og:updated_time" content="2019-02-02T11:13:47.701Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2sm5npnb3j30fd03eaal.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm5s5eloj30er08pmy1.jpg">
+<meta property="og:updated_time" content="2019-05-07T03:55:54.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mixed Content ”The page at &#39;xxxdomain&#39; was loaded over HTTPS, but requested an insecure script &#39;xxx&#39;.This request has been blocked.the content must be served over HTTPS“ 的解决办法">
 <meta name="twitter:description" content="本来是给博客加了个JQuery+Html5实现的3D雪花飞舞特效。。因为gif的雪花太辣鸡了。。想着过年装修一下的。。 这是教程原文 -&amp;gt; JQuery+Html5实现超真实3D雪花飞舞特效 然后本地预览啥的都没问题，效果贼满意   但是上传后啥特效都没有。。跑去控制台一看。。果然出问题了  Mixed Content: The page at &amp;#39;xxx_domain&amp;#39; wa">
@@ -483,12 +483,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-02-02 19:02:00 / 修改时间：19:13:47" itemprop="dateCreated datePublished" datetime="2019-02-02T19:02:00+08:00">2019-02-02</time>
+              <time title="创建时间：2019-02-02 19:02:00" itemprop="dateCreated datePublished" datetime="2019-02-02T19:02:00+08:00">2019-02-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 11:55:54" itemprop="dateModified" datetime="2019-05-07T11:55:54+08:00">2019-05-07</time>
               
             
           </span>
@@ -567,11 +579,11 @@ var _hmt = _hmt || [];
 " height="250"></center>
 
 <p>但是上传后啥特效都没有。。跑去控制台一看。。果然出问题了</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fzs6bvrb3qj30fd03e74x.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2sm5npnb3j30fd03eaal.jpg" alt=""></p>
 <p><code>Mixed Content: The page at &#39;xxx_domain&#39; was loaded over HTTPS, but requested an insecure script &#39;http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js&#39;. This request has been blocked; the content must be served over HTTPS.</code></p>
 <p>翻译一下就是，这个页面是通过https加载的，但是请求了一个不安全的脚本jquery，所以这个请求被阻止了，内容必须通过https提供</p>
 <p>下图是原先的代码：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fzs6ij31vpj30er08pta2.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm5s5eloj30er08pmy1.jpg" alt=""></p>
 <p>顺便这段要放在<code>&lt;body&gt;</code>里的最后，但又要在<code>&lt;footer&gt;</code>前面。。不知道为啥。。原作者是说“将如下代码放入<body>后即可，推荐放在底部，不影响别的内容加载”，然后我试了几次得到了这个结果，别的位置都显示不了。。</body></p>
 <p>上文说到http请求jquery库不安全，所以在代码中直接改成https，可以访问</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">+</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>

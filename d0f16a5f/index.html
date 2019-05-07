@@ -205,16 +205,16 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="整理我堆积如山的桌面的时候发现之前还搞了这么个玩意儿——用Python写的命令行字典，虽然Google浏览器可以直接翻译长篇大论，mac右键也可以直接查词，但是玩玩练练手也无妨啦～  先放效果图：  英译中：正常查词是可以的，但是搞事情查词我也不晓得会出现什么    中译英：只能一个一个词查，不支持翻译句子，否则就会变成hello cute ∠( ᐛ 」∠)＿   1.基本思路与可行性分析用有道查">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw8w5vlpnqj309g0bvmx7.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fw8z0yybp8j306x02u3yc.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw8sdghhw4j30fs095q31.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fw8sd5bwg2j30d00773yh.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw8tghyus3j30zr0iqdhq.jpg">
-<meta property="og:updated_time" content="2018-10-30T09:14:21.000Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4t6hfx6j309g0bvaan.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2s4tcbqshj306x02uweh.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4ti02jfj30fs095jry.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4tp7btuj30d0077mxg.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4tvp5unj30zr0iqwjx.jpg">
+<meta property="og:updated_time" content="2019-05-06T17:56:19.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Python+有道」实现简易中译英英译中命令行字典">
 <meta name="twitter:description" content="整理我堆积如山的桌面的时候发现之前还搞了这么个玩意儿——用Python写的命令行字典，虽然Google浏览器可以直接翻译长篇大论，mac右键也可以直接查词，但是玩玩练练手也无妨啦～  先放效果图：  英译中：正常查词是可以的，但是搞事情查词我也不晓得会出现什么    中译英：只能一个一个词查，不支持翻译句子，否则就会变成hello cute ∠( ᐛ 」∠)＿   1.基本思路与可行性分析用有道查">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fw8w5vlpnqj309g0bvmx7.jpg">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4t6hfx6j309g0bvaan.jpg">
 
 
 
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-30 17:14:21" itemprop="dateModified" datetime="2018-10-30T17:14:21+08:00">2018-10-30</time>
+                <time title="修改时间：2019-05-07 01:56:19" itemprop="dateModified" datetime="2019-05-07T01:56:19+08:00">2019-05-07</time>
               
             
           </span>
@@ -581,17 +581,17 @@ var _hmt = _hmt || [];
 <ul>
 <li>英译中：正常查词是可以的，但是搞事情查词我也不晓得会出现什么</li>
 </ul>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fw8w5vlpnqj309g0bvmx7.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4t6hfx6j309g0bvaan.jpg" alt=""></p>
 <ul>
 <li>中译英：只能一个一个词查，不支持翻译句子，否则就会变成hello cute ∠( ᐛ 」∠)＿</li>
 </ul>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fw8z0yybp8j306x02u3yc.jpg" alt=""></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2s4tcbqshj306x02uweh.jpg" alt=""></p>
 <h1 id="1-基本思路与可行性分析"><a href="#1-基本思路与可行性分析" class="headerlink" title="1.基本思路与可行性分析"></a>1.基本思路与可行性分析</h1><p>用有道查词可以发现，地址栏其实是没啥变化的，也就是<code>http://dict.youdao.com/w/要查的单词/#keyfrom=dict2.top</code>，所以我们就可以输入一个单词，自己构造出对应的url，然后就能获取对应的网页了</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fw8sdghhw4j30fs095q31.jpg" alt=""></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fw8sd5bwg2j30d00773yh.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4ti02jfj30fs095jry.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4tp7btuj30d0077mxg.jpg" alt=""></p>
 <p>那么下一个问题是如何获取词义，截了张图（请忽视那些。。乱七八糟的不知道在讲什么的东西(♯｀∧´)）</p>
 <p>清清楚楚就这四个，那么关键词就是“详细释义”：（google翻译就不行。。啥都找不着）</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fw8tghyus3j30zr0iqdhq.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4tvp5unj30zr0iqwjx.jpg" alt=""></p>
 <p>Python实在是太强了，那么就可以使用正则表达式来查找我们要的词义</p>
 <h1 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h1><h2 id="1）导入requests模块和re模块"><a href="#1）导入requests模块和re模块" class="headerlink" title="1）导入requests模块和re模块"></a>1）导入requests模块和re模块</h2><p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" rel="external nofollow noopener noreferrer" target="_blank">Requests官方文档</a> requests用来获取有道的网页</p>
 <p>re.findall()用来查找「详细释义」的地方从而找到具体释义</p>

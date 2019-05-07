@@ -205,14 +205,14 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="之前小学期的代码。。这个说明我竟然连个rtfd都没留。。只有一个pdf版的。。而且每句话结尾都是分号。。什么毛病-_-#  题目基于Qt鼠标事件和2D绘图，实现一个涂鸦程序，可在“画布”上绘出鼠标左键按下后拖动的轨迹 选做：添加“放大”按钮，可实现放大功能，并能在放大后的画布上继续作图 效果  实现思路1.新建了一个myLine结构，这个结构包括QPoint startp和QPoint endp，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxrnkn92nkj30gu0dn746.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxrnkx5t9mj30ig0eyt8n.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fxrnj7gfcoj306x05j3yc.jpg">
-<meta property="og:updated_time" content="2018-12-01T16:07:55.000Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2slnpbcz5j30gu0dnmx9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2slnts76rj30ig0eyaae.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2sloe0626j306x05jwej.jpg">
+<meta property="og:updated_time" content="2019-05-07T03:39:09.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QT 涂鸦程序，放大">
 <meta name="twitter:description" content="之前小学期的代码。。这个说明我竟然连个rtfd都没留。。只有一个pdf版的。。而且每句话结尾都是分号。。什么毛病-_-#  题目基于Qt鼠标事件和2D绘图，实现一个涂鸦程序，可在“画布”上绘出鼠标左键按下后拖动的轨迹 选做：添加“放大”按钮，可实现放大功能，并能在放大后的画布上继续作图 效果  实现思路1.新建了一个myLine结构，这个结构包括QPoint startp和QPoint endp，">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxrnkn92nkj30gu0dn746.jpg">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2slnpbcz5j30gu0dnmx9.jpg">
 
 
 
@@ -501,7 +501,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-02 00:07:55" itemprop="dateModified" datetime="2018-12-02T00:07:55+08:00">2018-12-02</time>
+                <time title="修改时间：2019-05-07 11:39:09" itemprop="dateModified" datetime="2019-05-07T11:39:09+08:00">2019-05-07</time>
               
             
           </span>
@@ -577,8 +577,8 @@ var _hmt = _hmt || [];
 <hr>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>基于Qt鼠标事件和2D绘图，实现一个涂鸦程序，可在“画布”上绘出鼠标左键按下后拖动的轨迹</p>
 <p>选做：添加“放大”按钮，可实现放大功能，并能在放大后的画布上继续作图</p>
-<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxrnkn92nkj30gu0dn746.jpg" alt=""></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxrnkx5t9mj30ig0eyt8n.jpg" alt=""></p>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2slnpbcz5j30gu0dnmx9.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2slnts76rj30ig0eyaae.jpg" alt=""></p>
 <h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><p>新建了一个<code>myLine</code>结构，这个结构包括<code>QPoint startp</code>和<code>QPoint endp</code>，用一个<code>vector</code>来存这些点; 两个全局变量量，<code>bool isPressed</code>来记录⿏标是否按下，<code>int scale</code>来记录当前是否放⼤;</p>
 <h2 id="2-实现绘图功能的基本函数"><a href="#2-实现绘图功能的基本函数" class="headerlink" title="2.实现绘图功能的基本函数"></a>2.实现绘图功能的基本函数</h2><p>先在构造函数中把鼠标的拖动设置好<code>this- &gt;setMouseTracking(true)</code>;</p>
 <p><code>isPressed</code>初始设置成<code>false</code>，⿏鼠标没有按下;</p>
@@ -587,7 +587,7 @@ var _hmt = _hmt || [];
 <h2 id="3-实现放⼤大功能"><a href="#3-实现放⼤大功能" class="headerlink" title="3.实现放⼤大功能"></a>3.实现放⼤大功能</h2><p>一个槽函数<code>fangda()</code>，在<code>widget.cpp</code>构造函数中生成按钮时，把按钮的<code>clicked()</code>信号和这个槽函数联系; 因为要放大之前画的所有东⻄西，所以循环<code>vector</code>中的每个点，把他们的<code>startp</code>和<code>endp</code>的坐标都乘2，这样就可以实现整体的放大，然后调⽤<code>repaint()</code>立即显示放⼤后的图;</p>
 <p>然后回到<code>paintevent</code>函数中，加上⼀句如果<code>scale</code>不等于1，就把scale置1，以便下次放⼤时⽤;</p>
 <h2 id="4-问题记录"><a href="#4-问题记录" class="headerlink" title="4.问题记录"></a>4.问题记录</h2><p>按下放⼤按钮后，改变了之前的坐标，但<code>update()</code>无法实现⻢上更新画布的操作，要等到下一次画才能显示出放大效果，这里用<code>repaint()</code>即可实现按下按钮就放大;</p>
-<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxrnj7gfcoj306x05j3yc.jpg" alt=""></p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2sloe0626j306x05jwej.jpg" alt=""></p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p><a href="https://github.com/LeFlacon/QT-simple-practice/tree/master/draw" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/LeFlacon/QT-simple-practice/tree/master/draw</a></p>
 
       

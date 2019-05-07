@@ -205,15 +205,15 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="A. Gennady and a Card Gamehttps://codeforces.com/contest/1097/problem/A 题意：输入一对（两个）字符，然后输入五对字符，如果前一个字符或者后一个字符任意有一个出现，就输出YES 12345678910111213141516171819202122232425262728#include &amp;lt;algorithm&amp;gt;#in">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fzhmy3qrikj30w60cv0vq.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fzhmyeewcej30v303d752.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fzsijld8foj309r04wwex.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fzsit3ddz9j30950673ze.jpg">
-<meta property="og:updated_time" content="2019-02-02T18:28:26.746Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2sm16dpfgj30w60cvdhv.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2sm1bvkxxj30v303dmxl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2sm1ogfboj309r04wglq.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm1wzb02j30950670t6.jpg">
+<meta property="og:updated_time" content="2019-05-07T03:52:10.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Hello 2019（A-D，F）">
 <meta name="twitter:description" content="A. Gennady and a Card Gamehttps://codeforces.com/contest/1097/problem/A 题意：输入一对（两个）字符，然后输入五对字符，如果前一个字符或者后一个字符任意有一个出现，就输出YES 12345678910111213141516171819202122232425262728#include &amp;lt;algorithm&amp;gt;#in">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1fzhmy3qrikj30w60cv0vq.jpg">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2sm16dpfgj30w60cvdhv.jpg">
 
 
 
@@ -485,12 +485,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-02-03 02:23:00 / 修改时间：02:28:26" itemprop="dateCreated datePublished" datetime="2019-02-03T02:23:00+08:00">2019-02-03</time>
+              <time title="创建时间：2019-02-03 02:23:00" itemprop="dateCreated datePublished" datetime="2019-02-03T02:23:00+08:00">2019-02-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 11:52:10" itemprop="dateModified" datetime="2019-05-07T11:52:10+08:00">2019-05-07</time>
               
             
           </span>
@@ -578,8 +590,8 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>【积性函数】—— 以下摘自wiki</p>
 <p>在数论中，积性函数是指一个定义域为正整数n 的算术函数f(n)，有如下性质：f(1) = 1，且当a 和b 互质时，f(ab) = f(a) f(b)。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fzhmy3qrikj30w60cv0vq.jpg" alt=""></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fzhmyeewcej30v303d752.jpg" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2sm16dpfgj30w60cvdhv.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2sm1bvkxxj30v303dmxl.jpg" alt=""></p>
 </blockquote>
 <p>这是个积性函数，根据上图性质，就会有它的期望是它质因子期望的乘积，那么就可以快乐dp了，对某质因子p考虑，<code>dp[i][j]</code>代表i次操作后x^j这个数的概率</p>
 <p>状态转移方程：<code>k范围[0,j]，dp[i+1][k]+=dp[i][j]/j+1</code>，即<code>0≤k≤j,dp[i+1][k]+=dp[i][j]*inv[j+1]</code></p>
@@ -593,9 +605,9 @@ var _hmt = _hmt || [];
 <p>1）1 x v：将第x个集合变成{v}<br>2）2 x y z：将第x个集合变成<code>第y个集合∪第z个集合</code><br>3）3 x y z：将第x个集合变成<code>第y个集合×第z个集合</code>，<code>×</code>是y集合中的任意元素a和z集合中的任意元素b产生的<code>gcd(a,b)</code>组成的集合（有重复）<br>4）4 x v：查询第x个集合中数字v出现的奇偶性</p>
 <p>首先只要求奇偶性，所以可以想到对于每一个集合维护一个bitset，第i位表示数字i作为因子在某集合出现次数的奇偶性，那么1）就是<code>√v</code>处理一遍因子，2）就是两个二进制异或一下，3）就是两个二进制数与一下</p>
 <p>然后考虑4）怎么求，因为bitset第i位表示数字i作为因子在某集合出现次数的奇偶性，所以显然是个莫比乌斯反演</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fzsijld8foj309r04wwex.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2sm1ogfboj309r04wglq.jpg" alt=""></p>
 <p>这里记f(d)为某集合中数字d的出现次数，g(n)表示某集合因子n出现的次数，那么反演会得到：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fzsit3ddz9j30950673ze.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm1wzb02j30950670t6.jpg" alt=""></p>
 <p>然后就可以做了，此外对于奇偶性的影响，mu是+1-1都一样，所以都换成1，<code>mu_[n][d]</code>用来存<code>mu([d/n])</code>，这样<code>mu_[n]</code>就可以直接与<code>a[x]&amp;mu_[y]</code>得到要求的f(y)，也就是第x个集合中数字y出现的次数，相当清爽</p>
 <p>最后。。被7000卡了半天。。求mu的时候上限用的N然后一直T，改成7000之后好了。。明明本地可以出结果的0.0</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">7005</span>;</span><br><span class="line"><span class="keyword">int</span> n,q,mu[N],prime[N],vis[N];</span><br><span class="line"><span class="built_in">bitset</span>&lt;N&gt;a[<span class="number">100005</span>],mu_[N],num[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mobius</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ji=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">7000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">            prime[ji++]=i;</span><br><span class="line">            mu[i]=<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;ji;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i*prime[j]&gt;<span class="number">7000</span>)<span class="keyword">break</span>;</span><br><span class="line">            vis[i*prime[j]]=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)&#123;</span><br><span class="line">                mu[i*prime[j]]=<span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> mu[i*prime[j]]=-mu[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;q);</span><br><span class="line">	mobius();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">7000</span>;i++)&#123;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=<span class="number">7000</span>;j+=i)&#123;</span><br><span class="line">    		mu_[i][j]=mu[j/i]!=<span class="number">0</span>;</span><br><span class="line">    		num[j][i]=<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">int</span> op,x,y,z;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	<span class="keyword">while</span>(q--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;op,&amp;x,&amp;y);</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)a[x]=num[y];</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">2</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;z);</span><br><span class="line">			a[x]=a[y]^a[z];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(op==<span class="number">3</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;z);</span><br><span class="line">			a[x]=a[y]&amp;a[z];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>((a[x]&amp;mu_[y]).count()&amp;<span class="number">1</span>)<span class="built_in">putchar</span>(<span class="string">'1'</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="built_in">putchar</span>(<span class="string">'0'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

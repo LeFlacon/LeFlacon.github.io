@@ -205,14 +205,14 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="A. New Year and the Christmas Ornament（贪心）https://codeforces.com/contest/1091/problem/A 题意：给三个数y,b,r，要求y&amp;#39;,b&amp;#39;,r&amp;#39;`(y’≤y,b’≤b,r’≤r)`，三个数以公差为1递增，求最大的和 最大的总共就y*3+3,b*3,r*3-3三种情况，取其中最小的那个就是合法的 1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyregy2rkoj30j606g749.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm0rw4uqj30j606g74o.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fys9vq2yujj303y00qmwx.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fys9uycy1dj30cq00sjr6.jpg">
-<meta property="og:updated_time" content="2019-01-28T15:01:23.799Z">
+<meta property="og:updated_time" content="2019-05-07T03:51:07.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Good Bye 2018（A-D，F）">
 <meta name="twitter:description" content="A. New Year and the Christmas Ornament（贪心）https://codeforces.com/contest/1091/problem/A 题意：给三个数y,b,r，要求y&amp;#39;,b&amp;#39;,r&amp;#39;`(y’≤y,b’≤b,r’≤r)`，三个数以公差为1递增，求最大的和 最大的总共就y*3+3,b*3,r*3-3三种情况，取其中最小的那个就是合法的 1">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyregy2rkoj30j606g749.jpg">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm0rw4uqj30j606g74o.jpg">
 
 
 
@@ -501,7 +501,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-28 23:01:23" itemprop="dateModified" datetime="2019-01-28T23:01:23+08:00">2019-01-28</time>
+                <time title="修改时间：2019-05-07 11:51:07" itemprop="dateModified" datetime="2019-05-07T11:51:07+08:00">2019-05-07</time>
               
             
           </span>
@@ -591,7 +591,7 @@ var _hmt = _hmt || [];
 <p>题意：给一个n，n的所有全排列依次存入序列p，比如<code>n=3</code>,<code>p=[1,2,3,1,3,2,2,1,3,2,3,1,3,1,2,3,2,1]</code>，共<code>n*n!</code>个数，相邻n个求和，问和等于<code>n*(n+1)/2</code>的有几个</p>
 <p>首先直接全排列好的一组肯定是可以的，然后就是考虑前一组的后半部分和后一组的前半部分拼一拼可以满足要求的情况</p>
 <p>next_permutation()生成下一个排列的方式如图：先找到最长递减后缀，共k个数，然后第n-k个数与后面k个数比较，找到其中大于a[n-k]且最小的数和n-k交换，然后新的后面k个数从小到大排</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyregy2rkoj30j606g749.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2sm0rw4uqj30j606g74o.jpg" alt=""></p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main()&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">s</span>[<span class="number">10</span>];</span><br><span class="line">    scanf(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">s</span>[i]=i+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">sort</span>(<span class="keyword">s</span>,<span class="keyword">s</span>+n);</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">printf</span>(<span class="string">"%d"</span>,<span class="keyword">s</span>[i]);</span><br><span class="line">        <span class="keyword">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;<span class="keyword">while</span>(next_permutation(<span class="keyword">s</span>,<span class="keyword">s</span>+n));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后继续推导，如果存在一个长度为k的递减后缀，比如<code>12(543)</code>，k=3，下一个是<code>13(245)</code>，连起来<code>12(543)13245</code>，如果前面部分刚好是那个递减后缀，因为后面3被往前提到第n-k个位置了，所以3重复了，<code>12[(543)13]245</code>这样的情况就无法满足条件，但是<code>1[2(543)1]3245</code>这样前面不限于那三个就是可以的</p>
 <p>所以不满足条件的，就是前面部分刚好取了长度为k的递减后缀的</p>

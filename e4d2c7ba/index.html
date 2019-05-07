@@ -205,12 +205,12 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 有一个序列是这样定义的：f(1) = 1, f(2) = 1, f(n) = (A * f(n - 1) + B * f(n - 2)) mod 7.给出A，B和N，求f(n)的值。 Input输入3个数：A,B,N。数字之间用空格分割。(-10000 &amp;lt;= A, B &amp;lt;= 10000, 1 &amp;lt;=">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fvyhu2vhmyj30a6026mwz.jpg">
-<meta property="og:updated_time" content="2018-10-29T04:18:59.000Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4mmabbwj30a60263yj.jpg">
+<meta property="og:updated_time" content="2019-05-06T17:49:17.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1126 求递推序列的第N项（找循环结，矩阵快速幂）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题 有一个序列是这样定义的：f(1) = 1, f(2) = 1, f(n) = (A * f(n - 1) + B * f(n - 2)) mod 7.给出A，B和N，求f(n)的值。 Input输入3个数：A,B,N。数字之间用空格分割。(-10000 &amp;lt;= A, B &amp;lt;= 10000, 1 &amp;lt;=">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fvyhu2vhmyj30a6026mwz.jpg">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4mmabbwj30a60263yj.jpg">
 
 
 
@@ -499,7 +499,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-29 12:18:59" itemprop="dateModified" datetime="2018-10-29T12:18:59+08:00">2018-10-29</time>
+                <time title="修改时间：2019-05-07 01:49:17" itemprop="dateModified" datetime="2019-05-07T01:49:17+08:00">2019-05-07</time>
               
             
           </span>
@@ -579,7 +579,8 @@ var _hmt = _hmt || [];
 <h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>和这个题差不多 -&gt; <a href="https://leflacon.github.io/7ecca125/">Best Solver – ACM-ICPC 2015 Shenyang（推公式，广义斐波那契）</a></p>
-<p><strong>找循环结</strong>，因为模7所以按理说很快就能找到然后return的，但是下面这种写法又t又wa<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvyhu2vhmyj30a6026mwz.jpg" alt=""></p>
+<p><strong>找循环结</strong>，因为模7所以按理说很快就能找到然后return的，但是下面这种写法又t又wa</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4mmabbwj30a60263yj.jpg" alt=""></p>
 <p>存在以下三个问题：</p>
 <p>1.负数取模的问题</p>
 <p>改成<code>f[i]=((a*f[i-1]%7+b*f[i-2])%7+7)%7;</code></p>

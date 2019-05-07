@@ -204,12 +204,12 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 5 难度：1级算法题 有一个简单但是很有趣的游戏。在这个游戏中有一个硬币还有一张桌子，这张桌子上有很多平行线（如下图所示）。两条相邻平行线之间的距离是1，硬币的半径是R，然后我们来抛硬币到桌子上，抛下之后硬币有时候会和一些直线相交（相切的情况也算是相交），有时候不会。 请你来计算一下抛一次硬币之后，该硬币和直线相交数目的期望。 Input">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fvq6ar34pkj30of0e23yq.jpg">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4gton4wj30of0e2gmn.jpg">
+<meta property="og:updated_time" content="2019-05-06T17:43:40.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1381 硬币游戏">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 5 难度：1级算法题 有一个简单但是很有趣的游戏。在这个游戏中有一个硬币还有一张桌子，这张桌子上有很多平行线（如下图所示）。两条相邻平行线之间的距离是1，硬币的半径是R，然后我们来抛硬币到桌子上，抛下之后硬币有时候会和一些直线相交（相切的情况也算是相交），有时候不会。 请你来计算一下抛一次硬币之后，该硬币和直线相交数目的期望。 Input">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fvq6ar34pkj30of0e23yq.jpg">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4gton4wj30of0e2gmn.jpg">
 
 
 
@@ -498,7 +498,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
+                <time title="修改时间：2019-05-07 01:43:40" itemprop="dateModified" datetime="2019-05-07T01:43:40+08:00">2019-05-07</time>
               
             
           </span>
@@ -580,7 +580,7 @@ var _hmt = _hmt || [];
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>反正只要求期望的整数部分，所以圆的直径就是期望值</p>
 <p>官方证明严谨些</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fvq6ar34pkj30of0e23yq.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2s4gton4wj30of0e2gmn.jpg" alt=""></p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    LL r;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123; </span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;r);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,r&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>

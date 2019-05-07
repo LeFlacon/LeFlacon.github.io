@@ -205,14 +205,14 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="想加个文章阅读次数排名的页面  在文件夹终端输入下面代码，新生成一个名为rank的页面 1sudo hexo new page rank  然后在/source/rank/index.md中，改成下面代码： 这是基于leancloud的阅读量统计，所以填一下自己的leancloud_appid和appkey 然后后面的content那个变量，你想显示啥自己改就行，超链接改一下 我显示了15条，然后">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2aetplniyj30c00180sw.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2ag0mnndkj30aw026dg1.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2ahsriwmtj30nw0amjsz.jpg">
-<meta property="og:updated_time" content="2019-04-21T11:51:00.903Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2smtfmw3fj30c00183yi.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2smtklddej30aw0263yi.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2smtonw3sj30nw0amjs8.jpg">
+<meta property="og:updated_time" content="2019-05-07T04:18:49.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo next主题下添加基于leancloud的文章阅读次数排名页面">
 <meta name="twitter:description" content="想加个文章阅读次数排名的页面  在文件夹终端输入下面代码，新生成一个名为rank的页面 1sudo hexo new page rank  然后在/source/rank/index.md中，改成下面代码： 这是基于leancloud的阅读量统计，所以填一下自己的leancloud_appid和appkey 然后后面的content那个变量，你想显示啥自己改就行，超链接改一下 我显示了15条，然后">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2aetplniyj30c00180sw.jpg">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2smtfmw3fj30c00183yi.jpg">
 
 
 
@@ -484,12 +484,24 @@ var _hmt = _hmt || [];
                 
               
 
-              <time title="创建时间：2019-04-21 19:45:00 / 修改时间：19:51:00" itemprop="dateCreated datePublished" datetime="2019-04-21T19:45:00+08:00">2019-04-21</time>
+              <time title="创建时间：2019-04-21 19:45:00" itemprop="dateCreated datePublished" datetime="2019-04-21T19:45:00+08:00">2019-04-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-07 12:18:49" itemprop="dateModified" datetime="2019-05-07T12:18:49+08:00">2019-05-07</time>
               
             
           </span>
@@ -565,7 +577,7 @@ var _hmt = _hmt || [];
 <hr>
 <p>在文件夹终端输入下面代码，新生成一个名为<code>rank</code>的页面</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hexo new<span class="built_in"> page </span>rank</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2aetplniyj30c00180sw.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2smtfmw3fj30c00183yi.jpg" alt=""></p>
 <p>然后在<code>/source/rank/index.md</code>中，改成下面代码：</p>
 <p>这是基于leancloud的阅读量统计，所以填一下自己的leancloud_appid和appkey</p>
 <p>然后后面的content那个变量，你想显示啥自己改就行，超链接改一下</p>
@@ -573,9 +585,9 @@ var _hmt = _hmt || [];
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: rank</span><br><span class="line">comments: false</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"rank"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">AV.initialize(<span class="string">"填你的appid"</span>, <span class="string">"填你的appkey"</span>);</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> time=<span class="number">0</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> title=<span class="string">""</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> url=<span class="string">""</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> query = <span class="keyword">new</span> AV.Query(<span class="string">'Counter'</span>);</span></span><br><span class="line"><span class="actionscript">  query.notEqualTo(<span class="string">'id'</span>,<span class="number">0</span>);</span></span><br><span class="line"><span class="actionscript">  query.descending(<span class="string">'time'</span>);</span></span><br><span class="line"><span class="undefined">  query.limit(15);</span></span><br><span class="line"><span class="actionscript">  query.find().then(<span class="function"><span class="keyword">function</span> <span class="params">(todo)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">15</span>;i++)&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> result=todo[i].attributes;</span></span><br><span class="line"><span class="undefined">      time=result.time;</span></span><br><span class="line"><span class="undefined">      title=result.title;</span></span><br><span class="line"><span class="undefined">      url=result.url;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">var</span> content=<span class="string">"&lt;p&gt;"</span>+<span class="string">"&lt;font color=#a7a7e5&gt;"</span>+<span class="string">"🌸 Time number: "</span>+<span class="string">"&lt;/font&gt;"</span>+<span class="string">"&lt;font color=#f1a8ce&gt;"</span>+time+<span class="string">"次  "</span>+<span class="string">"&lt;/font&gt;"</span>+<span class="string">"&lt;a href='"</span>+<span class="string">"https://leflacon.github.io/"</span>+url+<span class="string">"'&gt;"</span>+title+<span class="string">"&lt;/a&gt;"</span>+<span class="string">"&lt;/p&gt;"</span>;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">document</span>.getElementById(<span class="string">"rank"</span>).innerHTML+=content</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="actionscript">  &#125;, <span class="function"><span class="keyword">function</span> <span class="params">(error)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">"error"</span>);</span></span><br><span class="line"><span class="undefined">  &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>然后在主题配置文件里<code>/themes/next/_config.yml</code>，找到menu，在菜单栏添加上这个页面即可</p>
 <p>图标可以在这个图标库里获取<code>http://www.fontawesome.com.cn/faicons/</code></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2ag0mnndkj30aw026dg1.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2smtklddej30aw0263yi.jpg" alt=""></p>
 <p>预览效果如图：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2ahsriwmtj30nw0amjsz.jpg" alt=""></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2smtonw3sj30nw0amjs8.jpg" alt=""></p>
 
       
     </div>
@@ -621,8 +633,8 @@ var _hmt = _hmt || [];
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/f16eb349/" rel="prev" title="bzoj1192 [HNOI2006]鬼谷子的钱袋（思维）">
-                bzoj1192 [HNOI2006]鬼谷子的钱袋（思维） <i class="fa fa-chevron-right"></i>
+              <a href="/f16eb349/" rel="prev" title="bzoj1192 (HNOI2006)鬼谷子的钱袋（思维）">
+                bzoj1192 (HNOI2006)鬼谷子的钱袋（思维） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
