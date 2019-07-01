@@ -16,6 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
+  <meta http-equiv="content-Security-Policy" content="upgrade-insecure-requests">
 
   <!--百度统计-->
 <script>
@@ -1583,6 +1584,34 @@ setInterval("createtime()",250);
 <script>
 (function(){
     var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<!-- 加速 -->
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('/js/src/sw.js');
+}
+</script>
+
+
+ment.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
     if (curProtocol === 'https') {
         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';

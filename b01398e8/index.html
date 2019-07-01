@@ -16,6 +16,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
+  <meta http-equiv="content-Security-Policy" content="upgrade-insecure-requests">
 
   <!--百度统计-->
 <script>
@@ -209,12 +210,12 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1301 Problem Description The Head Elder of the tropical island of Lagrishan has a problem. A burst of foreign aid money was spent on extra roads between villa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://acm.hdu.edu.cn/data/images/1301-1.gif">
-<meta property="og:updated_time" content="2018-10-29T03:05:08.000Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kjfd8hfvj20eq09qjsb.jpg">
+<meta property="og:updated_time" content="2019-07-01T10:57:28.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hdu 1301 Jungle Roads（最小生成树）">
 <meta name="twitter:description" content="http://acm.hdu.edu.cn/showproblem.php?pid=1301 Problem Description The Head Elder of the tropical island of Lagrishan has a problem. A burst of foreign aid money was spent on extra roads between villa">
-<meta name="twitter:image" content="http://acm.hdu.edu.cn/data/images/1301-1.gif">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kjfd8hfvj20eq09qjsb.jpg">
 
 
 
@@ -503,7 +504,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-29 11:05:08" itemprop="dateModified" datetime="2018-10-29T11:05:08+08:00">2018-10-29</time>
+                <time title="修改时间：2019-07-01 18:57:28" itemprop="dateModified" datetime="2019-07-01T18:57:28+08:00">2019-07-01</time>
               
             
           </span>
@@ -576,7 +577,7 @@ var _hmt = _hmt || [];
 
       
         <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1301" rel="external nofollow noopener noreferrer" target="_blank">http://acm.hdu.edu.cn/showproblem.php?pid=1301</a></p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><img src="http://acm.hdu.edu.cn/data/images/1301-1.gif" alt=""></p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kjfd8hfvj20eq09qjsb.jpg" alt=""></p>
 <p>The Head Elder of the tropical island of Lagrishan has a problem. A burst of foreign aid money was spent on extra roads between villages some years ago. But the jungle overtakes roads relentlessly, so the large road network is too expensive to maintain. The Council of Elders must choose to stop maintaining some roads. The map above on the left shows all the roads in use now and the cost in aacms per month to maintain them. Of course there needs to be some way to get between all the villages on maintained roads, even if the route is not as short as before. The Chief Elder would like to tell the Council of Elders what would be the smallest amount they could spend in aacms per month to maintain roads that would connect all the villages. The villages are labeled A through I in the maps above. The map on the right shows the roads that could be maintained most cheaply, for 216 aacms per month. Your task is to write a program that will solve such problems. </p>
 <p>The input consists of one to 100 data sets, followed by a final line containing only 0. Each data set starts with a line containing only a number n, which is the number of villages, 1 &lt; n &lt; 27, and the villages are labeled with the first n letters of the alphabet, capitalized. Each data set is completed with n-1 lines that start with village labels in alphabetical order. There is no line for the last village. Each line for a village starts with the village label followed by a number, k, of roads from this village to villages with labels later in the alphabet. If k is greater than 0, the line continues with data for each of the k roads. The data for each road is the village label for the other end of the road followed by the monthly maintenance cost in aacms for the road. Maintenance costs will be positive integers less than 100. All data fields in the row are separated by single blanks. The road network will always allow travel between all the villages. The network will never have more than 75 roads. No village will have more than 15 roads going to other villages (before or after in the alphabet). In the sample input below, the first data set goes with the map above. </p>
 <p>The output is one integer per line for each data set: the minimum cost in aacms per month to maintain a road system that connect all the villages. Caution: A brute force solution that examines every possible set of roads will not finish within the one minute time limit. </p>
