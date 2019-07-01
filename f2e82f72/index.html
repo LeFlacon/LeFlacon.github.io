@@ -209,13 +209,13 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="1 秒  131,072 KB 20 分 3 级题 有一个字符串S，记录了一个大数，但不知这个大数是多少进制的，只知道这个数在K进制下是K - 1的倍数。现在由你来求出这个最小的进制K。例如：给出的数是A1A，有A则最少也是11进制，然后发现A1A在22进制下等于4872,4872 mod 21 = 0，并且22是最小的，因此输出k = 22(大数的表示中A对应10，Z对应35)。 输入输入大数对">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2smlegri7j30ci00ywed.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2smlicif3j304p00ymwy.jpg">
-<meta property="og:updated_time" content="2019-05-07T04:10:59.739Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4koeghmuqj20ci00yq2u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4koegfk9jj204p00ywea.jpg">
+<meta property="og:updated_time" content="2019-07-01T13:49:40.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1116 K进制下的大数（数论）">
 <meta name="twitter:description" content="1 秒  131,072 KB 20 分 3 级题 有一个字符串S，记录了一个大数，但不知这个大数是多少进制的，只知道这个数在K进制下是K - 1的倍数。现在由你来求出这个最小的进制K。例如：给出的数是A1A，有A则最少也是11进制，然后发现A1A在22进制下等于4872,4872 mod 21 = 0，并且22是最小的，因此输出k = 22(大数的表示中A对应10，Z对应35)。 输入输入大数对">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2smlegri7j30ci00ywed.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4koeghmuqj20ci00yq2u.jpg">
 
 
 
@@ -504,7 +504,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 12:10:59" itemprop="dateModified" datetime="2019-05-07T12:10:59+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 21:49:40" itemprop="dateModified" datetime="2019-07-01T21:49:40+08:00">2019-07-01</time>
               
             
           </span>
@@ -584,9 +584,9 @@ var _hmt = _hmt || [];
 <h3 id="输出样例"><a href="#输出样例" class="headerlink" title="输出样例"></a>输出样例</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">22</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>这个数记为x，因为是个k进制数，所以可表示为如下多项式：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2smlegri7j30ci00ywed.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4koeghmuqj20ci00yq2u.jpg" alt=""></p>
 <p>化简成这样就可以发现，x满足的条件是k-1整除x的数位和</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2smlicif3j304p00ymwy.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4koegfk9jj204p00ywea.jpg" alt=""></p>
 <p>枚举k即可</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">2</span>,sum=<span class="number">0</span>,tmp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i]&gt;=<span class="string">'0'</span>&amp;&amp;s[i]&lt;=<span class="string">'9'</span>)</span><br><span class="line">            tmp=(<span class="keyword">int</span>)(s[i]-<span class="string">'0'</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            tmp=(<span class="keyword">int</span>)(s[i]-<span class="string">'A'</span>+<span class="number">10</span>);</span><br><span class="line">        sum+=tmp;</span><br><span class="line">        <span class="keyword">if</span>(tmp+<span class="number">1</span>&gt;b)b=tmp+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k=b;k&lt;=<span class="number">36</span>;k++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sum%(k<span class="number">-1</span>)==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,k);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">"No Solution"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

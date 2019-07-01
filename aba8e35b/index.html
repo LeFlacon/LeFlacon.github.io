@@ -209,14 +209,14 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw87ccekazj304000hmwx.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kl9w6th5j204000hq2q.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4spwcl7j30lq05e3ze.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4suy0e4j30b007xmx8.jpg">
-<meta property="og:updated_time" content="2019-05-06T17:55:18.144Z">
+<meta property="og:updated_time" content="2019-07-01T12:01:26.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 516 Div. 2（A-E）">
 <meta name="twitter:description" content="1064 A. Make a triangle!http://codeforces.com/contest/1064/problem/A 题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次 1234567891011121314151617#include &amp;lt;algorithm&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fw87ccekazj304000hmwx.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kl9w6th5j204000hq2q.jpg">
 
 
 
@@ -505,7 +505,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 01:55:18" itemprop="dateModified" datetime="2019-05-07T01:55:18+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 20:01:26" itemprop="dateModified" datetime="2019-07-01T20:01:26+08:00">2019-07-01</time>
               
             
           </span>
@@ -581,7 +581,7 @@ var _hmt = _hmt || [];
 <p>题意：给三条边长，每次可以给任意一边长度加一，问组成三角形至少要加几次</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;a[<span class="number">0</span>],&amp;a[<span class="number">1</span>],&amp;a[<span class="number">2</span>]);</span><br><span class="line">    sort(a,a+<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>]+a[<span class="number">1</span>]&gt;a[<span class="number">2</span>])<span class="built_in">printf</span>(<span class="string">"0\n"</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a[<span class="number">2</span>]-a[<span class="number">1</span>]-a[<span class="number">0</span>]+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="1064-B-Equations-of-Mathematical-Magic（思维）"><a href="#1064-B-Equations-of-Mathematical-Magic（思维）" class="headerlink" title="1064 B. Equations of Mathematical Magic（思维）"></a>1064 B. Equations of Mathematical Magic（思维）</h1><p><a href="http://codeforces.com/contest/1064/problem/B" rel="external nofollow noopener noreferrer" target="_blank">http://codeforces.com/contest/1064/problem/B</a></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fw87ccekazj304000hmwx.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kl9w6th5j204000hq2q.jpg" alt=""></p>
 <p>题意：给一个a，求满足条件的非负x的个数（式子中那个符号是异或）</p>
 <p>也就是<code>a=(a⊕x)+x</code>，那么式子成立的条件是，a为0的位x也为0，a位1的位x为1或0，所以答案就是<code>2^(a中1的个数)</code></p>
 <p>我也不知道我干嘛写了个快速幂。。小手一抖就写了，这不重要(･-･;</p>

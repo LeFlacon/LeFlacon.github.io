@@ -202,22 +202,22 @@ var _hmt = _hmt || [];
 
 
   <meta name="description" content="A. Birthdayhttp://codeforces.com/contest/1068/problem/A  题意：有n种不同硬币，寿星已经有k种硬币，他有m个朋友，每个朋友会给他送硬币，对于每个朋友来说有三个要求：1.所有朋友送的硬币数相同 2.所有要送的硬币种类不同 3.最终寿星要获得至少l种新硬币，求每个朋友需要送的最小硬币数  就是求满足下式的最小ans，没有的话就是-1  12345">
-<meta name="keywords" content="gcd,dp,dfs,思维,构造">
+<meta name="keywords" content="dp,gcd,dfs,思维,构造">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 518 (Div. 2) [Thanks, Mail.Ru!]（A-F）">
 <meta property="og:url" content="http://leflacon.github.io/408c21d7/index.html">
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="A. Birthdayhttp://codeforces.com/contest/1068/problem/A  题意：有n种不同硬币，寿星已经有k种硬币，他有m个朋友，每个朋友会给他送硬币，对于每个朋友来说有三个要求：1.所有朋友送的硬币数相同 2.所有要送的硬币种类不同 3.最终寿星要获得至少l种新硬币，求每个朋友需要送的最小硬币数  就是求满足下式的最小ans，没有的话就是-1  12345">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2slco0a0cj307x02wt8m.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2slcs2uhtj309l02mglk.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2slddh5y0j308j02ia9z.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2sldlsqvsj30ad05gt95.jpg">
-<meta property="og:updated_time" content="2019-05-07T03:28:47.822Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobepf5j207x02wa9z.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobbsv5j209l02mt8o.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobbkxdj208j02iq2v.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmow696bj20ad05gmxn.jpg">
+<meta property="og:updated_time" content="2019-07-01T12:50:28.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 518 (Div. 2) [Thanks, Mail.Ru!]（A-F）">
 <meta name="twitter:description" content="A. Birthdayhttp://codeforces.com/contest/1068/problem/A  题意：有n种不同硬币，寿星已经有k种硬币，他有m个朋友，每个朋友会给他送硬币，对于每个朋友来说有三个要求：1.所有朋友送的硬币数相同 2.所有要送的硬币种类不同 3.最终寿星要获得至少l种新硬币，求每个朋友需要送的最小硬币数  就是求满足下式的最小ans，没有的话就是-1  12345">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2slco0a0cj307x02wt8m.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobepf5j207x02wa9z.jpg">
 
 
 
@@ -506,7 +506,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 11:28:47" itemprop="dateModified" datetime="2019-05-07T11:28:47+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 20:50:28" itemprop="dateModified" datetime="2019-07-01T20:50:28+08:00">2019-07-01</time>
               
             
           </span>
@@ -583,14 +583,14 @@ var _hmt = _hmt || [];
 <p>题意：有n种不同硬币，寿星已经有k种硬币，他有m个朋友，每个朋友会给他送硬币，对于每个朋友来说有三个要求：1.所有朋友送的硬币数相同 2.所有要送的硬币种类不同 3.最终寿星要获得至少l种新硬币，求每个朋友需要送的最小硬币数</p>
 </blockquote>
 <p>就是求满足下式的最小ans，没有的话就是-1</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2slco0a0cj307x02wt8m.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobepf5j207x02wa9z.jpg" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">double</span> n,m,k,l;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;k&gt;&gt;l;</span><br><span class="line">    LL ans=<span class="built_in">ceil</span>((k+l)/m);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans*m&lt;=n?ans:<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="B-LCM（gcd）"><a href="#B-LCM（gcd）" class="headerlink" title="B. LCM（gcd）"></a>B. LCM（gcd）</h1><p><a href="http://codeforces.com/contest/1068/problem/B" rel="external nofollow noopener noreferrer" target="_blank">http://codeforces.com/contest/1068/problem/B</a></p>
 <blockquote>
 <p>题意：给定b，对所有a[1,1e18]，求<code>lcm(a,b)/a</code>可能的取值个数</p>
 </blockquote>
 <p>如下化简，因为a可以取所有值，所以最后求的就是b的因子个数</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2slcs2uhtj309l02mglk.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobbsv5j209l02mt8o.jpg" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    LL b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;b;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    LL i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i*i&lt;b;i++)</span><br><span class="line">        <span class="keyword">if</span>(b%i==<span class="number">0</span>)</span><br><span class="line">            ans+=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(i*i==b)ans++;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="C-Colored-Rooks（构造）"><a href="#C-Colored-Rooks（构造）" class="headerlink" title="C. Colored Rooks（构造）"></a>C. Colored Rooks（构造）</h1><p><a href="http://codeforces.com/contest/1068/problem/C" rel="external nofollow noopener noreferrer" target="_blank">http://codeforces.com/contest/1068/problem/C</a></p>
 <blockquote>
@@ -667,7 +667,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>题意：有一个由[1,200]间的数组成的n个数的序列，这个序列满足下图条件，即对于第2个到第n-1个元素要求相邻元素至少有一个大于等于它，现在这个序列有一部分不记得了，不记得的位置标记为-1，求恢复的方法数</p>
 </blockquote>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2slddh5y0j308j02ia9z.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmobbkxdj208j02iq2v.jpg" alt=""></p>
 <p>dp[i][j][k]表示第i个数字为j，且第i个数和第i-1个数的关系为k时的方案数，k取值为0，1，2分别代表小于等于大于</p>
 <p>状态转移的时候对于某个不确定的位的方法数，可以用一个前缀和tmp累加，求小于时j从小到大，求大于时j从大到小</p>
 <p>最后答案就是<code>∑(dp[n][i][1]+dp[n][i][2])</code>，枚举最后一位i[1,200]相加即可</p>
@@ -688,7 +688,7 @@ var _hmt = _hmt || [];
 <p>题意：有一个无限大的棋盘，一开始有n个骑士（骑士走“日”字），如果一个点可以被四个骑士一步走到，就在这个点的位置放一个新骑士，这个步骤是有限的，重复这样的步骤到不能增加为止，要求给出初始的n个位置使最终骑士数至少为<code>[n^2/10]</code>，n范围[1,1000]</p>
 <p>蛮酷的构造题0.0官方题解如下：（为什么这么构造呢0.0我也不知道。。那个<code>[n^2/10]</code>就很迷很神仙的样子。。可能就是见多了就会构造了吧。。mark一下）</p>
 <p>如图，所有初始棋子都摆在固定两行（中间间隔两行即可），然后一层<code>[1,2n/3]</code>，另一层间隔的摆剩下的<code>n-2n/3</code>个</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2sldlsqvsj30ad05gt95.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmow696bj20ad05gmxn.jpg" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n/<span class="number">3</span>;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,i,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-2</span>*n/<span class="number">3</span>;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,i*<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -709,9 +709,9 @@ var _hmt = _hmt || [];
       
         <div class="post-tags">
           
-            <a href="/tags/gcd/" rel="tag"># gcd</a>
-          
             <a href="/tags/dp/" rel="tag"># dp</a>
+          
+            <a href="/tags/gcd/" rel="tag"># gcd</a>
           
             <a href="/tags/dfs/" rel="tag"># dfs</a>
           

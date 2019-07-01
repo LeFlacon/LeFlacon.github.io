@@ -209,15 +209,15 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="macOS下tensorflow的下载和安装（通过anaconda） 首先我安装的是通过anaconda安装的CPU版本的tensorflow 1.问题运行tensorflow时遇到了这样的问题：  123Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2smc94dedj30fp02rt9a.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2smce7k77j30kr074jsw.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2smcjb2f0j309102et8q.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2smcnbslzj30j204iwf8.jpg">
-<meta property="og:updated_time" content="2019-05-07T04:02:28.357Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7cqxpsj20fp02rjs3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7cqp2oj20kr074769.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7crbifj209102edfw.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7zff66j20j204i3zj.jpg">
+<meta property="og:updated_time" content="2019-07-01T13:43:22.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运行tensorflow出现「Your CPU supports instructions that this TensorFlow binary was not compiled to use SSE4.1 SSE4.2 AVX AVX2 FMA」问题的原因及解决办法">
 <meta name="twitter:description" content="macOS下tensorflow的下载和安装（通过anaconda） 首先我安装的是通过anaconda安装的CPU版本的tensorflow 1.问题运行tensorflow时遇到了这样的问题：  123Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2smc94dedj30fp02rt9a.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7cqxpsj20fp02rjs3.jpg">
 
 
 
@@ -506,7 +506,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 12:02:28" itemprop="dateModified" datetime="2019-05-07T12:02:28+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 21:43:22" itemprop="dateModified" datetime="2019-07-01T21:43:22+08:00">2019-07-01</time>
               
             
           </span>
@@ -581,7 +581,7 @@ var _hmt = _hmt || [];
         <p><a href="https://leflacon.github.io/861530ae/">macOS下tensorflow的下载和安装（通过anaconda）</a></p>
 <p>首先我安装的是通过anaconda安装的CPU版本的tensorflow</p>
 <h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h1><p>运行tensorflow时遇到了这样的问题：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2smc94dedj30fp02rt9a.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7cqxpsj20fp02rjs3.jpg" alt=""></p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Your CPU supports instructions that this TensorFlow binary was <span class="keyword">not</span> compiled <span class="keyword">to</span> use: SSE4.1 SSE4.2 AVX AVX2 FMA</span><br><span class="line"></span><br><span class="line">Creating new thread<span class="built_in"> pool </span>with<span class="built_in"> default </span>inter op setting: 4. Tune using inter_op_parallelism_threads <span class="keyword">for</span> best performance.</span><br></pre></td></tr></table></figure>
 <p>翻译一下就是，你的CPU支持<code>SSE4.1 SSE4.2 AVX AVX2 FMA</code>这些拓展，但是无法编译使用</p>
 <p>这个不是错误，只是一个警告，告诉你如果从源代码安装tensorflow，那么tensorflow会跑得更快</p>
@@ -589,18 +589,18 @@ var _hmt = _hmt || [];
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SSE4 (Streaming SIMD Extensions <span class="number">4</span>)是IntelCore微体系结构和AMDK10（K8L）中所使用的SIMDCPU指令集</span><br><span class="line">AVX指令集（英语：Advanced Vector Extensions，即高级向量扩展指令集）是x86架构处理器中的指令集，被英特尔和AMD的处理器所支持</span><br><span class="line">FMA指令集（英语：Fused-Multiply-Add，即积和熔加运算）是x86架构微处理器上的指令集。FMA指令集是<span class="number">128</span>位元和<span class="number">256</span>位元的流式单指令流多资料流扩充集（SSE）指令集，以进行积和熔加运算。</span><br></pre></td></tr></table></figure>
 <p>那么为什么会出现这样的问题呢？</p>
 <p>在stackoverflow里找到了答案：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2smce7k77j30kr074jsw.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7cqp2oj20kr074769.jpg" alt=""></p>
 <p>翻译一下就是，很可能你没有利用源代码的方式安装tensorflow，这意味着你安装了别人预先构建的未针对你的体系结构进行优化的二进制文件，这个警告就是想告诉你：你有这些指令集，但是因为二进制文件没有用他们编译，所以这些指令集都用不了</p>
 <p>如果用上这些拓展的话，显然会加快计算</p>
 <h1 id="3-解决"><a href="#3-解决" class="headerlink" title="3.解决"></a>3.解决</h1><h2 id="3-1忽略警告"><a href="#3-1忽略警告" class="headerlink" title="3.1忽略警告"></a>3.1忽略警告</h2><p>第一种解决方法是直接忽略警告，这种方法简单粗暴，但是实际上并没有解决问题</p>
 <p>在代码中加入如下两句即可：</p>
 <figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span> </span><br><span class="line"><span class="built_in">os</span>.environ[<span class="string">'TF_CPP_MIN_LOG_LEVEL'</span>] = <span class="string">'2'</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></span><br><span class="line">hello = <span class="keyword">tf</span>.constant(<span class="string">'Hello,tensorflow'</span>) </span><br><span class="line">sess = <span class="keyword">tf</span>.Session()</span><br><span class="line"><span class="keyword">print</span>(sess.run(hello))</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2smcjb2f0j309102et8q.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7crbifj209102edfw.jpg" alt=""></p>
 <h2 id="3-2用源代码安装tensorflow"><a href="#3-2用源代码安装tensorflow" class="headerlink" title="3.2用源代码安装tensorflow"></a>3.2用源代码安装tensorflow</h2><p>第二种方法就是<s>麻烦的</s>用源代码安装tensorflow</p>
 <p>这样就可以自己编译这些二进制文件以利用上面那串指令集</p>
 <p>但是不管再怎么快，CPU也远远快不过GPU，所以不如就照第一种方法凑合着用吧</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2smcnbslzj30j204iwf8.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4ko7zff66j20j204i3zj.jpg" alt=""></p>
 <p>参考自stackoverflow的这个问题 -&gt; <a href="https://stackoverflow.com/questions/41293077/how-to-compile-tensorflow-with-sse4-2-and-avx-instructions" rel="external nofollow noopener noreferrer" target="_blank">How to compile Tensorflow with SSE4.2 and AVX instructions?
 </a></p>
 <p><a href="https://www.tensorflow.org/install/source" rel="external nofollow noopener noreferrer" target="_blank">从源代码构建 TensorFlow pip 软件包并将其安装在 macOS 上</a></p>

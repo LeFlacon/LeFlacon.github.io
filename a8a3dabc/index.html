@@ -208,19 +208,19 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&amp;gt; 递归 —— 三色汉诺塔（分离型）  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  1234567">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skwyb3nej30lo0ft3yz.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2skx32ujlj30l907gjrg.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skx9j761j30lc07n74d.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxe8cmdj30l707l3yk.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2skxizyr6j30l807ijrh.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1g2skxola1oj30l407iglo.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxts32bj30g10cgaas.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxy2esvj30fz0d3t9o.jpg">
-<meta property="og:updated_time" content="2019-05-07T03:13:44.464Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwuu03j20lo0ft74w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwty5yj20l907g74g.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwvoyaj20lc07ngls.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqock2pj20l707lmxb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqod9cmj20l807iaa9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqocnfcj20l407iwen.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klrmqptyj20g10cg0tm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klrysizxj20fz0d375f.jpg">
+<meta property="og:updated_time" content="2019-07-01T12:18:49.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归 —— 汉诺塔&amp;双色汉诺塔（分离型）">
 <meta name="twitter:description" content="网上甚至连能盗用的好看的双色汉诺塔的图都没有。。只好自己画了ᶘ ᵒᴥᵒᶅ 为啥大佬们总能知道一些奇奇怪怪的有趣的东西 双色的和网上的答案对拍了一下，应该是正解，三色补在这篇了 -&amp;gt; 递归 —— 三色汉诺塔（分离型）  1.单色汉诺塔首先回忆一下普通汉诺塔的递归原理：  1）将A上n-1个盘子借助C移到B上 2）把A上剩下的一个盘移到C上 3）将n-1个盘从B借助于A移到C上  1234567">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2skwyb3nej30lo0ft3yz.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwuu03j20lo0ft74w.jpg">
 
 
 
@@ -509,7 +509,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 11:13:44" itemprop="dateModified" datetime="2019-05-07T11:13:44+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 20:18:49" itemprop="dateModified" datetime="2019-07-01T20:18:49+08:00">2019-07-01</time>
               
             
           </span>
@@ -592,27 +592,27 @@ var _hmt = _hmt || [];
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> x,<span class="keyword">char</span> y,<span class="keyword">char</span> z)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;z&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        hanoi(n<span class="number">-1</span>,x,z,y);<span class="comment">//前n-1个盘子从x移动到y上</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">"—&gt;"</span>&lt;&lt;z&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//将最底下的最后一个盘子从x移动到z上</span></span><br><span class="line">        hanoi(n<span class="number">-1</span>,y,x,z);<span class="comment">//将y上的n-1个盘子移动到z上</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="2-双色汉诺塔"><a href="#2-双色汉诺塔" class="headerlink" title="2.双色汉诺塔"></a>2.双色汉诺塔</h1><p>双色汉诺塔就是下图这个意思，其他条件都和普通汉诺塔一样</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2skwyb3nej30lo0ft3yz.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwuu03j20lo0ft74w.jpg" alt=""></p>
 <h2 id="1）双色汉诺塔基本思路："><a href="#1）双色汉诺塔基本思路：" class="headerlink" title="1）双色汉诺塔基本思路："></a>1）双色汉诺塔基本思路：</h2><p>所以双色汉诺塔的递归思路就是：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2skx32ujlj30l907gjrg.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwty5yj20l907g74g.jpg" alt=""></p>
 <p>1.把A上的n-2个借助B移到C上</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2skx9j761j30lc07n74d.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klpwvoyaj20lc07ngls.jpg" alt=""></p>
 <p>2.把A上的两个大盘移到B</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxe8cmdj30l707l3yk.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqock2pj20l707lmxb.jpg" alt=""></p>
 <p>3.把C上的n-2个借助B移回A上</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2skxizyr6j30l807ijrh.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqod9cmj20l807iaa9.jpg" alt=""></p>
 <p>4.把B上的另一个大圆盘移到C</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1g2skxola1oj30l407iglo.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klqocnfcj20l407iwen.jpg" alt=""></p>
 <p>现在BC的底座都已经放好了，所以变成了一个新的子问题，也就是n-2个盘的双色汉诺塔</p>
 <p>所以考虑跑循环(n/2-1)次求解，上面的1，3步骤其实就各相当于一次完整的一色汉诺塔的操作，比如步骤1即相当于一色汉诺塔中把n-2个汉诺塔从a移到c，按照一色汉诺塔的递归步骤来即可</p>
 <p>也就是说如果要把n-2个汉诺塔从a移到c，就先把n-4个汉诺塔借助c移到b，然后把第n-2号和n-3号的盘移到c，然后把n-4个汉诺塔借助a移到c（可见，这个子步骤和一色汉诺塔唯一不同的就是，n=1的时候是直接操作两个同宽塔的，要cout两次）</p>
 <h2 id="2）代码："><a href="#2）代码：" class="headerlink" title="2）代码："></a>2）代码：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a,<span class="keyword">char</span> b,<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		hanoi(n<span class="number">-1</span>,a,c,b);</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		hanoi(n<span class="number">-1</span>,b,a,c);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hanoi2</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a,<span class="keyword">char</span> b,<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n/<span class="number">2</span>;i&gt;<span class="number">1</span>;i--)&#123;</span><br><span class="line">		hanoi(i<span class="number">-1</span>,a,b,c);</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		hanoi(i<span class="number">-1</span>,c,b,a);</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;b&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;b&lt;&lt;<span class="string">"-&gt;"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> nn;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;nn;</span><br><span class="line">	<span class="keyword">char</span> a=<span class="string">'A'</span>,b=<span class="string">'B'</span>,c=<span class="string">'C'</span>;</span><br><span class="line">	hanoi2(nn,a,b,c);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3）运行结果和分析："><a href="#3）运行结果和分析：" class="headerlink" title="3）运行结果和分析："></a>3）运行结果和分析：</h2><p>输出了n=2，4，6，8，10……的情况</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxts32bj30g10cgaas.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klrmqptyj20g10cg0tm.jpg" alt=""></p>
 <p>然后oeis，没有这个序列( ･᷄ὢ･᷅ )怀疑自己是不是错了，然后发现，诶这些数列好像都是接近两倍的关系，不如乱搞一下试试</p>
 <p>如果f(0)初始为-1，输出<code>f(n)-f(n-1)*2</code>就会产生如下结果：</p>
 <p>嗷真是好看啊٩(˃̶͈̀௰˂̶͈́)و就是它了我觉得OK</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2skxy2esvj30fz0d3t9o.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klrysizxj20fz0d375f.jpg" alt=""></p>
 <p>这个方法的巧妙之处在于，子递归and两个两个的移动，相当于把2n又回归到了n时的复杂度，因为一阶汉诺塔的次数是<code>f(n)=2^n-1</code>，所以2n小一半差的是根号级别的</p>
 
       

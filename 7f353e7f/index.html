@@ -209,13 +209,13 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="https://www.51nod.com/Challenge/Problem.html#!#problemId=10221 秒  131,072 KB 6 级题 N堆石子摆成一个环。现要将石子有次序地合并成一堆。规定每次只能选相邻的2堆石子合并成新的一堆，并将新的一堆石子数记为该次合并的代价。计算将N堆石子合并成一堆的最小代价。 例如： 1 2 3 4，有不少合并方法 1231 2 3 4 =&amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2slz9roegj30cd02uglp.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2slzfkzaej30h105b3yx.jpg">
-<meta property="og:updated_time" content="2019-05-07T03:49:47.959Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4knryv6qej20cd02uglr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4knryyufnj20h105bdgg.jpg">
+<meta property="og:updated_time" content="2019-07-01T13:28:06.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1022 石子归并 V2（划分dp，四边形不等式优化）">
 <meta name="twitter:description" content="https://www.51nod.com/Challenge/Problem.html#!#problemId=10221 秒  131,072 KB 6 级题 N堆石子摆成一个环。现要将石子有次序地合并成一堆。规定每次只能选相邻的2堆石子合并成新的一堆，并将新的一堆石子数记为该次合并的代价。计算将N堆石子合并成一堆的最小代价。 例如： 1 2 3 4，有不少合并方法 1231 2 3 4 =&amp;">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79ly1g2slz9roegj30cd02uglp.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4knryv6qej20cd02uglr.jpg">
 
 
 
@@ -504,7 +504,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 11:49:47" itemprop="dateModified" datetime="2019-05-07T11:49:47+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 21:28:06" itemprop="dateModified" datetime="2019-07-01T21:28:06+08:00">2019-07-01</time>
               
             
           </span>
@@ -595,8 +595,8 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>网上的一篇论文（带数学归纳法证明） -&gt; <a href="https://wenku.baidu.com/view/c44cd84733687e21af45a906.html" rel="external nofollow noopener noreferrer" target="_blank">动态规划加速原理之四边形不等式</a></p>
 <p>下面直接放解题结论：（因为证明。。看不进去。。mark一下溜了溜了）</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1g2slz9roegj30cd02uglp.jpg" alt=""></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2slzfkzaej30h105b3yx.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4knryv6qej20cd02uglr.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4knryyufnj20h105bdgg.jpg" alt=""></p>
 <p>原先的状态转移方程是：<code>dp[i,j]=min(dp[i,j],dp[i,k]+dp[k+1,j]+w[i,j])</code>，如果<code>w[i][j]</code>满足四边形不等式，那么<code>dp[i][j]</code>也满足四边形不等式</p>
 <p>定义<code>s[i][j]</code>为使<code>dp[i][j]</code>取最小时对应的k值，如果<code>dp[i][j]</code>满足四边形不等式，那么<code>s[i][j]</code>单调，即<code>s[i][j]≤s[i+1][j]≤s[i+1][j+1]</code>，<br>枚举k的时候范围是<code>s[i,j-1]≤k≤s[i+1,j]</code>，只要每次dp完顺便更新一下s数组即可，这样o(n^3)就变成o(n^2)了</p>
 <p>进阶版 -&gt; <a href="https://leflacon.github.io/7a2374a/">51nod 1023 石子归并 V3（GarsiaWachs算法）</a></p>

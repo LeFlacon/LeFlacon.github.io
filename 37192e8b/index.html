@@ -209,13 +209,13 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 5 难度：1级算法题  n的阶乘后面有多少个0？6的阶乘 = 1*2*3*4*5*6 = 720，720后面有1个0。 Input一个数N(1 &amp;lt;= N &amp;lt;= 10^9) Output输出0的数量 Input示例15 Output示例11  题解：n是1e9，一开始的做法是暴力枚举所有数，先除以10，再算因数2的个数，再算因数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4ixld59j30fv01tweh.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4j2b4roj30mh04egmc.jpg">
-<meta property="og:updated_time" content="2019-05-06T17:45:50.698Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kkt8imqyj20fv01tt8q.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kkt8jspaj20mh04eq3v.jpg">
+<meta property="og:updated_time" content="2019-07-01T11:45:27.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="51nod 1003 阶乘后面0的数量（勒让德定理）">
 <meta name="twitter:description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 5 难度：1级算法题  n的阶乘后面有多少个0？6的阶乘 = 1*2*3*4*5*6 = 720，720后面有1个0。 Input一个数N(1 &amp;lt;= N &amp;lt;= 10^9) Output输出0的数量 Input示例15 Output示例11  题解：n是1e9，一开始的做法是暴力枚举所有数，先除以10，再算因数2的个数，再算因数">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4ixld59j30fv01tweh.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kkt8imqyj20fv01tt8q.jpg">
 
 
 
@@ -504,7 +504,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 01:45:50" itemprop="dateModified" datetime="2019-05-07T01:45:50+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 19:45:27" itemprop="dateModified" datetime="2019-07-01T19:45:27+08:00">2019-07-01</time>
               
             
           </span>
@@ -585,9 +585,9 @@ var _hmt = _hmt || [];
 <hr>
 <h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>n是1e9，一开始的做法是暴力枚举所有数，先除以10，再算因数2的个数，再算因数5的个数，因为<code>2*5=10</code>，果不其然的又t又wa了。。</p>
 <p>然后看了讨论区 知道了一个叫勒让德定理的东西</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4ixld59j30fv01tweh.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kkt8imqyj20fv01tt8q.jpg" alt=""></p>
 <p>证明如下：（其实直接理解也行。。还是蛮好想的）</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2s4j2b4roj30mh04egmc.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kkt8jspaj20mh04eq3v.jpg" alt=""></p>
 <p>有了这个东西只要计算因数2和因数5的个数然后取小的那个即可</p>
 <p>然后因为因数2肯定比5多，所以最后其实只要算因数5的个数即可</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,num5=<span class="number">0</span>,tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    tmp=<span class="number">5</span>;</span><br><span class="line">    <span class="keyword">while</span>(tmp&lt;=n)&#123;</span><br><span class="line">        num5+=n/tmp;</span><br><span class="line">        tmp*=<span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,num5);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

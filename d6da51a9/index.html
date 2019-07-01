@@ -209,12 +209,12 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="对于不同类型的离散特征有两种处理方法： 1）map映射（如果数据之间有大小关系，那么可知直接映射一个值） 2）one-hot编码 one-hot编码使用于离散特征的取值没有什么大小关系的情况，比如color:[black,white,blue] 如果这几项之间并没有大小关系，但是仍需要把他们转化为向量来做聚类分析，这时候可以用pandas对离散型特征进行one-hot编码 如果编码前只有一个特征c">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4xkxmy7j30fg082js7.jpg">
-<meta property="og:updated_time" content="2019-05-06T17:59:47.856Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klikwsekj20fg082dgu.jpg">
+<meta property="og:updated_time" content="2019-07-01T12:09:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python pandas实现one-hot编码（独热编码）">
 <meta name="twitter:description" content="对于不同类型的离散特征有两种处理方法： 1）map映射（如果数据之间有大小关系，那么可知直接映射一个值） 2）one-hot编码 one-hot编码使用于离散特征的取值没有什么大小关系的情况，比如color:[black,white,blue] 如果这几项之间并没有大小关系，但是仍需要把他们转化为向量来做聚类分析，这时候可以用pandas对离散型特征进行one-hot编码 如果编码前只有一个特征c">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4xkxmy7j30fg082js7.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4klikwsekj20fg082dgu.jpg">
 
 
 
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 01:59:47" itemprop="dateModified" datetime="2019-05-07T01:59:47+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 20:09:59" itemprop="dateModified" datetime="2019-07-01T20:09:59+08:00">2019-07-01</time>
               
             
           </span>
@@ -582,7 +582,7 @@ var _hmt = _hmt || [];
 <p>如果这几项之间并没有大小关系，但是仍需要把他们转化为向量来做聚类分析，这时候可以用pandas对离散型特征进行<code>one-hot</code>编码</p>
 <p>如果编码前只有一个特征color，<code>one-hot</code>编码后会得到三个特征<code>color_black,color_white,color_blue</code>，特征值为0或1</p>
 <h2 id="测试代码："><a href="#测试代码：" class="headerlink" title="测试代码："></a>测试代码：</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"---初始数据集---\n"</span>)</span></span></span><br><span class="line">data=pd.DataFrame([</span><br><span class="line">    [<span class="string">'red'</span>,<span class="string">'class1'</span>,<span class="string">'yi'</span>,<span class="number">0.233333</span>],</span><br><span class="line">    [<span class="string">'green'</span>,<span class="string">'class2'</span>,<span class="string">'er'</span>,<span class="number">0.654321</span>],</span><br><span class="line">    [<span class="string">'blue'</span>,<span class="string">'class1'</span>,<span class="string">'san'</span>,<span class="number">0.123456</span>]])</span><br><span class="line">data.<span class="attribute">columns</span>=[<span class="string">'color'</span>,<span class="string">'class'</span>,<span class="string">'id'</span>,<span class="string">'value'</span>]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(data)</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"---映射后数据集---\n"</span>)</span></span></span><br><span class="line">mapp1=&#123;</span><br><span class="line">    <span class="string">'yi'</span>:<span class="number">11</span>,</span><br><span class="line">    <span class="string">'er'</span>:<span class="number">22</span>,</span><br><span class="line">    <span class="string">'san'</span>:<span class="number">33</span>&#125;</span><br><span class="line">data[<span class="string">'id'</span>]=data[<span class="string">'id'</span>].map(mapp1)</span><br><span class="line">mapp2=&#123;<span class="selector-tag">label</span>:idx <span class="keyword">for</span> idx,<span class="selector-tag">label</span> <span class="keyword">in</span> enumerate(set(data[<span class="string">'class'</span>]))&#125;</span><br><span class="line">data[<span class="string">'class'</span>]=data[<span class="string">'class'</span>].map(mapp2)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(data)</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"---「one-hot」后数据集---\n"</span>)</span></span></span><br><span class="line">data=pd.get_dummies(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(data)</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="运行效果如图："><a href="#运行效果如图：" class="headerlink" title="运行效果如图："></a>运行效果如图：</h2><p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1g2s4xkxmy7j30fg082js7.jpg" alt=""></p>
+<h2 id="运行效果如图："><a href="#运行效果如图：" class="headerlink" title="运行效果如图："></a>运行效果如图：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klikwsekj20fg082dgu.jpg" alt=""></p>
 
       
     </div>

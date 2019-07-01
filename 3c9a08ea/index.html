@@ -209,12 +209,12 @@ var _hmt = _hmt || [];
 <meta property="og:site_name" content="LeFlacon&#39;s Blog">
 <meta property="og:description" content="没有看见要命令行参数。。之前直接愚蠢的scanner了。。现在更新了  题目：编写一个程序，如果没有命令行参数，则列出所有系统属性（属性=属性值），如果有命令行参数，则根据命令行参数显示指定的系统属性（属性=属性值） 思路：用一个list列出所有系统属性： 12Properties pro=System.getProperties();pro.list(System.out); pro.getPr">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2slbtk0dsj30d408wmy9.jpg">
-<meta property="og:updated_time" content="2019-05-07T03:27:04.277Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmhmmq63j20d408wdh4.jpg">
+<meta property="og:updated_time" content="2019-07-01T12:43:27.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java第五次作业（系统属性）">
 <meta name="twitter:description" content="没有看见要命令行参数。。之前直接愚蠢的scanner了。。现在更新了  题目：编写一个程序，如果没有命令行参数，则列出所有系统属性（属性=属性值），如果有命令行参数，则根据命令行参数显示指定的系统属性（属性=属性值） 思路：用一个list列出所有系统属性： 12Properties pro=System.getProperties();pro.list(System.out); pro.getPr">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79ly1g2slbtk0dsj30d408wmy9.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmhmmq63j20d408wdh4.jpg">
 
 
 
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-07 11:27:04" itemprop="dateModified" datetime="2019-05-07T11:27:04+08:00">2019-05-07</time>
+                <time title="修改时间：2019-07-01 20:43:27" itemprop="dateModified" datetime="2019-07-01T20:43:27+08:00">2019-07-01</time>
               
             
           </span>
@@ -581,7 +581,7 @@ var _hmt = _hmt || [];
 <h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>用一个list列出所有系统属性：</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Properties <span class="keyword">pro</span>=System.getProperties();</span><br><span class="line"><span class="keyword">pro</span>.<span class="keyword">list</span>(System.<span class="keyword">out</span>);</span><br></pre></td></tr></table></figure>
 <p><code>pro.getProperty(s)</code>可以获得名为s的某个指定属性</p>
-<h1 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h1><p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1g2slbtk0dsj30d408wmy9.jpg" alt=""></p>
+<h1 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h1><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmhmmq63j20d408wdh4.jpg" alt=""></p>
 <h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> java.io.*;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> java.util.*;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">        Properties pro=System.getProperties();</span><br><span class="line">        <span class="keyword">if</span>(args.length==<span class="number">0</span>)pro.list(System.out);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(String s:args)System.out.println(s+<span class="string">" "</span>+pro.getProperty(s));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
