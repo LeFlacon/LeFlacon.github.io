@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leflacon.github.io/friends/index.html</loc>
+    
+    <lastmod>2019-07-25T12:52:04.716Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leflacon.github.io/586bfea5/</loc>
     
     <lastmod>2019-07-07T17:07:17.051Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>http://leflacon.github.io/52e47f72/</loc>
     
     <lastmod>2019-07-01T15:38:47.561Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leflacon.github.io/friends/index.html</loc>
-    
-    <lastmod>2019-07-01T14:12:26.425Z</lastmod>
     
   </url>
   
