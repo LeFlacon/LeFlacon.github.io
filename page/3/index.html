@@ -451,6 +451,200 @@ var _hmt = _hmt || [];
           <h2 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/f16eb349/" itemprop="url">
+                  bzoj1303 [CQOI2009]中位数图（思维）
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-30 00:58:00" itemprop="dateCreated datePublished" datetime="2019-04-30T00:58:00+08:00">2019-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-01 22:03:14" itemprop="dateModified" datetime="2019-07-01T22:03:14+08:00">2019-07-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/杂/" itemprop="url" rel="index"><span itemprop="name">杂</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/f16eb349/" class="leancloud_visitors" data-flag-title="bzoj1303 [CQOI2009]中位数图（思维）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+题解：记录b的位置，因为肯定要包括b在内，所以从b分别向左右拓展，最暴力的思路就是枚举区间的左右端点，当然这是过不了的
+然后想左边部分加右边部分和b在什么情况下才是合法的，就是如果左边多了几个比b大的数，那么右边就要多多少个比b小的数，反之同理
+所以只要求得左边多x个比b大（小）的数的情况数，然后左右一乘累加就是答案
+用一个sum，大于b就+1，小于b就-1，直接用数值就能表示大于/小于的个数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/f16eb349/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+	    
+    
+	    
+	      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/f16eb349/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LeFlacon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/0.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeFlacon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/f16eb349/" itemprop="url">
                   bzoj1192 (HNOI2006)鬼谷子的钱袋（思维）
                 </a>
               
@@ -520,16 +714,6 @@ var _hmt = _hmt || [];
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/f16eb349/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/f16eb349/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -722,16 +906,6 @@ var _hmt = _hmt || [];
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/71f70113/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/71f70113/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -930,16 +1104,6 @@ var _hmt = _hmt || [];
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/10785838/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/10785838/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1130,16 +1294,6 @@ var _hmt = _hmt || [];
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/f16eb349/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/f16eb349/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1338,16 +1492,6 @@ Sample Output140
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/c514331a/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/c514331a/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1548,16 +1692,6 @@ Sample Output116
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/851cc78c/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/851cc78c/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1741,16 +1875,6 @@ OUTPUT123383
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/e1b63b73/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/e1b63b73/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1940,16 +2064,6 @@ OUTPUT123383
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/9548c271/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/9548c271/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -2144,16 +2258,6 @@ G的「Kirchhoff矩阵」（基尔霍夫
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/ad83609f/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/ad83609f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -2200,214 +2304,6 @@ Sample Output12332//前三天走1-4-5，后两天走1-3-5，这样总成本为(2
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/ad83609f/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-	    
-    
-	    
-	      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leflacon.github.io/37d812ca/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LeFlacon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/0.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeFlacon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/37d812ca/" itemprop="url">
-                  tensorflow学习记录（二）MNIST手写数字识别（softmax回归）
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-08 13:07:00" itemprop="dateCreated datePublished" datetime="2019-04-08T13:07:00+08:00">2019-04-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-01 21:57:38" itemprop="dateModified" datetime="2019-07-01T21:57:38+08:00">2019-07-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/37d812ca/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/37d812ca/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/37d812ca/" class="leancloud_visitors" data-flag-title="tensorflow学习记录（二）MNIST手写数字识别（softmax回归）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.MNIST介绍及下载
-wiki的介绍：https://en.wikipedia.org/wiki/MNIST_database
-这是MNIST的官网，在里面可以获取这个数据集：http://yann.lecun.com/exdb/mnist/
-把下面这四个下下来放一个文件夹里就好了
-
-
-比如下图就是四张手写数字图片，在MNIST中一个手写数字被保存为二维矩阵的形式，28*28=784
-
-
-接下
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/37d812ca/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2498,7 +2394,7 @@ wiki的介绍：https://en.wikipedia.org/wiki/MNIST_database
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">354</span>
+                    <span class="site-state-item-count">355</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2926,7 +2822,7 @@ z-index:100001;
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count"> | Words:244.2k</span>
+  <span class="post-count"> | Words:244.5k</span>
 </div>
 
 <br>
@@ -3079,31 +2975,6 @@ setInterval("createtime()",250);
 
 
 
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: true,
-        notify: true,
-        appId: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
-        appKey: 'ICpyPTKA9w5RlR5UTydeoKif',
-        placeholder: 'Just go go ヾﾉ≧∀≦)o',
-        avatar:'mp',
-        meta:guest,
-        pageSize:'10' || 10,
-        visitor: true
-    });
-  </script>
 
 
   
