@@ -202,7 +202,7 @@ var _hmt = _hmt || [];
 
 
   <meta name="description" content="基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题  K的因子中只包含2 3 5。满足条件的前10个数是：  2,3,4,5,6,8,9,10,12,15。所有这样的K组成了一个序列S，现在给出一个数n，求S中 &amp;gt;= 给定数的最小的数。例如：n = 13，S中 &amp;gt;= 13的最小的数是15，所以输出15。 Input第1行：一个数T，表示后面用作输入测试的">
-<meta name="keywords" content="stl,二分">
+<meta name="keywords" content="二分,stl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="51nod 1010 只包含因子2 3 5的数（打表+二分，stl）">
 <meta property="og:url" content="http://leflacon.github.io/f7f1f3b6/index.html">
@@ -583,9 +583,9 @@ var _hmt = _hmt || [];
       
         <div class="post-tags">
           
-            <a href="/tags/stl/" rel="tag"># stl</a>
-          
             <a href="/tags/二分/" rel="tag"># 二分</a>
+          
+            <a href="/tags/stl/" rel="tag"># stl</a>
           
         </div>
       
@@ -1304,7 +1304,7 @@ setInterval("createtime()",250);
         el: '#comments' ,
         appId: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
         appKey: 'ICpyPTKA9w5RlR5UTydeoKif',
-        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱）',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
     });
   </script>
  
@@ -1635,6 +1635,65 @@ setInterval("createtime()",250);
 
 
   
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz",
+                'X-LC-Key': "ICpyPTKA9w5RlR5UTydeoKif",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
 
   
 
