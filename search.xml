@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[macOS下NLTK下载语料库时certificate verify failed(_ssl.c:749)问题的原因及解决办法]]></title>
+    <url>%2F3bd88164%2F</url>
+    <content type="text"><![CDATA[1.问题知道了有nltk这个东西，然后平平常常开始下载语料库 12import nltknltk.download() 然后就跳出来一个并不正常的下载页面QwQ，报错[SSL:CERTIFICATE_VERIFY_FAILED]certificate verify failed(_ssl.c:749) 2.原因查了一下会出现这个问题是SSL检查时报的错，大意是urllib用了一个嵌入式版本的OpenSSL，而这个版本不在系统证书里。 放上stackoverflow对于这个问题的讨论链接：https://stackoverflow.com/questions/41348621/ssl-error-downloading-nltk-data 3.根本原因只有在macos下3.6/3.7版本的python上会出现这个错误，和之前遇到过的python下安装pyspider报错本质上是一个原因，就是python3.6开始不再使用苹果提供的OpenSSL库，然后就会导致下图的一系列说明，，（懒得翻译了，，看个大概） 这里也提到了解决办法，就是从第三方certifi安装证书包（a curated bundle of default root certificates） 关于这个问题更详细的官方说明可以见这个python issue：https://bugs.python.org/issue28150 4.解决方法网上的一种解决方式是每次都加上禁用SSL检查的语句，但是还有一种更简单粗暴的方法，只要执行下面两句即可解决 12cd /Applications/Python\ 3.6/./Install\ Certificates.command 然后就可以快乐安装语料库了]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[macOS下用sublime写LaTeX并配置自动补全功能]]></title>
     <url>%2Fd4b45e0b%2F</url>
     <content type="text"><![CDATA[原来大家都有自动补全，，就我一直用TeXShop手打LaTeX，，所以给我最喜欢的sublime也配一个写LaTeX的环境 1.安装LaXeT语言环境shift+commond+p进入框框，输入install package 然后在框里输入latextools（因为我已经装好这个插件了所以下图里不再显示） 重启sublime，【菜单栏】-【Tools】-【Build System】，就可以发现语言环境里已经有LaTeX了 2.自动补全先像上面一个打开install package的框，输入latexcwl然后点它 这样输入的时候就有快乐补全功能了 3.配置pdf预览接下来配置 pdf 预览部分，打开 sublime 设置，【sublime text-preference-settings】 在 user 自定义的部分中设置预览器为 mac 自带的预览 preview 1"viewer": "preview" 现在打开一个.tex文件，就可以用shift+command+b自动编译运行了，会跳出来一个下图所示的编译选项，选择对应的即可，比如有中文所以我选的 XeLaTeX 撒花～]]></content>
@@ -206,8 +214,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>dp</tag>
+        <tag>贪心</tag>
         <tag>逆元</tag>
         <tag>二分</tag>
       </tags>
@@ -791,7 +799,7 @@
   <entry>
     <title><![CDATA[Hello 2019]]></title>
     <url>%2F2019%2F</url>
-    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
+    <content type="text"><![CDATA[function doDecrypt (pwd, onError) { console.log('in doDecrypt'); const txt = document.getElementById('enc_content').innerHTML; let plantext; try { const bytes = CryptoJS.AES.decrypt(txt, pwd); var plaintext = bytes.toString(CryptoJS.enc.Utf8); } catch(err) { if(onError) { onError(err); } return; } document.getElementById('enc_content').innerHTML = plaintext; document.getElementById('enc_content').style.display = 'block'; document.getElementById('enc_passwd').style.display = 'none'; if(typeof MathJax !== 'undefined') { MathJax.Hub.Queue( ['resetEquationNumbers', MathJax.InputJax.TeX], ['PreProcess', MathJax.Hub], ['Reprocess', MathJax.Hub] ); } } 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 var onError = function(error) { document.getElementById("enc_error").innerHTML = "password error!" }; function decrypt() { var passwd = document.getElementById("enc_pwd_input").value; console.log(passwd); doDecrypt(passwd, onError); }]]></content>
       <categories>
         <category>love&amp;peace</category>
       </categories>
@@ -2515,9 +2523,9 @@
         <category>数据结构</category>
       </categories>
       <tags>
-        <tag>归并排序</tag>
         <tag>树状数组</tag>
         <tag>离散化</tag>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2548,17 +2556,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[1018 排序]]></title>
-    <url>%2F5fc91746%2F</url>
-    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>归并排序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[1012 最小公倍数LCM]]></title>
     <url>%2Fec404005%2F</url>
     <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 输入2个正整数A，B，求A与B的最小公倍数。 Input2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9) Output输出A与B的最小公倍数。 Input示例130 105 Output示例1210 123456789101112131415#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;iostream&gt;using namespace std;#define LL long longLL gcd(LL a,LL b)&#123; return b==0?a:gcd(b,a%b);&#125;int main()&#123; LL a,b; scanf("%lld%lld",&amp;a,&amp;b); printf("%lld\n",a*b/gcd(a,b)); return 0;&#125;]]></content>
@@ -2567,6 +2564,17 @@
       </categories>
       <tags>
         <tag>gcd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[1018 排序]]></title>
+    <url>%2F5fc91746%2F</url>
+    <content type="text"><![CDATA[基准时间限制：1 秒 空间限制：131072 KB 给出N个整数，对着N个整数进行排序 Input第1行：整数的数量N（1 &lt;= N &lt;= 50000)第2 - N + 1行：待排序的整数（-10^9 &lt;= A[i] &lt;= 10^9） Output共n行，按照递增序输出排序好的数据。 Input示例123456554321 Output示例1234512345 归并排序 sort 原来不写一堆头文件会变快的么0.0？？sort那个去了一堆头文件之后从203ms到了15ms。。。 代码：12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;algorithm&gt;#include &lt;cstdio&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;map&gt;#include &lt;queue&gt;#include &lt;cstring&gt;#include &lt;set&gt;#include &lt;cmath&gt;using namespace std;const int N=50005;int a[N],c[N];void merges(int l,int mid,int r)&#123;//并 int p=l,q=l,m=mid+1; while(p&lt;=mid&amp;&amp;m&lt;=r)&#123; if(a[p]&lt;=a[m])c[q++]=a[p++]; else&#123; c[q++]=a[m++]; &#125; &#125; while(p&lt;=mid)c[q++]=a[p++]; while(m&lt;=r)c[q++]=a[m++]; for(int i=l;i&lt;q;i++)a[i]=c[i];&#125;void merge_sort(int l,int r)&#123;//归 if(l&lt;r)&#123; int m=(l+r)/2; merge_sort(l,m); merge_sort(m+1,r); merges(l,m,r); &#125;&#125;int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); merge_sort(0,n-1); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125; 1234567891011121314#include&lt;stdio.h&gt;#include&lt;algorithm&gt;using namespace std;const int N=50005;int a[N];int main()&#123; int n; scanf("%d",&amp;n); for(int i=0;i&lt;n;i++)scanf("%d",&amp;a[i]); sort(a,a+n); for(int i=0;i&lt;n;i++)printf("%d\n",a[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>归并排序</tag>
       </tags>
   </entry>
   <entry>
@@ -2837,8 +2845,8 @@
         <category>计算几何</category>
       </categories>
       <tags>
-        <tag>前缀和</tag>
         <tag>推公式</tag>
+        <tag>前缀和</tag>
         <tag>计算几何</tag>
       </tags>
   </entry>
@@ -2972,8 +2980,8 @@
         <category>dp</category>
       </categories>
       <tags>
-        <tag>java高精度</tag>
         <tag>dp</tag>
+        <tag>java高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -3077,8 +3085,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>java高精度</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
