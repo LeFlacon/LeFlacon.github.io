@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Makeup like a superstar: Deep Localized Makeup Transfer Network 论文翻译/笔记 |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-Makeup like a superstar: Deep Localized Makeup Transfer Network论文笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Makeup like a superstar: Deep Localized Makeup Transfer Network 论文翻译/笔记
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/a65f6a37/" class="article-date">
+  <time datetime="2019-10-19T05:42:00.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/a65f6a37/" class="leancloud_visitors" data-flag-title="Makeup like a superstar: Deep Localized Makeup Transfer Network 论文翻译/笔记"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>论文地址：<a href="https://arxiv.org/abs/1604.07102" target="_blank" rel="noopener">https://arxiv.org/abs/1604.07102</a></p>
+<p>逛知乎发现的论文（好像在妆容迁移领域蛮有名的），但我英语太差了专业知识也不够，本文较长，可能有些理解有点问题，望指出</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g74w6ri0uaj30wg07676f.jpg" alt=""></p>
+<a id="more"></a>
+
+<hr>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>这篇文章提出了新颖的深度局部妆容迁移网络，可以自动推荐一个最适合某女性的妆容并且将妆容综合呈现在她的脸上。提供一张素颜照和一张妆容参考图片，这两张图会在网络中生成素颜照化妆的图片。</p>
+<p>我个人理解下来，这个方法还是用CNN结合素颜图的content层和参考图的style层，但它比传统的妆容迁移效果好的主要原因在于它是局部迁移，并且不同的局部采用了不同的迁移方式，这对于妆容中的口红眼影之类的部分可以获得很好的效果。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>提供了两个功能，一是为素颜图提供最适合的妆容；二是把上传的参考图片的底妆，眼影和唇妆迁移到素颜图上。</p>
+<h2 id="第一个功能：妆容推荐"><a href="#第一个功能：妆容推荐" class="headerlink" title="第一个功能：妆容推荐"></a>第一个功能：妆容推荐</h2><p>在妆容数据集中寻找一张与素颜图在视觉上相似的脸。相似度通过现成的深度人脸识别网络产生的深度特征之间的欧式距离来衡量。</p>
+<h2 id="第二个功能：妆容迁移"><a href="#第二个功能：妆容迁移" class="headerlink" title="第二个功能：妆容迁移"></a>第二个功能：妆容迁移</h2><h3 id="五个标准"><a href="#五个标准" class="headerlink" title="五个标准"></a>五个标准</h3><p>妆容迁移满足五个标准。</p>
+<ol>
+<li>只考虑了三部分的妆容：底妆，眼影和唇妆。但我们的模型普适性高，容易扩展到其他化妆品上。</li>
+<li>不同的化妆品有各自的迁移方式。比如在保持形状方面眼影比底妆重要。</li>
+<li>局部性：所有化妆品被局部性的用在对应的面部区域。比如口红涂在嘴唇上。</li>
+<li>看起来自然：素颜图与妆容无缝融合。</li>
+<li>化妆强度可以控制。</li>
+</ol>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>为了满足这五个标准，提出了一个深度局部妆容迁移网络，流程图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g775l8m5ayj30oh0a2djq.jpg" alt=""></p>
+<ol>
+<li>素颜照与妆容图的对应基于人脸识别网络。</li>
+<li>眼影，底妆，唇妆是经过局部迁移然后进行全局平滑化的。</li>
+</ol>
+<h3 id="深度局部妆容迁移网络"><a href="#深度局部妆容迁移网络" class="headerlink" title="深度局部妆容迁移网络"></a>深度局部妆容迁移网络</h3><p>这个深度局部妆容迁移网络把参考妆容迁移到素颜图上。</p>
+<ol>
+<li>首先通过人脸识别网络得到素颜图与妆容图的对应标签图，人脸识别网络基于全卷积网络，加强了上妆的部分并考虑了人脸对称性。识别之后，素颜图局部将对应与妆容参考图对应部分。</li>
+<li>不同化妆品（眼影，口红，粉底）对应不同的妆容迁移方式。比如，对眼影来说保持形状最重要，对底妆来说磨皮对重要，因此通过直接改变相应的生成特征来迁移眼影，通过正则化特征图的内积来迁移底妆。</li>
+</ol>
+<p>和传统的妆容迁移算法相比，传统的方法需要复杂的数据预处理或注释并且结果较差。我们的贡献在于：(1)据我们所知这是第一种基于深度学习框架的妆容迁移方法，可以产生非常自然的效果。可以迁移粉底，眼影和唇彩。可以控制妆容强度。(2)我们提出了一个端到端的深度局部妆容迁移网络，最先建立了面部与化妆品之间的对应关系，再进行妆容迁移。这样相比传统的非局部的妆容迁移效果更自然。</p>
+<h1 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2 Related Work"></a>2 Related Work</h1><p>这部分介绍了妆容迁移和最具代表性的深度图像合成相关工作。引用的论文见原文。（好多都看不懂，，用“？0.0”标记了一下，，慢慢来吧）</p>
+<h2 id="Facial-Makeup-Studies"><a href="#Facial-Makeup-Studies" class="headerlink" title="Facial Makeup Studies:"></a>Facial Makeup Studies:</h2><ul>
+<li>[Guo and Sim, 2009]把素颜图和妆容参考图分成三层，在层与层之间传输信息，缺点是很难把参考妆容warp（？0.0）到素颜图上。</li>
+<li>[Scherbaum et al., 2011]用3D模型来辅助化妆，缺点是实际应用中难以采集3D信息。</li>
+<li>[Tong et al., 2007]提出“化妆品转移”（要配对还是啥的，反正不实用。。？0.0）</li>
+<li>[Liu et al., 2014]提出名为“beauty e-expert”自动妆容推荐和迁移系统。</li>
+</ul>
+<h2 id="Deep-Image-Synthesis-Methods"><a href="#Deep-Image-Synthesis-Methods" class="headerlink" title="Deep Image Synthesis Methods:"></a>Deep Image Synthesis Methods:</h2><ul>
+<li>[Liu et al., 2015;Liang et al.,2015][Dosovitskiy et al., 2015; Dosovitskiy and Brox, 2015]生成CNN模型来生成具有给定对象类型、视点和颜色的图片。</li>
+<li>[Simonyan et al., 2013]生成图像，这个图像可视化了网络捕获的类的概念（？0.0）</li>
+<li>[Mahendran and Vedaldi, 2015]提供了一个可以把 hand-crafted 和 deep presentations 转化为图像的框架。（。。？0.0啥玩意儿完全看不懂）</li>
+<li>[Gatys et al., 2015b]提出了一个基于CNN的parametric texture model，可以合成高质量的自然纹理。</li>
+<li>[Goodfellow et al., 2014]生成式对抗网络（大名鼎鼎的GAN），一个生成器一个判别器，生成的图片非常自然。</li>
+<li>[Goodfellow et al., 2015]一个简单快速的生成式对抗的方法。增强CNN训练而不是图像合成。</li>
+<li>[Kulkarni et al., 2015]深度卷积逆图形网络。（用于学习图像3D渲染还是啥？0.0）</li>
+<li>[Cheng et al., 2015]深度学习图像调色。</li>
+<li>[Yan et al., 2014]深度学习图像调整。</li>
+<li>[Xu et al., 2015]滤镜学习。</li>
+<li>[Ren et al., 2015]图像修复。</li>
+<li>[Shen et al., 2015]去除阴影。</li>
+<li>[Dong et al., 2014]超分辨率。</li>
+<li>[Gatys et al., 2015a]这个研究与本文最相似，用CNN来结合一张图的结构层和另一张图的样式层以生成一张新图像。但最大的不同在于本文方法是局部迁移，可以产生更自然的效果。</li>
+</ul>
+<h1 id="3-Approach"><a href="#3-Approach" class="headerlink" title="3 Approach"></a>3 Approach</h1><p>重头戏来了！！！</p>
+<h2 id="3-1-Makeup-Recommendation"><a href="#3-1-Makeup-Recommendation" class="headerlink" title="3.1 Makeup Recommendation"></a>3.1 Makeup Recommendation</h2><p>妆容推荐最重要的标准是个性化。</p>
+<p>长得像的人适合类似的妆容。提供一张素颜照，在数据集中找到相似的脸，相似度是比较经过 VGG-Face 人脸识别模型后得到的特征的欧式距离。特征是指两个 l2 标准化 FC-4096 层的串联。VGG-Face 模型基于 VGG-Very-Deep-16 CNN 架构，旨在让化了妆与没化妆的都能被准确识别。提取的特征可以不火到最有区别的人脸结构。最后获得的结果作为把妆容迁移到素颜图上的参考。</p>
+<p>下图是每行都是一个推荐的例子，第一列都是素颜图，后四列是参考妆容，说明参考妆容和素颜图有相似的脸型。（其实我没看出来哪里像hhhhhh）</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g78sqcoumtj30c40710wn.jpg" alt=""></p>
+<h2 id="3-2-Facial-Parts-vs-Cosmetics-Correspondence"><a href="#3-2-Facial-Parts-vs-Cosmetics-Correspondence" class="headerlink" title="3.2 Facial Parts vs. Cosmetics Correspondence"></a>3.2 Facial Parts vs. Cosmetics Correspondence</h2><p>为了妆容迁移，需要在素颜图的脸部和参考妆容图的脸部的化妆品区域间建立对应关系。大多数对应对可以通过人脸识别的结果获得，比如嘴唇vs口红，但是眼影是例外。因为素颜图没有眼影区域并且人的眼型不同，所以需要把参考图的眼影部分变形。</p>
+<h3 id="Face-Parsing"><a href="#Face-Parsing" class="headerlink" title="Face Parsing:"></a>Face Parsing:</h3><p>人脸识别：本文的人脸识别模型基于全卷积网络（FCN），如下图共11个解析标签。网络可以接受任意大小输入，通过有效的推理和学习产生相应大小的输出。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g79sr27feaj30ot03ft9m.jpg" alt=""></p>
+<p>在训练人脸识别模型时，更注重和化妆有关的标签。比如和“background”标签相比，“L eye shadow”更重要，所以提出了加权交叉熵损失，是最后一层空间维度的加权和：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g79stbkro4j308f00zwei.jpg" alt=""></p>
+<p>其中<code>l&#39;</code>是定义在每个像素上的交叉熵损失。<code>y_ij</code>和<code>p(x_ij,θ)</code>是像素<code>x_ij</code>的真实值<a href="https://www.zhihu.com/question/22464082" target="_blank" rel="noopener">（ground truth）</a>和预测标签，<code>w(y_ij)</code>是权重标签。通过最大化验证集中的F1分数，凭经验设置权重。</p>
+<p>由于妆容数据集里的图都是正脸，所以通过人脸检测和对齐预处理。在测试阶段，强制执行对称，并将点p和p镜像对称点的预测置信度改为<code>f(p)</code>，<code>average x_{p,c}=1/2∑(x_{p,c}+x_{f(p),c})</code>。（没看懂？0.0）只有在测试阶段有对称优先，更进一步我们将研究如何在训练前加强结构优先。</p>
+<p>下图显示了原始FCN，加权FCN以及对称加权FCN的输出结果。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g796pzyi9dj30c8089mz7.jpg" alt=""></p>
+<h3 id="Eye-Shadow-Warping"><a href="#Eye-Shadow-Warping" class="headerlink" title="Eye Shadow Warping"></a>Eye Shadow Warping</h3><p>基于以上人脸识别的结果，脸和底妆的对应关系得以建立，但是素颜图没有眼影，因此需要在素颜图上建立一个眼影遮罩。此外，由于人眼型和眉型的不同，眼影的形状需要稍微变换。更具体地说，在眼睛和眉毛区域获得了八个界标，辅助眼影变形。</p>
+<h2 id="3-3-Makeup-Transfer"><a href="#3-3-Makeup-Transfer" class="headerlink" title="3.3 Makeup Transfer"></a>3.3 Makeup Transfer</h2><p>这部分具体介绍如何转移眼影，口红和粉底。并且还要考虑最终结果保持面部结构。</p>
+<h3 id="Eye-Shadow-Transfer"><a href="#Eye-Shadow-Transfer" class="headerlink" title="Eye Shadow Transfer"></a>Eye Shadow Transfer</h3><p>眼影需要考虑颜色和形状。下文以左眼影为例。<code>s_r</code>是妆容参考图里左眼影的二进制遮罩，<code>s_b</code>是素颜图经过变形后的的左眼影二进制遮罩。在变形之后，<code>s_r</code>和<code>s_b</code>有相同的形状和大小。眼影转移就是用<code>s_r</code>替代<code>s_b</code>的某一层（conv1-1）的深层特征表示。转移时的loss为<code>R_l(A)</code>：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7bq0dtj19j30d30313yq.jpg" alt=""></p>
+<p>其中H，W，C分别代表输入图像的高，宽和通道数。<code>Ω^l : R^(H×W×C) → R^d</code>是人脸识别模型的<code>conv1-1</code>层的<code>d-dim</code>特征表示，A和R分别代表化妆后的图和妆容参考图。<code>s&#39;_r</code>和<code>s&#39;_b</code>是通过卷积特征遮罩将<code>s_r</code>和<code>s_b</code>从数据层映射到<code>conv1-1</code>层获得的。<code>A(s&#39;_b)</code>和<code>R(s&#39;_r)</code>是遮罩<code>s_r</code>和<code>s_b</code>对应的眼影区域。眼影转移的结果如下图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7bui0ma2uj30dc04iwgt.jpg" alt=""></p>
+<h3 id="Lip-Gloss-and-Foundation-Transfer"><a href="#Lip-Gloss-and-Foundation-Transfer" class="headerlink" title="Lip Gloss and Foundation Transfer"></a>Lip Gloss and Foundation Transfer</h3><p>口红转移需要转移颜色和质地。唇釉<code>R_f(A)</code>如下式：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7bume21qaj30cw03bweq.jpg" alt=""></p>
+<p>L代表使用的层数，用了五层，包括conv1-1, conv2-1,  conv3-1, conv4-1 and conv5-1。<code>Ω^l</code>矩阵如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7bupmfuezj309101njre.jpg" alt=""></p>
+<p><code>N_l</code>是第l层中特征图的数量，<code>(Ω_ij)^l</code>是第l层向量化特征图i和j的内积。</p>
+<p>粉底转移的效果图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7buut6qijj30dl07btbf.jpg" alt=""></p>
+<h3 id="Structure-Preservati"><a href="#Structure-Preservati" class="headerlink" title="Structure Preservati"></a>Structure Preservati</h3><p>保持结构</p>
+<h3 id="Overall-Makeup-Transfer"><a href="#Overall-Makeup-Transfer" class="headerlink" title="Overall Makeup Transfer"></a>Overall Makeup Transfer</h3><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82udt5fyvj30ct02774h.jpg" alt=""></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82uebgi12j30ay01974c.jpg" alt=""></p>
+<p><code>R_l(A)</code>, <code>R_r(A)</code>, <code>R_f(A)</code>, <code>R_up(A)</code>, <code>R_low(A)</code>, <code>R_s(A)</code>分别代表左眼影，右眼影，底妆，上嘴唇，下嘴唇和结构丢失。<code>λ_e</code>, <code>λ_f</code> , <code>λ_l</code> , <code>λ_e</code>来平衡不同化妆品的权重，哪个高对应的妆容就重。</p>
+<p>用SGD（随机梯度下降）优化了这个式子：（<code>µ_t</code>是最后几个梯度的加权平均值，衰减因子m=0.9）</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82uljszroj30br00zwei.jpg" alt=""></p>
+<p>妆容轻重图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82uhzahuhj30cv0e845g.jpg" alt=""></p>
+<h1 id="4-Experiments"><a href="#4-Experiments" class="headerlink" title="4 Experiments"></a>4 Experiments</h1><h2 id="4-1-Experimental-Setting"><a href="#4-1-Experimental-Setting" class="headerlink" title="4.1 Experimental Setting"></a>4.1 Experimental Setting</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82uqje24fj30dk09cqah.jpg" alt=""></p>
+<p>上图是几个主流妆容迁移方法的对比。</p>
+<p>原文一堆balabala的话，根据我的理解总结一下就是，以前的方法比如素颜图的内容层和参考图的风格层结合，眼影口红这些都是难以准确表现的，而局部妆容迁移在这一问题上产生了很好的效果。</p>
+<p>所以一个人就可以尝试不同的妆容啦～</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g82uxkydbmj30ce06ojun.jpg" alt=""></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">阅读笔记</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/4be5d779/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Disentangled Makeup Transfer with Generative Adversarial Network 论文翻译/笔记
+          
+        </div>
+      </a>
+    
+    
+      <a href="/4ee128c1/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">macOS下警告objc[4131]: Class FIFinderSyncExtensionHost is implemented in both问题的原因及解决办法</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

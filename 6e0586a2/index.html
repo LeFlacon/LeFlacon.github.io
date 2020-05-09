@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据结构第七次作业（最大堆，Python和c++实现霍夫曼编码） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据结构第七次作业（最大堆，霍夫曼编码）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据结构第七次作业（最大堆，Python和c++实现霍夫曼编码）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/6e0586a2/" class="article-date">
+  <time datetime="2018-11-29T16:00:01.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E4%BD%9C%E4%B8%9A/">一些作业</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/6e0586a2/" class="leancloud_visitors" data-flag-title="数据结构第七次作业（最大堆，Python和c++实现霍夫曼编码）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>没法读文件也没法写文件的sublime。。更不要说处理二进制文件了。。唉那么霍夫曼编码就用Python写一发吧，写了一半的c++版本也丢上来了φ(･_･</p>
+<img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmxzn3rtj20jg0j8dh6.jpg" width = "250" height = "250" >
+
+<a id="more"></a>
+
+<hr>
+<h1 id="作业一："><a href="#作业一：" class="headerlink" title="作业一："></a>作业一：</h1><h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p>根据下面的假设，重新编写maxHeap的方法</p>
+<p>1）在创建堆时，创建者应该提供两个元素maxElement和minElement，堆中没有元素比maxElement大，也没有元素比minElement小</p>
+<p>2）一个n元素的堆需要一个数组heap[0:2n+1]</p>
+<p>3）n个元素按本节所描述的方法存储在heap[1:n]中</p>
+<p>4）maxElement存储在heap[0]中</p>
+<p>5）minElement存储在heap[n+1:2n+1]中</p>
+<p>这些假设应该使push和pop的代码简化。通过实验将本练习的实现与本节的实现做比较。</p>
+<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>极大值极小值，还是“哨兵”的那个原理</p>
+<p>设置<code>heap[0]=maxElem</code>和<code>heap[n+1:2n+1]=minElem</code></p>
+<h3 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h3><p>push中while的比较本来要比较两次，现在有了这个heap[0]，只需一个x&gt;heap[i/2]即可，因为无论如何x最后都小于heap[1/2]=heap[0]，然后跳出while，push到根节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap_&lt;T&gt;&amp; MaxHeap_&lt;T&gt;::Push(const T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;MaxSize)cout&lt;&lt;&quot;满&quot;&lt;&lt;endl;</span><br><span class="line">	int i&#x3D;++CurrentSize;</span><br><span class="line">	&#x2F;&#x2F;while(i!&#x3D;1&amp;&amp;x&gt;heap[i&#x2F;2])&#123;修改这句判断条件</span><br><span class="line">	while(x&gt;heap[i&#x2F;2])&#123;</span><br><span class="line">		heap[i]&#x3D;heap[i&#x2F;2];</span><br><span class="line">		i&#x2F;&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;x;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop"></a>pop</h3><p>同理，加了一堆最小值，就可以在比较的时候设置下限</p>
+<p>本来既要比较ci和CurrentSize又要比较y和heap[ci]，有了极小值之后，只要比较y和heap[ci]这两个就可以了，因为如果儿子到了无穷小就说明父节点以及不能向下了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;&amp; MaxHeap&lt;T&gt;::Pop(T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;0)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">		return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	x&#x3D;heap[1];</span><br><span class="line">	T y&#x3D;heap[CurrentSize--];</span><br><span class="line">	heap[CurrentSize--]&#x3D;-INF;&#x2F;&#x2F;增加这句，把最后一个点移到开头后最后一个点位置及时置为极小值</span><br><span class="line">	int i&#x3D;1,ci&#x3D;2;</span><br><span class="line">	&#x2F;*原先是靠CurrentSize来控制下限</span><br><span class="line">	while(ci&lt;&#x3D;CurrentSize)&#123;</span><br><span class="line">		if(ci&lt;CurrentSize&amp;&amp;heap[ci]&lt;heap[ci+1])ci++;</span><br><span class="line">		if(y&gt;&#x3D;heap[ci])break;</span><br><span class="line">		heap[i]&#x3D;heap[ci];</span><br><span class="line">		i&#x3D;ci;</span><br><span class="line">		ci*&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	*&#x2F;</span><br><span class="line">	&#x2F;&#x2F;修改为如下直接靠heap[i]的值来控制条件，比较次数减半</span><br><span class="line">	while(heap[ci]&gt;y)&#123;</span><br><span class="line">		if(heap[ci]&lt;heap[ci+1])ci++;</span><br><span class="line">		heap[i]&#x3D;heap[ci];</span><br><span class="line">		i&#x3D;ci;</span><br><span class="line">		ci*&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;y;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h2><p>数据采用随机生成的方式，多次测试都是方法二比方法一快</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmyevebrj20a9084wf4.jpg" alt=""></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">const int MAXN&#x3D;1e9;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class MaxHeap&#123;</span><br><span class="line">	public:</span><br><span class="line">		MaxHeap(int MaxHeapSize&#x3D;MAXN);</span><br><span class="line">		&#x2F;&#x2F;~MaxHeap()&#123;delete [] heap;heap&#x3D;NULL;&#125;</span><br><span class="line">		int Size()const &#123;return CurrentSize;&#125;</span><br><span class="line">		T Max()&#123;</span><br><span class="line">			if(CurrentSize&#x3D;&#x3D;0)cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">			return heap[1];</span><br><span class="line">		&#125;</span><br><span class="line">		MaxHeap&lt;T&gt;&amp; Push(const T&amp; x);</span><br><span class="line">		MaxHeap&lt;T&gt;&amp; Pop(T&amp; x);</span><br><span class="line">		void Initialize(T a[],int size,int ArraySize);</span><br><span class="line">		void show();</span><br><span class="line">	private:</span><br><span class="line">		int CurrentSize,MaxSize;</span><br><span class="line">		T *heap;</span><br><span class="line">&#125;; </span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;::MaxHeap(int MaxHeapSize)&#123;</span><br><span class="line">	MaxSize&#x3D;MaxHeapSize;</span><br><span class="line">	heap&#x3D;new T[MaxSize+1];</span><br><span class="line">	CurrentSize&#x3D;0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;&amp; MaxHeap&lt;T&gt;::Push(const T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;MaxSize)cout&lt;&lt;&quot;满&quot;&lt;&lt;endl;</span><br><span class="line">	int i&#x3D;++CurrentSize;</span><br><span class="line">	while(i!&#x3D;1&amp;&amp;x&gt;heap[i&#x2F;2])&#123;</span><br><span class="line">		heap[i]&#x3D;heap[i&#x2F;2];</span><br><span class="line">		i&#x2F;&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;x;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;&amp; MaxHeap&lt;T&gt;::Pop(T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;0)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">		return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	x&#x3D;heap[1];</span><br><span class="line">	T y&#x3D;heap[CurrentSize--];</span><br><span class="line">	int i&#x3D;1,ci&#x3D;2;</span><br><span class="line">	while(ci&lt;&#x3D;CurrentSize)&#123;</span><br><span class="line">		if(ci&lt;CurrentSize&amp;&amp;heap[ci]&lt;heap[ci+1])ci++;</span><br><span class="line">		if(y&gt;&#x3D;heap[ci])break;</span><br><span class="line">		heap[i]&#x3D;heap[ci];</span><br><span class="line">		i&#x3D;ci;</span><br><span class="line">		ci*&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;y;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void MaxHeap&lt;T&gt;::Initialize(T a[],int size,int ArraySize)&#123;</span><br><span class="line">	delete [] heap;</span><br><span class="line">	heap&#x3D;a;</span><br><span class="line">	CurrentSize&#x3D;size;</span><br><span class="line">	MaxSize&#x3D;ArraySize;</span><br><span class="line">	for(int i&#x3D;CurrentSize&#x2F;2;i&gt;&#x3D;1;i--)&#123;</span><br><span class="line">		T y&#x3D;heap[i];</span><br><span class="line">		int c&#x3D;2*i;</span><br><span class="line">		while(c&lt;&#x3D;CurrentSize)&#123;</span><br><span class="line">			if(c&lt;CurrentSize&amp;&amp;heap[c]&lt;heap[c+1])c++;</span><br><span class="line">			if(y&gt;&#x3D;heap[c])break;</span><br><span class="line">			heap[c&#x2F;2]&#x3D;heap[c];</span><br><span class="line">			c*&#x3D;2;</span><br><span class="line">		&#125;</span><br><span class="line">		heap[c&#x2F;2]&#x3D;y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void MaxHeap&lt;T&gt;::show()&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;0)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i&#x3D;1;i&lt;CurrentSize;i++)cout&lt;&lt;heap[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	cout&lt;&lt;heap[CurrentSize]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void HeapSort(T a[],int n)&#123;</span><br><span class="line">	MaxHeap&lt;T&gt; H(1);</span><br><span class="line">	H.Initialize(a,n,n);</span><br><span class="line">	T x;</span><br><span class="line">	for(int i&#x3D;n-1;i&gt;&#x3D;1;i--)&#123;</span><br><span class="line">		H.Pop(x);</span><br><span class="line">		a[i+1]&#x3D;x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const int INF&#x3D;0x3f3f3f3f;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class MaxHeap_&#123;</span><br><span class="line">	public:</span><br><span class="line">		MaxHeap_(int n&#x3D;MAXN,int maxx&#x3D;0,int minn&#x3D;0);</span><br><span class="line">		&#x2F;&#x2F;~MaxHeap()&#123;delete [] heap;heap&#x3D;NULL;&#125;</span><br><span class="line">		int Size()const &#123;return CurrentSize;&#125;</span><br><span class="line">		T Max()&#123;</span><br><span class="line">			if(CurrentSize&#x3D;&#x3D;0)cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">			return heap[1];</span><br><span class="line">		&#125;</span><br><span class="line">		MaxHeap_&lt;T&gt;&amp; Push(const T&amp; x);</span><br><span class="line">		MaxHeap_&lt;T&gt;&amp; Pop(T&amp; x);</span><br><span class="line">		void show();</span><br><span class="line">	private:</span><br><span class="line">		int CurrentSize,MaxSize;</span><br><span class="line">		T maxElem,minElem;</span><br><span class="line">		T *heap;</span><br><span class="line">&#125;; </span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap_&lt;T&gt;::MaxHeap_(int n,int maxx,int minn)&#123;</span><br><span class="line">	MaxSize&#x3D;2*n+1;</span><br><span class="line">	heap&#x3D;new T[MaxSize+1];</span><br><span class="line">	CurrentSize&#x3D;0;</span><br><span class="line">	maxElem&#x3D;maxx;</span><br><span class="line">	minElem&#x3D;minn;</span><br><span class="line">	heap[0]&#x3D;maxElem;</span><br><span class="line">	for(int i&#x3D;n+1;i&lt;&#x3D;2*n+1;i++)heap[i]&#x3D;minElem;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap_&lt;T&gt;&amp; MaxHeap_&lt;T&gt;::Push(const T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;MaxSize)cout&lt;&lt;&quot;满&quot;&lt;&lt;endl;</span><br><span class="line">	int i&#x3D;++CurrentSize;</span><br><span class="line">	while(x&gt;heap[i&#x2F;2])&#123;</span><br><span class="line">		heap[i]&#x3D;heap[i&#x2F;2];</span><br><span class="line">		i&#x2F;&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;x;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">MaxHeap_&lt;T&gt;&amp; MaxHeap_&lt;T&gt;::Pop(T&amp; x)&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;0)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">		return *this;</span><br><span class="line">	&#125;</span><br><span class="line">	x&#x3D;heap[1];</span><br><span class="line">	T y&#x3D;heap[CurrentSize];</span><br><span class="line">	heap[CurrentSize--]&#x3D;-INF;</span><br><span class="line">	int i&#x3D;1,ci&#x3D;2;	</span><br><span class="line">	while(heap[ci]&gt;y)&#123;</span><br><span class="line">		if(heap[ci]&lt;heap[ci+1])ci++;</span><br><span class="line">		heap[i]&#x3D;heap[ci];</span><br><span class="line">		i&#x3D;ci;</span><br><span class="line">		ci*&#x3D;2;</span><br><span class="line">	&#125;</span><br><span class="line">	heap[i]&#x3D;y;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void MaxHeap_&lt;T&gt;::show()&#123;</span><br><span class="line">	if(CurrentSize&#x3D;&#x3D;0)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;空&quot;&lt;&lt;endl;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i&#x3D;1;i&lt;CurrentSize;i++)cout&lt;&lt;heap[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	cout&lt;&lt;heap[CurrentSize]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void show(T a[],int n)&#123;</span><br><span class="line">	for(int i&#x3D;1;i&lt;n;i++)cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	cout&lt;&lt;a[n]&lt;&lt;endl;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	clock_t t1,t2;</span><br><span class="line">	int n;</span><br><span class="line">	cout&lt;&lt;&quot;请输入数字个数n：&quot;;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	int a[n],b[n];</span><br><span class="line">	srand(time(NULL));</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">		a[i]&#x3D;rand()%INF;</span><br><span class="line">		b[i]&#x3D;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	MaxHeap&lt;int&gt; A(n);</span><br><span class="line">	MaxHeap_&lt;int&gt; B(n,INF,-INF);</span><br><span class="line">	&#x2F;&#x2F;show(a,n);</span><br><span class="line">	</span><br><span class="line">	cout&lt;&lt;endl&lt;&lt;&quot;-----测试Push方法-----&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line">	t1&#x3D;clock();</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)A.Push(a[i]);</span><br><span class="line">	&#x2F;&#x2F;A.show();</span><br><span class="line">	t2&#x3D;clock();</span><br><span class="line">	cout&lt;&lt;&quot;方法一用时： &quot;&lt;&lt;(t2-t1)&lt;&lt;&quot; CLOCKS_PER_SEC&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	t1&#x3D;clock();</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)B.Push(a[i]);</span><br><span class="line">	&#x2F;&#x2F;B.show();</span><br><span class="line">	t2&#x3D;clock();</span><br><span class="line">	cout&lt;&lt;&quot;方法二用时： &quot;&lt;&lt;(t2-t1)&lt;&lt;&quot; CLOCKS_PER_SEC&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	cout&lt;&lt;endl&lt;&lt;&quot;-----测试Pop方法-----&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line">	t1&#x3D;clock();</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)A.Pop(a[i]);</span><br><span class="line">	&#x2F;&#x2F;A.show();</span><br><span class="line">	t2&#x3D;clock();</span><br><span class="line">	cout&lt;&lt;&quot;方法一用时： &quot;&lt;&lt;(t2-t1)&lt;&lt;&quot; CLOCKS_PER_SEC&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	t1&#x3D;clock();</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">		B.Pop(a[i]);</span><br><span class="line">		&#x2F;&#x2F;B.show();</span><br><span class="line">	&#125;</span><br><span class="line">	t2&#x3D;clock();</span><br><span class="line">	cout&lt;&lt;&quot;方法二用时： &quot;&lt;&lt;(t2-t1)&lt;&lt;&quot; CLOCKS_PER_SEC&quot;&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="作业二："><a href="#作业二：" class="headerlink" title="作业二："></a>作业二：</h1><h2 id="题目：-1"><a href="#题目：-1" class="headerlink" title="题目："></a>题目：</h2><p>设计一个完整的基于霍夫曼编码的压缩-解压缩软件包，测试你的代码</p>
+<h2 id="霍夫曼编码"><a href="#霍夫曼编码" class="headerlink" title="霍夫曼编码"></a>霍夫曼编码</h2><p>考虑字符的出现频率进行编码</p>
+<h3 id="1）获取不同字符的频率"><a href="#1）获取不同字符的频率" class="headerlink" title="1）获取不同字符的频率"></a>1）获取不同字符的频率</h3><h3 id="2）构造霍夫曼树"><a href="#2）构造霍夫曼树" class="headerlink" title="2）构造霍夫曼树"></a>2）构造霍夫曼树</h3><p>选择两个w值最小的树合并，权重相加作为新的权重，重复，直至只剩一棵树</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmysletej20j004gjrx.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmysm4nxj20jl0760tj.jpg" alt=""></p>
+<p>霍夫曼树</p>
+<ul>
+<li>是一棵二叉树</li>
+<li>叶节点是具有不同权值的元素</li>
+<li>其他节点仅用于计算，没有实际意义</li>
+<li>从根到叶的路径（左0右1）即是该叶的编码</li>
+</ul>
+<h3 id="3）遍历根到外部节点路径➔每个字符编码"><a href="#3）遍历根到外部节点路径➔每个字符编码" class="headerlink" title="3）遍历根到外部节点路径➔每个字符编码"></a>3）遍历根到外部节点路径➔每个字符编码</h3><h3 id="4）用编码替换文本中的字"><a href="#4）用编码替换文本中的字" class="headerlink" title="4）用编码替换文本中的字"></a>4）用编码替换文本中的字</h3><p>霍夫曼编码的基本思想：让权值高的叶节点尽量靠近根，这样它的路径就能尽量短</p>
+<h1 id="1-Python"><a href="#1-Python" class="headerlink" title="1.Python"></a>1.Python</h1><h2 id="Python实现思路："><a href="#Python实现思路：" class="headerlink" title="Python实现思路："></a>Python实现思路：</h2><p>一个虚基类HuffNode</p>
+<p>继承自HuffNode的类LeafNode，代表叶节点，叶节点没有儿子，isleaf()结果为True，继承自HuffNode的类OtherNode，代表其他节点，其他节点有儿子，isleaf()结果为False</p>
+<p>一个霍夫曼树的类，有个encode成员函数实现编码，编码的结果存入字典<code>char_times={}</code>中</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>先求的所有字符出现的次数</p>
+<p>建树就是每次取两个权值最小的节点，先按权值排个序即可<code>list_HuffTree.sort(key=lambda x: x.get_times())</code></p>
+<p>压缩的结果写入文件的步骤为：</p>
+<p>1）写入叶子结点个数，即字符种数<br>2）写入字典中存储的字符和对应的霍夫曼编码<br>3）对原文件中的每一个字符输出其编码</p>
+<h3 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h3><p>先按上面的顺序读入1）2），然后就可以开始建树了，建好树之后解码输出，具体见代码</p>
+<h2 id="运行效果：-1"><a href="#运行效果：-1" class="headerlink" title="运行效果："></a>运行效果：</h2><h3 id="1）压缩随便打的几个乱七八糟的字符"><a href="#1）压缩随便打的几个乱七八糟的字符" class="headerlink" title="1）压缩随便打的几个乱七八糟的字符"></a>1）压缩随便打的几个乱七八糟的字符</h3><p><code>qwertyuiopasdfghjkldwheduiewhuiudgghjczbcnjbxHvhbkasdhkjssajdakhkHKDWNCYUIYN@EIUq3847c89374n8q4q78&amp;N^*$(@*NCOINSLKMJDHNSJHNKSdahhhhhhhhhhhhhhhhhhh</code></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmzc2ytjj20ex01jmxd.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmzc4accj20aq0ckjup.jpg" alt=""></p>
+<h3 id="2）压缩本篇博文"><a href="#2）压缩本篇博文" class="headerlink" title="2）压缩本篇博文"></a>2）压缩本篇博文</h3><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmzc2z3pj206b03n74b.jpg" alt=""></p>
+<p>字节数确实变少了</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn0fyn96j20dt04wq3g.jpg" alt=""></p>
+<p>out.txt中的内容如下：（700+行）</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn0nd5bkj20bv03wgmf.jpg" alt=""></p>
+<p>然后对压缩后的结果out.txt进行解压缩</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn0nd9r4j207d03ngln.jpg" alt=""></p>
+<p>还原的一丝不苟，撒花(=ﾟωﾟ)ﾉ🌹</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn16ejnsj20i40bt769.jpg" alt=""></p>
+<h2 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h2><p>顺便也丢到github上了。。</p>
+<p><a href="https://github.com/LeFlacon/Simple-Python-Practice/blob/master/hfm.py" target="_blank" rel="noopener">https://github.com/LeFlacon/Simple-Python-Practice/blob/master/hfm.py</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><span class="line">import six</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">class HuffNode(object):</span><br><span class="line">    def get_times(self):</span><br><span class="line">        raise NotImplementedError(</span><br><span class="line">            &quot;抽象类没有定义获取次数的函数&quot;)</span><br><span class="line">    def isleaf(self):</span><br><span class="line">        raise NotImplementedError(</span><br><span class="line">            &quot;抽象类没有定义判断是否为叶节点的函数&quot;)</span><br><span class="line"></span><br><span class="line">class LeafNode(HuffNode):</span><br><span class="line">    def __init__(self,c&#x3D;0,times&#x3D;0,):</span><br><span class="line">        super(LeafNode, self).__init__()</span><br><span class="line">        self.c&#x3D;c</span><br><span class="line">        self.times&#x3D;times</span><br><span class="line">    def isleaf(self):</span><br><span class="line">        return True</span><br><span class="line">    def get_times(self):</span><br><span class="line">        return self.times</span><br><span class="line">    def get_c(self):</span><br><span class="line">        return self.c</span><br><span class="line"></span><br><span class="line">class OtherNode(HuffNode):</span><br><span class="line">    def __init__(self,lchild&#x3D;None,rchild&#x3D;None):</span><br><span class="line">        super(OtherNode,self).__init__()</span><br><span class="line">        self.times&#x3D;lchild.get_times()+rchild.get_times()</span><br><span class="line">        self.lchild&#x3D;lchild</span><br><span class="line">        self.rchild&#x3D;rchild</span><br><span class="line">    def isleaf(self):</span><br><span class="line">        return False</span><br><span class="line">    def get_times(self):</span><br><span class="line">        return self.times</span><br><span class="line">    def get_lchild(self):</span><br><span class="line">        return self.lchild</span><br><span class="line">    def get_rchild(self):</span><br><span class="line">        return self.rchild</span><br><span class="line"></span><br><span class="line">class HuffTree(object):</span><br><span class="line">    def __init__(self,flag,c&#x3D;0,times&#x3D;0,left_tree&#x3D;None,right_tree&#x3D;None):</span><br><span class="line">        super(HuffTree, self).__init__()</span><br><span class="line">        if flag&#x3D;&#x3D;0:</span><br><span class="line">            self.root&#x3D;LeafNode(c,times)</span><br><span class="line">        else:</span><br><span class="line">            self.root&#x3D;OtherNode(left_tree.get_root(), right_tree.get_root())</span><br><span class="line">    def get_root(self):</span><br><span class="line">        return self.root</span><br><span class="line">    def get_times(self):</span><br><span class="line">        return self.root.get_times()</span><br><span class="line">    def encode(self,root,code,char_times):</span><br><span class="line">        if root.isleaf():</span><br><span class="line">            char_times[root.get_c()]&#x3D;code</span><br><span class="line">            # print((&quot;it &#x3D; %c  and  times &#x3D; %d  code &#x3D; %s&quot;)%(chr(root.get_c()),root.get_times(),code))</span><br><span class="line">            return None</span><br><span class="line">        else:</span><br><span class="line">            self.encode(root.get_lchild(),code+&#39;0&#39;,char_times)</span><br><span class="line">            self.encode(root.get_rchild(),code+&#39;1&#39;,char_times)</span><br><span class="line"></span><br><span class="line">def build(list_HuffTree):</span><br><span class="line">    while len(list_HuffTree)&gt;1:</span><br><span class="line">        list_HuffTree.sort(key&#x3D;lambda x: x.get_times()) </span><br><span class="line">        n1&#x3D;list_HuffTree[0]</span><br><span class="line">        n2&#x3D;list_HuffTree[1]</span><br><span class="line">        list_HuffTree&#x3D;list_HuffTree[2:]</span><br><span class="line">        new_HuffTree&#x3D;HuffTree(1,0,0,n1,n2)</span><br><span class="line">        list_HuffTree.append(new_HuffTree)</span><br><span class="line">    return list_HuffTree[0]</span><br><span class="line"></span><br><span class="line">def yasuo(in_file_name,out_file_name):</span><br><span class="line">    f&#x3D;open(in_file_name,&#39;rb&#39;)</span><br><span class="line">    data&#x3D;f.read()</span><br><span class="line">    size&#x3D;f.tell()</span><br><span class="line">    char_times&#x3D;&#123;&#125;</span><br><span class="line">    for x in range(size):</span><br><span class="line">        tmp&#x3D;data[x]</span><br><span class="line">        if tmp in char_times.keys():</span><br><span class="line">            char_times[tmp]&#x3D;char_times[tmp]+1</span><br><span class="line">        else:</span><br><span class="line">            char_times[tmp]&#x3D;1</span><br><span class="line">    # for tmp in char_times.keys():</span><br><span class="line">        # print(tmp,&#39; : &#39;,char_times[tmp])</span><br><span class="line">    list_HuffTree &#x3D; []</span><br><span class="line">    for x in char_times.keys():</span><br><span class="line">        leaf_&#x3D;HuffTree(0,x,char_times[x],None,None)</span><br><span class="line">        list_HuffTree.append(leaf_)</span><br><span class="line">    leaf_num&#x3D;len(char_times.keys())</span><br><span class="line">    a4&#x3D;leaf_num&amp;255</span><br><span class="line">    leaf_num&#x3D;leaf_num&gt;&gt;8</span><br><span class="line">    a3&#x3D;leaf_num&amp;255</span><br><span class="line">    leaf_num&#x3D;leaf_num&gt;&gt;8</span><br><span class="line">    a2&#x3D;leaf_num&amp;255</span><br><span class="line">    leaf_num&#x3D;leaf_num&gt;&gt;8</span><br><span class="line">    a1&#x3D;leaf_num&amp;255</span><br><span class="line">    output&#x3D;open(out_file_name,&#39;wb&#39;)</span><br><span class="line">    output.write(six.int2byte(a1))</span><br><span class="line">    output.write(six.int2byte(a2))</span><br><span class="line">    output.write(six.int2byte(a3))</span><br><span class="line">    output.write(six.int2byte(a4))</span><br><span class="line">    for x in char_times.keys():</span><br><span class="line">        output.write(six.int2byte(x))</span><br><span class="line">        tmpp&#x3D;char_times[x]</span><br><span class="line">        a4&#x3D;tmpp&amp;255</span><br><span class="line">        tmpp&#x3D;tmpp&gt;&gt;8</span><br><span class="line">        a3&#x3D;tmpp&amp;255</span><br><span class="line">        tmpp&#x3D;tmpp&gt;&gt;8</span><br><span class="line">        a2&#x3D;tmpp&amp;255</span><br><span class="line">        tmpp&#x3D;tmpp&gt;&gt;8</span><br><span class="line">        a1&#x3D;tmpp&amp;255</span><br><span class="line">        output.write(six.int2byte(a1))</span><br><span class="line">        output.write(six.int2byte(a2))</span><br><span class="line">        output.write(six.int2byte(a3))</span><br><span class="line">        output.write(six.int2byte(a4))</span><br><span class="line"></span><br><span class="line">    HTree&#x3D;build(list_HuffTree)</span><br><span class="line">    HTree.encode(HTree.get_root(),&#39;&#39;,char_times)</span><br><span class="line">    </span><br><span class="line">    code&#x3D;&#39;&#39;</span><br><span class="line">    for i in range(size):</span><br><span class="line">        key&#x3D;data[i]</span><br><span class="line">        code&#x3D;code+char_times[key]</span><br><span class="line">        ans&#x3D;0</span><br><span class="line">        while len(code)&gt;8:</span><br><span class="line">            for x in range(8):</span><br><span class="line">                ans&#x3D;ans&lt;&lt;1</span><br><span class="line">                if code[x]&#x3D;&#x3D;&#39;1&#39;:</span><br><span class="line">                    ans&#x3D;ans|1</span><br><span class="line">            code&#x3D;code[8:]</span><br><span class="line">            output.write(six.int2byte(ans))</span><br><span class="line">            ans&#x3D;0</span><br><span class="line"></span><br><span class="line">    output.write(six.int2byte(len(code)))</span><br><span class="line">    ans&#x3D;0</span><br><span class="line">    for i in range(len(code)):</span><br><span class="line">        ans&#x3D;ans&lt;&lt;1</span><br><span class="line">        if code[i]&#x3D;&#x3D;&#39;1&#39;:</span><br><span class="line">            ans&#x3D;ans|1</span><br><span class="line">    for i in range(8-len(code)):</span><br><span class="line">        ans&#x3D;ans&lt;&lt;1</span><br><span class="line">    output.write(six.int2byte(ans))</span><br><span class="line">    output.close()</span><br><span class="line"></span><br><span class="line">def jieyasuo(in_file_name, out_file_name):</span><br><span class="line">    f&#x3D;open(in_file_name,&#39;rb&#39;)</span><br><span class="line">    data&#x3D;f.read()</span><br><span class="line">    size&#x3D;f.tell()</span><br><span class="line">    a1&#x3D;data[0]</span><br><span class="line">    a2&#x3D;data[1]</span><br><span class="line">    a3&#x3D;data[2]</span><br><span class="line">    a4&#x3D;data[3]    </span><br><span class="line">    j&#x3D;0</span><br><span class="line">    j&#x3D;j|a1</span><br><span class="line">    j&#x3D;j&lt;&lt;8</span><br><span class="line">    j&#x3D;j|a2</span><br><span class="line">    j&#x3D;j&lt;&lt;8</span><br><span class="line">    j&#x3D;j|a3</span><br><span class="line">    j&#x3D;j&lt;&lt;8</span><br><span class="line">    j&#x3D;j|a4</span><br><span class="line"></span><br><span class="line">    leaf_num&#x3D;j</span><br><span class="line">    char_times&#x3D;&#123;&#125;</span><br><span class="line">    for i in range(leaf_num):</span><br><span class="line">        c&#x3D;data[4+i*5+0]</span><br><span class="line">        a1&#x3D;data[4+i*5+1]</span><br><span class="line">        a2&#x3D;data[4+i*5+2]</span><br><span class="line">        a3&#x3D;data[4+i*5+3]</span><br><span class="line">        a4&#x3D;data[4+i*5+4]</span><br><span class="line">        j&#x3D;0</span><br><span class="line">        j&#x3D;j|a1</span><br><span class="line">        j&#x3D;j&lt;&lt;8</span><br><span class="line">        j&#x3D;j|a2</span><br><span class="line">        j&#x3D;j&lt;&lt;8</span><br><span class="line">        j&#x3D;j|a3</span><br><span class="line">        j&#x3D;j&lt;&lt;8</span><br><span class="line">        j&#x3D;j|a4</span><br><span class="line">        # print(c,j)</span><br><span class="line">        char_times[c]&#x3D;j</span><br><span class="line">    list_HuffTree&#x3D;[]</span><br><span class="line">    for x in char_times.keys():</span><br><span class="line">        tmp&#x3D;HuffTree(0,x,char_times[x],None,None)</span><br><span class="line">        list_HuffTree.append(tmp)</span><br><span class="line">    HTree&#x3D;build(list_HuffTree)</span><br><span class="line">    HTree.encode(HTree.get_root(),&#39;&#39;,char_times)</span><br><span class="line"></span><br><span class="line">    output&#x3D;open(out_file_name,&#39;wb&#39;)</span><br><span class="line">    code&#x3D;&#39;&#39;</span><br><span class="line">    currnode&#x3D;HTree.get_root()</span><br><span class="line">    for x in range(leaf_num*5+4,size):</span><br><span class="line">        c&#x3D;data[x]</span><br><span class="line">        for i in range(8):</span><br><span class="line">            if c&amp;128:</span><br><span class="line">                code&#x3D;code+&#39;1&#39;</span><br><span class="line">            else:</span><br><span class="line">                code&#x3D;code+&#39;0&#39;</span><br><span class="line">            c&#x3D;c&lt;&lt;1</span><br><span class="line">        while len(code)&gt;24:</span><br><span class="line">            if currnode.isleaf():</span><br><span class="line">                tmp_byte&#x3D;six.int2byte(currnode.get_c())</span><br><span class="line">                output.write(tmp_byte)</span><br><span class="line">                currnode&#x3D;HTree.get_root()</span><br><span class="line">            if code[0]&#x3D;&#x3D;&#39;1&#39;:</span><br><span class="line">                currnode&#x3D;currnode.get_rchild()</span><br><span class="line">            else:</span><br><span class="line">                currnode&#x3D;currnode.get_lchild()</span><br><span class="line">            code&#x3D;code[1:]</span><br><span class="line">    sub_code&#x3D;code[-16:-8]</span><br><span class="line">    last_leaf_num&#x3D;0</span><br><span class="line">    for i in range(8):</span><br><span class="line">        last_leaf_num&#x3D;last_leaf_num&lt;&lt;1</span><br><span class="line">        if sub_code[i]&#x3D;&#x3D;&#39;1&#39;:</span><br><span class="line">            last_leaf_num&#x3D;last_leaf_num|1</span><br><span class="line">    code&#x3D;code[:-16]+code[-8:-8+last_leaf_num]</span><br><span class="line">    while len(code)&gt;0:</span><br><span class="line">        if currnode.isleaf():</span><br><span class="line">            tmp_byte&#x3D;six.int2byte(currnode.get_c())</span><br><span class="line">            output.write(tmp_byte)</span><br><span class="line">            currnode&#x3D;HTree.get_root()</span><br><span class="line">        if code[0]&#x3D;&#x3D;&#39;1&#39;:</span><br><span class="line">            currnode&#x3D;currnode.get_rchild()</span><br><span class="line">        else:</span><br><span class="line">            currnode&#x3D;currnode.get_lchild()</span><br><span class="line">        code&#x3D;code[1:]</span><br><span class="line">    if currnode.isleaf():</span><br><span class="line">        tmp_byte&#x3D;six.int2byte(currnode.get_c())</span><br><span class="line">        output.write(tmp_byte)</span><br><span class="line">        currnode&#x3D;HTree.get_root()</span><br><span class="line">    output.close()</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    print(&quot;0.压缩 1.解压缩\n&quot;)</span><br><span class="line">    FLAG&#x3D;input(&quot;请输入操作：&quot;)</span><br><span class="line">    INPUTFILE&#x3D;input(&quot;请输入需要操作的文件名：&quot;)</span><br><span class="line">    OUTPUTFILE&#x3D;input(&quot;请输入保存结果的文件名：&quot;)</span><br><span class="line">    if FLAG&#x3D;&#x3D;&#39;0&#39;:</span><br><span class="line">        print(&quot;压缩文件&quot;)</span><br><span class="line">        yasuo(INPUTFILE,OUTPUTFILE)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;解压缩文件&quot;)</span><br><span class="line">        jieyasuo(INPUTFILE,OUTPUTFILE)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="2-c"><a href="#2-c" class="headerlink" title="2.c++"></a>2.c++</h1><h2 id="c-实现思路："><a href="#c-实现思路：" class="headerlink" title="c++实现思路："></a>c++实现思路：</h2><p>首先要记录每个字符出现的次数，用了一个<code>map&lt;char,int&gt;char_times_map;</code>，用map直接映射可以省好多事</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn1tjtc6j205203m0sn.jpg" alt=""></p>
+<p>然后先对叶节点和其他节点初始化，再建树，建树就是选择两个权值最小的节点作为左右儿子，跑个循环即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for(int i&#x3D;leaf_num;i&lt;node_num;i++)&#123;</span><br><span class="line">    int x1,x2;</span><br><span class="line">    find_min_node(HuffTree,i,x1,x2);</span><br><span class="line">    &#x2F;&#x2F; cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;x1&lt;&lt;&quot; &quot;&lt;&lt;x2&lt;&lt;endl;</span><br><span class="line">    HuffTree[i].times&#x3D;HuffTree[x1].times+HuffTree[x2].times;</span><br><span class="line">    HuffTree[i].lchild&#x3D;x1;</span><br><span class="line">    HuffTree[i].rchild&#x3D;x2;</span><br><span class="line">    HuffTree[x1].parent&#x3D;HuffTree[x2].parent&#x3D;i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>建树后就可以获取某个字符对应的编码了</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn1th4s1j202g035a9y.jpg" alt=""></p>
+<h2 id="只实现了压缩的c-代码："><a href="#只实现了压缩的c-代码：" class="headerlink" title="只实现了压缩的c++代码："></a>只实现了压缩的c++代码：</h2><p>因为开始写解压的时候发现？？sublime没法读文件的我根本不知道怎么读二进制文件。。只好投靠Python了，压缩部分或许压缩成功了吧。。不管了就这样吧</p>
+<p>下面是段废弃的代码，能实现霍夫曼的建树编码压缩操作，仅供参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define INF 0x3f3f3f3f</span><br><span class="line"></span><br><span class="line">map&lt;char,int&gt;char_times_map;</span><br><span class="line">map&lt;char,string&gt;char_code_map;</span><br><span class="line"></span><br><span class="line">class HuffNode&#123;</span><br><span class="line">    public:</span><br><span class="line">        char c;</span><br><span class="line">        int times;</span><br><span class="line">        int parent;</span><br><span class="line">        int lchild;</span><br><span class="line">        int rchild;</span><br><span class="line">        bool isleaf()&#123;</span><br><span class="line">            if(lchild&#x3D;&#x3D;-1&amp;&amp;rchild&#x3D;&#x3D;-1)return true;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        bool have_parent()&#123;</span><br><span class="line">            return parent!&#x3D;-1;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line">void encode(HuffNode* HuffTree,int i,string s)&#123;</span><br><span class="line">    if(HuffTree[i].isleaf())&#123;</span><br><span class="line">        char_code_map[HuffTree[i].c]&#x3D;s;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if(HuffTree[i].lchild!&#x3D;-1)&#123;</span><br><span class="line">        s+&#x3D;&#39;0&#39;;</span><br><span class="line">        encode(HuffTree,HuffTree[i].lchild,s);</span><br><span class="line">    &#125;</span><br><span class="line">    s.erase(s.end()-1);&#x2F;&#x2F;end()返回最后一个位置的后一个位置</span><br><span class="line">    if(HuffTree[i].rchild!&#x3D;-1)&#123;</span><br><span class="line">        s+&#x3D;&#39;1&#39;;</span><br><span class="line">        encode(HuffTree,HuffTree[i].rchild,s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void find_min_node(HuffNode *HuffTree,int pos,int &amp;x1,int &amp;x2)&#123;</span><br><span class="line">    int min1&#x3D;INF,min2&#x3D;INF;</span><br><span class="line">    for(int i&#x3D;0;i&lt;pos;i++)&#123;</span><br><span class="line">        if(HuffTree[i].have_parent())continue;</span><br><span class="line">        else&#123;</span><br><span class="line">            if(HuffTree[i].times&lt;min2)&#123;</span><br><span class="line">                if(HuffTree[i].times&lt;min1)&#123;</span><br><span class="line">                    min2&#x3D;min1;</span><br><span class="line">                    x2&#x3D;x1;</span><br><span class="line">                    min1&#x3D;HuffTree[i].times;</span><br><span class="line">                    x1&#x3D;i;</span><br><span class="line">                &#125;</span><br><span class="line">                else&#123;</span><br><span class="line">                    min2&#x3D;HuffTree[i].times;</span><br><span class="line">                    x2&#x3D;i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void yasuo()&#123;</span><br><span class="line">    char c;</span><br><span class="line">    vector&lt;char&gt;in_v;</span><br><span class="line">    while(cin&gt;&gt;c&amp;&amp;c!&#x3D;&#39;#&#39;)&#123;</span><br><span class="line">        in_v.push_back(c);</span><br><span class="line">        char_times_map[c]++;</span><br><span class="line">    &#125;</span><br><span class="line">    int leaf_num&#x3D;char_times_map.size();</span><br><span class="line">    int node_num&#x3D;leaf_num*2-1;</span><br><span class="line">    HuffNode* HuffTree&#x3D;new HuffNode[node_num];</span><br><span class="line">    map&lt;char,int&gt;::iterator it;</span><br><span class="line">    &#x2F;*</span><br><span class="line">    for(it&#x3D;char_times_map.begin();it!&#x3D;char_times_map.end();it++)</span><br><span class="line">        cout&lt;&lt;it-&gt;first&lt;&lt;&quot; : &quot;&lt;&lt;it-&gt;second&lt;&lt;endl;</span><br><span class="line">    *&#x2F;</span><br><span class="line">    &#x2F;&#x2F;初始化叶节点</span><br><span class="line">    it&#x3D;char_times_map.begin();</span><br><span class="line">    for(int i&#x3D;0;i&lt;leaf_num;i++,it++)&#123;</span><br><span class="line">        HuffTree[i].c&#x3D;it-&gt;first;</span><br><span class="line">        HuffTree[i].times&#x3D;it-&gt;second;</span><br><span class="line">        HuffTree[i].parent&#x3D;HuffTree[i].lchild&#x3D;HuffTree[i].rchild&#x3D;-1;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;初始化其他节点</span><br><span class="line">    for(int i&#x3D;leaf_num;i&lt;node_num;i++)&#123;</span><br><span class="line">        HuffTree[i].times&#x3D;0;</span><br><span class="line">        HuffTree[i].parent&#x3D;HuffTree[i].lchild&#x3D;HuffTree[i].rchild&#x3D;-1;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;建树</span><br><span class="line">    for(int i&#x3D;leaf_num;i&lt;node_num;i++)&#123;</span><br><span class="line">        int x1,x2;</span><br><span class="line">        find_min_node(HuffTree,i,x1,x2);</span><br><span class="line">        &#x2F;&#x2F; cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;x1&lt;&lt;&quot; &quot;&lt;&lt;x2&lt;&lt;endl;</span><br><span class="line">        HuffTree[i].times&#x3D;HuffTree[x1].times+HuffTree[x2].times;</span><br><span class="line">        HuffTree[i].lchild&#x3D;x1;</span><br><span class="line">        HuffTree[i].rchild&#x3D;x2;</span><br><span class="line">        HuffTree[x1].parent&#x3D;HuffTree[x2].parent&#x3D;i;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;编码</span><br><span class="line">    string str;</span><br><span class="line">    encode(HuffTree,node_num-1,str);</span><br><span class="line"></span><br><span class="line">    map&lt;char,string&gt;::iterator it2;</span><br><span class="line">    for(it2&#x3D;char_code_map.begin();it2!&#x3D;char_code_map.end();it2++)</span><br><span class="line">        cout&lt;&lt;it2-&gt;first&lt;&lt;&quot; : &quot;&lt;&lt;it2-&gt;second&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    for(int i&#x3D;0;i&lt;in_v.size();i++)&#123;</span><br><span class="line">        cout&lt;&lt;char_code_map[in_v[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;cout&lt;&lt;endl&lt;&lt;&quot;压缩完成&quot;&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    yasuo();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kn1ticljj20fq07gt9p.jpg" alt=""></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/53180a5f/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            QT 登陆对话框输入用户名密码
+          
+        </div>
+      </a>
+    
+    
+      <a href="/1869630f/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">hdu 5492 Find a path（dp，方差）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

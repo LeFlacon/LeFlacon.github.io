@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Java第四次作业（CD Store） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-Java第三次作业（CD Store）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Java第四次作业（CD Store）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/e10dd693/" class="article-date">
+  <time datetime="2018-11-08T17:13:00.000Z" itemprop="datePublished">2018-11-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E4%BD%9C%E4%B8%9A/">一些作业</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/e10dd693/" class="leancloud_visitors" data-flag-title="Java第四次作业（CD Store）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>假设你在业余时间经营一个会员制的CD出租销售店，需要一个管理程序，可以增加会员，删除会员，出租，销售，进货，统计等，请设计适当的功能，并实现该程序</p>
+<hr>
+<p>下次写这种乱七八糟的东西的时候0.0我一定先列个提纲。。这次完全是想到啥写啥东补西补啊。。其实还有好多东西可以补，并且有些实现并不是o(1)的最优方法（可以实现但是我懒得写）。。</p>
+<p>此外，添加了各种判断，因为要排除各种库存不足，cd名输错，手机号输错等情况，尽管加了不少，但是这个简单的系统仍然一点也不强壮，一点也不╮(￣▽￣””)╭</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><h2 id="1-一个Vip类，保存单个客户的基本信息"><a href="#1-一个Vip类，保存单个客户的基本信息" class="headerlink" title="1.一个Vip类，保存单个客户的基本信息"></a>1.一个Vip类，保存单个客户的基本信息</h2><p>成员变量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private String name;</span><br><span class="line">private String phone;</span><br><span class="line">private int score;&#x2F;&#x2F;会员积分</span><br><span class="line">private String rent_cd[]&#x3D;new String[5];&#x2F;&#x2F;租借信息</span><br></pre></td></tr></table></figure>
+
+<p>因为要修改vip的信息，所以每个vip一定要有一个属性是与众不同的便于索引，考虑到张三和李四可能同名，所以这里选择了手机号来满足这个唯一性，每个人的手机号都是不一样的</p>
+<p>此外，因为对于一个CD系统来说，租借信息必须保存，笔者对于租借信息的处理是用一个String类型的数组来记录租借的CD名</p>
+<p>成员函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public Vip(String name_,String phone_);</span><br><span class="line">public String get_name();&#x2F;&#x2F;获得会员名</span><br><span class="line">public String get_phone();&#x2F;&#x2F;获得会员手机号</span><br><span class="line">public int get_score();&#x2F;&#x2F;获得会员积分</span><br><span class="line">public void set_score(int a);&#x2F;&#x2F;修改会员积分</span><br><span class="line">public void show()&#x2F;&#x2F;显示会员信息</span><br><span class="line">public boolean add_rent(String s);&#x2F;&#x2F;添加租借记录</span><br><span class="line">public boolean delete_rent(String s);&#x2F;&#x2F;删除租借记录</span><br></pre></td></tr></table></figure>
+
+<p>因为刚写过哈希表，所以有一个思路是把姓名字符串hash一下获得一个数组号，存入该会员的信息，这样的优点是o(1)就可以查询某会员，缺点是写着麻烦了许多，因为还要链表处理哈希冲突啥的，所以最后我还是没写hash</p>
+<h2 id="2-一个Vip-类，保存一个客户集"><a href="#2-一个Vip-类，保存一个客户集" class="headerlink" title="2.一个Vip_类，保存一个客户集"></a>2.一个Vip_类，保存一个客户集</h2><p>成员变量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Vip vips[]&#x3D;new Vip[233];</span><br></pre></td></tr></table></figure>
+
+<p>直接用数组了，因为方便啊0.0</p>
+<p>成员函数如下：</p>
+<p>购买租借归还的道理都差不多，就是利用唯一的手机号码扫一遍索引到相应的用户，如果没找到就报个错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public boolean add_vip(Vip v);&#x2F;&#x2F;添加会员</span><br><span class="line">public boolean delete_vip(String phone_);&#x2F;&#x2F;删除会员</span><br><span class="line">public void show_vip();&#x2F;&#x2F;显示会员信息</span><br><span class="line">public void buy(String s,int money);&#x2F;&#x2F;某会员购买</span><br><span class="line">public void rent(String s,String c);&#x2F;&#x2F;某会员租借</span><br><span class="line">public void back(String s,String c);&#x2F;&#x2F;某会员归还</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-一个cd类，保存单个cd的基本信息"><a href="#3-一个cd类，保存单个cd的基本信息" class="headerlink" title="3.一个cd类，保存单个cd的基本信息"></a>3.一个cd类，保存单个cd的基本信息</h2><p>成员变量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private String name;&#x2F;&#x2F;cd名</span><br><span class="line">private int num;&#x2F;&#x2F;cd数量</span><br><span class="line">private int price;&#x2F;&#x2F;cd单价</span><br></pre></td></tr></table></figure>
+
+<p>成员函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public cd(String name_,int price_,int num_);</span><br><span class="line">public void show();&#x2F;&#x2F;显示cd信息</span><br><span class="line">public int get_num();&#x2F;&#x2F;获取某cd数量</span><br><span class="line">public void set_num(int num_);&#x2F;&#x2F;修改某cd数量</span><br><span class="line">public String get_name();&#x2F;&#x2F;获取cd名</span><br><span class="line">public int get_price();&#x2F;&#x2F;获取cd单价</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-一个cd-类，保存一个cd集"><a href="#4-一个cd-类，保存一个cd集" class="headerlink" title="4.一个cd_类，保存一个cd集"></a>4.一个cd_类，保存一个cd集</h2><p>成员变量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private cd cds[]&#x3D;new cd[2333];</span><br></pre></td></tr></table></figure>
+
+<p>成员函数如下：</p>
+<p>这里的售出租借归还都只是一个预先的操作，返回一个能否执行的boolean类型，不是实际售出租借归还，因为考虑完库存和cd是否存在等问题后，还要考虑某会员是否存在等等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public boolean add_cd(cd c);&#x2F;&#x2F;添加cd</span><br><span class="line">public boolean delete_cd(String name_);&#x2F;&#x2F;删除cd</span><br><span class="line">public void show_cd();&#x2F;&#x2F;显示所有cd信息</span><br><span class="line">public int sold_cd(String s,int a);&#x2F;&#x2F;卖出cd</span><br><span class="line">public boolean rent_cd(String s);&#x2F;&#x2F;租借cd</span><br><span class="line">public boolean back_cd(String s);&#x2F;&#x2F;归还cd</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-一个store类，里面有一个cd集和一个客户集"><a href="#5-一个store类，里面有一个cd集和一个客户集" class="headerlink" title="5.一个store类，里面有一个cd集和一个客户集"></a>5.一个store类，里面有一个cd集和一个客户集</h2><p>成员变量如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private Vip_ vv&#x3D;new Vip_();&#x2F;&#x2F;客户集</span><br><span class="line">private cd_ cc&#x3D;new cd_();&#x2F;&#x2F;cd集</span><br><span class="line">private int money;&#x2F;&#x2F;钱</span><br></pre></td></tr></table></figure>
+
+<p>成员函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public store(int money_);&#x2F;&#x2F;构造函数初始资金</span><br><span class="line">public void add_vip();</span><br><span class="line">public void add_cd();&#x2F;&#x2F;添加cd</span><br><span class="line">public void sold();&#x2F;&#x2F;出售cd</span><br><span class="line">public void rent();&#x2F;&#x2F;出租cd</span><br><span class="line">public void back();&#x2F;&#x2F;归还cd</span><br><span class="line">public void show_cds();&#x2F;&#x2F;显示cd</span><br><span class="line">public void show_vips();&#x2F;&#x2F;显示会员</span><br><span class="line">public void show_money()&#x2F;&#x2F;显示钱钱</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h1><p>写的时候遇到一个小问题就是，我在别的类里调用了Scanner，无法cin.close()，因为Scanner指向的是同一个输入流，一个close掉之后别的也不能用了</p>
+<h1 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h1><p>输入商店的初始资金，输入一些会员</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km4mo1cdj206308edg7.jpg" alt=""></p>
+<p>输入一些cd信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km4moti7j205t0a3gm1.jpg" alt=""></p>
+<p>输出当前所有的会员信息和cd信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km4mp53gj20680cyt9f.jpg" alt=""></p>
+<p>输入一些购买信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km5aa996j20660ayt9b.jpg" alt=""></p>
+<p>输入一些租借信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km5aagbrj2078080wez.jpg" alt=""></p>
+<p>输出更改后的会员信息和cd信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km5aarbmj206b0dejs6.jpg" alt=""></p>
+<p>输入归还信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km5xhm0vj205t02maa1.jpg" alt=""></p>
+<p>输出更改后的会员信息和cd信息</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4km7njolnj205z0dlq3q.jpg" alt=""></p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br></pre></td><td class="code"><pre><span class="line">import java.io.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        System.out.println(&quot;请输入商店初始资金：&quot;);</span><br><span class="line">        int a&#x3D;cin.nextInt();</span><br><span class="line">        store mystore&#x3D;new store(a);</span><br><span class="line">        mystore.add_vip();</span><br><span class="line">        mystore.add_vip();</span><br><span class="line">        mystore.add_vip();</span><br><span class="line">        mystore.add_cd();</span><br><span class="line">        mystore.add_cd();</span><br><span class="line">        mystore.add_cd();</span><br><span class="line">        mystore.show_vips();</span><br><span class="line">        mystore.show_cds();</span><br><span class="line">        mystore.sold();</span><br><span class="line">        mystore.sold();</span><br><span class="line">        mystore.sold();</span><br><span class="line">        mystore.rent();</span><br><span class="line">        mystore.rent();</span><br><span class="line">        mystore.rent();</span><br><span class="line">        mystore.show_cds();</span><br><span class="line">        mystore.show_vips();</span><br><span class="line">        mystore.back();</span><br><span class="line">        mystore.show_cds();</span><br><span class="line">        mystore.show_vips();</span><br><span class="line">        mystore.show_money();</span><br><span class="line">        cin.close();</span><br><span class="line">    &#125;</span><br><span class="line">    public static class Vip&#123;</span><br><span class="line">        private String name;&#x2F;&#x2F;姓名</span><br><span class="line">        private String phone;&#x2F;&#x2F;电话号码</span><br><span class="line">        private int score;&#x2F;&#x2F;会员积分</span><br><span class="line">        private String rent_cd[]&#x3D;new String[5];&#x2F;&#x2F;租借信息</span><br><span class="line">        public Vip(String name_,String phone_)&#123;</span><br><span class="line">            name&#x3D;name_;</span><br><span class="line">            phone&#x3D;phone_;</span><br><span class="line">            score&#x3D;0;</span><br><span class="line">        &#125;</span><br><span class="line">        public String get_name()&#123;&#x2F;&#x2F;获得会员名</span><br><span class="line">            return name;</span><br><span class="line">        &#125;</span><br><span class="line">        public String get_phone()&#123;&#x2F;&#x2F;获得会员手机号</span><br><span class="line">            return phone;</span><br><span class="line">        &#125;</span><br><span class="line">        public int get_score()&#123;&#x2F;&#x2F;获得会员积分</span><br><span class="line">            return score;</span><br><span class="line">        &#125;</span><br><span class="line">        public void set_score(int a)&#123;&#x2F;&#x2F;修改会员积分</span><br><span class="line">            score+&#x3D;a*6;</span><br><span class="line">        &#125;</span><br><span class="line">        public void show()&#123;&#x2F;&#x2F;显示会员信息</span><br><span class="line">            System.out.println(&quot;姓名：&quot;+name);</span><br><span class="line">            System.out.println(&quot;手机号码：&quot;+phone);</span><br><span class="line">            System.out.println(&quot;积分：&quot;+score);</span><br><span class="line">            System.out.println(&quot;租借记录：&quot;);</span><br><span class="line">            for(int i&#x3D;0;i&lt;5;i++)&#123;</span><br><span class="line">                if(rent_cd[i]!&#x3D;null)&#123;</span><br><span class="line">                    System.out.println(&quot;《&quot;+rent_cd[i]+&quot;》&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean add_rent(String s)&#123;&#x2F;&#x2F;添加租借记录</span><br><span class="line">            for(int i&#x3D;0;i&lt;5;i++)&#123;</span><br><span class="line">                if(rent_cd[i]&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    rent_cd[i]&#x3D;s;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean delete_rent(String s)&#123;&#x2F;&#x2F;删除租借记录</span><br><span class="line">            for(int i&#x3D;0;i&lt;5;i++)&#123;</span><br><span class="line">                if(rent_cd[i].compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    rent_cd[i]&#x3D;null;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static class Vip_&#123;</span><br><span class="line">        private Vip vips[]&#x3D;new Vip[233];</span><br><span class="line">        public boolean add_vip(Vip v)&#123;&#x2F;&#x2F;添加会员</span><br><span class="line">            for(int i&#x3D;0;i&lt;vips.length;i++)&#123;</span><br><span class="line">                if(vips[i]&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    vips[i]&#x3D;v;</span><br><span class="line">                    System.out.println(&quot;添加新会员成功！&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;添加新会员失败！&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean delete_vip(String phone_)&#123;&#x2F;&#x2F;删除会员</span><br><span class="line">            for(int i&#x3D;0;i&lt;vips.length;i++)&#123;</span><br><span class="line">                if(vips[i].get_phone().compareTo(phone_)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    vips[i]&#x3D;null;</span><br><span class="line">                    System.out.println(&quot;删除会员成功！&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;删除会员失败！&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public void show_vip()&#123;&#x2F;&#x2F;显示会员信息</span><br><span class="line">            System.out.println(&quot;----------会员信息----------&quot;);</span><br><span class="line">            int j&#x3D;0;</span><br><span class="line">            for(int i&#x3D;0;i&lt; vips.length;i++)&#123;</span><br><span class="line">                if(vips[i]!&#x3D;null)&#123;</span><br><span class="line">                    vips[i].show();</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;共有&quot;+j+&quot;位会员&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public void buy(String s,int money)&#123;&#x2F;&#x2F;某会员购买</span><br><span class="line">            for(int i&#x3D;0;i&lt;vips.length;i++)&#123;</span><br><span class="line">                if(vips[i]!&#x3D;null&amp;&amp;vips[i].get_phone().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    vips[i].set_score(money);</span><br><span class="line">                    System.out.println(&quot;售出成功！&quot;);</span><br><span class="line">                    System.out.println(&quot;尊敬的&quot;+vips[i].get_name()+&quot;，您当前的积分为&quot;+vips[i].get_score());</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;抱歉，没有找到该会员，请检查号码是否正确&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public void rent(String s,String c)&#123;&#x2F;&#x2F;某会员租借</span><br><span class="line">            for(int i&#x3D;0;i&lt;vips.length;i++)&#123;</span><br><span class="line">                if(vips[i]!&#x3D;null&amp;&amp;vips[i].get_phone().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    if(vips[i].add_rent(c)&#x3D;&#x3D;true)&#123;</span><br><span class="line">                        System.out.println(&quot;租借成功！&quot;);</span><br><span class="line">                        System.out.println(&quot;尊敬的&quot;+vips[i].get_name()+&quot;，请记得在一个月内归还哦&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else System.out.println(&quot;抱歉，您当前的租借数已达五张，请尽快归还后再租借&quot;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;抱歉，没有找到该会员，请检查号码是否正确&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public void back(String s,String c)&#123;&#x2F;&#x2F;某会员归还</span><br><span class="line">            for(int i&#x3D;0;i&lt;vips.length;i++)&#123;</span><br><span class="line">                if(vips[i]!&#x3D;null&amp;&amp;vips[i].get_phone().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    if(vips[i].delete_rent(c)&#x3D;&#x3D;true)</span><br><span class="line">                        System.out.println(&quot;尊敬的&quot;+vips[i].get_name()+&quot;，归还成功&quot;);</span><br><span class="line">                    else System.out.println(&quot;抱歉，没有找到租借信息，请检查CD名是否有误&quot;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;抱歉，没有找到该会员，请检查号码是否正确&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static class cd&#123;</span><br><span class="line">        private String name;&#x2F;&#x2F;cd名</span><br><span class="line">        private int num;&#x2F;&#x2F;cd数量</span><br><span class="line">        private int price;&#x2F;&#x2F;cd单价</span><br><span class="line">        public cd(String name_,int price_,int num_)&#123;</span><br><span class="line">            name&#x3D;name_;</span><br><span class="line">            price&#x3D;price_;</span><br><span class="line">            num&#x3D;num_;</span><br><span class="line">        &#125;</span><br><span class="line">        public void show()&#123;&#x2F;&#x2F;显示cd信息</span><br><span class="line">            System.out.println(&quot;CD名：《&quot;+name+&quot;》&quot;);</span><br><span class="line">            System.out.println(&quot;价格：&quot;+price);</span><br><span class="line">            System.out.println(&quot;数量：&quot;+num);</span><br><span class="line">            System.out.println(&quot;---------------------------&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public int get_num()&#123;&#x2F;&#x2F;获取某cd数量</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line">        public void set_num(int num_)&#123;&#x2F;&#x2F;修改某cd数量</span><br><span class="line">            num &#x3D; num_;</span><br><span class="line">        &#125;</span><br><span class="line">        public String get_name()&#123;&#x2F;&#x2F;获取cd名</span><br><span class="line">            return name;</span><br><span class="line">        &#125;</span><br><span class="line">        public int get_price()&#123;&#x2F;&#x2F;获取cd单价</span><br><span class="line">            return price;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static class cd_&#123;</span><br><span class="line">        private cd cds[]&#x3D;new cd[2333];</span><br><span class="line">        public boolean add_cd(cd c)&#123;&#x2F;&#x2F;添加cd</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i]&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    cds[i]&#x3D;c;</span><br><span class="line">                    System.out.println(&quot;添加新CD成功！&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;添加新CD失败！&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean delete_cd(String name_)&#123;&#x2F;&#x2F;删除cd</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i].get_name().compareTo(name_)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    cds[i]&#x3D;null;</span><br><span class="line">                    System.out.println(&quot;删除CD成功！&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;删除CD失败！&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public void show_cd()&#123;&#x2F;&#x2F;显示所有cd信息</span><br><span class="line">            System.out.println(&quot;----------CD信息----------&quot;);</span><br><span class="line">            int j&#x3D;0;</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i]!&#x3D;null)&#123;</span><br><span class="line">                    cds[i].show();</span><br><span class="line">                    j++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;共有&quot;+j+&quot;张CD&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        public int sold_cd(String s,int a)&#123;&#x2F;&#x2F;卖出cd</span><br><span class="line">            if(a&#x3D;&#x3D;0)&#123;</span><br><span class="line">                System.out.println(&quot;输入张数为0？？&quot;);</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">            int money&#x3D;0;</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i]!&#x3D;null&amp;&amp;cds[i].get_name().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    int tmp&#x3D;cds[i].get_num()-a;</span><br><span class="line">                    if(tmp&gt;&#x3D;0)&#123;</span><br><span class="line">                        money&#x3D;cds[i].get_price()*a;</span><br><span class="line">                        cds[i].set_num(tmp);</span><br><span class="line">                        &#x2F;&#x2F;System.out.println(&quot;售出成功！&quot;);</span><br><span class="line">                        return money;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        System.out.println(&quot;库存不足，售出失败&quot;);</span><br><span class="line">                        return 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;库存中没有该CD，售出失败&quot;);</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean rent_cd(String s)&#123;&#x2F;&#x2F;租借cd</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i]!&#x3D;null&amp;&amp;cds[i].get_name().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    int tmp&#x3D;cds[i].get_num();</span><br><span class="line">                    if(tmp&gt;0)&#123;</span><br><span class="line">                        cds[i].set_num(tmp-1);</span><br><span class="line">                        &#x2F;&#x2F;System.out.println(&quot;出租成功！&quot;);</span><br><span class="line">                        return true;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        System.out.println(&quot;库存不足，出租失败&quot;);</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;没有找到该CD，请检查CD名是否有误&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        public boolean back_cd(String s)&#123;&#x2F;&#x2F;归还cd</span><br><span class="line">            for(int i&#x3D;0;i&lt;cds.length;i++)&#123;</span><br><span class="line">                if(cds[i]!&#x3D;null&amp;&amp;cds[i].get_name().compareTo(s)&#x3D;&#x3D;0)&#123;</span><br><span class="line">                    int tmp&#x3D;cds[i].get_num()+1;</span><br><span class="line">                    cds[i].set_num(tmp);</span><br><span class="line">                    &#x2F;&#x2F;System.out.println(&quot;归还成功！&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;库中没有记录该CD，请检查CD名是否有误&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static class store&#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        private Vip_ vv&#x3D;new Vip_();&#x2F;&#x2F;客户集</span><br><span class="line">        private cd_ cc&#x3D;new cd_();&#x2F;&#x2F;cd集</span><br><span class="line">        private int money;&#x2F;&#x2F;钱</span><br><span class="line">        public store(int money_)&#123;</span><br><span class="line">            money&#x3D;money_;</span><br><span class="line">        &#125;</span><br><span class="line">        public void add_vip()&#123;</span><br><span class="line">            System.out.println(&quot;----------添加会员----------&quot;);</span><br><span class="line">            Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">            String name_,phone_;</span><br><span class="line">            System.out.println(&quot;请输入新会员姓名：&quot;);</span><br><span class="line">            name_&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入新会员手机号：&quot;);</span><br><span class="line">            phone_&#x3D;cin.nextLine();</span><br><span class="line">            Vip newv&#x3D;new Vip(name_,phone_);</span><br><span class="line">            vv.add_vip(newv);</span><br><span class="line">        &#125;</span><br><span class="line">        public void add_cd()&#123;</span><br><span class="line">            System.out.println(&quot;----------添加CD----------&quot;);</span><br><span class="line">            Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">            String name_;</span><br><span class="line">            int price_,num_;</span><br><span class="line">            System.out.println(&quot;请输入新CD名称：&quot;);</span><br><span class="line">            name_&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入新CD单价：&quot;);</span><br><span class="line">            price_&#x3D;cin.nextInt();</span><br><span class="line">            System.out.println(&quot;请输入新CD数量：&quot;);</span><br><span class="line">            num_&#x3D;cin.nextInt();</span><br><span class="line">            cd newcd&#x3D;new cd(name_,price_,num_);</span><br><span class="line">            cc.add_cd(newcd);</span><br><span class="line">        &#125;</span><br><span class="line">        public void sold()&#123;</span><br><span class="line">            System.out.println(&quot;----------购买CD----------&quot;);</span><br><span class="line">            Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">            String phone_v,name_c;</span><br><span class="line">            int num_;</span><br><span class="line">            System.out.println(&quot;请输入会员手机号码：&quot;);</span><br><span class="line">            phone_v&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入要购买的CD名称：&quot;);</span><br><span class="line">            name_c&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入购买数量：&quot;);</span><br><span class="line">            num_&#x3D;cin.nextInt();</span><br><span class="line">            int tmp&#x3D;cc.sold_cd(name_c,num_);</span><br><span class="line">            if(tmp!&#x3D;0)&#123;</span><br><span class="line">                money+&#x3D;tmp;</span><br><span class="line">                vv.buy(phone_v,tmp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public void rent()&#123;</span><br><span class="line">            System.out.println(&quot;----------租借CD----------&quot;);</span><br><span class="line">            Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">            String phone_v,name_c;</span><br><span class="line">            System.out.println(&quot;请输入会员手机号码：&quot;);</span><br><span class="line">            phone_v&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入要租借的CD名称：&quot;);</span><br><span class="line">            name_c&#x3D;cin.nextLine();</span><br><span class="line">            boolean tmp&#x3D;cc.rent_cd(name_c);</span><br><span class="line">            if(tmp)&#123;</span><br><span class="line">                vv.rent(phone_v,name_c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public void back()&#123;</span><br><span class="line">            System.out.println(&quot;----------归还CD----------&quot;);</span><br><span class="line">            Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">            String phone_v,name_c;</span><br><span class="line">            System.out.println(&quot;请输入会员手机号码：&quot;);</span><br><span class="line">            phone_v&#x3D;cin.nextLine();</span><br><span class="line">            System.out.println(&quot;请输入要归还的CD名称：&quot;);</span><br><span class="line">            name_c&#x3D;cin.nextLine();</span><br><span class="line">            boolean tmp&#x3D;cc.back_cd(name_c);</span><br><span class="line">            if(tmp)&#123;</span><br><span class="line">                vv.back(phone_v,name_c);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public void show_cds()&#123;</span><br><span class="line">            cc.show_cd();</span><br><span class="line">        &#125;</span><br><span class="line">        public void show_vips()&#123;</span><br><span class="line">            vv.show_vip();</span><br><span class="line">        &#125;</span><br><span class="line">        public void show_money()&#123;</span><br><span class="line">            System.out.println(&quot;商店当前的资金为&quot;+money);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/13028674/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            CF 516 D. Candies for Children（分类讨论）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2c002055/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Codeforces Round 519 Div.2（A-F）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

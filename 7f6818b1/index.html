@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/7f6818b1/" class="article-date">
+  <time datetime="2018-11-04T14:24:00.000Z" itemprop="datePublished">2018-11-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E4%BD%9C%E4%B8%9A/">一些作业</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/7f6818b1/" class="leancloud_visitors" data-flag-title="数据结构第?次作业（哈希表 HashTable，暴雪字符串哈希）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>本来想在这篇深入研究一下暴雪的字符串哈希的，据说是最快的字符串哈希，而且人家可靠性特好，然而。。里面有一堆奇妙的不明所以的常数。。之前写计概论文的时候算那个sqrt的神奇常数0x5f3759df就搞了半天。。现在已经忘了最小二乘法咋写了ಠ_ಠ</p>
+<p>更惨的是。。周末就这样过完了TAT，我的模电作业还没写完。。模电啊模电TAT。。完全从最初只是帮人写个数据结构哈希表跑偏了233333</p>
+<p>暴雪的hash一些细节留着有空再研究吧，先懂个大概的核心思路，mark一下，顺便膜一下。。暴雪的基础函数都。。好酷的样子啊0.0</p>
+<hr>
+<h1 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h1><p>我也不知道题目啥要求╮(￣▽￣””)╭，反正就是写个字符串哈希</p>
+<h1 id="hash基本思路："><a href="#hash基本思路：" class="headerlink" title="hash基本思路："></a>hash基本思路：</h1><p>下面这些乱七八糟的一堆东西。。大多都是四处学习<s>复制粘贴</s>的。。虽然很多方法并不优。。就当了解一下了</p>
+<p>哈希表（Hash table，也叫散列表），是根据关键码值（Key）而直接进行访问的数据结构</p>
+<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><p>通过某种函数使元素的存储位置与它的key之间能够建立一一映射的关系，那么要查找某个key对应的value的值，本来直接查找的话需要o(n)扫一遍，但是如果可以通过key直接求得value存储的位子，那么o(1)就可以得到value的值</p>
+<h2 id="基本操作："><a href="#基本操作：" class="headerlink" title="基本操作："></a>基本操作：</h2><h3 id="1-插入insert："><a href="#1-插入insert：" class="headerlink" title="1.插入insert："></a>1.插入insert：</h3><p>根据待插入元素的key，用某种函数（有很多种hash函数）计算出该元素的存储位置并按此位置进行存放</p>
+<h3 id="2-搜索find："><a href="#2-搜索find：" class="headerlink" title="2.搜索find："></a>2.搜索find：</h3><p>对元素的key进行同样的计算，把求得的函数值当做元素的存储位置，在结构中按此位置取元素比较，若关键码相等，则搜索成功</p>
+<h2 id="哈希冲突："><a href="#哈希冲突：" class="headerlink" title="哈希冲突："></a>哈希冲突：</h2><p>哈希函数将两个不同的key映射到同一个地方的情况</p>
+<p>哈希冲突是不可避免的，如果遇到冲突，最常用的解决办法就是开放定址法和链地址法</p>
+<h3 id="1-开放地址法"><a href="#1-开放地址法" class="headerlink" title="1.开放地址法"></a>1.开放地址法</h3><blockquote>
+<p>当发生哈希冲突时，如果哈希表未被装满，说明在哈希表中必然还有空位置，那么可以把key存放到表中下一个空位中。</p>
+<p>寻找下一个空余位置要用到两种方法：线性探测和二次探测</p>
+<p>1）线性探测：</p>
+<p>从发生冲突的位置开始，依次继续向后探测，直到找到空位置为止</p>
+<p>2）二次探测：</p>
+<p>研究表明：当表的长度为质数且表装载因子a不超过0.5时，新的表项一定能够插入，而且任何一个位置都不会被探查两次。因此只要表中有一半的空位置，就不会存在表满的问题。在搜索时可以不考虑表装满的情况，但在插入时必须确保表的装载因子a不超过0.5；如果超出必须考虑增容</p>
+</blockquote>
+<h3 id="2-链地址法"><a href="#2-链地址法" class="headerlink" title="2.链地址法"></a>2.链地址法</h3><blockquote>
+<p>首先对key用hash函数计算地址，具有相同地址的key归于同一子集合，每一个子集合称为一个桶，各个桶中的元素通过一个单链表链接起来，各链表的头结点存储在哈希表中</p>
+<p>应用链地址法处理溢出，需要增设链接指针，似乎增加了存储开销，然而事实上，由于开地址法必须保持大量的空闲空间以确保搜索效率，而表项所占空间又比指针大的多，所以使用链地址法反而比开地址法节省存储空间</p>
+<p>大概就是下图。。如有雷同。。我的图是盗的0.0</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kme65f0bj205q0433yf.jpg" alt=""></p>
+<h2 id="哈希函数："><a href="#哈希函数：" class="headerlink" title="哈希函数："></a>哈希函数：</h2><p>BKDRHash，APHash，DJBHash，JSHash，RSHash，SDBMHash，PJWHash，ELFHash</p>
+<h3 id="1-直接定址法"><a href="#1-直接定址法" class="headerlink" title="1.直接定址法"></a>1.直接定址法</h3><p>取某个线性函数：<code>hash(key)=A*key+B</code></p>
+<p>适合查找比较小且连续的情况</p>
+<h3 id="2-除留余数法"><a href="#2-除留余数法" class="headerlink" title="2.除留余数法"></a>2.除留余数法</h3><p>设散列表中允许的地址数为m，取一个不大于m，但最接近或者等于m的质数p作为除数，按照哈希函数：<code>hash(key)=key%p(p&lt;=m)</code>,将关键码转换成哈希地址</p>
+<h3 id="3-平方取中法"><a href="#3-平方取中法" class="headerlink" title="3.平方取中法"></a>3.平方取中法</h3><p>假设关键字为1234，对它平方就是1522756，抽取中间的3位227作为哈希地址；</p>
+<p>平方取中法比较适合：不知道关键字的分布，而位数又不是很大的情况</p>
+<h3 id="4-折叠法"><a href="#4-折叠法" class="headerlink" title="4.折叠法"></a>4.折叠法</h3><p>折叠法是将关键字从左到右分割成位数相等的几部分(最后一部分位数可以短些)，然后将这几部分叠加求和，并按散列表表长，取后几位作为散列地址</p>
+<p>折叠法适合事先不需要知道关键字的分布，适合关键字位数比较多的情况</p>
+<h3 id="5-随机数法"><a href="#5-随机数法" class="headerlink" title="5.随机数法"></a>5.随机数法</h3><p>选择一个随机函数，取关键字的随机函数值为它的哈希地址，即H(key)=random(key),其中random为随机数函数通常应用于关键字长度不等时采用此法</p>
+<h3 id="6-数学分析法"><a href="#6-数学分析法" class="headerlink" title="6.数学分析法"></a>6.数学分析法</h3><p>名字很牛逼其实就是根据实际数据特点人工分析。。好像没啥用？</p>
+<p>例如：假设要存储某家公司员工登记表，如果用手机号作为关键字，那么极有可能前7位都是相同的，那么我们可以选择后面的四位作为散列地址，如果这样的抽取工作还容易出现冲突，还可以对抽取出来的数字进行反转(如1234改成4321)、右环位移(如1234改成4123)、左环移位、前两数与后两数叠加(如1234改成12+34=46)等方法</p>
+<p>查了一堆hash函数常用质数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">61,83,113,151,211,281,379,509683,911&#x2F;一千以下</span><br><span class="line"></span><br><span class="line">1217,1627,2179,2909,3881,6907,9209,&#x2F;一万以下</span><br><span class="line"></span><br><span class="line">12281,16381,21841,29123,38833,51787,69061,92083,&#x2F;十万以下</span><br><span class="line"></span><br><span class="line">122777,163729,218357,291143,388211,517619,690163,999983,&#x2F;百万以下</span><br><span class="line"></span><br><span class="line">1226959,1635947,2181271,2908361,3877817,5170427,6893911,9191891,&#x2F;千万以下</span><br><span class="line"></span><br><span class="line">12255871,16341163,21788233,29050993,38734667,51646229,68861641,91815541,&#x2F;一亿以下</span><br><span class="line"></span><br><span class="line">1e9+7和1e9+9&#x2F;&#x2F;十亿左右</span><br><span class="line"></span><br><span class="line">122420729,163227661,217636919,290182597,386910137,515880193,687840301,917120411,&#x2F;十亿以下</span><br><span class="line"></span><br><span class="line">1222827239,1610612741,3221225473ul,4294967291ul&#x2F;十亿以上</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><p>哈希冲突用的是链地址法，哈希函数用的time33</p>
+<p>因为题目好像真的没啥要求。。所以写了个差不多得了的哈希╮(￣▽￣””)╭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int size&#x3D;911;&#x2F;&#x2F;随便找了个看得顺眼的常用质数</span><br><span class="line">struct node&#123;</span><br><span class="line">	string key;</span><br><span class="line">	string value;</span><br><span class="line">	node *next;</span><br><span class="line">&#125;;</span><br><span class="line">class Hash_Table&#123;</span><br><span class="line">	public:</span><br><span class="line">		Hash_Table()&#123;</span><br><span class="line">			for(int i&#x3D;0;i&lt;size;i++)&#123;</span><br><span class="line">				HT[i]&#x3D;new node;</span><br><span class="line">				HT[i]&#x3D;NULL;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		int hash(string key);</span><br><span class="line">		bool vis(string key);</span><br><span class="line">		void insert(string key,string value);</span><br><span class="line">		void get_value(string key);</span><br><span class="line">	private:</span><br><span class="line">		node *HT[size];</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F;time33</span><br><span class="line">int Hash_Table::hash(string key)&#123;</span><br><span class="line">	int tmp&#x3D;0;</span><br><span class="line">	int len&#x3D;key.length();</span><br><span class="line">	for(int i&#x3D;0;i&lt;len;i++)&#123;</span><br><span class="line">		tmp&#x3D;(tmp*33+(int)key[i])%size;</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F; cout&lt;&lt;tmp&lt;&lt;endl;</span><br><span class="line">	return tmp;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;是否存过</span><br><span class="line">bool Hash_Table::vis(string key)&#123;</span><br><span class="line">	node* p;</span><br><span class="line">	int index&#x3D;hash(key);</span><br><span class="line">	for(p&#x3D;HT[index];p!&#x3D;NULL;p&#x3D;p-&gt;next)&#123;</span><br><span class="line">		if(key.compare(p-&gt;key)&#x3D;&#x3D;0)return true;</span><br><span class="line">	&#125;</span><br><span class="line">	return false;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;插入</span><br><span class="line">void Hash_Table::insert(string key,string value)&#123;</span><br><span class="line">	node *p,*tmp;</span><br><span class="line">	int index&#x3D;hash(key);</span><br><span class="line">	&#x2F;&#x2F; cout&lt;&lt;index&lt;&lt;endl;</span><br><span class="line">	if(!vis(key))&#123;</span><br><span class="line">		if(HT[index]&#x3D;&#x3D;NULL)&#123;</span><br><span class="line">			tmp&#x3D;new node;</span><br><span class="line">			tmp-&gt;key&#x3D;key;</span><br><span class="line">			tmp-&gt;value&#x3D;value;</span><br><span class="line">			tmp-&gt;next&#x3D;NULL;</span><br><span class="line">			HT[index]&#x3D;tmp;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			for(p&#x3D;HT[index];p-&gt;next!&#x3D;NULL;p&#x3D;p-&gt;next);</span><br><span class="line">			tmp&#x3D;new node;</span><br><span class="line">			tmp-&gt;key&#x3D;key;</span><br><span class="line">			tmp-&gt;value&#x3D;value;</span><br><span class="line">			tmp-&gt;next&#x3D;NULL;</span><br><span class="line">			p-&gt;next&#x3D;tmp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		for(p&#x3D;HT[index];p-&gt;next!&#x3D;NULL;p&#x3D;p-&gt;next)</span><br><span class="line">			if(key.compare(p-&gt;key)&#x3D;&#x3D;0)</span><br><span class="line">				p-&gt;value&#x3D;value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void Hash_Table::get_value(string key)&#123;</span><br><span class="line">	int index&#x3D;hash(key);</span><br><span class="line">	node* p;</span><br><span class="line">	for(p&#x3D;HT[index];p!&#x3D;NULL;p&#x3D;p-&gt;next)&#123;</span><br><span class="line">		if(key.compare(p-&gt;key)&#x3D;&#x3D;0)&#123;</span><br><span class="line">			cout&lt;&lt;&quot;该key对应的value是：&quot;&lt;&lt;p-&gt;value&lt;&lt;endl;</span><br><span class="line">			return;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;&quot;啥玩意儿啊找不着啊QWQ&quot;&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	Hash_Table ht;</span><br><span class="line">	int t;</span><br><span class="line">	string kk,vv;</span><br><span class="line">	cout&lt;&lt;&quot;请输入哈希对数：&quot;&lt;&lt;endl;</span><br><span class="line">	cin&gt;&gt;t;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;t;i++)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;请输入第&quot;&lt;&lt;i&lt;&lt;&quot;组哈希：&quot;&lt;&lt;endl;</span><br><span class="line">		cin&gt;&gt;kk;</span><br><span class="line">		cin&gt;&gt;vv;</span><br><span class="line">		ht.insert(kk,vv);</span><br><span class="line">	&#125;</span><br><span class="line">	string s;</span><br><span class="line">	cout&lt;&lt;&quot;请输入要求的key：&quot;&lt;&lt;endl;</span><br><span class="line">	while(cin&gt;&gt;s)&#123;</span><br><span class="line">		ht.get_value(s);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kmegqdqtj20b00dg3zu.jpg" alt=""></p>
+<hr>
+<h1 id="暴雪字符串哈希"><a href="#暴雪字符串哈希" class="headerlink" title="暴雪字符串哈希"></a>暴雪字符串哈希</h1><p>妙在一个key有三个哈希值，然后就能风驰电掣又准确的单刀直入的完成一些妙妙的比较</p>
+<p>两个不同的字符串经过一个hash算法可能得到同一个地址，但用三个不同的hash算法算出的结果都一致，那就是个很小很小很小的概率，据说这个概率是1:18889465931478580854784，对一个游戏程序来说足够安全了</p>
+<p>至于其余那些迷之常数，尚未参透0.0</p>
+<h2 id="大概思路："><a href="#大概思路：" class="headerlink" title="大概思路："></a>大概思路：</h2><p>一个字符串有三个哈希值，一个用来确定位置，另外两个用来校验</p>
+<p>对于一个字符串来说，先哈希函数求的它的位置</p>
+<p>1）察看哈希表中的这个位置 </p>
+<p>2）若这个位置为空，则该字符串肯定不存在，返回不存在</p>
+<p>3）这个位置不为空，则检查其他两个哈希值是否也匹配，假如匹配，则返回存在</p>
+<p>4）移到下一个位置，假如越界，则返回不存在</p>
+<p>5）检查是不是又回到了原来的位置，假如是，则返回不存在</p>
+<p>6）回到2 </p>
+<h2 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*********************************StringHash.h*********************************&#x2F;</span><br><span class="line"></span><br><span class="line">#pragma once</span><br><span class="line"></span><br><span class="line">#define MAXTABLELEN 1024 &#x2F;&#x2F; 默认哈希索引表大小 </span><br><span class="line">&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F; </span><br><span class="line">&#x2F;&#x2F; 哈希索引表定义 </span><br><span class="line">typedef struct _HASHTABLE</span><br><span class="line">&#123; </span><br><span class="line">　　long nHashA; </span><br><span class="line">　　long nHashB; </span><br><span class="line">　　bool bExists; </span><br><span class="line">&#125;HASHTABLE, *PHASHTABLE ;</span><br><span class="line"></span><br><span class="line">class StringHash</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">　　StringHash(const long nTableLength &#x3D; MAXTABLELEN);</span><br><span class="line">　　~StringHash(void);</span><br><span class="line">private: </span><br><span class="line">　　unsigned long cryptTable[0x500]; </span><br><span class="line">　　unsigned long m_tablelength; &#x2F;&#x2F; 哈希索引表长度 </span><br><span class="line">　 HASHTABLE *m_HashIndexTable; </span><br><span class="line">private:</span><br><span class="line">　　void InitCryptTable(); &#x2F;&#x2F; 对哈希索引表预处理 </span><br><span class="line">　　unsigned long HashString(const string&amp; lpszString, unsigned long dwHashType); &#x2F;&#x2F; 求取哈希值 </span><br><span class="line">public:</span><br><span class="line">　　bool Hash(string url);</span><br><span class="line">　　unsigned long Hashed(string url); &#x2F;&#x2F; 检测url是否被hash过</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">&#x2F;*********************************StringHash.cpp*********************************&#x2F;</span><br><span class="line"></span><br><span class="line">#include &quot;StdAfx.h&quot;</span><br><span class="line">#include &quot;StringHash.h&quot;</span><br><span class="line"></span><br><span class="line">StringHash::StringHash(const long nTableLength &#x2F;*&#x3D; MAXTABLELEN*&#x2F;)</span><br><span class="line">&#123;</span><br><span class="line">　　InitCryptTable(); </span><br><span class="line">　　m_tablelength &#x3D; nTableLength; </span><br><span class="line">　　&#x2F;&#x2F;初始化hash表</span><br><span class="line">　　m_HashIndexTable &#x3D; new HASHTABLE[nTableLength]; </span><br><span class="line">　　for ( int i &#x3D; 0; i &lt; nTableLength; i++ ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　m_HashIndexTable[i].nHashA &#x3D; -1; </span><br><span class="line">　　　　m_HashIndexTable[i].nHashB &#x3D; -1; </span><br><span class="line">　　　　m_HashIndexTable[i].bExists &#x3D; false; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StringHash::~StringHash(void)</span><br><span class="line">&#123;</span><br><span class="line">　　&#x2F;&#x2F;清理内存</span><br><span class="line">　　if ( NULL !&#x3D; m_HashIndexTable ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　delete []m_HashIndexTable; </span><br><span class="line">　　　　m_HashIndexTable &#x3D; NULL; </span><br><span class="line">　　　　m_tablelength &#x3D; 0; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">&#x2F;*函数名：InitCryptTable</span><br><span class="line">&#x2F;*功 能：对哈希索引表预处理 </span><br><span class="line">&#x2F;*返回值：无</span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">void StringHash::InitCryptTable() </span><br><span class="line">&#123; </span><br><span class="line">　 unsigned long seed &#x3D; 0x00100001, index1 &#x3D; 0, index2 &#x3D; 0, i;</span><br><span class="line"></span><br><span class="line">　　for( index1 &#x3D; 0; index1 &lt; 0x100; index1++ ) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　for( index2 &#x3D; index1, i &#x3D; 0; i &lt; 5; i++, index2 +&#x3D; 0x100 ) </span><br><span class="line">　　　　&#123; </span><br><span class="line">　　　　　　unsigned long temp1, temp2; </span><br><span class="line">　　　　　　seed &#x3D; (seed * 125 + 3) % 0x2AAAAB; </span><br><span class="line">　　　　　　temp1 &#x3D; (seed &amp; 0xFFFF) &lt;&lt; 0x10; </span><br><span class="line">　　　　　　seed &#x3D; (seed * 125 + 3) % 0x2AAAAB; </span><br><span class="line">　　　　　　temp2 &#x3D; (seed &amp; 0xFFFF); </span><br><span class="line">　　　　　　cryptTable[index2] &#x3D; ( temp1 | temp2 ); </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">&#x2F;*函数名：HashString</span><br><span class="line">&#x2F;*功 能：求取哈希值 </span><br><span class="line">&#x2F;*返回值：返回hash值</span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">unsigned long StringHash::HashString(const string&amp; lpszString, unsigned long dwHashType) </span><br><span class="line">&#123; </span><br><span class="line">　　unsigned char *key &#x3D; (unsigned char *)(const_cast&lt;char*&gt;(lpszString.c_str())); </span><br><span class="line">　　unsigned long seed1 &#x3D; 0x7FED7FED, seed2 &#x3D; 0xEEEEEEEE; </span><br><span class="line">　　int ch;</span><br><span class="line"></span><br><span class="line">　　while(*key !&#x3D; 0) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　ch &#x3D; toupper(*key++);</span><br><span class="line"></span><br><span class="line">　　　　seed1 &#x3D; cryptTable[(dwHashType &lt;&lt; 8) + ch] ^ (seed1 + seed2); </span><br><span class="line">　　　　seed2 &#x3D; ch + seed1 + seed2 + (seed2 &lt;&lt; 5) + 3; </span><br><span class="line">　　&#125; </span><br><span class="line">　　return seed1; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">&#x2F;*函数名：Hashed</span><br><span class="line">&#x2F;*功 能：检测一个字符串是否被hash过</span><br><span class="line">&#x2F;*返回值：如果存在，返回位置；否则，返回-1</span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">unsigned long StringHash::Hashed(string lpszString)</span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line">　　const unsigned long HASH_OFFSET &#x3D; 0, HASH_A &#x3D; 1, HASH_B &#x3D; 2; </span><br><span class="line">　 &#x2F;&#x2F;不同的字符串三次hash还会碰撞的几率无限接近于不可能</span><br><span class="line">　　unsigned long nHash &#x3D; HashString(lpszString, HASH_OFFSET); </span><br><span class="line">　 unsigned long nHashA &#x3D; HashString(lpszString, HASH_A); </span><br><span class="line">　　unsigned long nHashB &#x3D; HashString(lpszString, HASH_B); </span><br><span class="line">　 unsigned long nHashStart &#x3D; nHash % m_tablelength, </span><br><span class="line">　　nHashPos &#x3D; nHashStart;</span><br><span class="line"></span><br><span class="line">　　while ( m_HashIndexTable[nHashPos].bExists) </span><br><span class="line">　　&#123; </span><br><span class="line">　　if (m_HashIndexTable[nHashPos].nHashA &#x3D;&#x3D; nHashA &amp;&amp; m_HashIndexTable[nHashPos].nHashB &#x3D;&#x3D; nHashB)</span><br><span class="line">　　　　return nHashPos; </span><br><span class="line">　　else </span><br><span class="line">　　nHashPos &#x3D; (nHashPos + 1) % m_tablelength;</span><br><span class="line"></span><br><span class="line">　　if (nHashPos &#x3D;&#x3D; nHashStart) </span><br><span class="line">　　break; </span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line">　　return -1; &#x2F;&#x2F;没有找到 </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">&#x2F;*函数名：Hash</span><br><span class="line">&#x2F;*功 能：hash一个字符串 </span><br><span class="line">&#x2F;*返回值：成功，返回true；失败，返回false</span><br><span class="line">&#x2F;************************************************************************&#x2F;</span><br><span class="line">bool StringHash::Hash(string lpszString)</span><br><span class="line">&#123; </span><br><span class="line">　　const unsigned long HASH_OFFSET &#x3D; 0, HASH_A &#x3D; 1, HASH_B &#x3D; 2; </span><br><span class="line">　　unsigned long nHash &#x3D; HashString(lpszString, HASH_OFFSET); </span><br><span class="line">　　unsigned long nHashA &#x3D; HashString(lpszString, HASH_A); </span><br><span class="line">　　unsigned long nHashB &#x3D; HashString(lpszString, HASH_B); </span><br><span class="line">　　unsigned long nHashStart &#x3D; nHash % m_tablelength, </span><br><span class="line">　　nHashPos &#x3D; nHashStart;</span><br><span class="line"></span><br><span class="line">　　while ( m_HashIndexTable[nHashPos].bExists) </span><br><span class="line">　　&#123; </span><br><span class="line">　　　　nHashPos &#x3D; (nHashPos + 1) % m_tablelength; </span><br><span class="line">　　　　if (nHashPos &#x3D;&#x3D; nHashStart) &#x2F;&#x2F;一个轮回 </span><br><span class="line">　　　　&#123; </span><br><span class="line">　　　　　　&#x2F;&#x2F;hash表中没有空余的位置了,无法完成hash</span><br><span class="line">　　　　　　return false; </span><br><span class="line">　　　　&#125; </span><br><span class="line">　　&#125; </span><br><span class="line">　　m_HashIndexTable[nHashPos].bExists &#x3D; true; </span><br><span class="line">　　m_HashIndexTable[nHashPos].nHashA &#x3D; nHashA; </span><br><span class="line">　　m_HashIndexTable[nHashPos].nHashB &#x3D; nHashB;</span><br><span class="line"></span><br><span class="line">　　return true; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/96c4a6fd/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数据结构第四次作业（delete浅析，约瑟夫环-链表法和公式法，栈Stack）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/10336297/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">数据结构第?次作业（bfs+路径打印）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

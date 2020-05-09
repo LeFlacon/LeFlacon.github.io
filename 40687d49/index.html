@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    数据结构第三次作业（上三角矩阵下三角矩阵转置，稀疏矩阵相乘，单链表实现稀疏矩阵） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-数据结构第三次作业（数组和矩阵）" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数据结构第三次作业（上三角矩阵下三角矩阵转置，稀疏矩阵相乘，单链表实现稀疏矩阵）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/40687d49/" class="article-date">
+  <time datetime="2018-11-02T12:43:00.000Z" itemprop="datePublished">2018-11-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E4%BD%9C%E4%B8%9A/">一些作业</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/40687d49/" class="leancloud_visitors" data-flag-title="数据结构第三次作业（上三角矩阵下三角矩阵转置，稀疏矩阵相乘，单链表实现稀疏矩阵）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>感谢队友（da lao）的帮助，可能这种题目简单编译难的题的目的。。就是为了让我会写构造函数析构函数拷贝构造函数重载运算符吧0.0，终于解决了，真实的快乐</p>
+<hr>
+<h1 id="作业一（29）："><a href="#作业一（29）：" class="headerlink" title="作业一（29）："></a>作业一（29）：</h1><p>扩充类lowerTriangularMatrix，增加矩阵转置方法，返回值是下三角矩阵的转置矩阵，是上三角矩阵，是类upperTriangularMatrix的一个实例，确定时间复杂度</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>下三角：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第i行之前的元素数目：1+2+...+(i–1)&#x3D;i*(i-1)&#x2F;2  </span><br><span class="line">第j列之前的元素数目：j-1  </span><br><span class="line">L(i,j)之前的元素数目：t[i*(i-1)&#x2F;2+j-1]</span><br></pre></td></tr></table></figure>
+
+<p>上三角：（比下三角式子复杂一点，推一下然后代几个数验证就能得到）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第i行之前的元素数目：n+(n-1)+...+...&#x3D;n(i-1)-(i-1)*(i-2)&#x2F;2  </span><br><span class="line">第j列之前的元素数目：j-i</span><br><span class="line">L(i,j)之前的元素数目：t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i]</span><br></pre></td></tr></table></figure>
+
+<p>转置：</p>
+<p>初始化一个上三角矩阵，给这个上三角矩阵赋值，<code>t[i*(i-1)/2+j-1]</code>是下三角矩阵的L(i,j)，要对应取L(j,i)，<code>t[j*(j-1)/2+i-1]</code>赋值给上三角的<code>shang.t[n*(i-1)-(i-1)*(i-2)/2+j-i]</code>    </p>
+<p>可以先写出如下思路的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(int i&#x3D;1;i&lt;&#x3D;size;i++)</span><br><span class="line">		for(int j&#x3D;i;j&lt;&#x3D;size;j++)&#123;</span><br><span class="line">			shang.t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i]&#x3D;t[j*(j-1)&#x2F;2+i-1];</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<p>然后改写一下利用store函数对上三角矩阵的私有变量赋值即可</p>
+<h2 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a>时间复杂度：</h2><p>就是三角矩阵也就是数组的大小，扫一遍赋值即可，用n表示数组大小则复杂度是o(n)的</p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 上三角</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class UpperMatrix&#123;</span><br><span class="line">	public:</span><br><span class="line">		UpperMatrix(int size)&#123;</span><br><span class="line">			n&#x3D;size;t&#x3D;new T [n*(n+1)&#x2F;2];</span><br><span class="line">		&#125;</span><br><span class="line">		~UpperMatrix()&#123;delete [] t;&#125;</span><br><span class="line">		UpperMatrix&lt;T&gt;&amp; Store(const T&amp; x,int i,int j);</span><br><span class="line">		T Retrieve(int i,int j) const;</span><br><span class="line">		UpperMatrix&lt;T&gt; operator+(const UpperMatrix&lt;T&gt;&amp; m) const;</span><br><span class="line">        UpperMatrix&lt;T&gt; operator-(const UpperMatrix&lt;T&gt;&amp; m) const;</span><br><span class="line">		void print();</span><br><span class="line">        void get();</span><br><span class="line">	private:</span><br><span class="line">		int n;</span><br><span class="line">		T *t;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">UpperMatrix&lt;T&gt;&amp; UpperMatrix&lt;T&gt;::Store(const T&amp; x,int i,int j)&#123;</span><br><span class="line">	if(i&lt;1||j&lt;1||i&gt;n||j&gt;n)puts(&quot;WRONG!&quot;);</span><br><span class="line">	if(i&lt;&#x3D;j)t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i]&#x3D;x;</span><br><span class="line">	else if(x!&#x3D;0)puts(&quot;WRONG!&quot;);</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">T UpperMatrix&lt;T&gt;::Retrieve(int i,int j)const&#123;</span><br><span class="line">	if(i&lt;1||j&lt;1||i&gt;n||j&gt;n)puts(&quot;WRONG!&quot;);</span><br><span class="line">	if(i&lt;&#x3D;j)return t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i];</span><br><span class="line">	else return 0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void UpperMatrix&lt;T&gt;::print()&#123;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">		for(int j&#x3D;1;j&lt;&#x3D;i-1;j++)cout&lt;&lt;&quot;  &quot;;</span><br><span class="line">		for(int j&#x3D;i;j&lt;&#x3D;n;j++)&#123;</span><br><span class="line">			cout&lt;&lt;t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i]&lt;&lt;&quot; &quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void UpperMatrix&lt;T&gt;::get()&#123;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)</span><br><span class="line">		for(int j&#x3D;i;j&lt;&#x3D;n;j++)&#123;</span><br><span class="line">			T data;</span><br><span class="line">			cin&gt;&gt;data;</span><br><span class="line">			t[n*(i-1)-(i-1)*(i-2)&#x2F;2+j-i]&#x3D;data;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">UpperMatrix&lt;T&gt; UpperMatrix&lt;T&gt;::operator+(const UpperMatrix&lt;T&gt;&amp; m) const&#123;</span><br><span class="line">	int size&#x3D;n*(n+1)&#x2F;2;</span><br><span class="line">	for(int i&#x3D;0;i&lt;size;i++)this-&gt;t[i]&#x3D;this-&gt;t[i]+m[i];</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">UpperMatrix&lt;T&gt; UpperMatrix&lt;T&gt;::operator-(const UpperMatrix&lt;T&gt;&amp; m) const&#123;</span><br><span class="line">	int size&#x3D;n*(n+1)&#x2F;2;</span><br><span class="line">	for(int i&#x3D;0;i&lt;size;i++)this-&gt;t[i]&#x3D;this-&gt;t[i]-m[i];</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 下三角</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class LowerMatrix&#123;</span><br><span class="line">	public:</span><br><span class="line">		LowerMatrix(int size)&#123;</span><br><span class="line">			n&#x3D;size;t&#x3D;new T [n*(n+1)&#x2F;2];</span><br><span class="line">		&#125;</span><br><span class="line">		~LowerMatrix()&#123;delete [] t;&#125;</span><br><span class="line">		LowerMatrix&lt;T&gt;&amp; Store(const T&amp; x,int i,int j);</span><br><span class="line">		T Retrieve(int i,int j) const;</span><br><span class="line">		LowerMatrix&lt;T&gt; operator+(const LowerMatrix&lt;T&gt;&amp; m) const;</span><br><span class="line">        LowerMatrix&lt;T&gt; operator-(const LowerMatrix&lt;T&gt;&amp; m) const;</span><br><span class="line">        void print();</span><br><span class="line">        void get();</span><br><span class="line">        void zhuanzhi(UpperMatrix&lt;T&gt;&amp; shang);</span><br><span class="line">	private:</span><br><span class="line">		int n;</span><br><span class="line">		T *t;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LowerMatrix&lt;T&gt;&amp; LowerMatrix&lt;T&gt;::Store(const T&amp; x,int i,int j)&#123;</span><br><span class="line">	if(i&lt;1||j&lt;1||i&gt;n||j&gt;n)puts(&quot;WRONG!&quot;);</span><br><span class="line">	if(i&gt;&#x3D;j)t[i*(i-1)&#x2F;2+j-1]&#x3D;x;</span><br><span class="line">	else if(x!&#x3D;0)puts(&quot;WRONG!&quot;);</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">T LowerMatrix&lt;T&gt;::Retrieve(int i,int j)const&#123;</span><br><span class="line">	if(i&lt;1||j&lt;1||i&gt;n||j&gt;n)puts(&quot;WRONG!&quot;);</span><br><span class="line">	if(i&gt;&#x3D;j)return t[i*(i-1)&#x2F;2+j-1];</span><br><span class="line">	else return 0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LowerMatrix&lt;T&gt;::print()&#123;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">		for(int j&#x3D;1;j&lt;&#x3D;i;j++)&#123;</span><br><span class="line">			cout&lt;&lt;t[i*(i-1)&#x2F;2+j-1]&lt;&lt;&quot; &quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int j&#x3D;i+1;j&lt;&#x3D;n;j++)cout&lt;&lt;&quot;  &quot;;</span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LowerMatrix&lt;T&gt;::get()&#123;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)</span><br><span class="line">		for(int j&#x3D;1;j&lt;&#x3D;i;j++)&#123;</span><br><span class="line">			T data;</span><br><span class="line">			cin&gt;&gt;data;</span><br><span class="line">			t[i*(i-1)&#x2F;2+j-1]&#x3D;data;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LowerMatrix&lt;T&gt; LowerMatrix&lt;T&gt;::operator+(const LowerMatrix&lt;T&gt;&amp; m) const&#123;</span><br><span class="line">	int size&#x3D;n*(n+1)&#x2F;2;</span><br><span class="line">	for(int i&#x3D;0;i&lt;size;i++)this-&gt;t[i]&#x3D;this-&gt;t[i]+m[i];</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LowerMatrix&lt;T&gt; LowerMatrix&lt;T&gt;::operator-(const LowerMatrix&lt;T&gt;&amp; m) const&#123;</span><br><span class="line">	int size&#x3D;n*(n+1)&#x2F;2;</span><br><span class="line">	for(int i&#x3D;0;i&lt;size;i++)this-&gt;t[i]&#x3D;this-&gt;t[i]-m[i];</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LowerMatrix&lt;T&gt;::zhuanzhi(UpperMatrix&lt;T&gt;&amp; shang)&#123;</span><br><span class="line">	int size&#x3D;n;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;size;i++)</span><br><span class="line">		for(int j&#x3D;i;j&lt;&#x3D;size;j++)&#123;</span><br><span class="line">			T data&#x3D;t[j*(j-1)&#x2F;2+i-1];</span><br><span class="line">			shang.Store(data,i,j);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	UpperMatrix&lt;int&gt; shang(4);</span><br><span class="line">	LowerMatrix&lt;int&gt; xia(4);</span><br><span class="line">	xia.get();</span><br><span class="line">	cout&lt;&lt;&quot;---下三角矩阵---&quot;&lt;&lt;endl;</span><br><span class="line">	xia.print();</span><br><span class="line">	xia.zhuanzhi(shang);</span><br><span class="line">	cout&lt;&lt;&quot;---转置后的上三角矩阵---&quot;&lt;&lt;endl;</span><br><span class="line">	shang.print();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行效果："><a href="#运行效果：" class="headerlink" title="运行效果："></a>运行效果：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klsvk753j20bf066dg7.jpg" alt=""></p>
+<hr>
+<h1 id="作业二（45）："><a href="#作业二（45）：" class="headerlink" title="作业二（45）："></a>作业二（45）：</h1><p>编写一个方法，把两个存储在一起的一维数组的稀疏矩阵相乘，假定两个矩阵和结果矩阵都是按行主次序存储</p>
+<h2 id="基本思路："><a href="#基本思路：" class="headerlink" title="基本思路："></a>基本思路：</h2><p>首先矩阵乘法的式子是<code>c[i][j]=∑a[i][k]*b[k][j]</code></p>
+<p>由于个数很少，再怎么乘c[i][j]也没几个，所以直接按顺序暴力枚举，可以知道只有在a(i,k)和b(k,j)有相同的k的时候才会对答案产生贡献，将这些c(i,j)存入一个Term型的数组</p>
+<p>由于相乘中可能会有多个c(i,j)具有相同的ij值，所以要把(i,j)相同的相加合并</p>
+<p>此外还有一点是，由于相乘操作中可能产生0，所以最后调用去零的成员函数</p>
+<p>get函数中输入结束后还要进行一下对于非法数据的处理，也就是去重和去0，因为元素个数最多才10个，所以o(n^2)暴力比较即可，无需使用set去重</p>
+<p>去重部分测试结果如图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klsvkpglj20bf06jjs7.jpg" alt=""></p>
+<h2 id="时间复杂度：-1"><a href="#时间复杂度：-1" class="headerlink" title="时间复杂度："></a>时间复杂度：</h2><p>记矩阵当前非0元素个数为n，则复杂度为<code>o(n^2+n^4)</code></p>
+<h2 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h2><p>此代码包括构造函数，拷贝构造函数，析构函数，矩阵转置函数，矩阵相加函数，矩阵相乘函数，输入，显示，去重，去0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">template &lt;class T&gt;</span><br><span class="line">class Term&#123;</span><br><span class="line">	public:</span><br><span class="line">		int row,col;</span><br><span class="line">		T value;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class SparseMatrix&#123;</span><br><span class="line">	public:</span><br><span class="line">		SparseMatrix(int numsize&#x3D;10);</span><br><span class="line">		SparseMatrix(SparseMatrix&lt;T&gt; &amp;b);</span><br><span class="line">		~SparseMatrix() &#123;delete [] t;&#125;</span><br><span class="line">		void Transpose(SparseMatrix&lt;T&gt; &amp;b)const;</span><br><span class="line">		void Add(const SparseMatrix&lt;T&gt; &amp;b,SparseMatrix&lt;T&gt; &amp;c)const;</span><br><span class="line">		void Mul(const SparseMatrix&lt;T&gt; &amp;b,SparseMatrix&lt;T&gt; &amp;c)const;</span><br><span class="line">		void get();</span><br><span class="line">		void show();</span><br><span class="line">		void no_same();</span><br><span class="line">		void no_zero();</span><br><span class="line">	private:</span><br><span class="line">		void Append(const Term&lt;T&gt;&amp; t);</span><br><span class="line">		int hangshu,lieshu,cursize,numsize;</span><br><span class="line">		Term&lt;T&gt; *t;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">SparseMatrix&lt;T&gt;::SparseMatrix(int n)&#123;</span><br><span class="line">	if(n&lt;1)puts(&quot;WRONG!&quot;);</span><br><span class="line">	numsize&#x3D;n;</span><br><span class="line">	t&#x3D;new Term&lt;T&gt; [numsize];</span><br><span class="line">	cursize&#x3D;hangshu&#x3D;lieshu&#x3D;0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">SparseMatrix&lt;T&gt;::SparseMatrix(SparseMatrix&lt;T&gt; &amp;b)&#123;</span><br><span class="line">	hangshu&#x3D;b.hangshu;lieshu&#x3D;b.lieshu;</span><br><span class="line">	cursize&#x3D;b.cursize;numsize&#x3D;b.numsize;</span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++)&#123;</span><br><span class="line">		t[i].row&#x3D;b.t[i].row;</span><br><span class="line">		t[i].col&#x3D;b.t[i].col;</span><br><span class="line">		t[i].value&#x3D;b.t[i].value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template &lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::show()&#123;</span><br><span class="line">	cout&lt;&lt;&quot;行数&#x3D;&quot;&lt;&lt;hangshu&lt;&lt;&quot; 列数&#x3D;&quot;&lt;&lt;lieshu&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;&quot;当前非0元素个数&#x3D;&quot;&lt;&lt;cursize&lt;&lt;endl;</span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++)</span><br><span class="line">		cout&lt;&lt;&quot;t(&quot;&lt;&lt;t[i].row&lt;&lt;&#39;,&#39;&lt;&lt;t[i].col&lt;&lt;&quot;)&#x3D;&quot;&lt;&lt;t[i].value&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::get()&#123;</span><br><span class="line">	cout&lt;&lt;&quot;输入行数列数和非0元素个数：&quot;&lt;&lt;endl;</span><br><span class="line">	cin&gt;&gt;hangshu&gt;&gt;lieshu&gt;&gt;cursize;</span><br><span class="line">	if(cursize&gt;numsize)puts(&quot;空间不足!&quot;);</span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++) &#123;</span><br><span class="line">		cout&lt;&lt;&quot;输入第&quot;&lt;&lt;(i+1)&lt;&lt;&quot;个元素的行号列号和该元素的值：&quot;&lt;&lt;endl;</span><br><span class="line">		cin&gt;&gt;t[i].row&gt;&gt;t[i].col&gt;&gt;t[i].value;</span><br><span class="line">	&#125;</span><br><span class="line">	this-&gt;no_same();</span><br><span class="line">	this-&gt;no_zero();</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::no_same()&#123;</span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++)&#123;</span><br><span class="line">		for(int j&#x3D;i+1;j&lt;cursize;j++)&#123;</span><br><span class="line">			if(t[i].row&#x3D;&#x3D;t[j].row&amp;&amp;t[i].col&#x3D;&#x3D;t[j].col)&#123;</span><br><span class="line">				cursize--;</span><br><span class="line">				for(int k&#x3D;j;k&lt;cursize;k++)&#123;</span><br><span class="line">					t[k].row&#x3D;t[k+1].row;</span><br><span class="line">					t[k].col&#x3D;t[k+1].col;</span><br><span class="line">					t[k].value&#x3D;t[k+1].value;</span><br><span class="line">				&#125;</span><br><span class="line">				j--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::no_zero()&#123;</span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++)&#123;</span><br><span class="line">		if(t[i].value&#x3D;&#x3D;0)&#123;</span><br><span class="line">			cursize--;</span><br><span class="line">			for(int k&#x3D;i;k&lt;cursize;k++)&#123;</span><br><span class="line">				t[k].row&#x3D;t[k+1].row;</span><br><span class="line">				t[k].col&#x3D;t[k+1].col;</span><br><span class="line">				t[k].value&#x3D;t[k+1].value;</span><br><span class="line">			&#125;</span><br><span class="line">			i--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::Transpose(SparseMatrix&lt;T&gt; &amp;b) const&#123;</span><br><span class="line">	if(cursize&gt;b.numsize)puts(&quot;WRONG!&quot;);</span><br><span class="line">	b.lieshu&#x3D;hangshu;</span><br><span class="line">	b.hangshu&#x3D;lieshu;</span><br><span class="line">	b.cursize&#x3D;cursize;</span><br><span class="line">	int *col_nozero,*row_next;</span><br><span class="line">	col_nozero&#x3D;new int[lieshu+1];</span><br><span class="line">	row_next&#x3D;new int[lieshu+1];</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;lieshu;i++)col_nozero[i]&#x3D;0;  </span><br><span class="line">	for(int i&#x3D;0;i&lt;cursize;i++)col_nozero[t[i].col]++;  </span><br><span class="line">	row_next[1]&#x3D;0;</span><br><span class="line">	for(int i&#x3D;2;i&lt;&#x3D;lieshu;i++)row_next[i]&#x3D;row_next[i-1]+col_nozero[i-1];</span><br><span class="line">	for (int i&#x3D;0;i&lt;cursize;i++)&#123;</span><br><span class="line">		int j&#x3D;row_next[t[i].col]++;</span><br><span class="line">		b.t[j].row&#x3D;t[i].col;</span><br><span class="line">		b.t[j].col&#x3D;t[i].row;</span><br><span class="line">		b.t[j].value&#x3D;t[i].value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::Append(const Term&lt;T&gt;&amp; tt)&#123;</span><br><span class="line">	if(cursize&gt;numsize)cout&lt;&lt;&quot;溢出溢出！&quot;&lt;&lt;endl;</span><br><span class="line">	t[cursize]&#x3D;tt;</span><br><span class="line">	cursize++;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::Add(const SparseMatrix&lt;T&gt; &amp;b,SparseMatrix&lt;T&gt; &amp;c)const&#123;</span><br><span class="line">	if(hangshu!&#x3D;b.hangshu||lieshu!&#x3D;b.lieshu)puts(&quot;WRONG!&quot;);</span><br><span class="line">	c.hangshu&#x3D;hangshu;</span><br><span class="line">	c.lieshu&#x3D;lieshu;</span><br><span class="line">	c.cursize&#x3D;0;</span><br><span class="line">	int ct&#x3D;0,cb&#x3D;0;</span><br><span class="line">	while(ct&lt;cursize&amp;&amp;cb&lt;b.cursize)&#123;</span><br><span class="line">		int indt&#x3D;t[ct].row*lieshu+t[ct].col;</span><br><span class="line">		int indb&#x3D;b.t[cb].row*lieshu+b.t[cb].col;</span><br><span class="line">		if(indt&lt;indb)&#123;</span><br><span class="line">			c.Append(t[ct]);</span><br><span class="line">			ct++;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(indt&#x3D;&#x3D;indb)&#123;</span><br><span class="line">			if(t[ct].value+b.t[cb].value)&#123;</span><br><span class="line">				Term&lt;T&gt; tt;</span><br><span class="line">				tt.row&#x3D;t[ct].row;</span><br><span class="line">				tt.col&#x3D;t[ct].col;</span><br><span class="line">				tt.value&#x3D;t[ct].value+b.t[cb].value;</span><br><span class="line">				c.Append(tt);</span><br><span class="line">			&#125;</span><br><span class="line">			ct++;cb++;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			c.Append(b.t[cb]);</span><br><span class="line">			cb++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (;ct&lt;cursize;ct++)</span><br><span class="line">	c.Append(t[ct]);</span><br><span class="line">	for (;cb&lt;b.cursize;cb++)</span><br><span class="line">	c.Append(b.t[cb]);</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void SparseMatrix&lt;T&gt;::Mul(const SparseMatrix&lt;T&gt; &amp;b,SparseMatrix&lt;T&gt; &amp;c)const&#123;</span><br><span class="line">	if(lieshu!&#x3D;b.hangshu)puts(&quot;WRONG!&quot;);</span><br><span class="line">	int ji&#x3D;0;</span><br><span class="line">	c.hangshu&#x3D;hangshu;</span><br><span class="line">	c.lieshu&#x3D;b.lieshu;</span><br><span class="line">	c.cursize&#x3D;0;</span><br><span class="line">	Term&lt;T&gt; *tmp;</span><br><span class="line">	tmp&#x3D;new Term&lt;T&gt; [cursize*b.cursize];</span><br><span class="line">	for(int i&#x3D;0;i&lt;&#x3D;cursize;i++)&#123;</span><br><span class="line">		for(int j&#x3D;0;j&lt;b.cursize;j++)&#123;</span><br><span class="line">			if(t[i].col&#x3D;&#x3D;b.t[j].row)&#123;</span><br><span class="line">				tmp[ji].row&#x3D;t[i].row;</span><br><span class="line">				tmp[ji].col&#x3D;b.t[j].col;</span><br><span class="line">				tmp[ji++].value&#x3D;(t[i].value)*(b.t[j].value);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i&#x3D;0;i&lt;ji;i++)&#123;</span><br><span class="line">		for(int j&#x3D;i+1;j&lt;ji;j++)&#123;</span><br><span class="line">			if(tmp[i].row&#x3D;&#x3D;tmp[j].row&amp;&amp;tmp[i].col&#x3D;&#x3D;tmp[j].col)&#123;</span><br><span class="line">				tmp[i].value&#x3D;tmp[i].value+tmp[j].value;</span><br><span class="line">				ji--;</span><br><span class="line">				for(int k&#x3D;j;k&lt;cursize;k++)&#123;</span><br><span class="line">					tmp[k].row&#x3D;tmp[k+1].row;</span><br><span class="line">					tmp[k].col&#x3D;tmp[k+1].col;</span><br><span class="line">					tmp[k].value&#x3D;tmp[k+1].value;</span><br><span class="line">				&#125;</span><br><span class="line">				j--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i&#x3D;0;i&lt;ji;i++)c.Append(tmp[i]);</span><br><span class="line">	c.no_zero();</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	int n;</span><br><span class="line">	cout&lt;&lt;&quot;请输入稀疏矩阵总非0元素个数：&quot;;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	SparseMatrix&lt;int&gt; m1(n),m2(n),m3(n);</span><br><span class="line">	m1.get();</span><br><span class="line">	m1.show();</span><br><span class="line">	m2.get();</span><br><span class="line">	m2.show();</span><br><span class="line">	m1.Mul(m2,m3);</span><br><span class="line">	m3.show();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行效果：-1"><a href="#运行效果：-1" class="headerlink" title="运行效果："></a>运行效果：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kludf9wwj20b90cf75r.jpg" alt=""></p>
+<hr>
+<h1 id="作业三（51）："><a href="#作业三（51）：" class="headerlink" title="作业三（51）："></a>作业三（51）：</h1><p>给类linkerMatrix增加下列操作：<br>1）已知一个元素的行，列和数值，存储这个元素<br>2）已知一个元素的行和列，从矩阵中取出这个元素<br>3）两个稀疏矩阵相加<br>4）两个稀疏矩阵相减<br>5）两个稀疏矩阵相乘 </p>
+<h2 id="基本思路：-1"><a href="#基本思路：-1" class="headerlink" title="基本思路："></a>基本思路：</h2><p>用单链表的原理存稀疏矩阵，和作业二的数组相比的优点是，不限制稀疏矩阵中非0元素的个数，所以根据单链表的原理添加头节点和尾节点这两个成员</p>
+<p>1）存储某元素相当于单链表的Append方法</p>
+<p>2）取出某元素相当于单链表的Search方法</p>
+<p>3）相加，先判断行数列数合法性，然后我的处理是先把AB中的元素都Append到C中，接着用两个指针循环C，对C中的(i,j)相同的元素执行合并操作，注意最后要去0</p>
+<p>4）和相加原理相同</p>
+<p>5）相乘，原理同作业二，只有在a(i,k)和b(k,j)有相同的k的时候才会对答案产生贡献，将这些相乘的结果Append到C中，然后两个指针对C做合并的操作，最后去0</p>
+<h2 id="时间复杂度：-2"><a href="#时间复杂度：-2" class="headerlink" title="时间复杂度："></a>时间复杂度：</h2><p>存储是o(1)，取出是o(n)，相加是o(2n+n^2)，相减是o(2n+n^2)，相乘是o(n^2+n^4)</p>
+<h2 id="遇到问题及解决："><a href="#遇到问题及解决：" class="headerlink" title="遇到问题及解决："></a>遇到问题及解决：</h2><p>1.析构函数运行后出现野指针</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kludf649j20fz03odg7.jpg" alt=""></p>
+<p>析构函数在delete first前加个判断，还有注意只有一个first的情况，最后是delete first</p>
+<p style="background-color:rgba(255,255,0,0.8)">
+2.（高亮高亮）重载输入输出运算符>><<时声明为友元就不能用。。不声明直接定义就能用了。。这是为什么呢！！！</p>
+
+<p>一系列探索之后，问题转化为-&gt;<font size="6" color=#222222>（类模版+友元函数+重载运算符=？声明怎么写）</font></p>
+<p>之前是这么声明的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">friend ostream&amp; operator&lt;&lt; &lt;T&gt;(ostream&amp;,LinkedMatrix&amp;);</span><br><span class="line">friend istream&amp; operator&gt;&gt; &lt;T&gt;(istream&amp;,LinkedMatrix&amp;);</span><br></pre></td></tr></table></figure>
+
+<p>在经历了掉头发and掉头发and掉头发之后！！终于找到了资料！如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kludg3xzj20i50edgn5.jpg" alt=""></p>
+<p>也就是说，我一开始的写法虽然是个大众方法，但是由于编译环境的不同，<font size="6" color=#222222>和标准库有冲突</font>，在sublime，devc++和codeblocks等是运行不了的</p>
+<p>所以怎么办呢？</p>
+<p><font size="6" color=#222222>在类中声明friend的时候，要定义一个和T不同的模板参数U</font></p>
+<p>如下格式，问题完美解决<del>(≧▽≦)/</del>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">template &lt;class U&gt;</span><br><span class="line">friend ostream&amp; operator&lt;&lt; (ostream&amp;,LinkedMatrix&lt;U&gt;&amp;);</span><br><span class="line">template &lt;class U&gt;</span><br><span class="line">friend istream&amp; operator&gt;&gt; (istream&amp;,LinkedMatrix&lt;U&gt;&amp;);</span><br></pre></td></tr></table></figure>
+
+<p>然后具体定义的时候是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">istream&amp; operator&gt;&gt; (istream&amp; is,LinkedMatrix&lt;T&gt;&amp; L)&#123;</span><br><span class="line">	&#x2F;&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.delete存在没有解决的问题</p>
+<p>反正存在问题就是了，我还没懂，结案</p>
+<h2 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">template &lt;class T&gt;</span><br><span class="line">class Node&#123;</span><br><span class="line">public:</span><br><span class="line">	int row,col;</span><br><span class="line">    T value;</span><br><span class="line">    Node&lt;T&gt; *next;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">class LinkedMatrix&#123;</span><br><span class="line">	template &lt;class U&gt;</span><br><span class="line">	friend ostream&amp; operator&lt;&lt; (ostream&amp;,LinkedMatrix&lt;U&gt;&amp;);</span><br><span class="line">	template &lt;class U&gt;</span><br><span class="line">	friend istream&amp; operator&gt;&gt; (istream&amp;,LinkedMatrix&lt;U&gt;&amp;);</span><br><span class="line">	public:</span><br><span class="line">		LinkedMatrix()&#123;</span><br><span class="line">			first&#x3D;NULL;last&#x3D;NULL;</span><br><span class="line">			hangshu&#x3D;lieshu&#x3D;cursize&#x3D;0;</span><br><span class="line">		&#125;;</span><br><span class="line">		LinkedMatrix(LinkedMatrix&lt;T&gt; &amp;B);</span><br><span class="line">		~LinkedMatrix();</span><br><span class="line">		LinkedMatrix operator&#x3D;(LinkedMatrix&lt;T&gt; &amp;B);</span><br><span class="line">		int Search(int i,int j,const T&amp; x)const; </span><br><span class="line">		void Append(int i,int j,const T&amp; x);</span><br><span class="line">		LinkedMatrix&lt;T&gt;&amp; Delete(int k);</span><br><span class="line">		void no_zero();</span><br><span class="line">		void Add(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const;</span><br><span class="line">		void Sub(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const;</span><br><span class="line">		void Mul(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const;</span><br><span class="line">		void get();</span><br><span class="line">		void show();</span><br><span class="line">		void Erase();</span><br><span class="line">	public:</span><br><span class="line">		int hangshu,lieshu,cursize;</span><br><span class="line">		Node&lt;T&gt; *first,*last;</span><br><span class="line">&#125;;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LinkedMatrix&lt;T&gt;::~LinkedMatrix()&#123;</span><br><span class="line">	Node&lt;T&gt; *p;</span><br><span class="line">	while(first-&gt;next!&#x3D;NULL)&#123;</span><br><span class="line">		p&#x3D;first-&gt;next;</span><br><span class="line">		if(first)&#123;</span><br><span class="line">			delete first;</span><br><span class="line">			first&#x3D;NULL;</span><br><span class="line">		&#125;</span><br><span class="line">		first&#x3D;p;</span><br><span class="line">	&#125;</span><br><span class="line">	delete first;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LinkedMatrix&lt;T&gt;::LinkedMatrix(LinkedMatrix&lt;T&gt; &amp;B)&#123;</span><br><span class="line">	Node&lt;T&gt; *b;</span><br><span class="line">	for(b&#x3D;B.first;b;b&#x3D;b-&gt;next)&#123;</span><br><span class="line">		Node&lt;T&gt; *y&#x3D;new Node&lt;T&gt;;</span><br><span class="line">		y-&gt;row&#x3D;b-&gt;row;</span><br><span class="line">		y-&gt;col&#x3D;b-&gt;col;</span><br><span class="line">		y-&gt;value&#x3D;b-&gt;value;</span><br><span class="line">		if(first!&#x3D;NULL)&#123;</span><br><span class="line">			last-&gt;next&#x3D;y;</span><br><span class="line">			last&#x3D;y;</span><br><span class="line">		&#125;</span><br><span class="line">		else first&#x3D;last&#x3D;y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LinkedMatrix&lt;T&gt; LinkedMatrix&lt;T&gt;::operator&#x3D;(LinkedMatrix&lt;T&gt; &amp;B)&#123;	</span><br><span class="line">	Node&lt;T&gt; *b;</span><br><span class="line">	for(b&#x3D;B.first;b;b&#x3D;b-&gt;next)&#123;</span><br><span class="line">		Node&lt;T&gt; *y&#x3D;new Node&lt;T&gt;;</span><br><span class="line">		y-&gt;row&#x3D;b-&gt;row;</span><br><span class="line">		y-&gt;col&#x3D;b-&gt;col;</span><br><span class="line">		y-&gt;value&#x3D;b-&gt;value;</span><br><span class="line">		if(first!&#x3D;NULL)&#123;</span><br><span class="line">			last-&gt;next&#x3D;y;</span><br><span class="line">			last&#x3D;y;</span><br><span class="line">		&#125;</span><br><span class="line">		else first&#x3D;last&#x3D;y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">istream&amp; operator&gt;&gt; (istream&amp; is,LinkedMatrix&lt;T&gt;&amp; L)&#123;</span><br><span class="line">	cout&lt;&lt;&quot;输入行数列数和非0元素个数：&quot;&lt;&lt;endl;</span><br><span class="line">	is&gt;&gt;L.hangshu&gt;&gt;L.lieshu&gt;&gt;L.cursize;</span><br><span class="line">	int i,j;</span><br><span class="line">	T data;</span><br><span class="line">	int num&#x3D;L.cursize;</span><br><span class="line">	for(int k&#x3D;0;k&lt;num;k++) &#123;</span><br><span class="line">		cout&lt;&lt;&quot;输入第&quot;&lt;&lt;(k+1)&lt;&lt;&quot;个元素的行号列号和该元素的值：&quot;&lt;&lt;endl;</span><br><span class="line">		is&gt;&gt;i&gt;&gt;j&gt;&gt;data;</span><br><span class="line">		if(i&gt;L.hangshu||j&gt;L.lieshu)&#123;</span><br><span class="line">			cout&lt;&lt;&quot;输入了无效的行列！请重新输入&quot;&lt;&lt;endl;</span><br><span class="line">			k--;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(data&#x3D;&#x3D;0)cout&lt;&lt;&quot;输入0了！这个数据会自动去除&quot;&lt;&lt;endl;</span><br><span class="line">		else L.Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	L.no_zero();</span><br><span class="line">	return is;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">ostream&amp; operator&lt;&lt; (ostream&amp; os,LinkedMatrix&lt;T&gt;&amp; L)&#123;</span><br><span class="line">	os&lt;&lt;&quot;行数&#x3D;&quot;&lt;&lt;L.hangshu&lt;&lt;&quot; 列数&#x3D;&quot;&lt;&lt;L.lieshu&lt;&lt;endl;</span><br><span class="line">	os&lt;&lt;&quot;当前非0元素个数&#x3D;&quot;&lt;&lt;L.cursize&lt;&lt;endl;</span><br><span class="line">	Node&lt;T&gt; *current;</span><br><span class="line">	for(current&#x3D;L.first;current;current&#x3D;current-&gt;next)</span><br><span class="line">		os&lt;&lt;&quot;M(&quot;&lt;&lt;current-&gt;row&lt;&lt;&#39;,&#39;&lt;&lt;current-&gt;col&lt;&lt;&quot;)&#x3D;&quot;&lt;&lt;current-&gt;value&lt;&lt;endl;</span><br><span class="line">	return os;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::get()&#123;</span><br><span class="line">	cout&lt;&lt;&quot;输入行数列数和非0元素个数：&quot;&lt;&lt;endl;</span><br><span class="line">	cin&gt;&gt;hangshu&gt;&gt;lieshu&gt;&gt;cursize;</span><br><span class="line">	int i,j;</span><br><span class="line">	T data;</span><br><span class="line">	int num&#x3D;cursize;</span><br><span class="line">	for(int k&#x3D;0;k&lt;num;k++) &#123;</span><br><span class="line">		cout&lt;&lt;&quot;输入第&quot;&lt;&lt;(k+1)&lt;&lt;&quot;个元素的行号列号和该元素的值：&quot;&lt;&lt;endl;</span><br><span class="line">		cin&gt;&gt;i&gt;&gt;j&gt;&gt;data;</span><br><span class="line">		if(i&gt;hangshu||j&gt;lieshu)&#123;</span><br><span class="line">			cout&lt;&lt;&quot;输入了无效的行列！请重新输入&quot;&lt;&lt;endl;</span><br><span class="line">			k--;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(data&#x3D;&#x3D;0)cout&lt;&lt;&quot;输入0了！这个数据会自动去除&quot;&lt;&lt;endl;</span><br><span class="line">		else this-&gt;Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	this-&gt;no_zero();</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::show()&#123;</span><br><span class="line">	cout&lt;&lt;&quot;行数&#x3D;&quot;&lt;&lt;hangshu&lt;&lt;&quot; 列数&#x3D;&quot;&lt;&lt;lieshu&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;&quot;当前非0元素个数&#x3D;&quot;&lt;&lt;cursize&lt;&lt;endl;</span><br><span class="line">	Node&lt;T&gt; *current;</span><br><span class="line">	for(current&#x3D;first;current;current&#x3D;current-&gt;next)</span><br><span class="line">		cout&lt;&lt;&quot;t(&quot;&lt;&lt;current-&gt;row&lt;&lt;&#39;,&#39;&lt;&lt;current-&gt;col&lt;&lt;&quot;)&#x3D;&quot;&lt;&lt;current-&gt;value&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::Erase()&#123;</span><br><span class="line">	if(cursize&#x3D;&#x3D;0)return;</span><br><span class="line">	Node&lt;T&gt; *p;</span><br><span class="line">	p&#x3D;first;</span><br><span class="line">	while(first-&gt;next!&#x3D;NULL)&#123;</span><br><span class="line">		p&#x3D;first-&gt;next;</span><br><span class="line">		delete first;</span><br><span class="line">		first&#x3D;p;</span><br><span class="line">	&#125;</span><br><span class="line">	delete p;</span><br><span class="line">	hangshu&#x3D;lieshu&#x3D;cursize&#x3D;0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">int LinkedMatrix&lt;T&gt;::Search(int i,int j,const T &amp;x)const&#123;</span><br><span class="line">    Node&lt;T&gt; *current&#x3D;first;</span><br><span class="line">    int index&#x3D;1;</span><br><span class="line">    while(current&amp;&amp;!(current-&gt;row&#x3D;&#x3D;i&amp;&amp;current-&gt;col&#x3D;&#x3D;j))&#123;</span><br><span class="line">        current&#x3D;current-&gt;next;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    if(current)&#123;</span><br><span class="line">    	x&#x3D;current-&gt;value;</span><br><span class="line">    	return index;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::Append(int i,int j,const T&amp; x)&#123;</span><br><span class="line">	Node&lt;T&gt; *y&#x3D;new Node&lt;T&gt;;</span><br><span class="line">	y-&gt;value&#x3D;x;y-&gt;row&#x3D;i;y-&gt;col&#x3D;j;</span><br><span class="line">	y-&gt;next&#x3D;NULL;</span><br><span class="line">	if(first!&#x3D;NULL)&#123;</span><br><span class="line">	    last-&gt;next&#x3D;y;</span><br><span class="line">	    last&#x3D;y;</span><br><span class="line">	&#125;</span><br><span class="line">	else first&#x3D;last&#x3D;y;</span><br><span class="line">	cursize++;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">LinkedMatrix&lt;T&gt;&amp; LinkedMatrix&lt;T&gt;::Delete(int k)&#123;</span><br><span class="line">    if(k&lt;1||!first||k&gt;cursize)cout&lt;&lt;&quot;删除出错！&quot;&lt;&lt;endl;</span><br><span class="line">    Node&lt;T&gt; *p&#x3D;first;</span><br><span class="line">    if(k&#x3D;&#x3D;1)first&#x3D;first-&gt;next;</span><br><span class="line">    else&#123;</span><br><span class="line">        Node&lt;T&gt; *q&#x3D;first;</span><br><span class="line">        for(int index&#x3D;1;index&lt;k-1&amp;&amp;q;index++)q&#x3D;q-&gt;next;</span><br><span class="line">        if(!q||!q-&gt;next)cout&lt;&lt;&quot;WORNG&quot;&lt;&lt;endl;</span><br><span class="line">        p&#x3D;q-&gt;next;</span><br><span class="line">        q-&gt;next&#x3D;p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cursize--;</span><br><span class="line">    delete p;</span><br><span class="line">    return *this;</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::no_zero()&#123;</span><br><span class="line">	Node&lt;T&gt; *current;</span><br><span class="line">	int ji;</span><br><span class="line">    for(current&#x3D;first,ji&#x3D;1;current;current&#x3D;current-&gt;next,ji++)</span><br><span class="line">    	if(current-&gt;value&#x3D;&#x3D;0)Delete(ji);</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::Add(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const&#123;</span><br><span class="line">	if(B.hangshu!&#x3D;hangshu||B.lieshu!&#x3D;lieshu)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;WRONG!&quot;&lt;&lt;endl;return;</span><br><span class="line">	&#125;</span><br><span class="line">	C.hangshu&#x3D;hangshu;C.lieshu&#x3D;lieshu;</span><br><span class="line">	Node&lt;T&gt; *a,*b,*c,*p;</span><br><span class="line">	int i,j;</span><br><span class="line">	T data;</span><br><span class="line">	c&#x3D;C.first;</span><br><span class="line">	for(a&#x3D;first;a;a&#x3D;a-&gt;next)&#123;</span><br><span class="line">		i&#x3D;a-&gt;row;j&#x3D;a-&gt;col;data&#x3D;a-&gt;value;</span><br><span class="line">		C.Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	for(b&#x3D;B.first;b;b&#x3D;b-&gt;next)&#123;</span><br><span class="line">		i&#x3D;b-&gt;row;j&#x3D;b-&gt;col;data&#x3D;b-&gt;value;</span><br><span class="line">		C.Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	for(c&#x3D;C.first,i&#x3D;1;c;c&#x3D;c-&gt;next,i++)&#123;</span><br><span class="line">		for(p&#x3D;c-&gt;next,j&#x3D;i+1;p;j++)&#123;</span><br><span class="line">			if(c-&gt;row&#x3D;&#x3D;p-&gt;row&amp;&amp;c-&gt;col&#x3D;&#x3D;p-&gt;col)&#123;</span><br><span class="line">				c-&gt;value&#x3D;c-&gt;value+p-&gt;value;</span><br><span class="line">				C.Delete(j);</span><br><span class="line">			&#125;</span><br><span class="line">			if(p)p&#x3D;p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	C.no_zero();</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::Sub(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const&#123;</span><br><span class="line">	if(B.hangshu!&#x3D;hangshu||B.lieshu!&#x3D;lieshu)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;WRONG!&quot;&lt;&lt;endl;return;</span><br><span class="line">	&#125;</span><br><span class="line">	C.hangshu&#x3D;hangshu;C.lieshu&#x3D;lieshu;</span><br><span class="line">	Node&lt;T&gt; *a,*b,*c,*p;</span><br><span class="line">	int i,j;</span><br><span class="line">	T data;</span><br><span class="line">	c&#x3D;C.first;</span><br><span class="line">	for(a&#x3D;first;a;a&#x3D;a-&gt;next)&#123;</span><br><span class="line">		i&#x3D;a-&gt;row;j&#x3D;a-&gt;col;data&#x3D;a-&gt;value;</span><br><span class="line">		C.Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	for(b&#x3D;B.first;b;b&#x3D;b-&gt;next)&#123;</span><br><span class="line">		i&#x3D;b-&gt;row;j&#x3D;b-&gt;col;data&#x3D;-(b-&gt;value);</span><br><span class="line">		C.Append(i,j,data);</span><br><span class="line">	&#125;</span><br><span class="line">	for(c&#x3D;C.first,i&#x3D;1;c;c&#x3D;c-&gt;next,i++)&#123;</span><br><span class="line">		for(p&#x3D;c-&gt;next,j&#x3D;i+1;p;j++)&#123;</span><br><span class="line">			if(c-&gt;row&#x3D;&#x3D;p-&gt;row&amp;&amp;c-&gt;col&#x3D;&#x3D;p-&gt;col)&#123;</span><br><span class="line">				c-&gt;value&#x3D;c-&gt;value+p-&gt;value;</span><br><span class="line">				C.Delete(j);</span><br><span class="line">			&#125;</span><br><span class="line">			if(p)p&#x3D;p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	C.no_zero();</span><br><span class="line">&#125;</span><br><span class="line">template&lt;class T&gt;</span><br><span class="line">void LinkedMatrix&lt;T&gt;::Mul(const LinkedMatrix&lt;T&gt; &amp;B,LinkedMatrix&lt;T&gt; &amp;C)const&#123;</span><br><span class="line">	if(B.hangshu!&#x3D;lieshu)&#123;</span><br><span class="line">		cout&lt;&lt;&quot;WRONG!&quot;&lt;&lt;endl;return;</span><br><span class="line">	&#125;</span><br><span class="line">	C.hangshu&#x3D;hangshu;C.lieshu&#x3D;B.lieshu;</span><br><span class="line">	Node&lt;T&gt; *a,*b,*c,*p;</span><br><span class="line">	int i,j;</span><br><span class="line">	T data;</span><br><span class="line">	c&#x3D;C.first;</span><br><span class="line">	for(a&#x3D;first;a;a&#x3D;a-&gt;next)&#123;</span><br><span class="line">		for(b&#x3D;B.first;b;b&#x3D;b-&gt;next)&#123;</span><br><span class="line">			if(a-&gt;col&#x3D;&#x3D;b-&gt;row)&#123;</span><br><span class="line">				i&#x3D;a-&gt;row;j&#x3D;b-&gt;col;data&#x3D;(a-&gt;value)*(b-&gt;value);</span><br><span class="line">				C.Append(i,j,data);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(c&#x3D;C.first,i&#x3D;1;c;c&#x3D;c-&gt;next,i++)&#123;</span><br><span class="line">		for(p&#x3D;c-&gt;next,j&#x3D;i+1;p;j++)&#123;</span><br><span class="line">			if(c-&gt;row&#x3D;&#x3D;p-&gt;row&amp;&amp;c-&gt;col&#x3D;&#x3D;p-&gt;col)&#123;</span><br><span class="line">				c-&gt;value&#x3D;c-&gt;value+p-&gt;value;</span><br><span class="line">				C.Delete(j);</span><br><span class="line">			&#125;</span><br><span class="line">			if(p)p&#x3D;p-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	C.no_zero();</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LinkedMatrix&lt;int&gt; A,B,C;</span><br><span class="line">	cin&gt;&gt;A;</span><br><span class="line">	cin&gt;&gt;B;</span><br><span class="line">	A.Add(B,C);</span><br><span class="line">	cout&lt;&lt;&quot;-------A+B-------&quot;&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;C;</span><br><span class="line">	C.Erase();</span><br><span class="line">	A.Sub(B,C);</span><br><span class="line">	cout&lt;&lt;&quot;-------A-B-------&quot;&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;C;</span><br><span class="line">	C.Erase();</span><br><span class="line">	A.Mul(B,C);</span><br><span class="line">	cout&lt;&lt;&quot;-------A*B-------&quot;&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;C;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行效果：-2"><a href="#运行效果：-2" class="headerlink" title="运行效果："></a>运行效果：</h2><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klvivr2nj20cb0fftag.jpg" alt=""></p>
+<p>去0效果：</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4klvixcb0j20dy0c6myk.jpg" alt=""></p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/10336297/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数据结构第?次作业（bfs+路径打印）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/a8a3dabc/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">递归 —— 汉诺塔&amp;双色汉诺塔（分离型）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

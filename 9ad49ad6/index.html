@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    循环小数及其位数的有趣性质及详细定理证明 |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-循环小数及其位数的有趣性质及详细定理证明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  循环小数及其位数的有趣性质及详细定理证明
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/9ad49ad6/" class="article-date">
+  <time datetime="2019-03-11T13:08:00.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/9ad49ad6/" class="leancloud_visitors" data-flag-title="循环小数及其位数的有趣性质及详细定理证明"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>最近什么都学不进去。。明明有很多事要干但是又什么都不想干。。Σ（ﾟдﾟlll）！是焦虑的感觉！所以不如学论文好了。。要是学不会就会更焦虑，然后就真的更焦虑了。。</p>
+<hr>
+<p>学一篇有关循环小数的一些性质的论文，我不知道循环节那个点应该如何打出来，太麻烦了，所以下文小数括号里的部分表示循环节</p>
+<a id="more"></a>
+
+<h1 id="1-分数和循环小数的互化"><a href="#1-分数和循环小数的互化" class="headerlink" title="1.分数和循环小数的互化"></a>1.分数和循环小数的互化</h1><p>如果是分数化成循环小数就是小学除法，如果是循环小数化成分数就是解方程，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1&#x2F;7&#x3D;0.(142857)</span><br><span class="line"></span><br><span class="line">x&#x3D;0.(142857)</span><br><span class="line">1000000x&#x3D;142857+x</span><br><span class="line">999999x&#x3D;142857</span><br><span class="line">x&#x3D;1&#x2F;7</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-一个奇妙的性质"><a href="#2-一个奇妙的性质" class="headerlink" title="2.一个奇妙的性质"></a>2.一个奇妙的性质</h1><p>观察以下几个循环节位数为偶数的数，假设循环节长度为2n，那么可以发现，前后分成两段，第k个数和第k+n个数的和永远等于9！？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x2F;7&#x3D;0.(142 857)</span><br><span class="line">1&#x2F;13&#x3D;0.(076 923)</span><br><span class="line">1&#x2F;17&#x3D;0.(0588 2352 9411 7647)</span><br><span class="line">1&#x2F;73&#x3D;0.(0136 9863)</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kod7469bj205i05i0sr.jpg" alt=""></p>
+<p>上面的性质不是偶然，而是必然，下文将通过一些数论知识证明</p>
+<h1 id="3-定理1"><a href="#3-定理1" class="headerlink" title="3.定理1"></a>3.定理1</h1><h2 id="3-1-定理1的提出"><a href="#3-1-定理1的提出" class="headerlink" title="3.1.定理1的提出"></a>3.1.定理1的提出</h2><p>同余的概念是：如果n可以整除(a-b)，那么在模n下，a与b同余，比如，<code>(5-(-2))/7=1</code>，<code>5≡−2(mod 7)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1&#x2F;97 &#x3D; 0.(0103 0927 8350 5154 6391</span><br><span class="line">7525 7731 9587 6288 6597</span><br><span class="line">9381 4432 9896 9072 1649</span><br><span class="line">4845 3608 2474 2268 0412</span><br><span class="line">3711 3402 0618 5567)</span><br></pre></td></tr></table></figure>
+
+<p>对于上面这样一个96位循环节的数：97是质数，96是位数，那么96可以整除(97-1)</p>
+<p>抛出如下结论，<font size="3" color=#5959ff>「定理0」：如果p是质数，q是<code>1/p</code>的循环节的位数，那么q可以整除(p-1)</font></p>
+<p>更一般的，有<font size="3" color=#5959ff>「定理1」：如果<code>1≤b&lt;a</code>，a没有2或5的质因数，并且a与b互质，那么b/a的循环节位数恰好等于：<code>min{e ∈ N:10^e≡1(mod a)}</code></font></p>
+<p>例如，<code>10^6≡1(mod 91)</code>，因此<code>69/91</code>的循环节位数必定<code>≤6</code>，那么如果已经检查过<code>e=1,2,3,4,5</code>的情况并且<code>10^e</code>和1在模91下不同余，那么就可以确定<code>69/91</code>恰好有六位循环节</p>
+<p>那么如果碰到一个a包含了2或5的因数该如何处理呢？</p>
+<p>比如<code>489/235</code>，把分母中2或5的因数提出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">489&#x2F;235&#x3D;489&#x2F;(5*47)&#x3D;(2*489)&#x2F;(10*47)&#x3D;(1&#x2F;10)*(978&#x2F;47)&#x3D;(1&#x2F;10)*(20+38&#x2F;47)</span><br><span class="line"></span><br><span class="line">由此转换可知，489&#x2F;235的循环节和38&#x2F;47是一样的</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-定理1的证明"><a href="#3-2-定理1的证明" class="headerlink" title="3.2.定理1的证明"></a>3.2.定理1的证明</h2><p>现在来证明定理1：</p>
+<p>设<code>d=min{e ∈ N:10^e≡1(mod a)}</code>，如果a/b有r位的循环节，即<code>b/a=0.s1s2...sk(c1c2...cr)</code>，按照第一点小数转分数的方法，两边同时乘以<code>10^r</code>，然后移项会得到<code>(10^r-1)b/a=(10^r)*(0.s1s2...sk)</code>，两边再同时乘以<code>10^s</code>，可以得到<code>(10^s)*(10^r-1)b/a</code>必定是个正整数，那么就存在一个m，使<code>10^s(10^r−1)b=am</code>成立</p>
+<p>因为ab互质，a与10也互质，那么由这个式子得a一定可以整除<code>10^r-1</code>，也就是<code>10^r≡1(mod a)</code>，那么根据一开始假设的关于d的定义，可知<code>d≤r</code></p>
+<p>另一方面，由d的定义又可得：a整除<code>10^d-1</code>，所以a整除<code>b(10^d-1)</code>，那么存在一个q，使<code>(10^d−1)b=aq</code>成立，移项得：<code>10^d*b=aq+b</code></p>
+<p>因为<code>1≤b&lt;a</code>，所以b是<code>10^d*b/a</code>的余数，b是整数，可知<code>d≥循环节位数r</code>（这里论文里的符号应该是写反了，我就擅自修改了，如果我的理解没错的话）</p>
+<p>综上所述，<code>d≤r，d≥r</code>，那么d=r，即循环节位数等于：<code>min{e ∈ N:10^e≡1(mod a)}</code></p>
+<h1 id="4-定理2"><a href="#4-定理2" class="headerlink" title="4.定理2"></a>4.定理2</h1><p><font size="3" color=#5959ff>「定理2」：如果<code>1≤b&lt;a</code>，a没有2或5的质因数，并且a与b互质，那么b/a的循环节位数必整除<code>φ(a)</code></font></p>
+<p>这里的<code>φ(a)</code>是欧拉函数</p>
+<p>证明利用欧拉定理：(下图是论文中的证明，就一句话。。什么乘法群的秩我太菜了一时半会儿没有领会0.0)</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kod77nd6j208003174f.jpg" alt=""></p>
+<blockquote>
+<p>欧拉函数<code>φ(n)</code>是小于或等于n的正整数中与n互质的数的数目</p>
+<p>欧拉定理：若n,a为正整数，且n,a互素（即gcd(a,n)=1），则<code>a^φ(n)≡1(mod n)</code></p>
+</blockquote>
+<p>证明如下：</p>
+<p>因为由定理1已知循环节位数等于：<code>d=min{e ∈ N:10^e≡1(mod a)}</code>，即<code>10^d≡1(mod a)</code>，且d是满足这个式子的最小值，由欧拉定理，因为10与a互质，所以有<code>10^φ(a)≡1(mod a)</code>，所以d整除<code>φ(a)</code>成立</p>
+<h1 id="5-定理3"><a href="#5-定理3" class="headerlink" title="5.定理3"></a>5.定理3</h1><p><font size="3" color=#5959ff>「定理3」：如果<code>n,m≥3</code>，2与5都不整除mn，并且n与m是互质的正整數,则<code>1/mn</code>的循环小数位数是<code>1/m</code>与<code>1/n</code>循环小数位数的最小公倍数</font></p>
+<p>论文里又是一句话证明。。头秃</p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kod740ngj208101jdfr.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kodnnssvj203c02zglf.jpg" alt=""></p>
+<p>证明：</p>
+<p>首先<code>1/m</code>的循环小数位数就是<code>n/m</code>的循环小数位数，同理<code>1/n</code>的循环小数位数就是<code>m/n</code>的循环小数位数，由定理1可知<code>1/m</code>的循环小数位数是<code>e1=min{e ∈ N:10^e≡1(mod m)}</code>，同理有<code>1/n</code>的循环小数位数是<code>e2=min{e ∈ N:10^e≡1(mod n)}</code>，<code>1/mn</code>的循环小数位数是<code>e3=min{e ∈ N:10^e≡1(mod mn)}</code></p>
+<p>然后要证e3是e1与e2的最小公倍数，不会证了不想证了。。先放着吧mark</p>
+<h1 id="6-Artin猜想"><a href="#6-Artin猜想" class="headerlink" title="6.Artin猜想"></a>6.Artin猜想</h1><p><img src="http://ww1.sinaimg.cn/large/dda38d2bly1g4kodnpbhcj20fg07oabe.jpg" alt=""></p>
+<p>由表可以发现，<code>1/p</code>的循环节位数恰好是<code>p−1</code>的质数很多，例如，p=7,17,19,23,29,47,59,61……</p>
+<p>oeis上收录了这个数列：<a href="http://oeis.org/search?q=7%2C17%2C19%2C23%2C29%2C47%2C59%2C61&amp;language=english&amp;go=Search" target="_blank" rel="noopener">http://oeis.org/search?q=7%2C17%2C19%2C23%2C29%2C47%2C59%2C61&amp;language=english&amp;go=Search</a></p>
+<p>Artin猜想：是不是有无穷多的质数p使得1/p的循环节恰有p−1位?这种质数的数目能否有个比较精确的估计?</p>
+<p>结论与证明如下：</p>
+<p>设p是奇质数，如果<code>1/p</code>有d位循环节，利用定理1可以证明：<code>1/p^2</code>的循环节位数是d或者dp，同理，若<code>1/p^n</code>的循环节位数是<code>dp^m(0≤m&lt;n)</code>，则<code>1/p^(n+1)</code>的循环节位数是<code>dp^m</code>或<code>dp^(m+1)</code></p>
+<h1 id="7-证明和为9的奇妙性质"><a href="#7-证明和为9的奇妙性质" class="headerlink" title="7.证明和为9的奇妙性质"></a>7.证明和为9的奇妙性质</h1><p>回到第二点的那个奇妙的性质：假设循环节长度为2n，前后分成两段，第k个数和第k+n个数的和永远等于9</p>
+<p>证明如下：（好像没有很严谨的证明，但是论文里的大致就是这个意思，意会意会( ? _ ? )）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">比如24&#x2F;91，10^6≡1(mod 91)，10^3≡−1(mod 91)，</span><br><span class="line">91整除(10^3+1), 91也整除24*(10^3+1)&#x3D;24+24000</span><br><span class="line"></span><br><span class="line">24&#x2F;91&#x3D;0.(263 736)</span><br><span class="line">24000&#x2F;91&#x3D;n+0.(736 263)</span><br><span class="line">24&#x2F;91+24000&#x2F;91&#x3D;1</span><br><span class="line"></span><br><span class="line">那么这两个数相加只能是0.9999999999999999……</span><br><span class="line"></span><br><span class="line">所以必然会有和为9的性质</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-定理5"><a href="#8-定理5" class="headerlink" title="8.定理5"></a>8.定理5</h1><p><font size="3" color=#5959ff>「定理5」：如果<code>p≥7</code>是个质数，n与m是任意正整数且p不整除m，则m/p^n的循环节有偶数位，将此循环节分成前后两段，则此两段之对应项的和皆为9</font></p>
+<h1 id="9-summary"><a href="#9-summary" class="headerlink" title="9.summary"></a>9.summary</h1><p>后面就随便看看了。。还有一些例题。。先这样吧，其实最重要的就是定理一，几个例子大都用到了定理一的结论</p>
+<p>总结一下这几个定理：</p>
+<p><font size="3" color=#1357ff>1.如果<code>1≤b&lt;a</code>，a没有2或5的质因数，并且a与b互质，那么b/a的循环节位数恰好等于：<code>min{e ∈ N:10^e≡1(mod a)}</code></font><br></p>
+<p><font size="3" color=#1357ff>2.如果<code>1≤b&lt;a</code>，a没有2或5的质因数，并且a与b互质，那么b/a的循环节位数必整除<code>φ(a)</code></font><br></p>
+<p><font size="3" color=#1357ff>3.如果<code>n,m≥3</code>，2与5都不整除mn，并且n与m是互质的正整數,则<code>1/mn</code>的循环小数位数是<code>1/m</code>与<code>1/n</code>循环小数位数的最小公倍数</font><br></p>
+<p><font size="3" color=#1357ff>4.设p是奇质数，如果<code>1/p</code>有d位循环节，<code>1/p^2</code>的循环节位数是d或者dp；若<code>1/p^n</code>的循环节位数是<code>dp^m(0≤m&lt;n)</code>，则<code>1/p^(n+1)</code>的循环节位数是<code>dp^m</code>或<code>dp^(m+1)</code></font><br></p>
+<p><font size="3" color=#1357ff>5.如果<code>p≥7</code>是个质数，n与m是任意正整数且p不整除m，则m/p^n的循环节有偶数位，将此循环节分成前后两段，则此两段之对应项的和皆为9</font><br></p>
+<hr>
+<p>最后放上论文出处：<a href="https://w3.math.sinica.edu.tw/math_media/d253/25311.pdf" target="_blank" rel="noopener">循环小数 康明昌</a></p>
+<br>
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/4d078eb9/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            51nod 1035 最长的循环节（循环小数定理）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/f15c0cd9/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">macOS下进行Verilog仿真（Sublime Text3配置verilog代码环境）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    《信息检索》一个简单的古诗词检索系统（双词索引） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-古诗词检索系统" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  《信息检索》一个简单的古诗词检索系统（双词索引）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/87c5ccc3/" class="article-date">
+  <time datetime="2020-02-02T13:55:00.000Z" itemprop="datePublished">2020-02-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E4%BD%9C%E4%B8%9A/">一些作业</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/87c5ccc3/" class="leancloud_visitors" data-flag-title="《信息检索》一个简单的古诗词检索系统（双词索引）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>前排放效果图（UI很难看啦，但是tkinter好<s>偷懒</s>简洁的嘛，几行就写完了）</p>
+<table><tr>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpcz5plrj30av04hgls.jpg" width="250"></td>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpd4xzewj30b0047mxe.jpg" width="250"></td>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpdc89mdj309x040jrn.jpg" width="250"></td>
+</tr></table>
+
+<a id="more"></a>
+
+<table><tr>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpeui6jkj30az0fkdh5.jpg" width="250"></td>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpf7udmmj30b10cn0tv.jpg" width="250"></td>
+<td><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbkpfed861j30b20d0gmb.jpg" width="250"></td>
+</tr></table>
+
+<p>整个数据集共311828首古诗词构建索引共花费8分09秒，打开构建好的索引需要30秒。不过好像有个bug，年代久远忘的差不多了，就不再考证了</p>
+<h1 id="0-要求"><a href="#0-要求" class="headerlink" title="0 要求"></a>0 要求</h1><p>要求是这样的：</p>
+<img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbko4nk1vrj313x0u0jz8.jpg" width="400">
+
+<p><strong>支持短语查询，支持与、或、非操作，构建复合索引（双词+位置）</strong></p>
+<p>原数据格式：都删掉了懒得再去下载了，总之数据是很干净的漂漂亮亮的json格式的字典，nice！</p>
+<h1 id="1-思路"><a href="#1-思路" class="headerlink" title="1 思路"></a>1 思路</h1><p>从当时写的作业文档里直接搬运了，代码在<a href="https://github.com/LeFlacon/Simple-Python-Practice/blob/master/poem_search.py" target="_blank" rel="noopener">这里٩(˃̶͈̀௰˂̶͈́)و</a></p>
+<h2 id="1-1-索引"><a href="#1-1-索引" class="headerlink" title="1.1 索引"></a>1.1 索引</h2><h3 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h3><p>建立索引前先确定索引结构。这里建立两个索引，一个用于存字的位置，一个用于存双词</p>
+<p>双词索引的存储格式如下，先用词典存单字，再用词典存以这个字为前缀的词，最后用列表存这个词出现的古诗编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;每&quot;: &#123;</span><br><span class="line">        &quot;每勞書&quot;: [</span><br><span class="line">            308302</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;毒&quot;: &#123;</span><br><span class="line">        &quot;毒匪&quot;: [</span><br><span class="line">            875</span><br><span class="line">        ],</span><br><span class="line">        &quot;毒萬蜂&quot;: [</span><br><span class="line">            1545</span><br><span class="line">        ],</span><br><span class="line">        &quot;毒發&quot;: [</span><br><span class="line">            2548,</span><br><span class="line">            65517</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>位置索引的存储格式如下，先用词典存单个的汉字，再用词典存包含这个汉字的古诗的编号，最后存这个字在诗中出现的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;上&quot;: &#123;</span><br><span class="line">        &quot;1&quot;: [</span><br><span class="line">            27</span><br><span class="line">        ],</span><br><span class="line">        &quot;3&quot;: [</span><br><span class="line">            38</span><br><span class="line">        ],</span><br><span class="line">        &quot;8&quot;: [</span><br><span class="line">            42</span><br><span class="line">        ],</span><br><span class="line">        &quot;10&quot;: [</span><br><span class="line">            33</span><br><span class="line">        ],</span><br><span class="line">        &quot;12&quot;: [</span><br><span class="line">            64</span><br><span class="line">        ],</span><br><span class="line">        &quot;15&quot;: [</span><br><span class="line">            1,</span><br><span class="line">            4</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后就是一些为了便于输出结果存的索引了，不展开说明</p>
+<h3 id="构建索引"><a href="#构建索引" class="headerlink" title="构建索引"></a>构建索引</h3><p>接下来就是构建索引。先利用结巴分词对诗句进行划分，如果得到的结果是一个字就跳过，如否则就把这个词加入到第一个字对应的字典中，并记录古诗编号。这样每个字后面都会存有所有以这个字为前缀的词</p>
+<p>在构建位置索引时，一个字一个字读取诗句字符串，并保存某个字在某首诗中出现的位置。最后对两个索引按照发音顺序排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">def create_index():</span><br><span class="line">    path &#x3D; file_path</span><br><span class="line">    filenames &#x3D; os.listdir(path)</span><br><span class="line">    shuangci_index &#x3D; &#123;&#125;</span><br><span class="line">    weizhi_index &#x3D; &#123;&#125;</span><br><span class="line">    msg_poet &#x3D; []</span><br><span class="line">    ji &#x3D; 0</span><br><span class="line">    for filename in filenames:</span><br><span class="line">        # print(filename)</span><br><span class="line">        name &#x3D; os.path.split(filename)[1].split(&quot;.&quot;)</span><br><span class="line">        if name[0] &#x3D;&#x3D; &#39;authors&#39;:</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            poet_json &#x3D; get_poet(filename)</span><br><span class="line">            for poet in poet_json:</span><br><span class="line">                author &#x3D; poet[&#39;author&#39;]</span><br><span class="line">                paragragh &#x3D; poet[&#39;paragraphs&#39;]</span><br><span class="line">                title &#x3D; poet[&#39;title&#39;]</span><br><span class="line">                # 储存古诗词信息</span><br><span class="line">                poet_dict &#x3D; &#123;&#125;</span><br><span class="line">                poet_dict[&#39;title&#39;] &#x3D; title</span><br><span class="line">                poet_dict[&#39;author&#39;] &#x3D; author</span><br><span class="line">                poet_dict[&#39;paragragh&#39;] &#x3D; paragragh</span><br><span class="line">                msg_poet.append(poet_dict)</span><br><span class="line">                # 建立双词索引</span><br><span class="line">                hang &#x3D; len(paragragh)</span><br><span class="line">                paragraphs &#x3D; &#39;&#39;</span><br><span class="line">                for j in range(hang):</span><br><span class="line">                    paragraphs &#x3D; paragraphs + paragragh[j]</span><br><span class="line">                results &#x3D; list(jieba.cut_for_search(paragraphs))</span><br><span class="line">                # 去除停用词</span><br><span class="line">                final &#x3D; []</span><br><span class="line">                for word in results:</span><br><span class="line">                    if word not in STOPWORDS:</span><br><span class="line">                        final.append(word)</span><br><span class="line">                results &#x3D; final</span><br><span class="line">                for word in results:</span><br><span class="line">                    if len(word) &lt;&#x3D; 1:</span><br><span class="line">                        continue</span><br><span class="line">                    if word[0] not in shuangci_index:</span><br><span class="line">                        poet_list &#x3D; []</span><br><span class="line">                        poet_list.append(ji)</span><br><span class="line">                        shuangci_index[word[0]] &#x3D; &#123;&#125;</span><br><span class="line">                        shuangci_index[word[0]][word] &#x3D; poet_list</span><br><span class="line">                    else:</span><br><span class="line">                        if word not in shuangci_index[word[0]]:</span><br><span class="line">                            poet_list &#x3D; []</span><br><span class="line">                            poet_list.append(ji)</span><br><span class="line">                            shuangci_index[word[0]][word] &#x3D; poet_list</span><br><span class="line">                        else:</span><br><span class="line">                            shuangci_index[word[0]][word].append(ji)</span><br><span class="line"></span><br><span class="line">                # 建立位置索引</span><br><span class="line">                for i in range(len(paragraphs)):</span><br><span class="line">                    if paragraphs[i] not in STOPWORDS:</span><br><span class="line">                        if paragraphs[i] not in weizhi_index:</span><br><span class="line">                            weizhi_list &#x3D; []</span><br><span class="line">                            weizhi_list.append(i)</span><br><span class="line">                            weizhi_index[paragraphs[i]] &#x3D; &#123;&#125;</span><br><span class="line">                            weizhi_index[paragraphs[i]][ji] &#x3D; weizhi_list</span><br><span class="line">                        else:</span><br><span class="line">                            if ji not in weizhi_index[paragraphs[i]]:</span><br><span class="line">                                weizhi_list &#x3D; []</span><br><span class="line">                                weizhi_list.append(i)</span><br><span class="line">                                weizhi_index[paragraphs[i]][ji] &#x3D; weizhi_list</span><br><span class="line">                            else:</span><br><span class="line">                                weizhi_index[paragraphs[i]][ji].append(i)</span><br><span class="line">                ji +&#x3D; 1</span><br><span class="line">    shuangci_index &#x3D; sort_list(shuangci_index)</span><br><span class="line">    write_to_file(shuangci_index, project_path + &#39;&#x2F;shuangci.json&#39;)</span><br><span class="line">    weizhi_index &#x3D; sort_list(weizhi_index)</span><br><span class="line">    write_to_file(weizhi_index, project_path + &#39;&#x2F;weizhi.json&#39;)</span><br><span class="line">    write_to_file(msg_poet, project_path + &#39;&#x2F;poet_msg.json&#39;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-搜索"><a href="#1-2-搜索" class="headerlink" title="1.2 搜索"></a>1.2 搜索</h2><h3 id="简繁体转换"><a href="#简繁体转换" class="headerlink" title="简繁体转换"></a>简繁体转换</h3><p>由于输入一般都是简体，而该古诗集中的数据都是繁体，因此需要把输入的简体转化为繁体再进行搜索，利用zhconv库的convert函数实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text &#x3D; zhconv.convert(text, &#39;zh-tw&#39;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="单个短语查询"><a href="#单个短语查询" class="headerlink" title="单个短语查询"></a>单个短语查询</h3><p>先写一个可以查询单个字或短语的函数，作用是返回包含这个词或短语的古诗编号列表</p>
+<p>一开始先判断输入的词是否为双词索引中存在的长的词，如“明月”，若双词索引中包含“明”，而下一级的字典中又包含“明月”，那么可以快速的直接返回包含“明月”的古诗编号集合</p>
+<p>如果输入的字或词在双词索引中不存在，那么就需要通过位置索引来寻找。位置索引中的键为单个字，实现搜索存在某字的古诗是容易的</p>
+<p>而如果是短语的话，就需要利用到位置信息。如果搜索“花间一壶酒”，那么如果“花”在编号为i的古诗中的位置是x，那么需要满足存在“间”在编号为i的古诗中的位置是i+1，“一”在编号为i的古诗中的位置是x+2，……，以此类推</p>
+<p>因此首先对于每个字返回的列表集合，编写函数JiaoList实现两两合并，获得一个同时出现了所有字的文档集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def JiaoList(list1, list2):</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for item in list1:</span><br><span class="line">        if item in list2:</span><br><span class="line">            res.append(item)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<p>对于初步筛选出来的古诗集合，循环古诗i，在每次循环中初始集合为第一个字在文档i中出现的位置，然后利用下面的CheckList函数对位置进行判断，如果第二个字在文档i出现的某个位置恰好比第一个中的某个大1，说明这两个字在文档1中是连在一起的。以此类推返回所有位置列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def CheckList(list1, list2):</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for item1 in list1:</span><br><span class="line">        for item2 in list2:</span><br><span class="line">            if item2 &#x3D;&#x3D; item1 + 1:</span><br><span class="line">                res.append(item2)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<p>如果短语中的所有字遍历完后位置列表不为空，那么说明存在这个短语，就在结果列表中加入古诗i，最终根据一个词或短语word返回包含该词或短语的所有古诗编号集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">def SearchWord(word):</span><br><span class="line">    if (len(word) &#x3D;&#x3D; 0):</span><br><span class="line">        return</span><br><span class="line">    print(word)</span><br><span class="line">    if (len(word) &gt; 1):</span><br><span class="line">        if word[0] in INDEX_SHUANGCI:</span><br><span class="line">            if word in INDEX_SHUANGCI[word[0]]:</span><br><span class="line">                return INDEX_SHUANGCI[word[0]][word]</span><br><span class="line">    if word[0] not in INDEX_WEIZHI:</span><br><span class="line">        return []</span><br><span class="line">    # poeta存储包含每个字的文档集</span><br><span class="line">    poeta &#x3D; INDEX_WEIZHI[word[0]].keys()</span><br><span class="line">    for i in range(1, len(word)):</span><br><span class="line">        zi &#x3D; word[i]</span><br><span class="line">        if zi not in INDEX_WEIZHI:</span><br><span class="line">            return []</span><br><span class="line">        poetb &#x3D; INDEX_WEIZHI[zi].keys()</span><br><span class="line">        poeta &#x3D; JiaoList(poeta, poetb)</span><br><span class="line">    if len(poeta) &#x3D;&#x3D; 0:</span><br><span class="line">        return []</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for poetid in poeta:</span><br><span class="line">        weizhia &#x3D; INDEX_WEIZHI[word[0]][poetid]</span><br><span class="line">        for i in range(1, len(word)):</span><br><span class="line">            weizhib &#x3D; INDEX_WEIZHI[word[i]][poetid]</span><br><span class="line">            weizhia &#x3D; CheckList(weizhia, weizhib)</span><br><span class="line">        if len(weizhia) !&#x3D; 0:</span><br><span class="line">            res.append(poetid)</span><br><span class="line">    # if len(res) &#x3D;&#x3D; 0:</span><br><span class="line">    # print(&quot;没有找到关于\&quot;&quot; + word + &quot;\&quot;的信息&quot;)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<h3 id="与或非查询"><a href="#与或非查询" class="headerlink" title="与或非查询"></a>与或非查询</h3><p>“或搜索”是同时输入很多字或短语，返回包含其中任一的所有古诗集合。“或”的实现思路是对于每个字或短语得到的结果列表，因为只要包含其中一个就可以，所以相加即可，然后利用set实现去重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def SearchOr():</span><br><span class="line">    text_or &#x3D; e1.get()</span><br><span class="line">    if (text_or &#x3D;&#x3D; &quot;&quot;):</span><br><span class="line">        print(&quot;输入为空！&quot;)</span><br><span class="line">        return</span><br><span class="line">    text_or &#x3D; zhconv.convert(text_or, &#39;zh-tw&#39;)</span><br><span class="line">    search_list &#x3D; list(text_or.split(&quot; &quot;))</span><br><span class="line">    print(&quot;您输入的词语集合为:&quot;, end&#x3D;&quot;&quot;)</span><br><span class="line">    print(search_list)</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for word in search_list:</span><br><span class="line">        poetlist &#x3D; SearchWord(word)</span><br><span class="line">        res &#x3D; res + poetlist</span><br><span class="line">    res &#x3D; set(res)</span><br><span class="line">    if len(res) &#x3D;&#x3D; 0:</span><br><span class="line">        print(&quot;没有找到关于\&quot;&quot; + text_or + &quot;\&quot;的信息&quot;)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<p>“与搜索”是同时输入很多字或短语，返回同时包含所有词的古诗集合。与的实现思路是，对于每个字或短语返回的结果集，因为要包含所有，所以求交集即可，利用set去重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def SearchAnd():</span><br><span class="line">    text_and &#x3D; e2.get()</span><br><span class="line">    if (text_and &#x3D;&#x3D; &quot;&quot;):</span><br><span class="line">        print(&quot;输入为空！&quot;)</span><br><span class="line">        return</span><br><span class="line">    text_and &#x3D; zhconv.convert(text_and, &#39;zh-tw&#39;)</span><br><span class="line">    search_list &#x3D; list(text_and.split(&quot; &quot;))</span><br><span class="line">    print(&quot;您输入的词语集合为:&quot;, end&#x3D;&quot;&quot;)</span><br><span class="line">    print(search_list)</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for word in search_list:</span><br><span class="line">        poetlist &#x3D; SearchWord(word)</span><br><span class="line">        if len(res) !&#x3D; 0:</span><br><span class="line">            res &#x3D; JiaoList(res, poetlist)</span><br><span class="line">        else:</span><br><span class="line">            res &#x3D; poetlist</span><br><span class="line">    res &#x3D; set(res)</span><br><span class="line">    if len(res) &#x3D;&#x3D; 0:</span><br><span class="line">        print(&quot;没有找到关于\&quot;&quot; + text_and + &quot;\&quot;的信息&quot;)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<p>“非搜索”是同时输入很多字或短语，返回所有包含其中任一的古诗集合。因为这样筛选出的古诗会很多，因此非搜索只支持在“与搜索”或者“或搜索”的基础上减去“非搜索”的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def SearchNot():</span><br><span class="line">    text_not &#x3D; e3.get()</span><br><span class="line">    if (text_not &#x3D;&#x3D; &quot;&quot;):</span><br><span class="line">        print(&quot;输入为空！&quot;)</span><br><span class="line">        return</span><br><span class="line">    text_not &#x3D; zhconv.convert(text_not, &#39;zh-tw&#39;)</span><br><span class="line">    search_list &#x3D; list(text_not.split(&quot; &quot;))</span><br><span class="line">    print(&quot;您输入的词语集合为:&quot;, end&#x3D;&quot;&quot;)</span><br><span class="line">    print(search_list)</span><br><span class="line">    res &#x3D; []</span><br><span class="line">    for word in search_list:</span><br><span class="line">        poetlist &#x3D; SearchWord(word)</span><br><span class="line">        if len(res) !&#x3D; 0:</span><br><span class="line">            res &#x3D; JiaoList(res, poetlist)</span><br><span class="line">        else:</span><br><span class="line">            res &#x3D; poetlist</span><br><span class="line">    res &#x3D; set(res)</span><br><span class="line">    return res</span><br></pre></td></tr></table></figure>
+
+<p>“复合搜索”，在“非搜索”的描述中已经实现了初步的复合搜索，“非搜索”只能与“与搜索”或“或搜索”同时进行。将“或与非”分开输入，分别保存在e1,e2,e3中，假设返回结果保存在t1，t2，t3中，那么最终复合搜索的结果为：+t1+t2-t3。</p>
+<h2 id="3-加了个好玩的"><a href="#3-加了个好玩的" class="headerlink" title="3 加了个好玩的"></a>3 加了个好玩的</h2><p>上面效果图的对诗系统参考自github上的<a href="https://github.com/wb14123/seq2seq-couplet" target="_blank" rel="noopener">seq2seq-couplet项目</a>。这是一个使用seq2seq模型对对联的项目，用Tensorflow编写，数据集为<a href="https://github.com/wb14123/couplet-dataset/releases" target="_blank" rel="noopener">70万个对联</a>，原作者在Nivida GTX-1080 GPU上训练了模型约4天。</p>
+<p>原作者并未公开训练好的模型，算力有限因此使用了github上别人训练好的模型，<a href="https://github.com/luern0313/CoupletWriter" target="_blank" rel="noopener">模型来源</a>。</p>
+<hr>
+<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>大三上的信息检索是个有点刺激的课</p>
+<p>没有别人做不出来的，只有我做不出来的<br>没有一届做的差的，只有一届比一届做的更好的<br>所以没有很水的作业，只有一届比一届难的作业</p>
+<p>要不是为了那两个学分！<img src="https://tva1.sinaimg.cn/large/006tNbRwly1gbknyovaqhj301o01dgld.jpg" width="50"></p>
+<p>（开玩笑的，课是好课）</p>
+<p>第一个作业是「安然邮件系统检索」，那个原数据格式太乱了，我讨厌洗数据！所以那个作业我做的非常囫囵吞枣，</p>
+<p>第二个作业就是本博客讲的这个，这可能是我完成的最完整的一个了QAQ所以记录下来</p>
+<p>第三个作业是「nku教师检索系统」，我还是觉得Django好难用啊ORZ，主要不是它难用，是我不会用，就各种报错唉，做的也十分凹糟</p>
+<p>第四个作业是「智能小开问答系统」，很有意思的作业。数据来源是自己爬的页面和google文件搜索，然后学了一下word2vec计算词向量和句向量，检索就是基于向量相似度的比较，用抽样和多线程加了个速（从别人github里学的真的好厉害）。在一个大佬的安利下还试了试chatterbot，但是训练出来的是什么玩意儿，我猜想这个肯定需要自己构造许多问句才可以，不然只能获得各种文不对题的回答</p>
+<p>就是这样啦～</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            2020 flag
+          
+        </div>
+      </a>
+    
+    
+      <a href="/c66010a2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">UnicodeEncodeError: ascii codec cant encode characters in position 38-41: ordinal not in range(128)问题的原因及解决办法</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

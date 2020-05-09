@@ -1,0 +1,69 @@
+#links{
+   margin-top: 5rem;
+}
+.links-content{
+    margin-top:1rem;
+}
+.link-navigation::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.card {
+    width: 380px;
+    height: 70px;
+    font-size: 1rem;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    transition-duration: 0.15s;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    /*margin-bottom: 1rem;*/
+    display:flex;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+}
+.card:nth-child(odd) {
+    float: left;
+}
+.card:nth-child(even) {
+    float: right;
+    #float: left;
+}
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+}
+.card a {
+    border:none;
+}
+.card .ava {
+    width: 5rem!important;
+    height: 5rem!important;
+    margin:0!important;
+    margin-right: 1em!important;
+    border-radius:4px;
+}
+.card .card-header {
+    font-style: italic;
+    overflow: hidden;
+    width: 236px;
+    font-size: 1.6rem!important;
+}
+.card .card-header a {
+    font-style: normal;
+    color: #adbbd5;
+    font-weight: bold;
+    text-decoration: none;
+}
+.card .card-header a:hover {
+    color: #8899dd;
+    text-decoration: none;
+}
+.card .card-header .info {
+    font-style:normal;
+    color:#a3a3a3;
+    font-size:14px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

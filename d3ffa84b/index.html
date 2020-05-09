@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    流体模拟《Fluid Simulation for Computer Graphics 》——从入门到放弃（四）烟雾模拟/涡度限制/表面追踪/水平集方法 |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-流体模拟《Fluid Simulation for Computer Graphics 》——从入门到放弃（四）烟雾模拟:涡度限制:表面追踪:水平集方法" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  流体模拟《Fluid Simulation for Computer Graphics 》——从入门到放弃（四）烟雾模拟/涡度限制/表面追踪/水平集方法
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/d3ffa84b/" class="article-date">
+  <time datetime="2019-11-17T07:31:00.000Z" itemprop="datePublished">2019-11-17</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%9E%8E%E6%8A%98%E8%85%BE-%EF%BE%9F%CF%89%EF%BE%9F-%EF%BE%89/">瞎折腾(=ﾟωﾟ)ﾉ</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/d3ffa84b/" class="leancloud_visitors" data-flag-title="流体模拟《Fluid Simulation for Computer Graphics 》——从入门到放弃（四）烟雾模拟/涡度限制/表面追踪/水平集方法"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p><a href="http://leflacon.github.io/categories/图形学" target="_blank" rel="noopener">从入门到放弃系列</a></p>
+<p>学的都是个啥，，开始怀疑人生ಥ_ಥ</p>
+<p>有些提到的东西可以在前置文章里找到，哪里理解错误啥的请指出3Q</p>
+<hr>
+<p>开头再放上之前提到的Navier-Stokes方程和变量：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8vpxst924j30ep02paa5.jpg" alt=""></p>
+<ul>
+<li>向量<code>u</code>表示流体速度</li>
+<li><code>ρ</code>表示流体密度</li>
+<li><code>p</code>表示压力，<code>1\ρ ∇p</code>体现了压力对流体的影响</li>
+<li>向量<code>g</code>表示重力加速度</li>
+<li><code>ν</code>表示运动粘度</li>
+<li><code>q</code>表示通过流体传输的模拟量之一（比如温度）</li>
+<li><code>t</code>表示时间</li>
+</ul>
+<hr>
+<h1 id="7-烟雾"><a href="#7-烟雾" class="headerlink" title="7 烟雾"></a>7 烟雾</h1><p>在流体是烟雾的情况下，模拟烟雾需要两个额外的变量：</p>
+<ul>
+<li>空气的温度<code>T</code>（摄氏度）</li>
+<li>烟雾颗粒的浓度<code>s</code>（0-1之间）</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8zwfd5ivqj306401nq2x.jpg" alt=""></p>
+<p>二者材料导数都为0。然后研究<code>T</code>和<code>s</code>对流体速度有什么影响，我们知道热空气会上升，冷空气会下沉；好像载有较重烟雾颗粒的空气在重力作用下会被往下拉。我们可以用之前那个动量方程，然后用浮力加速度代替原来的重力加速度<code>g</code>：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8zwoa53mtj30ec00wdfu.jpg" alt=""></p>
+<p>其中<code>α</code>和<code>β</code>是非负系数，<code>T_amb</code>是环境温度，比如<code>s=0</code>且<code>T=T_amb</code>的时候，这个就相当于环境里的空气，自然有<code>b=0</code>。</p>
+<h2 id="7-1-烟雾来源"><a href="#7-1-烟雾来源" class="headerlink" title="7.1 烟雾来源"></a>7.1 烟雾来源</h2><p>通常要定义一个烟雾源头区域，对这个区域每个时间间隔都要增加一点烟雾和热量。对烟雾源头的每个网格点的更新公式如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8zx0festlj30ku04d74j.jpg" alt=""></p>
+<p>其中<code>r_t</code>和<code>r_s</code>用于控制添加烟雾和热量的速率（在烟雾源头外这两个量都为0），<code>T_target</code>表示源头的温度。</p>
+<h2 id="7-2-热量和烟雾的扩散"><a href="#7-2-热量和烟雾的扩散" class="headerlink" title="7.2 热量和烟雾的扩散"></a>7.2 热量和烟雾的扩散</h2><p>热量和烟雾也可以扩散，在这种情况下，小规模的现象（比如传导和布朗运动）或是大规模的现象（比如紊流混合），用于平滑梯度。这可以用拉普拉斯算子建模：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8zxbmrn1fj309901k0sr.jpg" alt=""></p>
+<p>其中<code>k_T</code>和<code>k_s</code>是非负扩散常数。</p>
+<p>比如温度扩散就是下面这个式子：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8zzhlwff0j30lk024q32.jpg" alt=""></p>
+<h2 id="7-3-vorticity-confinement（涡度限制）"><a href="#7-3-vorticity-confinement（涡度限制）" class="headerlink" title="7.3 vorticity confinement（涡度限制）"></a>7.3 vorticity confinement（涡度限制）</h2><p>涡度限制是对Navier-Stokes方程的一种试图保留涡度的修改。引入<code>Δx</code>，这样在极限中涡度就没了。基本思想是检测旋涡的位置，并且增加一个力来满足每个旋涡周围的旋转运动，这样旋涡位置速度快于周围所有流体，可以简单的通过标准化<code>𝛚</code>的梯度来构造指向这些漩涡中心的单位向量<code>N</code>：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g900mv185rj30dd01zjre.jpg" alt=""></p>
+<p>现在<code>N</code>指向旋涡的旋转中心，<code>𝛚</code>方向沿旋转轴，所以要获得增加的那个旋转力，只要一个叉积：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g900pajth5j30dw00w3yi.jpg" alt=""></p>
+<p>其中<code>ε</code>是一个可以调整涡度限制效果的参数。</p>
+<h2 id="7-4-Divergence-Control（发散控制）"><a href="#7-4-Divergence-Control（发散控制）" class="headerlink" title="7.4  Divergence Control（发散控制）"></a>7.4  Divergence Control（发散控制）</h2><p>通过使用这种浮力模型，假设流体密度是温度和烟雾浓度的函数（烟雾溶解在空气中）。在热膨胀问题中，流体应该在加热时膨胀在冷却时收缩，即在<code>DT/Dt≠0</code>时，我们不需要无散度的速度场。如果温度升高导致密度降低，那么我们需要正散度来实施这个热膨胀。可以通过在网格单元中心定义一个控制场<code>d(x)</code>，它等于在整个流体体积中的体积分数变化率<code>(ΔV/V)·Δt</code>，然后通过压力来求解这种差异。</p>
+<p>文中是在使用MAC网格的数值离散的压力求解部分，将<code>d</code>加到线性系统的流体单元的右手侧。</p>
+<h1 id="8-表面追踪"><a href="#8-表面追踪" class="headerlink" title="8 表面追踪"></a>8 表面追踪</h1><p>对于液体（比如水），需要找到一种方法来跟踪液体表面。这是通过使用隐式表面表示或者不同隐式表面组合来实现的。</p>
+<h2 id="8-1-Tracker-particles（跟踪器粒子）"><a href="#8-1-Tracker-particles（跟踪器粒子）" class="headerlink" title="8.1 Tracker particles（跟踪器粒子）"></a>8.1 Tracker particles（跟踪器粒子）</h2><p>首先用粒子填充水体积并将其视为水的几何形状（如果存在水源添加水，那么也需要从水源处添加粒子）。在每个对流步骤中，根据网格速度场移动粒子，最后包含粒子的单元格都是水，其余单元格留空。在渲染过程中，在水和空气之间形成光滑的表面，也就是构建一层包裹在粒子周围的光滑的隐式表面：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90dgq1raij30dy018t8p.jpg" alt=""></p>
+<p>其中<code>X̄</code>是周围粒子位置的加权平均值，<code>杠r</code>是周围粒子半径的加权平均值，曲面定义为<code>φ(x) = 0</code>的所有<code>向量x</code>代表的点，也就是<code>φ</code>的零等高线或者水平集。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90dnh7f2ij30cx0dtte1.jpg" alt=""><br>（利用粒子跟踪和渲染流体的二维模拟图）</p>
+<h2 id="8-2-水平集方法"><a href="#8-2-水平集方法" class="headerlink" title="8.2 水平集方法"></a>8.2 水平集方法</h2><p>在数学中，n个变量的实值函数<code>f</code>的水平集是形式为<code>Lc(f)={(x1,…,xn)∣f(x1,…, xn)=c}</code>的集合，也就是取定一个常数<code>c</code>然后取满足<code>f(X)=c</code>的集合就好了。</p>
+<p>所以不用像8.1里一样围绕粒子构建隐式函数，而是直接使用网格。在网格单元的中心定义隐式曲面函数<code>φ_(i,j,k)</code>，可以用插值来估计<code>φ(x)</code>，表面就是满足<code>φ(x)=0</code>的点集，表面内部有<code>φ(x)&lt;0</code>，外部有<code>φ(x)&gt;0</code>。</p>
+<p><strong>Signed distance</strong>（距离）</p>
+<p>给定一个点集<code>S</code>，定义一个距离函数，可以获得任意一点到<code>S</code>中一点的最短距离：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90uwvpy9uj30es01amx7.jpg" alt=""></p>
+<p>如果<code>S</code>将空间划分为内部和外部的话，那么对应的符号情况如下：（外部为<code>distance(x)</code>，内部为<code>-distance(x)</code>）</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90uyuo49bj308o01nwek.jpg" alt=""></p>
+<p>综上，<code>S</code>就是<code>φ(x)=0</code>或<code>distance(x)=0</code>的点集。</p>
+<p><strong>Signed distance properties</strong>（一些性质）</p>
+<ol>
+<li>在表面内的某个点<code>x</code>处，设<code>n</code>为朝表面点集距离最近点的方向的单位向量，对于一定范围的正数<code>ε</code>，有<code>φ(x+εn)=φ(x)+ε</code>。因为如果沿<code>n</code>方向移动，在表面上的那个最近点是不变的。所以有下面这个式子：</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90xktvwu2j30c7017749.jpg" alt=""></p>
+<ol start="2">
+<li>增大或减小到表面的距离的最快方法就是沿着<code>n</code>，所以<code>φ</code>的梯度必须是<code>n</code>的方向（到最近点）。</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90xnat7asj30c701d3yh.jpg" alt=""></p>
+<ol start="3">
+<li>将1、2中的两个式子(25)(26)结合得：</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90xo0htmhj30cf01l3yh.jpg" alt=""></p>
+<ol start="4">
+<li>对于任意点，离表面的最近点为：（后面那坨其实就是求出来一个那个方向上的距离向量了）</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g90xox0o7jj30l401bwel.jpg" alt=""></p>
+<p><strong>Calculating the signed distance</strong>（计算）</p>
+<p>给出一种基于几何的计算距离的算法，这个算法可以将有关表面的信息有效的传播到远处的网格点，而不用对表面上的每个点进行暴搜：</p>
+<ol>
+<li>找到临近网格点的最近表面点，设定他们的距离，其他网格点的距离设为未知</li>
+<li>以选定的顺序遍历周围的未知的那些网格点(i,j,k)，如果新的点到表面的距离更近，那么将这个点周围的点标记为未知（这里的所有距离都按前文说的是带符号的距离）</li>
+</ol>
+<p>此外，这个循环顺序是按照所有未知点从近到远的顺序，靠优先队列来实现即可。</p>
+<p>（英语太差了，，这部分感觉没翻译明白，，，总之我觉得意思就是不用暴力，每次可以贪心的向那个距离下降最快的方向找到一个更优的参考点，然后把它周围的点加入未知集合中，在下一轮循环中继续从近到远循环未知点，，应该是这个意思吧）</p>
+<p><strong>Advecting Level Set</strong></p>
+<p>水-空气之间的表面已经解决了，还要考虑实心墙的边界条件，一种可行的方法是将<code>φ</code>从水-空气区域外推到固体中。</p>
+<p>（下面咋外推的就没看懂了，，略过）</p>
+<p><strong>Current Fluid Simulation Loop</strong></p>
+<p>（没看懂0.0，，）</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g911xh3uprj30k906tmy6.jpg" alt=""></p>
+<h2 id="8-3-粒子水平集（PLS）"><a href="#8-3-粒子水平集（PLS）" class="headerlink" title="8.3 粒子水平集（PLS）"></a>8.3 粒子水平集（PLS）</h2><p>PLS用辅助标记粒子优化了上面8.2的欧拉水平集方法，在表面的正反面都添加辅助粒子，每个粒子除了自身位置外，还有一个<code>φ</code>值估计。在每个时间间隔粒子都会移动。此外还需要对那些溢出的粒子进行一点纠错操作：比如空气颗粒落入水中或者水颗粒落入空气中等等。最后，删除那些离零水平集太远的粒子，并在靠近边界的地方添加新粒子。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g912id147lj30cz0exk03.jpg" alt=""><br>（利用粒子水平集方法跟踪流体的二维模拟图，红色粒子是空气边界，绿色粒子是水边界）</p>
+<hr>
+<p>to be continued…</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag">图形学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">阅读笔记</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/5e7e97c4/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            流体模拟《Fluid Simulation for Computer Graphics》——从入门到放弃（五）综合与理解
+          
+        </div>
+      </a>
+    
+    
+      <a href="/7a18301b/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">流体模拟《Fluid Simulation for Computer Graphics 》——从入门到放弃（三）半拉格朗日对流/插值/MacCormack方法/压力求解</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>

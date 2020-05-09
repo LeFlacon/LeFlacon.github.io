@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    macOS下用C语言在75行实现简易版贪吃蛇（写的天旋地转） |  LeFlacon&#39;s Blog
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/logo.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-165590042-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?b57ffff88bd4a17d65524b8e0a7a298c";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <!-- cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js -->
+  <script>
+    var APP_ID = 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY = 'ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+  </script>
+
+</head>
+
+</html>
+
+<body>
+
+<a href="https://github.com/LeFlacon" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <div id="app">
+    <main class="content on">
+      <section class="outer">
+  <article id="post-macOS下用C语言在75行实现简易版贪吃蛇" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  macOS下用C语言在75行实现简易版贪吃蛇（写的天旋地转）
+</h1>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/a9177535/" class="article-date">
+  <time datetime="2020-03-22T14:45:00.000Z" itemprop="datePublished">2020-03-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%9E%8E%E6%8A%98%E8%85%BE-%EF%BE%9F%CF%89%EF%BE%9F-%EF%BE%89/">瞎折腾(=ﾟωﾟ)ﾉ</a>
+  </div>
+
+      
+      
+          
+    <div class="article-times">
+        <span class="post-time">
+            <span class="post-meta-item-text"> 阅读次数: </span>
+            <span id="/a9177535/" class="leancloud_visitors" data-flag-title="macOS下用C语言在75行实现简易版贪吃蛇（写的天旋地转）"></span>
+        </span>
+    </div>
+
+
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>之前在知乎看见的链接在这里➡️<a href="https://www.zhihu.com/question/360814879" target="_blank" rel="noopener">用C语言，能在100行之内实现贪吃蛇吗？</a>%%%，大一c++课程作业也是贪吃蛇来着，不过那个代码可长可长hhhhhh而且是在windows平台下的，主要是考察链表结构？</p>
+<p>知乎里面好些都用了<a href="https://zh.wikipedia.org/wiki/Ncurses" target="_blank" rel="noopener">ncurses库</a>，这个库用来编写独立于终端的基于文本的用户界面，不过我还是想偷懒不想安装别的库，所以写一个只使用标准库的，参考了<a href="https://www.zhihu.com/question/360814879/answer/1013986215" target="_blank" rel="noopener">知乎Milo Yip</a>的超清思路，只在macOS上试过，写交互的的时候真的感觉没学过C一样，，一无所知水平受限可能有哪里理解的不对，欢迎指出QWQ</p>
+<hr>
+<h1 id="0-代码"><a href="#0-代码" class="headerlink" title="0 代码"></a>0 代码</h1><p>总共有75行，其实有些可以再压缩一下，但是没有必要啦</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;time.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">#include&lt;sys&#x2F;select.h&gt;</span><br><span class="line">#include&lt;termios.h&gt;</span><br><span class="line">#define W 64</span><br><span class="line">#define H 20</span><br><span class="line">int mapp[W*H],snake[W*H],pos,npos,change&#x3D;1,food,head&#x3D;0,len&#x3D;1,ch&#x3D;67;</span><br><span class="line">struct termios orig_termios;</span><br><span class="line">void reset_terminal_mode()&#123;</span><br><span class="line">    tcsetattr(0, TCSANOW, &amp;orig_termios);</span><br><span class="line">&#125;</span><br><span class="line">void set_conio_terminal_mode()&#123;</span><br><span class="line">    struct termios new_termios;</span><br><span class="line">    tcgetattr(0, &amp;orig_termios);</span><br><span class="line">    memcpy(&amp;new_termios, &amp;orig_termios, sizeof(new_termios));</span><br><span class="line">    new_termios.c_lflag&amp;&#x3D;~(ICANON|ECHO);</span><br><span class="line">    atexit(reset_terminal_mode);</span><br><span class="line">    tcsetattr(0, TCSANOW, &amp;new_termios);</span><br><span class="line">&#125;</span><br><span class="line">int kbhit()&#123;</span><br><span class="line">    struct timeval tv &#x3D; &#123; 0L, 0L &#125;;</span><br><span class="line">    fd_set fds;</span><br><span class="line">    FD_ZERO(&amp;fds);</span><br><span class="line">    FD_SET(0, &amp;fds);</span><br><span class="line">    return select(1, &amp;fds, NULL, NULL, &amp;tv);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    set_conio_terminal_mode();</span><br><span class="line">    srand(time(NULL));</span><br><span class="line">    for(int i&#x3D;0;i&lt;W*H;i++)mapp[i]&#x3D;((i&#x2F;W%(H-1)&#x3D;&#x3D;0)||(i%W%(W-1)&#x3D;&#x3D;0))?1:0;&#x2F;&#x2F;board</span><br><span class="line">    snake[0]&#x3D;pos&#x3D;64*10+32;&#x2F;&#x2F;init the position of snake</span><br><span class="line">    mapp[pos]&#x3D;1;</span><br><span class="line">    npos&#x3D;pos+1;&#x2F;&#x2F;define the first step</span><br><span class="line">    do&#123;food&#x3D;rand()%(W*H);&#125;while(mapp[food]&#x3D;&#x3D;1);&#x2F;&#x2F;create food</span><br><span class="line">    while(1)&#123;</span><br><span class="line">        while(!kbhit())&#123;&#x2F;&#x2F;not press</span><br><span class="line">            if(mapp[npos]&#x3D;&#x3D;1)return 0;&#x2F;&#x2F;gg</span><br><span class="line">            head&#x3D;(head+1)%(W*H);&#x2F;&#x2F;snake move</span><br><span class="line">            snake[head]&#x3D;npos;</span><br><span class="line">            mapp[npos]&#x3D;1;</span><br><span class="line">            if(npos&#x3D;&#x3D;food)&#123;</span><br><span class="line">                do&#123;food&#x3D;rand()%(W*H);&#125;while(mapp[food]&#x3D;&#x3D;1);&#x2F;&#x2F;eat then create food</span><br><span class="line">                ++len;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;&#x2F;&#x2F;clear the tail of the snake</span><br><span class="line">                int tail&#x3D;(head+W*H-len)%(W*H);</span><br><span class="line">                mapp[snake[tail]]&#x3D;0;</span><br><span class="line">            &#125;</span><br><span class="line">            pos&#x3D;npos;&#x2F;&#x2F;this step is ok</span><br><span class="line">            for(int i&#x3D;0;i&lt;W*H;i++)&#123;&#x2F;&#x2F;show</span><br><span class="line">                if(i&#x3D;&#x3D;food)&#123;</span><br><span class="line">                    printf(&quot;*&quot;);</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                printf(&quot;%c&quot;,mapp[i]&#x3D;&#x3D;0?&#39; &#39;:&#39;#&#39;);</span><br><span class="line">                if(i%W&#x3D;&#x3D;(W-1))printf(&quot;\n&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            printf(&quot;score: %d\n&quot;,len-1);</span><br><span class="line">            printf(&quot;\033[1;1H\033[2J&quot;);</span><br><span class="line">            usleep(abs(change)&gt;1?250000-len*200:125000-len*100);</span><br><span class="line">            npos&#x3D;pos+change;</span><br><span class="line">        &#125;</span><br><span class="line">        if((ch&#x3D;getchar())!&#x3D;27)continue;</span><br><span class="line">        if((ch&#x3D;getchar())!&#x3D;91)return 0;</span><br><span class="line">        ch&#x3D;getchar();&#x2F;&#x2F; get direction</span><br><span class="line">        if(ch&#x3D;&#x3D;65)change&#x3D;-W;</span><br><span class="line">        else if(ch&#x3D;&#x3D;66)change&#x3D;W;</span><br><span class="line">        else if(ch&#x3D;&#x3D;67)change&#x3D;1;</span><br><span class="line">        else if(ch&#x3D;&#x3D;68)change&#x3D;-1;</span><br><span class="line">        else change&#x3D;1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-运行效果"><a href="#1-运行效果" class="headerlink" title="1 运行效果"></a>1 运行效果</h1><p>能吃能跑能撞墙_(:з」∠)_</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd2t1v85rmj30cs088gm8.jpg" alt=""></p>
+<h1 id="2-思路"><a href="#2-思路" class="headerlink" title="2 思路"></a>2 思路</h1><h2 id="2-1-建图及建蛇"><a href="#2-1-建图及建蛇" class="headerlink" title="2.1 建图及建蛇"></a>2.1 建图及建蛇</h2><h3 id="2-1-1-建图"><a href="#2-1-1-建图" class="headerlink" title="2.1.1 建图"></a>2.1.1 建图</h3><p>定义地图的宽W/高H，实际可移动的范围是(0,64)(0,20)，而第0行/19行/0列/63列是边界</p>
+<p>mapp数组用来存图，<code>mapp[i]==0</code>表示无障碍，<code>mapp[i]==1</code>表示有障碍，有障碍的地方就是蛇身和边界</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define W 64</span><br><span class="line">#define H 20</span><br><span class="line">int mapp[W*H];</span><br></pre></td></tr></table></figure>
+
+<p>抛弃二维的思路，直接用一维，坐标(x,y)表示成pos，<code>pos=W*x+y</code>，那么就可以获得地图的边界条件</p>
+<ul>
+<li>左右边界：<code>pos/W%(H-1)==0</code>，即第0列和(W-1)列</li>
+<li>上下边界：<code>pos%W%(W-1)==0</code>，即第0行和(H-1)行</li>
+</ul>
+<p>蛇身就是蛇的初始位置，那个位置也设置为1</p>
+<h3 id="2-1-2-建蛇"><a href="#2-1-2-建蛇" class="headerlink" title="2.1.2 建蛇"></a>2.1.2 建蛇</h3><p>开一个数组表示蛇，蛇最长就是<code>(W-1)*(H-1)</code>那么长，如果用链表结构的话很方便的可以进行插入的操作，但是代码量也会大大增加，所以直接用数组记录蛇的每一节的坐标</p>
+<p>snake[i]表示蛇的某一节（不一定是第i节，这个数组是循环利用的，见蛇的移动部分）</p>
+<h2 id="2-2-食物的生成"><a href="#2-2-食物的生成" class="headerlink" title="2.2 食物的生成"></a>2.2 食物的生成</h2><p>随机数生成食物，<code>food_pos=rand()%(W*H)</code>就可以获得一个随机的位置，判断食物位置不合法的条件就是<code>m[food_pos]==1</code>，那么写一个do while循环就可以在一行实现</p>
+<p>生成食物只需要在两个地方调用，一次是初始化部分调用一次，还有是在食物被吃了的时候调用</p>
+<h2 id="2-3-蛇的移动"><a href="#2-3-蛇的移动" class="headerlink" title="2.3 蛇的移动"></a>2.3 蛇的移动</h2><h3 id="2-3-1-上下左右"><a href="#2-3-1-上下左右" class="headerlink" title="2.3.1 上下左右"></a>2.3.1 上下左右</h3><p>因为已经把问题投影到一维地图上了，所以上下左右带来的坐标变化量<code>change</code>也投影到一维上：</p>
+<ul>
+<li>上：(x,y)-&gt;(x-1,y) change=-W</li>
+<li>下：(x,y)-&gt;(x+1,y) change=W</li>
+<li>右：(x,y)-&gt;(x,y+1) change=1</li>
+<li>左：(x,y)-&gt;(x,y-1) change=-1</li>
+</ul>
+<p>新的蛇头坐标就是<code>npos=pos+change</code>，然后需要判断这一步npos是否可行</p>
+<h3 id="2-3-2-吃或没吃或死"><a href="#2-3-2-吃或没吃或死" class="headerlink" title="2.3.2 吃或没吃或死"></a>2.3.2 吃或没吃或死</h3><p>移动一步后<code>npos</code>位置总共面临三种情况：碰到蛇身或边界死亡/吃食物/没吃食物可以继续移动</p>
+<h4 id="碰到蛇身或边界死亡"><a href="#碰到蛇身或边界死亡" class="headerlink" title="碰到蛇身或边界死亡"></a>碰到蛇身或边界死亡</h4><p>直接判断新位置的<code>m[npos]</code>是否为0即可，死亡肯定是最先判断的</p>
+<h4 id="没吃食物可以继续移动"><a href="#没吃食物可以继续移动" class="headerlink" title="没吃食物可以继续移动"></a>没吃食物可以继续移动</h4><p>继续循环，这就要涉及到那个保存蛇位置的snake数组了，我觉得这里有点用到<strong>滚动数组</strong>的思想</p>
+<p>我设置了一个head记录蛇的头的索引号，头的位置就保存在<code>snake[head]</code>里</p>
+<p>len记录蛇的长度，同时这个量也可以表示蛇头索引到蛇尾索引的偏移，也可以输出得分</p>
+<p>每次有了新的蛇头后，就把新蛇头的坐标记录在<code>snake[(head+1)%(W*H)]</code>中，那么如果没有吃食物的话，除了蛇尾的位置需要改变，其他记录的蛇身是不变的</p>
+<p>利用这个“滚动数组”，计算出蛇尾的索引就是<code>(head+W*H-len)%(W*H)</code>，那么把对应位置的mapp值设置成0即实现了抹去旧蛇尾</p>
+<h4 id="吃食物"><a href="#吃食物" class="headerlink" title="吃食物"></a>吃食物</h4><p>吃了那么蛇的长度加一，这样就不用抹去旧蛇尾</p>
+<p>至此游戏部分的逻辑基本清楚了，然后就是万恶的可视化和交互ORZ</p>
+<h2 id="2-4-可视化"><a href="#2-4-可视化" class="headerlink" title="2.4 可视化"></a>2.4 可视化</h2><p>基本想法是图的可视化就print输出，每次输出完到一下一个时间间隔的时候清屏</p>
+<h3 id="2-4-1-清屏"><a href="#2-4-1-清屏" class="headerlink" title="2.4.1 清屏"></a>2.4.1 清屏</h3><p>然后考虑如何清屏</p>
+<h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><p>当时大一课程作业贪吃蛇的交互部分老师给出代码了，，太久远了我也不记得咋实现的，但是没想到搜了一下我们学校+贪吃蛇，竟然搜到了我们那届的贪吃蛇代码！（而且经过大胆假设小心求证后那个大佬我认识hhhhh！神奇！！还发现当时写代码的助教是我们现在一个课的老师，我真的一点印象都没有了ORZ）</p>
+<p>大佬存档的大一课程作业的贪吃蛇代码的思路在这里，可惜我当时的代码不知道被我丢哪里去了：<a href="https://blog.csdn.net/weixin_40903598/article/details/80232514" target="_blank" rel="noopener">c++贪吃蛇补充</a></p>
+<p>然后清屏似乎就变的顺利起来，Windows下清屏是<code>system(&quot;cls&quot;);</code>(stdlib.h)，那么macOS下是<code>system(&quot;clear&quot;);</code>(unistd.h)</p>
+<p>但是问题又来了，只清屏不行，还需要把光标定格在最上面的位置再开始输出图啊，这要怎么实现？</p>
+<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>查啊查终于找到了这个东西：<a href="http://www.climagic.org/mirrors/VT100_Escape_Codes.html" target="_blank" rel="noopener">VT100 escape codes</a>，就是发送一个转义码给屏幕，就可以实现对终端的一些特殊效果，然后这个码是以<code>^[</code>开头的（具体的也不太会翻译就不翻了QAQ）</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gcwsij3nrdj30eu04fjru.jpg" alt=""></p>
+<p>那么<code>printf(&quot;\033[2J&quot;);</code>就可以实现清屏（奇怪的代码增加了.jpg）</p>
+<p>再找找cursor相关的，(v,h)参数就是移动到屏幕的(v,h)位置，所以<code>^[[1;1H</code>就可以移动到(1,1)的位置，然后重新打印地图，nice！</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd2tjbp61vj30g806jgn8.jpg" alt=""></p>
+<p>结合在一起就是：<code>printf(&quot;\033[1;1H\033[2J&quot;);</code></p>
+<h3 id="2-4-2-速度"><a href="#2-4-2-速度" class="headerlink" title="2.4.2 速度"></a>2.4.2 速度</h3><p>时间间隔通过<code>usleep</code>实现，查询可得单位是微秒</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd2t71x0wgj30fr09fq3y.jpg" alt=""></p>
+<p>macOS终端默认的字体是SF Mono Regular，截图计算了下单个字符宽高比是1:2的样子，也就是说如果要使左右移动的速度和上下移动速度看起来相等的话，在左右移动路程是上下移动路程的<code>1/2</code>的情况下，左右移动的时间也需要是上下移动时间的<code>1/2</code></p>
+<p>那么判断左右后设置不同的等待时间即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usleep(abs(change) &gt; 1 ? 250000 : 125000);</span><br></pre></td></tr></table></figure>
+
+<p>此处还可以增加蛇的变速功能，吃的食物越多蛇的速度越快，增加游戏体验，反正并不需要增加代码的行数hhhhh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usleep(abs(change)&gt;1?250000-len*200:125000-len*100);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-交互"><a href="#2-5-交互" class="headerlink" title="2.5 交互"></a>2.5 交互</h2><p>再然后最没有头绪的就是交互部分了，，</p>
+<h3 id="2-5-1-按键"><a href="#2-5-1-按键" class="headerlink" title="2.5.1 按键"></a>2.5.1 按键</h3><p>windows下是<code>GetAsyncKeyState</code>，“是一个用来判断函数调用时指定虚拟键的状态，确定用户当前是否按下了键盘上的一个键的函数。”</p>
+<p>又或者用<code>_kbhit(),_getch()</code>这样的组合</p>
+<p>macOS下或者linux下都有方法来实现<code>kbhit()</code>函数：（我一开始看的其实是linux那个，但是倒腾了半天最后发现macOS标准库里都没有<code>#include&lt;stropts.h&gt;</code>这个库，，，）</p>
+<ul>
+<li><a href="https://www.flipcode.com/archives/_kbhit_for_Linux.shtml" target="_blank" rel="noopener">flipcode: _kbhit() for Linux</a></li>
+<li><a href="https://stackoverflow.com/questions/29335758/using-kbhit-and-getch-on-linux" target="_blank" rel="noopener">stackoverflow: Using kbhit() and getch() on Linux</a>，，显然macOS下用ncurses.h库会很方便的样子，唉但是说好不用就不用ORZ</li>
+<li><a href="https://stackoverflow.com/questions/312185/kbhit-in-mac" target="_blank" rel="noopener">stackoverflow: kbhit() in mac</a></li>
+<li><a href="https://stackoverflow.com/questions/448944/c-non-blocking-keyboard-input#448982" target="_blank" rel="noopener">stackoverflow: C non-blocking keyboard input</a>⬅️最后参考的是这篇里@Alnitak的回答和<a href="https://www.zhihu.com/question/360814879/answer/1047231879" target="_blank" rel="noopener">知乎</a>里@Aqua的魔法代码</li>
+</ul>
+<p>最后的结构大概是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set_conio_terminal_mode();&#x2F;&#x2F;一些初始工作</span><br><span class="line">while(1)&#123;</span><br><span class="line">    while(!kbhit())&#123;&#x2F;&#x2F;没按键，按键了就退出最里层while</span><br><span class="line">        &#x2F;&#x2F;do something</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;获取按键</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="set-conio-terminal-mode-初始工作"><a href="#set-conio-terminal-mode-初始工作" class="headerlink" title="set_conio_terminal_mode()初始工作"></a><code>set_conio_terminal_mode()</code>初始工作</h4><p>参考以下这三个文档：</p>
+<ul>
+<li><a href="https://en.wikiversity.org/wiki/Linux/linux-0.01.tar/include/termios.h" target="_blank" rel="noopener">wiki: Linux/linux-0.01.tar/include/termios.h</a></li>
+<li><a href="https://baike.baidu.com/item/Termios/1467529?fr=aladdin" target="_blank" rel="noopener">百度百科: Termios</a></li>
+<li><a href="http://man7.org/linux/man-pages/man3/termios.3.html" target="_blank" rel="noopener">man7.org &gt; Linux &gt; man-pages &gt; TERMIOS(3) </a></li>
+</ul>
+<p>首先linux命令行（macOS也一样）是行缓冲的，也就是直到按下了回车之前输入的内容才会到stdin里，这样显然不符合上下左右的实时交互，所以<code>_kbhit()</code>函数里的第一步就是关闭行缓冲，需要用到<code>termios.h</code>这个库（是标准库里的），这个库主要是一些终端的传输设置？</p>
+<p>总之接下来要干的事情就是设置一堆参数，用<code>termios</code>结构体，一开始我唯一认识的就是atexit了，，，还是PA里讲的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void reset_terminal_mode()&#123;</span><br><span class="line">    tcsetattr(0, TCSANOW, &amp;orig_termios);</span><br><span class="line">&#125;</span><br><span class="line">void set_conio_terminal_mode()&#123;</span><br><span class="line">    struct termios new_termios;</span><br><span class="line">    tcgetattr(0, &amp;orig_termios);&#x2F;&#x2F;获取原始与终端相关的参数</span><br><span class="line">    memcpy(&amp;new_termios, &amp;orig_termios, sizeof(new_termios));&#x2F;&#x2F;复制</span><br><span class="line">    new_termios.c_lflag&amp;&#x3D;~(ICANON|ECHO);&#x2F;&#x2F;设置控制模式，后面两个是宏定义</span><br><span class="line">    &#x2F;&#x2F; ICANON: Enable canonical mode (described below)</span><br><span class="line">    &#x2F;&#x2F; ECHO: Echo input characters.</span><br><span class="line">    atexit(reset_terminal_mode);&#x2F;&#x2F;在程序结束return 0后调用atexit，把终端恢复成原来的设置</span><br><span class="line">    tcsetattr(0, TCSANOW, &amp;new_termios);&#x2F;&#x2F;TCSANOW表示设置的对终端的更改立即发生</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="kbhit"><a href="#kbhit" class="headerlink" title="kbhit()"></a>kbhit()</h4><p>timeout设置为0即非阻塞编程，select函数用来检查可读性</p>
+<p>如果readset有fd被set了表明有新数据可读（在贪吃蛇中也就是按键了，这样函数返回值就是1，会退出while循环开始getchar）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int kbhit()&#123;</span><br><span class="line">    struct timeval tv &#x3D; &#123; 0L, 0L &#125;;&#x2F;&#x2F;timeval: 高精度结构体，秒&#x2F;微秒</span><br><span class="line">    fd_set fds;</span><br><span class="line">    FD_ZERO(&amp;fds);&#x2F;&#x2F;fds清零</span><br><span class="line">    FD_SET(0, &amp;fds);&#x2F;&#x2F;0加入fds集合</span><br><span class="line">    return select(1, &amp;fds, NULL, NULL, &amp;tv);</span><br><span class="line">    &#x2F;&#x2F; 函数原型: int select(int nfds,fd_set* readset,fd_set* writeset,fe_set* exceptset,struct timeval* timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="getchar"><a href="#getchar" class="headerlink" title="getchar()"></a>getchar()</h4><p>编码是之前搜到的那个VT100 escape codes，唉这部分我最后都没怎么搞懂TAT</p>
+<p>VT100 User Guide可以在这里获得：<a href="https://vt100.net/docs/vt100-ug/" target="_blank" rel="noopener">https://vt100.net/docs/vt100-ug/</a>，可以找到3.6节是需要的控制编码</p>
+<p>esc对应的ascii码是27，<code>[</code>的ascii是91，A/B/C/D对应的ascii分别是65/66/67/68</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd330jgqqlj30pt05i3zd.jpg" alt=""></p>
+<p>所以如果要识别一个方向键，实际上是要getchar()三次的，比如按up实际上接收的是27/91/65，就参考@Aqua的代码那么写了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if((ch&#x3D;getchar())!&#x3D;27)continue;</span><br><span class="line">if((ch&#x3D;getchar())!&#x3D;91)return 0;</span><br><span class="line">ch&#x3D;getchar();&#x2F;&#x2F; get direction</span><br><span class="line">if(ch&#x3D;&#x3D;65)change&#x3D;-W;</span><br><span class="line">else if(ch&#x3D;&#x3D;66)change&#x3D;W;</span><br><span class="line">else if(ch&#x3D;&#x3D;67)change&#x3D;1;</span><br><span class="line">else if(ch&#x3D;&#x3D;68)change&#x3D;-1;</span><br><span class="line">else change&#x3D;1;</span><br></pre></td></tr></table></figure>
+
+<p>我最后会有一点bug，就是按ESC退出的话，并没有直接结束再按一下才结束？按照代码的逻辑，接收到27之后，确实是需要再getchar才有机会return 0，不知道要怎么改，真的不会了一点也不会了ORZ先这样吧</p>
+<hr>
+<p>本来以为半天就能搞完这个贪吃蛇的结果最后终端交互部分拖了好几好几天，真的后悔折腾这个了是我太菜了得去赶作业了_(´ཀ`」 ∠)_ddl你慢点</p>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong>
+              本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macOS/" rel="tag">macOS</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/b82ce712/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            hexo NexT主题下修改全局jQuery在线引用地址加快博客访问速度
+          
+        </div>
+      </a>
+    
+    
+      <a href="/5e426f3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">《抽卡人生》通关记录</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz',
+        app_key: 'ICpyPTKA9w5RlR5UTydeoKif',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'monsterid',
+        placeholder: 'Just go go ヾﾉ≧∀≦)o（如果希望收到邮件回复的话，记得填上自己的邮箱～）',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2018-2020
+        <i class="ri-heart-fill heart_icon"></i> LeFlacon
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+    <script>
+    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter){
+        var query=new AV.Query("Counter");
+        var url=$(".leancloud_visitors").attr('id').trim();
+        query.equalTo("xid",url);
+        query.find().then(function(results){
+          for(var i=0;i<results.length;i++){
+            var number=results[i]._serverData.time;
+            var urll=results[i]._serverData.url;
+            console.log(number);
+            $(document.getElementById(urll)).text(number);
+          }
+        })
+    }
+    function addCount(Counter){
+      var $visitors=$(".leancloud_visitors");
+      var url=$visitors.attr('id').trim();
+      var title=$visitors.attr('data-flag-title').trim();
+      var query=new AV.Query(Counter);
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        if(results.length>0){
+          var counter=results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save();
+          // console.log("ok");
+        }
+        else{
+          var newcounter=new Counter();
+          newcounter.set("title",title);
+          newcounter.set("url",url);
+          newcounter.set("xid",url);
+          newcounter.set("time",1);
+          newcounter.save(null,{
+            success: function(newcounter){
+              // console.log("new");
+            }
+          });
+        }
+      })
+    }
+    $(function(){
+      
+        var Counter=AV.Object.extend("Counter");
+        
+      
+    });
+  </script>
+
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/side.svg" alt="LeFlacon&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+
+<script src="/js/clickLove.js"></script>
+
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+    
+  </div>
+
+
+<!-- 漂亮雪花 -->
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<style type="text/css">
+.snow-container{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:100001;
+}
+</style>
+<div class="snow-container"></div>
+
+<!--百度自动递交链接-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+
+
+<!--live2d-->
+<footer>
+
+<link rel="stylesheet" href="/live2d/css/live2d.css" />
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="250" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://leflacon.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+</footer>
+
+</html>
