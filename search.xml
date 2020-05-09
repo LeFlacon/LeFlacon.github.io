@@ -182,10 +182,12 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.article-times &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-left: 1.5rem</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #5c6b72</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.article-times:hover &#123;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #5c6b72</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.article-times:before &#123;</span><br><span class="line">    content: &quot;\ec2a&quot;;</span><br><span class="line">    font-family: remixicon;</span><br><span class="line">    margin-right: .15rem;</span><br><span class="line">    margin-left: 1.5rem;</span><br><span class="line">    opacity: .6</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.archive-article-header+.article-times &#123;</span><br><span class="line">    margin-left: 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-6-js实现"><a href="#2-6-js实现" class="headerlink" title="2.6 js实现"></a>2.6 js实现</h3><p>导入js代码，在<code>themes/ayer/layout/_partial/footer.ejs</code>的<code>&lt;footer&gt;</code>标签内加上如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;jquery&#x2F;2.2.4&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn1.lncld.net&#x2F;static&#x2F;js&#x2F;2.5.0&#x2F;av-min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  var APP_ID&#x3D;&#39;&lt;%- theme.leancloud.app_id %&gt;&#39;;</span><br><span class="line">  var APP_KEY&#x3D;&#39;&lt;%- theme.leancloud.app_key %&gt;&#39;;</span><br><span class="line">  AV.init(&#123;</span><br><span class="line">      appId: APP_ID,</span><br><span class="line">      appKey: APP_KEY</span><br><span class="line">  &#125;);</span><br><span class="line">  function showTime(Counter)&#123;</span><br><span class="line">      var query&#x3D;new AV.Query(&quot;Counter&quot;);</span><br><span class="line">      var url&#x3D;$(&quot;.leancloud_visitors&quot;).attr(&#39;id&#39;).trim();</span><br><span class="line">      query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">      query.find().then(function(results)&#123;</span><br><span class="line">        for(var i&#x3D;0;i&lt;results.length;i++)&#123;</span><br><span class="line">          var number&#x3D;results[i]._serverData.time;</span><br><span class="line">          var urll&#x3D;results[i]._serverData.url;</span><br><span class="line">          console.log(number);</span><br><span class="line">          $(document.getElementById(urll)).text(number);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  function addCount(Counter)&#123;</span><br><span class="line">    var $visitors&#x3D;$(&quot;.leancloud_visitors&quot;);</span><br><span class="line">    var url&#x3D;$visitors.attr(&#39;id&#39;).trim();</span><br><span class="line">    var title&#x3D;$visitors.attr(&#39;data-flag-title&#39;).trim();</span><br><span class="line">    var query&#x3D;new AV.Query(Counter);</span><br><span class="line">    query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">    query.find().then(function(results)&#123;</span><br><span class="line">      if(results.length&gt;0)&#123;</span><br><span class="line">        var counter&#x3D;results[0];</span><br><span class="line">        counter.fetchWhenSave(true);</span><br><span class="line">        counter.increment(&quot;time&quot;);</span><br><span class="line">        counter.save();</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;ok&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      else&#123;</span><br><span class="line">        var newcounter&#x3D;new Counter();</span><br><span class="line">        newcounter.set(&quot;title&quot;,title);</span><br><span class="line">        newcounter.set(&quot;url&quot;,url);</span><br><span class="line">        newcounter.set(&quot;xid&quot;,url);</span><br><span class="line">        newcounter.set(&quot;time&quot;,1);</span><br><span class="line">        newcounter.save(null,&#123;</span><br><span class="line">          success: function(newcounter)&#123;</span><br><span class="line">            &#x2F;&#x2F; console.log(&quot;new&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  $(function()&#123;</span><br><span class="line">    &lt;% if(theme.leancloud.time_count)&#123; %&gt;</span><br><span class="line">      var Counter&#x3D;AV.Object.extend(&quot;Counter&quot;);</span><br><span class="line">      &lt;% if(is_post())&#123; %&gt;</span><br><span class="line">        addCount(Counter);</span><br><span class="line">        showTime(Counter);</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;jquery&#x2F;2.2.4&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn1.lncld.net&#x2F;static&#x2F;js&#x2F;2.5.0&#x2F;av-min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  var APP_ID&#x3D;&#39;&lt;%- theme.leancloud.app_id %&gt;&#39;;</span><br><span class="line">  var APP_KEY&#x3D;&#39;&lt;%- theme.leancloud.app_key %&gt;&#39;;</span><br><span class="line">  AV.init(&#123;</span><br><span class="line">      appId: APP_ID,</span><br><span class="line">      appKey: APP_KEY</span><br><span class="line">  &#125;);</span><br><span class="line">  function showTime(Counter)&#123;</span><br><span class="line">      var query&#x3D;new AV.Query(&quot;Counter&quot;);</span><br><span class="line">      var url&#x3D;$(&quot;.leancloud_visitors&quot;).attr(&#39;id&#39;).trim();</span><br><span class="line">      query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">      query.find().then(function(results)&#123;</span><br><span class="line">        for(var i&#x3D;0;i&lt;results.length;i++)&#123;</span><br><span class="line">          var number&#x3D;results[i]._serverData.time;</span><br><span class="line">          var urll&#x3D;results[i]._serverData.url;</span><br><span class="line">          console.log(number);</span><br><span class="line">          $(document.getElementById(urll)).text(number);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  function addCount(Counter)&#123;</span><br><span class="line">    var $visitors&#x3D;$(&quot;.leancloud_visitors&quot;);</span><br><span class="line">    var url&#x3D;$visitors.attr(&#39;id&#39;).trim();</span><br><span class="line">    var title&#x3D;$visitors.attr(&#39;data-flag-title&#39;).trim();</span><br><span class="line">    var query&#x3D;new AV.Query(Counter);</span><br><span class="line">    query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">    query.find().then(function(results)&#123;</span><br><span class="line">      if(results.length&gt;0)&#123;</span><br><span class="line">        var counter&#x3D;results[0];</span><br><span class="line">        counter.fetchWhenSave(true);</span><br><span class="line">        counter.increment(&quot;time&quot;);</span><br><span class="line">        counter.save();</span><br><span class="line">        console.log(&quot;ok&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      else&#123;</span><br><span class="line">        var newcounter&#x3D;new Counter();</span><br><span class="line">        newcounter.set(&quot;title&quot;,title);</span><br><span class="line">        newcounter.set(&quot;url&quot;,url);</span><br><span class="line">        newcounter.set(&quot;xid&quot;,url);</span><br><span class="line">        newcounter.set(&quot;time&quot;,1);</span><br><span class="line">        newcounter.save(null,&#123;</span><br><span class="line">          success: function(newcounter)&#123;</span><br><span class="line">            console.log(&quot;new&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  $(function()&#123;</span><br><span class="line">    &lt;% if(theme.leancloud.time_count)&#123; %&gt;</span><br><span class="line">      var Counter&#x3D;AV.Object.extend(&quot;Counter&quot;);</span><br><span class="line">      &lt;% if(is_post())&#123; %&gt;</span><br><span class="line">        addCount(Counter);</span><br><span class="line">        showTime(Counter);</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="3-效果"><a href="#3-效果" class="headerlink" title="3 效果"></a>3 效果</h2><p>最终的样式效果是这样的：</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gehxu5rlajj30o107q40d.jpg" alt=""></p>
+<hr>
+<p>我觉得用起来有bug，但是并不清楚具体是哪里的问题，先这么用着好了😭，仅供参考</p>
 <hr>
 <p>参考链接：</p>
 <ul>
@@ -2728,8 +2730,8 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
         <tag>二分</tag>
         <tag>cf</tag>
       </tags>
@@ -4031,8 +4033,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
         <tag>搜索</tag>
         <tag>cf</tag>
       </tags>
@@ -4945,8 +4947,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
         <tag>搜索</tag>
         <tag>cf</tag>
         <tag>构造</tag>
@@ -5995,8 +5997,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
         <tag>cf</tag>
       </tags>
   </entry>
@@ -7039,8 +7041,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -7487,8 +7489,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -7805,8 +7807,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数论</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -9596,26 +9598,6 @@
       </tags>
   </entry>
   <entry>
-    <title>1012 最小公倍数LCM</title>
-    <url>/ec404005/</url>
-    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-<a id="more"></a>
-
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1018 排序</title>
     <url>/5fc91746/</url>
     <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB </p>
@@ -9636,6 +9618,26 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1012 最小公倍数LCM</title>
+    <url>/ec404005/</url>
+    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+<a id="more"></a>
+
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -10567,8 +10569,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
