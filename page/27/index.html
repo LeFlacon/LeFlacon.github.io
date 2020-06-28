@@ -83,7 +83,7 @@ var _hmt = _hmt || [];
     
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="/images/c4.jpg" alt="image frame" />
+      <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gg8ajt13qxj31400u0u0x.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
       <h1><a href="/">LeFlacon&#39;s Blog</a></h1>
@@ -654,6 +654,81 @@ var _hmt = _hmt || [];
 
 </article>
     
+    <article id="post-1012 最小公倍数LCM" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/ec404005/"
+    >1012 最小公倍数LCM</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/ec404005/" class="article-date">
+  <time datetime="2018-09-18T17:35:00.000Z" itemprop="datePublished">2018-09-19</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+      ...
+      
+      <a class="article-more-link" href="/ec404005/">阅读全文</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
     <article id="post-1018 排序" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -715,81 +790,6 @@ var _hmt = _hmt || [];
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-  
-  
-
-</article>
-    
-    <article id="post-1012 最小公倍数LCM" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/ec404005/"
-    >1012 最小公倍数LCM</a> 
-</h2>
- 
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/ec404005/" class="article-date">
-  <time datetime="2018-09-18T17:35:00.000Z" itemprop="datePublished">2018-09-19</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ACM/">ACM</a>
-  </div>
-
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-      ...
-      
-      <a class="article-more-link" href="/ec404005/">阅读全文</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
 
 
     </footer>
@@ -895,7 +895,66 @@ var _hmt = _hmt || [];
 </section>
 </div>
 
-      <footer class="footer">
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <script>
+  var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+  var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+  AV.init({
+      appId: APP_ID,
+      appKey: APP_KEY
+  });
+  function showTime(Counter){
+      var query=new AV.Query("Counter");
+      var url=$(".leancloud_visitors").attr('id').trim();
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        for(var i=0;i<results.length;i++){
+          var number=results[i]._serverData.time;
+          var urll=results[i]._serverData.url;
+          // console.log(number);
+          $(document.getElementById(urll)).text(number);
+        }
+      })
+  }
+  function addCount(Counter){
+    var $visitors=$(".leancloud_visitors");
+    var url=$visitors.attr('id').trim();
+    var title=$visitors.attr('data-flag-title').trim();
+    var query=new AV.Query(Counter);
+    query.equalTo("xid",url);
+    query.find().then(function(results){
+      if(results.length>0){
+        var counter=results[0];
+        counter.fetchWhenSave(true);
+        counter.increment("time");
+        counter.save();
+        // console.log("ok");
+      }
+      else{
+        var newcounter=new Counter();
+        newcounter.set("title",title);
+        newcounter.set("url",url);
+        newcounter.set("xid",url);
+        newcounter.set("time",1);
+        newcounter.save(null,{
+          success: function(newcounter){
+            // console.log("new");
+          }
+        });
+      }
+    })
+  }
+  $(function(){
+    
+      var Counter=AV.Object.extend("Counter");
+      
+      showTime(Counter);
+    
+  });
+</script>
+
+<footer class="footer">
   <div class="outer">
     <ul>
       <li>
@@ -918,6 +977,13 @@ var _hmt = _hmt || [];
     <ul>
       <li>
         
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
       </li>
     </ul>
     <ul>
@@ -930,73 +996,10 @@ var _hmt = _hmt || [];
       </li>
     </ul>
   </div>
-
-  <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script>
-    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
-    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
-    AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-    });
-    function showTime(Counter){
-        var query=new AV.Query("Counter");
-        var url=$(".leancloud_visitors").attr('id').trim();
-        query.equalTo("xid",url);
-        query.find().then(function(results){
-          for(var i=0;i<results.length;i++){
-            var number=results[i]._serverData.time;
-            var urll=results[i]._serverData.url;
-            console.log(number);
-            $(document.getElementById(urll)).text(number);
-          }
-        })
-    }
-    function addCount(Counter){
-      var $visitors=$(".leancloud_visitors");
-      var url=$visitors.attr('id').trim();
-      var title=$visitors.attr('data-flag-title').trim();
-      var query=new AV.Query(Counter);
-      query.equalTo("xid",url);
-      query.find().then(function(results){
-        if(results.length>0){
-          var counter=results[0];
-          counter.fetchWhenSave(true);
-          counter.increment("time");
-          counter.save();
-          console.log("ok");
-        }
-        else{
-          var newcounter=new Counter();
-          newcounter.set("title",title);
-          newcounter.set("url",url);
-          newcounter.set("xid",url);
-          newcounter.set("time",1);
-          newcounter.save(null,{
-            success: function(newcounter){
-              console.log("new");
-            }
-          });
-        }
-      })
-    }
-    $(function(){
-      
-        var Counter=AV.Object.extend("Counter");
-        
-      
-    });
-  </script>
-
 </footer>
       <div class="float_btns">
         <div class="totop" id="totop">
   <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
 </div>
 
       </div>
@@ -1063,7 +1066,7 @@ var _hmt = _hmt || [];
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞</p>
   <div class="reward-box">
     
     <div class="reward-item">
@@ -1090,7 +1093,7 @@ var _hmt = _hmt || [];
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      strings: ['2020 夏', '早睡早起 好好生活', '热爱可抵岁月漫长'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -1253,6 +1256,10 @@ var _hmt = _hmt || [];
 
 <!-- busuanzi  -->
 
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
 <!-- ClickLove -->
 
 
@@ -1326,6 +1333,7 @@ var _hmt = _hmt || [];
 
 
 <!-- 漂亮雪花 -->
+<!-- 
 <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/snow.js"></script>
 <style type="text/css">
@@ -1339,6 +1347,7 @@ z-index:100001;
 }
 </style>
 <div class="snow-container"></div>
+ -->
 
 <!--百度自动递交链接-->
 <script>

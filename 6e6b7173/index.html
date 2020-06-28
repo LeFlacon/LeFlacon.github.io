@@ -106,15 +106,12 @@ var _hmt = _hmt || [];
 
       
       
-          
-    <div class="article-times">
-        <span class="post-time">
-            <span class="post-meta-item-text"> 阅读次数: </span>
-            <span id="/6e6b7173/" class="leancloud_visitors" data-flag-title="hexo的Ayer主题文章内显示leancloud阅读次数（和NexT无缝衔接）"></span>
-        </span>
-    </div>
-
-
+          <div class="article-times">
+    <span class="post-time">
+        <span class="post-meta-item-text"> 阅读次数: </span>
+        <span id="/6e6b7173/" class="leancloud_visitors" data-flag-title="hexo的Ayer主题文章内显示leancloud阅读次数（和NexT无缝衔接）"></span>
+    </span>
+</div>
 
       
     </div>
@@ -138,6 +135,7 @@ var _hmt = _hmt || [];
       
       <p>Ayer主题中自带的阅读次数显示的是busuanzi记录的当前页面的阅读次数</p>
 <p>而我之前用的是NexT主题，配合NexT里leancloud的阅读数统计，所以还是想继续用那个，就自己改了一下</p>
+<p>✨2020.06.28 阅读了ayer里leancloud评论相关的代码，对leancloud的实现做了一些修改</p>
 <a id="more"></a>
 
 <h2 id="1-leancloud配置"><a href="#1-leancloud配置" class="headerlink" title="1 leancloud配置"></a>1 leancloud配置</h2><p>首先是leancloud里的具体配置：（包括注册/在leancloud里新建应用/进行相关设置/创建API类）</p>
@@ -160,19 +158,18 @@ var _hmt = _hmt || [];
 
 <h3 id="2-4-新建time-ejs"><a href="#2-4-新建time-ejs" class="headerlink" title="2.4 新建time.ejs"></a>2.4 新建time.ejs</h3><p>根据上文的<code>&lt;%- partial(&#39;post/times&#39;) %&gt;</code>，现在需要新建一个<code>/themes/ayer/layout/_partial/post/times.ejs</code></p>
 <p>因为要和那行别的东西的格式统一，所以参考那个目录下的<code>category.ejs</code>和<code>date.ejs</code>或者<code>word.ejs</code>的实现即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(theme.leancloud.enable)&#123; %&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;article-times&quot;&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;post-time&quot;&gt;</span><br><span class="line">            &lt;span class&#x3D;&quot;post-meta-item-text&quot;&gt; &lt;%&#x3D; __(&#39;post.time_count&#39;) %&gt;: &lt;&#x2F;span&gt;</span><br><span class="line">            &lt;span id&#x3D;&quot;&lt;%&#x3D; url_for(post.path) %&gt;&quot; class&#x3D;&quot;leancloud_visitors&quot; data-flag-title&#x3D;&quot;&lt;%- post.title %&gt;&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">        &lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;article-times&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;post-time&quot;&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;post-meta-item-text&quot;&gt; &lt;%&#x3D; __(&#39;post.time_count&#39;) %&gt;: &lt;&#x2F;span&gt;</span><br><span class="line">        &lt;span id&#x3D;&quot;&lt;%&#x3D; url_for(post.path) %&gt;&quot; class&#x3D;&quot;leancloud_visitors&quot; data-flag-title&#x3D;&quot;&lt;%- post.title %&gt;&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-5-css样式设置"><a href="#2-5-css样式设置" class="headerlink" title="2.5 css样式设置"></a>2.5 css样式设置</h3><p><code>/themes/ayer/source/dist/main.css</code>中加上一些样式，抄的是<code>artical-category</code>的样式</p>
 <p>before的content那个其实是webfont（找了半天才知道，，见的太少了我）作者用的webfont的图标库是<a href="https://remixicon.com/" target="_blank" rel="noopener">REMIX ICON</a>，然后编码在<a href="https://cdn.jsdelivr.net/npm/remixicon@2.1.0/fonts/remixicon.css" target="_blank" rel="noopener">remixicon.css</a>里可以查（⚠️注意作者引入的版本是2.1.0的）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.article-times &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    margin-left: 1.5rem</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #5c6b72</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.article-times:hover &#123;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #5c6b72</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.article-times:before &#123;</span><br><span class="line">    content: &quot;\ec2a&quot;;</span><br><span class="line">    font-family: remixicon;</span><br><span class="line">    margin-right: .15rem;</span><br><span class="line">    margin-left: 1.5rem;</span><br><span class="line">    opacity: .6</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.archive-article-header+.article-times &#123;</span><br><span class="line">    margin-left: 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-6-js实现"><a href="#2-6-js实现" class="headerlink" title="2.6 js实现"></a>2.6 js实现</h3><p>导入js代码，在<code>themes/ayer/layout/_partial/footer.ejs</code>的<code>&lt;footer&gt;</code>标签内加上如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;jquery&#x2F;2.2.4&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn1.lncld.net&#x2F;static&#x2F;js&#x2F;2.5.0&#x2F;av-min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  var APP_ID&#x3D;&#39;&lt;%- theme.leancloud.app_id %&gt;&#39;;</span><br><span class="line">  var APP_KEY&#x3D;&#39;&lt;%- theme.leancloud.app_key %&gt;&#39;;</span><br><span class="line">  AV.init(&#123;</span><br><span class="line">      appId: APP_ID,</span><br><span class="line">      appKey: APP_KEY</span><br><span class="line">  &#125;);</span><br><span class="line">  function showTime(Counter)&#123;</span><br><span class="line">      var query&#x3D;new AV.Query(&quot;Counter&quot;);</span><br><span class="line">      var url&#x3D;$(&quot;.leancloud_visitors&quot;).attr(&#39;id&#39;).trim();</span><br><span class="line">      query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">      query.find().then(function(results)&#123;</span><br><span class="line">        for(var i&#x3D;0;i&lt;results.length;i++)&#123;</span><br><span class="line">          var number&#x3D;results[i]._serverData.time;</span><br><span class="line">          var urll&#x3D;results[i]._serverData.url;</span><br><span class="line">          &#x2F;&#x2F; console.log(number);</span><br><span class="line">          $(document.getElementById(urll)).text(number);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  function addCount(Counter)&#123;</span><br><span class="line">    var $visitors&#x3D;$(&quot;.leancloud_visitors&quot;);</span><br><span class="line">    var url&#x3D;$visitors.attr(&#39;id&#39;).trim();</span><br><span class="line">    var title&#x3D;$visitors.attr(&#39;data-flag-title&#39;).trim();</span><br><span class="line">    var query&#x3D;new AV.Query(Counter);</span><br><span class="line">    query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">    query.find().then(function(results)&#123;</span><br><span class="line">      if(results.length&gt;0)&#123;</span><br><span class="line">        var counter&#x3D;results[0];</span><br><span class="line">        counter.fetchWhenSave(true);</span><br><span class="line">        counter.increment(&quot;time&quot;);</span><br><span class="line">        counter.save();</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;ok&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      else&#123;</span><br><span class="line">        var newcounter&#x3D;new Counter();</span><br><span class="line">        newcounter.set(&quot;title&quot;,title);</span><br><span class="line">        newcounter.set(&quot;url&quot;,url);</span><br><span class="line">        newcounter.set(&quot;xid&quot;,url);</span><br><span class="line">        newcounter.set(&quot;time&quot;,1);</span><br><span class="line">        newcounter.save(null,&#123;</span><br><span class="line">          success: function(newcounter)&#123;</span><br><span class="line">            &#x2F;&#x2F; console.log(&quot;new&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  $(function()&#123;</span><br><span class="line">    &lt;% if(theme.leancloud.time_count)&#123; %&gt;</span><br><span class="line">      var Counter&#x3D;AV.Object.extend(&quot;Counter&quot;);</span><br><span class="line">      &lt;% if(is_post())&#123; %&gt;</span><br><span class="line">        addCount(Counter);</span><br><span class="line">        showTime(Counter);</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-6-js实现"><a href="#2-6-js实现" class="headerlink" title="2.6 js实现"></a>2.6 js实现</h3><p>导入js代码，<code>themes/ayer/layout/_partial/footer.ejs</code>里<code>&lt;footer&gt;</code>标签前加上下面这段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;cdn.bootcss.com&#x2F;jquery&#x2F;2.2.4&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn1.lncld.net&#x2F;static&#x2F;js&#x2F;2.5.0&#x2F;av-min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  var APP_ID&#x3D;&#39;&lt;%- theme.leancloud.app_id %&gt;&#39;;</span><br><span class="line">  var APP_KEY&#x3D;&#39;&lt;%- theme.leancloud.app_key %&gt;&#39;;</span><br><span class="line">  AV.init(&#123;</span><br><span class="line">      appId: APP_ID,</span><br><span class="line">      appKey: APP_KEY</span><br><span class="line">  &#125;);</span><br><span class="line">  function showTime(Counter)&#123;</span><br><span class="line">      var query&#x3D;new AV.Query(&quot;Counter&quot;);</span><br><span class="line">      var url&#x3D;$(&quot;.leancloud_visitors&quot;).attr(&#39;id&#39;).trim();</span><br><span class="line">      query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">      query.find().then(function(results)&#123;</span><br><span class="line">        for(var i&#x3D;0;i&lt;results.length;i++)&#123;</span><br><span class="line">          var number&#x3D;results[i]._serverData.time;</span><br><span class="line">          var urll&#x3D;results[i]._serverData.url;</span><br><span class="line">          &#x2F;&#x2F; console.log(number);</span><br><span class="line">          $(document.getElementById(urll)).text(number);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  function addCount(Counter)&#123;</span><br><span class="line">    var $visitors&#x3D;$(&quot;.leancloud_visitors&quot;);</span><br><span class="line">    var url&#x3D;$visitors.attr(&#39;id&#39;).trim();</span><br><span class="line">    var title&#x3D;$visitors.attr(&#39;data-flag-title&#39;).trim();</span><br><span class="line">    var query&#x3D;new AV.Query(Counter);</span><br><span class="line">    query.equalTo(&quot;xid&quot;,url);</span><br><span class="line">    query.find().then(function(results)&#123;</span><br><span class="line">      if(results.length&gt;0)&#123;</span><br><span class="line">        var counter&#x3D;results[0];</span><br><span class="line">        counter.fetchWhenSave(true);</span><br><span class="line">        counter.increment(&quot;time&quot;);</span><br><span class="line">        counter.save();</span><br><span class="line">        &#x2F;&#x2F; console.log(&quot;ok&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      else&#123;</span><br><span class="line">        var newcounter&#x3D;new Counter();</span><br><span class="line">        newcounter.set(&quot;title&quot;,title);</span><br><span class="line">        newcounter.set(&quot;url&quot;,url);</span><br><span class="line">        newcounter.set(&quot;xid&quot;,url);</span><br><span class="line">        newcounter.set(&quot;time&quot;,1);</span><br><span class="line">        newcounter.save(null,&#123;</span><br><span class="line">          success: function(newcounter)&#123;</span><br><span class="line">            &#x2F;&#x2F; console.log(&quot;new&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  $(function()&#123;</span><br><span class="line">    &lt;% if(theme.leancloud.time_count)&#123; %&gt;</span><br><span class="line">      var Counter&#x3D;AV.Object.extend(&quot;Counter&quot;);</span><br><span class="line">      &lt;% if(is_post())&#123; %&gt;</span><br><span class="line">        addCount(Counter);</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">      showTime(Counter);</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
 
 <h2 id="3-效果"><a href="#3-效果" class="headerlink" title="3 效果"></a>3 效果</h2><p>最终的样式效果是这样的：</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gehxu5rlajj30o107q40d.jpg" alt=""></p>
-<hr>
-<p>我觉得用起来有bug（有时候不显示），但是并不清楚具体是哪里的问题，先这么用着好了😭，仅供参考</p>
 <hr>
 <p>参考链接：</p>
 <ul>
@@ -299,7 +296,66 @@ var _hmt = _hmt || [];
 
 </article>
 </section>
-      <footer class="footer">
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <script>
+  var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+  var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+  AV.init({
+      appId: APP_ID,
+      appKey: APP_KEY
+  });
+  function showTime(Counter){
+      var query=new AV.Query("Counter");
+      var url=$(".leancloud_visitors").attr('id').trim();
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        for(var i=0;i<results.length;i++){
+          var number=results[i]._serverData.time;
+          var urll=results[i]._serverData.url;
+          // console.log(number);
+          $(document.getElementById(urll)).text(number);
+        }
+      })
+  }
+  function addCount(Counter){
+    var $visitors=$(".leancloud_visitors");
+    var url=$visitors.attr('id').trim();
+    var title=$visitors.attr('data-flag-title').trim();
+    var query=new AV.Query(Counter);
+    query.equalTo("xid",url);
+    query.find().then(function(results){
+      if(results.length>0){
+        var counter=results[0];
+        counter.fetchWhenSave(true);
+        counter.increment("time");
+        counter.save();
+        // console.log("ok");
+      }
+      else{
+        var newcounter=new Counter();
+        newcounter.set("title",title);
+        newcounter.set("url",url);
+        newcounter.set("xid",url);
+        newcounter.set("time",1);
+        newcounter.save(null,{
+          success: function(newcounter){
+            // console.log("new");
+          }
+        });
+      }
+    })
+  }
+  $(function(){
+    
+      var Counter=AV.Object.extend("Counter");
+      
+      showTime(Counter);
+    
+  });
+</script>
+
+<footer class="footer">
   <div class="outer">
     <ul>
       <li>
@@ -322,6 +378,13 @@ var _hmt = _hmt || [];
     <ul>
       <li>
         
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
       </li>
     </ul>
     <ul>
@@ -334,73 +397,10 @@ var _hmt = _hmt || [];
       </li>
     </ul>
   </div>
-
-  <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script>
-    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
-    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
-    AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-    });
-    function showTime(Counter){
-        var query=new AV.Query("Counter");
-        var url=$(".leancloud_visitors").attr('id').trim();
-        query.equalTo("xid",url);
-        query.find().then(function(results){
-          for(var i=0;i<results.length;i++){
-            var number=results[i]._serverData.time;
-            var urll=results[i]._serverData.url;
-            console.log(number);
-            $(document.getElementById(urll)).text(number);
-          }
-        })
-    }
-    function addCount(Counter){
-      var $visitors=$(".leancloud_visitors");
-      var url=$visitors.attr('id').trim();
-      var title=$visitors.attr('data-flag-title').trim();
-      var query=new AV.Query(Counter);
-      query.equalTo("xid",url);
-      query.find().then(function(results){
-        if(results.length>0){
-          var counter=results[0];
-          counter.fetchWhenSave(true);
-          counter.increment("time");
-          counter.save();
-          console.log("ok");
-        }
-        else{
-          var newcounter=new Counter();
-          newcounter.set("title",title);
-          newcounter.set("url",url);
-          newcounter.set("xid",url);
-          newcounter.set("time",1);
-          newcounter.save(null,{
-            success: function(newcounter){
-              console.log("new");
-            }
-          });
-        }
-      })
-    }
-    $(function(){
-      
-        var Counter=AV.Object.extend("Counter");
-        
-      
-    });
-  </script>
-
 </footer>
       <div class="float_btns">
         <div class="totop" id="totop">
   <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
 </div>
 
       </div>
@@ -467,7 +467,7 @@ var _hmt = _hmt || [];
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞</p>
   <div class="reward-box">
     
     <div class="reward-item">
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      strings: ['2020 夏', '早睡早起 好好生活', '热爱可抵岁月漫长'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -674,6 +674,10 @@ var _hmt = _hmt || [];
 
 <!-- busuanzi  -->
 
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
 <!-- ClickLove -->
 
 
@@ -747,6 +751,7 @@ var _hmt = _hmt || [];
 
 
 <!-- 漂亮雪花 -->
+<!-- 
 <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/snow.js"></script>
 <style type="text/css">
@@ -760,6 +765,7 @@ z-index:100001;
 }
 </style>
 <div class="snow-container"></div>
+ -->
 
 <!--百度自动递交链接-->
 <script>

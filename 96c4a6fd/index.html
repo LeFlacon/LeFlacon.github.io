@@ -106,15 +106,12 @@ var _hmt = _hmt || [];
 
       
       
-          
-    <div class="article-times">
-        <span class="post-time">
-            <span class="post-meta-item-text"> 阅读次数: </span>
-            <span id="/96c4a6fd/" class="leancloud_visitors" data-flag-title="数据结构第四次作业（delete浅析，约瑟夫环-链表法和公式法，栈Stack）"></span>
-        </span>
-    </div>
-
-
+          <div class="article-times">
+    <span class="post-time">
+        <span class="post-meta-item-text"> 阅读次数: </span>
+        <span id="/96c4a6fd/" class="leancloud_visitors" data-flag-title="数据结构第四次作业（delete浅析，约瑟夫环-链表法和公式法，栈Stack）"></span>
+    </span>
+</div>
 
       
     </div>
@@ -297,7 +294,66 @@ var _hmt = _hmt || [];
 
 </article>
 </section>
-      <footer class="footer">
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+  <script>
+  var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
+  var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
+  AV.init({
+      appId: APP_ID,
+      appKey: APP_KEY
+  });
+  function showTime(Counter){
+      var query=new AV.Query("Counter");
+      var url=$(".leancloud_visitors").attr('id').trim();
+      query.equalTo("xid",url);
+      query.find().then(function(results){
+        for(var i=0;i<results.length;i++){
+          var number=results[i]._serverData.time;
+          var urll=results[i]._serverData.url;
+          // console.log(number);
+          $(document.getElementById(urll)).text(number);
+        }
+      })
+  }
+  function addCount(Counter){
+    var $visitors=$(".leancloud_visitors");
+    var url=$visitors.attr('id').trim();
+    var title=$visitors.attr('data-flag-title').trim();
+    var query=new AV.Query(Counter);
+    query.equalTo("xid",url);
+    query.find().then(function(results){
+      if(results.length>0){
+        var counter=results[0];
+        counter.fetchWhenSave(true);
+        counter.increment("time");
+        counter.save();
+        // console.log("ok");
+      }
+      else{
+        var newcounter=new Counter();
+        newcounter.set("title",title);
+        newcounter.set("url",url);
+        newcounter.set("xid",url);
+        newcounter.set("time",1);
+        newcounter.save(null,{
+          success: function(newcounter){
+            // console.log("new");
+          }
+        });
+      }
+    })
+  }
+  $(function(){
+    
+      var Counter=AV.Object.extend("Counter");
+      
+      showTime(Counter);
+    
+  });
+</script>
+
+<footer class="footer">
   <div class="outer">
     <ul>
       <li>
@@ -320,6 +376,13 @@ var _hmt = _hmt || [];
     <ul>
       <li>
         
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
       </li>
     </ul>
     <ul>
@@ -332,73 +395,10 @@ var _hmt = _hmt || [];
       </li>
     </ul>
   </div>
-
-  <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script>
-    var APP_ID='mLJey1HKsK3JYeN15bxMR0A4-gzGzoHsz';
-    var APP_KEY='ICpyPTKA9w5RlR5UTydeoKif';
-    AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-    });
-    function showTime(Counter){
-        var query=new AV.Query("Counter");
-        var url=$(".leancloud_visitors").attr('id').trim();
-        query.equalTo("xid",url);
-        query.find().then(function(results){
-          for(var i=0;i<results.length;i++){
-            var number=results[i]._serverData.time;
-            var urll=results[i]._serverData.url;
-            console.log(number);
-            $(document.getElementById(urll)).text(number);
-          }
-        })
-    }
-    function addCount(Counter){
-      var $visitors=$(".leancloud_visitors");
-      var url=$visitors.attr('id').trim();
-      var title=$visitors.attr('data-flag-title').trim();
-      var query=new AV.Query(Counter);
-      query.equalTo("xid",url);
-      query.find().then(function(results){
-        if(results.length>0){
-          var counter=results[0];
-          counter.fetchWhenSave(true);
-          counter.increment("time");
-          counter.save();
-          console.log("ok");
-        }
-        else{
-          var newcounter=new Counter();
-          newcounter.set("title",title);
-          newcounter.set("url",url);
-          newcounter.set("xid",url);
-          newcounter.set("time",1);
-          newcounter.save(null,{
-            success: function(newcounter){
-              console.log("new");
-            }
-          });
-        }
-      })
-    }
-    $(function(){
-      
-        var Counter=AV.Object.extend("Counter");
-        
-      
-    });
-  </script>
-
 </footer>
       <div class="float_btns">
         <div class="totop" id="totop">
   <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
 </div>
 
       </div>
@@ -465,7 +465,7 @@ var _hmt = _hmt || [];
 <!-- #reward -->
 <div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞🎈</p>
+  <p class="reward-p"><i class="ri-cup-line"></i>奶茶一杯 快乐起飞</p>
   <div class="reward-box">
     
     <div class="reward-item">
@@ -492,7 +492,7 @@ var _hmt = _hmt || [];
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['早睡早起', '热爱可抵岁月漫长', '好好生活 慢慢相遇'],
+      strings: ['2020 夏', '早睡早起 好好生活', '热爱可抵岁月漫长'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
@@ -672,6 +672,10 @@ var _hmt = _hmt || [];
 
 <!-- busuanzi  -->
 
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
 <!-- ClickLove -->
 
 
@@ -745,6 +749,7 @@ var _hmt = _hmt || [];
 
 
 <!-- 漂亮雪花 -->
+<!-- 
 <script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/snow.js"></script>
 <style type="text/css">
@@ -758,6 +763,7 @@ z-index:100001;
 }
 </style>
 <div class="snow-container"></div>
+ -->
 
 <!--百度自动递交链接-->
 <script>
