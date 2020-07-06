@@ -19,6 +19,27 @@
       </categories>
   </entry>
   <entry>
+    <title>实现leancloud统计所有文章总访问量的一段js代码</title>
+    <url>/88ef7bff/</url>
+    <content><![CDATA[<p>用来给leancloud统计的文章访问量求和的</p>
+<a id="more"></a>
+
+<p>「chrome浏览器右键」-「检查」-「Console」</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AV.initialize(&quot;你的appid&quot;, &quot;你的appkey&quot;);</span><br><span class="line">var sum&#x3D;0</span><br><span class="line">var time&#x3D;0</span><br><span class="line">var title&#x3D;&quot;&quot;</span><br><span class="line">var url&#x3D;&quot;&quot;</span><br><span class="line">var query &#x3D; new AV.Query(&#39;Counter&#39;);</span><br><span class="line">query.notEqualTo(&#39;id&#39;,0);</span><br><span class="line">&#x2F;&#x2F;query.descending(&#39;time&#39;);&#x2F;&#x2F;按照文章访问次数降序排列</span><br><span class="line">query.limit(383);&#x2F;&#x2F;控制返回结果个数</span><br><span class="line">query.find().then(function(todo)&#123;</span><br><span class="line">  for (var i&#x3D;0;i&lt;383;i++)&#123;</span><br><span class="line">    var result&#x3D;todo[i].attributes;</span><br><span class="line">    time&#x3D;result.time;</span><br><span class="line">    title&#x3D;result.title;</span><br><span class="line">    url&#x3D;result.url;</span><br><span class="line">    sum&#x3D;sum+time;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,function (error)&#123;</span><br><span class="line">  console.log(&quot;error&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后输出一下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(sum);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gghkhlak3yj30gd04vjrx.jpg" alt=""></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo Ayer主题个性化设置</title>
     <url>/8b8f12ca/</url>
     <content><![CDATA[<p>换主题啦～啦啦啦啦啦</p>
@@ -2730,8 +2751,8 @@
       </categories>
       <tags>
         <tag>贪心</tag>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
         <tag>二分</tag>
         <tag>cf</tag>
       </tags>
@@ -4033,8 +4054,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
         <tag>搜索</tag>
         <tag>cf</tag>
       </tags>
@@ -4947,8 +4968,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
         <tag>搜索</tag>
         <tag>cf</tag>
         <tag>构造</tag>
@@ -5997,8 +6018,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
         <tag>cf</tag>
       </tags>
   </entry>
@@ -7041,8 +7062,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -7489,8 +7510,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -7807,8 +7828,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>dp</tag>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -9598,26 +9619,6 @@
       </tags>
   </entry>
   <entry>
-    <title>1012 最小公倍数LCM</title>
-    <url>/ec404005/</url>
-    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-<a id="more"></a>
-
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1018 排序</title>
     <url>/5fc91746/</url>
     <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB </p>
@@ -9638,6 +9639,26 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1012 最小公倍数LCM</title>
+    <url>/ec404005/</url>
+    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+<a id="more"></a>
+
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -10569,8 +10590,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>dp</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
