@@ -158,10 +158,12 @@
 <li>文章显示leancloud阅读次数</li>
 </ul>
 <hr>
-<h2 id="0-github丝带"><a href="#0-github丝带" class="headerlink" title="0 github丝带"></a>0 github丝带</h2><p>在<a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">Ribbon</a>或者<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">Corners</a>获取喜欢的样式的代码，加上自己的github地址，然后复制到<code>/themes/ayer/layout/layout.ejs</code>的<code>&lt;body&gt;</code>标签内的开头部分</p>
+<h2 id="0-github丝带"><a href="#0-github丝带" class="headerlink" title="0 github丝带"></a>0 github丝带</h2><p>💡本博客现在没用这个啦</p>
+<p>在<a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">Ribbon</a>或者<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">Corners</a>获取喜欢的样式的代码，加上自己的github地址，然后复制到<code>/themes/ayer/layout/layout.ejs</code>的<code>&lt;body&gt;</code>标签内的开头部分</p>
 <p>我的效果如右上角：</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gemg5gpzfmj31400jn47u.jpg" alt=""></p>
-<h2 id="1-下雪特效"><a href="#1-下雪特效" class="headerlink" title="1 下雪特效"></a>1 下雪特效</h2><p>在<a href="https://www.yaxi.net/2016-12-28/1211.html" target="_blank" rel="noopener">原教程：JQuery+Html5实现超真实3D雪花飞舞特效</a>中下载<code>snow.js</code>文件，放在<code>/themes/ayer/source/js/snow.js</code></p>
+<h2 id="1-下雪特效"><a href="#1-下雪特效" class="headerlink" title="1 下雪特效"></a>1 下雪特效</h2><p>💡本博客现在没用这个啦</p>
+<p>在<a href="https://www.yaxi.net/2016-12-28/1211.html" target="_blank" rel="noopener">原教程：JQuery+Html5实现超真实3D雪花飞舞特效</a>中下载<code>snow.js</code>文件，放在<code>/themes/ayer/source/js/snow.js</code></p>
 <p>在<code>ayer/layout/layout.ejs</code>里在body标签内部（<code>&lt;/body&gt;</code>前）添加以下代码：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 漂亮雪花 --&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;apps.bdimg.com&#x2F;libs&#x2F;jquery&#x2F;1.7.2&#x2F;jquery.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;snow.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">.snow-container&#123;</span><br><span class="line">position:fixed;</span><br><span class="line">top:0;left:0;</span><br><span class="line">width:100%;</span><br><span class="line">height:100%;</span><br><span class="line">pointer-events:none;</span><br><span class="line">z-index:100001;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">&lt;div class&#x3D;&quot;snow-container&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 
@@ -171,7 +173,8 @@
 <h2 id="2-百度自动递交链接"><a href="#2-百度自动递交链接" class="headerlink" title="2 百度自动递交链接"></a>2 百度自动递交链接</h2><p>百度收录和两年前相比真的好慢呀ORZ，不知道这玩意儿还有没有用，先加上再说吧</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--百度自动递交链接--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function()&#123;</span><br><span class="line">    var bp &#x3D; document.createElement(&#39;script&#39;);</span><br><span class="line">    var curProtocol &#x3D; window.location.protocol.split(&#39;:&#39;)[0];</span><br><span class="line">    if (curProtocol &#x3D;&#x3D;&#x3D; &#39;https&#39;) &#123;</span><br><span class="line">        bp.src &#x3D; &#39;https:&#x2F;&#x2F;zz.bdstatic.com&#x2F;linksubmit&#x2F;push.js&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        bp.src &#x3D; &#39;http:&#x2F;&#x2F;push.zhanzhang.baidu.com&#x2F;push.js&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    var s &#x3D; document.getElementsByTagName(&quot;script&quot;)[0];</span><br><span class="line">    s.parentNode.insertBefore(bp, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-live2d"><a href="#3-live2d" class="headerlink" title="3 live2d"></a>3 live2d</h2><p>这个网上有许多版本，我是以前下载的别人写好的一个（不是用插件的那种），如果用插件那种的话作者的文档中已经给出了一个选择：<a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md" target="_blank" rel="noopener">hexo-helper-live2d</a></p>
+<h2 id="3-live2d"><a href="#3-live2d" class="headerlink" title="3 live2d"></a>3 live2d</h2><p>💡本博客现在没用这个啦</p>
+<p>这个网上有许多版本，我是以前下载的别人写好的一个（不是用插件的那种），如果用插件那种的话作者的文档中已经给出了一个选择：<a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md" target="_blank" rel="noopener">hexo-helper-live2d</a></p>
 <p>这里就说明一下我调用的地方：</p>
 <p>在<code>ayer/layout/layout.ejs</code>里最后（<code>&lt;/html&gt;</code>结束前）加上<code>&lt;footer&gt;&lt;/footer&gt;</code>标签，然后在footer标签内部加上调用live2d的代码</p>
 <h2 id="4-设置不显示版权信息"><a href="#4-设置不显示版权信息" class="headerlink" title="4 设置不显示版权信息"></a>4 设置不显示版权信息</h2><p>主题配置中的版权信息设置如下：</p>
@@ -276,7 +279,7 @@
 <h3 id="2-3-修改ariticle-ejs"><a href="#2-3-修改ariticle-ejs" class="headerlink" title="2.3 修改ariticle.ejs"></a>2.3 修改ariticle.ejs</h3><p>根据<code>themes/ayer/layout/_partial/article.ejs</code>中的内容，如果要在article-meta部分在日期和分类后面加上一个阅读次数的话，就是加上下面代码中的8-10行</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;% if (index || is_post()) &#123; %&gt;</span><br><span class="line">&lt;div class&#x3D;&quot;article-meta&quot;&gt;</span><br><span class="line">  &lt;%- partial(&#39;post&#x2F;date&#39;, &#123;class_name: &#39;article-date&#39;, date_format: null&#125;) %&gt;</span><br><span class="line">  &lt;%- partial(&#39;post&#x2F;category&#39;) %&gt;</span><br><span class="line">  &lt;% if(theme.word_count &amp;&amp; theme.word_count.enable &amp;&amp; !post.no_word_count)&#123;%&gt;</span><br><span class="line">  &lt;%- partial(&#39;post&#x2F;word&#39;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;% if(theme.leancloud.time_count &amp;&amp; is_post())&#123; %&gt;</span><br><span class="line">      &lt;%- partial(&#39;post&#x2F;times&#39;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-4-新建time-ejs"><a href="#2-4-新建time-ejs" class="headerlink" title="2.4 新建time.ejs"></a>2.4 新建time.ejs</h3><p>根据上文的<code>&lt;%- partial(&#39;post/times&#39;) %&gt;</code>，现在需要新建一个<code>/themes/ayer/layout/_partial/post/times.ejs</code></p>
+<h3 id="2-4-新建times-ejs"><a href="#2-4-新建times-ejs" class="headerlink" title="2.4 新建times.ejs"></a>2.4 新建times.ejs</h3><p>根据上文的<code>&lt;%- partial(&#39;post/times&#39;) %&gt;</code>，现在需要新建一个<code>/themes/ayer/layout/_partial/post/times.ejs</code></p>
 <p>因为要和那行别的东西的格式统一，所以参考那个目录下的<code>category.ejs</code>和<code>date.ejs</code>或者<code>word.ejs</code>的实现即可</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;article-times&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;post-time&quot;&gt;</span><br><span class="line">        &lt;span class&#x3D;&quot;post-meta-item-text&quot;&gt; &lt;%&#x3D; __(&#39;post.time_count&#39;) %&gt;: &lt;&#x2F;span&gt;</span><br><span class="line">        &lt;span id&#x3D;&quot;&lt;%&#x3D; url_for(post.path) %&gt;&quot; class&#x3D;&quot;leancloud_visitors&quot; data-flag-title&#x3D;&quot;&lt;%- post.title %&gt;&quot;&gt;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 
@@ -3752,8 +3755,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数据结构</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -4007,8 +4010,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数据结构</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -9700,26 +9703,6 @@
       </tags>
   </entry>
   <entry>
-    <title>1012 最小公倍数LCM</title>
-    <url>/ec404005/</url>
-    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-<a id="more"></a>
-
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1018 排序</title>
     <url>/5fc91746/</url>
     <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB </p>
@@ -9740,6 +9723,26 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1012 最小公倍数LCM</title>
+    <url>/ec404005/</url>
+    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+<a id="more"></a>
+
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -11629,8 +11632,8 @@ public class Main{
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>数据结构</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
