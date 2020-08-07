@@ -19,6 +19,26 @@
       </categories>
   </entry>
   <entry>
+    <title>curl下载出现「Failed to connect to raw.githubusercontent.com:443」问题的原因及解决办法</title>
+    <url>/ab602d23/</url>
+    <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>之前安装brew也报的这个错，然后好不容易通过直接下载运行sh的方式七装八装装好了，但是还是没解决curl不能用的问题</p>
+<p>想装个「oh my zsh」，<code>sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</code>，然后也遇到了这个问题</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>在知乎一个问题的评论区找到了很靠谱的方法，这个问题里也给了一些解决方案和说明，记录一下⬇️</p>
+<p>🔗 Failed to connect to raw.githubusercontent.com:443 - CaptainInPHW的文章 - 知乎<br><a href="https://zhuanlan.zhihu.com/p/115450863" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/115450863</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg0n4re4xj312005a74v.jpg" alt=""></p>
+<p>打开Wi-Fi的高级设置，设置dns为8.8.8.8和114.114.114.114：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghg0vu9gr0j310m0hmk1t.jpg" alt=""></p>
+<p>然后就好使了</p>
+]]></content>
+      <categories>
+        <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
+      </categories>
+      <tags>
+        <tag>问题解决</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>🌚字跳凉凉面经</title>
     <url>/441aa9f/</url>
     <content><![CDATA[<p>有生以来第一次社畜面试，非常紧张特别紧张紧张到手凉然后做运动，而且很久没写题了甚至c++的NULL都写了null。啥也没答上来，凉透啦。但是经验总结还是要的。</p>
@@ -972,8 +992,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -1113,8 +1133,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>macOS</tag>
         <tag>图形学</tag>
+        <tag>macOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1193,8 +1213,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -1293,8 +1313,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -1375,8 +1395,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -1469,8 +1489,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -1537,8 +1557,8 @@
         <category>瞎折腾(=ﾟωﾟ)ﾉ</category>
       </categories>
       <tags>
-        <tag>图形学</tag>
         <tag>阅读笔记</tag>
+        <tag>图形学</tag>
       </tags>
   </entry>
   <entry>
@@ -3755,8 +3775,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4010,8 +4030,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -9703,6 +9723,26 @@
       </tags>
   </entry>
   <entry>
+    <title>1012 最小公倍数LCM</title>
+    <url>/ec404005/</url>
+    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+<a id="more"></a>
+
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1018 排序</title>
     <url>/5fc91746/</url>
     <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB </p>
@@ -9723,26 +9763,6 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1012 最小公倍数LCM</title>
-    <url>/ec404005/</url>
-    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-<a id="more"></a>
-
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -11632,8 +11652,8 @@ public class Main{
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
