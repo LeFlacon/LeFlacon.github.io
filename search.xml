@@ -8420,31 +8420,6 @@
       </tags>
   </entry>
   <entry>
-    <title>51nod 1413 权势二进制（CF 538 B. Quasi Binary）</title>
-    <url>/73d62e33/</url>
-    <content><![CDATA[<p>题目来源： CodeForces<a href="http://codeforces.com/problemset/problem/538/B" target="_blank" rel="noopener">http://codeforces.com/problemset/problem/538/B</a></p>
-<p>基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题</p>
-<p>一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。</p>
-<p>当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>单组测试数据。<br>第一行给出一个整数n (1&lt;=n&lt;=1,000,000)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出答案占一行。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>这个题放二级里有点太水了。。</p>
-<p>就是取所有位中出现的最大的那个数字</p>
-<p>然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123; </span><br><span class="line">    string s;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    int ans&#x3D;1,len&#x3D;s.length();</span><br><span class="line">    for(int i&#x3D;0;i&lt;len;i++)ans&#x3D;max(ans,s[i]-&#39;0&#39;);</span><br><span class="line">    printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int f(int w)&#123;</span><br><span class="line">    if(w&#x3D;&#x3D;1)return 1;</span><br><span class="line">    else if(w&#x3D;&#x3D;2)return 10;</span><br><span class="line">    else if(w&#x3D;&#x3D;3)return 100;</span><br><span class="line">    else if(w&#x3D;&#x3D;4)return 1000;</span><br><span class="line">    else if(w&#x3D;&#x3D;5)return 10000;</span><br><span class="line">    else if(w&#x3D;&#x3D;6)return 100000;</span><br><span class="line">    else return 1000000;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123; </span><br><span class="line">    int n,wei,tmp,ans[11],ji&#x3D;0,res; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n); </span><br><span class="line">    while(n)&#123;</span><br><span class="line">        wei&#x3D;0;tmp&#x3D;n;res&#x3D;0;</span><br><span class="line">        while(tmp)&#123;</span><br><span class="line">            tmp&#x2F;&#x3D;10;wei++;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp&#x3D;n;</span><br><span class="line">        for(int i&#x3D;wei;i&gt;0;i--)&#123;</span><br><span class="line">            if(tmp&#x2F;f(i))&#123;</span><br><span class="line">                tmp-&#x3D;f(i);res+&#x3D;f(i);</span><br><span class="line">            &#125;</span><br><span class="line">            if(tmp&#x2F;f(i))tmp%&#x3D;f(i);</span><br><span class="line">        &#125;</span><br><span class="line">        n-&#x3D;res;</span><br><span class="line">        ans[ji++]&#x3D;res;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,ji);</span><br><span class="line">    for(int i&#x3D;0;i&lt;ji-1;i++)printf(&quot;%d &quot;,ans[i]);</span><br><span class="line">    printf(&quot;%d\n&quot;,ans[ji-1]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>51nod 1433 0和5（CF 352 A. Jeff and Digits）</title>
     <url>/50df051/</url>
     <content><![CDATA[<p>题目来源： CodeForces<a href="http://codeforces.com/problemset/problem/352/A" target="_blank" rel="noopener">http://codeforces.com/problemset/problem/352/A</a></p>
@@ -8467,6 +8442,31 @@
 </blockquote>
 <p>所以要被90整除的话，必须有一个0在末尾，num5的个数贪心的取能取到的最大的9的倍数</p>
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;  </span><br><span class="line">    int n,num5&#x3D;0,x,num0;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(int i&#x3D;0;i&lt;n;i++)&#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;x);</span><br><span class="line">        if(x&#x3D;&#x3D;5)num5++;</span><br><span class="line">    &#125;</span><br><span class="line">    num0&#x3D;n-num5;</span><br><span class="line">    if(num0&#x3D;&#x3D;0)puts(&quot;-1&quot;);</span><br><span class="line">    else if(num5&lt;9)puts(&quot;0&quot;);</span><br><span class="line">    else&#123;       </span><br><span class="line">        num5&#x3D;(int)(num5&#x2F;9)*9;</span><br><span class="line">        for(int i&#x3D;0;i&lt;num5;i++)printf(&quot;5&quot;);</span><br><span class="line">        for(int i&#x3D;0;i&lt;num0;i++)printf(&quot;0&quot;);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>51nod 1413 权势二进制（CF 538 B. Quasi Binary）</title>
+    <url>/73d62e33/</url>
+    <content><![CDATA[<p>题目来源： CodeForces<a href="http://codeforces.com/problemset/problem/538/B" target="_blank" rel="noopener">http://codeforces.com/problemset/problem/538/B</a></p>
+<p>基准时间限制：1 秒 空间限制：131072 KB 分值: 10 难度：2级算法题</p>
+<p>一个十进制整数被叫做权势二进制，当他的十进制表示的时候只由0或1组成。例如0，1，101，110011都是权势二进制而2，12，900不是。</p>
+<p>当给定一个n的时候，计算一下最少要多少个权势二进制相加才能得到n。</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>单组测试数据。<br>第一行给出一个整数n (1&lt;=n&lt;=1,000,000)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出答案占一行。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">9</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>这个题放二级里有点太水了。。</p>
+<p>就是取所有位中出现的最大的那个数字</p>
+<p>然后写了一下cf原题，原题里还有一个要求是要输出这些权值二进制。。写的一点都不优美的代码也放下面了0.0</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123; </span><br><span class="line">    string s;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    int ans&#x3D;1,len&#x3D;s.length();</span><br><span class="line">    for(int i&#x3D;0;i&lt;len;i++)ans&#x3D;max(ans,s[i]-&#39;0&#39;);</span><br><span class="line">    printf(&quot;%d\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int f(int w)&#123;</span><br><span class="line">    if(w&#x3D;&#x3D;1)return 1;</span><br><span class="line">    else if(w&#x3D;&#x3D;2)return 10;</span><br><span class="line">    else if(w&#x3D;&#x3D;3)return 100;</span><br><span class="line">    else if(w&#x3D;&#x3D;4)return 1000;</span><br><span class="line">    else if(w&#x3D;&#x3D;5)return 10000;</span><br><span class="line">    else if(w&#x3D;&#x3D;6)return 100000;</span><br><span class="line">    else return 1000000;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123; </span><br><span class="line">    int n,wei,tmp,ans[11],ji&#x3D;0,res; </span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n); </span><br><span class="line">    while(n)&#123;</span><br><span class="line">        wei&#x3D;0;tmp&#x3D;n;res&#x3D;0;</span><br><span class="line">        while(tmp)&#123;</span><br><span class="line">            tmp&#x2F;&#x3D;10;wei++;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp&#x3D;n;</span><br><span class="line">        for(int i&#x3D;wei;i&gt;0;i--)&#123;</span><br><span class="line">            if(tmp&#x2F;f(i))&#123;</span><br><span class="line">                tmp-&#x3D;f(i);res+&#x3D;f(i);</span><br><span class="line">            &#125;</span><br><span class="line">            if(tmp&#x2F;f(i))tmp%&#x3D;f(i);</span><br><span class="line">        &#125;</span><br><span class="line">        n-&#x3D;res;</span><br><span class="line">        ans[ji++]&#x3D;res;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%d\n&quot;,ji);</span><br><span class="line">    for(int i&#x3D;0;i&lt;ji-1;i++)printf(&quot;%d &quot;,ans[i]);</span><br><span class="line">    printf(&quot;%d\n&quot;,ans[ji-1]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -10722,8 +10722,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>dp</tag>
         <tag>java</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -10949,32 +10949,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hdu 4523 威威猫系列故事——过生日（java大数）</title>
-    <url>/d5042e55/</url>
-    <content><![CDATA[<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4523" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=4523</a></p>
-<p>Time Limit: 500/200 MS (Java/Others)    Memory Limit: 65535/32768 K (Java/Others)</p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>　　2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。<br>　　大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。<br>　　假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。<br>[Technical Specification]<br>3 &lt;= n &lt;= 10^100<br>0 &lt; m &lt;= 10^100<br>0 &lt;= p &lt;= 10^100</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；<br>每组数据输出一行。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4 5 1</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">YES</span><br></pre></td></tr></table></figure>
-
-<h3 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h3><p>Sample对应的示意图如下：<br><img src="http://acm.hdu.edu.cn/data/images/4523-1.jpg" alt=""></p>
-<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>2013腾讯编程马拉松初赛第四场（3月24日）</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        BigInteger n,m,p;</span><br><span class="line">        while(cin.hasNextBigInteger()) &#123;</span><br><span class="line">        	n&#x3D;cin.nextBigInteger();</span><br><span class="line">        	m&#x3D;cin.nextBigInteger();</span><br><span class="line">        	p&#x3D;cin.nextBigInteger();</span><br><span class="line">        	if(m.compareTo(BigInteger.valueOf(3))&gt;&#x3D;0&amp;&amp;m.compareTo(n.add(p))&lt;&#x3D;0)System.out.println(&quot;YES&quot;);</span><br><span class="line">        	else System.out.println(&quot;NO&quot;);      </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hdu 5920 Ugly Problem（贪心，java大数）</title>
     <url>/cfe28c6a/</url>
     <content><![CDATA[<p>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others)</p>
@@ -11008,6 +10982,32 @@
 
 
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        int t;</span><br><span class="line">        t&#x3D;cin.nextInt();</span><br><span class="line">        BigInteger x&#x3D;BigInteger.valueOf(0),num,jian;</span><br><span class="line">        String s&#x3D;null,r&#x3D;null,l&#x3D;null,now&#x3D;null;</span><br><span class="line">        String ans[]&#x3D;new String[55];</span><br><span class="line">        for(int cas&#x3D;1;cas&lt;&#x3D;t;cas++) &#123;</span><br><span class="line">            int ji&#x3D;0;</span><br><span class="line">            x&#x3D;cin.nextBigInteger();</span><br><span class="line">            System.out.println(&quot;Case #&quot;+cas+&quot;:&quot;);</span><br><span class="line">            s&#x3D;x.toString();</span><br><span class="line">            int len&#x3D;s.length();</span><br><span class="line">            now&#x3D;s.substring(0,(len+1)&#x2F;2);</span><br><span class="line">            num&#x3D;new BigInteger(now);</span><br><span class="line">            while(x.compareTo(BigInteger.valueOf(11))&gt;&#x3D;0) &#123;</span><br><span class="line">                l&#x3D;num.toString();</span><br><span class="line">                r&#x3D;&quot;&quot;;</span><br><span class="line">                for(int i&#x3D;len&#x2F;2-1;i&gt;&#x3D;0;i--)r&#x3D;r+l.charAt(i);</span><br><span class="line">                now&#x3D;l+r;</span><br><span class="line">                jian&#x3D;new BigInteger(now);</span><br><span class="line">                if(x.compareTo(jian)&gt;&#x3D;0) &#123;</span><br><span class="line">                    x&#x3D;x.subtract(jian);</span><br><span class="line">                    ans[ji++]&#x3D;now;</span><br><span class="line">                    s&#x3D;x.toString();</span><br><span class="line">                    len&#x3D;s.length();</span><br><span class="line">                    now&#x3D;s.substring(0,(len+1)&#x2F;2);</span><br><span class="line">                    num&#x3D;new BigInteger(now);</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    num&#x3D;num.subtract(BigInteger.valueOf(1));</span><br><span class="line">                &#125;                           </span><br><span class="line">            &#125;</span><br><span class="line">            int res&#x3D;x.intValue();</span><br><span class="line">            if(res&gt;&#x3D;10) &#123;</span><br><span class="line">                ans[ji++]&#x3D;&quot;9&quot;;</span><br><span class="line">                ans[ji++]&#x3D;String.valueOf(res-9);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(res!&#x3D;0)&#123;</span><br><span class="line">                ans[ji++]&#x3D;String.valueOf(res);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(ji);</span><br><span class="line">            for(int i&#x3D;0;i&lt;ji;i++)System.out.println(ans[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hdu 4523 威威猫系列故事——过生日（java大数）</title>
+    <url>/d5042e55/</url>
+    <content><![CDATA[<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4523" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=4523</a></p>
+<p>Time Limit: 500/200 MS (Java/Others)    Memory Limit: 65535/32768 K (Java/Others)</p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>　　2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。<br>　　大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。<br>　　假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。<br>[Technical Specification]<br>3 &lt;= n &lt;= 10^100<br>0 &lt; m &lt;= 10^100<br>0 &lt;= p &lt;= 10^100</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；<br>每组数据输出一行。</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4 5 1</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">YES</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h3><p>Sample对应的示意图如下：<br><img src="http://acm.hdu.edu.cn/data/images/4523-1.jpg" alt=""></p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>2013腾讯编程马拉松初赛第四场（3月24日）</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        BigInteger n,m,p;</span><br><span class="line">        while(cin.hasNextBigInteger()) &#123;</span><br><span class="line">        	n&#x3D;cin.nextBigInteger();</span><br><span class="line">        	m&#x3D;cin.nextBigInteger();</span><br><span class="line">        	p&#x3D;cin.nextBigInteger();</span><br><span class="line">        	if(m.compareTo(BigInteger.valueOf(3))&gt;&#x3D;0&amp;&amp;m.compareTo(n.add(p))&lt;&#x3D;0)System.out.println(&quot;YES&quot;);</span><br><span class="line">        	else System.out.println(&quot;NO&quot;);      </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ACM</category>
       </categories>
