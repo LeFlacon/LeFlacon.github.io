@@ -2882,8 +2882,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>数论</tag>
+        <tag>贪心</tag>
         <tag>dp</tag>
         <tag>二分</tag>
         <tag>cf</tag>
@@ -3803,8 +3803,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4058,8 +4058,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4482,8 +4482,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>数论</tag>
+        <tag>贪心</tag>
         <tag>cf</tag>
       </tags>
   </entry>
@@ -9751,6 +9751,26 @@
       </tags>
   </entry>
   <entry>
+    <title>1012 最小公倍数LCM</title>
+    <url>/ec404005/</url>
+    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
+<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
+<a id="more"></a>
+
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
+<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
+<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1018 排序</title>
     <url>/5fc91746/</url>
     <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB </p>
@@ -9771,26 +9791,6 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1012 最小公倍数LCM</title>
-    <url>/ec404005/</url>
-    <content><![CDATA[<p>基准时间限制：1 秒 空间限制：131072 KB</p>
-<p>输入2个正整数A，B，求A与B的最小公倍数。</p>
-<a id="more"></a>
-
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>2个数A,B，中间用空格隔开。(1&lt;= A,B &lt;= 10^9)</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出A与B的最小公倍数。</p>
-<h3 id="Input示例"><a href="#Input示例" class="headerlink" title="Input示例"></a>Input示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">30 105</span><br></pre></td></tr></table></figure>
-<h3 id="Output示例"><a href="#Output示例" class="headerlink" title="Output示例"></a>Output示例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">210</span><br></pre></td></tr></table></figure>
-<hr>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define LL long long</span><br><span class="line">LL gcd(LL a,LL b)&#123;</span><br><span class="line">    return b&#x3D;&#x3D;0?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	LL a,b;</span><br><span class="line">	scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);</span><br><span class="line">	printf(&quot;%lld\n&quot;,a*b&#x2F;gcd(a,b));</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -10480,8 +10480,8 @@
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>数论</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -10949,6 +10949,32 @@
       </tags>
   </entry>
   <entry>
+    <title>hdu 4523 威威猫系列故事——过生日（java大数）</title>
+    <url>/d5042e55/</url>
+    <content><![CDATA[<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4523" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=4523</a></p>
+<p>Time Limit: 500/200 MS (Java/Others)    Memory Limit: 65535/32768 K (Java/Others)</p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>　　2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。<br>　　大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。<br>　　假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。<br>[Technical Specification]<br>3 &lt;= n &lt;= 10^100<br>0 &lt; m &lt;= 10^100<br>0 &lt;= p &lt;= 10^100</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；<br>每组数据输出一行。</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4 5 1</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">YES</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h3><p>Sample对应的示意图如下：<br><img src="http://acm.hdu.edu.cn/data/images/4523-1.jpg" alt=""></p>
+<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>2013腾讯编程马拉松初赛第四场（3月24日）</p>
+<hr>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        BigInteger n,m,p;</span><br><span class="line">        while(cin.hasNextBigInteger()) &#123;</span><br><span class="line">        	n&#x3D;cin.nextBigInteger();</span><br><span class="line">        	m&#x3D;cin.nextBigInteger();</span><br><span class="line">        	p&#x3D;cin.nextBigInteger();</span><br><span class="line">        	if(m.compareTo(BigInteger.valueOf(3))&gt;&#x3D;0&amp;&amp;m.compareTo(n.add(p))&lt;&#x3D;0)System.out.println(&quot;YES&quot;);</span><br><span class="line">        	else System.out.println(&quot;NO&quot;);      </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hdu 5920 Ugly Problem（贪心，java大数）</title>
     <url>/cfe28c6a/</url>
     <content><![CDATA[<p>Time Limit: 2000/1000 MS (Java/Others)    Memory Limit: 65536/65536 K (Java/Others)</p>
@@ -10982,32 +11008,6 @@
 
 
 <h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        int t;</span><br><span class="line">        t&#x3D;cin.nextInt();</span><br><span class="line">        BigInteger x&#x3D;BigInteger.valueOf(0),num,jian;</span><br><span class="line">        String s&#x3D;null,r&#x3D;null,l&#x3D;null,now&#x3D;null;</span><br><span class="line">        String ans[]&#x3D;new String[55];</span><br><span class="line">        for(int cas&#x3D;1;cas&lt;&#x3D;t;cas++) &#123;</span><br><span class="line">            int ji&#x3D;0;</span><br><span class="line">            x&#x3D;cin.nextBigInteger();</span><br><span class="line">            System.out.println(&quot;Case #&quot;+cas+&quot;:&quot;);</span><br><span class="line">            s&#x3D;x.toString();</span><br><span class="line">            int len&#x3D;s.length();</span><br><span class="line">            now&#x3D;s.substring(0,(len+1)&#x2F;2);</span><br><span class="line">            num&#x3D;new BigInteger(now);</span><br><span class="line">            while(x.compareTo(BigInteger.valueOf(11))&gt;&#x3D;0) &#123;</span><br><span class="line">                l&#x3D;num.toString();</span><br><span class="line">                r&#x3D;&quot;&quot;;</span><br><span class="line">                for(int i&#x3D;len&#x2F;2-1;i&gt;&#x3D;0;i--)r&#x3D;r+l.charAt(i);</span><br><span class="line">                now&#x3D;l+r;</span><br><span class="line">                jian&#x3D;new BigInteger(now);</span><br><span class="line">                if(x.compareTo(jian)&gt;&#x3D;0) &#123;</span><br><span class="line">                    x&#x3D;x.subtract(jian);</span><br><span class="line">                    ans[ji++]&#x3D;now;</span><br><span class="line">                    s&#x3D;x.toString();</span><br><span class="line">                    len&#x3D;s.length();</span><br><span class="line">                    now&#x3D;s.substring(0,(len+1)&#x2F;2);</span><br><span class="line">                    num&#x3D;new BigInteger(now);</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    num&#x3D;num.subtract(BigInteger.valueOf(1));</span><br><span class="line">                &#125;                           </span><br><span class="line">            &#125;</span><br><span class="line">            int res&#x3D;x.intValue();</span><br><span class="line">            if(res&gt;&#x3D;10) &#123;</span><br><span class="line">                ans[ji++]&#x3D;&quot;9&quot;;</span><br><span class="line">                ans[ji++]&#x3D;String.valueOf(res-9);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(res!&#x3D;0)&#123;</span><br><span class="line">                ans[ji++]&#x3D;String.valueOf(res);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(ji);</span><br><span class="line">            for(int i&#x3D;0;i&lt;ji;i++)System.out.println(ans[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hdu 4523 威威猫系列故事——过生日（java大数）</title>
-    <url>/d5042e55/</url>
-    <content><![CDATA[<p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=4523" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=4523</a></p>
-<p>Time Limit: 500/200 MS (Java/Others)    Memory Limit: 65535/32768 K (Java/Others)</p>
-<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>　　2月29号是威威猫的生日，由于这个日子非常特殊，4年才一次，所以生日这天许多朋友都前往威威猫家祝贺他的生日。<br>　　大家给威威猫买了一个非常大非常大的蛋糕，蛋糕的形状是一个有n条边的凸多边形，可是威威猫的审美观有一点奇怪，他只喜欢有m条边的蛋糕，所以他要伙伴们把这个蛋糕切p次，然后给他一个只有m条边的新蛋糕。这下大家急了，这不是坑爹吗，审美观崎岖作怪。<br>　　假设蛋糕可看成一个平面含n条边的凸多边形，每一刀必须沿直线切下去，p刀之后能给威威猫切出一个m条边的蛋糕吗？</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>多组测试数据，每组占一行，包含3个整数n, m, p（含义如上）。<br>[Technical Specification]<br>3 &lt;= n &lt;= 10^100<br>0 &lt; m &lt;= 10^100<br>0 &lt;= p &lt;= 10^100</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>每组测试数据，如果能够切出威威猫喜欢的蛋糕，请输出”YES”，否则请输出”NO”；<br>每组数据输出一行。</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4 5 1</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">YES</span><br></pre></td></tr></table></figure>
-
-<h3 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h3><p>Sample对应的示意图如下：<br><img src="http://acm.hdu.edu.cn/data/images/4523-1.jpg" alt=""></p>
-<h3 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h3><p>2013腾讯编程马拉松初赛第四场（3月24日）</p>
-<hr>
-<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>切一刀最多可以少n-3条边或者多1条边，所以就是判断m是否在[3，n+p]范围内</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.io.*;  </span><br><span class="line">import java.math.*;</span><br><span class="line">import java.util.*;</span><br><span class="line"> </span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner cin&#x3D;new Scanner(System.in);</span><br><span class="line">        BigInteger n,m,p;</span><br><span class="line">        while(cin.hasNextBigInteger()) &#123;</span><br><span class="line">        	n&#x3D;cin.nextBigInteger();</span><br><span class="line">        	m&#x3D;cin.nextBigInteger();</span><br><span class="line">        	p&#x3D;cin.nextBigInteger();</span><br><span class="line">        	if(m.compareTo(BigInteger.valueOf(3))&gt;&#x3D;0&amp;&amp;m.compareTo(n.add(p))&lt;&#x3D;0)System.out.println(&quot;YES&quot;);</span><br><span class="line">        	else System.out.println(&quot;NO&quot;);      </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -11686,8 +11686,8 @@ public class Main{
         <category>ACM</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>dp</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
